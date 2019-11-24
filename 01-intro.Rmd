@@ -1,21 +1,24 @@
 # Introduction {-}
 
-You can label chapter and section titles using `{#label}` after them, e.g., we can reference Chapter \@ref(intro). If you do not manually label them, there will be automatic labels anyway, e.g., Chapter \@ref(methods).
+## What is R?{-}
 
-Figures and tables with captions will be placed in `figure` and `table` environments, respectively.
+R is a statistical analysis environment initially created and developed by Ross Ihaka and Robert Gentleman in 1996. It can be regarded as an implementation of the S language, which was developed at Bell Laboratories by Rick Becker, John Chambers and Allan Wilks. 
 
-```{r nice-fig, fig.cap='Here is a nice figure!', out.width='80%', fig.asp=.75, fig.align='center'}
-par(mar = c(4, 4, .1, .1))
-plot(pressure, type = 'b', pch = 19)
-```
+R can be used both as a programming language and as a software package which you can use to manipulate your data, perform calculations, conduct statistical analyses and display graphics. Some advantages of using R include
 
-Reference a figure by its code chunk label with the `fig:` prefix, e.g., see Figure \@ref(fig:nice-fig). Similarly, you can reference tables generated from `knitr::kable()`, e.g., see Table \@ref(tab:nice-tab).
+- R is open source and freely available. 
+- R has an extensive and coherent set of tools for statistical analysis.
+- R has an extensive and highly flexible graphical facility capable of producing publication quality figures.
+- R has an expanding set of freely available ‘packages’ of routines for special or unusual analyses.
+- R has an extensive support network with numerous online and freely available documents.
 
-```{r nice-tab, tidy=FALSE}
-knitr::kable(
-  head(iris, 20), caption = 'Here is a nice table!',
-  booktabs = TRUE
-)
-```
+However, for those who haven’t used it before, R may seem rather daunting and complex. Whilst the initial learning curve is admittedly a little steep, R offers the user a degree of flexibility and control not usually available in other more traditional 'point and click' statistical software. Undoubtedly, the time invested in learning R now will be more than repaid at a later date. Most importantly, learning to use R will change the way you think about data analysis. As your analysis will be implemented using R code and R scripts you will always have a permanent and accurate record of your analytical approach which you can then make available to others to facilitate robust and reproducible research practices. 
 
-You can write citations, too. For example, we are using the **bookdown** package [@R-bookdown] in this sample book, which was built on top of R Markdown and **knitr** [@xie2015].
+## Installing R in Windows{-}
+
+Most people using this guide will be running R on a computer with a Windows operating system (for other operating systems see the next section or the [R-project](https://www.r-project.org/) web site). 
+
+R can be downloaded as a self-extracting file from the Comprehensive R Archive Network (CRAN) [website](https://cran.r-project.org/)
+
+Click on ‘Windows’, click on ‘base’ and then ‘Download R 3.6.1 for Windows’ (the version available whilst writing this guide). Double click on the downloaded R executable file and follow the on screen instructions. Full installation instructions can be found at the CRAN website. Although various contributed packages are now included with the standard R distribution, you may need to install other packages to perform particular analyses (see section 1.8 for details of how to do this).
+
