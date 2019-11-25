@@ -32,5 +32,156 @@ First, log onto the University network using your usual username and password. D
 
 ## The R console
 
-In Windows, once you have started R you will see the standard graphical user interface (GUI). In other operating systems the layout will vary, but all the essential elements are similar. The GUI is rather spartan with a limited number of menu and toolbar commands (Figure 1.1).
+In Windows, once you have started R you will see the standard graphical user interface (GUI). In other operating systems the layout will vary, but all the essential elements are similar. The GUI is rather spartan with a limited number of menu and toolbar commands.
+
+```{r rconsole, echo=FALSE, out.width="75%", fig.align="center", fig.cap="R console"}
+knitr::include_graphics(path = "images/rconsole.png")
+```
+
+\  
+
+The GUI contains a menu bar and a tool bar where you can access commonly used commands. It also provides a console window where your commands will be typed at the command line prompt (>). In addition, a graphics window will appear automatically when using any plotting function (see Section 4.0 for more information) and an R help window will appear when you ask for information about a particular command (see section 1.5). Don't worry too much about the R GUI, you won't be using it much as you'll be using RStudio instead (see section 1.10).
+
+## R help and support
+
+This guide is intended as a relatively brief introduction to R and as such you will soon be using functions and packages that go beyond this introductory text. Fortunately, one of the strengths of R is its comprehensive and easily accessible help system and a wealth of online resources where you can obtain further information. To access R’s built-in help facility to get specific information on any named function simply type in the R console at the command line prompt
+
+```{r help1, echo = TRUE, eval = FALSE}
+help(plot) 
+```
+
+Or alternatively
+
+```{r help2, echo = TRUE, eval = FALSE}
+?plot
+```
+
+The above example will display help for the function plot() in a separate R help window 
+
+```{r rhelp, echo=FALSE, out.width="75%", fig.align="center", fig.cap="R help"}
+knitr::include_graphics(path = "images/rhelp.png")
+```
+
+The first line of the help contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as
+
+    Description:	gives a brief description of the function.
+    Usage: 	gives the name of the arguments associated with the function and possible    default values (options).
+    Arguments: provides more detail regarding each argument.
+    Details: 	gives further details of the function.
+    Value:	 if applicable, gives the type of object returned by the function or the operator.
+    See Also: 	provides information on other help pages with similar or related content.
+    Examples: 	gives some examples of using the function. You can also access examples at any time by using the example() function (i.e. example(plot))
+
+Alternatively, you can use
+
+```{r althelp, echo = TRUE, eval = FALSE}
+help("plot")
+```
+
+This method has the advantage of allowing you to search for help on non-alphanumeric characters (i.e. \{, \[, \*). If in doubt always use quotes.
+
+In order to search for help in R it is necessary to use the ```help.search()``` function.
+
+For example
+
+```{r helpsear, eval = FALSE}
+help.search("plot")
+```
+
+Or equivalently
+
+```{r helpsearralt, eval = FALSE}
+??plot
+```
+
+gives the following
+
+    Help files with alias or concept or title matching 'plot' using regular
+expression matching:
+
+    base-defunct(base)      Defunct Functions in Base Package
+    glm.diag.plots(boot)    Diagnostics plots for generalized linear models
+    jack.after.boot(boot)   Jackknife-after-Bootstrap Plots
+    lines.saddle.distn(boot)
+                            Add a Saddlepoint Approximation to a Plot
+    plot.boot(boot)         Plots of the Output of a Bootstrap Simulation
+    av.plots(car)           Added-Variable Plots
+    ceres.plots(car)        Ceres Plots
+    cr.plots(car)           Component+Residual (Partial Residual) Plots
+
+The name of each entry is given on the left with the corresponding package in parentheses. A short description of the function is provided on the right. In the above example, the second entry can be displayed by typing
+
+```{r helppack, eval = FALSE}
+help(glm.diag.plots, package="boot") 
+```
+
+Help in html format can be called from within the console by typing
+
+```{r htmlhelp, eval = FALSE}
+help.start()
+```
+
+This function launches your web browser and allows you to browse the help pages using hyperlinks. One particularly useful feature of html help is the ability to search the R help pages using keywords and also search individual packages (although you can also do this from the R console).
+
+```{r htmlhelp2, echo=FALSE, out.width="75%", fig.align="center", fig.cap="html help"}
+knitr::include_graphics(path = "images/html_help.png")
+```
+
+An extremely useful function is ```RSiteSearch()``` which enables you to search for keywords and phrases in the R-Help mailing list and archives and also in R manuals, documentation and help pages. This function allows you to access the R-Project [search engine](https://www.r-project.org/search.html) directly from the console with the results displayed in your web browser
+
+```{r rsitesearch, echo=FALSE, out.width="75%", fig.align="center", fig.cap="RSitesearch help"}
+knitr::include_graphics(path = "images/rsitesearch.png")
+```
+
+Another useful function is ```apropos()```. This function can be used to list all functions containing a specified character string (word). For example
+
+```{r apropos, eval = FALSE}
+apropos("help")
+```
+
+lists all the functions with "help" in their name.
+
+## Other sources of information
+
+There are a large number of resources available online, many of which can be found on the [R-Project homepage](https://www.r-project.org/). These include a searchable RHelp archive, an R Wiki, R mailing lists (can be a bit scary but very useful!) and a variety of [user-contributed documents](https://cran.r-project.org/other-docs.html).
+
+## R packages 
+
+The standard installation of R contains a library of many useful packages. Other packages can be downloaded from the CRAN website which currently hosts over 10000 packages used for various purposes. 
+
+To install a particular package use:
+
+```{r install_pac, echo = TRUE, eval = FALSE}
+install.packages("name of package")
+```
+
+or if you want to install more than one package :
+
+```{r multpac, echo =TRUE, eval = FALSE}
+install.packages(c("package1", "package2"))
+```
+
+and to periodically update your packages use:
+
+```{r updatepac, echo = TRUE, eval = FALSE}
+update.packages()
+```
+
+If you are unable to install packages directly, you can manually download each package as a compressed file (*.zip) and perform a local zip file installation using the menu option.
+
+Once you have installed a package, it can be loaded into R using the ```library()``` function. For example, to load the package ```nlme``` you should enter
+
+```{r lib, echo = TRUE, eval = FALSE}
+library(nlme)
+```
+
+Be aware that loaded packages (other than those in the base installation) are not kept in the R workspace between R sessions. If you restart R you will need to reload any packages that you wish to use.
+
+
+
+
+
+
+
+
 
