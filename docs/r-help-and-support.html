@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Graphics in R | A Introduction to R</title>
+  <title>1.6 R help and support | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Graphics in R | A Introduction to R" />
+  <meta property="og:title" content="1.6 R help and support | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/rbook_cover2.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Graphics in R | A Introduction to R" />
+  <meta name="twitter:title" content="1.6 R help and support | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   <meta name="twitter:image" content="images/rbook_cover2.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-in-r.html"/>
-<link rel="next" href="simple-statistics-in-r.html"/>
+<link rel="prev" href="the-r-console.html"/>
+<link rel="next" href="other-sources-of-information.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -142,18 +142,76 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="graphics-in-r" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Graphics in R</h1>
-<p>content to follow</p>
-
+<div id="r-help-and-support" class="section level2">
+<h2><span class="header-section-number">1.6</span> R help and support</h2>
+<p>This guide is intended as a relatively brief introduction to R and as such you will soon be using functions and packages that go beyond this introductory text. Fortunately, one of the strengths of R is its comprehensive and easily accessible help system and a wealth of online resources where you can obtain further information. To access R’s built-in help facility to get specific information on any named function simply type in the R console at the command line prompt</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(plot) </code></pre></div>
+<p>Or alternatively</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">?plot</code></pre></div>
+<p>The above example will display help for the function plot() in a separate R help window</p>
+<div class="figure" style="text-align: center"><span id="fig:rhelp"></span>
+<img src="images/rhelp.png" alt="R help" width="75%" />
+<p class="caption">
+Figure 0.2: R help
+</p>
+</div>
+<p>The first line of the help contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as</p>
+<pre><code>Description:    gives a brief description of the function.
+Usage:  gives the name of the arguments associated with the function and possible    default values (options).
+Arguments: provides more detail regarding each argument.
+Details:    gives further details of the function.
+Value:   if applicable, gives the type of object returned by the function or the operator.
+See Also:   provides information on other help pages with similar or related content.
+Examples:   gives some examples of using the function. You can also access examples at any time by using the example() function (i.e. example(plot))</code></pre>
+<p>Alternatively, you can use</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(<span class="st">&quot;plot&quot;</span>)</code></pre></div>
+<p>This method has the advantage of allowing you to search for help on non-alphanumeric characters (i.e. {, [, *). If in doubt always use quotes.</p>
+<p>In order to search for help in R it is necessary to use the <code>help.search()</code> function.</p>
+<p>For example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.search</span>(<span class="st">&quot;plot&quot;</span>)</code></pre></div>
+<p>Or equivalently</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">??plot</code></pre></div>
+<p>gives the following</p>
+<pre><code>Help files with alias or concept or title matching &#39;plot&#39; using regular</code></pre>
+<p>expression matching:</p>
+<pre><code>base-defunct(base)      Defunct Functions in Base Package
+glm.diag.plots(boot)    Diagnostics plots for generalized linear models
+jack.after.boot(boot)   Jackknife-after-Bootstrap Plots
+lines.saddle.distn(boot)
+                        Add a Saddlepoint Approximation to a Plot
+plot.boot(boot)         Plots of the Output of a Bootstrap Simulation
+av.plots(car)           Added-Variable Plots
+ceres.plots(car)        Ceres Plots
+cr.plots(car)           Component+Residual (Partial Residual) Plots</code></pre>
+<p>The name of each entry is given on the left with the corresponding package in parentheses. A short description of the function is provided on the right. In the above example, the second entry can be displayed by typing</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help</span>(glm.diag.plots, <span class="dt">package=</span><span class="st">&quot;boot&quot;</span>) </code></pre></div>
+<p>Help in html format can be called from within the console by typing</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">help.start</span>()</code></pre></div>
+<p>This function launches your web browser and allows you to browse the help pages using hyperlinks. One particularly useful feature of html help is the ability to search the R help pages using keywords and also search individual packages (although you can also do this from the R console).</p>
+<div class="figure" style="text-align: center"><span id="fig:htmlhelp2"></span>
+<img src="images/html_help.png" alt="html help" width="75%" />
+<p class="caption">
+Figure 0.3: html help
+</p>
+</div>
+<p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in the R-Help mailing list and archives and also in R manuals, documentation and help pages. This function allows you to access the R-Project <a href="https://www.r-project.org/search.html">search engine</a> directly from the console with the results displayed in your web browser</p>
+<div class="figure" style="text-align: center"><span id="fig:rsitesearch"></span>
+<img src="images/rsitesearch.png" alt="RSitesearch help" width="75%" />
+<p class="caption">
+Figure 0.4: RSitesearch help
+</p>
+</div>
+<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string (word). For example</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">apropos</span>(<span class="st">&quot;help&quot;</span>)</code></pre></div>
+<p>lists all the functions with “help” in their name.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simple-statistics-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="the-r-console.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-sources-of-information.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
@@ -185,7 +243,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/04-graphics.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {
