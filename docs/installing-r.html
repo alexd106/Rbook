@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.6 Other sources of information | A Introduction to R</title>
+  <title>1.1 Installing R | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.6 Other sources of information | A Introduction to R" />
+  <meta property="og:title" content="1.1 Installing R | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:image" content="images/rbook_cover3.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.6 Other sources of information | A Introduction to R" />
+  <meta name="twitter:title" content="1.1 Installing R | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   <meta name="twitter:image" content="images/rbook_cover3.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r-help-and-support.html"/>
-<link rel="next" href="r-packages.html"/>
+<link rel="prev" href="getting-started-with-r-and-rstudio.html"/>
+<link rel="next" href="installing-rstudio.html"/>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
@@ -136,10 +136,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="installing-r.html"><a href="installing-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
 <li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
 <li class="chapter" data-level="1.3" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.3</b> Alternatives to RStudio</a></li>
-<li class="chapter" data-level="1.4" data-path="the-r-console.html"><a href="the-r-console.html"><i class="fa fa-check"></i><b>1.4</b> The R console</a></li>
-<li class="chapter" data-level="1.5" data-path="r-help-and-support.html"><a href="r-help-and-support.html"><i class="fa fa-check"></i><b>1.5</b> R help and support</a></li>
-<li class="chapter" data-level="1.6" data-path="other-sources-of-information.html"><a href="other-sources-of-information.html"><i class="fa fa-check"></i><b>1.6</b> Other sources of information</a></li>
-<li class="chapter" data-level="1.7" data-path="r-packages.html"><a href="r-packages.html"><i class="fa fa-check"></i><b>1.7</b> R packages</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="some-r-basics.html"><a href="some-r-basics.html"><i class="fa fa-check"></i><b>2</b> Some R Basics</a></li>
 <li class="chapter" data-level="3" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
@@ -166,17 +162,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="other-sources-of-information" class="section level2">
-<h2><span class="header-section-number">1.6</span> Other sources of information</h2>
-<p>There are a large number of resources available online, many of which can be found on the <a href="https://www.r-project.org/">R-Project homepage</a>. These include a searchable RHelp archive, an R Wiki, R mailing lists (can be a bit scary but very useful!) and a variety of <a href="https://cran.r-project.org/other-docs.html">user-contributed documents</a>.</p>
+<div id="installing-r" class="section level2">
+<h2><span class="header-section-number">1.1</span> Installing R</h2>
+<p>To get up and running the first thing you need to do is install R. R is freely available for Windows, Mac and Linux operating systems from the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN) website</a>. For Windows and Mac users I suggest you download and install the precompiled binary versions.</p>
+<p><strong>For Windows users</strong> select ‘Download R for Windows’ link and then click on the ‘base’ link and finally the download link ‘Download R 3.X.X for Windows’ (where 3.X.X is the latest version of the binary - 3.6.1 at the time of writing). This will begin the download of the ‘.exe’ installation file. When the download has completed double click on the R executable file and follow the on-screen instructions. Full installation instructions can be found at the <a href="https://cran.r-project.org/bin/windows/">CRAN website</a>.</p>
+<p><strong>For Mac users</strong> select the ‘<a href="https://cran.r-project.org/bin/macosx/">Download R for (Mac) OS X</a>’ link. The binary can be downloaded by selecting the ‘R-3.X.X.pkg’ (R-3.6.1.pkg at the time of writing). Once downloaded, double click on the file icon and follow the on-screen instructions to guide you through the necessary steps. See the ‘<a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html">R for Mac OS X</a> FAQ’ for further information on installation.</p>
+<p><strong>For Linux users</strong>, the installation method will depend on which flavour of linux you are using. There are reasonably comprehensive instruction <a href="https://cran.r-project.org/bin/linux/">here</a> for Debian, Redhat, Suse and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (console) and use (you will need root permission to do this):</p>
+<pre><code>sudo apt update
+sudo apt install r-base r-base-dev</code></pre>
+<p>which will install base R and also the development version of base R (you only need this if you want to compile R packages from source but it doesn’t hurt to have it).</p>
+<p>If you receive an error after running the code above you may need to add a ‘source.list’ entry to your etc/apt/sources.list file. To do this open the /etc/apt/sources.list file in your favourite text editor (gedit, vim, nano etc) and add the following line (you will need root permission to do this):</p>
+<pre><code>deb https://cloud.r-project.org/bin/linux/ubuntu disco-cran35/</code></pre>
+<p>This is the source.list for the latest version (at the time of writing) of Ubuntu (19.04 Disco Dingo). If you’re using an earlier version of Ubuntu then replace the source.list entry to the one which corresponds to the version of Ubuntu you are using (see <a href="https://cran.r-project.org/bin/linux/ubuntu">here</a> for an up to date list). Once you have done this then re-run the apt commands above and you should be good to go.</p>
+<p>Whichever operating system you’re using, once you have installed R you need to check its working properly. The easiest way to do this is to start R by double clicking on the R icon (Windows or Mac) or by typing <code>R</code> into the console (Linux). You should see the R console and you should be able to type R commands into the console. Try typing the following R code and then press enter (don’t worry of you don’t understand this - we’re just checking if R works)</p>
+<p>A plot of the numbers 1 to 10 on both the x and y axes should appear. If you see this, you’re good to go. If not then I suggest you make a note of any errors produced and then use Google to troubleshoot).</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
+<img src="Rbook_files/figure-html/unnamed-chunk-3-1.png" alt="plot to test R installation" width="75%" />
+<p class="caption">
+Figure 1.1: plot to test R installation
+</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-help-and-support.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="getting-started-with-r-and-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="installing-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
