@@ -21,23 +21,38 @@ description: "An Introduction to R"
 options(
   htmltools.dir.version = FALSE, formatR.indent = 2,
   width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE)
+source('common.R')
 ```
 
 
 # Preface{-}
 
-```{r fig.align='center', echo=FALSE, out.width="50%", out.height="50%"}
-knitr::include_graphics('images/rbook_cover3.png', dpi = NA)
-```
+The purpose of this book is to introduce you to using R, a powerful and flexible interactive environment for statistical computing and research. R in itself is not difficult to learn, but as with learning any new language (spoken or computer) the initial learning curve can be a little steep and somewhat daunting. I have tried to simplify the content of this book as much as possible and have based it on my own personal experience of teaching (and learning) R over the last 15 years. It is not intended to cover everything there is to know about R - that would be an impossible task. Neither is it intended to be an introductory statistics course, although you will be using some simple statistics to highlight some of R’s capabilities. The main aim of this book is to help you climb the initial learning curve and provide you with the basic skills and experience (and confidence!) to enable you to further your experience in using R.
+
+A few notes about this book. Although you can use this book as a standalone resource, I strongly recommend you use it in conjunction with the companion [website](https://alexd106.github.io). The course website contains a series of exercises which will help you practice writing R code and test your understanding of key concepts - you certainly won’t learn how to use R by watching other people do it (or reading a book about it!). The website also contains solutions for each of the exercises and a plethora of links to additional resources. 
+
+A question I get asked fairly regularly is *'what's the best/easiest way to learn R?'*. Unfortunately, I don't have a ready answer to this question as everyone tends to learn R in their own way and at their own pace. Having said that, here are a few things to bear in mind that might help:
+
+- Use R often and use it regularly - find any excuse to fire up R (or RStudio) and get coding to help build and maintain all important momentum. 
+
+- Learning R is not a memory test. One of the beauties of a scripting language is that you will always have your code to refer back to when you inevitably forget how to do something.
+
+- You don't need to know everything there is to know about R to use it productively. If you get stuck, Google it, it's not cheating and writing a good search query is a skill in itself. Just make sure you check thoroughly that the code you find is doing what you want it to do.
+
+- If you find yourself staring at code for hours trying to find out why it's not working then walk away for a few minutes. I have lost count of the number of times I was able to spot my mistake almost immediately after returning from a short caffeine break.
+
+- In R there are many ways to tackle a particular problem. If your code doesn't look like someone else's, but it does what you want it to do in a reasonable time and robustly then don't worry about it - job done. 
+
+- Related to the previous point, remember R is just a tool to help you answer your interesting questions. Although it can be fun to immerse yourself in all things R, don't lose sight of what's important - your research question(s) and your data. No amount of skill using R will help if your data collection is fundamentaly flawed or your question vague. 
+
+- Recognise that there will be times when things will get a little tough or frustrating. Try to accept these periods as part of the natural process of learning how to use R (we've all been there) and remember, the time and energy you invest now will be more than payed back in the not too distant future.
+
+Finally, once you have finished working your way through this book, I encourage you to practice what you've learned using your own data. If you don’t have any data yet, then ask your colleagues / friends / family for some (I’m sure they will be delighted!) or follow one of the many excellent tutorials available on-line (see the [course website](https://alexd106.github.io) for more details). My suggestion to you, is that while you are getting to grips with R, uninstall any other statistics software you have on your computer and only use R. This may seem a little extreme but will hopefully remove the temptation to *‘just do it quickly’* in a more familiar environment and consequently slow down your learning of R. Believe me, anything you can do in your existing statistics software package you can do in R - often more robustly and efficiently. 
+
+Good luck and have don’t forget to have fun. 
 
 \  
 
-The purpose of this guide is to introduce you to using R, a modern, interactive environment for statistical computing and research. R in itself is not difficult to learn, but just like any new language the initial learning curve can be a little steep and you will need to use it frequently otherwise it’s easy to forget. 
+This book is written in [RMarkdown](https://rmarkdown.rstudio.com) with [bookdown](https://bookdown.org).
 
-A few notes about the course and this guide. Although you can use this guide as a standalone resource, I recommend you use it in conjunction with the companion [course website](https://alexd106.github.io). The course website contains a series of exercises for you to practice your coding and test your understanding of key concepts. You will also find R code for the exercise solutions and a plethora of links to additional resources. I suggest you work through the exercises during the course and encourage you complete these in your own time - you certainly won’t learn how to use R by watching other people do it.
 
-In this guide I have tried to simplify the content as much as possible and have based it on my own personal experience of teaching (and learning!) R over the last 15 years. It is not intended to cover everything there is to know about R - that would be an impossible task. Neither is it intended to be an introductory statistics course, although you will be using some simple statistics to highlight some of R’s capabilities. The main aim of this course is to help you climb the initial learning curve in a supportive and relaxed environment and provide you with the basic skills to enable you to further your experience in using R. There may be times when things get a little tough or frustrating (especially for those who have little or no experience of using the command line), however try to stick with it, the time and energy you invest now will be utterly transformative to your research. 
-
-Finally, once you have finished this course, I encourage you to practice what you have learned on your own data. If you don’t have any data yet, then ask your supervisor or friends for some (I’m sure they will be delighted!) or follow one of the many excellent tutorials available online (see the course website for more details). My suggestion to you, is that while you are getting to grips with R, uninstall any other statistics software you have on your computer and only use R. This may seem a little extreme but will hopefully remove the temptation to ‘just do it quickly’ in a more familiar environment and consequently slow down your learning of R. Believe me, anything you can do in your existing statistics software package you can do in R (often better and more efficiently). 
-
-Good luck and have don’t forget to have fun. 
