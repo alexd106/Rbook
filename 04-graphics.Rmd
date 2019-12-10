@@ -8,7 +8,7 @@ In this chapter, we will focus on two methods to produce figures in `R`. The fir
 
 ### Where did ggplot2 come from
 
-(Think I want this removed. Debatable if reader would care about this and want to have screen space taken up)
+(Think I want this removed. Debatable if reader would care about this and want to have screen space taken up with words)
 
 Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the `gg` in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
 
@@ -26,14 +26,16 @@ With that in mind, let's get started.
 
 #### Base R
 
-(Using cars dataset as placeholder data)
+(Using mtcars dataset as placeholder data)
 
-In base R, the `plot()` function is the workhorse. Flexible
+In base R, the `plot()` function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with `plot` there are only two `Arguments` we need to worry about: the first argument `x =` is where we specify what variable we want on the x-axis; and `y =` where we specify the variable we want displayed on the y-axis. So long as we specify the `dataframe$variable`, the `plot()` function will take care of the rest.
 
-```{r, base R scatterplot starting-figure, echo=FALSE, out.width="75%", fig.align="center"}
+```{r, placeholder dataset - mtcars for now, echo = FALSE}
 data(mtcars) # placeholder data
-names(mtcars)
-plot(mtcars$mpg ~ mtcars$hp)
+```
+
+```{r, base R scatterplot starting-figure, echo=TRUE, out.width="75%", fig.align="center"}
+plot(x = mtcars$hp, y = mtcars$mpg)
 ```
 
 #### ggplot2
