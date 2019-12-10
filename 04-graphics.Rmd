@@ -22,9 +22,9 @@ With that in mind, let's get started.
 
 \
 
-#### Quick scatterplots
+## Quick scatterplots
 
-#### Base R
+### Quick scatterplots in Base R
 
 (Using mtcars dataset as placeholder data)
 
@@ -38,8 +38,12 @@ data(mtcars) # placeholder data
 plot(x = mtcars$hp, y = mtcars$mpg)
 ```
 
-#### ggplot2
+### Quick scatterplots in ggplot2
+
+`ggplot2` has an initially slightly more complex structure. In fact, to begin with we won't even be using the `ggplot()` function. Instead, we'll start off by using `qplot()` (which is short for "quick plot"). The idea behind including `qplot()` with `ggplot2` was to have a function which operated fairly similarly to `plot()`. 
+
+As such, `qplot()` has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using `x =` and `y =`).
 
 ```{r, qplot scatterplot starting-figure, echo=FALSE, out.width="75%", fig.align="center"}
-qplot(y = mpg, x = hp, data = mtcars)
+qplot(x = mtcars$mpg, y = mtcars$hp)
 ```
