@@ -6,11 +6,7 @@ As stated in the introduction, one of the many reasons for the rise in the popul
 
 We will focus on two ways to produce figures in `R`. The first will be base `R` figures and the second will be through using a package called `ggplot`.
 
-## Base R data visualisation
-
-Content to be added
-
-## ggplot data visualisation
+### Where ggplot2 came from
 
 (Following might be removed eventually)
 
@@ -26,18 +22,22 @@ With that in mind, let's get started.
 
 \
 
-### Quick scatterplots
+#### Quick scatterplots
 
 #### Base R
 
+(Using cars dataset as placeholder data)
+
+In base R, the `plot()` function is the workhorse. Flexible
+
 ```{r, base R scatterplot starting-figure, echo=FALSE, out.width="75%", fig.align="center"}
-data(cars) # placeholder data
-names(cars)
-plot(cars$speed ~ cars$dist)
+data(mtcars) # placeholder data
+names(mtcars)
+plot(mtcars$mpg ~ mtcars$hp)
 ```
 
 #### ggplot2
 
 ```{r, qplot scatterplot starting-figure, echo=FALSE, out.width="75%", fig.align="center"}
-qplot(y = speed, x = dist, data = cars)
+qplot(y = mpg, x = hp, data = mtcars)
 ```
