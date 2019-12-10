@@ -6,8 +6,6 @@ As stated in the introduction, one of the many reasons for the rise in the popul
 
 In this chapter, we will focus on two methods to produce figures in `R`. The first will be using the base `R` route and the second will be through using a package called `ggplot2`.
 
-### Where did ggplot2 come from
-
 (Think I want this removed. Debatable if reader would care about this and want to have screen space taken up with words)
 
 Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the `gg` in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
@@ -22,9 +20,9 @@ With that in mind, let's get started.
 
 \
 
-## Quick scatterplots
+## Making a quick scatterplots
 
-### Quick scatterplots in Base R
+### In base R
 
 (Using mtcars dataset as placeholder data)
 
@@ -38,7 +36,7 @@ data(mtcars) # placeholder data
 plot(x = mtcars$hp, y = mtcars$mpg)
 ```
 
-### Quick scatterplots in ggplot2
+### In ggplot2
 
 `ggplot2` has an initially slightly more complex structure. In fact, to begin with we won't even be using the `ggplot()` function. Instead, we'll start off by using `qplot()` (which is short for "quick plot"). The idea behind including `qplot()` with `ggplot2` was to have a function which operated fairly similarly to `plot()`. 
 
@@ -47,3 +45,27 @@ As such, `qplot()` has the same argument requirements: we simply need to specify
 ```{r, qplot scatterplot starting-figure, echo=FALSE, out.width="75%", fig.align="center"}
 qplot(x = mtcars$mpg, y = mtcars$hp)
 ```
+
+## Altering an axis labels
+
+Let's begin the process of getting our figures to publication standard. First things first, let's change out those stupid looking axis labels.
+
+### In Base R
+
+(Content to follow)
+
+```{r, base R labels, echo=TRUE, out.width="75%", fig.align="center"}
+plot(x = mtcars$hp, y = mtcars$mpg,
+		 xlab = "Horsepower",
+		 ylab = "Miles per Gallon")
+```
+
+### In ggplot2
+
+```{r, qplot labels, echo=FALSE, out.width="75%", fig.align="center"}
+qplot(x = mtcars$mpg, y = mtcars$hp,
+		 xlab = "Horsepower",
+		 ylab = "Miles per Gallon")
+```
+
+

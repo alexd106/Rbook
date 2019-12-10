@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Graphics in R | A Introduction to R</title>
+  <title>4.1 Making a quick scatterplots | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Graphics in R | A Introduction to R" />
+  <meta property="og:title" content="4.1 Making a quick scatterplots | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Graphics in R | A Introduction to R" />
+  <meta name="twitter:title" content="4.1 Making a quick scatterplots | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-in-r.html"/>
-<link rel="next" href="making-a-quick-scatterplots.html"/>
+<link rel="prev" href="graphics-in-r.html"/>
+<link rel="next" href="altering-an-axis-labels.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,27 +178,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="graphics-in-r" class="section level1">
-<h1><span class="header-section-number">Chapter 4</span> Graphics in R</h1>
-<p>For many people, one of their favourite uses of <code>R</code> is in making figures. These can either take the form of a quick dirty plot to allow you to get a feel for what’s going on in your dataset, or fancier/more complex figures to use in a publication or report. This process is often as close as many analysts/scientists get to having a professional creative side (at least that’s true for me), and it’s something which those folk take great pride in.</p>
-<p>As stated in the introduction, one of the many reasons for the rise in the popularity of <code>R</code> is due to it’s ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in <code>R</code> allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional click and point programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.</p>
-<p>In this chapter, we will focus on two methods to produce figures in <code>R</code>. The first will be using the base <code>R</code> route and the second will be through using a package called <code>ggplot2</code>.</p>
-<p>(Think I want this removed. Debatable if reader would care about this and want to have screen space taken up with words)</p>
-<p>Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? <code>ggplot2</code> was based on a book called <em>Grammar of Graphics</em> (hence the <code>gg</code> in <code>ggplot2</code>) by Leland Wilkinson <a href="https://www.springer.com/gp/book/9780387245447">yours for only £100 or so</a>. But before you spend £100 see <a href="https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf">here</a> for an interesting summary of Wilkinson’s book.</p>
-<p>Briefly, Wilkinson’s idea (one of them anyway) in <em>grammar of graphics</em> was that figures can be broken down into consituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author’s) ideas would, never-the-less, make their way into R.</p>
-<p>In 2007 <code>ggplot2</code>was officially released by Hadley Wickham. By 2017 the package was said to have been downloaded 10,000,000 times. <code>ggplot2</code> now has many secondary packages that use it either as a foundation for expanding on or for interfacing (some statistical packages now have accompanying <code>ggplot2</code> interfaces for producing figures).</p>
-<p>It is important to note here that <code>ggplot2</code> is not required to make “fancy” figures. If you’d prefer to ue base R then go ahead. Exactly equivalent figures are possible in base R. The difference between<code>ggplot2</code> and base is to do with how you <em>get</em> to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is easier to do with <code>ggplot2</code> as many decisions are made for the user, without you necessarily even knowing that a decision was ever made!</p>
-<p>With that in mind, let’s get started.</p>
-<p><br />
-</p> 
+<div id="making-a-quick-scatterplots" class="section level2">
+<h2><span class="header-section-number">4.1</span> Making a quick scatterplots</h2>
+<div id="in-base-r" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> In base R</h3>
+<p>(Using mtcars dataset as placeholder data)</p>
+<p>In base R, the <code>plot()</code> function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with <code>plot</code> there are only two <code>Arguments</code> we need to worry about: the first argument <code>x =</code> is where we specify what variable we want on the x-axis; and <code>y =</code> where we specify the variable we want displayed on the y-axis. So long as we specify the <code>dataframe$variable</code>, the <code>plot()</code> function will take care of the rest.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/base%20R%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="in-ggplot2" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> In ggplot2</h3>
+<p><code>ggplot2</code> has an initially slightly more complex structure. In fact, to begin with we won’t even be using the <code>ggplot()</code> function. Instead, we’ll start off by using <code>qplot()</code> (which is short for “quick plot”). The idea behind including <code>qplot()</code> with <code>ggplot2</code> was to have a function which operated fairly similarly to <code>plot()</code>.</p>
+<p>As such, <code>qplot()</code> has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using <code>x =</code> and <code>y =</code>).</p>
+<p><img src="Rbook_files/figure-html/qplot%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="making-a-quick-scatterplots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graphics-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="altering-an-axis-labels.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
