@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 Installing RStudio | A Introduction to R</title>
+  <title>4.1 Making a quick scatterplot | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 Installing RStudio | A Introduction to R" />
+  <meta property="og:title" content="4.1 Making a quick scatterplot | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 Installing RStudio | A Introduction to R" />
+  <meta name="twitter:title" content="4.1 Making a quick scatterplot | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installing-r.html"/>
-<link rel="next" href="alternatives-to-rstudio.html"/>
+<link rel="prev" href="graphics-in-r.html"/>
+<link rel="next" href="altering-an-axis-label.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,36 +178,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="installing-rstudio" class="section level2">
-<h2><span class="header-section-number">1.2</span> Installing RStudio</h2>
-<p>Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular <strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R console, script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about <a href="https://rstudio.com/">RStudio here</a>.</p>
-<p>RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the <a href="https://rstudio.com/products/rstudio/download">RStudio site</a>. You should select the ‘RStudio Desktop’ version. Note: you must install R before you install RStudio (see previous section for details).</p>
-<p><strong>For Windows and Mac users</strong> you should be presented with the appropriate link for downloading. Click on this link and once downloaded run the installer and follow the instructions. If you don’t see the link then scroll down to the ‘All Installers’ section and choose the link manually.</p>
-<p><strong>For linux users</strong> scroll down to the ‘All Installers’ section and choose the appropriate link to download the binary for your Linux operating system. RStudio for Ubuntu (and Debian) is available as a <code>*.deb</code> package. The easiest way to install <code>deb</code> files on Ubuntu is by using the <code>gdebi</code> command. If <code>gdebi</code> is not available on your system you can install it by executing the following command in the console (you will need root permission to do this)</p>
-<pre><code>sudo apt update
-sudo apt install gdebi-core</code></pre>
-<p>To install the <code>*.deb</code> file navigate to where you downloaded the file and then enter the following command with root permission</p>
-<pre><code>sudo gdebi rstudio-xenial-1.2.5XXX-amd64.deb</code></pre>
-<p>where ‘-1.2.5XXX’ is the current version for Ubuntu (rstudio-xenial-1.2.5019-amd64.deb at the time of writing). You can then start RStudio from the console by simply typing</p>
-<pre><code>rstudio</code></pre>
-<p>or you can create a shortcut on your Desktop for easy startup.</p>
-<p>Once installed, you can check everything is working by starting up RStudio (you don’t need to start R as well, just RStudio). You should see something like the image below (there might only be 3 windows when you first start RStudio, don’t worry, we’ll get to this in a bit).</p>
-<p> </p>
-<div class="figure" style="text-align: center"><span id="fig:rstudio"></span>
-<img src="images/rstudio.png" alt="RStudio on Mac OS X" width="75%" />
-<p class="caption">
-Figure 1.2: RStudio on Mac OS X
-</p>
+<div id="making-a-quick-scatterplot" class="section level2">
+<h2><span class="header-section-number">4.1</span> Making a quick scatterplot</h2>
+<p>(Content to follow)</p>
+<div id="scatterplot---in-base-r" class="section level3">
+<h3><span class="header-section-number">4.1.1</span> Scatterplot - In base R</h3>
+<p>(Using mtcars dataset as placeholder data)</p>
+<p>In base R, the <code>plot()</code> function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with <code>plot</code> there are only two <code>Arguments</code> we need to worry about: the first argument <code>x =</code> is where we specify what variable we want on the x-axis; and <code>y =</code> where we specify the variable we want displayed on the y-axis. So long as we specify the <code>dataframe$variable</code>, the <code>plot()</code> function will take care of the rest.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/base%20R%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
-<p> </p>
+<div id="scatterplot---in-ggplot2" class="section level3">
+<h3><span class="header-section-number">4.1.2</span> Scatterplot - In ggplot2</h3>
+<p><code>ggplot2</code> has an initially slightly more complex structure. In fact, to begin with we won’t even be using the <code>ggplot()</code> function. Instead, we’ll start off by using <code>qplot()</code> (which is short for “quick plot”). The idea behind including <code>qplot()</code> with <code>ggplot2</code> was to have a function which operated fairly similarly to <code>plot()</code>. Before we use the funtion <code>qplot()</code> we need to make the package <code>ggplot2</code> available using the <code>library()</code> function</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<p>As such, <code>qplot()</code> has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using <code>x =</code> and <code>y =</code>).</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>mpg, <span class="dt">y =</span> mtcars<span class="op">$</span>hp)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/qplot%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="installing-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="alternatives-to-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="graphics-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="altering-an-axis-label.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +235,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/04-graphics.Rmd",
 "text": "Edit"
 },
 "history": {

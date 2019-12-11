@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.2 Installing RStudio | A Introduction to R</title>
+  <title>4.2 Altering an axis label | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.2 Installing RStudio | A Introduction to R" />
+  <meta property="og:title" content="4.2 Altering an axis label | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.2 Installing RStudio | A Introduction to R" />
+  <meta name="twitter:title" content="4.2 Altering an axis label | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="installing-r.html"/>
-<link rel="next" href="alternatives-to-rstudio.html"/>
+<link rel="prev" href="making-a-quick-scatterplot.html"/>
+<link rel="next" href="simple-statistics-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,36 +178,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="installing-rstudio" class="section level2">
-<h2><span class="header-section-number">1.2</span> Installing RStudio</h2>
-<p>Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular <strong>I</strong>ntegrated <strong>D</strong>evelopment <strong>E</strong>nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R console, script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about <a href="https://rstudio.com/">RStudio here</a>.</p>
-<p>RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the <a href="https://rstudio.com/products/rstudio/download">RStudio site</a>. You should select the ‘RStudio Desktop’ version. Note: you must install R before you install RStudio (see previous section for details).</p>
-<p><strong>For Windows and Mac users</strong> you should be presented with the appropriate link for downloading. Click on this link and once downloaded run the installer and follow the instructions. If you don’t see the link then scroll down to the ‘All Installers’ section and choose the link manually.</p>
-<p><strong>For linux users</strong> scroll down to the ‘All Installers’ section and choose the appropriate link to download the binary for your Linux operating system. RStudio for Ubuntu (and Debian) is available as a <code>*.deb</code> package. The easiest way to install <code>deb</code> files on Ubuntu is by using the <code>gdebi</code> command. If <code>gdebi</code> is not available on your system you can install it by executing the following command in the console (you will need root permission to do this)</p>
-<pre><code>sudo apt update
-sudo apt install gdebi-core</code></pre>
-<p>To install the <code>*.deb</code> file navigate to where you downloaded the file and then enter the following command with root permission</p>
-<pre><code>sudo gdebi rstudio-xenial-1.2.5XXX-amd64.deb</code></pre>
-<p>where ‘-1.2.5XXX’ is the current version for Ubuntu (rstudio-xenial-1.2.5019-amd64.deb at the time of writing). You can then start RStudio from the console by simply typing</p>
-<pre><code>rstudio</code></pre>
-<p>or you can create a shortcut on your Desktop for easy startup.</p>
-<p>Once installed, you can check everything is working by starting up RStudio (you don’t need to start R as well, just RStudio). You should see something like the image below (there might only be 3 windows when you first start RStudio, don’t worry, we’ll get to this in a bit).</p>
-<p> </p>
-<div class="figure" style="text-align: center"><span id="fig:rstudio"></span>
-<img src="images/rstudio.png" alt="RStudio on Mac OS X" width="75%" />
-<p class="caption">
-Figure 1.2: RStudio on Mac OS X
-</p>
+<div id="altering-an-axis-label" class="section level2">
+<h2><span class="header-section-number">4.2</span> Altering an axis label</h2>
+<p>Let’s begin the process of getting our figures to publication standard. First things first, let’s change out those stupid looking axis labels.</p>
+<div id="axis-label---in-base-r" class="section level3">
+<h3><span class="header-section-number">4.2.1</span> Axis label - In Base R</h3>
+<p>(Content to follow)</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg,</a>
+<a class="sourceLine" id="cb10-2" data-line-number="2">         <span class="dt">xlab =</span> <span class="st">&quot;Horsepower&quot;</span>,</a>
+<a class="sourceLine" id="cb10-3" data-line-number="3">         <span class="dt">ylab =</span> <span class="st">&quot;Miles per Gallon&quot;</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/base%20R%20labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
-<p> </p>
+<div id="axis-label---in-ggplot2" class="section level3">
+<h3><span class="header-section-number">4.2.2</span> Axis label - In ggplot2</h3>
+<p>(Content to follow)</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>mpg, <span class="dt">y =</span> mtcars<span class="op">$</span>hp,</a>
+<a class="sourceLine" id="cb11-2" data-line-number="2">         <span class="dt">xlab =</span> <span class="st">&quot;Horsepower&quot;</span>,</a>
+<a class="sourceLine" id="cb11-3" data-line-number="3">         <span class="dt">ylab =</span> <span class="st">&quot;Miles per Gallon&quot;</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/qplot%20labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
+
 </div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="installing-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="alternatives-to-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="making-a-quick-scatterplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-statistics-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -239,7 +238,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/04-graphics.Rmd",
 "text": "Edit"
 },
 "history": {
