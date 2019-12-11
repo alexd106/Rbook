@@ -5,6 +5,7 @@
 [cran-mac]: https://cran.r-project.org/bin/macosx/
 [cran-mac-faq]: https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html
 [cran-ubuntu]: https://cran.r-project.org/bin/linux/ubuntu
+[cran-packages]: https://cran.r-project.org/web/packages/index.html
 
 [cran-faq]: https://cran.r-project.org/faqs.html
 [cran-R-admin]: http://cran.r-project.org/doc/manuals/R-admin.html
@@ -37,3 +38,6 @@
 
 <!--Misc Links-->
 [r4stats]: http://r4stats.com/articles/popularity/
+[bioconductor]: https://www.bioconductor.org/
+[bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
+[github]: https://github.com/
