@@ -1,18 +1,14 @@
 # Graphics in R
 
-One of my personal favourite uses of `R` is in making figures. For me, these are either quick dirty plots to allow me to get a feel for what's going on in my dataset, or fancier/more complex figures to use in a publication. This is as close as I get to having an "artistic" streak so I make sure to enjoy making figures when I have the chance.
+For many people, one of their favourite uses of `R` is in making figures. These can either take the form of a quick dirty plot to allow you to get a feel for what's going on in your dataset, or fancier/more complex figures to use in a publication or report. This process is often as close as many analysts/scientists get to having a professional creative side (at least that's true for me), and it's something which those folk take great pride in.
 
-As stated in the introduction, one of the many reasons for the rise in popularity of `R` is due to it's ability to produce publication standard figures (as well as quick and easy ones). Not only can users make figures well suited for publication, but producing figures in `R` allow lots of customisation, in turn allowing users to create their own particular styles/brands of figures (well beyond the beyond cookie-cutter styles in more traditional click and point programs).
+As stated in the introduction, one of the many reasons for the rise in the popularity of `R` is due to it's ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in `R` allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional click and point programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
 
-We will focus on two ways to produce figures in `R`. The first will be base `R` figures and the second will be through using a package called `ggplot`.
+In this chapter, we will focus on two methods to produce figures in `R`. The first will be using the base `R` route and the second will be through using a package called `ggplot2`.
 
-## Base R data visualisation
+(Think I want the following removed. Debatable if reader would care about this / want to have screen space taken up)
 
-Content to be added
-
-## ggplot data visualisation
-
-Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the `gg` in `ggplot2`) by Leland Wilkinson (yours for only £100 or so)[https://www.springer.com/gp/book/9780387245447]. But before you spend £100 see (here)[https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf] for an interesting summary of Wilkinson's book. 
+Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the `gg` in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
 
 Briefly, Wilkinson's idea (one of them anyway) in _grammar of graphics_ was that figures can be broken down into consituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author's) ideas would, never-the-less, make their way into R. 
 
@@ -20,6 +16,60 @@ In 2007 `ggplot2`was officially released by Hadley Wickham. By 2017 the package 
 
 It is important to note here that `ggplot2` is not required to make "fancy" figures. If you'd prefer to ue base R then go ahead. Exactly equivalent figures are possible in base R. The difference between`ggplot2` and base is to do with how you _get_ to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is easier to do with `ggplot2` as many decisions are made for the user, without you necessarily even knowing that a decision was ever made!
 
-With that in mind, let's get started.
+With that in mind, let's get started making some figures.
 
-### qplots - the ggplot version of plot()
+\
+
+## Making a quick scatterplot
+
+(Content to follow)
+
+### Scatterplot - In base R
+
+(Using mtcars dataset as placeholder data)
+
+In base R, the `plot()` function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with `plot` there are only two `Arguments` we need to worry about: the first argument `x =` is where we specify what variable we want on the x-axis; and `y =` where we specify the variable we want displayed on the y-axis. So long as we specify the `dataframe$variable`, the `plot()` function will take care of the rest.
+
+```{r placeholder dataset - mtcars for now, echo = FALSE}
+data(mtcars) # placeholder data
+```
+
+```{r base R scatterplot starting-figure, echo=TRUE, out.width="75%", fig.align="center"}
+plot(x = mtcars$hp, y = mtcars$mpg)
+```
+
+### Scatterplot - In ggplot2
+
+`ggplot2` has an initially slightly more complex structure. In fact, to begin with we won't even be using the `ggplot()` function. Instead, we'll start off by using `qplot()` (which is short for "quick plot"). The idea behind including `qplot()` with `ggplot2` was to have a function which operated fairly similarly to `plot()`. 
+
+As such, `qplot()` has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using `x =` and `y =`).
+
+```{r qplot scatterplot starting-figure, echo=TRUE, out.width="75%", fig.align="center"}
+qplot(x = mtcars$mpg, y = mtcars$hp)
+```
+
+## Altering an axis label
+
+Let's begin the process of getting our figures to publication standard. First things first, let's change out those stupid looking axis labels.
+
+### Axis label - In Base R
+
+(Content to follow)
+
+```{r base R labels, echo=TRUE, out.width="75%", fig.align="center"}
+plot(x = mtcars$hp, y = mtcars$mpg,
+		 xlab = "Horsepower",
+		 ylab = "Miles per Gallon")
+```
+
+### Axis label - In ggplot2
+
+(Content to follow)
+
+```{r qplot labels, echo=TRUE, out.width="75%", fig.align="center"}
+qplot(x = mtcars$mpg, y = mtcars$hp,
+		 xlab = "Horsepower",
+		 ylab = "Miles per Gallon")
+```
+
+
