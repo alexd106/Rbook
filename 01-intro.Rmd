@@ -11,7 +11,7 @@ Although R is not new, it's popularity has increased rapidly over the last 10 ye
 
 All of the reasons above are great reasons to use R. However, in our opinion, the single biggest reason to use R is that it facilitates robust and reproducible research practices. In contrast to more traditional 'point and click' software, writing R code to perform your analysis ensures you have a permanent and accurate record of all the methods (and decisions) you made whilst analysing your data. You are then able to share this code (and your data) with other researchers who will be able to reproduce your analysis exactly.   
 
-## Installing R
+## Installing R {#install_r}
 
 To get up and running the first thing you need to do is install R. R is freely available for Windows, Mac and Linux operating systems from the [Comprehensive R Archive Network (CRAN) website][cran]. For Windows and Mac users I suggest you download and install the precompiled binary versions. 
 
@@ -19,7 +19,7 @@ To get up and running the first thing you need to do is install R. R is freely a
 
 **For Mac users** select the '[Download R for (Mac) OS X][cran-mac]' link. The binary can be downloaded by selecting the 'R-3.X.X.pkg' (R-3.6.1.pkg at the time of writing). Once downloaded, double click on the file icon and follow the on-screen instructions to guide you through the necessary steps. See the '[R for Mac OS X][cran-mac-faq] FAQ' for further information on installation.
 
-**For Linux users**, the installation method will depend on which flavour of linux you are using. There are reasonably comprehensive instruction [here][cran-linux] for Debian, Redhat, Suse  and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (console) and use (you will need root permission to do this):
+**For Linux users**, the installation method will depend on which flavour of linux you are using. There are reasonably comprehensive instruction [here][cran-linux] for Debian, Redhat, Suse  and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (Terminal) and use (you will need root permission to do this):
 
 ```{block}
     sudo apt update
@@ -50,7 +50,7 @@ plot(1:10)
 
 Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular **I**ntegrated **D**evelopment **E**nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R console, script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about [RStudio here][rstudio]. 
 
-RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the [RStudio site][rstudio-download]. You should select the 'RStudio Desktop' version. Note: you must install R before you install RStudio (see previous section for details).
+RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the [RStudio site][rstudio-download]. You should select the 'RStudio Desktop' version. Note: you must install R before you install RStudio (see [previous section](#install_r) for details).
 
 **For Windows and Mac users** you should be presented with the appropriate link for downloading. Click on this link and once downloaded run the installer and follow the instructions. If you don't see the link then scroll down to the 'All Installers' section and choose the link manually. 
 
@@ -75,7 +75,7 @@ where '-1.2.5XXX' is the current version for Ubuntu (rstudio-xenial-1.2.5019-amd
 
 or you can create a shortcut on your Desktop for easy startup. 
 
-Once installed, you can check everything is working by starting up RStudio (you don't need to start R as well, just RStudio). You should see something like the image below (there might only be 3 windows when you first start RStudio, don't worry, we'll get to this in a bit). 
+Once installed, you can check everything is working by starting up RStudio (you don't need to start R as well, just RStudio). You should see something like the image below (there might only be 3 windows when you first start RStudio, don't worry, we'll get to this in a [bit](#rstudio_orient)). 
 
 \  
 
@@ -109,7 +109,7 @@ Although RStudio is becoming increasingly popular it might not be the best choic
 
 Which one you choose is up to you. One of the great things about R is that *YOU* get to choose how you want to use R
 
-## RStudio orientation
+## RStudio orientation {#rstudio_orient}
 
 When you open R studio for the first time you should see the following layout: 
 
@@ -175,7 +175,7 @@ A quick note or two about R scripts. Unless you're doing something really quick 
 
 The Environment / History / Files window shows you lots of useful information. You can access each component by clicking on the appropriate tab in the pane.
 
-- The 'Environment' tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you're in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There's also an 'Import Dataset' button which will import data saved in a variety of file formats. However, I would suggest that you don't use this approach to import your data as it's not reproducible and therefore not robust (see Chapter 3 for more details).        
+- The 'Environment' tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you're in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There's also an 'Import Dataset' button which will import data saved in a variety of file formats. However, I would suggest that you don't use this approach to import your data as it's not reproducible and therefore not robust (see [Chapter 3](#data_r) for more details).        
 
 - The 'History' tab simply contains a list of all the commands you have entered into the R console. You can search back through your history for the line of code you have forgotten, send selected code back to the console or Source window. I usually never use this as I always refer back to my R script.  
 
@@ -185,9 +185,9 @@ The Environment / History / Files window shows you lots of useful information. Y
 
 ### Plots / Help / Viewer
 
-- The 'Plots' tab is where all the plots you create in R are displayed (unless you tell R otherwise). You can 'zoom' into the plots to make them larger and scroll back through previously created plots using the arrow buttons. There is also the option of exporting plots to an external file using the 'Export' drop down menu. Plots can be exported in various file formats such as jpeg, png, pdf, tiff or copied to the clipboard (although you are probably better off using the appropriate R functions to do this - see Chapter 4 for more details). 
+- The 'Plots' tab is where all the plots you create in R are displayed (unless you tell R otherwise). You can 'zoom' into the plots to make them larger and scroll back through previously created plots using the arrow buttons. There is also the option of exporting plots to an external file using the 'Export' drop down menu. Plots can be exported in various file formats such as jpeg, png, pdf, tiff or copied to the clipboard (although you are probably better off using the appropriate R functions to do this - see [Chapter 4](#graphics_r) for more details). 
 
-- The 'Help' tab displays the R help documentation for any function. We will go over how to view the help files and how to search for help in Chapter 2.
+- The 'Help' tab displays the R help documentation for any function. We will go over how to view the help files and how to search for help in [Chapter 2](#basics_r).
 
 - The 'Viewer' tab displays local web content such as web graphics generated by some packages. 
 
@@ -195,7 +195,7 @@ The Environment / History / Files window shows you lots of useful information. Y
 
 The base installation of R comes with many useful packages as standard. However, as you start using R for more diverse projects (and as your own use of R evolves) you will find that there comes a time when you will need to extend R's capabilities. Happily, many thousands of R users have developed useful code and shared this code as installable packages. These packages can be installed from a variety of sources but the most popular are [CRAN][cran-packages], [Bioconductor][bioconductor] and [GitHub][github]. Currently, CRAN hosts over 15000 packages and is the official repository for user contributed R packages. Bioconductor provides open source software oriented towards bioinformatics and hosts over 1800 R packages. GitHub is a website that hosts git repositories for all sorts of software and projects (not just R). Often, cutting edge developement versions of R packages are hosted on GitHub so if you need all the new bells and whistles then this may be an option. Hoever, a potential downside of using a developemnt version of an R package is that it might not be as stable as the version hosted on CRAN (it's in developement!) and updating will require additional work. 
 
-### CRAN packages
+### CRAN packages {#cran_packages}
 
 To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `devtools` package enter the following code into the console window of RStudio
 
@@ -243,7 +243,7 @@ Again, the `ask = FALSE` argument avoids having to confirm every package downloa
 
 ### GitHub packages
 
-There are multiple options for installing packages hosted on GitHub. Perhaps the most common method is to use the `install_github()` function from the `devtools` package (you installed this package previously). Before you use the function you will need to know the GitHub user name of the repository owner and also the name of the repository. For example, to install the development version of `dplyr` from Hadley Wickham the repository owner username is 'tidyverse' and the repository name is 'dplyr' (just Google 'github dplyr')
+There are multiple options for installing packages hosted on GitHub. Perhaps the most common method is to use the `install_github()` function from the `devtools` package (you installed this package [previously](#cran_packages). Before you use the function you will need to know the GitHub user name of the repository owner and also the name of the repository. For example, to install the development version of `dplyr` from Hadley Wickham the repository owner username is 'tidyverse' and the repository name is 'dplyr' (just Google 'github dplyr')
 
 ```{r, echo=TRUE, eval=FALSE}
 devtools::install_github('tidyverse/dplyr')
