@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>4.2 Altering an axis label | A Introduction to R</title>
+  <title>1.4 RStudio orientation | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="4.2 Altering an axis label | A Introduction to R" />
+  <meta property="og:title" content="1.4 RStudio orientation | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="4.2 Altering an axis label | A Introduction to R" />
+  <meta name="twitter:title" content="1.4 RStudio orientation | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="making-a-quick-scatterplot.html"/>
-<link rel="next" href="simple-statistics-in-r.html"/>
+<link rel="prev" href="alternatives-to-rstudio.html"/>
+<link rel="next" href="r-packages.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -183,35 +183,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="altering-an-axis-label" class="section level2">
-<h2><span class="header-section-number">4.2</span> Altering an axis label</h2>
-<p>Let’s begin the process of getting our figures to publication standard. First things first, let’s change out those stupid looking axis labels.</p>
-<div id="axis-label---in-base-r" class="section level3">
-<h3><span class="header-section-number">4.2.1</span> Axis label - In Base R</h3>
-<p>(Content to follow)</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg,</a>
-<a class="sourceLine" id="cb17-2" data-line-number="2">         <span class="dt">xlab =</span> <span class="st">&quot;Horsepower&quot;</span>,</a>
-<a class="sourceLine" id="cb17-3" data-line-number="3">         <span class="dt">ylab =</span> <span class="st">&quot;Miles per Gallon&quot;</span>)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/base%20R%20labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<div id="rstudio_orient" class="section level2">
+<h2><span class="header-section-number">1.4</span> RStudio orientation</h2>
+<p>When you open R studio for the first time you should see the following layout:</p>
+<p> </p>
+<p><img src="images/rstudio_start.png" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>The large window (aka pane) on the left is the <strong>Console</strong> window. The window on the top right is the <strong>Environment / History / Files</strong> pane and the bottom left window is the <strong>Plots / Help / Viewer</strong> window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the ‘Tools’ menu then selecting Global Options –&gt; Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to [customise RStudio][rstudio-customise].</p>
+<div id="console" class="section level3">
+<h3><span class="header-section-number">1.4.1</span> Console</h3>
+<p>The console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) you create. You can type R code directly into the console at the command line prompt, <code>&gt;</code>. For example, if you type <code>2 + 2</code> into the console you should obtain the answer <code>4</code> (reassuringly). Don’t worry about the <code>[1]</code> at the start of the line for now.</p>
+<p> </p>
+<p><img src="images/rconsole_eval.png" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>However, once you start writing more R code this becomes rather cumbersome. Instead of typing R code directly into the console a better approach is to create an R script. An R script is just a plain text file with a <code>.R</code> file extension which contains your lines of R code. These lines of code are then sourced into the R console line by line. To create a new R script click on the ‘File’ menu then select New File –&gt; R Script.</p>
+<p> </p>
+<p><img src="images/new_script.png" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>Notice that you have a new window (called the Source pane) in the top left of RStudio and the console is now in the bottom left position. The new window is a script editor and where you will write your code.</p>
+<p> </p>
+<p><img src="images/rstudio_new.png" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>To source your code from your script editor to the console simply place your cursor on the line of code and then click on the ‘Run’ button in the top right of the script editor pane.</p>
+<p> </p>
+<p><img src="images/rstudio_run.png" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>You should see the result in the console window. If clicking on the ‘Run’ button starts to become tiresome you can use the keyboard shortcut ‘ctrl + enter’ (on Windows and Linux) or ‘cmd + enter’ (on Mac). You can save your R scripts as a <code>.R</code> file by selecting the ‘File’ menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the ‘File’ menu and then ‘Open File…’. Although R scripts are saved with a <code>.R</code> extension they are actually just plain text files which can be opened with any text editor.</p>
+<p>A quick note or two about R scripts. Unless you’re doing something really quick and dirty I suggest that you always write your code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, as code incorporated with commentary into an <a href="https://rmarkdown.rstudio.com">R markdown</a> document. How you write your code is more or less up to you although your goal should be to make it as easy to read as possible. You can find a few style guides for writing readable R code <a href="https://google.github.io/styleguide/Rguide.html">here</a> and <a href="https://style.tidyverse.org/">here</a>.</p>
+<p> </p>
 </div>
-<div id="axis-label---in-ggplot2" class="section level3">
-<h3><span class="header-section-number">4.2.2</span> Axis label - In ggplot2</h3>
-<p>(Content to follow)</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>mpg, <span class="dt">y =</span> mtcars<span class="op">$</span>hp,</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">         <span class="dt">xlab =</span> <span class="st">&quot;Horsepower&quot;</span>,</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">         <span class="dt">ylab =</span> <span class="st">&quot;Miles per Gallon&quot;</span>)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/qplot%20labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
-
+<div id="environment-history-files" class="section level3">
+<h3><span class="header-section-number">1.4.2</span> Environment / History / Files</h3>
+<p>The Environment / History / Files window shows you lots of useful information. You can access each component by clicking on the appropriate tab in the pane.</p>
+<ul>
+<li><p>The ‘Environment’ tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you’re in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There’s also an ‘Import Dataset’ button which will import data saved in a variety of file formats. However, I would suggest that you don’t use this approach to import your data as it’s not reproducible and therefore not robust (see <a href="data-r.html#data_r">Chapter 3</a> for more details).</p></li>
+<li><p>The ‘History’ tab simply contains a list of all the commands you have entered into the R console. You can search back through your history for the line of code you have forgotten, send selected code back to the console or Source window. I usually never use this as I always refer back to my R script.</p></li>
+<li><p>The ‘Files’ tab lists all external files and directories in the current working directory on your computer. It works like file explorer (Windows) or Finder (Mac). You can open, copy, rename, move and delete files listed in the window.</p></li>
+</ul>
+<p> </p>
+</div>
+<div id="plots-help-viewer" class="section level3">
+<h3><span class="header-section-number">1.4.3</span> Plots / Help / Viewer</h3>
+<ul>
+<li><p>The ‘Plots’ tab is where all the plots you create in R are displayed (unless you tell R otherwise). You can ‘zoom’ into the plots to make them larger and scroll back through previously created plots using the arrow buttons. There is also the option of exporting plots to an external file using the ‘Export’ drop down menu. Plots can be exported in various file formats such as jpeg, png, pdf, tiff or copied to the clipboard (although you are probably better off using the appropriate R functions to do this - see <a href="graphics-r.html#graphics_r">Chapter 4</a> for more details).</p></li>
+<li><p>The ‘Help’ tab displays the R help documentation for any function. We will go over how to view the help files and how to search for help in <a href="basics-r.html#basics_r">Chapter 2</a>.</p></li>
+<li><p>The ‘Viewer’ tab displays local web content such as web graphics generated by some packages.</p></li>
+</ul>
 </div>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="making-a-quick-scatterplot.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simple-statistics-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="alternatives-to-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-packages.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -243,7 +269,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/04-graphics.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
 "text": "Edit"
 },
 "history": {
