@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas" />
 
 
-<meta name="date" content="2019-12-09" />
+<meta name="date" content="2019-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -144,7 +144,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="some-r-basics.html"><a href="some-r-basics.html"><i class="fa fa-check"></i><b>2</b> Some R Basics</a></li>
 <li class="chapter" data-level="3" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
-<li class="chapter" data-level="4" data-path="graphics-in-r.html"><a href="graphics-in-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a></li>
+<li class="chapter" data-level="4" data-path="graphics-in-r.html"><a href="graphics-in-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="base-r-data-visualisation.html"><a href="base-r-data-visualisation.html"><i class="fa fa-check"></i><b>4.1</b> Base R data visualisation</a></li>
+<li class="chapter" data-level="4.2" data-path="ggplot-data-visualisation.html"><a href="ggplot-data-visualisation.html"><i class="fa fa-check"></i><b>4.2</b> ggplot data visualisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ggplot-data-visualisation.html"><a href="ggplot-data-visualisation.html#qplots---the-ggplot-version-of-plot"><i class="fa fa-check"></i><b>4.2.1</b> qplots - the ggplot version of plot()</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="simple-statistics-in-r.html"><a href="simple-statistics-in-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a></li>
 <li class="chapter" data-level="6" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
 <li class="chapter" data-level="7" data-path="reproducible-reports.html"><a href="reproducible-reports.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports</a></li>
@@ -171,7 +176,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="installing-r" class="section level2">
 <h2><span class="header-section-number">1.1</span> Installing R</h2>
-<p>To get up and running the first thing you need to do is install R. R is freely available for Windows, Mac and Linux operating systems from the <a href="https://cran.r-project.org/">Comprehensive R Archive Network (CRAN) website</a>. For Windows and Mac users I suggest you download and install the precompiled binary versions.</p>
+<p>To get up and running the first thing you need to do is install R. R is freely available for Windows, Mac and Linux operating systems from the <a href="https://cloud.r-project.org">Comprehensive R Archive Network (CRAN) website</a>. For Windows and Mac users I suggest you download and install the precompiled binary versions.</p>
 <p><strong>For Windows users</strong> select ‘Download R for Windows’ link and then click on the ‘base’ link and finally the download link ‘Download R 3.X.X for Windows’ (where 3.X.X is the latest version of the binary - 3.6.1 at the time of writing). This will begin the download of the ‘.exe’ installation file. When the download has completed double click on the R executable file and follow the on-screen instructions. Full installation instructions can be found at the <a href="https://cran.r-project.org/bin/windows/">CRAN website</a>.</p>
 <p><strong>For Mac users</strong> select the ‘<a href="https://cran.r-project.org/bin/macosx/">Download R for (Mac) OS X</a>’ link. The binary can be downloaded by selecting the ‘R-3.X.X.pkg’ (R-3.6.1.pkg at the time of writing). Once downloaded, double click on the file icon and follow the on-screen instructions to guide you through the necessary steps. See the ‘<a href="https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html">R for Mac OS X</a> FAQ’ for further information on installation.</p>
 <p><strong>For Linux users</strong>, the installation method will depend on which flavour of linux you are using. There are reasonably comprehensive instruction <a href="https://cran.r-project.org/bin/linux/">here</a> for Debian, Redhat, Suse and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (console) and use (you will need root permission to do this):</p>
@@ -183,7 +188,7 @@ sudo apt install r-base r-base-dev</code></pre>
 <p>This is the source.list for the latest version of Ubuntu (19.04 Disco Dingoat the time of writing). If you’re using an earlier version of Ubuntu then replace the source.list entry to the one which corresponds to the version of Ubuntu you are using (see <a href="https://cran.r-project.org/bin/linux/ubuntu">here</a> for an up to date list). Once you have done this then re-run the apt commands above and you should be good to go.</p>
 <p>Whichever operating system you’re using, once you have installed R you need to check its working properly. The easiest way to do this is to start R by double clicking on the R icon (Windows or Mac) or by typing <code>R</code> into the console (Linux). You should see the R console and you should be able to type R commands into the console. Try typing the following R code and then press enter (don’t worry of you don’t understand this - we’re just checking if R works)</p>
 <p>A plot of the numbers 1 to 10 on both the x and y axes should appear. If you see this, you’re good to go. If not then I suggest you make a note of any errors produced and then use Google to troubleshoot).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">plot</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-3"></span>
 <img src="Rbook_files/figure-html/unnamed-chunk-3-1.png" alt="plot to test R installation" width="75%" />
 <p class="caption">
