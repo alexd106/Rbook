@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas" />
 
 
-<meta name="date" content="2019-12-09" />
+<meta name="date" content="2019-12-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -69,7 +69,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(title);
+  { content: attr(data-line-number);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -144,7 +144,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="some-r-basics.html"><a href="some-r-basics.html"><i class="fa fa-check"></i><b>2</b> Some R Basics</a></li>
 <li class="chapter" data-level="3" data-path="data-in-r.html"><a href="data-in-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
-<li class="chapter" data-level="4" data-path="graphics-in-r.html"><a href="graphics-in-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a></li>
+<li class="chapter" data-level="4" data-path="graphics-in-r.html"><a href="graphics-in-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="base-r-data-visualisation.html"><a href="base-r-data-visualisation.html"><i class="fa fa-check"></i><b>4.1</b> Base R data visualisation</a></li>
+<li class="chapter" data-level="4.2" data-path="ggplot-data-visualisation.html"><a href="ggplot-data-visualisation.html"><i class="fa fa-check"></i><b>4.2</b> ggplot data visualisation</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="ggplot-data-visualisation.html"><a href="ggplot-data-visualisation.html#qplots---the-ggplot-version-of-plot"><i class="fa fa-check"></i><b>4.2.1</b> qplots - the ggplot version of plot()</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="simple-statistics-in-r.html"><a href="simple-statistics-in-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a></li>
 <li class="chapter" data-level="6" data-path="programming-in-r.html"><a href="programming-in-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
 <li class="chapter" data-level="7" data-path="reproducible-reports.html"><a href="reproducible-reports.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports</a></li>
@@ -175,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rstudio_start.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>The large window (aka pane) on the left is the <strong>Console</strong> window. The window on the top right is the <strong>Environment / History / Files</strong> pane and the bottom left window is the <strong>Plots / Help / Viewer</strong> window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the ‘Tools’ menu then selecting Global Options –&gt; Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to <a href="https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio">customise RStudio</a>.</p>
+<p>The large window (aka pane) on the left is the <strong>Console</strong> window. The window on the top right is the <strong>Environment / History / Files</strong> pane and the bottom left window is the <strong>Plots / Help / Viewer</strong> window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the ‘Tools’ menu then selecting Global Options –&gt; Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to [customise RStudio][rstudio-customise].</p>
 <div id="console" class="section level3">
 <h3><span class="header-section-number">1.4.1</span> Console</h3>
 <p>The console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) you create. You can type R code directly into the console at the command line prompt, <code>&gt;</code>. For example, if you type <code>2 + 2</code> into the console you should obtain the answer <code>4</code> (reassuringly). Don’t worry about the <code>[1]</code> at the start of the line for now.</p>
@@ -195,7 +200,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/rstudio_run.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You should see the result in the console window. If clicking on the ‘Run’ button starts to become tiresome you can use the keyboard shortcut ‘ctrl + enter’ (on Windows and Linux) or ‘cmd + enter’ (on Mac). You can save your R scripts as a <code>.R</code> file by selecting the ‘File’ menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the ‘File’ menu and then ‘Open File…’. Although R scripts are saved with a <code>.R</code> extension they are actually just plain text files which can be opened with any text editor.</p>
-<p>A quick note or two about R scripts. Unless you’re doing something really quick and dirty I suggest that you always write your code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, as code incorporated with commentary into an <a href="https://rmarkdown.rstudio.com/">R markdown</a> document. How you write your code is more or less up to you although your goal should be to make it as easy to read as possible. You can find a few style guides for writing readable R code <a href="https://google.github.io/styleguide/Rguide.html">here</a> and <a href="https://style.tidyverse.org/">here</a></p>
+<p>A quick note or two about R scripts. Unless you’re doing something really quick and dirty I suggest that you always write your code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, as code incorporated with commentary into an <a href="https://rmarkdown.rstudio.com">R markdown</a> document. How you write your code is more or less up to you although your goal should be to make it as easy to read as possible. You can find a few style guides for writing readable R code <a href="https://google.github.io/styleguide/Rguide.html">here</a> and <a href="https://style.tidyverse.org/">here</a>.</p>
 <p> </p>
 </div>
 <div id="environment-history-files" class="section level3">
@@ -215,6 +220,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>The ‘Help’ tab displays the R help documentation for any function. We will go over how to view the help files and how to search for help in Chapter 2.</p></li>
 <li><p>The ‘Viewer’ tab displays local web content such as web graphics generated by some packages.</p></li>
 </ul>
+<!--cran Links-->
+<!--RStudio-->
+<!--style guides-->
+<!--Package Links-->
+<!--Editors-->
+<!--Misc Links-->
 
 </div>
 </div>
