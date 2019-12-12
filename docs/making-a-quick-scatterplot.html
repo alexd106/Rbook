@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas" />
 
 
-<meta name="date" content="2019-12-11" />
+<meta name="date" content="2019-12-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -133,8 +133,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="getting-started-with-r-and-rstudio.html"><a href="getting-started-with-r-and-rstudio.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a></li>
-<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a></li>
+<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="install-r.html"><a href="install-r.html#windows-users"><i class="fa fa-check"></i><b>1.1.1</b> Windows users</a></li>
+<li class="chapter" data-level="1.1.2" data-path="install-r.html"><a href="install-r.html#mac-users"><i class="fa fa-check"></i><b>1.1.2</b> Mac users</a></li>
+<li class="chapter" data-level="1.1.3" data-path="install-r.html"><a href="install-r.html#linux-users"><i class="fa fa-check"></i><b>1.1.3</b> Linux users</a></li>
+<li class="chapter" data-level="1.1.4" data-path="install-r.html"><a href="install-r.html#testing-your-r-installation"><i class="fa fa-check"></i><b>1.1.4</b> Testing your R installation</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="installing-rstudio.html"><a href="installing-rstudio.html#windows-and-mac-users"><i class="fa fa-check"></i><b>1.2.1</b> Windows and Mac users</a></li>
+<li class="chapter" data-level="1.2.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html#linux-users-1"><i class="fa fa-check"></i><b>1.2.2</b> Linux users</a></li>
+<li class="chapter" data-level="1.2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html#testing-your-rstudio-installation"><i class="fa fa-check"></i><b>1.2.3</b> Testing your RStudio installation</a></li>
+</ul></li>
 <li class="chapter" data-level="1.3" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.3</b> Alternatives to RStudio</a></li>
 <li class="chapter" data-level="1.4" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.4</b> RStudio orientation</a><ul>
 <li class="chapter" data-level="1.4.1" data-path="rstudio-orient.html"><a href="rstudio-orient.html#console"><i class="fa fa-check"></i><b>1.4.1</b> Console</a></li>
@@ -145,6 +154,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.1" data-path="r-packages.html"><a href="r-packages.html#cran_packages"><i class="fa fa-check"></i><b>1.5.1</b> CRAN packages</a></li>
 <li class="chapter" data-level="1.5.2" data-path="r-packages.html"><a href="r-packages.html#bioconductor-packages"><i class="fa fa-check"></i><b>1.5.2</b> Bioconductor packages</a></li>
 <li class="chapter" data-level="1.5.3" data-path="r-packages.html"><a href="r-packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
+<li class="chapter" data-level="1.5.4" data-path="r-packages.html"><a href="r-packages.html#using-packages"><i class="fa fa-check"></i><b>1.5.4</b> Using packages</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R Basics</a></li>
@@ -190,15 +200,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.1.1</span> Scatterplot - In base R</h3>
 <p>(Using mtcars dataset as placeholder data)</p>
 <p>In base R, the <code>plot()</code> function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with <code>plot</code> there are only two <code>Arguments</code> we need to worry about: the first argument <code>x =</code> is where we specify what variable we want on the x-axis; and <code>y =</code> where we specify the variable we want displayed on the y-axis. So long as we specify the <code>dataframe$variable</code>, the <code>plot()</code> function will take care of the rest.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">plot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>hp, <span class="dt">y =</span> mtcars<span class="op">$</span>mpg)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/base%20R%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="scatterplot---in-ggplot2" class="section level3">
 <h3><span class="header-section-number">4.1.2</span> Scatterplot - In ggplot2</h3>
 <p><code>ggplot2</code> has an initially slightly more complex structure. In fact, to begin with we won’t even be using the <code>ggplot()</code> function. Instead, we’ll start off by using <code>qplot()</code> (which is short for “quick plot”). The idea behind including <code>qplot()</code> with <code>ggplot2</code> was to have a function which operated fairly similarly to <code>plot()</code>. Before we use the funtion <code>qplot()</code> we need to make the package <code>ggplot2</code> available using the <code>library()</code> function</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
 <p>As such, <code>qplot()</code> has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using <code>x =</code> and <code>y =</code>).</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>mpg, <span class="dt">y =</span> mtcars<span class="op">$</span>hp)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">qplot</span>(<span class="dt">x =</span> mtcars<span class="op">$</span>mpg, <span class="dt">y =</span> mtcars<span class="op">$</span>hp)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/qplot%20scatterplot%20starting-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
