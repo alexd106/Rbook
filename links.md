@@ -32,6 +32,7 @@
 [rmarkdown]: https://rmarkdown.rstudio.com
 [knitr-faq]: https://yihui.name/knitr/faq/
 [bookdown]: https://bookdown.org/
+[styler]: https://styler.r-lib.org/
 
 <!--Editors-->
 [tinn-r]: https://sourceforge.net/projects/tinn-r/
