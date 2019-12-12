@@ -1,3 +1,6 @@
+<!--course website Links-->
+[course_web]: https://alexd106.github.io/
+
 <!--cran Links-->
 [cran]: https://cloud.r-project.org
 [cran-windows]: https://cran.r-project.org/bin/windows/
@@ -27,6 +30,7 @@
 <!--Package Links-->
 [rmarkdown]: https://rmarkdown.rstudio.com
 [knitr-faq]: https://yihui.name/knitr/faq/
+[bookdown]: https://bookdown.org/
 
 <!--Editors-->
 [tinn-r]: https://sourceforge.net/projects/tinn-r/
