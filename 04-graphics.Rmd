@@ -4,15 +4,13 @@ For many people, one of their favourite uses of `R` is in making figures. These 
 
 As stated in the introduction, one of the many reasons for the rise in the popularity of `R` is due to it's ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in `R` allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional click and point programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
 
-In this chapter, we will focus on two methods to produce figures in `R`. The first will be using the base `R` route and the second will be through using a package called `ggplot2`.
+In this chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
-(Think I want the following removed. Debatable if reader would care about this / want to have screen space taken up)
+Before we get going with making some plots of the gg variety, how about a quick little history of one of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the gg in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
 
-Before we get going with making some plots of the gg variety, how about a quick little history of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the `gg` in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
+Briefly, Wilkinson's idea (one of them anyway) in _grammar of graphics_ was that figures can be broken down into consituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author's) ideas would, never-the-less, make their way into R via `ggplot`. 
 
-Briefly, Wilkinson's idea (one of them anyway) in _grammar of graphics_ was that figures can be broken down into consituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author's) ideas would, never-the-less, make their way into R. 
-
-In 2007 `ggplot2`was officially released by Hadley Wickham. By 2017 the package was said to have been downloaded 10,000,000 times. `ggplot2` now has many secondary packages that use it either as a foundation for expanding on or for interfacing (some statistical packages now have accompanying `ggplot2` interfaces for producing figures).
+In 2007 `ggplot2`was officially released by Hadley Wickham. By 2017 the package was said to have been downloaded 10,000,000 times. `ggplot2` now has many secondary packages that use it either as a foundation for expanding on or for interfacing with (some statistical packages now have accompanying `ggplot2` interfaces for producing figures).
 
 It is important to note here that `ggplot2` is not required to make "fancy" figures. If you'd prefer to ue base R then go ahead. Exactly equivalent figures are possible in base R. The difference between`ggplot2` and base is to do with how you _get_ to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is easier to do with `ggplot2` as many decisions are made for the user, without you necessarily even knowing that a decision was ever made!
 
@@ -20,61 +18,96 @@ With that in mind, let's get started making some figures.
 
 \
 
-## Making a quick scatterplot
+## Beginning at the end
 
-(Content to follow)
+The approach I'll use in this chapter will be to start off by showing you a figure which I reckon is at a standard that you could use in a poster or presentation. Using that as the aim, we will then work towards it step-by-step. You should not view this final figure as any sort of holy grail. For instance, you would be very unlikely to use this in a publication (you'd be much more likely to use some results of your hard earned analysis). Regardless, this "final figure" is, and will only ever be, a reflection of what my personal preferences are. As with anything subjective, you may well disagree, and to some extent I hope you do. Much better that we all have slightly (or grossly) different views on what a good figure is - otherwise we may as well go back to using cookie-cutter figures.
 
-### Scatterplot - In base R
+So what is the figure we're going to make together?
 
-(Using mtcars dataset as placeholder data)
+```{r final figure - start, echo = FALSE, out.width="75%", fig.align="center"}
+flower <- read.csv("data/flower.csv")
+library(ggplot2)
 
-In base R, the `plot()` function is the workhorse for producing figures. The syntax and arguments of the function is similarly straightforward. When starting out with `plot` there are only two `Arguments` we need to worry about: the first argument `x =` is where we specify what variable we want on the x-axis; and `y =` where we specify the variable we want displayed on the y-axis. So long as we specify the `dataframe$variable`, the `plot()` function will take care of the rest.
+theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
+  theme( 
+    axis.title = element_text(size = 20),                               
+    axis.text.x = element_text(size = 10),                              
+    axis.text.y = element_text(size = 10),                              
+    plot.caption = element_text(size = 10, face = "italic"),            
+    panel.background = element_rect(fill="white"),                      
+    axis.line = element_line(size = 1, colour = "black"),
+    strip.background =element_rect(fill = "black"),
+    panel.border = element_rect(colour = "black", fill=NA, size=0.5),
+		strip.text = element_text(colour = "white"),
+		legend.key=element_blank()
+  )
+}
 
-```{r placeholder dataset - mtcars for now, echo = FALSE}
-data(mtcars) # placeholder data
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(aes(colour = "Overall", shape = "Overall"), method = "lm", se = F, linetype = 2, alpha = 0.6) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
+	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	  # Additional arguments
+  scale_colour_manual(values = c("violetred3", "limegreen", "purple4", "black"),
+                      labels = c("High", "Medium", "Low", "Overall")) +
+  scale_shape_manual(values = c(15,17,19,21),
+                      labels = c("High", "Medium", "Low", "Overall")) +
+	theme_deon() +
+	facet_grid(block~treat)
 ```
 
-```{r base R scatterplot starting-figure, echo=TRUE, out.width="75%", fig.align="center"}
-plot(x = mtcars$hp, y = mtcars$mpg)
-```
+Before we go further, let's take a second and talk about what this figure is literally showing. On the y axes of the four plots we have the area of the shoot and the x axes we have the weight of a flower. Each column shows the two treatments of the dataset (whether the tip of the flower was cut or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 and block 2). The thin dotted line shows the mean shoot area regardless of the weight of the flowers, the treatment or the block. For our purposes, we won't worry about the biology here (though you should absolutely care deeply about that in your own data); all we care about here is that we are giving the audience lots of information in a relatively readable format.
 
-### Scatterplot - In ggplot2
+## The start of the end
 
-`ggplot2` has an initially slightly more complex structure. In fact, to begin with we won't even be using the `ggplot()` function. Instead, we'll start off by using `qplot()` (which is short for "quick plot"). The idea behind including `qplot()` with `ggplot2` was to have a function which operated fairly similarly to `plot()`. Before we use the funtion `qplot()` we need to make the package `ggplot2` available using the `library()` function
+The first step in producing a `ggplot` is the easiest! We just need to install and then load the package.
 
-```{r}
+We install `ggplot` by running `install.packages("ggplot2")`. This bit of code may well be clear to you, but if not all it is doing is simply installing the `ggplot2` package via CRAN on to your machine. Note that although everyone, including me, refer to the package as `ggplot`, the package is technically called `ggplot2` and as such we need to be specific in telling R to load `ggplot2` and not `ggplot`.
+
+
+The next bit is even simpler. It's just loading the package (or library). Note that you only need to install a package once onto your machine (though you should update from time to time). Once it is on your machine, unless you remove that package for whatever reason, all you will need to do from that point on is to load it up each time you start R (using `library()`).
+
+```{r installing & loading ggplot}
 library(ggplot2)
 ```
 
+With that taken care of, let's make our first `ggplot`!
 
-As such, `qplot()` has the same argument requirements: we simply need to specify what will be on the x- and y-axes (using `x =` and `y =`).
+### The purest of ggplots
 
-```{r qplot scatterplot starting-figure, echo=TRUE, out.width="75%", fig.align="center"}
-qplot(x = mtcars$mpg, y = mtcars$hp)
+During the R course this book is based on, the students are asked at one point to shout out all of the functions they have either learnt in the course or heard of/used before. At this point in the course we have not touched on `ggplot`, but one year a student shouted out `ggplot()`. When asked what the `ggplot()` function does, they said that it makes a `ggplot`. This makes complete and utter sense. So let's make a `ggplot` now:
+
+```{r pure ggplot}
+ggplot()
 ```
 
-## Altering an axis label
+And here we have it. A fully formed, perfect `ggplot`. We may have a small issue though. Some puritan data visualisers/plottists/figurines make the claim that figures should include some form of information beyond a light grey background. As loathe as I am to agree with pureists, I will do so here. We really should include some data. To do so, we need some data.
 
-Let's begin the process of getting our figures to publication standard. First things first, let's change out those stupid looking axis labels.
+We'll keep using the flower dataset that you used in the earlier chapters. Let's have a quick reminder of what the data looked like.
 
-### Axis label - In Base R
-
-(Content to follow)
-
-```{r base R labels, echo=TRUE, out.width="75%", fig.align="center"}
-plot(x = mtcars$hp, y = mtcars$mpg,
-		 xlab = "Horsepower",
-		 ylab = "Miles per Gallon")
+```{r str of flower}
+str(flower)
 ```
 
-### Axis label - In ggplot2
+We know from the "final figure" that we want shootarea on the y axis and weight on the x axis. To do so in `ggplot` we need to make use of the `aes()` function and also fullfill the `data =` argument. `aes` is short of aesthetics, and it's the function we use to specify what we want displayed in the figure. Let's try it now:
 
-(Content to follow)
-
-```{r qplot labels, echo=TRUE, out.width="75%", fig.align="center"}
-qplot(x = mtcars$mpg, y = mtcars$hp,
-		 xlab = "Horsepower",
-		 ylab = "Miles per Gallon")
+```{r ggplot with xy axis}
+# Including aesthetics for x and y axess as well as speficying the dataset
+ggplot(aes(x = weight, y = shootarea), data = flower) 
 ```
 
+That's already much better. At least it's no longer a blank grey canvas. We've now told `ggplot` what we want as our x and y axes as well as where to find that data. But what's missing here is where we tell `ggplot` _how_ to display that data. This is now the time to introduce you to "geoms" or geometric objects. Geoms are the way that `ggplot` displays information. For instance `geom_point()` tells `ggplot` that you want the information to be displayed as points (making scatterplot possible). Given that the "final figure" uses points, this is clearly the appropriate geom to use here.
+
+Before we can do that we need to talk about the coding structure used by `ggplot`. The analogy that I and many others use is to say that making a figure in `ggplot` is much like painting. What we've done in the above code is making our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to include a `+` at the end of the proceeding layer to tell R and `ggplot` that there are additional layers coming. Let's add (`+`) a new geom now:
+
+```{r ggplot with geom_point}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	
+	# Adding a geom to display data
+	geom_point()	
+```
 
