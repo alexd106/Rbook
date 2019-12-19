@@ -48,3 +48,4 @@
 [bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
 [github]: https://github.com/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
+[git]: https://git-scm.com/downloads
