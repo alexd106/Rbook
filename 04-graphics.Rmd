@@ -64,12 +64,7 @@ Before we go further, let's take a second and talk about what this figure is lit
 
 ## The start of the end
 
-The first step in producing a `ggplot` is the easiest! We just need to install and then load the package.
-
-We install `ggplot` by running `install.packages("ggplot2")`. This bit of code may well be clear to you, but if not all it is doing is simply installing the `ggplot2` package via CRAN on to your machine. Note that although everyone, including me, refer to the package as `ggplot`, the package is technically called `ggplot2` and as such we need to be specific in telling R to load `ggplot2` and not `ggplot`.
-
-
-The next bit is even simpler. It's just loading the package (or library). Note that you only need to install a package once onto your machine (though you should update from time to time). Once it is on your machine, unless you remove that package for whatever reason, all you will need to do from that point on is to load it up each time you start R (using `library()`).
+The first step in producing a `ggplot` is the easiest! We just need to install and then load the package. Use the skills you learnt in Chapter 1.5 to install and load the package. Note that although I and pretty much everyone else refer to the package as `ggplot`, it's proper name is `ggplot2`, so be careful to call it by it's proper name when coding.
 
 ```{r installing & loading ggplot}
 library(ggplot2)
@@ -110,4 +105,38 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	# Adding a geom to display data
 	geom_point()	
 ```
+
+If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. We can see that shootarea looks like it's increasing with weight in a fairly linear fashion. So long as this answers a question we had this figure is perfectly suited for personal use. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the avaialble geoms *here*, you might think that `geom_line()` would be appropriate. Let's try it.
+
+```{r geom_line}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point() +
+	
+	# Adding geom_line
+	geom_line()
+```
+
+Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots. The geom we actually want to use is called `geom_smooth()`. We can fix that very easily just by changing "line" to "smooth".
+
+```{r geom_smooth}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point() +
+	
+	# Changing to geom_smooth
+	geom_smooth()
+```
+
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called "LOESS" which gives something very close to a moving average; useful in some cases, less so in others [`ggplot` will use LOESS as default when you have < 1000 observations]. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" or (linear model - see Chapter XXX for more details). Try `?geom_smooth` to see what other options are avialble for the `method =` argument. While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time using the `se =` argument.
+
+Let's update the code to use a linear model.
+
+```{r geom_smooth lm}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point() +
+	
+	# Specifying the method as lm and se to false
+	geom_smooth(method = "lm", se = FALSE)
+```
+
+
 

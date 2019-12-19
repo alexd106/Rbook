@@ -192,9 +192,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="the-start-of-the-end" class="section level2">
 <h2><span class="header-section-number">4.2</span> The start of the end</h2>
-<p>The first step in producing a <code>ggplot</code> is the easiest! We just need to install and then load the package.</p>
-<p>We install <code>ggplot</code> by running <code>install.packages("ggplot2")</code>. This bit of code may well be clear to you, but if not all it is doing is simply installing the <code>ggplot2</code> package via CRAN on to your machine. Note that although everyone, including me, refer to the package as <code>ggplot</code>, the package is technically called <code>ggplot2</code> and as such we need to be specific in telling R to load <code>ggplot2</code> and not <code>ggplot</code>.</p>
-<p>The next bit is even simpler. It’s just loading the package (or library). Note that you only need to install a package once onto your machine (though you should update from time to time). Once it is on your machine, unless you remove that package for whatever reason, all you will need to do from that point on is to load it up each time you start R (using <code>library()</code>).</p>
+<p>The first step in producing a <code>ggplot</code> is the easiest! We just need to install and then load the package. Use the skills you learnt in Chapter 1.5 to install and load the package. Note that although I and pretty much everyone else refer to the package as <code>ggplot</code>, it’s proper name is <code>ggplot2</code>, so be careful to call it by it’s proper name when coding.</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw">library</span>(ggplot2)</a></code></pre></div>
 <p>With that taken care of, let’s make our first <code>ggplot</code>!</p>
 <div id="the-purest-of-ggplots" class="section level3">
@@ -225,6 +223,29 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb23-3" title="3"><span class="st">    </span><span class="co"># Adding a geom to display data</span></a>
 <a class="sourceLine" id="cb23-4" title="4"><span class="st">    </span><span class="kw">geom_point</span>()    </a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ggplot%20with%20geom_point-1.png" width="672" /></p>
+<p>If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. We can see that shootarea looks like it’s increasing with weight in a fairly linear fashion. So long as this answers a question we had this figure is perfectly suited for personal use. Though for showing to other people we might want something a bit more developed. If we glance back to our “final figure” we can see that we have lines representing different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the avaialble geoms <em>here</em>, you might think that <code>geom_line()</code> would be appropriate. Let’s try it.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="st">    </span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="st">    </span><span class="co"># Adding geom_line</span></a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="st">    </span><span class="kw">geom_line</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/geom_line-1.png" width="672" /></p>
+<p>Not quite what we were going for. The problem that we have is that <code>geom_line()</code> is actually just playing join-the-dots. The geom we actually want to use is called <code>geom_smooth()</code>. We can fix that very easily just by changing “line” to “smooth”.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb25-3" title="3"><span class="st">    </span></a>
+<a class="sourceLine" id="cb25-4" title="4"><span class="st">    </span><span class="co"># Changing to geom_smooth</span></a>
+<a class="sourceLine" id="cb25-5" title="5"><span class="st">    </span><span class="kw">geom_smooth</span>()</a>
+<a class="sourceLine" id="cb25-6" title="6"><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></a></code></pre></div>
+<p><img src="Rbook_files/figure-html/geom_smooth-1.png" width="672" /></p>
+<p>Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called “LOESS” which gives something very close to a moving average; useful in some cases, less so in others [<code>ggplot</code> will use LOESS as default when you have &lt; 1000 observations]. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called “lm” or (linear model - see Chapter XXX for more details). Try <code>?geom_smooth</code> to see what other options are avialble for the <code>method =</code> argument. While we’re at it, let’s get rid of the confidence interval ribbon around the line. I prefer to do this as I think it’s clearer to the audience that this isn’t a properly analysed line and to treat it as a visual aid only. We can do this at the same time using the <code>se =</code> argument.</p>
+<p>Let’s update the code to use a linear model.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb26-3" title="3"><span class="st">    </span></a>
+<a class="sourceLine" id="cb26-4" title="4"><span class="st">    </span><span class="co"># Specifying the method as lm and se to false</span></a>
+<a class="sourceLine" id="cb26-5" title="5"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/geom_smooth%20lm-1.png" width="672" /></p>
 
 </div>
 </div>
