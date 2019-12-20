@@ -65,7 +65,7 @@ On the **Create New Project** screen, give your project a name, navigate to the 
 
 \  
 
-```{r rstudio_git, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Create a new version controlled RStudio project"}
+```{r rstudioGit, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Create a new version controlled RStudio project"}
 knitr::include_graphics(path = "images/CreateNew.png")
 ```
 
@@ -97,7 +97,7 @@ After you've created this file in your project, you need to get it under version
 
 \  
 
-```{r git_tab, echo=FALSE, out.width="75%", fig.align="center", fig.cap="The git tab"}
+```{r gitTab, echo=FALSE, out.width="75%", fig.align="center", fig.cap="The git tab"}
 knitr::include_graphics(path = "images/GitTab.png")
 ```
 
@@ -119,7 +119,7 @@ Since this is the first commit, you can follow tradition and use a brief message
 
 \  
 
-```{r first_commit, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your first commit"}
+```{r firstCommit, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your first commit"}
 knitr::include_graphics(path = "images/FirstCommit.png")
 ```
 
@@ -181,7 +181,7 @@ It should look like this:
 
 \  
 
-```{r new_repo, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository"}
+```{r newRepo, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository"}
 knitr::include_graphics(path = "images/NewRepo3.png")
 ```
 
@@ -206,7 +206,7 @@ Your repository should now look like this:
 
 \  
 
-```{r new_repo_final, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository with a README"}
+```{r newRepoFfinal, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository with a README"}
 knitr::include_graphics(path = "images/NewRepo4.png")
 ```
 
@@ -222,7 +222,7 @@ To start working on a project, **Pull** any new changes to update your local cop
 
 \  
 
-```{r pull_changes, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Pull changes from remote repository"}
+```{r pullChanges, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Pull changes from remote repository"}
 knitr::include_graphics(path = "images/PullMaster.png")
 ```
 
@@ -233,12 +233,52 @@ Now make a change to your script, commit the change and **Push**. You should see
 
 \  
 
-```{r push_changes, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Push changes to remote repository"}
+```{r pushChanges, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Push changes to remote repository"}
 knitr::include_graphics(path = "images/PushMsg.png")
 ```
 
 \
 
 And you're done! Now your remote and local copy are synchronised and any changes you've made are available to you and your collaborators.
+
+## A version control workflow {#vc_workflow}
+
+Let's summarise the steps you can take to version control your project.
+
+1. Set up a local version control repository (section 8.2)
+
+2. Write some code
+
+3. Save your script to the local repository
+
+4. Choose (Stage) files to be included in the version history
+
+5. Commit your files
+
+6. Create a remote repository on GitHub (section 8.4)
+
+7. Synchronise your changes with te remote repository
+
+8. Repeat steps 2-7
+
+Now that you have a version control workflow, there different things you can do:
+
+- **View your project history:** your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.
+
+- **Revert to a previous commit:** Identified a bug in one of your recent commits? No worries, you can go back to that point in time before the bug was introduced.
+
+- **Collaborate:** GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
+
+Git offers a number of advanced features that you can incorporate in your workflow. If you are going to be working on a large collaborative project it is worth looking into *forking*, *branching* and *pull requests*. If you are the only person working on your code, then the workflow detailed here is usually enough. 
+
+There are many good guides online to learn more about git and GitHub and as with any open source software there is a huge community that can be a great resource:
+
+- The British Ecological Society guide to [Reproducible Code][BES_code_guide]
+
+- The [GitHub guides][github_guides]
+
+- The Mozilla Science Lab [GitHub for Collaboration on Open Projects guide][mozilla]
+
+These are only a couple of examples, all you need to do is Google "version control with git and GitHub" to see how huge the community around these open source project is and how many free resources are available for you to become a version control expert.
 
 
