@@ -168,6 +168,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.3" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#plotting-multiple-ggplots"><i class="fa fa-check"></i><b>4.2.3</b> Plotting multiple ggplots</a></li>
 <li class="chapter" data-level="4.2.4" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#make-it-your-own"><i class="fa fa-check"></i><b>4.2.4</b> Make it your own</a></li>
 <li class="chapter" data-level="4.2.5" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#setting-the-theme"><i class="fa fa-check"></i><b>4.2.5</b> Setting the theme</a></li>
+<li class="chapter" data-level="4.2.6" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#prettification"><i class="fa fa-check"></i><b>4.2.6</b> Prettification</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a></li>
@@ -445,19 +446,21 @@ An old headache when using <code>ggplot</code> was that it could be difficult to
 <a class="sourceLine" id="cb43-10" title="10"><span class="co">#&gt;             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
 <a class="sourceLine" id="cb43-11" title="11"><span class="co">#&gt;                 size = rel(2)), complete = TRUE)</span></a>
 <a class="sourceLine" id="cb43-12" title="12"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb43-13" title="13"><span class="co">#&gt; &lt;bytecode: 0x000000001931e8c0&gt;</span></a>
+<a class="sourceLine" id="cb43-13" title="13"><span class="co">#&gt; &lt;bytecode: 0x000000001b634ff0&gt;</span></a>
 <a class="sourceLine" id="cb43-14" title="14"><span class="co">#&gt; &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
-<p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:
-- Font size for axis titles = 20
-- Font size for x axis text = 10
-- Font size for y axis text = 10
-- Font for caption = 10 and italics
-- Background colour = white
-- Background border = black
-- Axis lines = black
-- Strip colour (for facets) = black
-- Strip text colour (for facets) = white
-- Legend box colours = blank</p>
+<p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
+<ul>
+<li>Font size for axis titles = 20</li>
+<li>Font size for x axis text = 10</li>
+<li>Font size for y axis text = 10</li>
+<li>Font for caption = 10 and italics</li>
+<li>Background colour = white</li>
+<li>Background border = black</li>
+<li>Axis lines = black</li>
+<li>Strip colour (for facets) = black</li>
+<li>Strip text colour (for facets) = white</li>
+<li>Legend box colours = blank</li>
+</ul>
 <p>This is by no means an exhaustive list of features you can specify in your own theme, but this will get you started. Of course, there is no need to use a personalised theme as the pre-built options are perfectly suitable.</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" title="1">theme_rbook &lt;-<span class="st"> </span><span class="cf">function</span>(<span class="dt">base_size =</span> <span class="dv">20</span>, <span class="dt">base_family =</span> <span class="st">&quot;&quot;</span>, <span class="dt">base_line_size =</span> base_size<span class="op">/</span><span class="dv">22</span>, <span class="dt">base_rect_size =</span> base_size<span class="op">/</span><span class="dv">22</span>) {         </a>
 <a class="sourceLine" id="cb44-2" title="2">  <span class="kw">theme</span>( </a>
@@ -484,6 +487,58 @@ An old headache when using <code>ggplot</code> was that it could be difficult to
 <a class="sourceLine" id="cb45-8" title="8"><span class="st">    </span><span class="co"># Updated theme to our theme_rbook</span></a>
 <a class="sourceLine" id="cb45-9" title="9"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/rbook%20figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="prettification" class="section level3">
+<h3><span class="header-section-number">4.2.6</span> Prettification</h3>
+<p>We’ve pretty much got to our “final figure”. We just have a few final adjustments to make, and we’ll do so in order of difficulty.</p>
+<p>Let’s remind ourselves of what that “final figure” looked like. Remember, since I have previously saved the figure as <code>final_figure</code> I can just type that into the console and pull up the figure.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1">final_figure</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/final%20figure%20reminder-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Let’s begin the final push by including that dashed horizontal line at about 80 on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called <code>geom_hline()</code>, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument <code>linetype =</code> and also the colour (as we did before). Let’s see how it works.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-7" title="7"><span class="st">    </span></a>
+<a class="sourceLine" id="cb47-8" title="8"><span class="st">    </span><span class="co"># Added a horizontal line using geom_hline</span></a>
+<a class="sourceLine" id="cb47-9" title="9"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(shootarea)), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-10" title="10"><span class="st">    </span></a>
+<a class="sourceLine" id="cb47-11" title="11"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/geom_hline-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Notice how we included the function <code>mean(shootarea)</code> within the <code>geom_hline()</code> function? We could also do that externally to the <code>ggplot</code> code and get the same result.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw">mean</span>(flower<span class="op">$</span>shootarea)</a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="co">#&gt; [1] 79.8</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-4" title="4"><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-5" title="5"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-6" title="6"><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-7" title="7"><span class="st">    </span></a>
+<a class="sourceLine" id="cb49-8" title="8"><span class="st">    </span><span class="co"># Manually entering mean value</span></a>
+<a class="sourceLine" id="cb49-9" title="9"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb49-10" title="10"><span class="st">    </span></a>
+<a class="sourceLine" id="cb49-11" title="11"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/geom_hline%20alternative-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get code to do what you want), which brings us every closer to that “final figure”.</p>
+<p>Let’s tackle that “overall” nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to get a line drawn using a linear model. But we are already using <code>geom_smooth()</code>, surely we can’t use it again? This may shock and/or surprise you so please ensure you are seated. You <em>can</em> use <code>geom_smooth()</code> again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn’t the world full of wonderful miracles? … Anyway, here’s the damn code…</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-2" title="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-3" title="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-4" title="4"><span class="st">    </span></a>
+<a class="sourceLine" id="cb50-5" title="5"><span class="st">    </span><span class="co"># Adding a ***SECOND*** geom_smooth :O</span></a>
+<a class="sourceLine" id="cb50-6" title="6"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-7" title="7"><span class="st">    </span></a>
+<a class="sourceLine" id="cb50-8" title="8"><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-9" title="9"><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-10" title="10"><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-11" title="11"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb50-12" title="12"><span class="st">    </span></a>
+<a class="sourceLine" id="cb50-13" title="13"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/2nd%20geom_smooth-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>That’s great! But you should be asking yourself why that worked. Why when we specified the first <code>geom_smooth()</code> did it draw 3 lines, whereas the second time we used <code>geom_smooth()</code> it just drew a single line? The secret lies in a “conflict” (it isn’t actually a conflict but I’ll call it that here) between the colour specified in the universal <code>ggplot()</code> and the colour specified in the second <code>geom_smooth()</code>. Notice how in the second we’ve specifically told <code>ggplot</code> that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen?</p>
 
 </div>
 </div>

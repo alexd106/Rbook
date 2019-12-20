@@ -442,4 +442,70 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	theme_rbook()
 ```
 
+### Prettification
 
+We've pretty much got to our "final figure". We just have a few final adjustments to make, and we'll do so in order of difficulty.
+
+Let's remind ourselves of what that "final figure" looked like. Remember, since I have previously saved the figure as `final_figure` I can just type that into the console and pull up the figure.
+
+```{r final figure reminder, out.width = "75%", fig.align = "center"}
+final_figure
+```
+
+Let's begin the final push by including that dashed horizontal line at about 80 on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called `geom_hline()`, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument `linetype =` and also the colour (as we did before). Let's see how it works.
+
+```{r geom_hline, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	facet_grid(block ~ treat) +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	
+	# Added a horizontal line using geom_hline
+	geom_hline(aes(yintercept = mean(shootarea)), size = 0.5, colour = "black", linetype = 3) +
+	
+	theme_rbook()
+```
+
+Notice how we included the function `mean(shootarea)` within the `geom_hline()` function? We could also do that externally to the `ggplot` code and get the same result.
+
+```{r shootarea mean}
+mean(flower$shootarea)
+```
+
+```{r geom_hline alternative, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	facet_grid(block ~ treat) +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	
+	# Manually entering mean value
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	
+	theme_rbook()
+```
+
+Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get code to do what you want), which brings us every closer to that "final figure".
+
+Let's tackle that "overall" nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to get a line drawn using a linear model. But we are already using `geom_smooth()`, surely we can't use it again? This may shock and/or surprise you so please ensure you are seated. You _can_ use `geom_smooth()` again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn't the world full of wonderful miracles? ... Anyway, here's the damn code...
+
+```{r 2nd geom_smooth, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	
+	# Adding a ***SECOND*** geom_smooth :O
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	
+	facet_grid(block ~ treat) +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	
+	theme_rbook()
+```
+
+That's great! But you should be asking yourself why that worked. Why when we specified the first `geom_smooth()` did it draw 3 lines, whereas the second time we used `geom_smooth()` it just drew a single line? The secret lies in a "conflict" (it isn't actually a conflict but I'll call it that here) between the colour specified in the universal `ggplot()` and the colour specified in the second `geom_smooth()`. Notice how in the second we've specifically told `ggplot` that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen?
