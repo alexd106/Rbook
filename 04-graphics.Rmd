@@ -24,7 +24,7 @@ The approach I'll use in this chapter will be to start off by showing you a figu
 
 So what is the figure we're going to make together?
 
-```{r final figure - start, echo = FALSE, out.width="75%", fig.align="center"}
+```{r final figure - start, echo = FALSE, out.width = "75%", fig.align = "center", warning = FALSE}
 flower <- read.csv("data/flower.csv")
 library(ggplot2)
 
@@ -43,7 +43,7 @@ theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_s
   )
 }
 
-ggplot(aes(x = weight, y = shootarea), data = flower) +
+final_figure <- ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = "Overall", shape = "Overall"), method = "lm", se = F, linetype = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
@@ -51,13 +51,15 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	  # Additional arguments
-  scale_colour_manual(values = c("violetred3", "limegreen", "purple4", "black"),
-                      labels = c("High", "Medium", "Low", "Overall")) +
-  scale_shape_manual(values = c(15,17,19,21),
-                      labels = c("High", "Medium", "Low", "Overall")) +
+	# Additional arguments
+	scale_colour_manual(values = c("violetred3", "limegreen", "purple4", "black"),
+											labels = c("High", "Medium", "Low", "Overall")) +
+	scale_shape_manual(values = c(15,17,19,21),
+										 labels = c("High", "Medium", "Low", "Overall")) +
 	theme_deon() +
 	facet_grid(block~treat)
+
+final_figure
 ```
 
 Before we go further, let's take a second and talk about what this figure is literally showing. On the y axes of the four plots we have the area of the shoot and the x axes we have the weight of a flower. Each column shows the two treatments of the dataset (whether the tip of the flower was cut or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 and block 2). The thin dotted line shows the mean shoot area regardless of the weight of the flowers, the treatment or the block. For our purposes, we won't worry about the biology here (though you should absolutely care deeply about that in your own data); all we care about here is that we are giving the audience lots of information in a relatively readable format.
@@ -76,7 +78,7 @@ With that taken care of, let's make our first `ggplot`!
 
 During the R course this book is based on, the students are asked at one point to shout out all of the functions they have either learnt in the course or heard of/used before. At this point in the course we have not touched on `ggplot`, but one year a student shouted out `ggplot()`. When asked what the `ggplot()` function does, they said that it makes a `ggplot`. This makes complete and utter sense. So let's make a `ggplot` now:
 
-```{r pure ggplot}
+```{r pure ggplot, out.width = "75%", fig.align = "center"}
 ggplot()
 ```
 
@@ -90,7 +92,7 @@ str(flower)
 
 We know from the "final figure" that we want shootarea on the y axis and weight on the x axis. To do so in `ggplot` we need to make use of the `aes()` function and also fullfill the `data =` argument. `aes` is short of aesthetics, and it's the function we use to specify what we want displayed in the figure. Let's try it now:
 
-```{r ggplot with xy axis}
+```{r ggplot with xy axis, out.width = "75%", fig.align = "center"}
 # Including aesthetics for x and y axess as well as speficying the dataset
 ggplot(aes(x = weight, y = shootarea), data = flower) 
 ```
@@ -99,7 +101,7 @@ That's already much better. At least it's no longer a blank grey canvas. We've n
 
 Before we can do that we need to talk about the coding structure used by `ggplot`. The analogy that I and many others use is to say that making a figure in `ggplot` is much like painting. What we've done in the above code is making our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to include a `+` at the end of the proceeding layer to tell R and `ggplot` that there are additional layers coming. Let's add (`+`) a new geom now:
 
-```{r ggplot with geom_point}
+```{r ggplot with geom_point, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
 	# Adding a geom to display data
@@ -108,7 +110,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. We can see that shootarea looks like it's increasing with weight in a fairly linear fashion. So long as this answers a question we had this figure is perfectly suited for personal use. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the avaialble geoms *here*, you might think that `geom_line()` would be appropriate. Let's try it.
 
-```{r geom_line}
+```{r geom_line, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point() +
 	
@@ -118,7 +120,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots. The geom we actually want to use is called `geom_smooth()`. We can fix that very easily just by changing "line" to "smooth".
 
-```{r geom_smooth}
+```{r geom_smooth, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point() +
 	
@@ -130,13 +132,152 @@ Better, but still not what we wanted. The challenge here is that drawing a line 
 
 Let's update the code to use a linear model.
 
-```{r geom_smooth lm}
+```{r geom_smooth lm, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point() +
 	
 	# Specifying the method as lm and se to false
 	geom_smooth(method = "lm", se = FALSE)
 ```
+
+That's exactly what we wanted, though it's still not matching the "final figure". We need `geom_smooth()` to draw lines for each level of nitrogen concentration. Getting `ggplot` to do that is pretty straightforward. We can use the `colour =` within `aes()` to use tell `ggplot` to draw a different coloured line depending on nitrogen concentration.
+
+```{r geom_smooth colour lm, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point() +
+	
+	# Including colour argument in aes()
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE)
+```
+
+We're getting closer, but this is actually a good time to talk about where to include information - whether to include it in a geom or in `ggplot()`. When we include information such as `data =` and `aes()` in `ggplot()` we are setting those as the default, universal values which all subsequent geoms use. We can easily move the information around and get exactly the same figure. 
+
+```{r universal vrs geom, out.width = "75%", fig.align = "center"}
+ggplot() +
+	
+	# Moved aes() and data into geoms
+	geom_point(aes(x = weight, y = shootarea), data = flower) +
+	geom_smooth(aes(x = weight, y = shootarea, colour = nitrogen), data = flower, method = "lm", se = FALSE)
+```
+
+Doing so we get exactly the same figure. This ability to move information around is surprisingly powerful. It can allow different geoms to display different (albiet similar) information (see more on this later).
+
+For this worked example, we'll move the information back to the universal `ggplot()` so that we can have the points coloured as well.
+
+```{r universal colours, out.width = "75%", fig.align = "center"}
+# Moved colour = nitrogen into the universal ggplot()
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE)
+```
+
+This figure is now what I would consider to be the typical `ggplot` figure. We have specified some information, and with only a few lines of code, yet we have something that looks quite attractive. While it's not yet the "final figure" it is perfectly fit for purpose. You have now created you're first "pure" `ggplot`.
+
+Once you've seen this figure you will see version similar to it more and more often. But we're aiming for something a bit more developed.
+
+### Wrapping grids
+
+Having made our "pure" `ggplot`, the next big obstacle we're going to tackle is the grid like layout of the "final figure". `ggplot` includes options for determining the "facets" of a figure. We'll start off by using `facet_wrap()` to show what this can do. For `facet_wrap()` to work we need to specify a formula for how the facets will be defined (see `?facet_wrap` for more details and also for how to define facets without using a formula).
+
+```{r facet_wrap, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE) +
+	
+	# Including a facet
+	facet_wrap(~ treat)
+```
+
+That's pretty good, though we are missing the rows showing different blocks. Given that facet_wrap can use a formula, maybe we could simply include block in the formula? Remember that block refers to the region in the greenhouse where the plants were grown (it's not something special to `ggplot` in this case). Let's try it and see what happens.
+
+```{r facet_wrap formula, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE) +
+	
+	# Adding "block" to formula
+	facet_wrap(~ treat + block)
+```
+
+*Side quest*: Try messing around with the formula to see what happens. Try putting `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that facet_wrap will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click figure maker where you'd have to go through all those clicks to get the same figure again. Made a mistake? Easy, change it back and rerun the code (see Chapter XXX for version control which takes this to the next level).
+
+This figure is almost exactly what we want. _Almost_. But not exactly. In this case we actually want to be using `facet_grid()`, an alterative to `facet_wrap()` which should put us back on track to make the "final figure".
+
+```{r facet_grid, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE) +
+	
+	# Changing to facet_grid
+	facet_grid(~ treat + block)
+```
+
+Oh. Dissapointing. It's pretty much the same as we had before and is no closer to the "final figure". What we need to do to fix it is to rearrange our formula so that we say that block in relation to treatment (not in combination to).
+
+```{r facet_grid, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE) +
+	
+	# Rearranging formula
+	facet_grid(block ~ treat)
+```
+
+And we're there. Although the styling is not the same as the "final figure" this is showing the exact same information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refersher for how to do this).
+
+```{r loading patchwork, eval = FALSE, echo = FALSE}
+install.packages("patchwork")
+library(patchwork)
+```
+
+We'll need to go back to our previous code and do something clever. We can assign figures a name and then use that to call the figure whenever we run the name. For instance I have assigned the "final figure" the name.... `final_figure` (I'm not a clever person).
+
+```{r calling figure name, out.width = "75%", fig.align = "center"}
+final_figure
+```
+
+We'll do the same with the figure we've created together:
+
+```{r naming figure, out.width = "75%", fig.align = "center"}
+# Naming our figure object
+rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point() +
+	geom_smooth(method = "lm", se = FALSE) +
+	facet_grid(block ~ treat)
+```
+
+Now when the code is run, the figure won't be presented. This will only happen when we run the name of the figure as code. We can do this while also showing `patchwork`.
+An old headache when using `ggplot` was that it could be difficult to create a nested figure (different plots all part of the same figure). Patchwork resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; figures on top of each other (operationalised with `/`) and figures side-by-side (operationalised with either `+` or `|`). Let's try.
+
+```{r side-by-side patchwork, out.width = "75%", fig.align = "center"}
+rbook_figure + final_figure
+```
+
+Giving us a nested side-by-side figure.
+
+*Side quest*: Try to create a stacked version of the above figure.
+
+We can also assign nested `patchwork` figures a name and use this in turn to create labels for individuals figures.
+
+```{r labelled nested, out.width = "75%", fig.align = "center"}
+nested_compare <- rbook_figure + final_figure
+
+nested_compare + 
+	plot_annotation(tag_levels = "A")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
