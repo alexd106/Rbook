@@ -10,16 +10,16 @@ Now we need to introduce the last word in the title of this chapter. *GitHub* is
 
 First, we need to install git. You can find Mac, Linux/Unix and Windows versions for download [here][git]. You can check if you have already installed git as follows.
 
-### Windows
+**Windows**
 
 - Go to the Start menu
 - In the Search or Run line, type `cmd` and press enter
 
-### Mac
+**Mac**
 
 - Go to **Applications** -> **Utilities** -> **Terminal**
 
-### Linux
+**Linux**
 
 - Open a terminal (`Ctrl+Alt+T` often does it)
 
@@ -155,5 +155,90 @@ In the **Git** tab of RStudio, click on **Diff** and then **History**. You'll se
 
 ## Setting up a remote repository on GitHub {#github}
 
+Now your project is fully version controlled so you have access to a detailed history of every change you've ever made to it. This is a great first step but all of this only exists on your own computer at the moment.
+
+Likely you'll want to connect your local repository to a remote repository using a hosting service such as GitHub. Syncing your local repository to a remote means that your code is backed up. Also, the remote repository acts as a central store for your project, allowing you to share your work or to access it from another computer.
+
+The first step is to create a GitHub account. Go to [this link][github] and click on the **Sign Up** button. I would suggest you use your university email address to sign up because you will get some privileges (free private repositories for example). Follow the prompts to create your account, verify your email address and you're good to go.
+
+### Create a new repository {#new_repo}
+
+First, you need to create a GitHub repository to use as a remote. Log into GitHub and go to your profile page. On the **Repositories** tab, click the green **New** button.
+
+At the **Create a new repository** screen, give your repository the same name as your local RStudio project and click **Create Repository**. The next screen gives sets of git commands for use in various circumstances. Find the section labelled **…or push an existing repository from the command line** and copy the commands. These commands tell git to set the remote repository for your local repository. In RStudio, navigate to the Git tab and click on **More** -> **Shell…**.
+
+\  
+
+```{r shell, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Open git shell in RStudio"}
+knitr::include_graphics(path = "images/Shell.png")
+```
+
+\ 
+
+Paste the git commands into the shell and press **Enter** to execute them. Confirm that the project has been uploaded to your GitHub repository.
+
+It should look like this:
+
+\  
+
+```{r new_repo, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository"}
+knitr::include_graphics(path = "images/NewRepo3.png")
+```
+
+\ 
+
+It is good practice to always add a **README.md** file to your repository. A README.md file describes your project and all the files that are in the repo. A good README.md file makes it easy for others (or the future you!) to use your code and reproduce your project.
+
+You can create a README.md file from RStudio or in GitHub. Today we will be using the second option.
+
+From the page of your repository in GitHub click on **Add a README**. Now write a short description of your project, something like this:
+
+\  
+
+```{r readme, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Add a README"}
+knitr::include_graphics(path = "images/READMEfile.png")
+```
+
+\
+
+At the bottom of the page, you can now change the commit message and click on **Commit new file**.
+Your repository should now look like this:
+
+\  
+
+```{r new_repo_final, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository with a README"}
+knitr::include_graphics(path = "images/NewRepo4.png")
+```
+
+\
+
+### Pulling and pushing changes {#pull_push}
+
+Once a local repository has been associated with GitHub, it's not necessary to use the command line for subsequent uploads. However, you will want to always keep the local (e.g., your personal computer) and remote (e.g., GitHub) copy in sync with one another. To do this you will **Pull** and **Push** changes from one copy to the other.
+
+When you start working on your local repository (e.g., files on your own computer), it is best to start by **Pulling** any new changes off of your remote repository (e.g., GitHub). Similarly, when you are finished working on them in your local repository (e.g., your computer) it is good to then **Push** them to the remote repository (e.g., GitHub). We will walk through this basic workflow that enables you to keep your local files in sync across multiple computers or when files may change because of someone else working on the project.
+
+To start working on a project, **Pull** any new changes to update your local copy.
+
+\  
+
+```{r pull_changes, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Pull changes from remote repository"}
+knitr::include_graphics(path = "images/PullMaster.png")
+```
+
+\
+
+
+Now make a change to your script, commit the change and **Push**. You should see something like this:
+
+\  
+
+```{r push_changes, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Push changes to remote repository"}
+knitr::include_graphics(path = "images/PushMsg.png")
+```
+
+\
+
+And you're done! Now your remote and local copy are synchronised and any changes you've made are available to you and your collaborators.
 
 
