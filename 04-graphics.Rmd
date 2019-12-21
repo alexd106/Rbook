@@ -94,7 +94,7 @@ str(flower)
 We know from the "final figure" that we want shootarea on the y axis and weight on the x axis. To do so in `ggplot2` we need to make use of the `aes()` function and also fulfill the `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. Let's try it now:
 
 ```{r ggplot with xy axis, out.width = "75%", fig.align = "center"}
-# Including aesthetics for x and y axes as well as speficying the dataset
+# Including aesthetics for x and y axes as well as specifying the dataset
 ggplot(aes(x = weight, y = shootarea), data = flower) 
 ```
 
@@ -129,7 +129,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_smooth()
 ```
 
-Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called "LOESS" which gives something very close to a moving average; useful in some cases, less so in others [`ggplot2` will use LOESS as default when you have < 1000 observations]. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" or (linear model - see Chapter XXX for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time using the `se =` argument.
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called "LOESS" which gives something very close to a moving average; useful in some cases, less so in others [`ggplot2` will use LOESS as default when you have < 1000 observations]. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" (short for linear model - see Chapter 5 for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time by setting the `se =` argument (short for standard error) to FALSE.
 
 Let's update the code to use a linear model without confidence intervals.
 
@@ -141,7 +141,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_smooth(method = "lm", se = FALSE)
 ```
 
-That's exactly what we wanted, though it's still not matching the "final figure". We need `geom_smooth()` to draw lines for each level of nitrogen concentration. Getting `ggplot2` to do that is pretty straightforward. We can use the `colour =` argument within `aes()` (which means we want it displayed in the figure) to use tell `ggplot2` to draw a different coloured line depending on nitrogen concentration.
+That's exactly what we wanted, though it's still not matching the "final figure". We need `geom_smooth()` to draw lines for each level of nitrogen concentration. Getting `ggplot2` to do that is pretty straightforward. We can use the `colour =` argument within `aes()` (remember whatever we include in `aes()` will be something displayed in the figure) to tell `ggplot2` to draw a different coloured line depending on nitrogen concentration.
+
+An aside: `ggplot2` was written with both UK English and American English in mind, so both colour and color spellings work in `ggplot2`.
 
 ```{r geom_smooth colour lm, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
@@ -172,7 +174,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE)
 ```
 
-This figure is now what I would consider to be the typical `ggplot2` figure (once you know to look for it, you'll see it everywhere). We have specified some information, and with only a few lines of code, yet we have something that looks quite attractive. While it's not yet the "final figure" it is perfectly fit for purpose. You have now created you're first "pure" `ggplot`.
+This figure is now what I would consider to be the typical `ggplot2` figure (once you know to look for it, you'll see it everywhere). We have specified some information, with only a few lines of code at that, yet we have something that looks quite attractive. While it's not yet the "final figure" it is perfectly fit for purpose. You have now created you're first "pure" `ggplot`.
 
 Let's keep going as we're aiming for something a bit more "sophisticated".
 
@@ -189,7 +191,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_wrap(~ treat)
 ```
 
-That's pretty good, though we are missing the rows showing different blocks. Given that facet_wrap can use a formula, maybe we could simply include block in the formula? Remember that block refers to the region in the greenhouse where the plants were grown (it's not something special to `ggplot2` in this case). Let's try it and see what happens.
+That's pretty good, though we are missing the rows showing different blocks. Given that facet_wrap can use a formula, maybe we could simply include block in the formula? Remember that block refers to the region in the greenhouse where the plants were grown. Let's try it and see what happens.
 
 ```{r facet_wrap formula, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -200,9 +202,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_wrap(~ treat + block)
 ```
 
-*Play around*: Try messing around with the formula to see what happens. Try putting `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that facet_wrap will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click figure maker where you'd have to go through all those clicks to get the same figure again. Made a mistake? Easy, change it back and rerun the code (see Chapter XXX for version control which takes this to the next level).
+*Play around*: Try messing around with the formula to see what happens. Try putting `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that facet_wrap will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click figure maker where you'd have to go through all those clicks to get the same figure again. Made a mistake? Easy, change it back and rerun the code (see Chapter 8 for version control which takes this to the next level).
 
-This figure is almost exactly what we want. _Almost_. But not exactly. In this case we actually want to be using `facet_grid()`, an alternative to `facet_wrap()` which should put us back on track to make the "final figure".
+This facet layout is almost exactly what we want. _Almost_. But not exactly. In this case we actually want to be using `facet_grid()`, an alternative to `facet_wrap()`, which should put us back on track to make the "final figure".
 
 ```{r facet_grid, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -213,7 +215,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(~ treat + block)
 ```
 
-That's disappointing. It's pretty much the same as we had before and is no closer to the "final figure". What we need to do to fix it is to rearrange our formula so that we say that block in relation to treatment (not in combination to).
+That's disappointing. It's pretty much the same as what we had before and is no closer to the "final figure". What we need to do to fix it is to rearrange our formula so that we say that block in relation to treatment (not in combination to).
 
 ```{r facet_grid formula, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -226,7 +228,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 ### Plotting multiple ggplots
 
-And we're there. Although the styling is not the same as the "final figure" this is showing the exact same information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refresher for how to do this).
+And we're there. Although the styling is not the same as the "final figure" this is showing the exact same fundamental information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refresher for how to do this).
 
 ```{r loading patchwork, eval = FALSE, echo = FALSE}
 #install.packages("patchwork")
@@ -251,16 +253,17 @@ rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data =
 	facet_grid(block ~ treat)
 ```
 
-Now when the code is run, the figure won't be presented. This will only happen when we run the name of the figure as code. We can do this while also showing `patchwork`.
-An old headache when using `ggplot2` was that it could be difficult to create a nested figure (different plots all part of the same figure). Patchwork resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; figures on top of each other (operationalised with `/`) and figures side-by-side (operationalised with either `+` or `|`). Let's try.
+Now when the code is run, the figure won't be presented. This will only happen when we run the name of the figure as code. Well use this at the same time as showing how `patchwork` works.
+
+An old headache when using `ggplot2` was that it could be difficult to create a nested figure (different plots all part of the same figure). `patchwork` resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; figures on top of each other (operationalised with `/`) and figures side-by-side (operationalised with either `+` or `|`). Let's try.
 
 ```{r side-by-side patchwork, out.width = "75%", fig.align = "center"}
 # rbook_figure | final_figure
 ```
 
-Giving us a nested side-by-side figure.
+Giving us a nested stacked figure.
 
-*Side quest*: Try to create a stacked version of the above figure.
+*Play around*: Try to create a side-by-side version of the above figure (hint: try the other operators).
 
 We can also assign nested `patchwork` figures a name and use this in turn to create labels for individuals figures.
 
@@ -287,9 +290,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat)
 ```
 
-Straightforward, we changed the size from the default of `size = 1` to a value that we decide for ourselves. What happens if you included size in `ggplot()`?
+Straightforward, we changed the size from the default of `size = 1` to a value that we decide for ourselves. What happens if you included size in `ggplot()` or within the `aes()` of `geom_point()`?
 
-If we wanted to change the shape of the points to reflect nitrogen concentrations, how do you think we'd do that? We'd use the `shape =` argument, but this time we need to include an `aes()` within `geom_point()` because we want to include specific data to be displayed on the figure.
+If we wanted to change the shape of the points to reflect nitrogen concentrations, how do you think we'd do that? We'd use the `shape =` argument, but this time we need to include an `aes()` within `geom_point()` because we want to include specific information to be displayed on the figure.
 
 ```{r change shape, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -303,7 +306,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Try including `shape = nitrogen` without also including `aes()` and see what happens.
 
-We're getting closer and closer to the "final figure". Another thing we may want to be able to do is change the transparency of the points. While it's not actually that crucial here, changing the transparency of points is really valuable when you have lots of data and big clusters of points can be hidden. Doing this is, again, surprisingly easy, accomplished using the `alpha =` argument. Again, ask yourself where you think the `alpha =` argument should be included.
+We're getting closer and closer to the "final figure". Another thing we may want to be able to do is change the transparency of the points. While it's not actually that crucial here (arguably it might not be a good idea), changing the transparency of points is really valuable when you have lots of data and big clusters of points can be hidden. Doing this is, again, surprisingly easy, accomplished using the `alpha =` argument. Again, ask yourself where you think the `alpha =` argument should be included.
 
 ```{r change alpha, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -328,7 +331,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab("Area of shoot (cm^2)")
 ```
 
-Great. Just as we wanted, though getting the "(cm^2)" to show the square as a superscript would be ideal. Here, we're going to use a function which is part of base R called `bquote()`.
+Great. Just as we wanted, though getting the "(cm^2)" to show the square as a superscript would be ideal. Here, we're going to accomplish that using a function which is part of base R called `bquote()` which allows for special characters to be shown.
 
 ```{r bquote, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -341,7 +344,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2)))
 ```
 
-Let's now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We'll use a new layer using `labs()`, short for labels, which we could have also used for specifying the x and y labels (we didn't only for demonstration purposes, but give it a shot). `labs()` is a fairly straightforward function. Have a look at the help file (using `?labs`) to see which arguments are available. We'll be using `caption =` for the caption, but notice that there isn't an argument for `legend =`? That's because the legend is in fact multiple pieces of information; one being colour and one being shape. So instead of `legend =` we'll use `colour =` and `shape =`. Here's how we do it:
+Let's now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We'll use a new layer called `labs()`, short for labels, which we could have also used for specifying the x and y labels (we didn't only for demonstration purposes, but give it a shot). `labs()` is a fairly straightforward function. Have a look at the help file (using `?labs`) to see which arguments are available. We'll be using `caption =` for the caption, but notice that there isn't an argument for `legend =`? That's because the legend is in fact multiple pieces of information; one being colour and one being shape. So instead of `legend =` we'll use `colour =` and `shape =`. Here's how we do it:
 
 ```{r extra labels, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -357,7 +360,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 *Play around*: Try removing `colour =` or `shape = ` from `labs()` to see what happens. The resulting legends are why we need to specify both colour and shape (and call it the same thing).
 
-Now is a good time to introduce "\n". This is a base R feature which can be thought of as pressing Return in a word processor. It tells R that a string should be continued on a new line. We can use that with "Nitrogen Concentration" so that the legend title becomes more compact.
+Now is a good time to introduce "backslash n". This is a base R feature which can be thought of as pressing Return in a word processor. It tells R that a string should be continued on a new line. We can use that with "Nitrogen Concentration" so that the legend title becomes more compact.
 
 ```{r compact labels, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -367,15 +370,15 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 
-	# Adding labels for shape, colour and a caption	
+	# Including \n to split legend title over two lines	
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends")
 ```
 
-We can now move onto some more wholesale stylistic choices using the much loved themes of `ggplot2`.
+We can now move onto some more wholesale-stylistic choices using the much loved themes of `ggplot2`.
 
 ### Setting the theme
 
-`ggplot2` contains so called themes. Themes control the base style of a ggplot. Let's play around with themes using some skills we've already learnt; assigning plots to objects and plotting multiple `ggplots` in a single figure to explore some theme options. We assign themes by creating a new layer with `theme_X()`.
+`ggplot2` contains so called themes. Themes control the base style of a `ggplot.` Let's play around with themes using some skills we've already learnt; assigning plots to objects and plotting multiple `ggplots` in a single figure to explore some theme options. We assign themes by creating a new layer with `theme_X()`.
 
 ```{r testing themes, out.width = "75%", fig.align = "center"}
 classic <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -483,7 +486,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 We've pretty much got to our "final figure". We just have a few final adjustments to make, and we'll do so in order of difficulty.
 
-Let's remind ourselves of what that "final figure" looked like. Remember, since I have previously saved the figure as `final_figure` I can just type that into the console and pull up the figure.
+Let's remind ourselves of what that "final figure" looked like. Remember, since I have previously stored the figure as `final_figure` I can just type that into the console and pull up the figure.
 
 ```{r final figure reminder, out.width = "75%", fig.align = "center"}
 final_figure
@@ -502,6 +505,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 	# Added a horizontal line using geom_hline
 	geom_hline(aes(yintercept = mean(shootarea)), size = 0.5, colour = "black", linetype = 3) +
+	
 	theme_rbook()
 ```
 
@@ -526,7 +530,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	theme_rbook()
 ```
 
-Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get code to do what you want), which brings us every closer to that "final figure".
+Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get code to do what you want), which brings us ever closer to that "final figure".
 
 Let's tackle that "overall" nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to get a line drawn using a linear model. But we are already using `geom_smooth()`, surely we can't use it again? This may shock and/or surprise you so please ensure you are seated. You _can_ use `geom_smooth()` again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn't the world full of wonderful miracles? ... Anyway, here's the damn code...
 
@@ -550,7 +554,7 @@ That's great! But you should be asking yourself why that worked. Why when we spe
 
 The only things left now are to change the colour and the shape of the points to something of our choosing and include the "overall" trend line in the legend. We'll begin with the former; changing colour and shape to something we specifically want. When I first started using `ggplot2` this was actually the thing which caused me most difficulty. I think the reason is, that to manually change the colours actually requires an additional layer, where I assumed this would be done in either the universal `ggplot()` or in a geom.
 
-Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow to do two things as once; change the shape and colour to our choosing, and assign labels for these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function within another function, using `c()` (see chapter XXX for a reminder on the concatenate function). Let's see how we can do it:
+Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels for these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function within another function, using `c()` (see chapter XXX for a reminder on the concatenate function). Let's see how we can do it:
 
 ```{r scale manual, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -576,7 +580,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 To make sense of that code (or any code for that matter) try running it piece by piece. For instance in the above code, if we run `c("violetred3", "limegreen", "purple4")` we'll get a list of those strings. That list is then passed on to `scale_colour_manual()` as the colours we wish to use. Since we only have three nitrogen concentrations, it will use these three colours. Try including an additional colour in the list and see what happens (if you place the new colour at the end of the list, nothing will happen since it will use the first three colours of the list - try adding it to the start of the list). The same is true for `scale_shape_manual()`.
 
-But if you're paying close attention you'll notice that there's a mistake with the figure now. What should be labelled "Low" is actually labelled "Medium" (the green points and line are our low nitrogen concentration, but `ggplot2` is saying that it is purple). `ggplot2` hasn't made a mistake here. We have. Remember that code is purely logical (or a golem using R McElreath's terminology). It will do explicitly what it is told to do, and in this case we have told it to call labels High, Medium and Low. We could have just as easily told `ggplot2` to call them Pretoria, Tokyo, and Copenhagen. The lesson here is to always be critical of what your outputs are. Never assume that you are omnipotent and will never make mistakes. Double check everything you do.
+But if you're paying close attention you'll notice that there's a mistake with the figure now. What should be labelled "Low" is actually labelled "Medium" (the green points and line are our low nitrogen concentration, but `ggplot2` is saying that it is purple). `ggplot2` hasn't made a mistake here. We have. Remember that code is purely logical (or a golem using R McElreath's terminology). It will do explicitly what it is told to do, and in this case we have told it to call the labels High, Medium and Low. We could have just as easily told `ggplot2` to call them Pretoria, Tokyo, and Copenhagen. The lesson here is to always be critical of what your outputs are. Never assume that you are omnipotent and will never make mistakes. Double check everything you do.
 
 So how do we fix this? We need to do a little data manipulation to rearrange our factors so that the order goes High, Medium, Low. Let's do that:
 
@@ -609,7 +613,7 @@ There are a couple of steps we will need to take. The first is to move `colour =
 
 But why include it in `scale_shape_manual()` since we have no points strictly associated with the "Overall" line? The points only relate to nitrogen concentration, so why would we need a shape for something which we have no points to display? Try removing sections of the data to try and figure out why we did this. 
 
-```{r final figure worked}
+```{r final figure worked, out.width = "75%", fig.align = "center"}
 # Moved colour argument out of universal ggplot
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
@@ -639,4 +643,68 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	theme_rbook()
 ```
 
-The reason for doing so is to maintain a single legend (though it is not ideal). If you'd prefer a perfectly accurate legend, then it would need to be broken into two legends. My preference is to have a single one, but as I said right at the beginning, this is subjective. You are hopefully now able to make a figure as you envisage.
+And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done). To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named Beastiary section (which is totally different from a Bestiary).
+
+## A ggplot Beastiary
+
+What follows is a quick run through of example `ggplots`. These will predominantly be done by changing the geoms used, but there will be additional slight tweaks which I'll highlight.
+
+### Density plot
+
+Below is a density plot which is much like a histogram. The x axis shows observations of given numbers of flowers, while the y axis is the density of observations (roughly equivalent to number of rows with that many flowers). Each density is coloured according to nitrogen concentration, though note that we're using `fill =` instead of `colour =`. Try using colour instead to see what happens.
+
+Notice that we haven't used `data = flowers` here and instead just used `flowers`? When an object is not assigned with an argument, `ggplot2` will assume that it is the dataset. We're using that here, but I actually prefer to explicitly state what arguments are being fulfilled in my own work.
+
+```{r density plot, out.width = "75%", fig.align = "center"}
+ggplot(flower) +
+	geom_density(aes(x = flowers, fill = nitrogen), alpha = 0.5) +
+	labs(y = "Density", x = "Number of Flowers", fill = "Nitrogen\nConcentration") +
+	scale_fill_manual(labels = c("High", "Medium", "Low"),
+										values = c("steelblue4", "orangered4", "black")) +
+	theme_rbook()
+```
+
+### Histogram
+
+Next is a histogram (a much more traditional version of a density plot). There are a couple of things to take note of here. The first is that `flower$block` is numeric and not a factor. We can correct that here fairly easily using the `factor()` function to convert it from numeric to factor (though ideally we'd have done this before - see Chapter 3). The other thing to take note of is that I've specified `bins = 20`. The number of bins control how many times the y-axis is broken up to show the data. Try increasing and decreasing to see the effect.
+
+```{r histogram, out.width = "75%", fig.align = "center"}
+ggplot(flower) +
+	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20) +
+	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
+	scale_fill_manual(labels = c("1", "2"),
+										values = c("steelblue4", "firebrick4")) +
+	theme_rbook()
+```
+
+### Boxplot
+
+Boxplots are a classic way to show to spread of data, and they're easy to make in `ggplot2`. The dark line in the middle of the box shows the median, the boxes show the 25th and 75th percentiles (which is different from the base R `boxplot()`), and the whiskers show 1.5 times the inter-quartile range (i.e. the distance between between the first and third quartiles). We can also make the boxes notched using the argument `notch = TRUE`. Notches extend (1.58 times the inter-quartile range) / square root of the number of observations. If notches do no overlap, it suggest (but only suggests) there may be a significant difference between groups.
+
+```{r boxplot, out.width = "75%", fig.align = "center"}
+ggplot(flower) +
+	geom_boxplot(aes(y = flowers, x = nitrogen), notch = TRUE) +
+	labs(y = "Number of Flowers", x = "Nitrogen Concentration") +
+	theme_rbook()
+```
+
+### Violin plots
+
+Violin plots are an increasingly popular alternative to boxplots. They display much of the same information, as well as showing a version of the density plot above (imagine each violin plot, cut in half vertically, showing the overall distribution of the data). In the plot below the figure is slightly more complex than those above and so deserves some explanation.
+
+Within `geom_violin()` we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()` function). In combination with `geom_violin()` we've also included `geom_jitter()`. `geom_jitter()` is similar to `geom_point()` but induces random spread of the points, often helpful when points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
+
+Finally, I'm also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log10 scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`).
+
+```{r violin plot}
+ggplot(flower) +
+  geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75), alpha = 0.4) +
+  geom_jitter(aes(y = flowers, x = nitrogen, colour = nitrogen), height = 0, width = 0.1) +
+	scale_fill_manual(labels = c("High", "Medium", "Low"),
+										values = c("darkorchid4", "darkorchid2", "darkorchid1")) +
+	scale_colour_manual(labels = c("High", "Medium", "Low"),
+											values = c("darkorchid4", "darkorchid2", "darkorchid1")) +
+	labs(y = "Number of Flowers", x = "Nitrogen Concentration") +
+	scale_y_log10() +
+	theme_rbook()
+```
