@@ -696,7 +696,7 @@ Within `geom_violin()` we've included `draw_quantiles =` where we've specified w
 
 Finally, I'm also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log10 scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`).
 
-```{r violin plot}
+```{r violin plot, out.width = "75%", fig.align = "center"}
 ggplot(flower) +
   geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75), alpha = 0.4) +
   geom_jitter(aes(y = flowers, x = nitrogen, colour = nitrogen), height = 0, width = 0.1) +
