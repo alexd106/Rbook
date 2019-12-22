@@ -47,17 +47,17 @@ theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_s
 
 final_figure <- ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen2, shape = nitrogen2), size = 2, alpha = 0.6) +
-	geom_smooth(aes(colour = "Overall", shape = "Overall"), method = "lm", se = F, linetype = 2, alpha = 0.6) +
+	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = nitrogen2), method = "lm", se = F, size = 1.2) +
 	facet_grid(block~treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4", "black"),
-											labels = c("High", "Medium", "Low", "Overall")) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low", "Overall")) +
+										 labels = c("High", "Medium", "Low")) +
 	theme_deon()
 
 final_figure
@@ -554,7 +554,9 @@ That's great! But you should be asking yourself why that worked. Why when we spe
 
 The only things left now are to change the colour and the shape of the points to something of our choosing and include the "overall" trend line in the legend. We'll begin with the former; changing colour and shape to something we specifically want. When I first started using `ggplot2` this was actually the thing which caused me most difficulty. I think the reason is, that to manually change the colours actually requires an additional layer, where I assumed this would be done in either the universal `ggplot()` or in a geom.
 
-Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels for these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function within another function, using `c()` (see chapter XXX for a reminder on the concatenate function). Let's see how we can do it:
+Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels for these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function within another function, using `c()` (see chapter XXX for a reminder on the concatenate function). 
+
+Choosing colours can be fiddly. I've found using a colour wheel helps with this step. Either Google to find a decent interactive colour wheel or use this website. Follow the steps to choose three colours of your choice. The website should give you a string, something like: #5C1AAE which are the "code" representations of those colours (which both R and `ggplot2` understand). Alternatively, there are colour names which R and `ggplot2` will also understand (e.g. "firebrick4"). Having chosen our colours using whichever means, let's see how we can do it:
 
 ```{r scale manual, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -568,7 +570,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	
 	# Setting colour and associated labels
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	
 	# Setting shape and associated labels
@@ -600,7 +602,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
 										 labels = c("High", "Medium", "Low")) +
@@ -626,7 +628,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
@@ -650,7 +652,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
@@ -668,12 +670,14 @@ Remember that `ggplot2` works like painting. Let's imagine we were one of the gr
 
 The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()` comes before `geom_col()`, then your points may well end up being hidden. To fix this is especially easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can do move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down.
 
-We'll move the Overall black dashed line later in the code so that it is superimposed:
+We'll move both the points and the Overall black dashed line down in the code so that they are superimposed over the nitrogen lines:
 
 ```{r layering layers, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
-	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
+	
+	# Move one line down
+	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	
 	# Moved one line down
 	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
@@ -682,7 +686,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
@@ -691,6 +695,152 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 It's not the clearest example, but give it a shot with your own data.
 
+### Moving the legend
+
+To move the position of the legend requires tweaking the theme, just as we did before with `theme_rbook()`. But for legends we might not want this set as a hard rule whenever we use the theme (i.e. coding this into `theme_rbook()`). Instead we can change it on the fly depending on the individual figure. To do so, we can use a `theme()` layer and the argument `legend.position =`, followed swiftly by a layer specifying that we still want to use `theme_rbook()`.
+
+```{r moving legend, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	
+	# Moving the legend
+	theme(legend.position = "bottom") +
+	
+	theme_rbook()
+```
+
+*Play around*: Try the above code but don't include `theme_rbook()` and see what happens? What about if you try `theme_rbook(legend.position = "bottom")`?
+
+### Hiding the legend
+
+Suppose we don't want a legend at all. How would we go about hiding it?
+
+```{r hiding legend, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	
+	# Hiding the legend
+	theme(legend.position = "none") +
+	
+	theme_rbook()
+```
+
+### Hiding part of the legend
+
+What if we really don't want points included in the legend? Instead of stating this using `theme()`, we'll include it within `geom_point()` using `show.legend = FALSE`.
+
+```{r hiding part of legend, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	
+	# Including show.legend = FALSE to prevent inclusion in legend
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6, show.legend = FALSE) +
+	
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	theme_rbook()
+```
+
+
+### Writing on a figure
+
+What if we were so utterly proud of our figure that we wanted to sign it (just like a painter signs their works of art)? We can do this using `geom_text()`. If we want to change the font, we need to check which ones are available for us to use. We can check this by runnings `windowsFonts()`. We'll use Times New Roman in this example, which is referred to as `serif`.
+
+Not happy with your font options? Check our the `extrafont` package which expands your fontage.
+
+```{r geom_text, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	
+	# Including layer to display text
+	geom_text(x = 22, y = 5, label = "A. Artist", colour = "grey", family = "serif") +
+	theme_rbook()
+```
+
+In reality there are more appropriate uses for `geom_text()` but whatever the reason, the mechanics remain the same. We specify what the x and y position are (on the scales of the axes), what we want written (using `label =`), the font (using `family =`). 
+
+Similarly, we want to include a tag for the figure, for instance we may want to refer to this figure as A if we had nested figures. We can do this using an additional argument in `labs()`. Let's see how that works:
+
+```{r tag A, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	
+	# Including tag argument
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends", tag = "A") +
+	
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	theme_rbook()
+```
+
+Doing so we get an "A" at the top left of the figure. If we weren't happy with the position of the "A", we can always use `geom_text()` instead and position it ourselves.
+
+### Tick for tack
+
+Axis ticks sometimes need to be rotated. If you've ever worked with data from multiple species (with those lovely long latin names), you'll know that it can be a nightmare making summary statistics. The names can end up overlapping to such an extent that you axis tick labels merge into a giant black blob of unreadable abstractionism. In such cases it's best to rotate the text to make it readable. Doing so isn't too much of a pain and we'll be using `theme()` to set angle to 45 degress in addition to a little vertical adjustment so that the text doesn't get too close or run too far away from the axis.
+
+```{r rotate axis, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(method = "lm", se = FALSE) +
+	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19),
+										 labels = c("High", "Medium", "Low")) +
+	theme(axis.text.x=element_text(angle = 45, vjust = 0.5)) +
+	theme_rbook()
+```
+
+Phew. Now we can really read those numbers. Granted rotating the axis text here isn't needed, but keep this trick in mind if you have lots of levels in a factor which leads to illegible blobs.
 
 To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named Beastiary section (which is totally different from a Bestiary).
 
@@ -709,7 +859,7 @@ ggplot(flower) +
 	geom_density(aes(x = flowers, fill = nitrogen), alpha = 0.5) +
 	labs(y = "Density", x = "Number of Flowers", fill = "Nitrogen\nConcentration") +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("steelblue4", "orangered4", "black")) +
+										values = c("#DB24BC", "#BCDB24", "#24BCDB")) +
 	theme_rbook()
 ```
 
@@ -722,7 +872,7 @@ ggplot(flower) +
 	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20) +
 	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
 	scale_fill_manual(labels = c("1", "2"),
-										values = c("steelblue4", "firebrick4")) +
+										values = c("#8CD926", "#7326D9")) + # HULK SMASH!
 	theme_rbook()
 ```
 
@@ -743,16 +893,14 @@ Violin plots are an increasingly popular alternative to boxplots. They display m
 
 Within `geom_violin()` we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()` function). In combination with `geom_violin()` we've also included `geom_jitter()`. `geom_jitter()` is similar to `geom_point()` but induces random spread of the points, often helpful when points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
 
-Finally, I'm also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log10 scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`).
+Finally, I'm also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log10 scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`). Please note that using a log scaled axis in this case is actually doing harm, in terms of understanding the data, we'd be much better off not doing so in this particular case.
 
 ```{r violin plot, out.width = "75%", fig.align = "center"}
 ggplot(flower) +
-  geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75), alpha = 0.4) +
-  geom_jitter(aes(y = flowers, x = nitrogen, colour = nitrogen), height = 0, width = 0.1) +
+  geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75)) +
+  geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, width = 0.1, alpha = 0.5) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("darkorchid4", "darkorchid2", "darkorchid1")) +
-	scale_colour_manual(labels = c("High", "Medium", "Low"),
-											values = c("darkorchid4", "darkorchid2", "darkorchid1")) +
+										values = c("#5f7f5c", "#749770", "#9eb69b")) +
 	labs(y = "Number of Flowers", x = "Nitrogen Concentration") +
 	scale_y_log10() +
 	theme_rbook()
