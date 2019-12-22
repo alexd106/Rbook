@@ -607,43 +607,92 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	theme_rbook()
 ```
 
-Last stretch! The only thing we have left now is to include the "Overall" trend line in the legend. To do this we have to be a touch "hacky" and trick `ggplot2` into including "Overall" in the legend. This is not strictly needed and possibly not always adviseable, but I do it to show that `ggplot2` can be coerced to do what you want (at times).
+And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done). 
 
-There are a couple of steps we will need to take. The first is to move `colour = nitrogen` to the relevant `geom_smooth()` (which is displaying the trend lines for nitrogen) and to `geom_point()`. Doing this maintains the figure as we currently have it, but is required for the following to work. The next step will be to include `colour = "Overall"` in the overall `geom_smooth()` but importantly _within_ `aes()`. Remember that `aes()` defines everything we want to displayed on the figure. Doing so here will force "Overall" to appear in a new, isolated, legend. The final steps are then to include the relevant information in `scale_colour_manual()` and `scale_shape_manual()`. 
+## Tips and tricks
 
-But why include it in `scale_shape_manual()` since we have no points strictly associated with the "Overall" line? The points only relate to nitrogen concentration, so why would we need a shape for something which we have no points to display? Try removing sections of the data to try and figure out why we did this. 
+For this section I'll use the version of the final figure without the `facet_grid()`. With this plot, I'll run through some tips and tricks that I wish I had learnt when I started using `ggplot2`.
 
-```{r final figure worked, out.width = "75%", fig.align = "center"}
-# Moved colour argument out of universal ggplot
+### Axis limits and zooms
+
+Fairly often, you may want to limit the range of your axes. Maybe you want to focus a particular part of the data to really tease apart any patterns occuring there. Whatever the reason, it's a useful skill to know, and with most things code, there are a couple of ways to do this. I'll show two here; `xlim()` and `ylim()` and `coord_cartesian()`. Using both of these we'll set the x axis to only show data between 10 and 15 g and the yaxis to only show the area of the shoot between 50 and 150. We'll start with limiting the axes:
+
+```{r axis limits, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
-	
-	# Inserted colour argument here
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
-	
-	# Included colour and shape = "Overall"
-	geom_smooth(aes(colour = "Overall", shape = "Overall"), method = "lm", se = F, linetype = 2, alpha = 0.6) +
-	
-	# Inserted colour argument here
+	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
-	
-	facet_grid(block~treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
-	
-	# Included value and label for Overall line
-	scale_colour_manual(values = c("violetred3", "limegreen", "purple4", "black"),
-											labels = c("High", "Medium", "Low", "Overall")) +
-	
-	# Included value and label for Overall line
+	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low", "Overall")) +
+										 labels = c("High", "Medium", "Low")) +
+	theme_rbook() +
 	
+	# New x and y limits
+	xlim(c(10, 15)) +
+	ylim(c(50, 150))
+```
+
+Notice the warning messages we get, telling us that n rows contain either missing or non-finite values? That's because we've essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified). As a result of doing this our lines have no completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; `coord_cartesian()`.
+
+`coord_cartesian()` works in much the same way, but instead of chopping out data, it instead zooms in. Doing so means that the entire dataset is maintained (and any trends are maintained).
+
+```{r coord_cartesian, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19,21),
+										 labels = c("High", "Medium", "Low")) +
+	theme_rbook() +
+	
+	# Zooming in rather than chopping out
+	coord_cartesian(xlim = c(10, 15),	ylim = c(50, 150))
+```
+
+Notice now that the trends are maintained (as the lines are being informed by data which are off-screen). I would generally advise using `coord_cartesian()` as it protects you against possible misinterpretations.
+
+### Layering layers
+
+Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke, because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
+
+The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()` comes before `geom_col()`, then your points may well end up being hidden. To fix this is especially easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can do move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down.
+
+We'll move the Overall black dashed line later in the code so that it is superimposed:
+
+```{r layering layers, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = F, size = 1.2) +
+	
+	# Moved one line down
+	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
+	
+	xlab("Weight of flower (g)") +
+	ylab(bquote("Area of shoot"~(cm^2))) +
+	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Lines are only to suggest trends") +
+	scale_colour_manual(values = c("violetred3", "limegreen", "purple4"),
+											labels = c("High", "Medium", "Low")) +
+	scale_shape_manual(values = c(15,17,19,21),
+										 labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
-And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done). To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named Beastiary section (which is totally different from a Bestiary).
+It's not the clearest example, but give it a shot with your own data.
+
+
+To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named Beastiary section (which is totally different from a Bestiary).
 
 ## A ggplot Beastiary
 
