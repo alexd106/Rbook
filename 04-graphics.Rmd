@@ -590,10 +590,10 @@ So how do we fix this? We need to do a little data manipulation to rearrange our
 flower$nitrogen <- factor(flower$nitrogen, levels = c("high", "medium", "low"))
 ```
 
-With that done, we can re-do our above code to get a correct figure.
+With that done, we can re-do our above code to get a correct figure and assign it the name "rbook_figure".
 
 ```{r corrected factor level, out.width = "75%", fig.align = "center"}
-ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
+rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
@@ -607,9 +607,22 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	scale_shape_manual(values = c(15,17,19),
 										 labels = c("High", "Medium", "Low")) +
 	theme_rbook()
+
+rbook_figure
 ```
 
-And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done). 
+And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done).
+
+We can then save the final figure to our computer so that we can include it in a poster etc. The code for this is straightforward, but does require an understanding of file paths. Be sure to check Chapter X for an explanation of this if you're unsure.
+
+This is the point when assigned the code to the object named "rbook_figure" comes in handy. Doing so allows us to specify which figure it is we want to save within `ggsave()`. If we hadn't specified which plot to save, `ggsave()` would instead save the most current figure produced.
+
+Other important arguments to take note of are: `device =` where we tell `ggplot2` in what form we want the figure saved as (in this case saved as a .pdf); `units =` which specifies the units used in `width =` and `height =`; `wight =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a figure 1 km x 1 km.
+
+```{r ggsave, eval = FALSE}
+ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", path = "C:\\Users\\deonr\\Desktop",
+			 width = 250, height = 150, units = "mm", dpi = 500, limitsize = TRUE)
+```
 
 ## Tips and tricks
 
