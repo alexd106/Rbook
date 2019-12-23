@@ -28,7 +28,8 @@ So what is the figure we're going to make together?
 flower <- read.csv("data/flower.csv")
 library(ggplot2)
 
-flower$nitrogen2 <- factor(flower$nitrogen, levels = c("high", "medium", "low"))
+df <- flower
+df$nitrogen2 <- factor(df$nitrogen, levels = c("high", "medium", "low"))
 
 theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
   theme( 
@@ -45,7 +46,7 @@ theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_s
   )
 }
 
-final_figure <- ggplot(aes(x = weight, y = shootarea), data = flower) +
+final_figure <- ggplot(aes(x = weight, y = shootarea), data = df) +
 	geom_point(aes(colour = nitrogen2, shape = nitrogen2), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = F, linetype = 2, alpha = 0.6) +
 	geom_smooth(aes(colour = nitrogen2), method = "lm", se = F, size = 1.2) +
@@ -556,7 +557,7 @@ The only things left now are to change the colour and the shape of the points to
 
 Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels for these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function within another function, using `c()` (see chapter XXX for a reminder on the concatenate function). 
 
-Choosing colours can be fiddly. I've found using a colour wheel helps with this step. Either Google to find a decent interactive colour wheel or use this website. Follow the steps to choose three colours of your choice. The website should give you a string, something like: #5C1AAE which are the "code" representations of those colours (which both R and `ggplot2` understand). Alternatively, there are colour names which R and `ggplot2` will also understand (e.g. "firebrick4"). Having chosen our colours using whichever means, let's see how we can do it:
+Choosing colours can be fiddly. I've found using a colour wheel helps with this step. Either Google to find a decent interactive colour wheel or use this website. Follow the steps to choose three colours of your choice. The website should give you a string, something like: #5C1AAE which are the "code" representations of those colours (technically called rgb specifications, which both R and `ggplot2` understand). Alternatively, there are colour names which R and `ggplot2` will also understand (e.g. "firebrick4"). Having chosen our colours using whichever means, let's see how we can do it:
 
 ```{r scale manual, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -994,9 +995,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Phew. Now we can really read those numbers. Granted rotating the axis text here isn't needed, but keep this trick in mind if you have lots of levels in a factor which leads to illegible blobs.
 
-To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named Beastiary section (which is totally different from a Bestiary).
+To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named ggplot catalogue section.
 
-## A ggplot Beastiary
+## A ggplot catalogue
 
 What follows is a quick run through of example `ggplots`. These will predominantly be done by changing the geoms used, but there will be additional slight tweaks which I'll highlight.
 
@@ -1025,6 +1026,17 @@ ggplot(flower) +
 	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
 	scale_fill_manual(labels = c("1", "2"),
 										values = c("#8CD926", "#7326D9")) + # HULK SMASH!
+	theme_rbook()
+```
+
+### Frequency polygons
+
+```{r histogram, out.width = "75%", fig.align = "center"}
+ggplot(flower) +
+	geom_freqpoly(aes(x = flowers, colour = factor(block)), size = 1, bins = 20) +
+	labs(y = "Count", x = "Number of Flowers", colour = "Greenhouse\nBlock") +
+	scale_colour_manual(labels = c("1", "2"),
+											values = c("#8CD926", "#7326D9")) + # HULK SMASH!
 	theme_rbook()
 ```
 
@@ -1066,7 +1078,96 @@ Below is an example of barcharts. It is included here for completeness, but be a
 ggplot(flower) +
   geom_bar(aes(x = factor(block), fill = nitrogen)) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("#5f7f5c", "#749770", "#9eb69b")) +
+										values = c("#2613EC", "#9313EC", "#EC13D9")) +
 	labs(y = "Count", x = "Block") +
 	theme_rbook()
 ```
+
+The barchart shows the numbers of observations in each block, with each bar split according to the number of observations in each nitrogen concentration. In this case they are equal because the dataset (and experimental design) was balanced.
+
+### Quantile lines
+
+While we can draw a straight line, perhaps we would also like to include the descriptive nature of a boxplot, except using continuous data. We can use quantile lines in such cases. Note that for quantiles to be calculated `ggplot2` requires the installation of the package `quantreg`.
+
+```{r quantile lines, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = weight, y = shootarea), data = flower) +
+	geom_point(size = 0.5, alpha = 0.6) +
+	geom_quantile(colour = "darkgrey", size = 1) +
+	labs(y = "Shoot Area", x = "Weight") +
+	theme_rbook()
+```
+
+### Heatmap
+
+When using spatial data, heatmaps can be a great tool to visual spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`.
+
+```{r heat, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = leafarea, y = shootarea), data = flower) +
+	geom_bin2d() +
+	labs(y = "Shoot Area", x = "Leaf Area") +
+	coord_cartesian(xlim = c(5,25)) +
+	theme_rbook()
+```
+
+### Contour map
+
+Similar to a heatmap we can make a contour map using `geom_density_2d()`.
+
+```{r contour, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = leafarea, y = shootarea), data = flower) +
+	geom_density2d() +
+	labs(y = "Shoot Area", x = "Leaf Area") +
+	coord_cartesian(xlim = c(5,25)) +
+	theme_rbook()
+```
+
+We can then expand on this using `stat()`. In the background of `ggplot2` values are calculated which are then passed to some geoms. `stat()` acts like a flag to `ggplot2` that you want to use one of these calculated values. For instance, we can use the calculated "level" and use this to fill in our figure. To do so, we'll swap out `geom_density_2d()` for `stat_density_2d()` which will allow us to paint the contour map.
+
+```{r stat contour, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = leafarea, y = shootarea), data = flower) +
+	stat_density_2d(aes(fill = stat(level)), geom = "polygon") +
+	labs(y = "Shoot Area", x = "Leaf Area") +
+	coord_cartesian(xlim = c(5,25)) +
+	theme_rbook()
+```
+
+In this case it doesn't look too pretty given that we don't have a wide spread of data (as we would hope for with spatial data).
+
+### Hex map
+
+A final version, similar to the previous "heat maps" is `geom_hex()`. Note that `geom_hex()` requires an additional package called `hexbin`.
+
+```{r hex, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = leafarea, y = shootarea), data = flower) +
+	geom_hex() +
+	labs(y = "Shoot Area", x = "Leaf Area") +
+	coord_cartesian(xlim = c(5,25)) +
+	theme_rbook()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
