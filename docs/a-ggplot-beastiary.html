@@ -186,6 +186,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.2" data-path="a-ggplot-beastiary.html"><a href="a-ggplot-beastiary.html#histogram"><i class="fa fa-check"></i><b>4.4.2</b> Histogram</a></li>
 <li class="chapter" data-level="4.4.3" data-path="a-ggplot-beastiary.html"><a href="a-ggplot-beastiary.html#boxplot"><i class="fa fa-check"></i><b>4.4.3</b> Boxplot</a></li>
 <li class="chapter" data-level="4.4.4" data-path="a-ggplot-beastiary.html"><a href="a-ggplot-beastiary.html#violin-plots"><i class="fa fa-check"></i><b>4.4.4</b> Violin plots</a></li>
+<li class="chapter" data-level="4.4.5" data-path="a-ggplot-beastiary.html"><a href="a-ggplot-beastiary.html#barchart"><i class="fa fa-check"></i><b>4.4.5</b> Barchart</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a></li>
@@ -261,6 +262,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb75-7" title="7"><span class="st">    </span><span class="kw">scale_y_log10</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb75-8" title="8"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/violin%20plot-1.png" width="75%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="barchart" class="section level3">
+<h3><span class="header-section-number">4.4.5</span> Barchart</h3>
+<p>Below is an example of barcharts. It is included here for completeness, but be aware that they are viewed with contention (see here for a discussion of why <strong><em>LINK</em></strong>). Briefly, there are almost always better alternatives to use that better demonstrate the trends.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" title="1"><span class="kw">ggplot</span>(flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-2" title="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">factor</span>(block), <span class="dt">fill =</span> nitrogen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-3" title="3"><span class="st">    </span><span class="kw">scale_fill_manual</span>(<span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>),</a>
+<a class="sourceLine" id="cb76-4" title="4">                                        <span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#5f7f5c&quot;</span>, <span class="st">&quot;#749770&quot;</span>, <span class="st">&quot;#9eb69b&quot;</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-5" title="5"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Block&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb76-6" title="6"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/barchart-1.png" width="75%" style="display: block; margin: auto;" /></p>
 
 </div>
 </div>

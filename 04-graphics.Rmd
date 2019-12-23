@@ -1057,3 +1057,16 @@ ggplot(flower) +
 	scale_y_log10() +
 	theme_rbook()
 ```
+
+### Barchart
+
+Below is an example of barcharts. It is included here for completeness, but be aware that they are viewed with contention (see here for a discussion of why ***LINK***). Briefly, there are almost always better alternatives to use that better demonstrate the trends.
+
+```{r barchart, out.width = "75%", fig.align = "center"}
+ggplot(flower) +
+  geom_bar(aes(x = factor(block), fill = nitrogen)) +
+	scale_fill_manual(labels = c("High", "Medium", "Low"),
+										values = c("#5f7f5c", "#749770", "#9eb69b")) +
+	labs(y = "Count", x = "Block") +
+	theme_rbook()
+```
