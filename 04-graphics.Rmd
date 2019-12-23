@@ -611,9 +611,7 @@ rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data =
 rbook_figure
 ```
 
-And we've done it! Our final figure matches the "final figure" exactly. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done).
-
-We can then save the final figure to our computer so that we can include it in a poster etc. The code for this is straightforward, but does require an understanding of file paths. Be sure to check Chapter X for an explanation of this if you're unsure.
+And we've done it! Our final figure matches the "final figure" exactly. We can then save the final figure to our computer so that we can include it in a poster etc. The code for this is straightforward, but does require an understanding of file paths. Be sure to check Chapter X for an explanation of this if you're unsure.
 
 This is the point when assigned the code to the object named "rbook_figure" comes in handy. Doing so allows us to specify which figure it is we want to save within `ggsave()`. If we hadn't specified which plot to save, `ggsave()` would instead save the most current figure produced.
 
@@ -623,6 +621,12 @@ Other important arguments to take note of are: `device =` where we tell `ggplot2
 ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", path = "C:\\Users\\deonr\\Desktop",
 			 width = 250, height = 150, units = "mm", dpi = 500, limitsize = TRUE)
 ```
+
+That concludes the worked example to reproduce our final figure. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done). Two sections follow this one. The first is simply a collection of tips and tricks that couldn't quite make their way into this worked example, and the second section is a bestiary of different `ggplots`. I would recommend not spending time going through each section in detail, but rather come back to them as and when you need to know how to do _that particular thing_.
+
+I hope you enjoyed this chapter, and more importantly, increased your confidence in making figures. If I can have two final parting words, it would be to reiterate not to fall into the trap of thinking your figures are superior to those who don't use `ggplot2`. As I said in the beginning, exactly equivalent figures are possible in both base R and `ggplot2`. The only difference is how you get to those figures. Hopefully, you know how to get to those figures using a particular method.
+
+The last advice I will give would be not to overcomplicate your figures, something easily done in general and perhaps particularly so in `ggplot2`. With regards to the final figure we produced here, I have gone back and forth as to whether I have been guilty of that here. The figure does contain a lot of information, drawing on information from five different variables, with one of those being presented in three different ways. I would be reluctant, for example, to include this in a presentation as it would likely be too much for an audience to fully appreciate in the roughyly 30 seconds to 1 minute that they'll see it. Fortunately, or unfortunately depending on how you view it, there are no true hard and fast rules when it comes to making figures. Much of it will be at your descretion, so please ensure you give thought to it.
 
 ## Tips and tricks
 
