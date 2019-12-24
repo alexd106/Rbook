@@ -232,8 +232,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 And we're there. Although the styling is not the same as the "final figure" this is showing the exact same fundamental information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refresher for how to do this).
 
 ```{r loading patchwork, eval = FALSE, echo = FALSE}
-#install.packages("patchwork")
-#library(patchwork)
+# install.packages("patchwork")
+library(patchwork)
 ```
 
 An important note: For those who have used base R to produce their figure and are used to using `par(mfrow = c(2,2))` to plot up to four figures in two rows and two columns, be aware that this does not work for `ggplot2` objects. Instead you will need to use either `patchwork` or alternative packages such as `gridArrange` or `cowplot` or covert the `ggplot2` objects to grobs.
@@ -241,7 +241,7 @@ An important note: For those who have used base R to produce their figure and ar
 We'll need to go back to our previous code and do something clever. We can assign figures a name and then use that to call the figure whenever we run the name. For instance, I have assigned the "final figure" the name.... `final_figure` (I'm not a clever person).
 
 ```{r calling figure name, out.width = "75%", fig.align = "center"}
-final_figure
+#final_figure
 ```
 
 We'll do the same with the figure we've created together:
@@ -258,8 +258,8 @@ Now when the code is run, the figure won't be presented. This will only happen w
 
 An old headache when using `ggplot2` was that it could be difficult to create a nested figure (different plots all part of the same figure). `patchwork` resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; figures on top of each other (operationalised with `/`) and figures side-by-side (operationalised with either `+` or `|`). Let's try.
 
-```{r side-by-side patchwork, out.width = "75%", fig.align = "center"}
-# rbook_figure | final_figure
+```{r side-by-side patchwork, out.width = "85%", fig.align = "center"}
+# rbook_figure + final_figure
 ```
 
 Giving us a nested stacked figure.
@@ -271,8 +271,8 @@ We can also assign nested `patchwork` figures a name and use this in turn to cre
 ```{r labelled nested, out.width = "75%", fig.align = "center"}
 # nested_compare <- rbook_figure + final_figure
 
-#nested_compare + 
-#	plot_annotation(tag_levels = "A")
+# nested_compare + 
+# 	plot_annotation(tag_levels = "A", tag_suffix = ")")
 ```
 
 ### Make it your own
@@ -426,11 +426,11 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 	# Light theme
 	theme_light()
 
-#(classic | bw) /
-#	(minimal | light)
+# (classic | bw) /
+# 	(minimal | light)
 ```
 
-In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `GGthemes` is a package you can download to get even more theme options. The BBC even have their own `ggplot2` theme called "BBplot" (though I personally don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranethesis (brackets).
+In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package you can download to get even more theme options. The BBC even have their own `ggplot2` theme called "BBplot" (though I personally don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranethesis (brackets).
 
 ```{r theme_classic}
 theme_classic
@@ -490,7 +490,8 @@ We've pretty much got to our "final figure". We just have a few final adjustment
 Let's remind ourselves of what that "final figure" looked like. Remember, since I have previously stored the figure as `final_figure` I can just type that into the console and pull up the figure.
 
 ```{r final figure reminder, out.width = "75%", fig.align = "center"}
-final_figure
+final_figure + 
+	labs(title = "Reminder of the final figure")
 ```
 
 Let's begin the final push by including that dashed horizontal line at about 80 on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called `geom_hline()`, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument `linetype =` and also the colour (as we did before). Let's see how it works.
@@ -616,7 +617,7 @@ And we've done it! Our final figure matches the "final figure" exactly. We can t
 
 This is the point when assigned the code to the object named "rbook_figure" comes in handy. Doing so allows us to specify which figure it is we want to save within `ggsave()`. If we hadn't specified which plot to save, `ggsave()` would instead save the most current figure produced.
 
-Other important arguments to take note of are: `device =` where we tell `ggplot2` in what form we want the figure saved as (in this case saved as a .pdf); `units =` which specifies the units used in `width =` and `height =`; `wight =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a figure 1 km x 1 km.
+Other important arguments to take note of are: `device =` where we tell `ggplot2` in what form we want the figure saved as (in this case saved as a .pdf) though `ggplot2` is smart enough to guess this based on the extension of ourfile name, so it is often redundant; `units =` which specifies the units used in `width =` and `height =`; `wight =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a figure 1 km x 1 km.
 
 ```{r ggsave, eval = FALSE}
 ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", path = "C:\\Users\\deonr\\Desktop",
@@ -1031,7 +1032,7 @@ ggplot(flower) +
 
 ### Frequency polygons
 
-```{r histogram, out.width = "75%", fig.align = "center"}
+```{r freqpoly, out.width = "75%", fig.align = "center"}
 ggplot(flower) +
 	geom_freqpoly(aes(x = flowers, colour = factor(block)), size = 1, bins = 20) +
 	labs(y = "Count", x = "Number of Flowers", colour = "Greenhouse\nBlock") +
@@ -1099,11 +1100,25 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 ### Heatmap
 
-When using spatial data, heatmaps can be a great tool to visual spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`. Even when not using spatial data, the figure shows where our data is most (and least) clustered.
+When using spatial data, heatmaps can be a great tool to visual spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`. Even when not using spatial data, the figure can allow us to see if our data is more (or less) clustered.
 
 ```{r heat, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 	geom_bin2d() +
+	labs(y = "Shoot Area", x = "Leaf Area") +
+	coord_cartesian(xlim = c(5,25)) +
+	theme_rbook()
+```
+
+In this example, lighter blue squares show combinations of leaf area and shoot area where we have more data, and dark blue shows the converse.
+
+### Hex map
+
+A similar version to `geom_density2d()` is `geom_hex()`. The only difference between the two is that the sqaures are replaced with hexagons. Note that `geom_hex()` requires an additional package called `hexbin`.
+
+```{r hex, out.width = "75%", fig.align = "center"}
+ggplot(aes(x = leafarea, y = shootarea), data = flower) +
+	geom_hex() +
 	labs(y = "Shoot Area", x = "Leaf Area") +
 	coord_cartesian(xlim = c(5,25)) +
 	theme_rbook()
@@ -1131,22 +1146,33 @@ ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 	theme_rbook()
 ```
 
-In this case it doesn't look too pretty given that we don't have a wide spread of data (as we would hope for with spatial data).
+In this case it doesn't look too pretty given that we don't have a wide spread of data (as we would hope for with spatial data) leading to partly formed polygons.
 
-### Hex map
+### Cleveland dotplot
 
-A final version, similar to the previous "heat maps" is `geom_hex()`. Note that `geom_hex()` requires an additional package called `hexbin`.
+The cleveland dotplot is a figure well suited to detect outliers in the data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. `ggplot2` does not have a geom specifically designed for a cleveland dotplot, though we can bend `ggplot2` to our will. We do this by first using the function `rownames()`. This function returns the row name of each row. In most dataframes, the row names are simply numbers. Once we have this information, we can convert this to numbers using `as.numeric()`. Once this is done, we essentially have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make.
 
-```{r hex, out.width = "75%", fig.align = "center"}
-ggplot(aes(x = leafarea, y = shootarea), data = flower) +
-	geom_hex() +
-	labs(y = "Shoot Area", x = "Leaf Area") +
-	coord_cartesian(xlim = c(5,25)) +
+```{r dotpot, out.width = "75%", fig.align = "center"}
+ggplot(flower) + 
+  geom_point(aes(x = leafarea, y = as.numeric(rownames(flower)))) +
+  labs(y = "Order in Dataset", x = bquote("Area of leaf"~(cm^2))) +
 	theme_rbook()
 ```
 
+### Pairs plot
 
+For this next figure we will need an additional package, called `GGally`. Within `GGally` is a function called `ggpairs()` which is equivalent to `pairs()` (part of base R). Both function produce comparative plots of all variables of interest. Running diagonally down from left to right, are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.
 
+Such figures are a fantastic way to quickly show relationships in the dataset. They can of course be used to plot only part of the dataset, for instance using `flowers[ , 1:5]` to plot the first five columns of the dataset.
+
+```{r pairs plot, out.width = "75%", fig.align = "center", warning = FALSE}
+library(GGally)
+
+flower$block <- factor(flower$block)
+
+ggpairs(flower, ggplot2::aes(colour = nitrogen)) +
+	theme_rbook()
+```
 
 
 
