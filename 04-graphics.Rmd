@@ -1099,7 +1099,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 ### Heatmap
 
-When using spatial data, heatmaps can be a great tool to visual spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`.
+When using spatial data, heatmaps can be a great tool to visual spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`. Even when not using spatial data, the figure shows where our data is most (and least) clustered.
 
 ```{r heat, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
@@ -1111,7 +1111,7 @@ ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 
 ### Contour map
 
-Similar to a heatmap we can make a contour map using `geom_density_2d()`.
+Similar to a heatmap we can make a contour map using `geom_density_2d()`. The way to read this figure is much the same way as you'd read a topographical map showing "mountains" or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you "step" down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in `geom_bin2d()`.
 
 ```{r contour, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
