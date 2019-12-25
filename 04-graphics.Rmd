@@ -251,12 +251,12 @@ install.packages("patchwork")
 library(patchwork)
 ```
 
-An important note: For those who have used base R to produce their figure and are used to using `par(mfrow = c(2,2))` to plot up to four figures in two rows and two columns, be aware that this does not work for `ggplot2` objects. Instead you will need to use either `patchwork` or alternative packages such as `gridArrange` or `cowplot` or covert the `ggplot2` objects to grobs.
+An important note: For those who have used base R to produce their figure and are familiar with using `par(mfrow = c(2,2))` (which allows plotting of four figures in two rows and two columns) be aware that this does not work for `ggplot2` objects. Instead you will need to use either the `patchwork` package or alternative packages such as `gridArrange` or `cowplot` or covert the `ggplot2` objects to grobs.
 
-We'll need to go back to our previous code and do something clever. We can assign figures a name and then use that to call the figure whenever we run the name. For instance, I have assigned the "final figure" the name.... `final_figure` (I'm not a clever person).
+We'll need to go back to our previous code and do something clever. We can assign figures a name and then use that to call the figure whenever we run the name. For instance, I have assigned the "final figure" the name.... `final_figure` (I'm not a clever person). You may see this method used a lot in other textbooks, especially when adding addition layers (e.g. `final_figure + geom_point()`). I prefer not to do that here, instead favouring that the entire code is always visible. Regardless, let's remind ourselves of the final figure.
 
 ```{r calling figure name, out.width = "75%", fig.align = "center"}
-#final_figure
+final_figure
 ```
 
 We'll do the same with the figure we've created together:
