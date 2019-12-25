@@ -2,7 +2,7 @@
 
 For many people, one of their favourite uses of R is in making figures. These can either take the form of a quick dirty plot to allow you to get a feel for what's going on in your dataset, or fancier/more complex figures to use in a publication or report. This process is often as close as many analysts/scientists get to having a professional creative side (at least that's true for me), and it's something which those folks take great pride in.
 
-As stated in the introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in R allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional click and point programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
+As stated in the introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in R allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
 
 In this chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
@@ -64,21 +64,28 @@ final_figure <- ggplot(aes(x = weight, y = shootarea), data = df) +
 final_figure
 ```
 
-Before we go further, let's take a second and talk about what this figure is literally showing. On the y axes of the four plots we have the area of the shoot and the x axes we have the weight of a flower. Each column shows the two treatments of the dataset (whether the tip of the flower was cut or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 and block 2). The thin dotted line shows the mean shoot area regardless of the weight of the flowers, the treatment or the block. For our purposes, we won't worry about the biology here (though you should absolutely care deeply about that in your own data); all we care about here is that we are giving the audience lots of information in a relatively readable format.
+Before we go further, let's take a second and talk about what this figure is showing. On the y axes of the four plots we have the area of the shoot and the x axes we have the weight of a flower. Each column shows the two treatments of the dataset (whether the tip of the flower was cut or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 and block 2). The three colours represent the three nitrogen concentration levels used in the experiment. These colours are used to distinguish which points correspond to nitrogen concentration (also reflected by the shape of the points). Additional to this we have four trend lines. The three nitrogen concentration coloured lines show the trends of shoot area as a function of weight (see chapter 5 for the stats going on behind the scenes). These coloured lines are inturn specific to each "facet" in the grid, changing acording to treatment and block. Additional to the coloured lines is a black dashed line in each facet. These dashed black lines represent the overall relationship (ignoring nitrogen concentration). The final line, the thin dotted grey line, shows the mean shoot area regardless of the weight of the flowers, the treatment or the block. 
+
+For the purposes of this chapter, we won't worry about the biology here. Do not take this to be standard, you should absolutely care deeply about the biology in your own data.  The biology should be the driving force behind the questions you ask, in turn driving these questions driving the figures that you make. With this figure though, all we care about here is that we are giving the audience lots of information in a relatively readable format. 
+
+\
 
 ## The start of the end
 
-The first step in producing a `ggplot()` is the easiest! We just need to install and then load the package. Use the skills you learnt in Chapter 1.5 to install and load the package. Note that although I (and pretty much everyone) refer to the package as `ggplot`, it's proper name is `ggplot2`.
+The first step in producing a `ggplot()` is the easiest! We just need to install and then load the package. Use the skills you learnt in Chapter 1.5 to install and load the package. Note that although most people refer to the package as `ggplot`, it's proper name is `ggplot2`.
 
-```{r installing & loading ggplot}
+```{r installing & loading ggplot, eval = FALSE}
+install.packages("ggplot2")
 library(ggplot2)
 ```
 
 With that taken care of, let's make our first `ggplot()`!
 
+\
+
 ### The purest of ggplots
 
-During the R course this book is based on, the students are asked at one point to shout out all of the functions they have either learnt in the course or heard of/used before. At this point in the course we have not touched on `ggplot2`, but one year a student shouted out `ggplot()`. When asked what the `ggplot()` function does, they said that it makes a `ggplot`. This makes complete and utter sense. So let's make a `ggplot` now:
+During the R course that this book is based on, the students are asked at one point to name all of the functions they have either learnt during the course, have heard of or have used before. At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student shouted out `ggplot()`. When asked what the `ggplot()` function does, they said that it makes a `ggplot`. This makes complete and utter sense. So let's make a `ggplot` now:
 
 ```{r pure ggplot, out.width = "75%", fig.align = "center"}
 ggplot()
@@ -227,6 +234,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat)
 ```
 
+\
+
 ### Plotting multiple ggplots
 
 And we're there. Although the styling is not the same as the "final figure" this is showing the exact same fundamental information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refresher for how to do this).
@@ -274,6 +283,8 @@ We can also assign nested `patchwork` figures a name and use this in turn to cre
 # nested_compare + 
 # 	plot_annotation(tag_levels = "A", tag_suffix = ")")
 ```
+
+\
 
 ### Make it your own
 
@@ -376,6 +387,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 ```
 
 We can now move onto some more wholesale-stylistic choices using the much loved themes of `ggplot2`.
+
+\
 
 ### Setting the theme
 
