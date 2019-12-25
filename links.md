@@ -48,3 +48,6 @@
 [bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
 [github]: https://github.com/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
+[geom]: https://ggplot2.tidyverse.org/reference/
+[leland]: https://www.springer.com/gp/book/9780387245447
+[leland-summary]: https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf

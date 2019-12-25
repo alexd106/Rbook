@@ -6,7 +6,7 @@ As stated in the introduction, one of the many reasons for the rise in the popul
 
 In this chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
-Before we get going with making some plots of the gg variety, how about a quick little history of one of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the gg in `ggplot2`) by Leland Wilkinson [yours for only £100 or so](https://www.springer.com/gp/book/9780387245447). But before you spend £100 see [here](https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf) for an interesting summary of Wilkinson's book. 
+Before we get going with making some plots of the gg variety, how about a quick little history of one of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ (hence the gg in `ggplot2`) by Leland Wilkinson yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
 
 Briefly, Wilkinson's idea (one of them anyway) in _grammar of graphics_ was that figures can be broken down into constituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author's) ideas would, never-the-less, make their way into R via `ggplot2`. 
 
@@ -99,7 +99,7 @@ We'll keep using the flower dataset that you used in the earlier chapters. Let's
 str(flower)
 ```
 
-We know from the "final figure" that we want shootarea on the y axis and weight on the x axis. To do so in `ggplot2` we need to make use of the `aes()` function and also fulfill the `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. Let's try it now:
+We know from the "final figure" that we want shootarea on the y axis and weight on the x axis. To do so in `ggplot2` we need to make use of the `aes()` function and also fulfill the `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. If we did not include the `aes()` function, then the x and y arguments would be ignored. This is a good rule to keep in mind when using `ggplot2`. The things we want displayed on the figure is included in `aes()`. All features which alter this displayed information, not based on a variable in our dataset, is included outside of the `aes()` function. Let's try it now:
 
 ```{r ggplot with xy axis, out.width = "75%", fig.align = "center"}
 # Including aesthetics for x and y axes as well as specifying the dataset
@@ -108,16 +108,18 @@ ggplot(aes(x = weight, y = shootarea), data = flower)
 
 That's already much better. At least it's no longer a blank grey canvas. We've now told `ggplot2` what we want as our x and y axes as well as where to find that data. But what's missing here is where we tell `ggplot2` _how_ to display that data. This is now the time to introduce you to "geoms" or geometric objects. Geoms are the way that `ggplot2` displays information. For instance `geom_point()` tells `ggplot2` that you want the information to be displayed as points (making scatterplots possible for example). Given that the "final figure" uses points, this is clearly the appropriate geom to use here.
 
-Before we can do that, we need to talk about the coding structure used by `ggplot2`. The analogy that I and many others use is to say that making a figure in `ggplot2` is much like painting. What we've done in the above code is making our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to include a `+` at the end of the proceeding layer to tell R and `ggplot2` that there are additional layers coming. Let's add (`+`) a new geom now:
+Before we can do that, we need to talk about the coding structure used by `ggplot2`. The analogy that I and many others use is to say that making a figure in `ggplot2` is much like painting. What we've done in the above code is making our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to include a `+` at the end of the proceeding layer to tell R and `ggplot2` that there are additional layers coming. 
+
+There are other layers, beyond geoms, which can be included though we will focus on geoms for the time being. Let's add (`+`) a new geom now:
 
 ```{r ggplot with geom_point, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
-	# Adding a geom to display data
+	# Adding a geom to display data as point data
 	geom_point()	
 ```
 
-If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. We can see that shootarea looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is perfectly suited for personal use. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms *here* (XXXinsert linkXXX), you might think that `geom_line()` would be appropriate. Let's try it.
+If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. We can see that shootarea looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is perfectly suited for personal use. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()` would be appropriate. Let's try it.
 
 ```{r geom_line, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
@@ -127,7 +129,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_line()
 ```
 
-Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots. The geom we actually want to use is called `geom_smooth()`. We can fix that very easily just by changing "line" to "smooth".
+Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots in the order they appear in the data (an alternative to `geom_path()`). The geom we actually want to use is called `geom_smooth()`. We can fix that very easily just by changing "line" to "smooth".
 
 ```{r geom_smooth, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
@@ -137,7 +139,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_smooth()
 ```
 
-Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called "LOESS" which gives something very close to a moving average; useful in some cases, less so in others [`ggplot2` will use LOESS as default when you have < 1000 observations]. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" (short for linear model - see Chapter 5 for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time by setting the `se =` argument (short for standard error) to FALSE.
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others (`ggplot2` will use LOESS as default when you have < 1000 observations). Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" (short for linear model - see Chapter 5 for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
+
+While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the `se =` argument (short for standard error) to FALSE.
 
 Let's update the code to use a linear model without confidence intervals.
 
@@ -171,7 +175,7 @@ ggplot() +
 	geom_smooth(aes(x = weight, y = shootarea, colour = nitrogen), data = flower, method = "lm", se = FALSE)
 ```
 
-Doing so we get exactly the same figure. This ability to move information around is surprisingly powerful. It can allow different geoms to display different (albeit similar) information (see more on this later).
+Doing so we get exactly the same figure. This ability to move information between the universal `ggplot()` or specific geoms is surprisingly powerful. It can allow different geoms to display different (albeit similar) information (see more on this later).
 
 For this worked example, we'll move the same information back to the universal `ggplot()`,but we'll also move `colour = nitrogen` into `ggplot()` so that we can have the points coloured according to nitrogen concentration as well.
 
@@ -186,9 +190,11 @@ This figure is now what I would consider to be the typical `ggplot2` figure (onc
 
 Let's keep going as we're aiming for something a bit more "sophisticated".
 
+\
+
 ### Wrapping grids
 
-Having made our "pure" `ggplot`, the next big obstacle we're going to tackle is the grid like layout of the "final figure" where the single figure has been split according to treatment and block, with new figures made for each combination. `ggplot2` includes options for determining the "facets" of a figure. We'll start off by using `facet_wrap()` to show what this can do. For `facet_wrap()` to work we need to specify a formula for how the facets will be defined (see `?facet_wrap` for more details and also for how to define facets without using a formula). You can read `~ treat` as saying "according to treatment". Let's see how it works:
+Having made our "pure" `ggplot`, the next big obstacle we're going to tackle is the grid like layout of the "final figure" where the single figure has been split according to treatment and block, with new trends shown for each combination. `ggplot2` includes options for determining the "facets" of a figure. We'll start off by using `facet_wrap()` to show what this can do. For `facet_wrap()` to work we need to specify a formula for how the facets will be defined (see `?facet_wrap` for more details and also for how to define facets without using a formula). You can read `~ treat` as saying "according to treatment". Let's see how it works:
 
 ```{r facet_wrap, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -199,7 +205,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_wrap(~ treat)
 ```
 
-That's pretty good, though we are missing the rows showing different blocks. Given that facet_wrap can use a formula, maybe we could simply include block in the formula? Remember that block refers to the region in the greenhouse where the plants were grown. Let's try it and see what happens.
+That's pretty good, though we are missing the rows showing different blocks. Given that `facet_wrap()` can use a formula, maybe we could simply include block in the formula? Remember that block refers to the region in the greenhouse where the plants were grown. Let's try it and see what happens.
 
 ```{r facet_wrap formula, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -210,7 +216,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_wrap(~ treat + block)
 ```
 
-*Play around*: Try messing around with the formula to see what happens. Try putting `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that facet_wrap will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click figure maker where you'd have to go through all those clicks to get the same figure again. Made a mistake? Easy, change it back and rerun the code (see Chapter 8 for version control which takes this to the next level).
+*Play around*: Try changing the formula to see what happens. Something like `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that `facet_wrap()` will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every unique number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click programme where you'd have to go back through all those clicks to get the same figure produced Made a mistake? Easy, change it back and rerun the code (see Chapter 8 for version control which takes this to the next level).
 
 This facet layout is almost exactly what we want. _Almost_. But not exactly. In this case we actually want to be using `facet_grid()`, an alternative to `facet_wrap()`, which should put us back on track to make the "final figure".
 
@@ -223,14 +229,14 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(~ treat + block)
 ```
 
-That's disappointing. It's pretty much the same as what we had before and is no closer to the "final figure". What we need to do to fix it is to rearrange our formula so that we say that block in relation to treatment (not in combination to).
+That's disappointing. It's pretty much the same as what we had before and is no closer to the "final figure". To fix this we need to do to rearrange our formula so that we say that it is block in relation to treatment (not in combination to).
 
 ```{r facet_grid formula, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point() +
 	geom_smooth(method = "lm", se = FALSE) +
 	
-	# Rearranging formula
+	# Rearranging formula, block in relation to treatment
 	facet_grid(block ~ treat)
 ```
 
@@ -241,7 +247,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 And we're there. Although the styling is not the same as the "final figure" this is showing the exact same fundamental information. We can plot them side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork (see Chapter 1.5 if you need a refresher for how to do this).
 
 ```{r loading patchwork, eval = FALSE, echo = FALSE}
-# install.packages("patchwork")
+install.packages("patchwork")
 library(patchwork)
 ```
 
