@@ -1,10 +1,10 @@
 # Version control with Git and GitHub {#github_r}
 
-By the end of this book, you will be able to manipulate visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If your analysis folder looks like this analysis_script.R, analysis_script_final.R, analysis_script_final_v2.R etc. you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work. 
+By the end of this book, you will be able to manipulate visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If your folder contains files named *analysis_script.R*, *analysis_script_final.R*, *analysis_script_final_v2.R* etc. you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work. 
 
 A version control system keeps a record of all the changes you make to your code and it allows you to revert those changes to a previous point in time. Version control was designed for software development, but it is equally applicable to scientific coding. A variety of version control software is available, but here we focus on *git*, because it is free and open source and it integrates with RStudio, so that it can easily become part of your usual workflow. A git *repository* is a version-controlled folder on your computer that contains all your work for a particular project. This stand-alone local copy of your project is what each of the people involved in the project work on. The individual repositories then exchange information on the changes tht have been made, thus synchronising with each other.
 
-Now we need to introduce the last word in the title of this chapter. *GitHub* is a web-based hosting service for git repositories, which allows you to create a remote copy of your local version-controlled project. This creates a backup and archive of your project, making it accessible to you, regardless which computer you are using, and to your collaborators. 
+*GitHub* is a web-based hosting service for git repositories, which allows you to create a remote copy of your local version-controlled project. This creates a backup and archive of your project, making it accessible to you, regardless which computer you are using, and to your collaborators. 
 
 ## Getting started with git {#setup_git}
 
@@ -43,7 +43,7 @@ If this was succesful, you should see no output from these commands.
 
 ## Version control with RStudio and Git {#rstudio_git}
 
-Git can be used from the command line, but it also integrates with RStudio, providing an friendly graphical user interface. If you want to use RStudio's git integration, you need to check that the path to the git executable is specified correctly. In RStudio, go to:
+Git can be used from the command line, but it also integrates with RStudio, providing a friendly graphical user interface. If you want to use RStudio's git integration, you need to check that the path to the git executable is specified correctly. In RStudio, go to:
 
 **Tools** -> **Global Options** -> **Git/SVN** 
 
@@ -112,7 +112,7 @@ Tick the **Staged** checkbox for each file.
 
 All of your files are now staged, ready for you to record those changes as a *commit*. Each commit creates a snapshot of the project directory, allowing you to record the state of your project through time. Click on **Commit**.
 
-This will open a pane showing details of the commit. You need to specify a **Commit message** in the right hand panel. Commit messages should explain *why you have made a change* and not *what* you have changed. Git keeps track of *what* has changed (see use of **Diff** below) and so it is best not to use commit messages for this purpose. The commit message lets your future self know the current state of your mind *why* you made this change or it will inform collaborators *why* the change was made.
+This will open a pane showing details of the commit. You need to specify a **Commit message** in the right hand panel. Commit messages should explain *why you have made a change* and not *what* you have changed. Git keeps track of *what* has changed (see use of **Diff** below) and so it is best not to use commit messages for this purpose. The commit message lets your future self or your collaborators *why* you made this change.
 
 Since this is the first commit, you can follow tradition and use a brief message such as *First commit*, but for subsequent commits it's worth providing a more descriptive message. Once you've typed a commit message, click on **Commit**.
 
@@ -138,14 +138,12 @@ plot(cars, col="red")
 
 After you have modified your code, save the script. Now, click on the **Git** tab in RStudio. You'll notice that there's only one file listed, since RStudio only lists files that have changed in its git interface.
 
-Click on the **Staged** checkbox to stage your change. Now click on **Diff** (next to **Commit**) to display a summary of what's changed. Lines that have been added are green. Lines that have been removed are red.
-
-(Note that from git's point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line.)
+Click on the **Staged** checkbox to stage your change. Now click on **Diff** (next to **Commit**) to display a summary of what's changed. Lines that have been added are green. Lines that have been removed are red (note that from git's point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line).
 
 \  
 
 ```{r diff, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Review your changes"}
-knitr::include_graphics(path = "images/FirstCommit.png")
+knitr::include_graphics(path = "images/Diff.png")
 ```
 
 \  
@@ -159,7 +157,7 @@ Now your project is fully version controlled so you have access to a detailed hi
 
 Likely you'll want to connect your local repository to a remote repository using a hosting service such as GitHub. Syncing your local repository to a remote means that your code is backed up. Also, the remote repository acts as a central store for your project, allowing you to share your work or to access it from another computer.
 
-The first step is to create a GitHub account. Go to [this link][github] and click on the **Sign Up** button. I would suggest you use your university email address to sign up because you will get some privileges (free private repositories for example). Follow the prompts to create your account, verify your email address and you're good to go.
+The first step is to create a GitHub account. Go to [this link][github] and click on the **Sign Up** button. If you have one, use an institutional email address to sign up because it will give you some privileges (free private repositories for example). Follow the prompts to create your account, verify your email address and you're good to go.
 
 ### Create a new repository {#new_repo}
 
@@ -187,9 +185,9 @@ knitr::include_graphics(path = "images/NewRepo3.png")
 
 \ 
 
-It is good practice to always add a **README.md** file to your repository. A README.md file describes your project and all the files that are in the repo. A good README.md file makes it easy for others (or the future you!) to use your code and reproduce your project.
+It is good practice to always add a **README** file to your repository. A README.md file describes your project and all the files that are in the repo. A good README file makes it easy for others (or the future you!) to use your code and reproduce your project.
 
-You can create a README.md file from RStudio or in GitHub. Today we will be using the second option.
+You can create a README file from RStudio or in GitHub. Today we will be using the second option.
 
 From the page of your repository in GitHub click on **Add a README**. Now write a short description of your project, something like this:
 
@@ -257,17 +255,17 @@ Let's summarise the steps you can take to version control your project.
 
 6. Create a remote repository on GitHub (section 8.4)
 
-7. Synchronise your changes with te remote repository
+7. Synchronise your changes with the remote repository
 
 8. Repeat steps 2-7
 
-Now that you have a version control workflow, there different things you can do:
+Now that you have a version control workflow, there are different things you can do:
 
 - **View your project history:** your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.
 
 - **Revert to a previous commit:** Identified a bug in one of your recent commits? No worries, you can go back to that point in time before the bug was introduced.
 
-- **Collaborate:** GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
+- **Collaborate:** GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
 
 Git offers a number of advanced features that you can incorporate in your workflow. If you are going to be working on a large collaborative project it is worth looking into *forking*, *branching* and *pull requests*. If you are the only person working on your code, then the workflow detailed here is usually enough. 
 
@@ -279,6 +277,6 @@ There are many good guides online to learn more about git and GitHub and as with
 
 - The Mozilla Science Lab [GitHub for Collaboration on Open Projects guide][mozilla]
 
-These are only a couple of examples, all you need to do is Google "version control with git and GitHub" to see how huge the community around these open source project is and how many free resources are available for you to become a version control expert.
+These are only a couple of examples, all you need to do is Google "version control with git and GitHub" to see how huge the community around these open source projects is and how many free resources are available for you to become a version control expert.
 
 
