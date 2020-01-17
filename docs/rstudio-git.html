@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Version control with Git and GitHub | A Introduction to R</title>
+  <title>8.2 Version control with RStudio and Git | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Version control with Git and GitHub | A Introduction to R" />
+  <meta property="og:title" content="8.2 Version control with RStudio and Git | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Version control with Git and GitHub | A Introduction to R" />
+  <meta name="twitter:title" content="8.2 Version control with RStudio and Git | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmarkdown-r.html"/>
-<link rel="next" href="setup-git.html"/>
+<link rel="prev" href="setup-git.html"/>
+<link rel="next" href="github.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,28 +213,90 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github_r" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Version control with Git and GitHub</h1>
-<p>By the end of this book, you will be able to manipulate, visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If this looks familiar</p>
+<div id="rstudio_git" class="section level2">
+<h2><span class="header-section-number">8.2</span> Version control with RStudio and Git</h2>
+<p>Git can be used from the command line, but it also integrates with RStudio, providing a friendly graphical user interface. If you want to use RStudio’s git integration, you need to check that the path to the git executable is specified correctly. In RStudio, go to:</p>
+<p><strong>Tools</strong> -&gt; <strong>Global Options</strong> -&gt; <strong>Git/SVN</strong></p>
+<p>and make sure the path is correct, otherwise, navigate to where you saved the git.exe file.</p>
+<p>Now that you’re all set up, you are ready to create your first version controlled RStudio project.</p>
+<div id="setting-up-a-version-controlled-project-in-rstudio" class="section level3">
+<h3><span class="header-section-number">8.2.1</span> Setting up a version controlled project in RStudio</h3>
+<p>RStudio provides an interface for version control using git. We’ll look at setting up and managing a version controlled project through RStudio.</p>
+<p>Create a new project in RStudio as follows:</p>
+<p><strong>File</strong> -&gt; <strong>New Project</strong> -&gt; <strong>New Directory</strong></p>
+<p>Then select <strong>Empty Project</strong>.</p>
+<p>On the <strong>Create New Project</strong> screen, give your project a name, navigate to the directory you want to save your project in and make sure that <strong>Create a git repository</strong> is checked. Then click on <strong>Create Project</strong>.</p>
 <p> </p>
-<div class="figure" style="text-align: center"><span id="fig:youNeedVC"></span>
-<img src="images/Messy_folder.PNG" alt="You need version control" width="75%" />
+<div class="figure" style="text-align: center"><span id="fig:rstudioGit"></span>
+<img src="images/CreateNew.png" alt="Create a new version controlled RStudio project" width="75%" />
 <p class="caption">
-Figure 8.1: You need version control
+Figure 8.2: Create a new version controlled RStudio project
 </p>
 </div>
 <p> </p>
-<p>you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work.</p>
-<p>A version control system keeps a record of all the changes you make to your code and it allows you to revert those changes to a previous point in time. Version control was designed for software development, but it is equally applicable to scientific coding. A variety of version control software is available, but here we focus on <em>git</em>, because it is free and open source and it integrates with RStudio, so that it can easily become part of your usual workflow. A git <em>repository</em> is a version-controlled folder on your computer that contains all your work for a particular project. This stand-alone local copy of your project is what each of the people involved in the project work on. The individual repositories then exchange information on the changes tht have been made, thus synchronising with each other.</p>
-<p><em>GitHub</em> is a web-based hosting service for git repositories, which allows you to create a remote copy of your local version-controlled project. This creates a backup and archive of your project, making it accessible to you, regardless which computer you are using, and to your collaborators.</p> 
+<p>Two files are created in the otherwise empty project:</p>
+<ul>
+<li><p><strong>.gitignore</strong> – Specifies files that should be ignored by the version control system.</p></li>
+<li><p><strong>NewProject.Rproj</strong> – Configuration information for the RStudio project.</p></li>
+</ul>
+<p>You can check this in RStudio <strong>Files</strong> tab (usually in the bottom right corner).</p>
+<p>Once your project is set up, you can start working on your code, perhaps by creating an R script that reads in your data and carries out some preliminary analysis. First open a new R script, then type some commands, for example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">data</span>(cars)</a>
+<a class="sourceLine" id="cb1-2" title="2"></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw">plot</span>(cars)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/cars_plot-1.png" width="672" /></p>
+<p>Now you can save your script. RStudio will automatically save your script in your project directory, so just give it a name and click <strong>Save</strong>.</p>
+<p>After you’ve created this file in your project, you need to get it under version control. By default, the git version control pane is in the top right hand corner of RStudio. Find it and click on the <strong>Git</strong> tab. You’ll see a list of the files in your project directory.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span id="fig:gitTab"></span>
+<img src="images/GitTab.png" alt="The git tab" width="75%" />
+<p class="caption">
+Figure 8.3: The git tab
+</p>
+</div>
+<p> </p>
+<p>If you hover the mouse pointer over the yellow <em>?</em> marks in RStudio, you’ll see a tooltip telling you that the files are <em>Untracked</em>. This means that git is not tracking versions of these files.</p>
+<p>Git will only keep track of modifications to files that it has been asked to manage, so you need to tell git which files to track.</p>
+<p>Tick the <strong>Staged</strong> checkbox for each file.</p>
+<p>All of your files are now staged, ready for you to record those changes as a <em>commit</em>. Each commit creates a snapshot of the project directory, allowing you to record the state of your project through time. Click on <strong>Commit</strong>.</p>
+<p>This will open a pane showing details of the commit. You need to specify a <strong>Commit message</strong> in the right hand panel. Commit messages should explain <em>why you have made a change</em> and not <em>what</em> you have changed. Git keeps track of <em>what</em> has changed (see use of <strong>Diff</strong> below) and so it is best not to use commit messages for this purpose. The commit message lets your future self or your collaborators know <em>why</em> you made this change.</p>
+<p>Since this is the first commit, you can follow tradition and use a brief message such as <em>First commit</em>, but for subsequent commits it’s worth providing a more descriptive message. Once you’ve typed a commit message, click on <strong>Commit</strong>.</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span id="fig:firstCommit"></span>
+<img src="images/FirstCommit.png" alt="Your first commit" width="75%" />
+<p class="caption">
+Figure 8.4: Your first commit
+</p>
+</div>
+<p> </p>
+<p>A message displaying the output from git will be shown. Click on <strong>Close</strong> and you are done.</p>
+</div>
+<div id="making-changes" class="section level3">
+<h3><span class="header-section-number">8.2.2</span> Making changes</h3>
+<p>Now we want to make some changes to our R script, for example modify a plot.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">plot</span>(cars, <span class="dt">col=</span><span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/change_plot-1.png" width="672" /></p>
+<p>After you have modified your code, save the script. Now, click on the <strong>Git</strong> tab in RStudio. You’ll notice that there’s only one file listed, since RStudio only lists files that have changed in its git interface.</p>
+<p>Click on the <strong>Staged</strong> checkbox to stage your change. Now click on <strong>Diff</strong> (next to <strong>Commit</strong>) to display a summary of what’s changed. Lines that have been added are green. Lines that have been removed are red (note that from git’s point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line).</p>
+<p> </p>
+<div class="figure" style="text-align: center"><span id="fig:diff"></span>
+<img src="images/Diff.png" alt="Review your changes" width="75%" />
+<p class="caption">
+Figure 8.5: Review your changes
+</p>
+</div>
+<p> </p>
+<p>Add a commit message and click on <strong>Commit</strong>.
+In the <strong>Git</strong> tab of RStudio, click on <strong>Diff</strong> and then <strong>History</strong>. You’ll see that you can look through every commit you’ve ever made. This can be extremely useful for finding bugs or looking back to how your model looked a few months ago.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="rmarkdown-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="setup-git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="setup-git.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

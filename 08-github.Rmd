@@ -1,6 +1,17 @@
 # Version control with Git and GitHub {#github_r}
 
-By the end of this book, you will be able to manipulate visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If your folder contains files named *analysis_script.R*, *analysis_script_final.R*, *analysis_script_final_v2.R* etc. you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work. 
+By the end of this book, you will be able to manipulate, visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If this looks familiar
+
+\  
+
+```{r youNeedVC, echo=FALSE, out.width="75%", fig.align="center", fig.cap="You need version control"}
+knitr::include_graphics(path = "images/Messy_folder.PNG")
+```
+
+\  
+
+
+you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work. 
 
 A version control system keeps a record of all the changes you make to your code and it allows you to revert those changes to a previous point in time. Version control was designed for software development, but it is equally applicable to scientific coding. A variety of version control software is available, but here we focus on *git*, because it is free and open source and it integrates with RStudio, so that it can easily become part of your usual workflow. A git *repository* is a version-controlled folder on your computer that contains all your work for a particular project. This stand-alone local copy of your project is what each of the people involved in the project work on. The individual repositories then exchange information on the changes tht have been made, thus synchronising with each other.
 
@@ -112,7 +123,7 @@ Tick the **Staged** checkbox for each file.
 
 All of your files are now staged, ready for you to record those changes as a *commit*. Each commit creates a snapshot of the project directory, allowing you to record the state of your project through time. Click on **Commit**.
 
-This will open a pane showing details of the commit. You need to specify a **Commit message** in the right hand panel. Commit messages should explain *why you have made a change* and not *what* you have changed. Git keeps track of *what* has changed (see use of **Diff** below) and so it is best not to use commit messages for this purpose. The commit message lets your future self or your collaborators *why* you made this change.
+This will open a pane showing details of the commit. You need to specify a **Commit message** in the right hand panel. Commit messages should explain *why you have made a change* and not *what* you have changed. Git keeps track of *what* has changed (see use of **Diff** below) and so it is best not to use commit messages for this purpose. The commit message lets your future self or your collaborators know *why* you made this change.
 
 Since this is the first commit, you can follow tradition and use a brief message such as *First commit*, but for subsequent commits it's worth providing a more descriptive message. Once you've typed a commit message, click on **Commit**.
 
@@ -128,7 +139,7 @@ knitr::include_graphics(path = "images/FirstCommit.png")
 A message displaying the output from git will be shown. Click on **Close** and you are done.
  
 
-## Making changes {#make_changes}
+### Making changes 
 
 Now we want to make some changes to our R script, for example modify a plot.
 
@@ -185,7 +196,7 @@ knitr::include_graphics(path = "images/NewRepo3.png")
 
 \ 
 
-It is good practice to always add a **README** file to your repository. A README.md file describes your project and all the files that are in the repo. A good README file makes it easy for others (or the future you!) to use your code and reproduce your project.
+It is good practice to always add a **README** file to your repository. A README file describes your project and all the files that are in the repo. A good README file makes it easy for others (or the future you!) to use your code and reproduce your project.
 
 You can create a README file from RStudio or in GitHub. Today we will be using the second option.
 
@@ -243,31 +254,97 @@ And you're done! Now your remote and local copy are synchronised and any changes
 
 Let's summarise the steps you can take to version control your project.
 
-1. Set up a local version control repository (section 8.2)
+1. Set up a local version control repository (section [8.2](#rstudio_git))
 
 2. Write some code
 
 3. Save your script to the local repository
 
-4. Choose (Stage) files to be included in the version history
+4. Choose (*stage*) files to be included in the version history
 
 5. Commit your files
 
-6. Create a remote repository on GitHub (section 8.4)
+6. Create a remote repository on GitHub (section [8.3](#github))
 
 7. Synchronise your changes with the remote repository
 
 8. Repeat steps 2-7
 
-Now that you have a version control workflow, there are different things you can do:
 
-- **View your project history:** your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.
+## Using git from the command line {#command_line}
 
-- **Revert to a previous commit:** Identified a bug in one of your recent commits? No worries, you can go back to that point in time before the bug was introduced.
+You don't need to use RStudio to be able to version control your R projects. You can use git from the command line. In this section we will go through the same steps explained in the previous sections but using git commands.
 
-- **Collaborate:** GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
+### Setting up a git repository
+
+Open a Terminal (or command prompt if on Windows) as you have done in section [8.1](#setup_git). To set up a local git repository, enter the following commands:
+
+```{}
+mkdir myproj
+cd myproj
+git init
+```
+
+The first command creates a new directory called *myproj*, the second changes the working directory to your new folder and the last line initiates the git respository. Although you won't see any changes in your directory *myproj*, the command `git init` has created the hidden structure that git needs to start tracking changes in your files.
+
+### Staging files and first commit
+
+In RStudio we told git which files we wanted to keep track of by ticking the checkbox next to the file name. We can give git the same instruction from the command line. Create a new R script in your new directory *myproj*. You can just copy the code from the previous Sript.R file. Once you have saved your script enter the following command:
+
+```{}
+git add Script.R
+```
+
+And your file is now under version control.The command `git status` will produce a summary of the current state of the working directory, listing files that have changes that need to be committed, those that have not been staged and files that are not being tracked.
+
+Now that your script is being tracked, you can create your first commit with the following command:
+
+```{}
+git commit -m "My first commit"
+
+```
+
+The `-m` option allows you to specify a commit message directly.
+Before we go any further, check that version control is set by running `git log`. This will report the details of your first commit.
+
+Now that your project is under version control, you can start making changes to your code.At every point while you are working on your project, you can use `git status` to check which files have been modified and `git diff` for more details on the changes you've made. Once you are happy with your changes use `git add` to stage your file and `git commit` to commit them. The command `git commit` without the option `-m` will open a text editor that you can use to write a longer commit message.
+
+### Connecting to a remote repository
+
+As we did in section [8.3](#github), you can create a remote repository on GitHub and connect your local repository.
+ Follow the steps in section [8.3.1](#github) to create a new repository on GitHub. After you click on the green **Create repository** button, copy and paste the commands found under the section labelled **...or push an existing respository from the command line** into the command line. 
+ 
+### The workflow
+
+Once your remote respository is set up, you can use the same workflow explained in section [8.4](#vc_workflow).
+
+1. Make changes to your files or add new files
+2. Stage the new or modified files with the command `git add`
+3. Commit the changes you have made with `git commit`
+4. Push your changes to the remote repository with `git push`
+
+Now that you have a version control workflow, there are different things you can do.
+
+#### View your project history 
+
+Your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.
+
+#### Revert to a previous commit 
+
+Oops, I broke it! One of the great things about a version control system is that if you break your code you can always go back to when it was still working. There are two ways:
+
+1. If you have made a mistake or you forgot to include a file in your last commit, which you have not yet pushed to your remote repository, then you can just make your changes, use `git add` to stage the new or the chaged file and then use the command `git commit --amend`. This will change your previous commit to include the new changes. You can also use this command on its own if you just want to modify the commit message.
+
+2. If you are already a few commits away from the one that broke your code and you need to go back to a previous version of your project, first use `git reflog`, which will show you a list of everything you have done in git. Then, find the step that broke your code. Finally use `git reset` and the step's index (something of the form `HEAD@{index}`, which you'll find in the output of `git reflog`) to revert to that point in time. Seems like magic, but it has limitations. `git reset` can create problems if you have already pushed changes to the remote repository, so only use it in this way if you want to go back a series of commits that you have not pushed yet.
+
+#### Collaborate 
+
+GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
 
 Git offers a number of advanced features that you can incorporate in your workflow. If you are going to be working on a large collaborative project it is worth looking into *forking*, *branching* and *pull requests*. If you are the only person working on your code, then the workflow detailed here is usually enough. 
+
+
+#### Further resources
 
 There are many good guides online to learn more about git and GitHub and as with any open source software there is a huge community that can be a great resource:
 
@@ -277,6 +354,10 @@ There are many good guides online to learn more about git and GitHub and as with
 
 - The Mozilla Science Lab [GitHub for Collaboration on Open Projects guide][mozilla]
 
+- If you have done something terribly wrong and don't know how to fix it try [Oh Shit, Git][Oh Shit, Git!?!]
+
 These are only a couple of examples, all you need to do is Google "version control with git and GitHub" to see how huge the community around these open source projects is and how many free resources are available for you to become a version control expert.
+
+
 
 

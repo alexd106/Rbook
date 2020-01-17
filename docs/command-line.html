@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 8 Version control with Git and GitHub | A Introduction to R</title>
+  <title>8.5 Using git from the command line | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 8 Version control with Git and GitHub | A Introduction to R" />
+  <meta property="og:title" content="8.5 Using git from the command line | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 8 Version control with Git and GitHub | A Introduction to R" />
+  <meta name="twitter:title" content="8.5 Using git from the command line | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmarkdown-r.html"/>
-<link rel="next" href="setup-git.html"/>
+<link rel="prev" href="vc-workflow.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -213,28 +213,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github_r" class="section level1">
-<h1><span class="header-section-number">Chapter 8</span> Version control with Git and GitHub</h1>
-<p>By the end of this book, you will be able to manipulate, visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If this looks familiar</p>
-<p> </p>
-<div class="figure" style="text-align: center"><span id="fig:youNeedVC"></span>
-<img src="images/Messy_folder.PNG" alt="You need version control" width="75%" />
-<p class="caption">
-Figure 8.1: You need version control
-</p>
+<div id="command_line" class="section level2">
+<h2><span class="header-section-number">8.5</span> Using git from the command line</h2>
+<p>You don’t need to use RStudio to be able to version control your R projects. You can use git from the command line. In this section we will go through the same steps explained in the previous sections but using git commands.</p>
+<div id="setting-up-a-git-repository" class="section level3">
+<h3><span class="header-section-number">8.5.1</span> Setting up a git repository</h3>
+<p>Open a Terminal (or command prompt if on Windows) as you have done in section <a href="setup-git.html#setup_git">8.1</a>. To set up a local git repository, enter the following commands:</p>
+<pre><code>mkdir myproj
+cd myproj
+git init</code></pre>
+<p>The first command creates a new directory called <em>myproj</em>, the second changes the working directory to your new folder and the last line initiates the git respository. Although you won’t see any changes in your directory <em>myproj</em>, the command <code>git init</code> has created the hidden structure that git needs to start tracking changes in your files.</p>
 </div>
-<p> </p>
-<p>you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work.</p>
-<p>A version control system keeps a record of all the changes you make to your code and it allows you to revert those changes to a previous point in time. Version control was designed for software development, but it is equally applicable to scientific coding. A variety of version control software is available, but here we focus on <em>git</em>, because it is free and open source and it integrates with RStudio, so that it can easily become part of your usual workflow. A git <em>repository</em> is a version-controlled folder on your computer that contains all your work for a particular project. This stand-alone local copy of your project is what each of the people involved in the project work on. The individual repositories then exchange information on the changes tht have been made, thus synchronising with each other.</p>
-<p><em>GitHub</em> is a web-based hosting service for git repositories, which allows you to create a remote copy of your local version-controlled project. This creates a backup and archive of your project, making it accessible to you, regardless which computer you are using, and to your collaborators.</p> 
+<div id="staging-files-and-first-commit" class="section level3">
+<h3><span class="header-section-number">8.5.2</span> Staging files and first commit</h3>
+<p>In RStudio we told git which files we wanted to keep track of by ticking the checkbox next to the file name. We can give git the same instruction from the command line. Create a new R script in your new directory <em>myproj</em>. You can just copy the code from the previous Sript.R file. Once you have saved your script enter the following command:</p>
+<pre><code>git add Script.R</code></pre>
+<p>And your file is now under version control.The command <code>git status</code> will produce a summary of the current state of the working directory, listing files that have changes that need to be committed, those that have not been staged and files that are not being tracked.</p>
+<p>Now that your script is being tracked, you can create your first commit with the following command:</p>
+<pre><code>git commit -m &quot;My first commit&quot;
+</code></pre>
+<p>The <code>-m</code> option allows you to specify a commit message directly.
+Before we go any further, check that version control is set by running <code>git log</code>. This will report the details of your first commit.</p>
+<p>Now that your project is under version control, you can start making changes to your code.At every point while you are working on your project, you can use <code>git status</code> to check which files have been modified and <code>git diff</code> for more details on the changes you’ve made. Once you are happy with your changes use <code>git add</code> to stage your file and <code>git commit</code> to commit them. The command <code>git commit</code> without the option <code>-m</code> will open a text editor that you can use to write a longer commit message.</p>
 </div>
+<div id="connecting-to-a-remote-repository" class="section level3">
+<h3><span class="header-section-number">8.5.3</span> Connecting to a remote repository</h3>
+<p>As we did in section <a href="github.html#github">8.3</a>, you can create a remote repository on GitHub and connect your local repository.
+Follow the steps in section <a href="github.html#github">8.3.1</a> to create a new repository on GitHub. After you click on the green <strong>Create repository</strong> button, copy and paste the commands found under the section labelled <strong>…or push an existing respository from the command line</strong> into the command line.</p>
+</div>
+<div id="the-workflow" class="section level3">
+<h3><span class="header-section-number">8.5.4</span> The workflow</h3>
+<p>Once your remote respository is set up, you can use the same workflow explained in section <a href="vc-workflow.html#vc_workflow">8.4</a>.</p>
+<ol style="list-style-type: decimal">
+<li>Make changes to your files or add new files</li>
+<li>Stage the new or modified files with the command <code>git add</code></li>
+<li>Commit the changes you have made with <code>git commit</code></li>
+<li>Push your changes to the remote repository with <code>git push</code></li>
+</ol>
+<p>Now that you have a version control workflow, there are different things you can do.</p>
+<div id="view-your-project-history" class="section level4">
+<h4><span class="header-section-number">8.5.4.1</span> View your project history</h4>
+<p>Your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.</p>
+</div>
+<div id="revert-to-a-previous-commit" class="section level4">
+<h4><span class="header-section-number">8.5.4.2</span> Revert to a previous commit</h4>
+<p>Oops, I broke it! One of the great things about a version control system is that if you break your code you can always go back to when it was still working. There are two ways:</p>
+<ol style="list-style-type: decimal">
+<li><p>If you have made a mistake or you forgot to include a file in your last commit, which you have not yet pushed to your remote repository, then you can just make your changes, use <code>git add</code> to stage the new or the chaged file and then use the command <code>git commit --amend</code>. This will change your previous commit to include the new changes. You can also use this command on its own if you just want to modify the commit message.</p></li>
+<li><p>If you are already a few commits away from the one that broke your code and you need to go back to a previous version of your project, first use <code>git reflog</code>, which will show you a list of everything you have done in git. Then, find the step that broke your code. Finally use <code>git reset</code> and the step’s index (something of the form <code>HEAD@{index}</code>, which you’ll find in the output of <code>git reflog</code>) to revert to that point in time. Seems like magic, but it has limitations. <code>git reset</code> can create problems if you have already pushed changes to the remote repository, so only use it in this way if you want to go back a series of commits that you have not pushed yet.</p></li>
+</ol>
+</div>
+<div id="collaborate" class="section level4">
+<h4><span class="header-section-number">8.5.4.3</span> Collaborate</h4>
+<p>GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a <em>distributed system</em>, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or <em>fork</em>) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a <em>pull request</em>) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.</p>
+<p>Git offers a number of advanced features that you can incorporate in your workflow. If you are going to be working on a large collaborative project it is worth looking into <em>forking</em>, <em>branching</em> and <em>pull requests</em>. If you are the only person working on your code, then the workflow detailed here is usually enough.</p>
+</div>
+<div id="further-resources" class="section level4">
+<h4><span class="header-section-number">8.5.4.4</span> Further resources</h4>
+<p>There are many good guides online to learn more about git and GitHub and as with any open source software there is a huge community that can be a great resource:</p>
+<ul>
+<li><p>The British Ecological Society guide to [Reproducible Code][BES_code_guide]</p></li>
+<li><p>The [GitHub guides][github_guides]</p></li>
+<li><p>The Mozilla Science Lab [GitHub for Collaboration on Open Projects guide][mozilla]</p></li>
+<li><p>If you have done something terribly wrong and don’t know how to fix it try [Oh Shit, Git][Oh Shit, Git!?!]</p></li>
+</ul>
+<p>These are only a couple of examples, all you need to do is Google “version control with git and GitHub” to see how huge the community around these open source projects is and how many free resources are available for you to become a version control expert.</p>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="rmarkdown-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="setup-git.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="vc-workflow.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
