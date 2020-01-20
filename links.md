@@ -1,5 +1,10 @@
 <!--course website Links-->
-[course-web]: https://alexd106.github.io/
+[course-web]: https://alexd106.github.io/intro2R
+
+<!--course website Links-->
+[github]: https://github.com/
+[github-repo]: https://github.com/alexd106/Rbook
+[github-issue]: https://github.com/alexd106/Rbook/issues
 
 <!--cran Links-->
 [cran]: https://cloud.r-project.org
@@ -46,5 +51,4 @@
 [r4stats]: http://r4stats.com/articles/popularity/
 [bioconductor]: https://www.bioconductor.org/
 [bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
-[github]: https://github.com/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
