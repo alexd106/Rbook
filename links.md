@@ -51,4 +51,17 @@
 [r4stats]: http://r4stats.com/articles/popularity/
 [bioconductor]: https://www.bioconductor.org/
 [bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
+
+[github]: https://github.com/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
+<<<<<<< HEAD
+[git]: https://git-scm.com/downloads
+[BES_code_guide]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
+[github_guides]: https://guides.github.com/
+[mozilla]: https://mozillascience.github.io/working-open-workshop/github_for_collaboration/
+[Oh Shit, Git!?!]: https://ohshitgit.com/
+
+[geom]: https://ggplot2.tidyverse.org/reference/
+[leland]: https://www.springer.com/gp/book/9780387245447
+[leland-summary]: https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf
+
