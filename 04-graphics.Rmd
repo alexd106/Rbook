@@ -1136,6 +1136,7 @@ In this example, lighter blue squares show combinations of leaf area and shoot a
 A similar version to `geom_density2d()` is `geom_hex()`. The only difference between the two is that the sqaures are replaced with hexagons. Note that `geom_hex()` requires an additional package called `hexbin`.
 
 ```{r hex, out.width = "75%", fig.align = "center"}
+library(hexbin)
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 	geom_hex() +
 	labs(y = "Shoot Area", x = "Leaf Area") +
@@ -1186,9 +1187,7 @@ Such figures are a fantastic way to quickly show relationships in the dataset. T
 
 ```{r pairs plot, out.width = "75%", fig.align = "center", warning = FALSE}
 library(GGally)
-
 flower$block <- factor(flower$block)
-
 ggpairs(flower, ggplot2::aes(colour = nitrogen)) +
 	theme_rbook()
 ```
