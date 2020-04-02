@@ -9,7 +9,7 @@ suppressPackageStartupMessages(library(knitr))
 
 # Reproducible reports {#rmarkdown_r}
 
-This chapter will introduce you to creating reproducible reports using R markdown to encourage best (or better) practice to facilitate open science. It will first describe what R markdown is and why you might want to consider using it, describe how to create an R markdown document using RStudio and then how to convert this document to a html or pdf formatted report. During this tutorial you will learn about the different components of an R markdown document, how to format text, graphics and tables within the document and finally how to avoid some of the common difficulties using R markdown. There are also a couple of exercises for you to complete if you wish. 
+This chapter will introduce you to creating reproducible reports using R markdown to encourage best (or better) practice to facilitate open science. It will first describe what R markdown is and why you might want to consider using it, describe how to create an R markdown document using RStudio and then how to convert this document to a html or pdf formatted report. During this Chapter you will learn about the different components of an R markdown document, how to format text, graphics and tables within the document and finally how to avoid some of the common difficulties using R markdown.
 
 I estimate that this tutorial should take you roughly 1.5 to 2.5 hours to complete in one sitting, but feel free to dip in and out over a longer period if that suits you better. 
 
@@ -164,20 +164,17 @@ include_graphics("images/rm_components.png")
 YAML stands for '**Y**AML **A**in’t **M**arkup **L**anguage' (it's an 'in' [joke][joke]!) and this optional component contains the metadata and options for the entire document such as the author name, date, output format, etc. The YAML header is surrounded before and after by a `---` on its own line. In RStudio a minimal YAML header is automatically created for you when you create a new R markdown document as we did [above](#new_rm) but you can change this any time. A simple YAML header may look something like this:
 
 ```yaml
-
 ---
 title: My first R markdown document
 author: Jane Doe
 date: March 01, 2020
 output: html_document
 ---
-  
 ```
 
 In the YAML header above the output format is set to HTML. If you would like to change the output to pdf format then you can change it from `output: html_document` to  `output: pdf_document` (you can also set more than one output format if you like). You can also change the default font and font size for the whole document and even include fancy options such as a table of contents and inline references and a bibliography. If you want to explore the plethora of other options see [here][bookdownr]. Just a note of caution, many of the options you can specify in the YAML header will work with both HTML and pdf formatted documents, but not all. If you need multiple output formats for your R markdown document check whether your YAML options are compatible between these formats. Also, indentation in the YAML header has a meaning to be careful when aligning text. For example, if you want to include a table of contents you would modify the `output:` field in the YAML header as follows
 
 ```yaml
-
 ---
 title: My first R markdown document
 author: Jane Doe
@@ -186,7 +183,6 @@ output:
   html_document:
     toc: yes
 ---
-  
 ```
 
 ### Formatted text
@@ -210,6 +206,8 @@ which would look like this in the final rendered document (can you spot the mark
 
 >These data were obtained from a mesocosm experiment which aimed to examine the effect of benthic polychaete (*Nereis diversicolor*) biomass on sediment nutrient (NH~4~, NO~3~ and PO~3~) release. At the start of the experiment replicate mesocosms were filled with 20 cm^2^ of **homogenised** marine sediment and assigned to one of five polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).
 
+\  
+
 #### Emphasis
 
 Some of the most common R markdown syntax for providing emphasis and formatting text is given below.
@@ -227,6 +225,8 @@ Some of the most common R markdown syntax for providing emphasis and formatting 
 \  
 
 Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other [reasons][underline]). If you really want to underline text you can use `<span style="text-decoration:underline">underline this text</span>` for HTML output or `$\text{\underline{This sentence underlined using \LaTeX}}$` for pdf output. I just avoid underlining!
+
+\  
 
 #### White space and line breaks
 
@@ -268,6 +268,8 @@ effect &nbsp; &nbsp; &nbsp; &nbsp; benthic polychaete (*Nereis diversicolor*) bi
 >mesocosm experiment which &nbsp; &nbsp; aimed to examine the    
 >effect &nbsp; &nbsp; &nbsp; &nbsp; benthic polychaete (*Nereis diversicolor*) biomass.
 
+\  
+
 #### Headings
 
 You can add headings and subheadings to your R markdown document by using the `#` symbol at the beginning of the line. You can decrease the size of the headings by simply adding more `#` symbols. For example 
@@ -291,6 +293,8 @@ results in headings in decreasing size order
 ><p style="font-weight:400; font-size:16px">Benthic Biodiversity experiment.</p>
 ><p></p>
 
+\  
+
 #### Comments
 
 As you can see above the meaning of the `#` symbol is different when formatting text in an R markdown document compared to a standard R script (which is used to included a comment - remember?!). You can, however, use a `#` symbol to comment code inside a [code chunk](#code_chunks) as usual (more about this in a bit). If you want to include a comment in your R markdown document outside a code chunk which won't be included in the final rendered document then enclose your comment between `<!--` and `-->`.
@@ -300,6 +304,7 @@ As you can see above the meaning of the `#` symbol is different when formatting 
 this is an example of how to format a comment using R markdown.
 -->
 ```
+\  
 
 #### Lists
 
@@ -346,6 +351,8 @@ If you need an ordered list
 >3. item 3
 >4. item 4
 
+\  
+
 #### Images
 
 Another useful feature is the ability to embed images and links to web pages (or other documents) into your R markdown document. You can include images into your R markdown document in a number of different ways. Perhaps the simplest method is to use
@@ -356,11 +363,7 @@ Another useful feature is the ability to embed images and links to web pages (or
 
 resulting in:
 
-\  
-
 ![Cute grey kitten](images/Cute_grey_kitten.jpg)
-
-\  
 
 The code above will only work if the image file (`Cute_grey_kitten.jpg`) is in the right place relative to where you saved your `.Rmd` file. In the example above the image file is in a sub directory (folder) called `images` in the directory where we saved our `my_first_rmarkdown.Rmd` file. You can embed images saved in many different file types but perhaps the most common are `.jpg` and `.png`. 
 
@@ -378,6 +381,8 @@ include_graphics("images/Cute_grey_kitten.jpg")
 include_graphics("images/Cute_grey_kitten.jpg")
 ```
 
+\  
+
 #### Links
 
 In addition to images you can also include links to webpages or other links in your document. Use the following syntax to create a clickable link to an existing webpage. The link text goes between the square brackets and the URL for the webpage between the round brackets immediately after.
@@ -390,6 +395,8 @@ You can include a text for your clickable [link](https://www.worldwildlife.org)
 which gives you: 
 
 >You can include a text for your clickable [link](https://www.worldwildlife.org)
+
+\  
 
 ### Code chunks {#code_chunks}
 
@@ -411,7 +418,6 @@ You can also specify an optional code chunk name (or label)  which can be useful
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 summary(dataf)
@@ -423,7 +429,6 @@ summary(dataf)
 ```{r, summary-stats, class.source='fold-show'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 summary(dataf)
@@ -436,9 +441,7 @@ If we wanted to only display the output of our R code (just the summary statisti
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, echo=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
@@ -448,9 +451,7 @@ summary(dataf)
 ```{r, summary-stats2, echo=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 ```
 
@@ -459,9 +460,7 @@ To display the R code but not the output use the `results='hide'` chunk option.
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, results='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
@@ -471,9 +470,7 @@ summary(dataf)
 ```{r, summary-stats3, results='hide', class.source='fold-show'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 ```
 
@@ -482,9 +479,7 @@ Sometimes you may want to execute a code chunk without showing any output at all
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, include=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
@@ -494,13 +489,9 @@ summary(dataf)
 ```{r, summary-stats4, include=FALSE, class.source='fold-show'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 ```
-
-\  
 
 There are a large number of chunk options documented [here][chunk-opt] with a more condensed version [here][rmd-ref]. Perhaps the most commonly used are summarised below with the default values shown.
  
@@ -521,7 +512,6 @@ By default, figures produced by R code will be placed immediately after the code
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
@@ -533,7 +523,6 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```{r, simple-plot, class.source='fold-show'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
@@ -543,7 +532,6 @@ If you want to change the plot dimensions in the final document you can use the 
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot, fig.width=4, fig.height=3, fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -554,7 +542,6 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```{r, simple-plot2, class.source='fold-show', fig.width=4, fig.height=3, fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
@@ -566,7 +553,6 @@ You can add a figure caption using the `fig.cap=` option.
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot-cap, fig.cap="A simple plot", fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -577,7 +563,6 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```{r, simple-plot-cap, class.source='fold-show', fig.cap="A simple plot", fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
@@ -589,7 +574,6 @@ If you want to suppress the figure in the final document use the `fig.show='hide
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot, fig.show='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -600,7 +584,6 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```{r, simple-plot3, class.source='fold-show', fig.show='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
@@ -612,7 +595,6 @@ If you're using a package like [`ggplot2`][ggplot] to create your plots then don
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-ggplot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 library(ggplot2)
@@ -625,7 +607,6 @@ ggplot(dataf, aes(x = x, y = y))
 ```{r, simple-ggplot, class.source='fold-show', fig.keep='high', fig.path='figs/'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 library(ggplot2)
@@ -722,7 +703,6 @@ You can further enhance the look of your `kable` tables using the `kableExtra` p
 
 <pre class="markdown"><code>&#96;&#96;&#96;{r, kableExtra-table}
 library(kableExtra)
-
 kable(iris[1:10,]) %>%
     kable_styling(bootstrap_options = "striped", font_size = 10)
 &#96;&#96;&#96;
@@ -733,11 +713,12 @@ kable(iris[1:10,]) %>%
 ```{r, kableExtra-table, echo=FALSE, warning=FALSE}
 
 library(kableExtra)
-
 kable(iris[1:10,]) %>%
   kable_styling(bootstrap_options = "striped", font_size = 10)
 
 ```
+
+\  
 
 If you want even more control and customisation options for your tables take a look at the [`pander`][pander] and [`xtable`][xtable] packages. 
 

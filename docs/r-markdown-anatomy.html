@@ -271,25 +271,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="yaml-header" class="section level3">
 <h3><span class="header-section-number">7.5.1</span> YAML header</h3>
 <p>YAML stands for ‘<strong>Y</strong>AML <strong>A</strong>in’t <strong>M</strong>arkup <strong>L</strong>anguage’ (it’s an ‘in’ <a href="https://en.wikipedia.org/wiki/Recursive_acronym">joke</a>!) and this optional component contains the metadata and options for the entire document such as the author name, date, output format, etc. The YAML header is surrounded before and after by a <code>---</code> on its own line. In RStudio a minimal YAML header is automatically created for you when you create a new R markdown document as we did <a href="new-rm.html#new_rm">above</a> but you can change this any time. A simple YAML header may look something like this:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb86-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="fu">title:</span><span class="at"> My first R markdown document</span></a>
-<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="fu">author:</span><span class="at"> Jane Doe</span></a>
-<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="fu">date:</span><span class="at"> March 01, 2020</span></a>
-<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="fu">output:</span><span class="at"> html_document</span></a>
-<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb86-8" data-line-number="8">  </a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="fu">title:</span><span class="at"> My first R markdown document</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="fu">author:</span><span class="at"> Jane Doe</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="fu">date:</span><span class="at"> March 01, 2020</span></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="fu">output:</span><span class="at"> html_document</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="ot">---</span></a></code></pre></div>
 <p>In the YAML header above the output format is set to HTML. If you would like to change the output to pdf format then you can change it from <code>output: html_document</code> to <code>output: pdf_document</code> (you can also set more than one output format if you like). You can also change the default font and font size for the whole document and even include fancy options such as a table of contents and inline references and a bibliography. If you want to explore the plethora of other options see <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">here</a>. Just a note of caution, many of the options you can specify in the YAML header will work with both HTML and pdf formatted documents, but not all. If you need multiple output formats for your R markdown document check whether your YAML options are compatible between these formats. Also, indentation in the YAML header has a meaning to be careful when aligning text. For example, if you want to include a table of contents you would modify the <code>output:</code> field in the YAML header as follows</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb87-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="fu">title:</span><span class="at"> My first R markdown document</span></a>
-<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="fu">author:</span><span class="at"> Jane Doe</span></a>
-<a class="sourceLine" id="cb87-5" data-line-number="5"><span class="fu">date:</span><span class="at"> March 01, 2020</span></a>
-<a class="sourceLine" id="cb87-6" data-line-number="6"><span class="fu">output:</span></a>
-<a class="sourceLine" id="cb87-7" data-line-number="7">  <span class="fu">html_document:</span></a>
-<a class="sourceLine" id="cb87-8" data-line-number="8">    <span class="fu">toc:</span><span class="at"> yes</span></a>
-<a class="sourceLine" id="cb87-9" data-line-number="9"><span class="ot">---</span></a>
-<a class="sourceLine" id="cb87-10" data-line-number="10">  </a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode yaml"><code class="sourceCode yaml"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="ot">---</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="fu">title:</span><span class="at"> My first R markdown document</span></a>
+<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="fu">author:</span><span class="at"> Jane Doe</span></a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="fu">date:</span><span class="at"> March 01, 2020</span></a>
+<a class="sourceLine" id="cb87-5" data-line-number="5"><span class="fu">output:</span></a>
+<a class="sourceLine" id="cb87-6" data-line-number="6">  <span class="fu">html_document:</span></a>
+<a class="sourceLine" id="cb87-7" data-line-number="7">    <span class="fu">toc:</span><span class="at"> yes</span></a>
+<a class="sourceLine" id="cb87-8" data-line-number="8"><span class="ot">---</span></a></code></pre></div>
 </div>
 <div id="formatted-text" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> Formatted text</h3>
@@ -310,6 +306,7 @@ Benthic Biodiversity experiment.
 <blockquote>
 <p>These data were obtained from a mesocosm experiment which aimed to examine the effect of benthic polychaete (<em>Nereis diversicolor</em>) biomass on sediment nutrient (NH<sub>4</sub>, NO<sub>3</sub> and PO<sub>3</sub>) release. At the start of the experiment replicate mesocosms were filled with 20 cm<sup>2</sup> of <strong>homogenised</strong> marine sediment and assigned to one of five polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).</p>
 </blockquote>
+<p> </p>
 <div id="emphasis" class="section level4">
 <h4><span class="header-section-number">7.5.2.1</span> Emphasis</h4>
 <p>Some of the most common R markdown syntax for providing emphasis and formatting text is given below.</p>
@@ -352,6 +349,7 @@ Benthic Biodiversity experiment.
 </table>
 <p> </p>
 <p>Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other <a href="https://softwareengineering.stackexchange.com/questions/207727/why-there-is-no-markdown-for-underline">reasons</a>). If you really want to underline text you can use <code>&lt;span style=&quot;text-decoration:underline&quot;&gt;underline this text&lt;/span&gt;</code> for HTML output or <code>$\text{\underline{This sentence underlined using \LaTeX}}$</code> for pdf output. I just avoid underlining!</p>
+<p> </p>
 </div>
 <div id="white-space-and-line-breaks" class="section level4">
 <h4><span class="header-section-number">7.5.2.2</span> White space and line breaks</h4>
@@ -382,6 +380,7 @@ effect &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; benthic polychaete (*Nereis d
 mesocosm experiment which     aimed to examine the<br />
 effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p>
 </blockquote>
+<p> </p>
 </div>
 <div id="headings" class="section level4">
 <h4><span class="header-section-number">7.5.2.3</span> Headings</h4>
@@ -415,6 +414,7 @@ Benthic Biodiversity experiment.
 <p>
 </p>
 </blockquote>
+<p> </p>
 </div>
 <div id="comments" class="section level4">
 <h4><span class="header-section-number">7.5.2.4</span> Comments</h4>
@@ -422,6 +422,7 @@ Benthic Biodiversity experiment.
 <div class="sourceCode" id="cb92"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb92-1" data-line-number="1">&lt;!--</a>
 <a class="sourceLine" id="cb92-2" data-line-number="2"><span class="co">this is an example of how to format a comment using R markdown.</span></a>
 <a class="sourceLine" id="cb92-3" data-line-number="3"><span class="co">--&gt;</span></a></code></pre></div>
+<p> </p>
 </div>
 <div id="lists" class="section level4">
 <h4><span class="header-section-number">7.5.2.5</span> Lists</h4>
@@ -467,18 +468,17 @@ Benthic Biodiversity experiment.
 <li>item 4</li>
 </ol>
 </blockquote>
+<p> </p>
 </div>
 <div id="images" class="section level4">
 <h4><span class="header-section-number">7.5.2.6</span> Images</h4>
 <p>Another useful feature is the ability to embed images and links to web pages (or other documents) into your R markdown document. You can include images into your R markdown document in a number of different ways. Perhaps the simplest method is to use</p>
 <div class="sourceCode" id="cb95"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="al">![Cute grey kitten](images/Cute_grey_kitten.jpg)</span></a></code></pre></div>
 <p>resulting in:</p>
-<p> </p>
 <div class="figure">
 <img src="images/Cute_grey_kitten.jpg" alt="Cute grey kitten" />
 <p class="caption">Cute grey kitten</p>
 </div>
-<p> </p>
 <p>The code above will only work if the image file (<code>Cute_grey_kitten.jpg</code>) is in the right place relative to where you saved your <code>.Rmd</code> file. In the example above the image file is in a sub directory (folder) called <code>images</code> in the directory where we saved our <code>my_first_rmarkdown.Rmd</code> file. You can embed images saved in many different file types but perhaps the most common are <code>.jpg</code> and <code>.png</code>.</p>
 <p>I think a more flexible way of including images in your document is to use the <code>include_graphics()</code> function from the <code>knitr</code> package as this gives finer control over the alignment and image size (it’s also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a <a href="r-markdown-anatomy.html#code_chunks">‘code chunk’</a> which we haven’t covered yet. Despite this I’ll leave the code here for later reference. This code center aligns the image and scales it to 50% of it’s original size. See <code>?include_graphics</code> for more options.</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, echo=FALSE, fig.align='center', out.width='50%'}
@@ -488,6 +488,7 @@ include_graphics("images/Cute_grey_kitten.jpg")
 </code></pre>
 <p> </p>
 <p><img src="images/Cute_grey_kitten.jpg" width="50%" style="display: block; margin: auto;" /></p>
+<p> </p>
 </div>
 <div id="links" class="section level4">
 <h4><span class="header-section-number">7.5.2.7</span> Links</h4>
@@ -497,6 +498,7 @@ include_graphics("images/Cute_grey_kitten.jpg")
 <blockquote>
 <p>You can include a text for your clickable <a href="https://www.worldwildlife.org">link</a></p>
 </blockquote>
+<p> </p>
 </div>
 </div>
 <div id="code_chunks" class="section level3">
@@ -514,7 +516,6 @@ Any valid R code goes here
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 summary(dataf)
@@ -523,25 +524,22 @@ summary(dataf)
 <p> </p>
 <div class="sourceCode" id="cb97"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb97-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb97-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb97-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb97-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="kw">summary</span>(dataf)</a>
-<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="co">#&gt;        x               y        </span></a>
-<a class="sourceLine" id="cb97-8" data-line-number="8"><span class="co">#&gt;  Min.   : 1.00   Min.   : 1.00  </span></a>
-<a class="sourceLine" id="cb97-9" data-line-number="9"><span class="co">#&gt;  1st Qu.: 3.25   1st Qu.: 3.25  </span></a>
-<a class="sourceLine" id="cb97-10" data-line-number="10"><span class="co">#&gt;  Median : 5.50   Median : 5.50  </span></a>
-<a class="sourceLine" id="cb97-11" data-line-number="11"><span class="co">#&gt;  Mean   : 5.50   Mean   : 5.50  </span></a>
-<a class="sourceLine" id="cb97-12" data-line-number="12"><span class="co">#&gt;  3rd Qu.: 7.75   3rd Qu.: 7.75  </span></a>
-<a class="sourceLine" id="cb97-13" data-line-number="13"><span class="co">#&gt;  Max.   :10.00   Max.   :10.00</span></a></code></pre></div>
+<a class="sourceLine" id="cb97-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb97-5" data-line-number="5"><span class="kw">summary</span>(dataf)</a>
+<a class="sourceLine" id="cb97-6" data-line-number="6"><span class="co">#&gt;        x               y        </span></a>
+<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="co">#&gt;  Min.   : 1.00   Min.   : 1.00  </span></a>
+<a class="sourceLine" id="cb97-8" data-line-number="8"><span class="co">#&gt;  1st Qu.: 3.25   1st Qu.: 3.25  </span></a>
+<a class="sourceLine" id="cb97-9" data-line-number="9"><span class="co">#&gt;  Median : 5.50   Median : 5.50  </span></a>
+<a class="sourceLine" id="cb97-10" data-line-number="10"><span class="co">#&gt;  Mean   : 5.50   Mean   : 5.50  </span></a>
+<a class="sourceLine" id="cb97-11" data-line-number="11"><span class="co">#&gt;  3rd Qu.: 7.75   3rd Qu.: 7.75  </span></a>
+<a class="sourceLine" id="cb97-12" data-line-number="12"><span class="co">#&gt;  Max.   :10.00   Max.   :10.00</span></a></code></pre></div>
 <p>When using chunk names make sure that you don’t have duplicate chunk names in your R markdown document and avoid spaces and full stops as this may cause problems when you come to knit your document (I use a <code>-</code> to separate words in my chunk names).</p>
 <p>If we wanted to only display the output of our R code (just the summary statistics for example) and not the code itself in our final document we can use the chunk option <code>echo=FALSE</code></p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, echo=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
@@ -557,30 +555,23 @@ summary(dataf)
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, results='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
 <p> </p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb99-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb99-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb99-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb99-6" data-line-number="6"><span class="kw">summary</span>(dataf)</a></code></pre></div>
+<a class="sourceLine" id="cb99-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="kw">summary</span>(dataf)</a></code></pre></div>
 <p>Sometimes you may want to execute a code chunk without showing any output at all. You can suppress the entire output using the chunk option <code>include=FALSE</code>.</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, summary-stats, include=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
-
 summary(dataf)
 &#96;&#96;&#96;
 </code></pre>
-<p> </p>
 <p> </p>
 <p>There are a large number of chunk options documented <a href="https://yihui.name/knitr/options">here</a> with a more condensed version <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">here</a>. Perhaps the most commonly used are summarised below with the default values shown.</p>
 <table>
@@ -636,7 +627,6 @@ summary(dataf)
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
@@ -645,15 +635,13 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 <p> </p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb100-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb100-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb100-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb100-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb100-5" data-line-number="5"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb100-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb100-4" data-line-number="4"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/simple-plot-1.png" width="672" /></p>
 <p>If you want to change the plot dimensions in the final document you can use the <code>fig.width=</code> and <code>fig.height=</code> chunk options (in inches!). You can also change the alignment of the figure using the <code>fig.align=</code> chunk option.</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot, fig.width=4, fig.height=3, fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -661,16 +649,14 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 <p> </p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb101-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb101-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb101-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb101-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/simple-plot2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can add a figure caption using the <code>fig.cap=</code> option.</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot-cap, fig.cap="A simple plot", fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -678,9 +664,8 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 <p> </p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb102-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb102-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb102-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb102-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:simple-plot-cap"></span>
 <img src="Rbook_files/figure-html/simple-plot-cap-1.png" alt="A simple plot" width="672" />
 <p class="caption">
@@ -692,7 +677,6 @@ Figure 7.1: A simple plot
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-plot, fig.show='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 &#96;&#96;&#96;
@@ -700,15 +684,13 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 <p> </p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb103-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb103-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb103-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb103-5" data-line-number="5"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb103-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</a></code></pre></div>
 <p> </p>
 <p>If you’re using a package like <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> to create your plots then don’t forget you will need to make the package available with the <code>library()</code> function in the code chunk (or in a preceding code chunk).</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, simple-ggplot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
-
 dataf <- data.frame(x = x, y = y)
 
 library(ggplot2)
@@ -718,12 +700,11 @@ ggplot(dataf, aes(x = x, y = y))
 <p> </p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></a>
 <a class="sourceLine" id="cb104-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></a>
-<a class="sourceLine" id="cb104-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb104-4" data-line-number="4">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
-<a class="sourceLine" id="cb104-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="kw">ggplot</span>(dataf, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb104-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<a class="sourceLine" id="cb104-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb104-6" data-line-number="6"><span class="kw">ggplot</span>(dataf, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb104-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="figs/simple-ggplot-1.png" width="672" /></p>
 <p> </p>
 <p>Again, there are a large number of chunk options specific to producing plots and figures. See <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">here</a> for more details.</p>
@@ -973,7 +954,6 @@ kable(iris[1:10,], digits = 0, align = 'c', col.names = c('sepal length', 'sepal
 <p>You can further enhance the look of your <code>kable</code> tables using the <code>kableExtra</code> package (don’t forget to install the package first!). See <a href="https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html">here</a> for more details and a helpful tutorial.</p>
 <pre class="markdown"><code>&#96;&#96;&#96;{r, kableExtra-table}
 library(kableExtra)
-
 kable(iris[1:10,]) %>%
     kable_styling(bootstrap_options = "striped", font_size = 10)
 &#96;&#96;&#96;
@@ -1172,6 +1152,7 @@ setosa
 </tr>
 </tbody>
 </table>
+<p> </p>
 <p>If you want even more control and customisation options for your tables take a look at the <a href="http://rapporter.github.io/pander/"><code>pander</code></a> and <a href="https://cran.r-project.org/web/packages/xtable/index.html"><code>xtable</code></a> packages.</p>
 </div>
 <div id="inline-r-code" class="section level3">
