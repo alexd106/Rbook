@@ -212,10 +212,10 @@ The base installation of R comes with many useful packages as standard. These pa
 
 ### CRAN packages {#cran_packages}
 
-To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `devtools` package enter the following code into the console window of RStudio (note: you will need a working internet connection to do this)
+To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `remotes` package enter the following code into the console window of RStudio (note: you will need a working internet connection to do this)
 
 ```{r, echo = TRUE, eval=FALSE}
-install.packages('devtools', dependencies = TRUE)
+install.packages('remotes', dependencies = TRUE)
 ```
 
 You may be asked to select a CRAN mirror, just select '0-cloud' or a mirror near to your location. The `dependencies = TRUE` argument ensures that additional packages that are required will also be installed.
@@ -258,10 +258,10 @@ Again, you can use the `ask = FALSE` argument to avoid having to confirm every p
 
 ### GitHub packages
 
-There are multiple options for installing packages hosted on GitHub. Perhaps the most common method is to use the `install_github()` function from the `devtools` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
+There are multiple options for installing packages hosted on GitHub. Perhaps the most effiecient method is to use the `install_github()` function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
 
 ```{r, echo=TRUE, eval=FALSE}
-devtools::install_github('tidyverse/dplyr')
+remotes::install_github('tidyverse/dplyr')
 ```
 
 The safest way (that we know of) to update a package installed from GitHub is to just reinstall it using the above command.   
