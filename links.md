@@ -47,11 +47,11 @@
 [macvim]: https://github.com/macvim-dev/macvim
 
 
-<!--Misc Links-->
-[r4stats]: http://r4stats.com/articles/popularity/
+<!--Bioconductor Links-->
 [bioconductor]: https://www.bioconductor.org/
 [bioc-install]: https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html
 
+<!--GitHub Links-->
 [github]: https://github.com/
 [git]: https://git-scm.com/downloads
 [BES_code_guide]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
@@ -59,10 +59,35 @@
 [mozilla]: https://mozillascience.github.io/working-open-workshop/github_for_collaboration/
 [Oh Shit, Git!?!]: https://ohshitgit.com/
 
+<!--R markdown Links-->
+[markup]: https://en.wikipedia.org/wiki/Markup_language
+[tinytex]: https://yihui.name/tinytex/
+[joke]: https://en.wikipedia.org/wiki/Recursive_acronym
+[bookdownr]: https://bookdown.org/yihui/rmarkdown/html-document.html
+[markup-adv]: https://dev.to/practicalprogramming/advantages-of-document-markup-languages-vs-wysiwyg-editors-9f6
+[underline]: https://softwareengineering.stackexchange.com/questions/207727/why-there-is-no-markdown-for-underline
+[backtick]: https://superuser.com/questions/254076/how-do-i-type-the-tick-and-backtick-characters-on-windows
+[engines]: https://rmarkdown.rstudio.com/authoring_knitr_engines.html%23sql
+[chunk-opt]: https://yihui.name/knitr/options
+[rmd-ref]: https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf
+[rmd-cheat]: https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf
+[kableExtra]: https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html
+[pander]: http://rapporter.github.io/pander/
+[xtable]: https://cran.r-project.org/web/packages/xtable/index.html
+[pandoc]: http://pandoc.org
+[miktex]: https://miktex.org/download
+[mactex]: http://www.tug.org/mactex/mactex-download.html
+
+<!--ggplot Links-->
+[ggplot]: https://ggplot2.tidyverse.org/
 [geom]: https://ggplot2.tidyverse.org/reference/
 [leland]: https://www.springer.com/gp/book/9780387245447
 [leland-summary]: https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf
 
+<!--Misc Links-->
+[r4stats]: http://r4stats.com/articles/popularity/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
+[open-sci2]: http://openscience.org/what-exactly-is-open-science/
+[WYSIWYG]: https://en.wikipedia.org/wiki/WYSIWYG
 
 
