@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 4 Graphics in R | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
-  <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 4 Graphics in R | A Introduction to R" />
   <meta property="og:type" content="book" />
@@ -68,7 +68,7 @@ a.sourceLine { text-indent: -1em; padding-left: 1em; }
 pre.numberSource a.sourceLine
   { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+  { content: attr(title);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
     border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
@@ -245,16 +245,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="graphics_r" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Graphics in R</h1>
-<p>For many people, one of their favourite uses of R is in making figures. These can either take the form of a quick dirty plot to allow you to get a feel for what’s going on in your dataset, or fancier/more complex figures to use in a publication or report. This process is often as close as many analysts/scientists get to having a professional creative side (at least that’s true for me), and it’s something which those folks take great pride in.</p>
-<p>As stated in the introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but producing figures in R allows for lots of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the beyond cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.</p>
+<p>For many people, one of their favourite uses of R is in making figures. These can either take the form of a quick dirty plot to allow you to get a feel for what’s going on in your dataset, or fancier/more complex figures to use in a publication or report. This process is often as close as many scientists get to having a professional creative side (at least that’s true for me), and it’s something which those folks take great pride in.</p>
+<p>As stated in the introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but they are also offered a wide-range of customisation, in turn allowing users to create their own particular styles and brands of figures (well beyond the cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.</p>
 <p>In this chapter, we will focus on creating figures through using a specialised package called <code>ggplot2</code>.</p>
-<p>Before we get going with making some plots of the gg variety, how about a quick little history of one of the most commonly used packages in R? <code>ggplot2</code> was based on a book called <em>Grammar of Graphics</em> (hence the gg in <code>ggplot2</code>) by Leland Wilkinson yours for only <a href="https://www.springer.com/gp/book/9780387245447">£100 or so</a>. But before you spend all that money, see <a href="https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf">here</a> for an interesting summary of Wilkinson’s book.</p>
-<p>Briefly, Wilkinson’s idea (one of them anyway) in <em>grammar of graphics</em> was that figures can be broken down into constituent parts, such as layers (more on this later). While Wilkinson would eventually go on to become vice-president of SPSS, his (and his co-author’s) ideas would, never-the-less, make their way into R via <code>ggplot2</code>.</p>
-<p>In 2007 <code>ggplot2</code>was officially released by Hadley Wickham. By 2017 the package was said to have been downloaded 10,000,000 times. <code>ggplot2</code> now has many secondary packages that use it either as a foundation for expanding on or for interfacing with (some statistical packages now have accompanying <code>ggplot2</code> interfaces for producing figures).</p>
+<p>Before we get going with making some plots of the gg variety, how about a quick history of one of the most commonly used packages in R? <code>ggplot2</code> was based on a book called <em>Grammar of Graphics</em> by Leland Wilkinson (hence the gg in <code>ggplot2</code>), yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson’s book.</p>
+<p>Briefly, <em>Grammar of Graphics</em> tried to move away from the idea that to create a scatterplot, a user should click the <code>scatterplot</code> button or use the <code>scatterplot()</code> function. Instead, by splitting figures into their various components (e.g. the underlying statistics, the geometric arrangement, the theme), a user will be able to manipulate each of these components (i.e. layers) and produce a tailor made figure fit for their very specific needs. Contrast this approach with the one used by, for example, excel. Think of how easy it is to spot an excel scatterplot. It’s easy to spot because, for the most part, tweaking any or all of the layers in excel is difficult - you are at the mercy of the Microsoft Gods.</p>
+<p><em>If you’re wondering if you should buy the book, I’d strongly <strong>not</strong> recommend it. The book is focused on translating an “philosophy/approach” into a “programme”. It’s neither intended, nor suited, for teaching you how to make a figure.</em></p>
+<p>While Wilkinson would eventually go on to become vice-president of SPSS, his (and his oft forgotten co-author’s) ideas would, never-the-less, make their way into R via <code>ggplot2</code>.</p>
+<p>In 2007 <code>ggplot2</code>was officially released by Hadley Wickham. By 2017 the package was said to have been downloaded 10 million times. <code>ggplot2</code> now has many secondary packages that use it either as a foundation for expanding on or for interfacing/working with (some statistical packages now have accompanying <code>ggplot2</code> interfaces for producing figures).</p>
 <p>It is important to note here that <code>ggplot2</code> is not required to make “fancy” figures. If you’d prefer to use base R then go ahead. Exactly equivalent figures are possible in base R. The difference between<code>ggplot2</code> and base is to do with how you <em>get</em> to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is easier to do with <code>ggplot2</code> as many decisions are made for the user, without you necessarily even knowing that a decision was ever made!</p>
 <p>With that in mind, let’s get started making some figures.</p>
 <p><br />
-</p> 
+</p>
 </div>
             </section>
 
