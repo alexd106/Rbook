@@ -162,9 +162,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.5.3" data-path="r-packages.html"><a href="r-packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
 <li class="chapter" data-level="1.5.4" data-path="r-packages.html"><a href="r-packages.html#using-packages"><i class="fa fa-check"></i><b>1.5.4</b> Using packages</a></li>
 </ul></li>
-<li class="chapter" data-level="1.6" data-path="writing-r-code.html"><a href="writing-r-code.html"><i class="fa fa-check"></i><b>1.6</b> Writing R code</a></li>
+<li class="chapter" data-level="1.6" data-path="projects-in-rstudio.html"><a href="projects-in-rstudio.html"><i class="fa fa-check"></i><b>1.6</b> Projects in RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="working-directories.html"><a href="working-directories.html"><i class="fa fa-check"></i><b>1.7</b> Working directories</a></li>
+<li class="chapter" data-level="1.8" data-path="directory-structure.html"><a href="directory-structure.html"><i class="fa fa-check"></i><b>1.8</b> Directory structure</a></li>
+<li class="chapter" data-level="1.9" data-path="file-names.html"><a href="file-names.html"><i class="fa fa-check"></i><b>1.9</b> File names</a></li>
+<li class="chapter" data-level="1.10" data-path="project-documentation.html"><a href="project-documentation.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
+<li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
+<li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R Basics</a></li>
+<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a></li>
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
 <li class="chapter" data-level="4.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>4.1</b> Beginning at the end</a></li>
@@ -295,15 +301,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb85-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb85-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
-<a class="sourceLine" id="cb85-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb85-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb85-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb85-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
 <p> </p>
 </div>
             </section>

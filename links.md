@@ -1,7 +1,5 @@
 <!--course website Links-->
 [course-web]: https://alexd106.github.io/intro2R
-
-<!--course website Links-->
 [github]: https://github.com/
 [github-repo]: https://github.com/alexd106/Rbook
 [github-issue]: https://github.com/alexd106/Rbook/issues
@@ -38,6 +36,7 @@
 [knitr-faq]: https://yihui.name/knitr/faq/
 [bookdown]: https://bookdown.org/
 [styler]: https://styler.r-lib.org/
+[here]: https://github.com/r-lib/here
 
 <!--Editors-->
 [tinn-r]: https://sourceforge.net/projects/tinn-r/
@@ -45,7 +44,6 @@
 [notepad]: https://notepad-plus-plus.org/
 [textmate]: https://macromates.com/
 [macvim]: https://github.com/macvim-dev/macvim
-
 
 <!--Bioconductor Links-->
 [bioconductor]: https://www.bioconductor.org/
@@ -102,5 +100,7 @@
 [open-sci2]: http://openscience.org/what-exactly-is-open-science/
 [WYSIWYG]: https://en.wikipedia.org/wiki/WYSIWYG
 [linus]: https://en.wikipedia.org/wiki/Linus_Torvalds
+[file_wiki]: https://en.wikipedia.org/wiki/Filename
+[regex]: https://en.wikipedia.org/wiki/Regular_expression
 
 
