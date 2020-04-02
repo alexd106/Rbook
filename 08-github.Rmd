@@ -1,356 +1,753 @@
-
 ```{r links, child="links.md"}
 ```
 
 # Version control with Git and GitHub {#github_r}
 
-By the end of this book, you will be able to manipulate, visualise and analyse your data in R in a robust and reproducible way. So why should you worry about version control? If this looks familiar
+This Chapter will introduce you to the basics of using a version control system to keep track of all your important PhD documents and facilitate collaboration with colleagues and the wider world. The Chapter will focus on using the software 'Git' in combination with the web-based hosting service 'GitHub'. By the end of the Chapter, you will be able to install and configure Git and GitHub on your computer and setup and work with a version controlled project in RStudio. We won't be covering more advanced topics such as branching, forking and pull requests in much detail but I do give an overview [later](#collab) on in the Chapter.
+
+I estimate that this Chapter should take you roughly 1.5 to 2.5 hours to complete in one sitting (to be honest I have no idea really so this is just a guess), but feel free to dip in and out over a longer period if that suits you better.  
+
+Just a few notes of caution. In this Chapter we'll be using RStudio to interface with Git as it gives you a nice friendly graphical user interface which generally makes life a little bit easier (and who doesn't want that?). However, one downside to using RStudio with Git is that RStudio only provides pretty basic Git functionality through its menu system. That's fine for most of what we'll be doing during this Chapter (although I will introduce a few Git commands as we go along) but if you really want to benefit from using Git's power you will need to [learn](#resources) some Git commands and syntax. This leads me on to my next point. I'm not going to lie, Git can become a little bewildering and frustrating when you first start using it. This is mostly due to the terminology and liberal use of jargon associated with Git, but there's no hiding the fact that it's quite easy to get yourself and your Git repository into a pickle. Therefore, I have tried hard to keep things as straight forward as I can during this Chapter and as a result I do occasionally show you a couple of very 'un-Git' ways of doing things (mostly about reverting to previous versions of documents). Don't get hung up about this, there's no shame to using these low tech solutions and if it works then it works. Lastly, GitHub was not designed to host very large files and will warn you if you try to add files greater than 50 MB and block you adding files greater than 100 MB. If your project involves using large file sizes there are a [few solutions][biggit] but I find the easiest is to host these files elsewhere (Googledrive, Dropbox etc) and create a link to them in a README file or R markdown document on Github.  
+
+## What is version control?
+
+A [Version Control System][version_con] (VCS)  keeps a record of all the changes you make to your files that make up a particular project and allows you to revert to previous versions of files if you need to. To put it another way, if you muck things up or accidentally lose important files you can easily roll back to a previous stage in your project to sort things out. Version control was originally designed for collaborative software development, but it's equally useful for scientific research and collaborations (although admittedly a lot of the terms, jargon and functionality are focused on the software development side). There are many different version control systems currently available, but we' we'll focus on using *Git*, because it's free and open source and it integrates nicely with RStudio. This means that its can easily become part of your usual workflow with minimal additional overhead.  
+
+## Why use version control?
+
+So why should you worry about version control? Well, first of all it helps avoid this (familiar?) situation when you're working on a project
 
 \  
 
-```{r youNeedVC, echo=FALSE, out.width="75%", fig.align="center", fig.cap="You need version control"}
+```{r youNeedVC1, echo=FALSE, out.width="75%", fig.align="center", fig.cap="You need version control"}
 knitr::include_graphics(path = "images/Messy_folder.PNG")
 ```
 
 \  
 
-
-you need a version control system. Version control helps you (especially future you) navigate through your scripts and it helps others (especially collaborators) review, contribute to and reuse your work. 
-
-A version control system keeps a record of all the changes you make to your code and it allows you to revert those changes to a previous point in time. Version control was designed for software development, but it is equally applicable to scientific coding. A variety of version control software is available, but here we focus on *git*, because it is free and open source and it integrates with RStudio, so that it can easily become part of your usual workflow. A git *repository* is a version-controlled folder on your computer that contains all your work for a particular project. This stand-alone local copy of your project is what each of the people involved in the project work on. The individual repositories then exchange information on the changes tht have been made, thus synchronising with each other.
-
-*GitHub* is a web-based hosting service for git repositories, which allows you to create a remote copy of your local version-controlled project. This creates a backup and archive of your project, making it accessible to you, regardless which computer you are using, and to your collaborators. 
-
-## Getting started with git {#setup_git}
-
-First, we need to install git. You can find Mac, Linux/Unix and Windows versions for download [here][git]. You can check if you have already installed git as follows.
-
-**Windows**
-
-- Go to the Start menu
-- In the Search or Run line, type `cmd` and press enter
-
-**Mac**
-
-- Go to **Applications** -> **Utilities** -> **Terminal**
-
-**Linux**
-
-- Open a terminal (`Ctrl+Alt+T` often does it)
-
-
-Once you have a terminal opened, type in `git version`. If you see  something like 
-
-`git version 2.16.2.Windows.1`
-
-git is installed on your machine.
-
-### Configure git
-
-After installing git, you need to tell it who you are. Open a terminal window or command prompt (just as you did in the previous step) and type the following:
-
-`git config --global user.email "you@youremail.com"`
-
-`git config --global user.name "Your Name"`
-
-
-If this was succesful, you should see no output from these commands.
-
-## Version control with RStudio and Git {#rstudio_git}
-
-Git can be used from the command line, but it also integrates with RStudio, providing a friendly graphical user interface. If you want to use RStudio's git integration, you need to check that the path to the git executable is specified correctly. In RStudio, go to:
-
-**Tools** -> **Global Options** -> **Git/SVN** 
-
-and make sure the path is correct, otherwise, navigate to where you saved the git.exe file.
-
-Now that you're all set up, you are ready to create your first version controlled RStudio project.
-
-### Setting up a version controlled project in RStudio
-
-RStudio provides an interface for version control using git. We'll look at setting up and managing a version controlled project through RStudio.
-
-Create a new project in RStudio as follows:
-
-**File** -> **New Project** -> **New Directory**
-
-Then select **Empty Project**.
-
-On the **Create New Project** screen, give your project a name, navigate to the directory you want to save your project in and make sure that **Create a git repository** is checked. Then click on **Create Project**.
+usually arising from this (familiar?) scenario
 
 \  
 
-```{r rstudioGit, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Create a new version controlled RStudio project"}
-knitr::include_graphics(path = "images/CreateNew.png")
+```{r youNeedVC2, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/final_doc.gif")
 ```
 
 \  
 
+Version control automatically takes care of keeping a record of all the versions of a particular file and allows you to revert back to previous versions if you need to. Version control also helps you (especially the future you) keep track of all your files in a single place and it helps others (especially collaborators) review, contribute to and reuse your work through the GitHub website. Lastly, your files are always available from anywhere and on any computer, all you need is an internet connection.
 
-Two files are created in the otherwise empty project:
+## What is Git and GitHub?
 
+**Git** is a version control system originally developed by [Linus Torvalds][[linus]] that lets you track changes to a set of files. These files can be any type of file including the menagerie of files that typically make up a data orientated project (.pdf, .Rmd, .docx, .txt, .jpg etc) although plain text files work the best. All the files that make up a project is called a **repository** (or just **repo**).
 
-- **.gitignore** -- Specifies files that should be ignored by the version control system.
+**GitHub** is a web-based hosting service for Git repositories which allows you to create a remote copy of your local version-controlled project. This can be used as a backup or archive of your project or make it accessible to you and to your colleagues so you can work collaboratively. 
 
-- **NewProject.Rproj** -- Configuration information for the RStudio project.
-
-You can check this in RStudio **Files** tab (usually in the bottom right corner).
-
-Once your project is set up, you can start working on your code, perhaps by creating an R script that reads in your data and carries out some preliminary analysis. First open a new R script, then type some commands, for example:
-
-```{r cars_plot}
-
-data(cars)
-
-plot(cars)
-
-```
-
-Now you can save your script. RStudio will automatically save your script in your project directory, so just give it a name and click **Save**.
-
-After you've created this file in your project, you need to get it under version control. By default, the git version control pane is in the top right hand corner of RStudio. Find it and click on the **Git** tab. You'll see a list of the files in your project directory.
+At the start of a project we typically (but not always) create a **remote** repository on GitHub, then **clone** (think of this as copying) this repository to our **local** computer (the one in front of you). This cloning is usually a one time event and you shouldn't need to clone this repository again unless you really muck things up. Once you have cloned your repository you can then work locally on your project as usual, creating and saving files for your data analysis (scripts, R markdown documents, figures etc). Along the way you can take snapshots (called **commits**) of these files after you've made important changes. We can then **push** these changes to the remote GitHub repository to make a backup or make available to our collaborators. If other people are working on the same project (**repository**), or maybe you're working on a different computer, you can **pull** any changes back to your local repository so everything is synchronised.          
 
 \  
 
-```{r gitTab, echo=FALSE, out.width="75%", fig.align="center", fig.cap="The git tab"}
-knitr::include_graphics(path = "images/GitTab.png")
+```{r git-cart, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/Github_cartoon2.png")
 ```
 
 \  
 
+## Getting started {#setup_git}
 
-If you hover the mouse pointer over the yellow *?* marks in RStudio, you'll see a tooltip telling you that the files are *Untracked*. This means that git is not tracking versions of these files.
+This Chapter assumes that you have already installed the latest versions of R and RStudio. If you haven't done this yet you can find instructions [here](#install_r).
 
-Git will only keep track of modifications to files that it has been asked to manage, so you need to tell git which files to track.
+### Install Git
 
-Tick the **Staged** checkbox for each file. 
-
-All of your files are now staged, ready for you to record those changes as a *commit*. Each commit creates a snapshot of the project directory, allowing you to record the state of your project through time. Click on **Commit**.
-
-This will open a pane showing details of the commit. You need to specify a **Commit message** in the right hand panel. Commit messages should explain *why you have made a change* and not *what* you have changed. Git keeps track of *what* has changed (see use of **Diff** below) and so it is best not to use commit messages for this purpose. The commit message lets your future self or your collaborators know *why* you made this change.
-
-Since this is the first commit, you can follow tradition and use a brief message such as *First commit*, but for subsequent commits it's worth providing a more descriptive message. Once you've typed a commit message, click on **Commit**.
+To get started, you first need to install Git. If you're lucky you may already have Git installed (especially if you have a Mac or Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing `git --version` (the space after the `git` command is important). If you see something that looks like `git version 2.25.0` (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like `git: command not found`) this means you don't have Git installed (yet!).
 
 
 \  
 
-```{r firstCommit, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your first commit"}
-knitr::include_graphics(path = "images/FirstCommit.png")
+```{r git-version, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/git_version.png")
 ```
 
 \  
 
-A message displaying the output from git will be shown. Click on **Close** and you are done.
- 
+You can also do this check outside RStudio by opening up a separate Terminal if you want. On Windows go to the 'Start menu' and in the search bar (or run box) type `cmd` and press enter. On a Mac go to 'Applications' in Finder, click on the 'Utilities' folder and then on the 'Terminal' program. On a Linux machine simply open the Terminal (Ctrl+Alt+T often does it).  
 
-### Making changes 
+To install Git on a **Windows** computer we recommend you download and install Git for Windows (also known as 'Git Bash'). You can find the download file and installation instructions [here][git]. 
 
-Now we want to make some changes to our R script, for example modify a plot.
+For those of you using a **Mac** computer we recommend you download Git from [here][git] and install in the usual way (double click on the installer package once downloaded). If you've previously installed Xcode on your Mac and want to use a more up to date version of Git then you will need to follow a few more steps documented [here][git-xcode]. If you've never heard of Xcode then don't worry about it!
 
-```{r change_plot}
-plot(cars, col="red")
+For those of you lucky enough to be working on a **Linux** machine you can simply use your OS package manager to install Git from the official repository. For Ubuntu Linux (or variants of) open your Terminal and type
+
+```markup
+sudo apt update
+sudo apt install git
 ```
 
-After you have modified your code, save the script. Now, click on the **Git** tab in RStudio. You'll notice that there's only one file listed, since RStudio only lists files that have changed in its git interface.
+You will need administrative privileges to do this. For other versions of Linux see [here][git-linux] for further installation instructions.  
 
-Click on the **Staged** checkbox to stage your change. Now click on **Diff** (next to **Commit**) to display a summary of what's changed. Lines that have been added are green. Lines that have been removed are red (note that from git's point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line).
+Whatever version of Git you're installing, once the installation has finished verify that the installation process has been successful by running the command `git --version` in the Terminal tab in RStudio (as described above). On some installations of Git (yes I'm looking at you MS Windows) this may still produce an error as you will also need to setup RStudio so it can find the Git executable (described [below](#rs_config)). 
+
+### Configure Git
+
+After installing Git, you need to configure it so you can use it. Click on the Terminal tab in the Console window again and type the following:
+
+```
+git config --global user.email 'you@youremail.com'
+
+git config --global user.name 'Your Name'
+```
+
+substituting `'Your Name'` for your actual name and `'you@youremail.com'` with your email address. We recommend you use your University email address as you will also use this address when you register for your GitHub account (coming up in a bit).  
+
+If this was successful, you should see no error messages from these commands. To verify that you have successfully configured Git type the following into the Terminal
+
+```
+git config --global --list
+```
+
+You should see both your `user.name` and `user.email` configured. 
+
+### Configure RStudio {#rs_config}
+
+As you can see above, Git can be used from the command line, but it also integrates well with RStudio, providing a friendly graphical user interface. If you want to use RStudio's Git integration (we recommend you do - at least at the start), you need to check that the path to the Git executable is specified correctly. In RStudio, go to the menu `Tools` -> `Global Options` -> `Git/SVN` and make sure that 'Enable version control interface for RStudio projects' is ticked and that the 'Git executable:' path is correct for your installation. If it's not correct hit the `Browse...` button and navigate to where you installed git and click on the executable file. You will need to restart RStudio after doing this.
 
 \  
 
-```{r diff, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Review your changes"}
-knitr::include_graphics(path = "images/Diff.png")
+```{r git-rs, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/git_path.png")
+```
+
+### Register a GitHub account
+
+If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you will need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like [GitLab][gitlab], [Bitbucket][bitbucket] and [Savannah][savannah]). You can sign up for a free account on GitHub [here][git_join]. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free [educator or researcher account][git_edu] later on which gives you some useful [benefits][git-ben] (don't worry about this now though). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your future employer!  
+
+Next click on the 'Select a plan' (you may have to solve a simple puzzle first to verify you're human) and choose the 'Free Plan' option. Github will send an email to the email address you supplied for you to verify.  
+
+Once you've completed all those steps you should have both Git and GitHub setup up ready for you to use (Finally!).
+
+## Setting up a project in RStudio
+
+Now that you're all set up, let's create your first version controlled RStudio project. There are a couple of different approaches you can use to do this. You can either setup a remote GitHub repository first then connect an RStudio project to this repository (we'll call this Option 1). Another option is to setup a local repository first and then link a remote GitHub repository to this repository (Option 2). You can also connect an existing project to a GitHub repository but we won't cover this here. I suggest that if you're completely new to Git and GitHub then use Option 1 as this approach sets up your local Git repository nicely and you can **push** and **pull** immediately. Option 2 requires a little more work and therefore there are more opportunities to go wrong. We will cover both of these options below. 
+
+### Option 1 - GitHub first {#opt1}
+
+To use the GitHub first approach you will first need to create a **repository (repo)** on GitHub. Go to your [GitHub page][github] and sign in if necessary. Click on the 'Repositories' tab at the top and then on the green 'New' button on the right 
+
+\  
+
+```{r new-repo1, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_repo.png")
 ```
 
 \  
 
-Add a commit message and click on **Commit**.
-In the **Git** tab of RStudio, click on **Diff** and then **History**. You'll see that you can look through every commit you've ever made. This can be extremely useful for finding bugs or looking back to how your model looked a few months ago.
-
-## Setting up a remote repository on GitHub {#github}
-
-Now your project is fully version controlled so you have access to a detailed history of every change you've ever made to it. This is a great first step but all of this only exists on your own computer at the moment.
-
-Likely you'll want to connect your local repository to a remote repository using a hosting service such as GitHub. Syncing your local repository to a remote means that your code is backed up. Also, the remote repository acts as a central store for your project, allowing you to share your work or to access it from another computer.
-
-The first step is to create a GitHub account. Go to [this link][github] and click on the **Sign Up** button. If you have one, use an institutional email address to sign up because it will give you some privileges (free private repositories for example). Follow the prompts to create your account, verify your email address and you're good to go.
-
-### Create a new repository {#new_repo}
-
-First, you need to create a GitHub repository to use as a remote. Log into GitHub and go to your profile page. On the **Repositories** tab, click the green **New** button.
-
-At the **Create a new repository** screen, give your repository the same name as your local RStudio project and click **Create Repository**. The next screen gives sets of git commands for use in various circumstances. Find the section labelled **…or push an existing repository from the command line** and copy the commands. These commands tell git to set the remote repository for your local repository. In RStudio, navigate to the Git tab and click on **More** -> **Shell…**.
+Give your new repo a name (let's call it `first_repo` for this Chapter), select 'Public', tick on the 'Initialize this repository with a README' (this is important) and then click on 'Create repository' (ignore the other options for now). 
 
 \  
 
-```{r shell, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Open git shell in RStudio"}
-knitr::include_graphics(path = "images/Shell.png")
+```{r new-repo2, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_repo_opt.png")
+```
+
+\  
+
+Your new GitHub repository will now be created. Notice the README has been rendered in GitHub and is in markdown (.md) format (see [Chapter 7](#rmarkdown_r) on R markdown if this doesn't mean anything to you). Next click on the green 'Clone or Download' button and copy the `https//...` URL that pops up for later (either highlight it all and copy or click on the copy to clipboard icon to the right).
+
+\  
+
+```{r new-repo3, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_repo_clone.png")
+```
+
+\  
+
+Ok, we now switch our attention to RStudio. In RStudio click on the `File` -> `New Project` menu. In the pop up window select `Version Control`.
+
+\  
+
+```{r new-proj1, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/proj_setup1.png")
+```
+
+\  
+
+Now paste the the URL you previously copied from GitHub into the `Repository URL:` box. This should then automatically fill out the `Project Directory Name:` section with the correct repository name (it's important that the name of this directory has the same name as the repository you created in GitHub). You can then select where you want to create this directory by clicking on the `Browse` button opposite the `Create project as a subdirectory of:` option. Navigate to where you want the directory created and click OK. I also tick the `Open in new session` option. 
+
+\  
+
+```{r new-proj2, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/proj_setup2.png")
+```
+
+\  
+
+RStudio will now create a new directory with the same name as your repository on your local computer and will then **clone** your remote repository to this directory. The directory will contain three new files; `first_repo.Rproj` (or whatever you called your repository), `README.md` and `.gitignore`. You can check this out in the `Files` tab usually in the bottom right pane in RStudio. You will also have a `Git` tab in the top right pane with two files listed (we will come to this later on in the Chapter). That's it for Option 1, you now have a remote GitHub repository set up and this is linked to your local repository managed by RStudio. Any changes you make to files in this directory will be version controlled by Git.
+
+\  
+
+```{r new-proj2a, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/proj_setup3.png")
+```
+
+### Option 2 - RStudio first {#opt2}
+
+An alternative approach is to create a local RStudio project first and then link to a remote Github repository. As I mentioned before, this option is more involved than Option 1 so feel free to skip this now and come back later to it if you're interested. This option is also useful if you just want to create a local RStudio project linked to a local Git repository (i.e. no GitHub involved). If you want to do this then just follow the instructions below omitting the GitHub bit.
+
+\  
+
+In RStudio click on the `File` -> `New Project` menu and select the `New Directory` option.
+
+\  
+
+```{r new-proj3, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS1.png")
+```
+
+\  
+
+In the pop up window select the `New Project` option
+
+\  
+
+```{r new-proj4, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/proj_setup_RS.png")
 ```
 
 \ 
 
-Paste the git commands into the shell and press **Enter** to execute them. Confirm that the project has been uploaded to your GitHub repository.
-
-It should look like this:
+In the New Project window specify a `Directory name` (choose `second_repo` for this Chapter) and select where you would like to create this directory on you computer (click the `Browse` button). Make sure the `Create a git repository` option is ticked 
 
 \  
 
-```{r newRepo, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository"}
-knitr::include_graphics(path = "images/NewRepo3.png")
+```{r new-proj5, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS2.png")
 ```
+
+\  
+
+This will create a version controlled directory called `second_repo` on your computer that contains two files, `second_repo.Rproj` and `.gitignore` (there might also be a `.Rhistory` file but ignore this). You can check this by looking in the `Files` tab in RStudio (usually in the bottom right pane).  
+
+\  
+
+```{r new-proj6, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS3.png")
+```
+
+\  
+
+OK, before we go on to create a repository on GitHub we need to do one more thing - we need to place our `second_repo.Rproj` and `.gitignore`files under version control. Unfortunately we haven't covered this in detail yet so just follow the next few instructions (blindly!) and we'll revisit them in the [Using Git](#use_git) section of this Chapter.  
+
+To get our two files under version control click on the 'Git' tab which is usually in the top tight pane in RStudio
+
+\  
+
+```{r new-proj7, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS4.png")
+```
+
+\  
+
+You can see that both files are listed. Next, tick the boxes under the 'Staged' column for both files and then click on the 'Commit' button. 
+
+\  
+
+```{r new-proj8, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS5.png")
+```
+
+\  
+
+This will take you to the 'Review Changes' window. Type in the commit message 'First commit' in the 'Commit message' window and click on the 'Commit' button. A new window will appear with some messages which you can ignore for now. Click 'Close' to close this window and also close the 'Review Changes' window. The two files should now have disappeared from the Git pane in RStudio indicating a successful commit. 
+
+\  
+
+```{r new-proj9, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS6.png")
+```
+
+\  
+
+OK, that's those two files now under version control. Now we need to create a new repository on GitHub. In your browser go to your [GitHub page][github] and sign in if necessary. Click on the 'Repositories' tab and then click on the green 'New' button on the right. Give your new repo the name `second_repo` (the same as your version controlled directory name) and select 'Public'. This time **do not** tick the 'Initialize this repository with a README' (this is important) and then click on 'Create repository'. 
+
+\  
+
+
+```{r new-proj10, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS7.png")
+```
+
+\  
+
+This will take you to a Quick setup page which provides you with some code for various situations. The code we are interested in is the code under `...or push an existing repository from the command line` heading.  
+
+\  
+
+```{r new-proj11, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS8.png")
+```
+
+\  
+
+Highlight and copy the first line of code (note: yours will be slightly different as it will include your GitHub username not mine)  
+
+`git remote add origin https://github.com/alexd106/second_repo.git`  
+
+Switch to RStudio, click on the 'Terminal' tab and paste the command into the Terminal. Now go back to GitHub and copy the second line of code  
+
+`git push -u origin master`  
+
+and paste this into the Terminal in RStudio. You should see something like this
+
+\  
+
+```{r new-proj12, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_prog_RS9.png")
+```
+
+\  
+
+If you take a look at your repo back on GitHub (click on the `/second_repo` link at the top) you will see the `second_repo.Rproj` and `.gitignore` files have now been **pushed** to GitHub from your local repository.
+
+\  
+
+```{r new-proj13, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS10.png")
+```
+
+\  
+
+The last thing we need to do is create and add a **README** file to your repository. A README file describes your project and is written using the same Markdown language you learned in the R markdown [Chapter](#rmarkdown_r). A good README file makes it easy for others (or the future you!) to use your code and reproduce your project. You can create a README file in RStudio or in GitHub. Let's use the second option.  
+
+In your repository on GitHub click on the green `Add a README` button. 
+
+\  
+
+```{r new-proj14, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS11.png")
+```
+
+\  
+
+Now write a short description of your project in the `<> Edit new file` section and then click on the green `Commit new file` button. 
+
+\  
+
+```{r new-proj15, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/new_proj_RS12.png")
+```
+
+\  
+
+You should now see the `README.md` file listed in your repository. It won't actually exist on your computer yet as you will need to **pull** these changes back to your local repository, but more about that in the next section.  
+
+\  
+
+Whether you followed Option 1 or Option 2 (or both) you have now successfully setup a version controlled RStudio project (and associated directory) and linked this to a GitHub repository. Git will now monitor this directory for any changes you make to files and also if you add or delete files. If the steps above seem like a bit of an ordeal, just remember, you only need to do this once for each project and it gets much easier over time. 
+
+## Using Git {#use_git}
+
+Now that we have our project and repositories (both local and remote) set up, it's finally time to learn how to use Git in RStudio!  
+
+Typically, when using Git your workflow will go something like this:   
+
+1. You create/delete and edit files in your project directory on your computer as usual (saving these changes as you go)  
+
+2. Once you've reached a natural 'break point' in your progress (i.e. you'd be sad if you lost this progress) you **stage** these files
+
+3. You then **commit** the changes you made to these staged files (along with a useful commit message) which creates a permanent snapshot of these changes  
+
+4. You keep on with this cycle until you get to a point when you would like to **push** these changes to GitHub  
+
+5. If you're working with other people on the same project you may also need to **pull** their changes to your local computer  
+
+```{r workflow, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/workflow_3.png")
+```
+
+\  
+
+OK, let's go through an example to help clarify this workflow. In RStudio open up the `first_repo.Rproj` you created previously during Option 1. Either use the `File` -> `Open Project` menu or click on the top right project icon and select the appropriate project. 
+
+\  
+
+```{r rm0, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd0.png")
+```
+
+\  
+
+Create an R markdown document inside this project by clicking on the `File` -> `New File` -> `R markdown` menu (remember from the R markdown [Chapter](#rmarkdown_r)?).  
+
+Once created, we can delete all the example R markdown code (except the YAML header) as usual and write some interesting R markdown text and include a plot. We'll use the inbuilt `cars` dataset to do this. Save this file (cmd + s for Mac or ctrl + s in Windows). Your R markdown document should look something like the following (it doesn't matter if it's not exactly the same).
+
+\  
+
+```{r rm1, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd.png")
+```
+
+\  
+
+Take a look at the 'Git' tab which should list your new R markdown document (`first_doc.Rmd` in this example) along with `first_repo.Rproj`, and `.gitignore` (you created these files previously when following Option 1).
+
+\  
+
+```{r rm2, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd2.png")
+```
+
+\  
+
+Following our workflow, we now need to **stage** these files. To do this tick the boxes under the 'Staged' column for all files. Notice that there is a status icon next to the box which gives you an indication of how the files were changed. In our case all of the files are to be added (capital A) as we have just created them.
+
+\  
+
+```{r rm3, echo=FALSE, out.width="15%", fig.align="center"}
+knitr::include_graphics(path = "images/rstudio_git_cols.png")
+```
+
+\  
+
+After you have staged the files the next step is to **commit** the files. This is done by clicking on the 'Commit' button.
+
+\  
+
+```{r rm4, echo=FALSE, out.width="50%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd3.png")
+```
+
+\  
+
+After clicking on the 'Commit' button you will be taken to the 'Review Changes' window. You should see the three files you staged from the previous step in the left pane. If you click on the file name `first_doc.Rmd` you will see the changes you have made to this file highlighted in the bottom pane. Any content that you have added is highlighted in green and deleted content is highlighted in red. As you have only just created this file, all the content is highlighted in green. To commit these files (take a snapshot) first enter a mandatory commit message in the 'Commit message' box. This message should be relatively short and informative (to you and your collaborators) and indicate why you made the changes, not what you changed. This makes sense as Git keeps track of *what* has changed and so it is best not to use commit messages for this purpose. It's traditional to enter the message 'First commit' (or 'Initial commit') when you commit files for the first time. Now click on the 'Commit' button to commit these changes.
+
+\  
+
+```{r rm5, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd4.png")
+```
+
+\  
+
+A summary of the commit you just performed will be shown. Now click on the 'Close' button to return to the 'Review Changes' window. Note that the staged files have now been removed.
+
+\  
+
+```{r rm6, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd5.png")
+```
+
+\  
+
+Now that you have committed your changes the next step is to **push** these changes to GitHub. Before you push your changes it's good practice to first **pull** any changes from GitHub. This is especially important if both you and your collaborators are working on the same files as it keeps you local copy up to date and avoids any potential conflicts. In this case your repository will already be up to date but it's a good habit to get into. To do this, click on the 'Pull' button on the top right of the 'Review Changes' window. Once you have pulled any changes click on the green 'Push' button to push your changes. You will see a summary of the push you just performed. Hit the 'Close' button and then close the 'Review Changes' window. 
+
+\  
+```{r rm7, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd6.png")
+```
+
+\  
+
+To confirm the changes you made to the project have been pushed to GitHub, open your GitHub page, click on the Repositories link and then click on the  `first_repo` repository. You should see four files listed including the `first_doc.Rmd` you just pushed. Along side the file name you will see your last commit message ('First commit' in this case) and when you made the last commit.
+
+\  
+
+```{r rm8, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd7.png")
+```
+
+\  
+
+To see the contents of the file click on the `first_doc.Rmd` file name.
+
+\  
+
+```{r rm9, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/first_Rmd8.png")
+```
+
+### Tracking changes 
+
+After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let's make some further changes to your R markdown file and follow the workflow once again but this time we 'll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.  
+
+In RStudio open up the `first_repo.Rproj` file you created previously (if not already open) then open the `first_doc.Rmd` file (click on the file name in the `Files` tab in RStudio).  
+
+Let's make some changes to this document. Delete the line beginning with 'My first version controlled ...' and replace it with something more informative (see figure below). We will also change the plotted symbols to red and give the plot axes labels. Lastly, let's add a summary table of the dataframe using the `kable()` and `summary()` functions (you may need to install the `knitr` package if you haven't done so previously to use the `kable()` function) and finally render this document to pdf by changing the YAML option to `output: pdf_document`.
+
+\  
+
+```{r mod1, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/mod1.png")
+```
+
+\  
+
+Now save these changes and then click the `knit` button to render to pdf. A new pdf file named `first_doc.pdf` will be created which you can view by clicking on the file name in the `Files` tab in RStudio.  
+
+Notice that these two files have been added to the `Git` tab in RStudio. The status icons indicate that the `first_doc.Rmd` file has been modified (capital M) and the `first_doc.pdf` file is currently untracked (question mark).
+
+\  
+
+```{r mod2, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/mod2.png")
+```
+
+\  
+
+To stage these files tick the 'Staged' box for each file and click on the 'Commit' button to take you to the 'Review Changes' window
+
+\  
+
+```{r mod3, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/mod3.png")
+```
+
+\  
+
+Before you commit your changes notice the status of `first_doc.pdf` has changed from untracked to added (A). You can view the changes you have made to the `first_doc.Rmd` by clicking on the file name in the top left pane which will provide you with a useful summary of the changes in the bottom pane (technically called diffs). Lines that have been deleted are highlighted in red and lines that have been added are highlighted in green (note that from Git's point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line). Once you're happy, commit these changes by writing a suitable commit message and click on the 'Commit' button.
+
+\  
+
+```{r mod4, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/mod4.png")
+```
+
+\  
+
+To push the changes to GitHub, click on the 'Pull' button first (remember this is good practice even though you are only collaborating with yourself at the moment) and then click on the 'Push' button. Go to your online GitHub repository and you will see your new commits, including the `first_doc.pdf` file you created when you rendered your R markdown document. 
+ 
+\  
+
+```{r mod5, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/mod5.png")
+```
+
+\  
+
+To view the changes in `first_doc.Rmd` click on the file name for this file.
+
+\  
+
+```{r mod6, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/mod6.png")
+```
+
+### Commit history 
+
+One of the great things about Git and GitHub is that you can view the history of all the commits you have made along with the associated commit messages. You can do this locally using RStudio (or the Git command line) or if you have pushed your commits to GitHub you can check them out on the GitHub website.  
+
+To view your commit history in RStudio click on the 'History' button (the one that looks like a clock) in the Git pane to bring up the history view in the 'Review Changes' window. You can also click on the 'Commit' or 'Diff' buttons which takes you to the same window (you just need to additionally click on the 'History' button in the 'Review Changes' window).  
 
 \ 
 
-It is good practice to always add a **README** file to your repository. A README file describes your project and all the files that are in the repo. A good README file makes it easy for others (or the future you!) to use your code and reproduce your project.
-
-You can create a README file from RStudio or in GitHub. Today we will be using the second option.
-
-From the page of your repository in GitHub click on **Add a README**. Now write a short description of your project, something like this:
+```{r his1, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/c_history.png")
+```
 
 \  
 
-```{r readme, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Add a README"}
-knitr::include_graphics(path = "images/READMEfile.png")
+The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the **Date** the commit was made, **Author** of the commit and the commit message (**Subject**). There is also a unique identifier for the commit (**SHA** - Secure Hash Algorithm) and a **Parent** SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details [below](#undo)). You can also view the contents of each file by clicking on the 'View file @ SHA key` link (in our case 'View file @ 2b4693d1').  
+
+\  
+
+```{r his2, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/c_history2.png")
+```
+
+\  
+
+You can also view your commit history on GitHub website but this will be limited to only those commits you have already pushed to GitHub. To view the commit history navigate to the repository and click on the 'commits' link (in our case the link will be labelled '3 commits' as we have made 3 commits).
+
+\  
+
+```{r his3, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/c_history3.png")
+```
+
+\  
+
+You will see a list of all the commits you have made, along with commit messages, date of commit and the SHA identifier (these are the same SHA identifiers you saw in the RStudio history). You can even browse the repository at a particular point in time by clicking on the `<>` link. To view the changes in files associated with the commit simply click on the relevant commit link in the list.
+
+\  
+
+```{r his4, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/c_history4.png")
+```
+
+\  
+
+Which will display changes using the usual format of green for additions and red for deletions.
+
+\  
+
+```{r his5, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/c_history5.png")
+```
+
+### Reverting changes {#undo}
+
+One the great things about using Git is that you are able to revert to previous versions of files if you've made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We'll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).  
+
+#### Changes saved but not staged, committed or pushed
+
+If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select 'Revert ...'. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution. 
+
+\  
+
+```{r rev1, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert1.png")
+```
+
+\  
+
+You can also undo changes to just part of a file by opening up the 'Diff' window (click on the 'Diff' button in the Git pane). Select the line you wish to discard by double clicking on the line and then click on the 'Discard line' button. In a similar fashion you can discard chunks of code by clicking on the 'Discard chunk' button.  
+
+\  
+
+```{r rev2, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert2.png")
+```
+
+#### Staged but not committed and not pushed
+
+If you have staged your files, but not committed them then simply unstage them by clicking on the 'Staged' check box in the Git pane (or in the 'Review Changes' window) to remove the tick. You can then revert all or parts of the file as described in the section above. 
+
+#### Staged and committed but not pushed
+
+If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the 'Amend previous commit` box in the 'Review Changes' window before committing.   
+
+\  
+
+```{r rev3, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert3.png")
+```
+
+\  
+
+If we check out our commit history you can see that our latest commit contains both changes to the file rather than having two separate commits. I use the amend commit approach alot but it's important to understand that you should **not** do this if you have already pushed your last commit to GitHub as you are effectively rewriting history and all sorts bad things may happen! 
+
+\  
+
+```{r rev4, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert4.png")
+```
+
+\  
+
+If you spot a mistake that has happened multiple commits back or you just want to revert to a previous version of a document you have a number of options.   
+
+**Option 1** - (probably the easiest but very unGit - but like, whatever!) is to look in your commit history in RStudio, find the commit that you would like to go back to and click on the 'View file @ ' button to show the file contents.
+
+\  
+
+```{r rev5, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert5.png")
+```
+
+\  
+
+You can then copy the contents of the file to the clipboard and paste it into your current file to replace your duff code or text. Alternatively, you can click on the 'Save As' button and save the file with a different file name. Once you have saved your new file you can delete your current unwanted file and then carry on working on your new file. Don't forget to stage and commit this new file.
+
+\  
+
+```{r rev6, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert6.png")
 ```
 
 \
 
-At the bottom of the page, you can now change the commit message and click on **Commit new file**.
-Your repository should now look like this:
+**Option 2** - (Git like) Go to your Git history, find the commit you would like to roll back to and write down (or copy) its SHA identifier. 
 
 \  
 
-```{r newRepoFfinal, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Your remote repository with a README"}
-knitr::include_graphics(path = "images/NewRepo4.png")
+```{r rev7, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert7.png")
 ```
-
-\
-
-### Pulling and pushing changes {#pull_push}
-
-Once a local repository has been associated with GitHub, it's not necessary to use the command line for subsequent uploads. However, you will want to always keep the local (e.g., your personal computer) and remote (e.g., GitHub) copy in sync with one another. To do this you will **Pull** and **Push** changes from one copy to the other.
-
-When you start working on your local repository (e.g., files on your own computer), it is best to start by **Pulling** any new changes off of your remote repository (e.g., GitHub). Similarly, when you are finished working on them in your local repository (e.g., your computer) it is good to then **Push** them to the remote repository (e.g., GitHub). We will walk through this basic workflow that enables you to keep your local files in sync across multiple computers or when files may change because of someone else working on the project.
-
-To start working on a project, **Pull** any new changes to update your local copy.
 
 \  
 
-```{r pullChanges, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Pull changes from remote repository"}
-knitr::include_graphics(path = "images/PullMaster.png")
+Now go to the Terminal in RStudio and type `git checkout <SHA> <filename>`. In our case the SHA key is `2b4693d1` and the filename is `first_doc.Rmd` so our command would look like this:
+
+```
+git checkout 2b4693d1 first_doc.Rmd
 ```
 
-\
+The command above will copy the selected file version from the past and place it into the present. RStudio may ask you whether you want to reload the file as it now changed - select yes. You will also need to stage and commit the file as usual.  
 
+If you want to revert all your files to the same state as a previous commit rather than just one file you can use (the single 'dot' `.` is important otherwise your HEAD will detach!):
 
-Now make a change to your script, commit the change and **Push**. You should see something like this:
+```
+git rm -r .
+git checkout 2b4693d1 .
+
+```
+
+Note that this will delete all files that you have created since you made this commit so be careful!
+
+#### Staged, committed and pushed
+
+If you have already pushed your commits to GitHub you can use the `git checkout` strategy described above and then commit and push to update GitHub (although this is not really considered 'best' practice). Another approach would be to use `git revert` (Note: as far as I can tell `git revert` is not the same as the 'Revert' option in RStudio). The `revert` command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the `revert` command in the Terminal. Let's say we want to revert back to our 'First commit' which has a SHA identifier `d27e79f1`. 
 
 \  
 
-```{r pushChanges, echo=FALSE, out.width="75%", fig.align="center", fig.cap="Push changes to remote repository"}
-knitr::include_graphics(path = "images/PushMsg.png")
+```{r rev8, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert8.png")
 ```
 
-\
+\  
 
-And you're done! Now your remote and local copy are synchronised and any changes you've made are available to you and your collaborators.
-
-## A version control workflow {#vc_workflow}
-
-Let's summarise the steps you can take to version control your project.
-
-1. Set up a local version control repository (section [8.2](#rstudio_git))
-
-2. Write some code
-
-3. Save your script to the local repository
-
-4. Choose (*stage*) files to be included in the version history
-
-5. Commit your files
-
-6. Create a remote repository on GitHub (section [8.3](#github))
-
-7. Synchronise your changes with the remote repository
-
-8. Repeat steps 2-7
-
-
-## Using git from the command line {#command_line}
-
-You don't need to use RStudio to be able to version control your R projects. You can use git from the command line. In this section we will go through the same steps explained in the previous sections but using git commands.
-
-### Setting up a git repository
-
-Open a Terminal (or command prompt if on Windows) as you have done in section [8.1](#setup_git). To set up a local git repository, enter the following commands:
-
-```{}
-mkdir myproj
-cd myproj
-git init
-```
-
-The first command creates a new directory called *myproj*, the second changes the working directory to your new folder and the last line initiates the git respository. Although you won't see any changes in your directory *myproj*, the command `git init` has created the hidden structure that git needs to start tracking changes in your files.
-
-### Staging files and first commit
-
-In RStudio we told git which files we wanted to keep track of by ticking the checkbox next to the file name. We can give git the same instruction from the command line. Create a new R script in your new directory *myproj*. You can just copy the code from the previous Sript.R file. Once you have saved your script enter the following command:
-
-```{}
-git add Script.R
-```
-
-And your file is now under version control.The command `git status` will produce a summary of the current state of the working directory, listing files that have changes that need to be committed, those that have not been staged and files that are not being tracked.
-
-Now that your script is being tracked, you can create your first commit with the following command:
-
-```{}
-git commit -m "My first commit"
+We can use the `revert` command as shown below in the Terminal. The `--no-commit` option is used to prevent us from having to deal with each intermediate commit. 
 
 ```
+git revert --no-commit d27e79f1..HEAD
+```
 
-The `-m` option allows you to specify a commit message directly.
-Before we go any further, check that version control is set by running `git log`. This will report the details of your first commit.
+Your `first_doc.Rmd` file will now revert back to the same state as it was when you did your 'First commit'. Notice also that the `first_doc.pdf` file has been deleted as this wasn't present when we made our first commit. You can now stage and commit these files with a new commit message and finally push them to GitHub. Notice that if we look at our commit history all of the commits we have made are still present.
 
-Now that your project is under version control, you can start making changes to your code.At every point while you are working on your project, you can use `git status` to check which files have been modified and `git diff` for more details on the changes you've made. Once you are happy with your changes use `git add` to stage your file and `git commit` to commit them. The command `git commit` without the option `-m` will open a text editor that you can use to write a longer commit message.
+\  
 
-### Connecting to a remote repository
+```{r rev9, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert9.png")
+```
 
-As we did in section [8.3](#github), you can create a remote repository on GitHub and connect your local repository.
- Follow the steps in section [8.3.1](#github) to create a new repository on GitHub. After you click on the green **Create repository** button, copy and paste the commands found under the section labelled **...or push an existing respository from the command line** into the command line. 
- 
-### The workflow
+\  
 
-Once your remote respository is set up, you can use the same workflow explained in section [8.4](#vc_workflow).
+and our repo on GitHub also reflects these changes
 
-1. Make changes to your files or add new files
-2. Stage the new or modified files with the command `git add`
-3. Commit the changes you have made with `git commit`
-4. Push your changes to the remote repository with `git push`
+\  
 
-Now that you have a version control workflow, there are different things you can do.
+```{r rev10, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/revert10.png")
+```
 
-#### View your project history 
+### Collaborate with Git {#collab}
 
-Your commits are a record of all the changes you have made to your code; viewing this history can help you track the development of your project, highlight major revisions and identify where a bug was introduced.
+GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes GitHub so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two main ways you can set up a collaborative project on GitHub. One is the workflow we went through above, where everybody connects their local repository to the same remote one; this system works well with small projects where different people mainly work on different aspects of the project but can quickly become unwieldy if many people are collaborating and are working on the same files (merge misery!). The second approach consists of every collaborator creating a copy (or **fork**) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a **pull request**) to the owner of the main repository to incorporate any changes into the main repository and this includes a review process before the changes are integrated. More detail of these topics can be found in the [Further resources](#resources) section.
 
-#### Revert to a previous commit 
+### Git tips
 
-Oops, I broke it! One of the great things about a version control system is that if you break your code you can always go back to when it was still working. There are two ways:
+Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. I generally only push changes to GitHub when I'm happy for my collaborators (or the rest of the world) to see my work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git. 
 
-1. If you have made a mistake or you forgot to include a file in your last commit, which you have not yet pushed to your remote repository, then you can just make your changes, use `git add` to stage the new or the chaged file and then use the command `git commit --amend`. This will change your previous commit to include the new changes. You can also use this command on its own if you just want to modify the commit message.
+\  
 
-2. If you are already a few commits away from the one that broke your code and you need to go back to a previous version of your project, first use `git reflog`, which will show you a list of everything you have done in git. Then, find the step that broke your code. Finally use `git reset` and the step's index (something of the form `HEAD@{index}`, which you'll find in the output of `git reflog`) to revert to that point in time. Seems like magic, but it has limitations. `git reset` can create problems if you have already pushed changes to the remote repository, so only use it in this way if you want to go back a series of commits that you have not pushed yet.
+If you don't want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting 'Ignore...'
 
-#### Collaborate 
+\  
 
-GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes it so good for collaboration is that it is a *distributed system*, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two different ways you can set up a collaborative project on GitHub. One is the workflow we just went through, where everybody connects their local repository to the same remote one; this system works well with small project where different people mainly work on different aspects of the project. The second approach consists of every collaborator creating a copy (or *fork*) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a *pull request*) to the owner of the main rpository to incorporate any changes into the main repository and this includes a review process before the changes are integrated.
+```{r tip1, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics(path = "images/tip1.png")
+```
 
-Git offers a number of advanced features that you can incorporate in your workflow. If you are going to be working on a large collaborative project it is worth looking into *forking*, *branching* and *pull requests*. If you are the only person working on your code, then the workflow detailed here is usually enough. 
+\  
 
+This will add the filename to the `.gitignore` file. If you want to ignore multiple files or a particular type of file you can also include wildcards in the `.gitignore` file. For example to ignore all `png` files you can include the expression `*.png` in your `.gitignore` file and save.
 
-#### Further resources
+\  
 
-There are many good guides online to learn more about git and GitHub and as with any open source software there is a huge community that can be a great resource:
+If it all goes pear shaped and you end up completely trashing your Git repository don't despair (we've all been there!). As long as your GitHub repository is good, all you need to do is delete the offending project directory on your computer, create a new RStudio project and link this with your remote GitHub repository using [Option 2](#opt2). Once you have cloned the remote repository you should be good to go. 
+
+## Further resources {#resources}
+
+There are many good online guides to learn more about git and GitHub and as with any open source software there is a huge community that can be a great resource:
 
 - The British Ecological Society guide to [Reproducible Code][BES_code_guide]
 
@@ -358,10 +755,11 @@ There are many good guides online to learn more about git and GitHub and as with
 
 - The Mozilla Science Lab [GitHub for Collaboration on Open Projects guide][mozilla]
 
-- If you have done something terribly wrong and don't know how to fix it try [Oh Shit, Git][Oh Shit, Git!?!]
+- Jenny Bryan's [Happy Git and GitHub][git_happy]
+
+- If you have done something terribly wrong and don't know how to fix it try [Oh Shit, Git][Oh_Shit_Git] or if you're easily offended [Dangit, Git][dang_it_git]
 
 These are only a couple of examples, all you need to do is Google "version control with git and GitHub" to see how huge the community around these open source projects is and how many free resources are available for you to become a version control expert.
-
 
 
 

@@ -54,10 +54,22 @@
 <!--GitHub Links-->
 [github]: https://github.com/
 [git]: https://git-scm.com/downloads
+[git-linux]: https://git-scm.com/download/linux
+[git_join]: https://github.com/join?source=header-home
+[git_edu]: https://help.github.com/en/github/teaching-and-learning-with-github-education/applying-for-an-educator-or-researcher-discount
+[git-ben]: https://help.github.com/en/github/teaching-and-learning-with-github-education/about-github-education-for-educators-and-researchers
 [BES_code_guide]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
 [github_guides]: https://guides.github.com/
 [mozilla]: https://mozillascience.github.io/working-open-workshop/github_for_collaboration/
-[Oh Shit, Git!?!]: https://ohshitgit.com/
+[git_happy]: https://happygitwithr.com/
+[Oh_Shit_Git]: https://ohshitgit.com/
+[dang_it_git]: https://dangitgit.com/
+[biggit]: https://help.github.com/en/github/managing-large-files/configuring-git-large-file-storage
+[version_con]: https://en.wikipedia.org/wiki/Version_control
+[git_xcode]: https://github.com/timcharper/git_osx_installer
+[gitlab]: https://about.gitlab.com/
+[bitbucket]: https://bitbucket.org/product
+[savannah]: https://savannah.gnu.org/
 
 <!--R markdown Links-->
 [markup]: https://en.wikipedia.org/wiki/Markup_language
@@ -89,5 +101,6 @@
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
 [open-sci2]: http://openscience.org/what-exactly-is-open-science/
 [WYSIWYG]: https://en.wikipedia.org/wiki/WYSIWYG
+[linus]: https://en.wikipedia.org/wiki/Linus_Torvalds
 
 
