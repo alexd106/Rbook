@@ -372,14 +372,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="hex-map" class="section level3">
 <h3><span class="header-section-number">4.4.9</span> Hex map</h3>
 <p>A similar version to <code>geom_density2d()</code> is <code>geom_hex()</code>. The only difference between the two is that the sqaures are replaced with hexagons. Note that <code>geom_hex()</code> requires an additional package called <code>hexbin</code>.</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> leafarea, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></a>
-<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_hex</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_rbook</span>()</a>
-<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="co">#&gt; Warning: Computation failed in `stat_binhex()`:</span></a>
-<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="co">#&gt; Package `hexbin` required for `stat_binhex`.</span></a>
-<a class="sourceLine" id="cb86-8" data-line-number="8"><span class="co">#&gt; Please install and try again.</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1"><span class="kw">library</span>(hexbin)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> leafarea, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hex</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="st">    </span><span class="kw">coord_cartesian</span>(<span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="st">    </span><span class="kw">theme_rbook</span>()</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/hex-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="contour-map" class="section level3">
@@ -417,11 +415,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co">#&gt; Registered S3 method overwritten by &#39;GGally&#39;:</span></a>
 <a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">#&gt;   method from   </span></a>
 <a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co">#&gt;   +.gg   ggplot2</span></a>
-<a class="sourceLine" id="cb90-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb90-6" data-line-number="6">flower<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">factor</span>(flower<span class="op">$</span>block)</a>
-<a class="sourceLine" id="cb90-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb90-8" data-line-number="8"><span class="kw">ggpairs</span>(flower, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour =</span> nitrogen)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="st">    </span><span class="kw">theme_rbook</span>()</a>
+<a class="sourceLine" id="cb90-5" data-line-number="5">flower<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">factor</span>(flower<span class="op">$</span>block)</a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="kw">ggpairs</span>(flower, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour =</span> nitrogen)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb90-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_rbook</span>()</a>
+<a class="sourceLine" id="cb90-8" data-line-number="8"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
 <a class="sourceLine" id="cb90-10" data-line-number="10"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
 <a class="sourceLine" id="cb90-11" data-line-number="11"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
 <a class="sourceLine" id="cb90-12" data-line-number="12"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
@@ -434,9 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb90-19" data-line-number="19"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
 <a class="sourceLine" id="cb90-20" data-line-number="20"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
 <a class="sourceLine" id="cb90-21" data-line-number="21"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb90-22" data-line-number="22"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb90-23" data-line-number="23"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb90-24" data-line-number="24"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
+<a class="sourceLine" id="cb90-22" data-line-number="22"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
 <p><img src="Rbook_files/figure-html/pairs%20plot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 
 </div>
