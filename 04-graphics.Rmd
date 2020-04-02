@@ -31,17 +31,17 @@ library(ggplot2)
 df <- flower
 df$nitrogen2 <- factor(df$nitrogen, levels = c("high", "medium", "low"))
 
-theme_deon <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
+theme_deon <- function(base_size = 15, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
   theme( 
-    axis.title = element_text(size = 20),                               
+    axis.title = element_text(size = 15),                               
     axis.text.x = element_text(size = 10),                              
     axis.text.y = element_text(size = 10),                              
     plot.caption = element_text(size = 10, face = "italic"),            
     panel.background = element_rect(fill="white"),                      
     axis.line = element_line(size = 1, colour = "black"),
-    strip.background =element_rect(fill = "black"),
+    strip.background =element_rect(fill = "#cddcdd"),
     panel.border = element_rect(colour = "black", fill=NA, size=0.5),
-		strip.text = element_text(colour = "white"),
+		strip.text = element_text(colour = "black"),
 		legend.key=element_blank()
   )
 }
@@ -274,7 +274,7 @@ Now when the code is run, the figure won't be presented. This will only happen w
 An old headache when using `ggplot2` was that it could be difficult to create a nested figure (different plots all part of the same figure). `patchwork` resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; figures on top of each other (operationalised with `/`) and figures side-by-side (operationalised with either `+` or `|`). Let's try.
 
 ```{r side-by-side patchwork, out.width = "85%", fig.align = "center"}
-# rbook_figure + final_figure
+rbook_figure / final_figure
 ```
 
 Giving us a nested stacked figure.
@@ -284,10 +284,10 @@ Giving us a nested stacked figure.
 We can also assign nested `patchwork` figures a name and use this in turn to create labels for individuals figures.
 
 ```{r labelled nested, out.width = "75%", fig.align = "center"}
-# nested_compare <- rbook_figure + final_figure
+nested_compare <- rbook_figure / final_figure
 
-# nested_compare + 
-# 	plot_annotation(tag_levels = "A", tag_suffix = ")")
+nested_compare + 
+	plot_annotation(tag_levels = "A", tag_suffix = ")")
 ```
 
 \
@@ -445,8 +445,8 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 	# Light theme
 	theme_light()
 
-# (classic | bw) /
-# 	(minimal | light)
+(classic | bw) /
+	(minimal | light)
 ```
 
 In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package you can download to get even more theme options. The BBC even have their own `ggplot2` theme called "BBplot" (though I personally don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranethesis (brackets).
@@ -471,18 +471,18 @@ Let's use this code as the basis for our own theme and modify it according to ou
 This is by no means an exhaustive list of features you can specify in your own theme, but this will get you started. Of course, there is no need to use a personalised theme as the pre-built options are perfectly suitable.
 
 ```{r rbook theme}
-theme_rbook <- function(base_size = 20, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
+theme_rbook <- function(base_size = 15, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
   theme( 
-    axis.title = element_text(size = 20),                               
+    axis.title = element_text(size = 15),                               
     axis.text.x = element_text(size = 10),                              
     axis.text.y = element_text(size = 10),                              
     plot.caption = element_text(size = 10, face = "italic"),            
     panel.background = element_rect(fill="white"),                      
-    panel.border = element_rect(colour = "black", fill=NA, size=0.5),
     axis.line = element_line(size = 1, colour = "black"),
-    strip.background =element_rect(fill = "black"),
-    strip.text = element_text(colour = "white"),
-    legend.key=element_blank()
+    strip.background =element_rect(fill = "#cddcdd"),
+    panel.border = element_rect(colour = "black", fill=NA, size=0.5),
+		strip.text = element_text(colour = "black"),
+		legend.key=element_blank()
   )
 }
 ```
@@ -677,7 +677,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylim(c(50, 150))
 ```
 
-Notice the warning messages we get, telling us that n rows contain either missing or non-finite values? That's because we've essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified). As a result of doing this our lines have no completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; `coord_cartesian()`.
+Notice the warning messages we get, telling us that n rows contain either missing or non-finite values? That's because we've essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified). As a result of doing this our lines have now completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; `coord_cartesian()`.
 
 `coord_cartesian()` works in much the same way, but instead of chopping out data, it instead zooms in. Doing so means that the entire dataset is maintained (and any trends are maintained).
 
@@ -704,7 +704,7 @@ Notice now that the trends are maintained (as the lines are being informed by da
 
 ### Layering layers
 
-Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke, because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
+Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
 
 The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()` comes before `geom_col()`, then your points may well end up being hidden. To fix this is especially easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can do move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down.
 
@@ -735,14 +735,14 @@ It's not the clearest example, but give it a shot with your own data.
 
 ### Continuous colours
 
-Instead of categorical colours, such as we've used for nitrogen concentration, what if instead we wanted a gradient? To illustrate this, we'll remove the trend lines to highlight the changes we make. We'll also be using the flowers variable (i.e. number of flowers) to specify the colour that points should be coloured. We have three options; the default colour scheme, `scale_colour_gradient()`, and `scale_colour_gradient2()`. Remember that we'll also need to change our label for the legend.
+Instead of categorical colours, such as we've used for nitrogen concentration, what if instead we wanted a gradient? To illustrate this, we'll remove the trend lines to highlight the changes we make. We'll also be using the flowers variable (i.e. number of flowers) to specify the colour that points should be coloured. We have three options that we'll use here; the default colour scheme, `scale_colour_gradient()`, and `scale_colour_gradient2()`. Remember that we'll also need to change our label for the legend.
 
 We'll start with the default option. Here we only need to change nitrogen (which is a factor) to flowers (which is continuous) in the `colour =` argument within `aes()`:
 
 ```{r continuous colour, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
-	# Deleted geom_smooths for illustrative purposes only (and also alpha argument from geom_point
+	# Deleted geom_smooths for illustrative purposes only (and also alpha argument from geom_point)
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 
 	xlab("Weight of flower (g)") +
@@ -846,7 +846,7 @@ Now the sizes reflect the height of the plants, with bigger points representing 
 
 ### Moving the legend
 
-To move the position of the legend requires tweaking the theme, just as we did before with `theme_rbook()`. But for legends we might not want this set as a hard rule whenever we use the theme (i.e. coding this into `theme_rbook()`). Instead we can change it on the fly depending on the individual figure. To do so, we can use a `theme()` layer and the argument `legend.position =`, followed swiftly by a layer specifying that we still want to use `theme_rbook()`.
+To move the position of the legend requires tweaking the theme, just as we did before with `theme_rbook()`. But for legends we might not want this to be set value whenever we use the theme (i.e. coding this into `theme_rbook()`). Instead we can change it on the fly depending on the individual figure. To do so, we can use a `theme()` layer and the argument `legend.position =`, followed swiftly by a layer specifying that we still want to use `theme_rbook()`.
 
 ```{r moving legend, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -921,7 +921,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 What if we were so utterly proud of our figure that we wanted to sign it (just like a painter signs their works of art)? We can do this using `geom_text()`. If we want to change the font, we need to check which ones are available for us to use. We can check this by runnings `windowsFonts()`. We'll use Times New Roman in this example, which is referred to as `serif`.
 
-Not happy with your font options? Check our the `extrafont` package which expands your fontage.
+Not happy with your font options? Check out the `extrafont` package which expands your fontage.
 
 ```{r geom_text, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -991,7 +991,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	theme_rbook()
 ```
 
-Axis tick labels sometimes need to be rotated. If you've ever worked with data from multiple species (with those lovely long latin names) for example, you'll know that it can be a nightmare making figures. The names can end up overlapping to such an extent that you axis tick labels merge into a giant black blob of unreadable abstractionism. In such cases it's best to rotate the text to make it readable. Doing so isn't too much of a pain and we'll be using `theme()` to set angle to 45 degress in addition to a little vertical adjustment so that the text doesn't get too close or run too far away from the axis.
+Axis tick labels sometimes need to be rotated. If you've ever worked with data from multiple species (with those lovely long latin names) for example, you'll know that it can be a nightmare making figures. The names can end up overlapping to such an extent that your axis tick labels merge into a giant black blob of unreadable abstractionism. In such cases it's best to rotate the text to make it readable. Doing so isn't too much of a pain and we'll be using `theme()` to set angle to 45 degress in addition to a little vertical adjustment so that the text doesn't get too close or run too far away from the axis.
 
 ```{r rotate axis, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
@@ -1015,7 +1015,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Phew. Now we can really read those numbers. Granted rotating the axis text here isn't needed, but keep this trick in mind if you have lots of levels in a factor which leads to illegible blobs.
 
-To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named ggplot catalogue section.
+To round off this chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named "ggplot catalogue section".
 
 ## A ggplot catalogue
 
@@ -1145,7 +1145,7 @@ ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 
 ### Contour map
 
-Similar to a heatmap we can make a contour map using `geom_density_2d()`. The way to read this figure is much the same way as you'd read a topographical map showing "mountains" or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you "step" down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in `geom_bin2d()`.
+Similar to a heatmap we can make a contour map using `geom_density_2d()`. The way to read this figure is much the same way as you'd read a topographical map showing mountains or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you "step" down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in `geom_bin2d()`.
 
 ```{r contour, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
@@ -1155,7 +1155,7 @@ ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 	theme_rbook()
 ```
 
-We can then expand on this using `stat()`. In the background of `ggplot2` values are calculated which are then passed to some geoms. `stat()` acts like a flag to `ggplot2` that you want to use one of these calculated values. For instance, we can use the calculated "level" and use this to fill in our figure. To do so, we'll swap out `geom_density_2d()` for `stat_density_2d()` which will allow us to paint the contour map.
+We can then expand on this using `stat()`. In the background of `ggplot2` values are calculated which are then passed to geoms. `stat()` acts like a flag to `ggplot2` that you want to use one of these calculated values. For instance, we can use the calculated "level" and use this to fill in our figure. To do so, we'll swap out `geom_density_2d()` for `stat_density_2d()` which will allow us to colour in the contour map.
 
 ```{r stat contour, out.width = "75%", fig.align = "center"}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
@@ -1180,7 +1180,7 @@ ggplot(flower) +
 
 ### Pairs plot
 
-For this next figure we will need an additional package, called `GGally`. Within `GGally` is a function called `ggpairs()` which is equivalent to `pairs()` (part of base R). Both function produce comparative plots of all variables of interest. Running diagonally down from left to right, are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.
+For the final figure we will need an additional package, called `GGally`. Within `GGally` is a function called `ggpairs()` which is equivalent to `pairs()` (part of base R). Both functions produce comparative plots of all variables of interest. Running diagonally down from left to right, are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.
 
 Such figures are a fantastic way to quickly show relationships in the dataset. They can of course be used to plot only part of the dataset, for instance using `flowers[ , 1:5]` to plot the first five columns of the dataset.
 
@@ -1189,7 +1189,7 @@ library(GGally)
 
 flower$block <- factor(flower$block)
 
-ggpairs(flower, ggplot2::aes(colour = nitrogen)) +
+ggpairs(flower, ggplot2::aes(colour = nitrogen), cardinality_threshold = NULL, progress = FALSE, bins = 30) +
 	theme_rbook()
 ```
 
