@@ -1,4 +1,4 @@
-# Getting started with R and RStudio
+# Getting started with R and RStudio {#chap1}
 
 Although R is not new, it's popularity has increased rapidly over the last 10 years or so (see [here][r4stats] for some interesting data). It was originally created and developed by Ross Ihaka and Robert Gentleman during the 1990's with the first stable version released in 2000. Nowadays R is currently maintained by the [R Development Core Team][cran-core]. So, why has R become so popular and why should you learn how to use it? Some reasons include: 
 
@@ -10,6 +10,8 @@ Although R is not new, it's popularity has increased rapidly over the last 10 ye
 - R has an extensive support network with numerous online and freely available documents.
 
 All of the reasons above are great reasons to use R. However, in our opinion, the single biggest reason to use R is that it facilitates robust and reproducible research practices. In contrast to more traditional 'point and click' software, writing R code to perform your analysis ensures you have a permanent and accurate record of all the methods you used (and decisions you made) whilst analysing your data. You are then able to share this code (and your data) with other researchers / colleagues / journal reviewers who will be able to reproduce your analysis exactly. This is one of the tenets of [open science][open-sci]. We will cover other topics to facilitate open science throughout this book, including creating [reproducible reports](#rmarkdown_r) and [version control](#github_r).   
+
+In this Chapter we'll cover downloading and installing R and RStudio on your computer, a brief RStudio orientation including working with RStudio Projects, installing and working with R packages to extend R's capabilities, some good habits to get into  when working on projects and with files and finally some advice on documenting your workflow and writing nice R code.
 
 ## Installing R {#install_r}
 
@@ -25,7 +27,7 @@ For Mac users select the '[Download R for (Mac) OS X][cran-mac]' link. The binar
 
 ### Linux users
 
-For Linux users, the installation method will depend on which flavour of linux you are using. There are reasonably comprehensive instruction [here][cran-linux] for Debian, Redhat, Suse  and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (Terminal) and use (you will need root permission to do this):
+For Linux users, the installation method will depend on which flavour of Linux you are using. There are reasonably comprehensive instruction [here][cran-linux] for Debian, Redhat, Suse  and Ubuntu. In most cases you can just use your OS package manager to install R from the official repository. On Ubuntu fire up a shell (Terminal) and use (you will need root permission to do this):
 
 ```{block}
     sudo apt update
@@ -111,7 +113,7 @@ knitr::include_graphics(path = "images/rstudio_start.png")
 
 The large window (aka pane) on the left is the **Console** window. The window on the top right is the **Environment / History / Files** pane and the bottom left window is the **Plots / Help / Viewer** window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the 'Tools' menu then selecting Global Options --> Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to [customise RStudio][rstudio-customise].
 
-### Console
+### Console {#cons}
 
 The console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) you create. You can type R code directly into the console at the command line prompt, `>`. For example, if you type `2 + 2` into the console you should obtain the answer `4` (reassuringly). Don't worry about the `[1]` at the start of the line for now. 
 
@@ -155,17 +157,17 @@ knitr::include_graphics(path = "images/rstudio_run.png")
 
 You should see the result in the console window. If clicking on the 'Run' button starts to become tiresome you can use the keyboard shortcut 'ctrl + enter' (on Windows and Linux) or 'cmd + enter' (on Mac). You can save your R scripts as a `.R` file by selecting the 'File' menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the 'File' menu and then 'Open File...'. Finally, its worth noting that although R scripts are saved with a `.R` extension they are actually just plain text files which can be opened with any text editor. 
 
-### Environment / History / Files
+### Environment / History / Connections
 
-The Environment / History / Files window shows you lots of useful information. You can access each component by clicking on the appropriate tab in the pane.
+The Environment / History / Connections window shows you lots of useful information. You can access each component by clicking on the appropriate tab in the pane.
 
 - The 'Environment' tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you're in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There's also an 'Import Dataset' button which will import data saved in a variety of file formats. However, we would suggest that you don't use this approach to import your data as it's not reproducible and therefore not robust (see [Chapter 3](#data_r) for more details).        
 
-- The 'History' tab simply contains a list of all the commands you have entered into the R console. You can search back through your history for the line of code you have forgotten, send selected code back to the console or Source window. We usually never use this as we always refer back to our R script.  
+- The 'History' tab contains a list of all the commands you have entered into the R console. You can search back through your history for the line of code you have forgotten, send selected code back to the console or Source window. We usually never use this as we always refer back to our R script.  
+
+### Files / Plots / Packages / Help / Viewer
 
 - The 'Files' tab lists all external files and directories in the current working directory on your computer. It works like file explorer (Windows) or Finder (Mac). You can open, copy, rename, move and delete files listed in the window.    
-
-### Plots / Help / Viewer
 
 - The 'Plots' tab is where all the plots you create in R are displayed (unless you tell R otherwise). You can 'zoom' into the plots to make them larger and scroll back through previously created plots using the arrow buttons. There is also the option of exporting plots to an external file using the 'Export' drop down menu. Plots can be exported in various file formats such as jpeg, png, pdf, tiff or copied to the clipboard (although you are probably better off using the appropriate R functions to do this - see [Chapter 4](#graphics_r) for more details). 
 
@@ -249,7 +251,7 @@ Again, you can use the `ask = FALSE` argument to avoid having to confirm every p
 
 ### GitHub packages
 
-There are multiple options for installing packages hosted on GitHub. Perhaps the most effiecient method is to use the `install_github()` function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
+There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the `install_github()` function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
 
 ```{r, echo=TRUE, eval=FALSE}
 remotes::install_github('tidyverse/dplyr')
@@ -282,13 +284,13 @@ devtools::install_github('tidyverse/dplyr')
 
 This is how we were able to use the `install()` and `install_github()` functions [above][Bioconductor packages] without first loading the packages `BiocManager` and `devtools`. Most of the time we recommend using the `library()` function.
 
-As with most things in life, when it comes to dealing with data and data analysis things are so much simpler if you're organised. Clear project organisation makes it easier for both you (especially the future you) and your collaborators to make sense of what you've done. There's nothing more frustrating than coming back to a project months (sometimes years) later and have to spend days (or weeks) figuring out where everything is, what you did and why you did it. A well documented project that has a consistent and logical structure increases the liklihood that you can pick up where you left off with minimal fuss no matter how much time has passed. In addition, it's much easier to write code to automate tasks when files are well organised and are sensibly named. This is even more relevant nowadays as it's never been easier to collect vasts amount of data which can be saved across 1000's or even 100,000's of separate data files. Lastly, having a well organised project reduces the risk of introducing bugs or errors into your workflow and if they do occur (which inevitably they will at some point), it makes it easier to track down these errors and deal with them efficiently.
+As with most things in life, when it comes to dealing with data and data analysis things are so much simpler if you're organised. Clear project organisation makes it easier for both you (especially the future you) and your collaborators to make sense of what you've done. There's nothing more frustrating than coming back to a project months (sometimes years) later and have to spend days (or weeks) figuring out where everything is, what you did and why you did it. A well documented project that has a consistent and logical structure increases the likelihood that you can pick up where you left off with minimal fuss no matter how much time has passed. In addition, it's much easier to write code to automate tasks when files are well organised and are sensibly named. This is even more relevant nowadays as it's never been easier to collect vasts amount of data which can be saved across 1000's or even 100,000's of separate data files. Lastly, having a well organised project reduces the risk of introducing bugs or errors into your workflow and if they do occur (which inevitably they will at some point), it makes it easier to track down these errors and deal with them efficiently.
 
 Thankfully, there are some nice features in R and RStudio that make it quite easy to manage a project. There are also a few simple steps you can take right at the start of any project to help keep things shipshape. 
 
-## Projects in RStudio
+## Projects in RStudio {#rsprojs}
 
-As with most things in life, when it comes to dealing with data and data analysis things are so much simpler if you're organised. Clear project organisation makes it easier for both you (especially the future you) and your collaborators to make sense of what you've done. There's nothing more frustrating than coming back to a project months (sometimes years) later and have to spend days (or weeks) figuring out where everything is, what you did and why you did it. A well documented project that has a consistent and logical structure increases the liklihood that you can pick up where you left off with minimal fuss no matter how much time has passed. In addition, it's much easier to write code to automate tasks when files are well organised and are sensibly named. This is even more relevant nowadays as it's never been easier to collect vasts amount of data which can be saved across 1000's or even 100,000's of separate data files. Lastly, having a well organised project reduces the risk of introducing bugs or errors into your workflow and if they do occur (which inevitably they will at some point), it makes it easier to track down these errors and deal with them efficiently.
+As with most things in life, when it comes to dealing with data and data analysis things are so much simpler if you're organised. Clear project organisation makes it easier for both you (especially the future you) and your collaborators to make sense of what you've done. There's nothing more frustrating than coming back to a project months (sometimes years) later and have to spend days (or weeks) figuring out where everything is, what you did and why you did it. A well documented project that has a consistent and logical structure increases the likelihood that you can pick up where you left off with minimal fuss no matter how much time has passed. In addition, it's much easier to write code to automate tasks when files are well organised and are sensibly named. This is even more relevant nowadays as it's never been easier to collect vasts amount of data which can be saved across 1000's or even 100,000's of separate data files. Lastly, having a well organised project reduces the risk of introducing bugs or errors into your workflow and if they do occur (which inevitably they will at some point), it makes it easier to track down these errors and deal with them efficiently.
 
 Thankfully, there are some nice features in R and RStudio that make it quite easy to manage a project. There are also a few simple steps you can take right at the start of any project to help keep things shipshape. 
 

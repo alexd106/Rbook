@@ -1,12 +1,144 @@
 # Some R basics {#basics_r}
 
+In this Chapter we'll introduce you to using R and RStudio to perform some basic R tasks such as creating variables and assigning values to variables, exploring different types of variables and how to perform some common operations on variables. We'll also learn how to get help in R and highlight some additional sources of information. Finally, we'll cover saving your work and R scripts. 
 
-basic operations  
-r as a calculator  
-assignment (not =)  
+Before we continue, here are a few things to bear in mind as you work through this Chapter:
+
+  - R is case sensitive i.e. `A` is not the same as `a` and `anova` is not the same as `Anova`.
+  
+  - Anything that follows a `#` symbol is interpretated as a comment and ignored by R. Comments should be used liberally throughout your code for both your own information and also to help your collaborators. Writing comments is a bit of an art and something that you will become more adept at as your experience grows. 
+  
+  - In R, commands are generally separated by a new line. You can also use a semicolon `;` to separate your commands but this is rarely used.
+
+  - If a continuation prompt `+` appears when you execute your code this means that you haven't completed your code correctly. This often happens if you forget to close a bracket and is especially common when nested brackets are used (`(((some command))`). Just finish the command on the new line and fix the typo or hit escape on your keyboard (see below) and fix.
+
+  - In general, R is fairly tolerant of extra spaces inserted into your code, in fact using spaces is generally encouraged. However, spaces should not be inserted into operators i.e. `<-` should not read `< -` (note the space). See Google's [style guide][style-google] for advice on where to place spaces to make your code more readable.
+  
+  - If your console 'hangs' or becomes unresponsive after running a command you can often get yourself out of trouble by pressing the escape key (esc) on your keyboard or clicking on the stop icon in the top right of your console. This will terminate most current operations.  
+  
+## Getting started
+
+In [Chapter 1](#chap1) we learned about the [R Console](#cons) and creating scripts and [Projects](#rsprojs) in RStudio. We also saw how you write your R code into a script and then source this code into the console to get it to run (if you've forgotten how to do this, pop back to the [console](#cons) section to refresh your memory). Writing your code in a script means that you will always have a permanent record of everything you've done (provided you save for script) and also allows you to make loads of comments to remind your future self what you have done. So, while you're working through this Chapter we suggest that you create a new script (or RStudio Project) to write your code as you follow along. 
+
+As we saw in [Chapter 1](#chap1), at a basic level we can use R much as you would use a calculator. We can type our arithmetic expressions into our script, source then into the console and receive a result. For example, if we type the expression `2 + 2` and then source this line of code we of course get the answer `4`
+
+```{r, echo=TRUE, eval=TRUE}
+2 + 2
+```
+
+The `[1]` in front of the result lets you know that the observation number at the beginning of the line is the first observation. This is not much help in this example, but can be quite useful when printing results with multiple lines (we'll see an example below). The other obvious arithmetic operators are `-`, `*`, `/` for subtraction, multiplication and division respectively. R follows the usual mathematical convention of [order of operations][op-prec]. For example, the expression `2 + 3 * 4` is interpreted to have the value `2 + (3 * 4) = 14`, not `(2 + 3) * 4 = 20`. There are a huge range of mathematical functions in R, some of the most useful include
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+log(1)				# logarithm to base e
+log10(1)			# logarithm to base 10
+exp(1)				# natural antilog
+sqrt(4) 			# square root
+4^2					# 4 to the power of 2
+pi 					# not a function but useful
+```
+
+It's important to realise that when you run code as we've done above, the result of the code (or **value**) is only displayed in the console. Whilst this can sometimes be useful it is usually much more practical to store the value(s) in a object.
+
+## Objects in R
+
+At the heart of almost everything you will do (or ever likely do) in R is the concept that everything in R is an [object][chambers]. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.
+
+To create an object we simply give the object a name. We can then assign a value(s) to this object using the *assignment operator* `<-` (sometimes called the *gets*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hypen `-` . For example
+
+```{r, echo=TRUE, eval=TRUE}
+my_obj <- 48
+```
+
+In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in my head I always read this as `my_obj` gets 48). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
+
+To view the value of the object you simply type the name of the object
+
+```{r, echo=TRUE, eval=TRUE}
+my_obj
+```
+
+Now that we've created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and in RStudio you can view all the objects in your workspace by clicking on the 'Environment' tab in the right hand pane 
+
+```{r rstudio_env, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_env.png")
+```
+
+If you click on the down arrow on the 'List' icon in the same pane and change to 'Grid' view RStudio will show you a summary of the objects including the type (numeric - it's a number), the length (only one value in this object), its 'physical' size and its value (48 in this case).
+
+```{r rstudio_env2, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_env2.png")
+```
+
+There are many different types of values that you can assign to an object. For instance 
+
+```{r, echo=TRUE, eval=TRUE}
+my_obj2 <- "R is cool"
+```
+
+Here we have created an object called `my_obj2` and assigned it a value of the `R is cool` which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message
+
+```{r, echo=TRUE, eval=FALSE}
+my_obj2 <- R is cool
+Error: unexpected symbol in "my_obj2 <- R is"
+```
+
+Our workspace now contains the two objects we have created with `my_obj2` is listed as type character.  
+
+```{r rstudio_env3, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_env3.png")
+```
+
+We will return to the different classes of objects throughout this book. To change the value of an existing object we simple reassign our new value to it. For example to change the value of `my_obj2` from `R is cool` to the number 1024
+
+```{r, echo=TRUE, eval=TRUE}
+my_obj2 <- 1024
+```
+
+Notice that the Type has changed to numeric and the value has changed to 1024 in the workspace
+
+```{r rstudio_env4, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_env4.png")
+```
+
+Naming your objects is one of the most difficult things you will do in R (honestly - I'm serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words
+
+```{r, echo=TRUE, eval=FALSE}
+output_summary <- "my analysis"
+output_summary <- "my analysis"
+outputSummary <- "my analysis"
+```
+
+There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `.2myvariable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your variable the same name as a built-in function. One that crops up more times than I can remember is 
+
+```{r, echo=TRUE, eval=FALSE}
+data <- read.table("mydatafile", header = TRUE) # data is a function!
+```
+
+## Vectors in R
+
+vectors  
+extracting, sorting and ordering
+
+## Getting help
+
+### R help
+
+### Other sources of help
+
+
+## Saving in R
+
+
 vectors  
 extracting, sorting and ordering  
-R help  
-other sources of help  
-saving stuff in R  
+
+
+
+
+
+
+
+
+```{r links, child="links.md"}
+```
 
