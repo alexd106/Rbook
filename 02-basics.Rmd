@@ -22,7 +22,7 @@ In [Chapter 1](#chap1) we learned about the [R Console](#cons) and creating scri
 
 As we saw in [Chapter 1](#chap1), at a basic level we can use R much as you would use a calculator. We can type our arithmetic expressions into our script, source then into the console and receive a result. For example, if we type the expression `2 + 2` and then source this line of code we of course get the answer `4`
 
-```{r, echo=TRUE, eval=TRUE}
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 2 + 2
 ```
 
@@ -53,21 +53,31 @@ In the code above, we created an object called `my_obj` and assigned it a value 
 
 To view the value of the object you simply type the name of the object
 
-```{r, echo=TRUE, eval=TRUE}
+\  
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_obj
 ```
 
 Now that we've created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and in RStudio you can view all the objects in your workspace by clicking on the 'Environment' tab in the right hand pane 
 
+\  
+
 ```{r rstudio_env, echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics(path = "images/rs_env.png")
 ```
 
+\  
+
 If you click on the down arrow on the 'List' icon in the same pane and change to 'Grid' view RStudio will show you a summary of the objects including the type (numeric - it's a number), the length (only one value in this object), its 'physical' size and its value (48 in this case).
+
+\  
 
 ```{r rstudio_env2, echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics(path = "images/rs_env2.png")
 ```
+
+\  
 
 There are many different types of values that you can assign to an object. For instance 
 
@@ -84,9 +94,13 @@ Error: unexpected symbol in "my_obj2 <- R is"
 
 Our workspace now contains the two objects we have created with `my_obj2` is listed as type character.  
 
+\  
+
 ```{r rstudio_env3, echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics(path = "images/rs_env3.png")
 ```
+
+\  
 
 We will return to the different classes of objects throughout this book. To change the value of an existing object we simple reassign our new value to it. For example to change the value of `my_obj2` from `R is cool` to the number 1024
 
@@ -96,9 +110,13 @@ my_obj2 <- 1024
 
 Notice that the Type has changed to numeric and the value has changed to 1024 in the workspace
 
+\  
+
 ```{r rstudio_env4, echo=FALSE, out.width="75%", fig.align="center"}
 knitr::include_graphics(path = "images/rs_env4.png")
 ```
+
+\  
 
 Naming your objects is one of the most difficult things you will do in R (honestly - I'm serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words
 
