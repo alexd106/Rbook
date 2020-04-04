@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="getting-started.html"/>
-<link rel="next" href="naming-objects.html"/>
+<link rel="next" href="r-functions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -173,9 +173,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
-<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a></li>
-<li class="chapter" data-level="2.3" data-path="naming-objects.html"><a href="naming-objects.html"><i class="fa fa-check"></i><b>2.3</b> Naming objects</a></li>
-<li class="chapter" data-level="2.4" data-path="using-functions.html"><a href="using-functions.html"><i class="fa fa-check"></i><b>2.4</b> Using functions</a></li>
+<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#creating-objects"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
+<li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#using-functions"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="manipulating-objects.html"><a href="manipulating-objects.html"><i class="fa fa-check"></i><b>2.4</b> Manipulating objects</a></li>
 <li class="chapter" data-level="2.5" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="getting-help.html"><a href="getting-help.html#help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="getting-help.html"><a href="getting-help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
@@ -289,6 +294,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="objects-in-r" class="section level2">
 <h2><span class="header-section-number">2.2</span> Objects in R</h2>
 <p>At the heart of almost everything you will do (or ever likely do) in R is the concept that everything in R is an <a href="https://journal.r-project.org/archive/2009-1/RJournal_2009-1_Chambers.pdf">object</a>. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.</p>
+<div id="creating-objects" class="section level3">
+<h3><span class="header-section-number">2.2.1</span> Creating objects</h3>
 <p>To create an object we simply give the object a name. We can then assign a value to this object using the <em>assignment operator</em> <code>&lt;-</code> (sometimes called the <em>gets operator</em>). The assignment operator is a composite symbol comprised of a ‘less than’ symbol <code>&lt;</code> and a hyphen <code>-</code> .</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a></code></pre></div>
 <p>In the code above, we created an object called <code>my_obj</code> and assigned it a value of the number <code>48</code> using the assignment operator (in my head I always read this as ‘<em>my_obj gets 48</em>’). You can also use <code>=</code> instead of <code>&lt;-</code> to assign values but this is considered bad practice and we would discourage you from using this notation.</p>
@@ -335,13 +342,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb33-3" data-line-number="3">Error<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;no_obj&#39;</span> not found</a></code></pre></div>
 <p>R returns an error message because we haven’t created (defined) the object <code>no_obj</code> yet. You should also realise that because the code returned an error message the object <code>my_obj4</code> has not been created.</p>
 </div>
+<div id="naming-objects" class="section level3">
+<h3><span class="header-section-number">2.2.2</span> Naming objects</h3>
+<p>Naming your objects is one of the most difficult things you will do in R (honestly - we’re serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called <a href="https://en.wikipedia.org/wiki/Snake_case"><em>snake case</em></a>)</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">output_summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">output.summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">outputSummary &lt;-<span class="st"> &quot;my analysis&quot;</span></a></code></pre></div>
+<p>There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. <code>2my_variable</code> or <code>.2my_variable</code>). You should also avoid using non-alphanumeric characters in your object names (i.e. &amp;, ^, /, ! etc). In addition, make sure you don’t name your objects with reserved words (i.e. <code>TRUE</code>, <code>NA</code>) and it’s never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;mydatafile&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>) <span class="co"># data is a function!</span></a></code></pre></div>
+</div>
+</div>
             </section>
 
           </div>
         </div>
       </div>
 <a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="naming-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

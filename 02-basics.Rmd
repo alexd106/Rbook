@@ -43,6 +43,8 @@ It's important to realise that when you run code as we've done above, the result
 
 At the heart of almost everything you will do (or ever likely do) in R is the concept that everything in R is an [object][chambers]. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.
 
+### Creating objects
+
 To create an object we simply give the object a name. We can then assign a value to this object using the *assignment operator* `<-` (sometimes called the *gets operator*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` .
 
 ```{r, echo=TRUE, eval=TRUE}
@@ -146,7 +148,7 @@ Error: object 'no_obj' not found
 
 R returns an error message because we haven't created (defined) the object `no_obj` yet. You should also realise that because the code returned an error message the object `my_obj4` has not been created.  
 
-## Naming objects
+### Naming objects
 
 Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called [*snake case*][snake])
 
@@ -162,9 +164,11 @@ There are also a few limitations when it come to giving objects names. An object
 data <- read.table("mydatafile", header = TRUE) # data is a function!
 ```
 
-## Using functions
+## R functions
 
 Up until now we've been creating simple objects by directly assigning a single value to an object. It's very likely that you'll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000's of [packages](#packages) now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in [Chapter 6](#prog_r)).
+
+### Using functions
 
 The first function we will learn about is the `c()` function which we will use to join together a series of numbers and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). The `c()` function is short for concatenate.
 
@@ -257,14 +261,16 @@ my_seq7 <- rep(in_vec, each = 3)	# repeats each element of the series 3 times
 my_seq7
 ```
 
-extracting, sorting and ordering
+
+## Manipulating objects
+
+extracting, sorting and ordering  
 
 ## Getting help
 
 ### R help {#help}
 
 ### Other sources of help
-
 
 ## Saving in R
 
