@@ -355,8 +355,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="manipulating-vectors" class="section level3">
 <h3><span class="header-section-number">2.3.2</span> Manipulating vectors</h3>
-<p>Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We will go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>.</p>
-<p>To extract some of the values (more generally known as elements) from a vector we should use the square bracket <code>[ ]</code> notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector <code>my_vec</code> we created before</p>
+<p>Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We’ll go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>.</p>
+<p>To extract some of the values (more generally known as elements) from a vector we use the square bracket <code>[ ]</code> notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector <code>my_vec</code> we created before</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_vec        <span class="co"># remind ourselves what my_vec looks like</span></a>
 <a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co"># [1] 2 3 1 6 4 3 3 7</span></a>
 <a class="sourceLine" id="cb48-3" data-line-number="3">my_vec[<span class="dv">3</span>]     <span class="co"># extract the 3rd value</span></a>
@@ -367,10 +367,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb48-8" data-line-number="8">val_<span class="dv">3</span> &lt;-<span class="st"> </span>my_vec[<span class="dv">3</span>]</a>
 <a class="sourceLine" id="cb48-9" data-line-number="9">val_<span class="dv">3</span></a>
 <a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co"># [1] 1</span></a></code></pre></div>
-<p>We can also extract more than one value by using the <code>c()</code> function inside the square brackets</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>, <span class="dv">9</span>)]</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># [1]  2  4  3  7 NA</span></a></code></pre></div>
-<p>or extract a range of values using the <code>:</code> notation</p>
+<p>We can also extract more than one value by using the <code>c()</code> function inside the square brackets. Here we extract the 1<sup>st</sup>, 5<sup>th</sup>, 6<sup>th</sup> and 8<sup>th</sup> element from the <code>my_vec</code> object</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># [1] 2 4 3 7</span></a></code></pre></div>
+<p>Or we can extract a range of values using the <code>:</code> notation. To extract the values from the 3<sup>rd</sup> to the 8<sup>th</sup> elements</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">my_vec[<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</a>
 <a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co"># [1] 1 6 4 3 3 7</span></a></code></pre></div>
 <p>It is also often useful to be able to extract values from a vector using a logical condition. For example, to extract all elements with a value greater than 4 in the vector <code>my_vec</code></p>
@@ -392,7 +392,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">100</span></a>
 <a class="sourceLine" id="cb53-2" data-line-number="2">my_vec</a>
 <a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co"># [1] 100 100 100   6 100 100 100   7</span></a></code></pre></div>
-<p>ordering</p>
+<p>In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest we can use the <code>sort()</code> function</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">vec_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec)</a>
+<a class="sourceLine" id="cb54-2" data-line-number="2">vec_sort</a>
+<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co"># [1]   6   7 100 100 100 100 100 100</span></a></code></pre></div>
+<p>To reverse the sort, from highest to lowest, we can either include the <code>decreasing = TRUE</code> argument when using the <code>sort()</code> function</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">vec_sort2 &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">vec_sort2</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># [1] 100 100 100 100 100 100   7   6</span></a></code></pre></div>
+<p>or first sort the vector using the <code>sort()</code> function and then reverse the sorted vector using the <code>rev()</code> function. This is another example of nesting one function inside another function.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">vec_sort3 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">sort</span>(my_vec))</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">vec_sort3</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co"># [1] 100 100 100 100 100 100   7   6</span></a></code></pre></div>
+<p>Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the <code>order()</code> function in combination with <code>[ ]</code>. To demonstrate this let’s create a vector called <code>height</code> containing the height of 5 different people and another vector called <code>p.names</code> containing the names of these people</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">height</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"># [1] 180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb57-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb57-5" data-line-number="5">p.names &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb57-6" data-line-number="6">p.names</a>
+<a class="sourceLine" id="cb57-7" data-line-number="7"><span class="co"># [1] &quot;Joanna&quot;    &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Amy&quot;</span></a></code></pre></div>
+<p>Our goal is to order the people in <code>p.names</code> in ascending order of their <code>height</code>. The first thing we’ll do is use the <code>order()</code> function with the <code>height</code> variable to create a vector called <code>height_ord</code></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">height_ord &lt;-<span class="st"> </span><span class="kw">order</span>(height)</a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">height_ord</a>
+<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co"># [1] 2 3 4 1 5</span></a></code></pre></div>
+<p>OK, what’s going on here? To interpret this, let’s start with the output from the <code>height_ord &lt;- order(height)</code> line of code. The first value, 2, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element 5 which is 181. Now that we have a vector of the position of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">names_ord &lt;-<span class="st"> </span>p.names[height_ord]</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">names_ord</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co"># [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></a></code></pre></div>
+<p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in <a href="data-r.html#data_r">Chapter 3</a>.</p>
 </div>
 </div>
             </section>

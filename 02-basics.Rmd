@@ -264,9 +264,9 @@ my_seq7
 
 ### Manipulating vectors
 
-Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We will go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in [Chapter 3](#data_r). 
+Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We'll go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in [Chapter 3](#data_r). 
 
-To extract some of the values (more generally known as elements) from a vector we should use the square bracket `[ ]` notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector `my_vec` we created before 
+To extract some of the values (more generally known as elements) from a vector we use the square bracket `[ ]` notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector `my_vec` we created before 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec        # remind ourselves what my_vec looks like
@@ -278,13 +278,13 @@ val_3 <- my_vec[3]
 val_3
 ```
 
-We can also extract more than one value by using the `c()` function inside the square brackets
+We can also extract more than one value by using the `c()` function inside the square brackets. Here we extract the 1^st^, 5^th^, 6^th^ and 8^th^ element from the `my_vec` object
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-my_vec[c(1, 5, 6, 8, 9)]
+my_vec[c(1, 5, 6, 8)]
 ```
 
-or extract a range of values using the `:` notation
+Or we can extract a range of values using the `:` notation. To extract the values from the 3^rd^ to the 8^th^ elements
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[3:8]
@@ -315,11 +315,52 @@ my_vec[my_vec <= 4] <- 100
 my_vec
 ```
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest we can use the `sort()` function
 
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+vec_sort <- sort(my_vec)
+vec_sort
 ```
 
-ordering
+To reverse the sort, from highest to lowest, we can either include the `decreasing = TRUE` argument when using the `sort()` function
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+vec_sort2 <- sort(my_vec, decreasing = TRUE)
+vec_sort2
+```
+
+or first sort the vector using the `sort()` function and then reverse the sorted vector using the `rev()` function. This is another example of nesting one function inside another function. 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+vec_sort3 <- rev(sort(my_vec))
+vec_sort3
+```
+
+Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the `order()` function in combination with `[ ]`. To demonstrate this let's create a vector called `height` containing the height of 5 different people and another vector called `p.names` containing the names of these people  
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+height <- c(180, 155, 160, 167, 181)
+height
+
+p.names <- c ("Joanna", "Charlotte", "Helen", "Karen", "Amy")
+p.names
+```
+
+Our goal is to order the people in `p.names` in ascending order of their `height`. The first thing we'll do is use the `order()` function with the `height` variable to create a vector called `height_ord`
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+height_ord <- order(height)
+height_ord
+```
+
+OK, what's going on here? To interpret this, let's start with the output from the `height_ord <- order(height)` line of code. The first value, 2, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element 5 which is 181. Now that we have a vector of the position of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+names_ord <- p.names[height_ord]
+names_ord
+```
+
+You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in [Chapter 3](#data_r).
 
 ## Getting help
 
