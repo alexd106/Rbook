@@ -116,7 +116,28 @@ knitr::include_graphics(path = "images/rs_env4.png")
 
 \  
 
-Naming your objects is one of the most difficult things you will do in R (honestly - I'm serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
+Once we have created a few objects, we can do stuff with our objects. For example, the following code
+
+```{r, echo=TRUE, eval=TRUE}
+my_obj3 <- my_obj + my_obj2
+my_obj3
+```
+
+creates a new object `my_obj3` and assigns it the value of `my_obj` added to `my_obj2` which is (48 + 1024 = 1072). Notice that to display the value of `my_obj3` we need to also write out the objects name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (character **class**) you will receive an error
+
+```{r, echo=TRUE, eval=FALSE}
+char_obj <- "hello"
+char_obj2 <- "world!"
+char_obj3 <- char_obj + char_obj2
+Error in char_obj + char_obj2 : non-numeric argument to binary operator
+```
+
+The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (i.e. what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err].
+
+
+## Naming objects
+
+Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
@@ -124,13 +145,15 @@ output.summary <- "my analysis"
 outputSummary <- "my analysis"
 ```
 
-There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than I can remember is 
+There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is 
 
 ```{r, echo=TRUE, eval=FALSE}
 data <- read.table("mydatafile", header = TRUE) # data is a function!
 ```
 
-## Vectors in R
+## Using functions
+
+
 
 vectors  
 extracting, sorting and ordering

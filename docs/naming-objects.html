@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.6 Some tips and tricks | A Introduction to R</title>
+  <title>2.3 Naming objects | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.6 Some tips and tricks | A Introduction to R" />
+  <meta property="og:title" content="2.3 Naming objects | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.6 Some tips and tricks | A Introduction to R" />
+  <meta name="twitter:title" content="2.3 Naming objects | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="r-markdown-anatomy.html"/>
-<link rel="next" href="further-information.html"/>
+<link rel="prev" href="objects-in-r.html"/>
+<link rel="next" href="using-functions.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -286,48 +286,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tips_tricks" class="section level2">
-<h2><span class="header-section-number">7.6</span> Some tips and tricks</h2>
-<p><strong>Problem :</strong></p>
-<p>When rendering my R markdown document to pdf my code runs off the edge of the page.</p>
-<p><strong>Solution:</strong></p>
-<p>Add a global_options argument at the start of your .Rmd file in a code chunk:</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
-&#96;&#96;&#96;
-</code></pre>
-<p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
-<p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
-<p><strong>Problem:</strong></p>
-<p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
-<p><strong>Solution:</strong></p>
-<p>You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) 
-suppressPackageStartupMessages(library(ggplot2))
-&#96;&#96;&#96;
-</code></pre>
-<p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
-<p><strong>Problem:</strong></p>
-<p>When rendering my R markdown document to pdf my tables and/or figures are split over two pages.</p>
-<p><strong>Solution:</strong></p>
-<p>Add a page break using the LateX <code>\pagebreak</code> notation before your offending table or figure</p>
-<p><strong>Problem:</strong></p>
-<p>The code in my rendered document looks ugly!</p>
-<p><strong>Solution:</strong></p>
-<p>Add the argument <code>tidy=TRUE</code> to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
-knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
-&#96;&#96;&#96;
-</code></pre>
+<div id="naming-objects" class="section level2">
+<h2><span class="header-section-number">2.3</span> Naming objects</h2>
+<p>Naming your objects is one of the most difficult things you will do in R (honestly - we’re serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called <a href="https://en.wikipedia.org/wiki/Snake_case"><em>snake case</em></a>)</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">output_summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">output.summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">outputSummary &lt;-<span class="st"> &quot;my analysis&quot;</span></a></code></pre></div>
+<p>There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. <code>2my_variable</code> or <code>.2my_variable</code>). Also, make sure you don’t name your objects with reserved words (i.e. <code>TRUE</code>, <code>NA</code>) and it’s never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;mydatafile&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>) <span class="co"># data is a function!</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="r-markdown-anatomy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="further-information.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="objects-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="using-functions.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -359,7 +333,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/07-rmarkdown.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="getting-started.html"/>
-<link rel="next" href="vectors-in-r.html"/>
+<link rel="next" href="naming-objects.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -174,12 +174,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
 <li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a></li>
-<li class="chapter" data-level="2.3" data-path="vectors-in-r.html"><a href="vectors-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Vectors in R</a></li>
-<li class="chapter" data-level="2.4" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="getting-help.html"><a href="getting-help.html#r-help"><i class="fa fa-check"></i><b>2.4.1</b> R help</a></li>
-<li class="chapter" data-level="2.4.2" data-path="getting-help.html"><a href="getting-help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.4.2</b> Other sources of help</a></li>
+<li class="chapter" data-level="2.3" data-path="naming-objects.html"><a href="naming-objects.html"><i class="fa fa-check"></i><b>2.3</b> Naming objects</a></li>
+<li class="chapter" data-level="2.4" data-path="using-functions.html"><a href="using-functions.html"><i class="fa fa-check"></i><b>2.4</b> Using functions</a></li>
+<li class="chapter" data-level="2.5" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="getting-help.html"><a href="getting-help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
+<li class="chapter" data-level="2.5.2" data-path="getting-help.html"><a href="getting-help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.5</b> Saving in R</a></li>
+<li class="chapter" data-level="2.6" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving in R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
@@ -317,12 +318,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rs_env4.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Naming your objects is one of the most difficult things you will do in R (honestly - I’m serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called <a href="https://en.wikipedia.org/wiki/Snake_case"><em>snake case</em></a>)</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">output_summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">output.summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">outputSummary &lt;-<span class="st"> &quot;my analysis&quot;</span></a></code></pre></div>
-<p>There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. <code>2my_variable</code> or <code>.2my_variable</code>). Also, make sure you don’t name your objects with reserved words (i.e. <code>TRUE</code>, <code>NA</code>) and it’s never a good idea to give your object the same name as a built-in function. One that crops up more times than I can remember is</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;mydatafile&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>) <span class="co"># data is a function!</span></a></code></pre></div>
+<p>Once we have created a few objects, we can do stuff with our objects. For example, the following code</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">my_obj3 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>my_obj2</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">my_obj3</a>
+<a class="sourceLine" id="cb31-3" data-line-number="3"><span class="co"># [1] 1072</span></a></code></pre></div>
+<p>creates a new object <code>my_obj3</code> and assigns it the value of <code>my_obj</code> added to <code>my_obj2</code> which is (48 + 1024 = 1072). Notice that to display the value of <code>my_obj3</code> we need to also write out the objects name. The above code works because the values of both <code>my_obj</code> and <code>my_obj2</code> are numeric (i.e. a number). If you try to do this with objects with character values (character <strong>class</strong>) you will receive an error</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">char_obj &lt;-<span class="st"> &quot;hello&quot;</span></a>
+<a class="sourceLine" id="cb32-2" data-line-number="2">char_obj2 &lt;-<span class="st"> &quot;world!&quot;</span></a>
+<a class="sourceLine" id="cb32-3" data-line-number="3">char_obj3 &lt;-<span class="st"> </span>char_obj <span class="op">+</span><span class="st"> </span>char_obj2</a>
+<a class="sourceLine" id="cb32-4" data-line-number="4">Error <span class="cf">in</span> char_obj <span class="op">+</span><span class="st"> </span>char_obj2 <span class="op">:</span><span class="st"> </span>non<span class="op">-</span>numeric argument to binary operator</a></code></pre></div>
+<p>The error message is essentially telling you that either one or both of the objects <code>char_obj</code> and <code>char_obj2</code> is not a number and therefore cannot be added together. When you first start learning R, dealing with errors and warnings can be frustrating as they’re often difficult to understand (i.e. what’s an <a href="https://www.quora.com/What-is-an-%E2%80%9Cargument%E2%80%9D-in-an-R-function"><em>argument</em></a>? what’s a <a href="https://www.statmethods.net/management/operators.html"><em>binary operator</em></a>?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling <a href="https://www.google.com/search?client=firefox-b-d&amp;q=non-numeric+argument+to+binary+operator+error+%2B+r"><em>‘non-numeric argument to binary operator error + r’</em></a> or even <a href="https://www.google.com/search?client=firefox-b-d&amp;q=common+r+error+messages"><em>‘common r error messages’</em></a>.</p>
 </div>
             </section>
 
@@ -330,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="getting-started.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="vectors-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="naming-objects.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -107,5 +107,10 @@
 [uoa]: https://www.abdn.ac.uk
 [comment]: https://en.wikipedia.org/wiki/Comment_(computer_programming)
 [snake]: https://en.wikipedia.org/wiki/Snake_case
+[bin_op]: https://www.statmethods.net/management/operators.html
+[r_arg]: https://www.quora.com/What-is-an-%E2%80%9Cargument%E2%80%9D-in-an-R-function
+[com_err]: https://www.google.com/search?client=firefox-b-d&q=common+r+error+messages
+[non_num_err]: https://www.google.com/search?client=firefox-b-d&q=non-numeric+argument+to+binary+operator+error+%2B+r
+
 
 
