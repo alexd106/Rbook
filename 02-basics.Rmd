@@ -262,9 +262,64 @@ my_seq7
 ```
 
 
-## Manipulating objects
+### Manipulating vectors
 
-extracting, sorting and ordering  
+Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We will go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in [Chapter 3](#data_r). 
+
+To extract some of the values (more generally known as elements) from a vector we should use the square bracket `[ ]` notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector `my_vec` we created before 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec        # remind ourselves what my_vec looks like
+my_vec[3]     # extract the 3rd value
+
+# if you want to store this value in another object
+
+val_3 <- my_vec[3]
+val_3
+```
+
+We can also extract more than one value by using the `c()` function inside the square brackets
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec[c(1, 5, 6, 8, 9)]
+```
+
+or extract a range of values using the `:` notation
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec[3:8]
+```
+
+It is also often useful to be able to extract values from a vector using a logical condition. For example, to extract all elements with a value greater than 4 in the vector `my_vec`
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec[my_vec > 4]
+```
+
+Notice in the above code that we also need to include the name of the vector inside the square brackets when using logical operators.
+
+Other useful logical operators include
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec[my_vec >= 4]         # values greater or equal to 4
+my_vec[my_vec < 4]         # values less than 4
+my_vec[my_vec <= 4]         # values less than or equal to 4
+my_vec[my_vec == 4]         # values equal to 4
+my_vec[my_vec != 4]         # values not equal to 4
+```
+
+We can take this one step further and change the values of some elements based on a logical test by using the assignment operator `<-`. To replace all values in `my_vec` that have a value less than or equal to 4 with the number 100
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_vec[my_vec <= 4] <- 100
+my_vec
+```
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+
+```
+
+ordering
 
 ## Getting help
 
@@ -273,10 +328,6 @@ extracting, sorting and ordering
 ### Other sources of help
 
 ## Saving in R
-
-
-vectors  
-extracting, sorting and ordering  
 
 
 
