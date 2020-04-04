@@ -21,7 +21,7 @@ options(
 )
 
 options(
-	digits = 3,
+	digits = 4,
 	str = strOptions(strict.width = "cut")
 )
 
