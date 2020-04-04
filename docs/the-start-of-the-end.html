@@ -579,7 +579,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb75-10" data-line-number="10"><span class="co">#             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
 <a class="sourceLine" id="cb75-11" data-line-number="11"><span class="co">#                 size = rel(2)), complete = TRUE)</span></a>
 <a class="sourceLine" id="cb75-12" data-line-number="12"><span class="co"># }</span></a>
-<a class="sourceLine" id="cb75-13" data-line-number="13"><span class="co"># &lt;bytecode: 0x7fc35131bbf0&gt;</span></a>
+<a class="sourceLine" id="cb75-13" data-line-number="13"><span class="co"># &lt;bytecode: 0x7fb27db6e140&gt;</span></a>
 <a class="sourceLine" id="cb75-14" data-line-number="14"><span class="co"># &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <ul>
@@ -645,7 +645,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Rbook_files/figure-html/geom_hline-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Notice how we included the function <code>mean(shootarea)</code> within the <code>geom_hline()</code> function? We could also do that externally to the <code>ggplot2</code> code and get the same result.</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1"><span class="kw">mean</span>(flower<span class="op">$</span>shootarea)</a>
-<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="co"># [1] 79.8</span></a></code></pre></div>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="co"># [1] 79.78</span></a></code></pre></div>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
 <a class="sourceLine" id="cb81-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb81-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>

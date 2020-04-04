@@ -123,7 +123,7 @@ my_obj3 <- my_obj + my_obj2
 my_obj3
 ```
 
-creates a new object `my_obj3` and assigns it the value of `my_obj` added to `my_obj2` which is (48 + 1024 = 1072). Notice that to display the value of `my_obj3` we need to also write out the objects name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (**character class**) you will receive an error
+creates a new object `my_obj3` and assigns it the value of `my_obj` added to `my_obj2` which is 1072 (48 + 1024 = 1072). Notice that to display the value of `my_obj3` we also need to write the object's name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (**character class**) you will receive an error
 
 ```{r, echo=TRUE, eval=FALSE}
 char_obj <- "hello"
@@ -148,7 +148,7 @@ R returns an error message because we haven't created (defined) the object `no_o
 
 ## Naming objects
 
-Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
+Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called [*snake case*][snake])
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
@@ -156,7 +156,7 @@ output.summary <- "my analysis"
 outputSummary <- "my analysis"
 ```
 
-There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is 
+There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  You should also avoid using non-alphanumeric characters in your object names (i.e. &, ^, /, ! etc). In addition, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is 
 
 ```{r, echo=TRUE, eval=FALSE}
 data <- read.table("mydatafile", header = TRUE) # data is a function!
@@ -164,15 +164,15 @@ data <- read.table("mydatafile", header = TRUE) # data is a function!
 
 ## Using functions
 
-Up till now we've been creating simple objects by directly assigning a single value to an object. It's very likely that you'll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000's of [packages](#packages) now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in [Chapter 6](#prog_r)).
+Up until now we've been creating simple objects by directly assigning a single value to an object. It's very likely that you'll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000's of [packages](#packages) now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in [Chapter 6](#prog_r)).
 
-The first function we will learn is the function `c()` which we will use to join together a series of numbers and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). The `c()` function is short for concatenate.
+The first function we will learn about is the `c()` function which we will use to join together a series of numbers and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). The `c()` function is short for concatenate.
 
 ```{r, echo=TRUE, eval=TRUE}
 my_vec <- c(2, 3, 1, 6, 4, 3, 3, 7)
 ```
 
-In the code above we have created an object called `my_vec` and assigned it a value using the function `c()`. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is **always** followed by a pair of round brackets even if there's nothing contained between the brackets. Secondly, the argument(s) of the function a placed within the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this [later](#help)) and a quick Google search will also usually help you out. 
+In the code above we have created an object called `my_vec` and assigned it a value using the function `c()`. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is **always** followed by a pair of round brackets even if there's nothing contained between the brackets. Secondly, the argument(s) of a function are placed within the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this [later](#help)) and a quick Google search will also usually help you out. 
 
 To examine the value of our new object we can simply type out the name of the object as we did before
 
@@ -180,7 +180,7 @@ To examine the value of our new object we can simply type out the name of the ob
 my_vec
 ```
 
-Now that we've created a vector we can use other functions on this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`, `var()`, `sd()`, `length()` functions
+Now that we've created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`, `var()`, `sd()` and `length()` functions
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean(my_vec)          # returns the mean of my_vec
@@ -196,11 +196,13 @@ vec_mean <- mean(my_vec)          # returns the mean of my_vec
 vec_mean
 ```
 
-Sometimes it is useful to create a vector that contains a regular sequence of values in steps of one. Here we can make use of a shortcut using the `:` symbol.
+Sometimes it can be useful to create a vector that contains a regular sequence of values in steps of one. Here we can make use of a shortcut using the `:` symbol.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_seq <- 1:10     # create regular sequence
+my_seq
 my_seq2 <- 10:1    # in decending order
+my_seq2
 ```
 
 Other useful functions for generating vectors of sequences include the `seq()` and `rep()` functions. For example, to generate a sequence from 1 to 5 in steps of 0.5
@@ -210,7 +212,7 @@ my_seq2 <- seq(from = 1, to = 5, by = 0.5)
 my_seq2
 ```
 
-Here we have used the arguments `from =` and `to =` to define the limits of the sequence and the `by =` argument to specify the increment of the sequence.
+Here we have used the arguments `from =` and `to =` to define the limits of the sequence and the `by =` argument to specify the increment of the sequence. Try out other values for the arguments to see their effect.
 
 The `rep()` function allows you to replicate (repeat) values a specified number of times. To repeat the value 2, 10 times
 
@@ -247,7 +249,7 @@ my_seq7 <- rep(c(3, 1, 10, 7), each = 3)	# repeats each element of the series 3 
 my_seq7
 ```
 
-Note in the code above how we've used a function (`c()`) inside another function (`seq()`). This allows us to build quite complex commands within a single line of code and is very common when using R. However, care needs to be taken as too many bested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code and explicitly separate the two different steps of generating a vector to repeat and then repeating this vector. Either approaches will give the same results, you just need to use your own judgement as to which is more readable.
+Note in the code above how we've used a function (`c()`) inside another function (`seq()`). This allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code and explicitly separate the two different steps of generating a vector to repeat and then repeating this vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 in_vec <- c(3, 1, 10, 7)
