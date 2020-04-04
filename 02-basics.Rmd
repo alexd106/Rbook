@@ -132,12 +132,21 @@ char_obj3 <- char_obj + char_obj2
 Error in char_obj + char_obj2 : non-numeric argument to binary operator
 ```
 
-The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (i.e. what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err].
+The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (i.e. what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err]. 
 
+Another error message that you will get quite alot when you first start using R is `Error: object 'XXX' not found`. As an example, take a look at the code below
+
+```{r, echo=TRUE, eval=FALSE}
+my_obj <- 48
+my_obj4 <- my_obj + no_obj
+Error: object 'no_obj' not found
+```
+
+R returns an error message because we haven't created (defined) the object `no_obj` yet. You should also realise that because the code returned an error message the object `my_obj4` has not been created.  
 
 ## Naming objects
 
-Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
+Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
