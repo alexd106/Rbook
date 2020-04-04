@@ -43,13 +43,13 @@ It's important to realise that when you run code as we've done above, the result
 
 At the heart of almost everything you will do (or ever likely do) in R is the concept that everything in R is an [object][chambers]. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.
 
-To create an object we simply give the object a name. We can then assign a value(s) to this object using the *assignment operator* `<-` (sometimes called the *gets operator*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` . For example
+To create an object we simply give the object a name. We can then assign a value to this object using the *assignment operator* `<-` (sometimes called the *gets operator*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` .
 
 ```{r, echo=TRUE, eval=TRUE}
 my_obj <- 48
 ```
 
-In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in my head I always read this as '*`my_obj` gets 48*'). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
+In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in my head I always read this as '*my_obj gets 48*'). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
 
 To view the value of the object you simply type the name of the object
 
@@ -57,7 +57,7 @@ To view the value of the object you simply type the name of the object
 my_obj
 ```
 
-Now that we've created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and in RStudio you can view all the objects in your workspace by clicking on the 'Environment' tab in the right hand pane 
+Now that we've created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and in RStudio you can view all the objects in your workspace by clicking on the 'Environment' tab in the right hand pane. 
 
 \  
 
@@ -83,14 +83,14 @@ There are many different types of values that you can assign to an object. For e
 my_obj2 <- "R is cool"
 ```
 
-Here we have created an object called `my_obj2` and assigned it a value of the `R is cool` which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message
+Here we have created an object called `my_obj2` and assigned it a value of `R is cool` which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message
 
 ```{r, echo=TRUE, eval=FALSE}
 my_obj2 <- R is cool
 Error: unexpected symbol in "my_obj2 <- R is"
 ```
 
-Our workspace now contains both objects we have created so far with `my_obj2` is listed as type character.  
+Our workspace now contains both objects we have created so far with `my_obj2` listed as type character.  
 
 \  
 
@@ -100,7 +100,7 @@ knitr::include_graphics(path = "images/rs_env3.png")
 
 \  
 
-We will return to the different classes of objects throughout this book. To change the value of an existing object we simple reassign our new value to it. For example to change the value of `my_obj2` from `R is cool` to the number 1024
+  To change the value of an existing object we simple reassign our new value to it. For example to change the value of `my_obj2` from `"R is cool"` to the number `1024`
 
 ```{r, echo=TRUE, eval=TRUE}
 my_obj2 <- 1024
@@ -123,7 +123,7 @@ my_obj3 <- my_obj + my_obj2
 my_obj3
 ```
 
-creates a new object `my_obj3` and assigns it the value of `my_obj` added to `my_obj2` which is (48 + 1024 = 1072). Notice that to display the value of `my_obj3` we need to also write out the objects name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (character **class**) you will receive an error
+creates a new object `my_obj3` and assigns it the value of `my_obj` added to `my_obj2` which is (48 + 1024 = 1072). Notice that to display the value of `my_obj3` we need to also write out the objects name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (**character class**) you will receive an error
 
 ```{r, echo=TRUE, eval=FALSE}
 char_obj <- "hello"
@@ -132,9 +132,11 @@ char_obj3 <- char_obj + char_obj2
 Error in char_obj + char_obj2 : non-numeric argument to binary operator
 ```
 
-The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (i.e. what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err]. 
+The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. 
 
-Another error message that you will get quite alot when you first start using R is `Error: object 'XXX' not found`. As an example, take a look at the code below
+When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err]. 
+
+Another error message that you'll get quite alot when you first start using R is `Error: object 'XXX' not found`. As an example, take a look at the code below
 
 ```{r, echo=TRUE, eval=FALSE}
 my_obj <- 48
@@ -146,7 +148,7 @@ R returns an error message because we haven't created (defined) the object `no_o
 
 ## Naming objects
 
-Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
+Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
@@ -162,14 +164,102 @@ data <- read.table("mydatafile", header = TRUE) # data is a function!
 
 ## Using functions
 
+Up till now we've been creating simple objects by directly assigning a single value to an object. It's very likely that you'll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000's of [packages](#packages) now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in [Chapter 6](#prog_r)).
 
+The first function we will learn is the function `c()` which we will use to join together a series of numbers and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). The `c()` function is short for concatenate.
 
-vectors  
+```{r, echo=TRUE, eval=TRUE}
+my_vec <- c(2, 3, 1, 6, 4, 3, 3, 7)
+```
+
+In the code above we have created an object called `my_vec` and assigned it a value using the function `c()`. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is **always** followed by a pair of round brackets even if there's nothing contained between the brackets. Secondly, the argument(s) of the function a placed within the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this [later](#help)) and a quick Google search will also usually help you out. 
+
+To examine the value of our new object we can simply type out the name of the object as we did before
+
+```{r, echo=TRUE, eval=TRUE}
+my_vec
+```
+
+Now that we've created a vector we can use other functions on this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`, `var()`, `sd()`, `length()` functions
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+mean(my_vec)          # returns the mean of my_vec
+var(my_vec)           # returns the variance of my_vec
+sd(my_vec)            # returns the standard deviation of my_vec
+length(my_vec)        # returns the number of elements in my_vec
+```
+
+If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+vec_mean <- mean(my_vec)          # returns the mean of my_vec
+vec_mean
+```
+
+Sometimes it is useful to create a vector that contains a regular sequence of values in steps of one. Here we can make use of a shortcut using the `:` symbol.
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq <- 1:10     # create regular sequence
+my_seq2 <- 10:1    # in decending order
+```
+
+Other useful functions for generating vectors of sequences include the `seq()` and `rep()` functions. For example, to generate a sequence from 1 to 5 in steps of 0.5
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq2 <- seq(from = 1, to = 5, by = 0.5)
+my_seq2
+```
+
+Here we have used the arguments `from =` and `to =` to define the limits of the sequence and the `by =` argument to specify the increment of the sequence.
+
+The `rep()` function allows you to replicate (repeat) values a specified number of times. To repeat the value 2, 10 times
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq3 <- rep(2, times = 10)	# repeats 2, 10 times
+my_seq3
+```
+
+You can also repeat non-numeric values
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq4 <- rep("abc", times = 3)	# repeats ‘abc’ 3 times 
+my_seq4
+```
+
+or repeat a series
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq5 <- rep(1:5, times = 3)		# repeats the series 1 to 5, 3 times
+my_seq5
+```
+
+or elements of a series
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq6 <- rep(1:5, each = 3)	# repeats each element of the series 3 times
+my_seq6
+```
+
+We can also repeat a non-sequential series
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq7 <- rep(c(3, 1, 10, 7), each = 3)	# repeats each element of the series 3 times
+my_seq7
+```
+
+Note in the code above how we've used a function (`c()`) inside another function (`seq()`). This allows us to build quite complex commands within a single line of code and is very common when using R. However, care needs to be taken as too many bested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code and explicitly separate the two different steps of generating a vector to repeat and then repeating this vector. Either approaches will give the same results, you just need to use your own judgement as to which is more readable.
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+in_vec <- c(3, 1, 10, 7)
+my_seq7 <- rep(in_vec, each = 3)	# repeats each element of the series 3 times
+my_seq7
+```
+
 extracting, sorting and ordering
 
 ## Getting help
 
-### R help
+### R help {#help}
 
 ### Other sources of help
 
