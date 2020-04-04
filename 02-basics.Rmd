@@ -43,17 +43,15 @@ It's important to realise that when you run code as we've done above, the result
 
 At the heart of almost everything you will do (or ever likely do) in R is the concept that everything in R is an [object][chambers]. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.
 
-To create an object we simply give the object a name. We can then assign a value(s) to this object using the *assignment operator* `<-` (sometimes called the *gets*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` . For example
+To create an object we simply give the object a name. We can then assign a value(s) to this object using the *assignment operator* `<-` (sometimes called the *gets operator*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` . For example
 
 ```{r, echo=TRUE, eval=TRUE}
 my_obj <- 48
 ```
 
-In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in my head I always read this as `my_obj` gets 48). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
+In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in my head I always read this as '*`my_obj` gets 48*'). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
 
 To view the value of the object you simply type the name of the object
-
-\  
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_obj
@@ -79,7 +77,7 @@ knitr::include_graphics(path = "images/rs_env2.png")
 
 \  
 
-There are many different types of values that you can assign to an object. For instance 
+There are many different types of values that you can assign to an object. For example 
 
 ```{r, echo=TRUE, eval=TRUE}
 my_obj2 <- "R is cool"
@@ -92,7 +90,7 @@ my_obj2 <- R is cool
 Error: unexpected symbol in "my_obj2 <- R is"
 ```
 
-Our workspace now contains the two objects we have created with `my_obj2` is listed as type character.  
+Our workspace now contains both objects we have created so far with `my_obj2` is listed as type character.  
 
 \  
 
@@ -118,15 +116,15 @@ knitr::include_graphics(path = "images/rs_env4.png")
 
 \  
 
-Naming your objects is one of the most difficult things you will do in R (honestly - I'm serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words
+Naming your objects is one of the most difficult things you will do in R (honestly - I'm serious). Ideally your object names should be kept short and informative (not always easy). If you need to create objects with multiple words use either an underscore, dot or capitalise the different words. We prefer the underscore format (also called [*snake case*][snake])
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
-output_summary <- "my analysis"
+output.summary <- "my analysis"
 outputSummary <- "my analysis"
 ```
 
-There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `.2myvariable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your variable the same name as a built-in function. One that crops up more times than I can remember is 
+There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  Also, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than I can remember is 
 
 ```{r, echo=TRUE, eval=FALSE}
 data <- read.table("mydatafile", header = TRUE) # data is a function!
