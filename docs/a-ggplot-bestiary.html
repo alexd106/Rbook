@@ -365,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb93-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_quantile</span>(<span class="dt">colour =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb93-4" data-line-number="4"><span class="st">    </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Weight&quot;</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb93-5" data-line-number="5"><span class="st">    </span><span class="kw">theme_rbook</span>()</a>
-<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="co">#&gt; Smoothing formula not specified. Using: y ~ x</span></a></code></pre></div>
+<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="co"># Smoothing formula not specified. Using: y ~ x</span></a></code></pre></div>
 <p><img src="Rbook_files/figure-html/quantile%20lines-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="heatmap" class="section level3">
@@ -422,27 +422,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>For this next figure we will need an additional package, called <code>GGally</code>. Within <code>GGally</code> is a function called <code>ggpairs()</code> which is equivalent to <code>pairs()</code> (part of base R). Both function produce comparative plots of all variables of interest. Running diagonally down from left to right, are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.</p>
 <p>Such figures are a fantastic way to quickly show relationships in the dataset. They can of course be used to plot only part of the dataset, for instance using <code>flowers[ , 1:5]</code> to plot the first five columns of the dataset.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb99-1" data-line-number="1"><span class="kw">library</span>(GGally)</a>
-<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="co">#&gt; Registered S3 method overwritten by &#39;GGally&#39;:</span></a>
-<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="co">#&gt;   method from   </span></a>
-<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="co">#&gt;   +.gg   ggplot2</span></a>
+<a class="sourceLine" id="cb99-2" data-line-number="2"><span class="co"># Registered S3 method overwritten by &#39;GGally&#39;:</span></a>
+<a class="sourceLine" id="cb99-3" data-line-number="3"><span class="co">#   method from   </span></a>
+<a class="sourceLine" id="cb99-4" data-line-number="4"><span class="co">#   +.gg   ggplot2</span></a>
 <a class="sourceLine" id="cb99-5" data-line-number="5">flower<span class="op">$</span>block &lt;-<span class="st"> </span><span class="kw">factor</span>(flower<span class="op">$</span>block)</a>
 <a class="sourceLine" id="cb99-6" data-line-number="6"><span class="kw">ggpairs</span>(flower, ggplot2<span class="op">::</span><span class="kw">aes</span>(<span class="dt">colour =</span> nitrogen)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb99-7" data-line-number="7"><span class="st">    </span><span class="kw">theme_rbook</span>()</a>
-<a class="sourceLine" id="cb99-8" data-line-number="8"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-10" data-line-number="10"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-11" data-line-number="11"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-12" data-line-number="12"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-13" data-line-number="13"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-14" data-line-number="14"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-15" data-line-number="15"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-16" data-line-number="16"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-17" data-line-number="17"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-18" data-line-number="18"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-19" data-line-number="19"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-20" data-line-number="20"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-21" data-line-number="21"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
-<a class="sourceLine" id="cb99-22" data-line-number="22"><span class="co">#&gt; `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
+<a class="sourceLine" id="cb99-8" data-line-number="8"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-9" data-line-number="9"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-10" data-line-number="10"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-11" data-line-number="11"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-12" data-line-number="12"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-13" data-line-number="13"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-14" data-line-number="14"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-15" data-line-number="15"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-16" data-line-number="16"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-17" data-line-number="17"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-18" data-line-number="18"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-19" data-line-number="19"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-20" data-line-number="20"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-21" data-line-number="21"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a>
+<a class="sourceLine" id="cb99-22" data-line-number="22"><span class="co"># `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</span></a></code></pre></div>
 <p><img src="Rbook_files/figure-html/pairs%20plot-1.png" width="75%" style="display: block; margin: auto;" /></p>
 
 </div>

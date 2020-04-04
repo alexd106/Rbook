@@ -105,5 +105,6 @@
 [op-prec]: https://en.wikipedia.org/wiki/Order_of_operations
 [chambers]: https://journal.r-project.org/archive/2009-1/RJournal_2009-1_Chambers.pdf
 [uoa]: https://www.abdn.ac.uk
+[comment]: https://en.wikipedia.org/wiki/Comment_(computer_programming)
 
 

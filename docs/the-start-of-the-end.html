@@ -301,15 +301,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>And here we have it. A fully formed, perfect <code>ggplot</code>. We may have a small issue though. Some puritan data visualisers/plotists/figurines make the claim that figures should include some form of information beyond a light grey background. As loathe as I am to agree with purists, I will do so here. We really should include some data. To do so, we need some data.</p>
 <p>We’ll keep using the flower dataset that you used in the earlier chapters. Let’s have a quick reminder of what the data looked like.</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="kw">str</span>(flower)</a>
-<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co">#&gt; &#39;data.frame&#39;:    96 obs. of  8 variables:</span></a>
-<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#&gt;  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
-<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#&gt;  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#&gt;  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></a>
-<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#&gt;  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></a>
-<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#&gt;  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></a>
-<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#&gt;  $ leafarea : num  11.7 14.1 7.1 11.9 14.5 12.2 13.2 14 10.5 16.1 ...</span></a>
-<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">#&gt;  $ shootarea: num  31.9 46 66.7 20.3 26.9 72.7 43.1 28.5 57.8 36.9 ...</span></a>
-<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">#&gt;  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></a></code></pre></div>
+<a class="sourceLine" id="cb35-2" data-line-number="2"><span class="co"># &#39;data.frame&#39;: 96 obs. of  8 variables:</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3"><span class="co">#  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb35-4" data-line-number="4"><span class="co">#  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb35-5" data-line-number="5"><span class="co">#  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></a>
+<a class="sourceLine" id="cb35-6" data-line-number="6"><span class="co">#  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></a>
+<a class="sourceLine" id="cb35-7" data-line-number="7"><span class="co">#  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></a>
+<a class="sourceLine" id="cb35-8" data-line-number="8"><span class="co">#  $ leafarea : num  11.7 14.1 7.1 11.9 14.5 12.2 13.2 14 10.5 16.1 ...</span></a>
+<a class="sourceLine" id="cb35-9" data-line-number="9"><span class="co">#  $ shootarea: num  31.9 46 66.7 20.3 26.9 72.7 43.1 28.5 57.8 36.9 ...</span></a>
+<a class="sourceLine" id="cb35-10" data-line-number="10"><span class="co">#  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></a></code></pre></div>
 <p>We know from the “final figure” that we want shootarea on the y axis and weight on the x axis. To do so in <code>ggplot2</code> we need to make use of the <code>aes()</code> function and also fulfill the <code>data =</code> argument. <code>aes</code> is short for aesthetics, and it’s the function we use to specify what we want displayed in the figure. If we did not include the <code>aes()</code> function, then the x and y arguments would be ignored. This is a good rule to keep in mind when using <code>ggplot2</code>. The things we want displayed on the figure is included in <code>aes()</code>. All features which alter this displayed information, not based on a variable in our dataset, is included outside of the <code>aes()</code> function. Let’s try it now:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1"><span class="co"># Including aesthetics for x and y axes as well as specifying the dataset</span></a>
 <a class="sourceLine" id="cb36-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) </a></code></pre></div>
@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb39-3" data-line-number="3"><span class="st">    </span></a>
 <a class="sourceLine" id="cb39-4" data-line-number="4"><span class="st">    </span><span class="co"># Changing to geom_smooth</span></a>
 <a class="sourceLine" id="cb39-5" data-line-number="5"><span class="st">    </span><span class="kw">geom_smooth</span>()</a>
-<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co">#&gt; `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></a></code></pre></div>
+<a class="sourceLine" id="cb39-6" data-line-number="6"><span class="co"># `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</span></a></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_smooth-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way this line was drawn was using a method called “LOESS” (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others (<code>ggplot2</code> will use LOESS as default when you have &lt; 1000 observations). Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called “lm” (short for linear model - see Chapter 5 for more details). Try looking at the help file, using <code>?geom_smooth</code>, to see what other options are available for the <code>method =</code> argument.</p>
 <p>While we’re at it, let’s get rid of the confidence interval ribbon around the line. I prefer to do this as I think it’s clearer to the audience that this isn’t a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the <code>se =</code> argument (short for standard error) to FALSE.</p>
@@ -567,19 +567,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb59-46" data-line-number="46"><span class="co">#   (minimal | light)</span></a></code></pre></div>
 <p>In terms of finding a theme that most closely matches our “final figure”, it’s probably going to be <code>theme_classic()</code>. There are additional themes available to you, and even more available online. <code>ggthemes</code> is a package you can download to get even more theme options. The BBC even have their own <code>ggplot2</code> theme called “BBplot” (though I personally don’t like it too much for scientific figures). Indeed, you can even make your own theme which is what we’ll work on next. To begin with, we’ll have a look to see how <code>theme_classic()</code> was coded. We can do that easily enough by just writing the function name without the paranethesis (brackets).</p>
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">theme_classic</a>
-<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="co">#&gt; function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co">#&gt;     base_rect_size = base_size/22) </span></a>
-<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="co">#&gt; {</span></a>
-<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="co">#&gt;     theme_bw(base_size = base_size, base_family = base_family, </span></a>
-<a class="sourceLine" id="cb60-6" data-line-number="6"><span class="co">#&gt;         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></a>
-<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="co">#&gt;         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></a>
-<a class="sourceLine" id="cb60-8" data-line-number="8"><span class="co">#&gt;             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></a>
-<a class="sourceLine" id="cb60-9" data-line-number="9"><span class="co">#&gt;                 size = rel(1)), legend.key = element_blank(), </span></a>
-<a class="sourceLine" id="cb60-10" data-line-number="10"><span class="co">#&gt;             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
-<a class="sourceLine" id="cb60-11" data-line-number="11"><span class="co">#&gt;                 size = rel(2)), complete = TRUE)</span></a>
-<a class="sourceLine" id="cb60-12" data-line-number="12"><span class="co">#&gt; }</span></a>
-<a class="sourceLine" id="cb60-13" data-line-number="13"><span class="co">#&gt; &lt;bytecode: 0x7ff7f7f87388&gt;</span></a>
-<a class="sourceLine" id="cb60-14" data-line-number="14"><span class="co">#&gt; &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
+<a class="sourceLine" id="cb60-2" data-line-number="2"><span class="co"># function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co">#     base_rect_size = base_size/22) </span></a>
+<a class="sourceLine" id="cb60-4" data-line-number="4"><span class="co"># {</span></a>
+<a class="sourceLine" id="cb60-5" data-line-number="5"><span class="co">#     theme_bw(base_size = base_size, base_family = base_family, </span></a>
+<a class="sourceLine" id="cb60-6" data-line-number="6"><span class="co">#         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></a>
+<a class="sourceLine" id="cb60-7" data-line-number="7"><span class="co">#         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></a>
+<a class="sourceLine" id="cb60-8" data-line-number="8"><span class="co">#             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></a>
+<a class="sourceLine" id="cb60-9" data-line-number="9"><span class="co">#                 size = rel(1)), legend.key = element_blank(), </span></a>
+<a class="sourceLine" id="cb60-10" data-line-number="10"><span class="co">#             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
+<a class="sourceLine" id="cb60-11" data-line-number="11"><span class="co">#                 size = rel(2)), complete = TRUE)</span></a>
+<a class="sourceLine" id="cb60-12" data-line-number="12"><span class="co"># }</span></a>
+<a class="sourceLine" id="cb60-13" data-line-number="13"><span class="co"># &lt;bytecode: 0x7fc9944ccb00&gt;</span></a>
+<a class="sourceLine" id="cb60-14" data-line-number="14"><span class="co"># &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <ul>
 <li>Font size for axis titles = 20</li>
@@ -644,7 +644,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="Rbook_files/figure-html/geom_hline-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Notice how we included the function <code>mean(shootarea)</code> within the <code>geom_hline()</code> function? We could also do that externally to the <code>ggplot2</code> code and get the same result.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="kw">mean</span>(flower<span class="op">$</span>shootarea)</a>
-<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="co">#&gt; [1] 79.8</span></a></code></pre></div>
+<a class="sourceLine" id="cb65-2" data-line-number="2"><span class="co"># [1] 79.8</span></a></code></pre></div>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
 <a class="sourceLine" id="cb66-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
 <a class="sourceLine" id="cb66-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></a>

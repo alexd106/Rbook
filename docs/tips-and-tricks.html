@@ -308,11 +308,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb72-15" data-line-number="15"><span class="st">    </span><span class="co"># New x and y limits</span></a>
 <a class="sourceLine" id="cb72-16" data-line-number="16"><span class="st">    </span><span class="kw">xlim</span>(<span class="kw">c</span>(<span class="dv">10</span>, <span class="dv">15</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb72-17" data-line-number="17"><span class="st">    </span><span class="kw">ylim</span>(<span class="kw">c</span>(<span class="dv">50</span>, <span class="dv">150</span>))</a>
-<a class="sourceLine" id="cb72-18" data-line-number="18"><span class="co">#&gt; Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></a>
+<a class="sourceLine" id="cb72-18" data-line-number="18"><span class="co"># Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></a>
 <a class="sourceLine" id="cb72-19" data-line-number="19"></a>
-<a class="sourceLine" id="cb72-20" data-line-number="20"><span class="co">#&gt; Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></a>
-<a class="sourceLine" id="cb72-21" data-line-number="21"><span class="co">#&gt; Warning: Removed 68 rows containing missing values (geom_point).</span></a>
-<a class="sourceLine" id="cb72-22" data-line-number="22"><span class="co">#&gt; Warning: Removed 6 rows containing missing values (geom_smooth).</span></a></code></pre></div>
+<a class="sourceLine" id="cb72-20" data-line-number="20"><span class="co"># Warning: Removed 68 rows containing non-finite values (stat_smooth).</span></a>
+<a class="sourceLine" id="cb72-21" data-line-number="21"><span class="co"># Warning: Removed 68 rows containing missing values (geom_point).</span></a>
+<a class="sourceLine" id="cb72-22" data-line-number="22"><span class="co"># Warning: Removed 6 rows containing missing values (geom_smooth).</span></a></code></pre></div>
 <p><img src="Rbook_files/figure-html/axis%20limits-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Notice the warning messages we get, telling us that n rows contain either missing or non-finite values? That’s because we’ve essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified). As a result of doing this our lines have no completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; <code>coord_cartesian()</code>.</p>
 <p><code>coord_cartesian()</code> works in much the same way, but instead of chopping out data, it instead zooms in. Doing so means that the entire dataset is maintained (and any trends are maintained).</p>
