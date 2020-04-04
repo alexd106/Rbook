@@ -290,7 +290,7 @@ Or we can extract a range of values using the `:` notation. To extract the value
 my_vec[3:8]
 ```
 
-It is also often useful to be able to extract values from a vector using a logical condition. For example, to extract all elements with a value greater than 4 in the vector `my_vec`
+It is often useful to be able to extract values from a vector using a logical condition. For example, to extract all elements with a value greater than 4 in the vector `my_vec`
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[my_vec > 4]
@@ -364,7 +364,80 @@ You're probably thinking ‘what’s the use of this?’ Well, imagine you have 
 
 ## Getting help
 
+This book is intended as a relatively brief introduction to R and as such you will soon be using functions and packages that go beyond this scope of this introductory text. Fortunately, one of the strengths of R is its comprehensive and easily accessible help system and wealth of online resources where you can obtain further information. 
+
 ### R help {#help}
+
+To access R’s built-in help facility to get specific information on any function simply use the `help()` function. For example, to open the help page for the function `mean()` we used previously
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+help("mean")
+```
+
+or you can use the equivalent shortcut 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+?mean
+```
+
+the help page is displayed in the 'Help' tab in the Files pane (usually in the bottom right of RStudio) 
+
+\  
+
+```{r rstudio_help, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_help.png")
+```
+
+\  
+
+Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they're written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One big advantage of the R help file is that the structure is consistent no matter what function you are looking for help with. Each help file will contain a number of sections described below.   
+
+The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as
+
+
+  - **Description:**	gives a brief description of the function.
+  
+  - **Usage:** 	gives the name of the arguments associated with the function and possible default values (options).
+  
+  - **Arguments:** provides more detail regarding each argument.
+  
+  - **Details:** 	gives further details of the function.
+  
+  - **Value:**	 if applicable, gives the type and structure of the object returned by the function or the operator.
+  
+  - **See Also:** 	provides information on other help pages with similar or related content.
+  
+  - **Examples:** 	gives some examples of using the function. You can also access examples at any time by using the `example()` function (i.e. `example(mean)`)
+
+The `help()` function is useful if you know the name of the function. If you're not sure of the name, but can remember a key word then you can search R's help system using the `help.search()` function. 
+
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+help.search("mean")
+```
+
+or you can use the equivalent shortcut 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+??mean
+```
+
+The results of the search will be displayed in RStudio under the 'Help' tab as before. 
+
+\  
+
+```{r rstudio_help2, echo=FALSE, out.width="75%", fig.align="center"}
+knitr::include_graphics(path = "images/rs_help2.png")
+```
+
+\  
+
+Another useful function is `apropos()`. This function can be used to list all functions containing a specified character string. For example 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+apropos("mean")
+```
+
 
 ### Other sources of help
 
