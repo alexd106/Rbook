@@ -190,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving in R</a></li>
+<li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
@@ -401,15 +401,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">temp  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">7.2</span>, <span class="ot">NA</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">6.5</span>, <span class="fl">5.8</span>, <span class="fl">5.8</span>, <span class="fl">5.5</span>, <span class="ot">NA</span>, <span class="fl">5.5</span>)</a>
 <a class="sourceLine" id="cb65-2" data-line-number="2">temp</a>
 <a class="sourceLine" id="cb65-3" data-line-number="3"><span class="co">#  [1] 7.2  NA 7.1 6.9 6.5 5.8 5.8 5.5  NA 5.5</span></a></code></pre></div>
-<p>We now want to calculate the mean temperature over these days using the <code>mean()</code> funtion</p>
+<p>We now want to calculate the mean temperature over these days using the <code>mean()</code> function</p>
 <div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp)</a>
 <a class="sourceLine" id="cb66-2" data-line-number="2">mean_temp</a>
 <a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co"># [1] NA</span></a></code></pre></div>
-<p>OK, what the heck! Why does the <code>mean()</code> function return an NA? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value (<code>NA</code>) then the only possible value to return when calculating a mean is <code>NA</code>. R doesn’t know that you perhaps want to ignore the <code>NA</code> values (R can’t read your mind - yet!). Happily, if we look at the help file (see the <a href="help.html#help">next section</a> for more details) associated with the <code>mean()</code> function we can see there is an argument <code>na.rm = FALSE</code>. If we change this to <code>na.rm = TRUE</code> this will allow us to ignore the <code>NA</code> values when calculating the mean</p>
+<p>OK, what the heck! Why does the <code>mean()</code> function return an <code>NA</code>? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is <code>NA</code>. R doesn’t know that you perhaps want to ignore the <code>NA</code> values (R can’t read your mind - yet!). Happily, if we look at the help file (see the <a href="help.html#help">next section</a> for more details) associated with the <code>mean()</code> function we can see there is an argument <code>na.rm =</code> which is set to <code>FALSE</code> by default. If we change this argument to <code>na.rm = TRUE</code> this will allow us to ignore the <code>NA</code> values when calculating the mean</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb67-2" data-line-number="2">mean_temp</a>
 <a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co"># [1] 6.287</span></a></code></pre></div>
-<p>The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an <code>na.rm =</code> argument, they will deal with <code>NA</code> values differently. However, the good news is that every help file associated with any function will <strong>always</strong> tell you how missing data are handled by default.</p>
+<p>It’s important to note that the <code>NA</code> values have not been removed from our <code>temp</code> object (that would be bad practice), rather the <code>mean()</code> function has just ignored them. The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an <code>na.rm =</code> argument, they might deal with <code>NA</code> values differently. However, the good news is that every help file associated with any function will <strong>always</strong> tell you how missing data are handled by default.</p>
 </div>
 </div>
             </section>

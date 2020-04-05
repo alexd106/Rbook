@@ -414,21 +414,21 @@ temp  <- c(7.2, NA, 7.1, 6.9, 6.5, 5.8, 5.8, 5.5, NA, 5.5)
 temp
 ```
 
-We now want to calculate the mean temperature over these days using the `mean()` funtion
+We now want to calculate the mean temperature over these days using the `mean()` function
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean_temp <- mean(temp)
 mean_temp
 ```
 
-OK, what the heck! Why does the `mean()` function return an NA? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value (`NA`) then the only possible value to return when calculating a mean is `NA`. R doesn't know that you perhaps want to ignore the `NA` values (R can't read your mind - yet!). Happily, if we look at the help file (see the [next section](#help) for more details) associated with the `mean()` function we can see there is an argument `na.rm = FALSE`. If we change this to `na.rm = TRUE` this will allow us to ignore the `NA` values when calculating the mean 
+OK, what the heck! Why does the `mean()` function return an `NA`? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is `NA`. R doesn't know that you perhaps want to ignore the `NA` values (R can't read your mind - yet!). Happily, if we look at the help file (see the [next section](#help) for more details) associated with the `mean()` function we can see there is an argument `na.rm = ` which is set to `FALSE` by default. If we change this argument to `na.rm = TRUE` this will allow us to ignore the `NA` values when calculating the mean 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean_temp <- mean(temp, na.rm = TRUE)
 mean_temp
 ```
 
-The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an `na.rm =` argument, they will deal with `NA` values differently. However, the good news is that every help file associated with any function will **always** tell you how missing data are handled by default.
+It's important to note that the `NA` values have not been removed from our `temp` object (that would be bad practice), rather the `mean()` function has just ignored them. The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an `na.rm =` argument, they might deal with `NA` values differently. However, the good news is that every help file associated with any function will **always** tell you how missing data are handled by default.
 
 ## Getting help {#help}
 
@@ -458,9 +458,9 @@ knitr::include_graphics(path = "images/rs_help.png")
 
 \  
 
-Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they're written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One big advantage of an R help file is that the structure is consistent no matter what function you get help with. This makes it easy to navigate through the file to find exactly what you need.  Each help file will contain the following sections:   
+Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they're written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). A big advantage is that all helps files will have a structure that is more or less consistent regardless of the function. This makes it easy to navigate through the file to find exactly what you need. 
 
-  The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as
+The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as
 
 
   - **Description:**	gives a brief description of the function.
@@ -500,16 +500,57 @@ knitr::include_graphics(path = "images/rs_help2.png")
 
 \  
 
-Another useful function is `apropos()`. This function can be used to list all functions containing a specified character string. For example 
+Another useful function is `apropos()`. This function can be used to list all functions containing a specified character string. For example, to find all functions with `mean` in their name we can use
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 apropos("mean")
 ```
 
+You can then bring up the help file for the relevant function. 
+
+An extremely useful function is `RSiteSearch()` which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the https://www.r-project.org/search.html search engine directly from the console with the results displayed in your web browser 
+
+```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
+RSiteSearch("regression")
+```
 
 ### Other sources of help
 
-## Saving in R
+There really has never been a better time to start learning R. There are a plethora of freely available online resources ranging from whole courses to subject specific tutorials and mailing lists. There are also plenty of paid for options if that's your thing but unless you've money to burn there really is no need to part with your hard earned cash. Some resources we have found helpful are listed below. 
+
+**General R resources**
+
+- [R-Project][r-docs]: User contributed documentation
+- [The R Journal][r-journal]: Journal of the R project for statistical computing
+- [Swirl][swirl]: An R package that teaches you R from within R
+- [RStudio's printable cheatsheets][rstudio-cheat]
+- [Rseek][rseek] A custom Google search for R-related sites
+
+**Getting help**
+
+- [Google it!][google-cust]: Try Googling any error messages you get. It's not cheating and everyone does it! You'll be surprised how many other people have probably had the same problem and solved it.
+
+- [Stack Overflow][stackr]: There are many thousands of questions relevant to R on Stack Overflow. [Here][stack-pop] are the most popular ones, ranked by vote. Make sure you search for similar questions before asking your own, and make sure you include a [reproducible example][stack-repro] to get the most useful advice. A reproducible example is a minimal example that lets others who are trying to help you to see the error themselves.
+
+**R markdown resources**
+
+- [Basic markdown and R markdown reference][bio-con]
+- [A good markdown reference][md-ref]
+- [A good 10-minute markdown tutorial][md-tut]
+- [RStudio's R markdown cheatsheet][rmd-cheat]
+- [R markdown reference sheet][rmd-ref]
+- [The R markdown documentation][rs-rm-docs] including a [getting started guide][rm-lesson], a [gallery of demos][rm-gallery], and several [articles][rs-articles] for more advanced usage.
+- [The knitr website][knitr] has lots of useful reference material about how knitr works.
+
+**Git and GitHub resources**
+
+- [Happy Git][git_happy]: Great resource for using Git and GitHub
+- [Version control with RStudio][rs-Git]: RStudio support document for using version control
+- [Using Git from RStudio][git-rs]: Good 10 minute guide
+- [The R Class][rclass]: In depth guide to using Git and GitHub with RStudio
+
+
+## Saving stuff in R
 
 
 

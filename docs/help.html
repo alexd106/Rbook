@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="manipulating-vectors.html"/>
-<link rel="next" href="saving-in-r.html"/>
+<link rel="next" href="saving-stuff-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -190,7 +190,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving in R</a></li>
+<li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
@@ -309,7 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rs_help.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One big advantage of an R help file is that the structure is consistent no matter what function you get help with. This makes it easy to navigate through the file to find exactly what you need. Each help file will contain the following sections:</p>
+<p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). A big advantage is that all helps files will have a structure that is more or less consistent regardless of the function. This makes it easy to navigate through the file to find exactly what you need.</p>
 <p>The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as</p>
 <ul>
 <li><p><strong>Description:</strong> gives a brief description of the function.</p></li>
@@ -328,15 +328,49 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rs_help2.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example</p>
+<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example, to find all functions with <code>mean</code> in their name we can use</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">apropos</span>(<span class="st">&quot;mean&quot;</span>)</a>
 <a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co">#  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></a>
 <a class="sourceLine" id="cb72-3" data-line-number="3"><span class="co">#  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></a>
 <a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co">#  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></a>
 <a class="sourceLine" id="cb72-5" data-line-number="5"><span class="co"># [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></a></code></pre></div>
+<p>You can then bring up the help file for the relevant function.</p>
+<p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the <a href="https://www.r-project.org/search.html" class="uri">https://www.r-project.org/search.html</a> search engine directly from the console with the results displayed in your web browser</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">RSiteSearch</span>(<span class="st">&quot;regression&quot;</span>)</a></code></pre></div>
 </div>
 <div id="other-sources-of-help" class="section level3">
 <h3><span class="header-section-number">2.5.2</span> Other sources of help</h3>
+<p>There really has never been a better time to start learning R. There are a plethora of freely available online resources ranging from whole courses to subject specific tutorials and mailing lists. There are also plenty of paid for options if that’s your thing but unless you’ve money to burn there really is no need to part with your hard earned cash. Some resources we have found helpful are listed below.</p>
+<p><strong>General R resources</strong></p>
+<ul>
+<li><a href="https://cran.r-project.org/other-docs.html">R-Project</a>: User contributed documentation</li>
+<li><a href="https://journal.r-project.org/">The R Journal</a>: Journal of the R project for statistical computing</li>
+<li><a href="http://swirlstats.com/">Swirl</a>: An R package that teaches you R from within R</li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">RStudio’s printable cheatsheets</a></li>
+<li><a href="http://rseek.org/">Rseek</a> A custom Google search for R-related sites</li>
+</ul>
+<p><strong>Getting help</strong></p>
+<ul>
+<li><p><a href="http://lmgtfy.com/?q=R+Error+in+library+there+is+no+package+called">Google it!</a>: Try Googling any error messages you get. It’s not cheating and everyone does it! You’ll be surprised how many other people have probably had the same problem and solved it.</p></li>
+<li><p><a href="http://stackoverflow.com/questions/tagged/r">Stack Overflow</a>: There are many thousands of questions relevant to R on Stack Overflow. <a href="https://stackoverflow.com/questions/tagged/r?sort=votes">Here</a> are the most popular ones, ranked by vote. Make sure you search for similar questions before asking your own, and make sure you include a <a href="http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/5963610#5963610">reproducible example</a> to get the most useful advice. A reproducible example is a minimal example that lets others who are trying to help you to see the error themselves.</p></li>
+</ul>
+<p><strong>R markdown resources</strong></p>
+<ul>
+<li><a href="http://bioconnector.github.io/markdown">Basic markdown and R markdown reference</a></li>
+<li><a href="https://commonmark.org/help/">A good markdown reference</a></li>
+<li><a href="https://commonmark.org/help/tutorial/">A good 10-minute markdown tutorial</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf">RStudio’s R markdown cheatsheet</a></li>
+<li><a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">R markdown reference sheet</a></li>
+<li><a href="https://rmarkdown.rstudio.com/docs/">The R markdown documentation</a> including a <a href="https://rmarkdown.rstudio.com/lesson-1.html">getting started guide</a>, a <a href="https://rmarkdown.rstudio.com/gallery.html">gallery of demos</a>, and several <a href="https://rmarkdown.rstudio.com/articles.html">articles</a> for more advanced usage.</li>
+<li><a href="http://yihui.name/knitr/">The knitr website</a> has lots of useful reference material about how knitr works.</li>
+</ul>
+<p><strong>Git and GitHub resources</strong></p>
+<ul>
+<li><a href="https://happygitwithr.com/">Happy Git</a>: Great resource for using Git and GitHub</li>
+<li><a href="https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN">Version control with RStudio</a>: RStudio support document for using version control</li>
+<li><a href="https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html">Using Git from RStudio</a>: Good 10 minute guide</li>
+<li><a href="https://r-bio.github.io/intro-git-rstudio/">The R Class</a>: In depth guide to using Git and GitHub with RStudio</li>
+</ul>
 </div>
 </div>
             </section>
@@ -345,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="manipulating-vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="saving-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="saving-stuff-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
