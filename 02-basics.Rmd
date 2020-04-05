@@ -170,7 +170,7 @@ Up until now we've been creating simple objects by directly assigning a single v
 
 ### Using functions
 
-The first function we will learn about is the `c()` function. The `c()` function is short for concatenate and we use it to join together a series of numbers and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). 
+The first function we will learn about is the `c()` function. The `c()` function is short for concatenate and we use it to join together a series of values and store them in a data structure called a [**vector**][vector] (more on vectors in [Chapter 3](#data_r)). 
 
 ```{r, echo=TRUE, eval=TRUE}
 my_vec <- c(2, 3, 1, 6, 4, 3, 3, 7)
@@ -262,13 +262,17 @@ my_seq7
 ```
 
 
-## Manipulating vectors
+## Working with vectors
 
-Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We'll go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in [Chapter 3](#data_r). 
+Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We'll go through a few simple examples here using vectors to illustrate some important concepts but will build on this in much more detail in [Chapter 3](#data_r) where we will look at more complicated (and useful) data structures. 
 
 ### Extracting elements
 
-To extract (also known as indexing or subscripting) one or more values (more generally known as elements) from a vector we use the square bracket `[ ]` notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of `my_vec` 
+To extract (also known as indexing or subscripting) one or more values (more generally known as elements) from a vector we use the square bracket `[ ]` notation. The general approach is to name the object you wish to extract from, then a set of square brackets with an index of the element you wish to extract contained within the square brackets. This index can be a position or the result of a logical test.
+
+#### Positional index
+
+To extract elements based on their position we simply write the position insode the `[ ]`. For example, to extract the 3rd value of `my_vec` 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec        # remind ourselves what my_vec looks like
@@ -279,6 +283,8 @@ my_vec[3]     # extract the 3rd value
 val_3 <- my_vec[3]
 val_3
 ```
+
+Note that the positional index starts at 1 rather than 0 like some other other programming languages (i.e. Python).
 
 We can also extract more than one value by using the `c()` function inside the square brackets. Here we extract the 1^st^, 5^th^, 6^th^ and 8^th^ element from the `my_vec` object
 
@@ -292,13 +298,15 @@ Or we can extract a range of values using the `:` notation. To extract the value
 my_vec[3:8]
 ```
 
-Another really useful way to extract data from a vector is to use a logical expression. For example, to extract all elements with a value greater than 4 in the vector `my_vec` 
+#### Logical index
+
+Another really useful way to extract data from a vector is to use a logical expression as an index. For example, to extract all elements with a value greater than 4 in the vector `my_vec` 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[my_vec > 4]
 ```
 
-Here, the logical expression is `my_vec > 4` and R will only extract those elements that satisfy the logical condition. So how does this actually work? If we look at the output of just the logical expression without the square brackets you can see that R returns a vector containing either `TRUE` or `FALSE` which correspond to whether the logical condition is satisfied for each element. In this case only the 4^th^ and 8^th^ elements return a `TRUE` as their value is greater than 4.
+Here, the logical expression is `my_vec > 4` and R will only extract those elements that satisfy this logical condition. So how does this actually work? If we look at the output of just the logical expression without the square brackets you can see that R returns a vector containing either `TRUE` or `FALSE` which correspond to whether the logical condition is satisfied for each element. In this case only the 4^th^ and 8^th^ elements return a `TRUE` as their value is greater than 4.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec > 4
@@ -310,9 +318,9 @@ So what R is actually doing under the hood is equivalent to
 my_vec[c(FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE)]
 ```
 
-and only those element that are `TRUE` will be selected.
+and only those element that are `TRUE` will be extracted.
 
-In addition to the `<` and `>` operators you can also use composite operators to increase the complexity of your expressions. For example the expression for 'greater or equal to' is `>=`. To test whether a value is equal to a value we need to use a double equals symbol `==` and for 'not equal to' we use `!=` (the `!` symbol means 'not' )   
+In addition to the `<` and `>` operators you can also use composite operators to increase the complexity of your expressions. For example the expression for 'greater or equal to' is `>=`. To test whether a value is equal to a value we need to use a double equals symbol `==` and for 'not equal to' we use `!=` (the `!` symbol means 'not').   
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[my_vec >= 4]         # values greater or equal to 4
@@ -354,6 +362,7 @@ my_vec
 
 # replace element that are less than or equal to 4 with 1000
 my_vec[my_vec <= 4] <- 1000
+my_vec
 ```
 
 ### Ordering elements
@@ -379,7 +388,7 @@ vec_sort3 <- rev(sort(my_vec))
 vec_sort3
 ```
 
-Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the `order()` function in combination with `[ ]`. To demonstrate this let's create a vector called `height` containing the height of 5 different people and another vector called `p.names` containing the names of these people  
+Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the `order()` function in combination with `[ ]`. To demonstrate this let's create a vector called `height` containing the height of 5 different people and another vector called `p.names` containing the names of these people (so Joanna is 180 cm, Charlotte is 155 cm etc)  
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 height <- c(180, 155, 160, 167, 181)
@@ -396,7 +405,7 @@ height_ord <- order(height)
 height_ord
 ```
 
-OK, what's going on here? To interpret this, let's start with the output from the `height_ord <- order(height)` line of code. The first value, 2, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element 5 which is 181. Now that we have a vector of the position of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
+OK, what's going on here? The first value, `2`, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element `5` which is 181. Now that we have a vector of the position of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 names_ord <- p.names[height_ord]
@@ -421,7 +430,11 @@ mean_temp <- mean(temp)
 mean_temp
 ```
 
-OK, what the heck! Why does the `mean()` function return an `NA`? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is `NA`. R doesn't know that you perhaps want to ignore the `NA` values (R can't read your mind - yet!). Happily, if we look at the help file (see the [next section](#help) for more details) associated with the `mean()` function we can see there is an argument `na.rm = ` which is set to `FALSE` by default. If we change this argument to `na.rm = TRUE` this will allow us to ignore the `NA` values when calculating the mean 
+Flippin heck, what's happened here? Why does the `mean()` function return an `NA`? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is `NA`. R doesn't know that you perhaps want to ignore the `NA` values (R can't read your mind - yet!). Happily, if we look at the help file (use `help("mean")` - see the [next section](#help) for more details) associated with the `mean()` function we can see there is an argument `na.rm = ` which is set to `FALSE` by default. 
+
+|na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.
+
+If we change this argument to `na.rm = TRUE` when we use the `mean()` function this will allow us to ignore the `NA` values when calculating the mean 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean_temp <- mean(temp, na.rm = TRUE)
@@ -436,15 +449,15 @@ This book is intended as a relatively brief introduction to R and as such you wi
 
 ### R help 
 
-To access R’s built-in help facility to get specific information on any function simply use the `help()` function. For example, to open the help page for the function `mean()` we used previously
+To access R’s built-in help facility to get information on any function simply use the `help()` function. For example, to open the help page our friend the `mean()` function
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+```{r, echo=TRUE, eval=FALSE}
 help("mean")
 ```
 
 or you can use the equivalent shortcut 
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+```{r, echo=TRUE, eval=FALSE}
 ?mean
 ```
 
@@ -458,24 +471,24 @@ knitr::include_graphics(path = "images/rs_help.png")
 
 \  
 
-Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they're written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). A big advantage is that all helps files will have a structure that is more or less consistent regardless of the function. This makes it easy to navigate through the file to find exactly what you need. 
+Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they're written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One of the great things about the help files is that they all have a very similar structure regardless of the function. This makes it easy to navigate through the file to find exactly what you need. 
 
 The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as
 
 
-  - **Description:**	gives a brief description of the function.
+  - **Description:**	gives a brief description of the function and what it does.
   
-  - **Usage:** 	gives the name of the arguments associated with the function and possible default values (options).
+  - **Usage:** 	gives the name of the arguments associated with the function and possible default values.
   
-  - **Arguments:** provides more detail regarding each argument.
+  - **Arguments:** provides more detail regarding each argument and what they do.
   
-  - **Details:** 	gives further details of the function.
+  - **Details:** 	gives further details of the function if required.
   
   - **Value:**	 if applicable, gives the type and structure of the object returned by the function or the operator.
   
   - **See Also:** 	provides information on other help pages with similar or related content.
   
-  - **Examples:** 	gives some examples of using the function. You can also access examples at any time by using the `example()` function (i.e. `example(mean)`)
+  - **Examples:** 	gives some examples of using the function. These are really helpful, all you need to do is copy and paste them into the console to see what happens. You can also access examples at any time by using the `example()` function (i.e. `example("mean")`)
 
 The `help()` function is useful if you know the name of the function. If you're not sure of the name, but can remember a key word then you can search R's help system using the `help.search()` function. 
 
@@ -490,7 +503,7 @@ or you can use the equivalent shortcut
 ??mean
 ```
 
-The results of the search will be displayed in RStudio under the 'Help' tab as before. The `help.search()` function searches through the help documentation, code demonstrations and package vignettes and display the results as clickable links for further information.
+The results of the search will be displayed in RStudio under the 'Help' tab as before. The `help.search()` function searches through the help documentation, code demonstrations and package vignettes and displays the results as clickable links for further exploration.
 
 \  
 
@@ -500,7 +513,7 @@ knitr::include_graphics(path = "images/rs_help2.png")
 
 \  
 
-Another useful function is `apropos()`. This function can be used to list all functions containing a specified character string. For example, to find all functions with `mean` in their name we can use
+Another useful function is `apropos()`. This function can be used to list all functions containing a specified character string. For example, to find all functions with `mean` in their name
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 apropos("mean")
@@ -508,9 +521,13 @@ apropos("mean")
 
 You can then bring up the help file for the relevant function. 
 
-An extremely useful function is `RSiteSearch()` which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the https://www.r-project.org/search.html search engine directly from the console with the results displayed in your web browser 
+```{r, echo=TRUE, eval=FALSE}
+help("kmeans")
+```
 
-```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
+An extremely useful function is `RSiteSearch()` which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the https://www.r-project.org/search.html search engine directly from the Console with the results displayed in your web browser 
+
+```{r, echo=TRUE, eval=FALSE}
 RSiteSearch("regression")
 ```
 
@@ -552,10 +569,11 @@ There really has never been a better time to start learning R. There are a pleth
 
 ## Saving stuff in R
 
-Your approach to saving work in R and RStudio depends on what you want to save. Most of the time the only thing you will need to save is your R code in your script(s). Remember your script is a reproducible record of everything you've done so all you need to do is open up your script in a new RStudio session and source it into the R console and you're back to where you left off. Unless you've followed our [suggestion][#rsprojs] about changing the default settings for RStudio Projects you will be asked whether you want to save your workspace image every time you exit RStudio. We suggest that 99.9% of the time that you don't do this. By starting with a clean RStudio session each time we come back to our analysis we can be sure to avoid any potential conflicts with things we've done in previous sessions.
+Your approach to saving work in R and RStudio depends on what you want to save. Most of the time the only thing you will need to save is the R code in your script(s). Remember your script is a reproducible record of everything you've done so all you need to do is open up your script in a new RStudio session and source it into the R Console and you're back to where you left off. 
 
+Unless you've followed our [suggestion][#rsprojs] about changing the default settings for RStudio Projects you will be asked whether you want to save your workspace image every time you exit RStudio. We suggest that 99.9% of the time that you don't want do this. By starting with a clean RStudio session each time we come back to our analysis we can be sure to avoid any potential conflicts with things we've done in previous sessions.
 
-There are, however, some occasions when saving objects you've created in R is useful. For example, let's say you're creating an object that takes hours (even days) of computational time to generate. It would be extremely inconvenient to have to wait all this time each time you come back to your analysis (although we would suggest exporting this to an external file anyway). In this case we can save this object as an external `.RData` file which we can load back into RStudio the next time we want to use it. To save an object to an `.RData` file you can use the `save()` function (notice we don't need to use the assignment operator here)
+There are, however, some occasions when saving objects you've created in R is useful. For example, let's say you're creating an object that takes hours (even days) of computational time to generate. It would be extremely inconvenient to have to wait all this time each time you come back to your analysis (although we would suggest exporting this to an external file is a better solution). In this case we can save this object as an external `.RData` file which we can load back into RStudio the next time we want to use it. To save an object to an `.RData` file you can use the `save()` function (notice we don't need to use the assignment operator here)
 
 ```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
 save(nameOfObject, file = "name_of_file.RData")
@@ -567,7 +585,7 @@ or if you want to save all of the objects in your workspace into a single `.RDat
 save.image(file = "name_of_file.RData")
 ```
 
-To load you `.RData` file back into R use the `load()` function 
+To load your `.RData` file back into RStudio use the `load()` function 
 
 ```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
 load(file = "name_of_file.RData")
