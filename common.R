@@ -3,7 +3,7 @@
 ## commented out bits that look like they may become relevant
 
 knitr::opts_chunk$set(
-	comment = "#>",
+	comment = "#",
 	collapse = TRUE
 	# cache = TRUE,
 	# fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
@@ -21,7 +21,7 @@ options(
 )
 
 options(
-	digits = 3,
+	digits = 4,
 	str = strOptions(strict.width = "cut")
 )
 
