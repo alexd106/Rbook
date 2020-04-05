@@ -30,7 +30,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="manipulating-vectors.html"/>
+<link rel="prev" href="working-with-vectors.html"/>
 <link rel="next" href="saving-stuff-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -180,11 +180,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#using-functions"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html"><i class="fa fa-check"></i><b>2.4</b> Manipulating vectors</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
-<li class="chapter" data-level="2.4.2" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
-<li class="chapter" data-level="2.4.3" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
-<li class="chapter" data-level="2.4.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.4</b> Missing data</a></li>
+<li class="chapter" data-level="2.4" data-path="working-with-vectors.html"><a href="working-with-vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="working-with-vectors.html"><a href="working-with-vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
+<li class="chapter" data-level="2.4.2" data-path="working-with-vectors.html"><a href="working-with-vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="working-with-vectors.html"><a href="working-with-vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
+<li class="chapter" data-level="2.4.4" data-path="working-with-vectors.html"><a href="working-with-vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.4</b> Missing data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
@@ -301,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This book is intended as a relatively brief introduction to R and as such you will soon be using functions and packages that go beyond this scope of this introductory text. Fortunately, one of the strengths of R is its comprehensive and easily accessible help system and wealth of online resources where you can obtain further information.</p>
 <div id="r-help" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> R help</h3>
-<p>To access R’s built-in help facility to get specific information on any function simply use the <code>help()</code> function. For example, to open the help page for the function <code>mean()</code> we used previously</p>
+<p>To access R’s built-in help facility to get information on any function simply use the <code>help()</code> function. For example, to open the help page our friend the <code>mean()</code> function</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
 <p>or you can use the equivalent shortcut</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">?mean</a></code></pre></div>
@@ -309,34 +309,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rs_help.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). A big advantage is that all helps files will have a structure that is more or less consistent regardless of the function. This makes it easy to navigate through the file to find exactly what you need.</p>
+<p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One of the great things about the help files is that they all have a very similar structure regardless of the function. This makes it easy to navigate through the file to find exactly what you need.</p>
 <p>The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as</p>
 <ul>
-<li><p><strong>Description:</strong> gives a brief description of the function.</p></li>
-<li><p><strong>Usage:</strong> gives the name of the arguments associated with the function and possible default values (options).</p></li>
-<li><p><strong>Arguments:</strong> provides more detail regarding each argument.</p></li>
-<li><p><strong>Details:</strong> gives further details of the function.</p></li>
+<li><p><strong>Description:</strong> gives a brief description of the function and what it does.</p></li>
+<li><p><strong>Usage:</strong> gives the name of the arguments associated with the function and possible default values.</p></li>
+<li><p><strong>Arguments:</strong> provides more detail regarding each argument and what they do.</p></li>
+<li><p><strong>Details:</strong> gives further details of the function if required.</p></li>
 <li><p><strong>Value:</strong> if applicable, gives the type and structure of the object returned by the function or the operator.</p></li>
 <li><p><strong>See Also:</strong> provides information on other help pages with similar or related content.</p></li>
-<li><p><strong>Examples:</strong> gives some examples of using the function. You can also access examples at any time by using the <code>example()</code> function (i.e. <code>example(mean)</code>)</p></li>
+<li><p><strong>Examples:</strong> gives some examples of using the function. These are really helpful, all you need to do is copy and paste them into the console to see what happens. You can also access examples at any time by using the <code>example()</code> function (i.e. <code>example(&quot;mean&quot;)</code>)</p></li>
 </ul>
 <p>The <code>help()</code> function is useful if you know the name of the function. If you’re not sure of the name, but can remember a key word then you can search R’s help system using the <code>help.search()</code> function.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">help.search</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
 <p>or you can use the equivalent shortcut</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">??mean</a></code></pre></div>
-<p>The results of the search will be displayed in RStudio under the ‘Help’ tab as before. The <code>help.search()</code> function searches through the help documentation, code demonstrations and package vignettes and display the results as clickable links for further information.</p>
+<p>The results of the search will be displayed in RStudio under the ‘Help’ tab as before. The <code>help.search()</code> function searches through the help documentation, code demonstrations and package vignettes and displays the results as clickable links for further exploration.</p>
 <p> </p>
 <p><img src="images/rs_help2.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example, to find all functions with <code>mean</code> in their name we can use</p>
+<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example, to find all functions with <code>mean</code> in their name</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">apropos</span>(<span class="st">&quot;mean&quot;</span>)</a>
 <a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co">#  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></a>
 <a class="sourceLine" id="cb72-3" data-line-number="3"><span class="co">#  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></a>
 <a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co">#  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></a>
 <a class="sourceLine" id="cb72-5" data-line-number="5"><span class="co"># [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></a></code></pre></div>
 <p>You can then bring up the help file for the relevant function.</p>
-<p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the <a href="https://www.r-project.org/search.html" class="uri">https://www.r-project.org/search.html</a> search engine directly from the console with the results displayed in your web browser</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">RSiteSearch</span>(<span class="st">&quot;regression&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;kmeans&quot;</span>)</a></code></pre></div>
+<p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the <a href="https://www.r-project.org/search.html" class="uri">https://www.r-project.org/search.html</a> search engine directly from the Console with the results displayed in your web browser</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1"><span class="kw">RSiteSearch</span>(<span class="st">&quot;regression&quot;</span>)</a></code></pre></div>
 </div>
 <div id="other-sources-of-help" class="section level3">
 <h3><span class="header-section-number">2.5.2</span> Other sources of help</h3>
@@ -378,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="manipulating-vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="working-with-vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="saving-stuff-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

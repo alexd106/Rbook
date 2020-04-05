@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="objects-in-r.html"/>
-<link rel="next" href="manipulating-vectors.html"/>
+<link rel="next" href="working-with-vectors.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -180,11 +180,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#using-functions"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html"><i class="fa fa-check"></i><b>2.4</b> Manipulating vectors</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
-<li class="chapter" data-level="2.4.2" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
-<li class="chapter" data-level="2.4.3" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
-<li class="chapter" data-level="2.4.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.4</b> Missing data</a></li>
+<li class="chapter" data-level="2.4" data-path="working-with-vectors.html"><a href="working-with-vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="working-with-vectors.html"><a href="working-with-vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
+<li class="chapter" data-level="2.4.2" data-path="working-with-vectors.html"><a href="working-with-vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="working-with-vectors.html"><a href="working-with-vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
+<li class="chapter" data-level="2.4.4" data-path="working-with-vectors.html"><a href="working-with-vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.4</b> Missing data</a></li>
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
@@ -301,7 +301,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Up until now we’ve been creating simple objects by directly assigning a single value to an object. It’s very likely that you’ll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000’s of <a href="packages.html#packages">packages</a> now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in <a href="prog-r.html#prog_r">Chapter 6</a>).</p>
 <div id="using-functions" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Using functions</h3>
-<p>The first function we will learn about is the <code>c()</code> function. The <code>c()</code> function is short for concatenate and we use it to join together a series of numbers and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data-r.html#data_r">Chapter 3</a>).</p>
+<p>The first function we will learn about is the <code>c()</code> function. The <code>c()</code> function is short for concatenate and we use it to join together a series of values and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data-r.html#data_r">Chapter 3</a>).</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">my_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>)</a></code></pre></div>
 <p>In the code above we’ve created an object called <code>my_vec</code> and assigned it a value using the function <code>c()</code>. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is <strong>always</strong> followed by a pair of round brackets even if there’s nothing contained between the brackets. Secondly, the argument(s) of a function are placed inside the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this <a href="help.html#help">later</a>) and a quick Google search will also usually help you out.</p>
 <p>To examine the value of our new object we can simply type out the name of the object as we did before</p>
@@ -365,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="objects-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="manipulating-vectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="working-with-vectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
