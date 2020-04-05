@@ -1,16 +1,14 @@
-<<<<<<< HEAD
-=======
 <!DOCTYPE html>
 <html lang="" xml:lang="">
 <head>
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.6 Using Git | A Introduction to R</title>
+  <title>2.4 Manipulating vectors | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.6 Using Git | A Introduction to R" />
+  <meta property="og:title" content="2.4 Manipulating vectors | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -18,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.6 Using Git | A Introduction to R" />
+  <meta name="twitter:title" content="2.4 Manipulating vectors | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -32,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="setting-up-a-project-in-rstudio.html"/>
-<link rel="next" href="resources.html"/>
+<link rel="prev" href="r-functions.html"/>
+<link rel="next" href="help.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -298,193 +296,120 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="use_git" class="section level2">
-<h2><span class="header-section-number">8.6</span> Using Git</h2>
-<p>Now that we have our project and repositories (both local and remote) set up, it’s finally time to learn how to use Git in RStudio!</p>
-<p>Typically, when using Git your workflow will go something like this:</p>
-<ol style="list-style-type: decimal">
-<li><p>You create/delete and edit files in your project directory on your computer as usual (saving these changes as you go)</p></li>
-<li><p>Once you’ve reached a natural ‘break point’ in your progress (i.e. you’d be sad if you lost this progress) you <strong>stage</strong> these files</p></li>
-<li><p>You then <strong>commit</strong> the changes you made to these staged files (along with a useful commit message) which creates a permanent snapshot of these changes</p></li>
-<li><p>You keep on with this cycle until you get to a point when you would like to <strong>push</strong> these changes to GitHub</p></li>
-<li><p>If you’re working with other people on the same project you may also need to <strong>pull</strong> their changes to your local computer</p></li>
-</ol>
-<p><img src="images/workflow_3.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>OK, let’s go through an example to help clarify this workflow. In RStudio open up the <code>first_repo.Rproj</code> you created previously during Option 1. Either use the <code>File</code> -&gt; <code>Open Project</code> menu or click on the top right project icon and select the appropriate project.</p>
-<p> </p>
-<p><img src="images/first_Rmd0.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Create an R markdown document inside this project by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>R markdown</code> menu (remember from the R markdown <a href="rmarkdown-r.html#rmarkdown_r">Chapter</a>?).</p>
-<p>Once created, we can delete all the example R markdown code (except the YAML header) as usual and write some interesting R markdown text and include a plot. We’ll use the inbuilt <code>cars</code> dataset to do this. Save this file (cmd + s for Mac or ctrl + s in Windows). Your R markdown document should look something like the following (it doesn’t matter if it’s not exactly the same).</p>
-<p> </p>
-<p><img src="images/first_Rmd.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Take a look at the ‘Git’ tab which should list your new R markdown document (<code>first_doc.Rmd</code> in this example) along with <code>first_repo.Rproj</code>, and <code>.gitignore</code> (you created these files previously when following Option 1).</p>
-<p> </p>
-<p><img src="images/first_Rmd2.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Following our workflow, we now need to <strong>stage</strong> these files. To do this tick the boxes under the ‘Staged’ column for all files. Notice that there is a status icon next to the box which gives you an indication of how the files were changed. In our case all of the files are to be added (capital A) as we have just created them.</p>
-<p> </p>
-<p><img src="images/rstudio_git_cols.png" width="15%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>After you have staged the files the next step is to <strong>commit</strong> the files. This is done by clicking on the ‘Commit’ button.</p>
-<p> </p>
-<p><img src="images/first_Rmd3.png" width="50%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>After clicking on the ‘Commit’ button you will be taken to the ‘Review Changes’ window. You should see the three files you staged from the previous step in the left pane. If you click on the file name <code>first_doc.Rmd</code> you will see the changes you have made to this file highlighted in the bottom pane. Any content that you have added is highlighted in green and deleted content is highlighted in red. As you have only just created this file, all the content is highlighted in green. To commit these files (take a snapshot) first enter a mandatory commit message in the ‘Commit message’ box. This message should be relatively short and informative (to you and your collaborators) and indicate why you made the changes, not what you changed. This makes sense as Git keeps track of <em>what</em> has changed and so it is best not to use commit messages for this purpose. It’s traditional to enter the message ‘First commit’ (or ‘Initial commit’) when you commit files for the first time. Now click on the ‘Commit’ button to commit these changes.</p>
-<p> </p>
-<p><img src="images/first_Rmd4.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>A summary of the commit you just performed will be shown. Now click on the ‘Close’ button to return to the ‘Review Changes’ window. Note that the staged files have now been removed.</p>
-<p> </p>
-<p><img src="images/first_Rmd5.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Now that you have committed your changes the next step is to <strong>push</strong> these changes to GitHub. Before you push your changes it’s good practice to first <strong>pull</strong> any changes from GitHub. This is especially important if both you and your collaborators are working on the same files as it keeps you local copy up to date and avoids any potential conflicts. In this case your repository will already be up to date but it’s a good habit to get into. To do this, click on the ‘Pull’ button on the top right of the ‘Review Changes’ window. Once you have pulled any changes click on the green ‘Push’ button to push your changes. You will see a summary of the push you just performed. Hit the ‘Close’ button and then close the ‘Review Changes’ window.</p>
-<p> 
-<img src="images/first_Rmd6.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>To confirm the changes you made to the project have been pushed to GitHub, open your GitHub page, click on the Repositories link and then click on the <code>first_repo</code> repository. You should see four files listed including the <code>first_doc.Rmd</code> you just pushed. Along side the file name you will see your last commit message (‘First commit’ in this case) and when you made the last commit.</p>
-<p> </p>
-<p><img src="images/first_Rmd7.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>To see the contents of the file click on the <code>first_doc.Rmd</code> file name.</p>
-<p> </p>
-<p><img src="images/first_Rmd8.png" width="60%" style="display: block; margin: auto;" /></p>
-<div id="tracking-changes" class="section level3">
-<h3><span class="header-section-number">8.6.1</span> Tracking changes</h3>
-<p>After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let’s make some further changes to your R markdown file and follow the workflow once again but this time we ’ll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.</p>
-<p>In RStudio open up the <code>first_repo.Rproj</code> file you created previously (if not already open) then open the <code>first_doc.Rmd</code> file (click on the file name in the <code>Files</code> tab in RStudio).</p>
-<p>Let’s make some changes to this document. Delete the line beginning with ‘My first version controlled …’ and replace it with something more informative (see figure below). We will also change the plotted symbols to red and give the plot axes labels. Lastly, let’s add a summary table of the dataframe using the <code>kable()</code> and <code>summary()</code> functions (you may need to install the <code>knitr</code> package if you haven’t done so previously to use the <code>kable()</code> function) and finally render this document to pdf by changing the YAML option to <code>output: pdf_document</code>.</p>
-<p> </p>
-<p><img src="images/mod1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Now save these changes and then click the <code>knit</code> button to render to pdf. A new pdf file named <code>first_doc.pdf</code> will be created which you can view by clicking on the file name in the <code>Files</code> tab in RStudio.</p>
-<p>Notice that these two files have been added to the <code>Git</code> tab in RStudio. The status icons indicate that the <code>first_doc.Rmd</code> file has been modified (capital M) and the <code>first_doc.pdf</code> file is currently untracked (question mark).</p>
-<p> </p>
-<p><img src="images/mod2.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>To stage these files tick the ‘Staged’ box for each file and click on the ‘Commit’ button to take you to the ‘Review Changes’ window</p>
-<p> </p>
-<p><img src="images/mod3.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Before you commit your changes notice the status of <code>first_doc.pdf</code> has changed from untracked to added (A). You can view the changes you have made to the <code>first_doc.Rmd</code> by clicking on the file name in the top left pane which will provide you with a useful summary of the changes in the bottom pane (technically called diffs). Lines that have been deleted are highlighted in red and lines that have been added are highlighted in green (note that from Git’s point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line). Once you’re happy, commit these changes by writing a suitable commit message and click on the ‘Commit’ button.</p>
-<p> </p>
-<p><img src="images/mod4.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>To push the changes to GitHub, click on the ‘Pull’ button first (remember this is good practice even though you are only collaborating with yourself at the moment) and then click on the ‘Push’ button. Go to your online GitHub repository and you will see your new commits, including the <code>first_doc.pdf</code> file you created when you rendered your R markdown document.</p>
-<p> </p>
-<p><img src="images/mod5.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>To view the changes in <code>first_doc.Rmd</code> click on the file name for this file.</p>
-<p> </p>
-<p><img src="images/mod6.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="manipulating-vectors" class="section level2">
+<h2><span class="header-section-number">2.4</span> Manipulating vectors</h2>
+<p>Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We’ll go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>.</p>
+<div id="extracting-elements" class="section level3">
+<h3><span class="header-section-number">2.4.1</span> Extracting elements</h3>
+<p>To extract (also known as indexing or subscripting) one or more values (more generally known as elements) from a vector we use the square bracket <code>[ ]</code> notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of <code>my_vec</code></p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_vec        <span class="co"># remind ourselves what my_vec looks like</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co"># [1] 2 3 1 6 4 3 3 7</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">my_vec[<span class="dv">3</span>]     <span class="co"># extract the 3rd value</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co"># [1] 1</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co"># if you want to store this value in another object</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">val_<span class="dv">3</span> &lt;-<span class="st"> </span>my_vec[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb48-9" data-line-number="9">val_<span class="dv">3</span></a>
+<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co"># [1] 1</span></a></code></pre></div>
+<p>We can also extract more than one value by using the <code>c()</code> function inside the square brackets. Here we extract the 1<sup>st</sup>, 5<sup>th</sup>, 6<sup>th</sup> and 8<sup>th</sup> element from the <code>my_vec</code> object</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># [1] 2 4 3 7</span></a></code></pre></div>
+<p>Or we can extract a range of values using the <code>:</code> notation. To extract the values from the 3<sup>rd</sup> to the 8<sup>th</sup> elements</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">my_vec[<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co"># [1] 1 6 4 3 3 7</span></a></code></pre></div>
+<p>Another really useful way to extract data from a vector is to use a logical expression. For example, to extract all elements with a value greater than 4 in the vector <code>my_vec</code></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co"># [1] 6 7</span></a></code></pre></div>
+<p>Here, the logical expression is <code>my_vec &gt; 4</code> and R will only extract those elements that satisfy the logical condition. So how does this actually work? If we look at the output of just the logical expression without the square brackets you can see that R returns a vector containing either <code>TRUE</code> or <code>FALSE</code> which correspond to whether the logical condition is satisfied for each element. In this case only the 4<sup>th</sup> and 8<sup>th</sup> elements return a <code>TRUE</code> as their value is greater than 4.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co"># [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></a></code></pre></div>
+<p>So what R is actually doing under the hood is equivalent to</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co"># [1] 6 7</span></a></code></pre></div>
+<p>and only those element that are <code>TRUE</code> will be selected.</p>
+<p>In addition to the <code>&lt;</code> and <code>&gt;</code> operators you can also use composite operators to increase the complexity of your expressions. For example the expression for ‘greater or equal to’ is <code>&gt;=</code>. To test whether a value is equal to a value we need to use a double equals symbol <code>==</code> and for ‘not equal to’ we use <code>!=</code> (the <code>!</code> symbol means ‘not’ )</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values greater or equal to 4</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co"># [1] 6 4 7</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than 4</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co"># [1] 2 3 1 3 3</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than or equal to 4</span></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co"># [1] 2 3 1 4 3 3</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7">my_vec[my_vec <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values equal to 4</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co"># [1] 4</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9">my_vec[my_vec <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values not equal to 4</span></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co"># [1] 2 3 1 6 3 3 7</span></a></code></pre></div>
+<p>We can also combine multiple logical expressions using <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a>. In R the <code>&amp;</code> symbol means AND and the <code>|</code> symbol means OR. For example, to extract values in <code>my_vec</code> which are less than 6 AND greater than 2</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">val26 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">val26</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># [1] 3 4 3 3</span></a></code></pre></div>
+<p>or extract values in <code>my_vec</code> that are greater than 6 OR less than 3</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">val63 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">val63</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co"># [1] 2 1 7</span></a></code></pre></div>
 </div>
-<div id="commit-history" class="section level3">
-<h3><span class="header-section-number">8.6.2</span> Commit history</h3>
-<p>One of the great things about Git and GitHub is that you can view the history of all the commits you have made along with the associated commit messages. You can do this locally using RStudio (or the Git command line) or if you have pushed your commits to GitHub you can check them out on the GitHub website.</p>
-<p>To view your commit history in RStudio click on the ‘History’ button (the one that looks like a clock) in the Git pane to bring up the history view in the ‘Review Changes’ window. You can also click on the ‘Commit’ or ‘Diff’ buttons which takes you to the same window (you just need to additionally click on the ‘History’ button in the ‘Review Changes’ window).</p>
-<p> </p>
-<p><img src="images/c_history.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the <strong>Date</strong> the commit was made, <strong>Author</strong> of the commit and the commit message (<strong>Subject</strong>). There is also a unique identifier for the commit (<strong>SHA</strong> - Secure Hash Algorithm) and a <strong>Parent</strong> SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details <a href="use-git.html#undo">below</a>). You can also view the contents of each file by clicking on the ‘View file @ SHA key` link (in our case ’View file @ 2b4693d1’).</p>
-<p> </p>
-<p><img src="images/c_history2.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can also view your commit history on GitHub website but this will be limited to only those commits you have already pushed to GitHub. To view the commit history navigate to the repository and click on the ‘commits’ link (in our case the link will be labelled ‘3 commits’ as we have made 3 commits).</p>
-<p> </p>
-<p><img src="images/c_history3.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You will see a list of all the commits you have made, along with commit messages, date of commit and the SHA identifier (these are the same SHA identifiers you saw in the RStudio history). You can even browse the repository at a particular point in time by clicking on the <code>&lt;&gt;</code> link. To view the changes in files associated with the commit simply click on the relevant commit link in the list.</p>
-<p> </p>
-<p><img src="images/c_history4.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Which will display changes using the usual format of green for additions and red for deletions.</p>
-<p> </p>
-<p><img src="images/c_history5.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="replacing-elements" class="section level3">
+<h3><span class="header-section-number">2.4.2</span> Replacing elements</h3>
+<p>We can change the values of some elements in a vector using our <code>[ ]</code> notation in combination with the assignment operator <code>&lt;-</code>. For example, to replace the 4<sup>th</sup> value of our <code>my_vec</code> object from <code>6</code> to <code>500</code></p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">my_vec[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">my_vec</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"># [1]   2   3   1 500   4   3   3   7</span></a></code></pre></div>
+<p>We can also replace more than one value or even replace values based on a logical expression</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># replace the 6th and 7th element with 100</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">my_vec[<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>)] &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">my_vec</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="co"># [1]   2   3   1 500   4 100 100   7</span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co"># replace element that are less than or equal to 4 with 1000</span></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">1000</span></a></code></pre></div>
 </div>
-<div id="undo" class="section level3">
-<h3><span class="header-section-number">8.6.3</span> Reverting changes</h3>
-<p>One the great things about using Git is that you are able to revert to previous versions of files if you’ve made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We’ll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).</p>
-<div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.1</span> Changes saved but not staged, committed or pushed</h4>
-<p>If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select ‘Revert …’. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution.</p>
-<p> </p>
-<p><img src="images/revert1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can also undo changes to just part of a file by opening up the ‘Diff’ window (click on the ‘Diff’ button in the Git pane). Select the line you wish to discard by double clicking on the line and then click on the ‘Discard line’ button. In a similar fashion you can discard chunks of code by clicking on the ‘Discard chunk’ button.</p>
-<p> </p>
-<p><img src="images/revert2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="ordering-elements" class="section level3">
+<h3><span class="header-section-number">2.4.3</span> Ordering elements</h3>
+<p>In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest value we can use the <code>sort()</code> function</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">vec_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">vec_sort</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co"># [1]    7  100  100  500 1000 1000 1000 1000</span></a></code></pre></div>
+<p>To reverse the sort, from highest to lowest, we can either include the <code>decreasing = TRUE</code> argument when using the <code>sort()</code> function</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">vec_sort2 &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">vec_sort2</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co"># [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
+<p>or first sort the vector using the <code>sort()</code> function and then reverse the sorted vector using the <code>rev()</code> function. This is another example of nesting one function inside another function.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">vec_sort3 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">sort</span>(my_vec))</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">vec_sort3</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="co"># [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
+<p>Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the <code>order()</code> function in combination with <code>[ ]</code>. To demonstrate this let’s create a vector called <code>height</code> containing the height of 5 different people and another vector called <code>p.names</code> containing the names of these people</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">height</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="co"># [1] 180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">p.names &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb62-6" data-line-number="6">p.names</a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="co"># [1] &quot;Joanna&quot;    &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Amy&quot;</span></a></code></pre></div>
+<p>Our goal is to order the people in <code>p.names</code> in ascending order of their <code>height</code>. The first thing we’ll do is use the <code>order()</code> function with the <code>height</code> variable to create a vector called <code>height_ord</code></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">height_ord &lt;-<span class="st"> </span><span class="kw">order</span>(height)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">height_ord</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="co"># [1] 2 3 4 1 5</span></a></code></pre></div>
+<p>OK, what’s going on here? To interpret this, let’s start with the output from the <code>height_ord &lt;- order(height)</code> line of code. The first value, 2, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element 5 which is 181. Now that we have a vector of the position of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">names_ord &lt;-<span class="st"> </span>p.names[height_ord]</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">names_ord</a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="co"># [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></a></code></pre></div>
+<p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in <a href="data-r.html#data_r">Chapter 3</a>.</p>
 </div>
-<div id="staged-but-not-committed-and-not-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.2</span> Staged but not committed and not pushed</h4>
-<p>If you have staged your files, but not committed them then simply unstage them by clicking on the ‘Staged’ check box in the Git pane (or in the ‘Review Changes’ window) to remove the tick. You can then revert all or parts of the file as described in the section above.</p>
-</div>
-<div id="staged-and-committed-but-not-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.3</span> Staged and committed but not pushed</h4>
-<p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit` box in the ’Review Changes’ window before committing.</p>
-<p> </p>
-<p><img src="images/revert3.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>If we check out our commit history you can see that our latest commit contains both changes to the file rather than having two separate commits. I use the amend commit approach alot but it’s important to understand that you should <strong>not</strong> do this if you have already pushed your last commit to GitHub as you are effectively rewriting history and all sorts bad things may happen!</p>
-<p> </p>
-<p><img src="images/revert4.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>If you spot a mistake that has happened multiple commits back or you just want to revert to a previous version of a document you have a number of options.</p>
-<p><strong>Option 1</strong> - (probably the easiest but very unGit - but like, whatever!) is to look in your commit history in RStudio, find the commit that you would like to go back to and click on the ‘View file @’ button to show the file contents.</p>
-<p> </p>
-<p><img src="images/revert5.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can then copy the contents of the file to the clipboard and paste it into your current file to replace your duff code or text. Alternatively, you can click on the ‘Save As’ button and save the file with a different file name. Once you have saved your new file you can delete your current unwanted file and then carry on working on your new file. Don’t forget to stage and commit this new file.</p>
-<p> </p>
-<p><img src="images/revert6.png" width="80%" style="display: block; margin: auto;" /></p>
-<p><br />
-</p>
-<p><strong>Option 2</strong> - (Git like) Go to your Git history, find the commit you would like to roll back to and write down (or copy) its SHA identifier.</p>
-<p> </p>
-<p><img src="images/revert7.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Now go to the Terminal in RStudio and type <code>git checkout &lt;SHA&gt; &lt;filename&gt;</code>. In our case the SHA key is <code>2b4693d1</code> and the filename is <code>first_doc.Rmd</code> so our command would look like this:</p>
-<pre><code>git checkout 2b4693d1 first_doc.Rmd</code></pre>
-<p>The command above will copy the selected file version from the past and place it into the present. RStudio may ask you whether you want to reload the file as it now changed - select yes. You will also need to stage and commit the file as usual.</p>
-<p>If you want to revert all your files to the same state as a previous commit rather than just one file you can use (the single ‘dot’ <code>.</code> is important otherwise your HEAD will detach!):</p>
-<pre><code>git rm -r .
-git checkout 2b4693d1 .
-</code></pre>
-<p>Note that this will delete all files that you have created since you made this commit so be careful!</p>
-</div>
-<div id="staged-committed-and-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.4</span> Staged, committed and pushed</h4>
-<p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as I can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
-<p> </p>
-<p><img src="images/revert8.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>We can use the <code>revert</code> command as shown below in the Terminal. The <code>--no-commit</code> option is used to prevent us from having to deal with each intermediate commit.</p>
-<pre><code>git revert --no-commit d27e79f1..HEAD</code></pre>
-<p>Your <code>first_doc.Rmd</code> file will now revert back to the same state as it was when you did your ‘First commit’. Notice also that the <code>first_doc.pdf</code> file has been deleted as this wasn’t present when we made our first commit. You can now stage and commit these files with a new commit message and finally push them to GitHub. Notice that if we look at our commit history all of the commits we have made are still present.</p>
-<p> </p>
-<p><img src="images/revert9.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>and our repo on GitHub also reflects these changes</p>
-<p> </p>
-<p><img src="images/revert10.png" width="80%" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="collab" class="section level3">
-<h3><span class="header-section-number">8.6.4</span> Collaborate with Git</h3>
-<p>GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes GitHub so good for collaboration is that it is a <em>distributed system</em>, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two main ways you can set up a collaborative project on GitHub. One is the workflow we went through above, where everybody connects their local repository to the same remote one; this system works well with small projects where different people mainly work on different aspects of the project but can quickly become unwieldy if many people are collaborating and are working on the same files (merge misery!). The second approach consists of every collaborator creating a copy (or <strong>fork</strong>) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a <strong>pull request</strong>) to the owner of the main repository to incorporate any changes into the main repository and this includes a review process before the changes are integrated. More detail of these topics can be found in the <a href="resources.html#resources">Further resources</a> section.</p>
-</div>
-<div id="git-tips" class="section level3">
-<h3><span class="header-section-number">8.6.5</span> Git tips</h3>
-<p>Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. I generally only push changes to GitHub when I’m happy for my collaborators (or the rest of the world) to see my work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git.</p>
-<p> </p>
-<p>If you don’t want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
-<p> </p>
-<p><img src="images/tip1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>This will add the filename to the <code>.gitignore</code> file. If you want to ignore multiple files or a particular type of file you can also include wildcards in the <code>.gitignore</code> file. For example to ignore all <code>png</code> files you can include the expression <code>*.png</code> in your <code>.gitignore</code> file and save.</p>
-<p> </p>
-<p>If it all goes pear shaped and you end up completely trashing your Git repository don’t despair (we’ve all been there!). As long as your GitHub repository is good, all you need to do is delete the offending project directory on your computer, create a new RStudio project and link this with your remote GitHub repository using <a href="setting-up-a-project-in-rstudio.html#opt2">Option 2</a>. Once you have cloned the remote repository you should be good to go.</p>
+<div id="missing-data" class="section level3">
+<h3><span class="header-section-number">2.4.4</span> Missing data</h3>
+<p>In R, missing data is usually represented by an <code>NA</code> symbol. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let’s say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1">temp  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">7.2</span>, <span class="ot">NA</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">6.5</span>, <span class="fl">5.8</span>, <span class="fl">5.8</span>, <span class="fl">5.5</span>, <span class="ot">NA</span>, <span class="fl">5.5</span>)</a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">temp</a>
+<a class="sourceLine" id="cb65-3" data-line-number="3"><span class="co">#  [1] 7.2  NA 7.1 6.9 6.5 5.8 5.8 5.5  NA 5.5</span></a></code></pre></div>
+<p>We now want to calculate the mean temperature over these days using the <code>mean()</code> function</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp)</a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">mean_temp</a>
+<a class="sourceLine" id="cb66-3" data-line-number="3"><span class="co"># [1] NA</span></a></code></pre></div>
+<p>OK, what the heck! Why does the <code>mean()</code> function return an <code>NA</code>? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is <code>NA</code>. R doesn’t know that you perhaps want to ignore the <code>NA</code> values (R can’t read your mind - yet!). Happily, if we look at the help file (see the <a href="help.html#help">next section</a> for more details) associated with the <code>mean()</code> function we can see there is an argument <code>na.rm =</code> which is set to <code>FALSE</code> by default. If we change this argument to <code>na.rm = TRUE</code> this will allow us to ignore the <code>NA</code> values when calculating the mean</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">mean_temp</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co"># [1] 6.287</span></a></code></pre></div>
+<p>It’s important to note that the <code>NA</code> values have not been removed from our <code>temp</code> object (that would be bad practice), rather the <code>mean()</code> function has just ignored them. The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an <code>na.rm =</code> argument, they might deal with <code>NA</code> values differently. However, the good news is that every help file associated with any function will <strong>always</strong> tell you how missing data are handled by default.</p>
 </div>
 </div>
             </section>
@@ -492,8 +417,8 @@ git checkout 2b4693d1 .
           </div>
         </div>
       </div>
-<a href="setting-up-a-project-in-rstudio.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-functions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="help.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -525,7 +450,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/08-github.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
 "text": "Edit"
 },
 "history": {
@@ -547,4 +472,3 @@ gitbook.start({
 </body>
 
 </html>
->>>>>>> e9313b8cc54481631fa0631e983d02428e45aa90

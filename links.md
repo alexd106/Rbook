@@ -21,11 +21,14 @@
 [stat-545]: https://stat545.com
 [software-carpentry]: https://software-carpentry.org
 [cran-r-extensions]: https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+[r-docs]: https://cran.r-project.org/other-docs.html
+[r-journal]: https://journal.r-project.org/
 
 <!--RStudio-->
 [rstudio]: https://rstudio.com/
 [rstudio-download]: https://rstudio.com/products/rstudio/download
 [rstudio-cutomise]: https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio
+[rstudio-cheat]: https://www.rstudio.com/resources/cheatsheets/
 
 <!--style guides-->
 [style-google]: https://google.github.io/styleguide/Rguide.html
@@ -56,12 +59,6 @@
 [git_join]: https://github.com/join?source=header-home
 [git_edu]: https://help.github.com/en/github/teaching-and-learning-with-github-education/applying-for-an-educator-or-researcher-discount
 [git-ben]: https://help.github.com/en/github/teaching-and-learning-with-github-education/about-github-education-for-educators-and-researchers
-[BES_code_guide]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
-[github_guides]: https://guides.github.com/
-[mozilla]: https://mozillascience.github.io/working-open-workshop/github_for_collaboration/
-[git_happy]: https://happygitwithr.com/
-[Oh_Shit_Git]: https://ohshitgit.com/
-[dang_it_git]: https://dangitgit.com/
 [biggit]: https://help.github.com/en/github/managing-large-files/configuring-git-large-file-storage
 [version_con]: https://en.wikipedia.org/wiki/Version_control
 [git_xcode]: https://github.com/timcharper/git_osx_installer
@@ -97,6 +94,31 @@
 <!--basics links-->
 [vector]: https://www.datamentor.io/r-programming/vector/
 
+<!--Resource Links-->
+[swirl]: http://swirlstats.com/
+[rseek]: http://rseek.org/
+[google-cust]: http://lmgtfy.com/?q=R+Error+in+library+there+is+no+package+called
+[stackr]: http://stackoverflow.com/questions/tagged/r
+[stack-pop]: https://stackoverflow.com/questions/tagged/r?sort=votes
+[stack-repro]: http://stackoverflow.com/questions/5963269/how-to-make-a-great-r-reproducible-example/5963610#5963610
+[rclass]: https://r-bio.github.io/intro-git-rstudio/
+[github_guides]: https://guides.github.com/
+[BES_code_guide]: https://www.britishecologicalsociety.org/wp-content/uploads/2019/06/BES-Guide-Reproducible-Code-2019.pdf
+[mozilla]: https://mozillascience.github.io/working-open-workshop/github_for_collaboration/
+[git_happy]: https://happygitwithr.com/
+[Oh_Shit_Git]: https://ohshitgit.com/
+[dang_it_git]: https://dangitgit.com/
+[git-rs]: https://nceas.github.io/oss-lessons/version-control/4-getting-started-with-git-in-RStudio.html
+[rs-Git]: https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN
+[knitr]:http://yihui.name/knitr/
+[bio-con]: http://bioconnector.github.io/markdown
+[md-ref]: https://commonmark.org/help/
+[md-tut]: https://commonmark.org/help/tutorial/
+[rs-rm-docs]: https://rmarkdown.rstudio.com/docs/
+[rm-lesson]:https://rmarkdown.rstudio.com/lesson-1.html
+[rm-gallery]: https://rmarkdown.rstudio.com/gallery.html
+[rs-articles]: https://rmarkdown.rstudio.com/articles.html
+
 <!--Misc Links-->
 [r4stats]: http://r4stats.com/articles/popularity/
 [open-sci]: https://en.wikipedia.org/wiki/Open_science
@@ -114,6 +136,8 @@
 [r_arg]: https://www.quora.com/What-is-an-%E2%80%9Cargument%E2%80%9D-in-an-R-function
 [com_err]: https://www.google.com/search?client=firefox-b-d&q=common+r+error+messages
 [non_num_err]: https://www.google.com/search?client=firefox-b-d&q=non-numeric+argument+to+binary+operator+error+%2B+r
+[boolean]: https://en.wikipedia.org/wiki/Boolean_expression
+
 
 
 
