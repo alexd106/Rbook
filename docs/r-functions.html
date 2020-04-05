@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="objects-in-r.html"/>
-<link rel="next" href="getting-help.html"/>
+<link rel="next" href="manipulating-vectors.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -179,13 +179,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
 <li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#using-functions"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
-<li class="chapter" data-level="2.3.2" data-path="r-functions.html"><a href="r-functions.html#manipulating-vectors"><i class="fa fa-check"></i><b>2.3.2</b> Manipulating vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="2.4" data-path="getting-help.html"><a href="getting-help.html"><i class="fa fa-check"></i><b>2.4</b> Getting help</a><ul>
-<li class="chapter" data-level="2.4.1" data-path="getting-help.html"><a href="getting-help.html#help"><i class="fa fa-check"></i><b>2.4.1</b> R help</a></li>
-<li class="chapter" data-level="2.4.2" data-path="getting-help.html"><a href="getting-help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.4.2</b> Other sources of help</a></li>
+<li class="chapter" data-level="2.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html"><i class="fa fa-check"></i><b>2.4</b> Manipulating vectors</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
+<li class="chapter" data-level="2.4.2" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
+<li class="chapter" data-level="2.4.4" data-path="manipulating-vectors.html"><a href="manipulating-vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.4</b> Missing data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.5</b> Saving in R</a></li>
+<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
+<li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="saving-in-r.html"><a href="saving-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving in R</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
@@ -296,9 +301,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Up until now we’ve been creating simple objects by directly assigning a single value to an object. It’s very likely that you’ll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000’s of <a href="packages.html#packages">packages</a> now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in <a href="prog-r.html#prog_r">Chapter 6</a>).</p>
 <div id="using-functions" class="section level3">
 <h3><span class="header-section-number">2.3.1</span> Using functions</h3>
-<p>The first function we will learn about is the <code>c()</code> function which we will use to join together a series of numbers and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data-r.html#data_r">Chapter 3</a>). The <code>c()</code> function is short for concatenate.</p>
+<p>The first function we will learn about is the <code>c()</code> function. The <code>c()</code> function is short for concatenate and we use it to join together a series of numbers and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data-r.html#data_r">Chapter 3</a>).</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">my_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>)</a></code></pre></div>
-<p>In the code above we have created an object called <code>my_vec</code> and assigned it a value using the function <code>c()</code>. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is <strong>always</strong> followed by a pair of round brackets even if there’s nothing contained between the brackets. Secondly, the argument(s) of a function are placed within the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this <a href="getting-help.html#help">later</a>) and a quick Google search will also usually help you out.</p>
+<p>In the code above we’ve created an object called <code>my_vec</code> and assigned it a value using the function <code>c()</code>. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is <strong>always</strong> followed by a pair of round brackets even if there’s nothing contained between the brackets. Secondly, the argument(s) of a function are placed inside the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this <a href="help.html#help">later</a>) and a quick Google search will also usually help you out.</p>
 <p>To examine the value of our new object we can simply type out the name of the object as we did before</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">my_vec</a>
 <a class="sourceLine" id="cb37-2" data-line-number="2"><span class="co"># [1] 2 3 1 6 4 3 3 7</span></a></code></pre></div>
@@ -326,7 +331,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">my_seq2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</a>
 <a class="sourceLine" id="cb41-2" data-line-number="2">my_seq2</a>
 <a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co"># [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</span></a></code></pre></div>
-<p>Here we have used the arguments <code>from =</code> and <code>to =</code> to define the limits of the sequence and the <code>by =</code> argument to specify the increment of the sequence. Try out other values for the arguments to see their effect.</p>
+<p>Here we’ve used the arguments <code>from =</code> and <code>to =</code> to define the limits of the sequence and the <code>by =</code> argument to specify the increment of the sequence. Play around with other values for these arguments to see their effect.</p>
 <p>The <code>rep()</code> function allows you to replicate (repeat) values a specified number of times. To repeat the value 2, 10 times</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">my_seq3 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">2</span>, <span class="dt">times =</span> <span class="dv">10</span>)   <span class="co"># repeats 2, 10 times</span></a>
 <a class="sourceLine" id="cb42-2" data-line-number="2">my_seq3</a>
@@ -335,7 +340,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">my_seq4 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;abc&quot;</span>, <span class="dt">times =</span> <span class="dv">3</span>)    <span class="co"># repeats ‘abc’ 3 times </span></a>
 <a class="sourceLine" id="cb43-2" data-line-number="2">my_seq4</a>
 <a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co"># [1] &quot;abc&quot; &quot;abc&quot; &quot;abc&quot;</span></a></code></pre></div>
-<p>or repeat a series</p>
+<p>or each element of a series</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">my_seq5 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">times =</span> <span class="dv">3</span>)      <span class="co"># repeats the series 1 to 5, 3 times</span></a>
 <a class="sourceLine" id="cb44-2" data-line-number="2">my_seq5</a>
 <a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co">#  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span></a></code></pre></div>
@@ -347,80 +352,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">my_seq7 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>), <span class="dt">each =</span> <span class="dv">3</span>)    <span class="co"># repeats each element of the series 3 times</span></a>
 <a class="sourceLine" id="cb46-2" data-line-number="2">my_seq7</a>
 <a class="sourceLine" id="cb46-3" data-line-number="3"><span class="co">#  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></a></code></pre></div>
-<p>Note in the code above how we’ve used a function (<code>c()</code>) inside another function (<code>seq()</code>). This allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code and explicitly separate the two different steps of generating a vector to repeat and then repeating this vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.</p>
+<p>Note in the code above how we’ve used the <code>c()</code> function inside the <code>seq()</code> function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">in_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>)</a>
 <a class="sourceLine" id="cb47-2" data-line-number="2">my_seq7 &lt;-<span class="st"> </span><span class="kw">rep</span>(in_vec, <span class="dt">each =</span> <span class="dv">3</span>)    <span class="co"># repeats each element of the series 3 times</span></a>
 <a class="sourceLine" id="cb47-3" data-line-number="3">my_seq7</a>
 <a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co">#  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></a></code></pre></div>
-</div>
-<div id="manipulating-vectors" class="section level3">
-<h3><span class="header-section-number">2.3.2</span> Manipulating vectors</h3>
-<p>Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We’ll go through a few simple examples here to illustrate some important concepts but will build on this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>.</p>
-<p>To extract some of the values (more generally known as elements) from a vector we use the square bracket <code>[ ]</code> notation. The general approach is to name the object you wish to extract from, then a set of square brackets with the position of the element contained within the square brackets. For example, to extract the 3rd value of the vector <code>my_vec</code> we created before</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_vec        <span class="co"># remind ourselves what my_vec looks like</span></a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co"># [1] 2 3 1 6 4 3 3 7</span></a>
-<a class="sourceLine" id="cb48-3" data-line-number="3">my_vec[<span class="dv">3</span>]     <span class="co"># extract the 3rd value</span></a>
-<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co"># [1] 1</span></a>
-<a class="sourceLine" id="cb48-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co"># if you want to store this value in another object</span></a>
-<a class="sourceLine" id="cb48-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb48-8" data-line-number="8">val_<span class="dv">3</span> &lt;-<span class="st"> </span>my_vec[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb48-9" data-line-number="9">val_<span class="dv">3</span></a>
-<a class="sourceLine" id="cb48-10" data-line-number="10"><span class="co"># [1] 1</span></a></code></pre></div>
-<p>We can also extract more than one value by using the <code>c()</code> function inside the square brackets. Here we extract the 1<sup>st</sup>, 5<sup>th</sup>, 6<sup>th</sup> and 8<sup>th</sup> element from the <code>my_vec</code> object</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># [1] 2 4 3 7</span></a></code></pre></div>
-<p>Or we can extract a range of values using the <code>:</code> notation. To extract the values from the 3<sup>rd</sup> to the 8<sup>th</sup> elements</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">my_vec[<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co"># [1] 1 6 4 3 3 7</span></a></code></pre></div>
-<p>It is often useful to be able to extract values from a vector using a logical condition. For example, to extract all elements with a value greater than 4 in the vector <code>my_vec</code></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co"># [1] 6 7</span></a></code></pre></div>
-<p>Notice in the above code that we also need to include the name of the vector inside the square brackets when using logical operators.</p>
-<p>Other useful logical operators include</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values greater or equal to 4</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co"># [1] 6 4 7</span></a>
-<a class="sourceLine" id="cb52-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than 4</span></a>
-<a class="sourceLine" id="cb52-4" data-line-number="4"><span class="co"># [1] 2 3 1 3 3</span></a>
-<a class="sourceLine" id="cb52-5" data-line-number="5">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than or equal to 4</span></a>
-<a class="sourceLine" id="cb52-6" data-line-number="6"><span class="co"># [1] 2 3 1 4 3 3</span></a>
-<a class="sourceLine" id="cb52-7" data-line-number="7">my_vec[my_vec <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values equal to 4</span></a>
-<a class="sourceLine" id="cb52-8" data-line-number="8"><span class="co"># [1] 4</span></a>
-<a class="sourceLine" id="cb52-9" data-line-number="9">my_vec[my_vec <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values not equal to 4</span></a>
-<a class="sourceLine" id="cb52-10" data-line-number="10"><span class="co"># [1] 2 3 1 6 3 3 7</span></a></code></pre></div>
-<p>We can take this one step further and change the values of some elements based on a logical test by using the assignment operator <code>&lt;-</code>. To replace all values in <code>my_vec</code> that have a value less than or equal to 4 with the number 100</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2">my_vec</a>
-<a class="sourceLine" id="cb53-3" data-line-number="3"><span class="co"># [1] 100 100 100   6 100 100 100   7</span></a></code></pre></div>
-<p>In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest we can use the <code>sort()</code> function</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">vec_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec)</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">vec_sort</a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co"># [1]   6   7 100 100 100 100 100 100</span></a></code></pre></div>
-<p>To reverse the sort, from highest to lowest, we can either include the <code>decreasing = TRUE</code> argument when using the <code>sort()</code> function</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">vec_sort2 &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">vec_sort2</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># [1] 100 100 100 100 100 100   7   6</span></a></code></pre></div>
-<p>or first sort the vector using the <code>sort()</code> function and then reverse the sorted vector using the <code>rev()</code> function. This is another example of nesting one function inside another function.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">vec_sort3 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">sort</span>(my_vec))</a>
-<a class="sourceLine" id="cb56-2" data-line-number="2">vec_sort3</a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co"># [1] 100 100 100 100 100 100   7   6</span></a></code></pre></div>
-<p>Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the <code>order()</code> function in combination with <code>[ ]</code>. To demonstrate this let’s create a vector called <code>height</code> containing the height of 5 different people and another vector called <code>p.names</code> containing the names of these people</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">height</a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co"># [1] 180 155 160 167 181</span></a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb57-5" data-line-number="5">p.names &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
-<a class="sourceLine" id="cb57-6" data-line-number="6">p.names</a>
-<a class="sourceLine" id="cb57-7" data-line-number="7"><span class="co"># [1] &quot;Joanna&quot;    &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Amy&quot;</span></a></code></pre></div>
-<p>Our goal is to order the people in <code>p.names</code> in ascending order of their <code>height</code>. The first thing we’ll do is use the <code>order()</code> function with the <code>height</code> variable to create a vector called <code>height_ord</code></p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">height_ord &lt;-<span class="st"> </span><span class="kw">order</span>(height)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">height_ord</a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co"># [1] 2 3 4 1 5</span></a></code></pre></div>
-<p>OK, what’s going on here? To interpret this, let’s start with the output from the <code>height_ord &lt;- order(height)</code> line of code. The first value, 2, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element 5 which is 181. Now that we have a vector of the position of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">names_ord &lt;-<span class="st"> </span>p.names[height_ord]</a>
-<a class="sourceLine" id="cb59-2" data-line-number="2">names_ord</a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co"># [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></a></code></pre></div>
-<p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in <a href="data-r.html#data_r">Chapter 3</a>.</p>
 </div>
 </div>
             </section>
@@ -429,7 +365,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="objects-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-help.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="manipulating-vectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

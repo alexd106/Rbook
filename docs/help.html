@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>8.2 Why use version control? | A Introduction to R</title>
+  <title>2.5 Getting help | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.17 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="8.2 Why use version control? | A Introduction to R" />
+  <meta property="og:title" content="2.5 Getting help | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="8.2 Why use version control? | A Introduction to R" />
+  <meta name="twitter:title" content="2.5 Getting help | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="what-is-version-control.html"/>
-<link rel="next" href="what-is-git-and-github.html"/>
+<link rel="prev" href="manipulating-vectors.html"/>
+<link rel="next" href="saving-in-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -296,30 +296,56 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="why-use-version-control" class="section level2">
-<h2><span class="header-section-number">8.2</span> Why use version control?</h2>
-<p>So why should you worry about version control? Well, first of all it helps avoid this (familiar?) situation when you’re working on a project</p>
+<div id="help" class="section level2">
+<h2><span class="header-section-number">2.5</span> Getting help</h2>
+<p>This book is intended as a relatively brief introduction to R and as such you will soon be using functions and packages that go beyond this scope of this introductory text. Fortunately, one of the strengths of R is its comprehensive and easily accessible help system and wealth of online resources where you can obtain further information.</p>
+<div id="r-help" class="section level3">
+<h3><span class="header-section-number">2.5.1</span> R help</h3>
+<p>To access R’s built-in help facility to get specific information on any function simply use the <code>help()</code> function. For example, to open the help page for the function <code>mean()</code> we used previously</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
+<p>or you can use the equivalent shortcut</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">?mean</a></code></pre></div>
+<p>the help page is displayed in the ‘Help’ tab in the Files pane (usually in the bottom right of RStudio)</p>
 <p> </p>
-<div class="figure" style="text-align: center"><span id="fig:youNeedVC1"></span>
-<img src="images/Messy_folder.PNG" alt="You need version control" width="75%" />
-<p class="caption">
-Figure 8.1: You need version control
-</p>
+<p><img src="images/rs_help.png" width="50%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One big advantage of an R help file is that the structure is consistent no matter what function you get help with. This makes it easy to navigate through the file to find exactly what you need. Each help file will contain the following sections:</p>
+<p>The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as</p>
+<ul>
+<li><p><strong>Description:</strong> gives a brief description of the function.</p></li>
+<li><p><strong>Usage:</strong> gives the name of the arguments associated with the function and possible default values (options).</p></li>
+<li><p><strong>Arguments:</strong> provides more detail regarding each argument.</p></li>
+<li><p><strong>Details:</strong> gives further details of the function.</p></li>
+<li><p><strong>Value:</strong> if applicable, gives the type and structure of the object returned by the function or the operator.</p></li>
+<li><p><strong>See Also:</strong> provides information on other help pages with similar or related content.</p></li>
+<li><p><strong>Examples:</strong> gives some examples of using the function. You can also access examples at any time by using the <code>example()</code> function (i.e. <code>example(mean)</code>)</p></li>
+</ul>
+<p>The <code>help()</code> function is useful if you know the name of the function. If you’re not sure of the name, but can remember a key word then you can search R’s help system using the <code>help.search()</code> function.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1"><span class="kw">help.search</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
+<p>or you can use the equivalent shortcut</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1">??mean</a></code></pre></div>
+<p>The results of the search will be displayed in RStudio under the ‘Help’ tab as before. The <code>help.search()</code> function searches through the help documentation, code demonstrations and package vignettes and display the results as clickable links for further information.</p>
+<p> </p>
+<p><img src="images/rs_help2.png" width="50%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1"><span class="kw">apropos</span>(<span class="st">&quot;mean&quot;</span>)</a>
+<a class="sourceLine" id="cb72-2" data-line-number="2"><span class="co">#  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></a>
+<a class="sourceLine" id="cb72-3" data-line-number="3"><span class="co">#  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></a>
+<a class="sourceLine" id="cb72-4" data-line-number="4"><span class="co">#  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></a>
+<a class="sourceLine" id="cb72-5" data-line-number="5"><span class="co"># [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></a></code></pre></div>
 </div>
-<p> </p>
-<p>usually arising from this (familiar?) scenario</p>
-<p> </p>
-<p><img src="images/final_doc.gif" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Version control automatically takes care of keeping a record of all the versions of a particular file and allows you to revert back to previous versions if you need to. Version control also helps you (especially the future you) keep track of all your files in a single place and it helps others (especially collaborators) review, contribute to and reuse your work through the GitHub website. Lastly, your files are always available from anywhere and on any computer, all you need is an internet connection.</p>
+<div id="other-sources-of-help" class="section level3">
+<h3><span class="header-section-number">2.5.2</span> Other sources of help</h3>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="what-is-version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="what-is-git-and-github.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="manipulating-vectors.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="saving-in-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -351,7 +377,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/08-github.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
 "text": "Edit"
 },
 "history": {
