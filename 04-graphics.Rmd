@@ -1,6 +1,6 @@
 # Graphics in R {#graphics_r}
 
-```{r, echo=FALSE}
+```{r setup-gg, echo=FALSE}
 knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
 ```
 
@@ -120,7 +120,7 @@ And here we have it. A fully formed, perfect `ggplot`. We may have a small issue
 
 We'll keep using the `flower` dataset that you've used in [Chapter 3](#data_r). Let's have a quick reminder of what the structure of the data looks like.
 
-```{r str of flower}
+```{r str-of-flower}
 flower <- read.table("data/flower.csv", header = TRUE, sep = ",")
 str(flower)
 ```
@@ -230,7 +230,7 @@ Let's update the code to use a linear model without confidence intervals.
 knitr::include_graphics(path = "images/statistics.png")
 ```
 
-```{r geom_smooth lm, out.width = "75%", fig.align = "center", message=FALSE}
+```{r geom_smooth-lm, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
 	geom_smooth(method = "lm", se = FALSE)    # Specifying the method as lm and se to FALSE
@@ -246,7 +246,7 @@ An aside: `ggplot2` was written with both UK English and American English in min
 knitr::include_graphics(path = "images/mapping_scales.png")
 ```
 
-```{r geom_smooth colour lm, out.width = "75%", fig.align = "center", message=FALSE}
+```{r geom_smooth-colour-lm, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
   # Including colour argument in aes()
@@ -321,7 +321,7 @@ While good, we are missing the rows showing different blocks. Given that `facet_
 knitr::include_graphics(path = "images/facets.png")
 ```
 
-```{r facet_wrap formula, out.width = "75%", fig.align = "center", message=FALSE}
+```{r facet_wrap-formula, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
@@ -359,7 +359,7 @@ That's disappointing. It's pretty much the same as what we had before and is no 
 knitr::include_graphics(path = "images/facets.png")
 ```
 
-```{r facet_grid formula, out.width = "75%", fig.align = "center", message=FALSE}
+```{r facet-grid-formula, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) +
@@ -883,7 +883,7 @@ The statistics layer is often ignored in favour of working solely with the geome
 
 \  
 
-```{r}
+```{r stat-layer}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)

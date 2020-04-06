@@ -307,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb117-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/unnamed-chunk-96-1.png" width="672" /></p>
+<p><img src="Rbook_files/figure-html/stat-layer-1.png" width="672" /></p>
 <p> </p>
 <p>Nowhere in our dataset are there columns for the y-intercept and gradient needed to draw the straight line, yet we’ve managed to draw one. The statistics layer calculates these based on our data, without us necessarily knowing what we’ve done. It is also the engine behind converting your data into counts for producing a bar chart, or densities for violin plots, or summary statistics for boxplots and so on.</p>
 <p>It is entirely possible that you will be able to use <code>ggplot2</code> for the vast majority of you plotting needs without ever consulting the statistical layer in any more detail than we have here (simply by “calling” - unknowingly - to it via the geometry layer), but be aware that it exists.</p>

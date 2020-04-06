@@ -344,19 +344,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>When you first start using <code>ggplot2</code> there are three crucial layers that require your input. You can safely ignore the other layers initially as they all recieve sensible defaults (if sometimes ugly). The three crucial layers are:</p>
 <p> </p>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-75"></span>
 <img src="images/data.png" alt="Data - the information we want to plot" width="7.5%" />
 <p class="caption">
 Figure 4.2: Data - the information we want to plot
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-76"></span>
 <img src="images/mapping.png" alt="Mapping - which variables we want displayed and where" width="7.5%" />
 <p class="caption">
 Figure 4.3: Mapping - which variables we want displayed and where
 </p>
 </div>
-<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-78"></span>
+<div class="figure" style="text-align: center"><span id="fig:unnamed-chunk-77"></span>
 <img src="images/geoms.png" alt="Geometry - how we want that data displayed" width="7.5%" />
 <p class="caption">
 Figure 4.4: Geometry - how we want that data displayed
@@ -384,7 +384,7 @@ Figure 4.4: Geometry - how we want that data displayed
 <p><img src="images/statistics.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb84-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)  <span class="co"># Specifying the method as lm and se to FALSE</span></a></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth%20lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth-lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We get the straight line that we wanted, though it’s still not matching the “final figure”. We need to alter <code>geom_smooth()</code> so that it draws lines for each level of nitrogen concentration. Getting <code>ggplot2</code> to do that is pretty straightforward. We can use the <code>colour =</code> argument within <code>aes()</code> (remember whatever we include in <code>aes()</code> will be something displayed in the figure) to tell <code>ggplot2</code> to draw a different coloured lines depending on nitrogen concentration. Keep in mind that we have no variable in our dataset called “nitrogen_colour”, so <code>ggplot2</code> is taking care of that for us here and assigning a colour to each unique nitrogen level.</p>
 <p>An aside: <code>ggplot2</code> was written with both UK English and American English in mind, so both colour and color spellings work in <code>ggplot2</code>.</p>
@@ -392,7 +392,7 @@ Figure 4.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb85-2" data-line-number="2"><span class="st">    </span><span class="co"># Including colour argument in aes()</span></a>
 <a class="sourceLine" id="cb85-3" data-line-number="3"><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">colour =</span> nitrogen), <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth%20colour%20lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth-colour-lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We’re getting closer, especially since <code>ggplot2</code> has automatically created a legend for us. At this point it’s a good time to talk about where to include information - whether to include it within a geom or in the main call to <code>ggplot()</code>. When we include information such as <code>data =</code> and <code>aes()</code> in <code>ggplot()</code> we are setting those as the default, universal values which all subsequent geoms use. Whereas if we were to include that information within a geom, only that geom would use that specific information. In this case, we can easily move the information around and get exactly the same figure.</p>
 <p><img src="images/data_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
@@ -431,7 +431,7 @@ Figure 4.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb89-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Adding &#39;block&#39; to formula</span></a>
 <a class="sourceLine" id="cb89-3" data-line-number="3"><span class="kw">facet_wrap</span>(<span class="op">~</span>treat <span class="op">+</span><span class="st"> </span>block)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet_wrap%20formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet_wrap-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This facet layout is almost exactly what we want. <em>Almost</em>. But not exactly. In this case we actually want to be using <code>facet_grid()</code>, an alternative to <code>facet_wrap()</code>, which should put us back on track to make the “final figure”.</p>
 <hr />
@@ -448,7 +448,7 @@ Figure 4.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb91-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span><span class="co"># Rearranging formula, block in relation to treatment</span></a>
 <a class="sourceLine" id="cb91-3" data-line-number="3"><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</a></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet_grid%20formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet-grid-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="plotting-multiple-ggplots" class="section level3">
 <h3><span class="header-section-number">4.2.3</span> Plotting multiple ggplots</h3>
@@ -615,7 +615,7 @@ Figure 4.4: Geometry - how we want that data displayed
 <a class="sourceLine" id="cb105-10" data-line-number="10">            <span class="dt">strip.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </a>
 <a class="sourceLine" id="cb105-11" data-line-number="11">                <span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>)), <span class="dt">complete =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb105-12" data-line-number="12">}</a>
-<a class="sourceLine" id="cb105-13" data-line-number="13"><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7f90a90d52f8</span><span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb105-13" data-line-number="13"><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7fa9dc9d3268</span><span class="op">&gt;</span></a>
 <a class="sourceLine" id="cb105-14" data-line-number="14"><span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>ggplot2<span class="op">&gt;</span></a></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <p> </p>
