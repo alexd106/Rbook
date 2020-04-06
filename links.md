@@ -29,6 +29,7 @@
 [rstudio-download]: https://rstudio.com/products/rstudio/download
 [rstudio-cutomise]: https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-RStudio
 [rstudio-cheat]: https://www.rstudio.com/resources/cheatsheets/
+[tidyverse]: https://www.tidyverse.org/
 
 <!--style guides-->
 [style-google]: https://google.github.io/styleguide/Rguide.html

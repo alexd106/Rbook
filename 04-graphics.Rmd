@@ -1,14 +1,18 @@
 # Graphics in R {#graphics_r}
 
+```{r, echo=FALSE}
+knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
+```
+
 For many people, one of their favourite uses of R is making figures. These can either take the form of a quick dirty plot to get a feel for what's going on in your dataset, or fancier, more complex figures to use in a publication or a report. This process is often as close as many scientists get to having a professional creative side (at least that's true for me), and it's a source of pride for some folk.
 
-As stated in the Introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but the means in which the figures are produced also offered a wide-range of customisation. This in turn allows users to create their own particular styles and brands of figures (well beyond the cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
+As stated in the Introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but the means in which the figures are produced also offer a wide-range of customisation. This in turn allows users to create their own particular styles and brands of figures (well beyond the cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
 
 In this Chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
-Before we get going with making some plots of the gg variety, how about a quick history of one of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ by Leland Wilkinson (hence the gg in `ggplot2`), yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
+Before we get going with making some plots of the `gg` variety, how about a quick history of one of the most commonly used packages in R? `ggplot2` was based on a book called _Grammar of Graphics_ by Leland Wilkinson (hence the gg in `ggplot2`), yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
 
-_Grammar of Graphics_ tried to move away from the idea that to create a scatterplot, a user should click the `scatterplot` button or use the `scatterplot()` function. Instead, by splitting figures into their various components (e.g. the underlying statistics, the geometric arrangement, the theme, see Fig. 4.1), a user will be able to manipulate each of these components (i.e. layers) and produce a tailor made figure fit for their very specific needs. Contrast this approach with the one used by, for example, excel. The user specifies the data and then clicks the bar chart, scatterplot, line graph etc. button. This inherently locks the user into many choices made by the programmer and not the user. Think of how easily you can spot an excel scatterplot because other than a couple of pre-set options, there's really not much you can do to change the way the plot displays the data - you are at the mercy of the [insert corporation here] Gods.
+_Grammar of Graphics_ tried to move away from the idea that to create a scatterplot, a user should click the `scatterplot` button or use the `scatterplot()` function. Instead, by splitting figures into their various components (e.g. the underlying statistics, the geometric arrangement, the theme, see Fig. 4.1), a user will be able to manipulate each of these components (i.e. layers) and produce a tailor made figure fit for their very specific needs. Contrast this approach with the one used by, for example, Microsoft Excel. The user specifies the data and then clicks the bar chart, scatterplot, line graph etc. button. This inherently locks the user into many choices made by the software developer and not the user. Think of how easily you can spot an Excel scatterplot because other than a couple of pre-set options, there's really not much you can do to change the way the plot displays the data - you are at the mercy of the [insert corporation here] Gods.
 
 \  
 
@@ -21,9 +25,9 @@ knitr::include_graphics(path = "images/full_connected.png")
 
 While Wilkinson would eventually go on to become vice-president of SPSS, his (and his oft forgotten co-author's) ideas would, never-the-less, make their way into R via `ggplot2` as well as other implementations (e.g. tableau)
 
-In 2007 `ggplot2` was released by Hadley Wickham. By 2017 the package was said to have been downloaded 10 million times. `ggplot2` now has many secondary packages that use it either as a foundation for expanding on or for interfacing/working with (some statistical packages now have accompanying `ggplot2` interfaces for producing figures [`jtools` and `mgcViz` being two examples]).
+In 2007 `ggplot2` was released by Hadley Wickham. By 2017 the package was said to have been downloaded 10 million times. `ggplot2` now has many secondary packages that use it either as a foundation for expanding on or for interfacing/working with (some statistical packages now have accompanying `ggplot2` interfaces for producing figures i.e.`jtools` and `mgcViz`) and is now part of the `tidyverse` [universe][tidyverse].
 
-It is important to note here that `ggplot2` is not required to make "fancy" figures. If you'd prefer to use base R then go ahead. Almost, if not completely, equivalent figures are possible in base R. The difference between`ggplot2` and base is to do with how you _get_ to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is, in my opinion at least, easier to do with `ggplot2` as, at the start, many decisions are made for the user, without you necessarily even knowing that a decision was ever made!
+It's important to note that `ggplot2` is not required to make "fancy" figures. If you'd prefer to use base R then go ahead. Almost, if not completely, equivalent figures are possible in base R. The difference between`ggplot2` and base is to do with how you _get_ to the end product rather than any differences in the end product itself. This is, never-the-less, a common belief almost certainly due to the fact that making a moderately attractive figure is, in my opinion at least, easier to do with `ggplot2` as, at the start, many decisions are made for the user, without you necessarily even knowing that a decision was ever made!
 
 With that in mind, let's get started making some figures.
 
@@ -31,7 +35,7 @@ With that in mind, let's get started making some figures.
 
 The approach I'll use in this Chapter will be to start off by showing you a figure which I will say is at a standard that you could use in a poster or presentation. Using that as the aim, we will then work towards it step-by-step. You should not view this final figure as any sort of holy grail. For instance, you would be very unlikely to use this in a publication (you'd be much more likely to use some results of your hard earned-analysis). Regardless, this "final figure" is, and will only ever be, a reflection of what my personal preferences are. As with anything subjective, you may well disagree, and to some extent I hope you do. Much better that we all have slightly (or grossly) different views on what a good figure is - otherwise we may as well go back to using cookie-cutter figures.
 
-So what is the figure we're going to make together?
+So what's the figure we're going to make together?
 
 \  
 
@@ -83,15 +87,15 @@ final_figure
 
 \  
 
-Before we go further, let's take a second and talk about what this figure is showing. On the y axes of the four plots we have the surface area taken up by a flower shoot, and the x axes show the weight of a flower. Each column of multiples (the name for each individual plot) shows the two treatments used in the experiment (whether the tip of the flower was cut or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 or block 2). 
+Before we go further, let's take a second and talk about what this figure is showing. On the y axes of the four plots we have the surface area taken up by a flower shoot, and the x axes show the weight of a flower. Each column of multiples (the name for each individual plot) shows the two treatments used in the experiment (whether the tip of the flower was cut off or not) and the two rows show which block of the greenhouse the plants were grown in (block 1 or block 2). 
 
-The differently coloured and shaped points represent the three nitrogen concentration levels used in the experiment. These colours are used to distinguish which points correspond to a certain nitrogen concentration. 
+The different coloured and shaped points represent the three nitrogen concentration levels used in the experiment. These colours are used to distinguish which points correspond to a certain nitrogen concentration. 
 
-Additional to this we have four trend lines (produced by linear regressions, see [Chapter 5](#stats_r)). The three coloured solid lines show the trends of shoot area as a function of weight. These coloured lines are inturn specific to each "facet" in the grid, changing acording to treatment and block. The dashed black lines represent the shoot area as explained by the weight of the flower while ignoring any nitrogen affect. 
+Added to the plots we also have four trend lines (produced by linear regressions, see [Chapter 5](#stats_r)). The three coloured solid lines show the relationship between shoot area and weight of the flower. These coloured lines are inturn specific to each "facet" in the grid and change acording to treatment and block. The dashed black line represents the relationship between shoot area and weight while ignoring any nitrogen affect. 
 
 The final line, the thin dotted grey line, shows the mean shoot area regardless of the weight of the flowers, the nitrogen concentration, the treatment or the block. 
 
-For the purposes of this Chapter, we won't worry about the biology here. Do not take this to be standard, you should absolutely care deeply about the science in your own data. It is the science that should be the driving force behind the questions you ask, in turn determining what figures you want to make.
+For the purposes of this Chapter, we won't worry about the biology here. Do not take this to be standard, you should absolutely care deeply about the science in your own data. It's the science that should be the driving force behind the questions you ask, which in turn determines what figures you should make.
 
 ## The start of the end
 
@@ -106,7 +110,7 @@ With that taken care of, let's make our first `ggplot()`!
 
 ### The purest of ggplots
 
-During the R course that this book is based on, the students are asked at one point to name all of the functions they have either learnt during the course, have heard of previously, or have used before. At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student suggested the function `ggplot()`. When asked what the `ggplot()` function does, they joked that it obviously makes a `ggplot.` This makes intuitive sense, so let's make a `ggplot` now:
+When we run our 'in person' R course that accompanies this book, we often ask our students to name all of the functions they have either learnt during the course, have heard of previously, or have used before (we call it R bingo!). At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student suggested the function `ggplot()`. When asked what the `ggplot()` function does, they joked that it obviously makes a `ggplot.` This makes intuitive sense, so let's make a `ggplot` now:
 
 ```{r pure-ggplot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot()
@@ -114,13 +118,14 @@ ggplot()
 
 And here we have it. A fully formed, perfect `ggplot`. We may have a small issue though. Some puritan data visualisers/plotists/figurines make the claim that figures should include some form of information beyond a light grey background. As loathe as I am to agree with purists, I will do so here. We really should include some information, but to do so, we need data.
 
-We'll keep using the flower dataset that you've used in the earlier Chapters. Let's have a quick reminder of what the data looked like.
+We'll keep using the `flower` dataset that you've used in [Chapter 3](#data_r). Let's have a quick reminder of what the structure of the data looks like.
 
 ```{r str of flower}
+flower <- read.table("data/flower.csv", header = TRUE, sep = ",")
 str(flower)
 ```
 
-We know from the "final figure" that we want shootarea on the y axis (response/dependent variable) and weight on the x axis (explanatory/independent variable). To do so in `ggplot2` we need to make use of the `aes()` function and also fulfil the `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. 
+We know from the "final figure" that we want shootarea on the y axis (response/dependent variable) and weight on the x axis (explanatory/independent variable). To do this in `ggplot2` we need to make use of the `aes()` function and also add a `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. 
 
 If we did not include the `aes()` function, then the `x =` and `y =` arguments would produce an error saying that the object was not found. A good rule to keep in mind when using `ggplot2` is that the variables which we want displayed on the figure must be included in `aes()` function via the `mapping =` argument (corresponding to the mapping layer from Fig. 4.1). 
 
@@ -144,7 +149,7 @@ That's already much better. At least it's no longer a blank grey canvas. We've n
 
 Geometries are the way that `ggplot2` displays information. For instance `geom_point()` tells `ggplot2` that you want the information to be displayed as points (making scatterplots possible for example). Given that the "final figure" uses points, this is clearly the appropriate geom to use here.
 
-Before we can do that, we need to talk about the coding structure used by `ggplot2`. The analogy that I and many others use is to say that making a figure in `ggplot2` is much like painting. What we've did in the above code was to make our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to end a preceding layer with a `+` at the end to tell R and `ggplot2` that there are additional layers coming.
+Before we can do that, we need to talk about the coding structure used by `ggplot2`. The analogy that I and many others use is to say that making a figure in `ggplot2` is much like painting. What we've did in the above code was to make our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to end a preceding layer with a `+` at the end to tell `ggplot2` that there are additional layers coming.
 
 Let's add (`+`) a new geometry layer now:
 
@@ -154,9 +159,7 @@ knitr::include_graphics(path = "images/geoms.png")
 
 ```{r ggplot-with-geom_point, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
-
-  # Adding a geom to display data as point data
-  geom_point()
+		geom_point()     # Adding a geom to display data as point data
 ```
 
 \  
@@ -165,7 +168,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-When you are starting with `ggplot2` there are three crucial layers that require your input. You can safely ignore the other layers initially as they all recieve sensible defaults (if sometimes ugly). The three crucial layers are:
+When you first start using `ggplot2` there are three crucial layers that require your input. You can safely ignore the other layers initially as they all recieve sensible defaults (if sometimes ugly). The three crucial layers are:
 
 \  
 
@@ -183,13 +186,13 @@ knitr::include_graphics(path = "images/geoms.png")
 
 \  
 
-Given that data only requires us to specify the dataset we want to use, it is trivially easy to complete. Mapping only requires further specification of which variables in the data we want to use, often just the x- and y-axes (specified using `aes()`). Lastly, geometry is where we choose how we want the data to be visualised.
+Given that data only requires us to specify the dataset we want to use, it is trivially easy to complete. Mapping only requires you to specify what variables in the data to use, often just the x- and y-axes (specified using `aes()`). Lastly, geometry is where we choose how we want the data to be visualised.
 
-With just those three fundamentals, you will be able to produce a large variety of plots.
+With just those three fundamentals, you will be able to produce a large variety of plots (see later in this chapter for a [bestiary](#bestiary) of plots).
 
 ***
 
-If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that shootarea looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is fit for purpose. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()` would be appropriate. Let's try it.
+If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that `shootarea` looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is fit for purpose. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()` would be appropriate. Let's try it.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align="center"}
 knitr::include_graphics(path = "images/geoms.png")
@@ -198,9 +201,7 @@ knitr::include_graphics(path = "images/geoms.png")
 ```{r geom_line, out.width="75%", fig.align="center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
-
-  # Adding geom_line
-  geom_line()
+	geom_line()     # Adding geom_line
 ```
 
 \  
@@ -214,14 +215,12 @@ knitr::include_graphics(path = "images/geoms_statistics.png")
 ```{r geom_smooth, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
-
-  # Changing to geom_smooth
-  geom_smooth()
+	geom_smooth()    # Changing to geom_smooth
 ```
 
 \  
 
-Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually speicify the method. Instead of a wiggly line, we want a nice simple straight line to be drawn using a method called "lm" (short for linear model - see [Chapter 5](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually speicify the method. Instead of a wiggly line, we want a nice simple 'line of best fit' to be drawn using a method called "lm" (short for linear model - see [Chapter 5](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
 
 While we're at it, let's get rid of the confidence interval ribbon around the line. I prefer to do this as I think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the `se =` argument (short for standard error) to `FALSE`.
 
@@ -234,9 +233,7 @@ knitr::include_graphics(path = "images/statistics.png")
 ```{r geom_smooth lm, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
-
-  # Specifying the method as lm and se to false
-  geom_smooth(method = "lm", se = FALSE)
+	geom_smooth(method = "lm", se = FALSE)    # Specifying the method as lm and se to FALSE
 ```
 
 \  
@@ -259,7 +256,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-We're getting closer, especially since `ggplot2` has automatically created a legend for us. At this point it's a good time to talk about where to include information - whether to include it within a geom or in `ggplot()`. When we include information such as `data =` and `aes()` in `ggplot()` we are setting those as the default, universal values which all subsequent geoms use. Whereas if we were to include that information within a geom, only that geom would use that specific information. In this case, we can easily move the information around and get exactly the same figure. 
+We're getting closer, especially since `ggplot2` has automatically created a legend for us. At this point it's a good time to talk about where to include information - whether to include it within a geom or in the main call to `ggplot()`. When we include information such as `data =` and `aes()` in `ggplot()` we are setting those as the default, universal values which all subsequent geoms use. Whereas if we were to include that information within a geom, only that geom would use that specific information. In this case, we can easily move the information around and get exactly the same figure. 
 
 ```{r, echo=FALSE, out.width="15%", fig.align='center'}
 knitr::include_graphics(path = "images/data_mapping.png")
@@ -1443,7 +1440,8 @@ Looks a bit tidier, though in this case say we want to instead remove the legend
 \  
 
 ```{r patchwork_removed, out.width = "75%", fig.align = "center", message=FALSE}
-nested_1 & # Note that & use instead of +
+# note the use of '&' instead of '+'
+nested_1 &
 	theme(legend.position = 'none') &
 	geom_path()
 ```
@@ -1474,7 +1472,7 @@ nested_1 +
 
 To round off this Chapter, I will take you on a whistle-stop tour of some of the common types of plots you can make in the aptly named "ggplot bestiary section".
 
-## A ggplot bestiary
+## A ggplot bestiary {#bestiary}
 
 What follows is a quick run through of example `ggplots`. These will predominantly be done by changing the geoms used, but there will be additional slight tweaks which I'll highlight.
 
@@ -1506,7 +1504,7 @@ ggplot(flower) +
 	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20, position = "dodge") +
 	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
 	scale_fill_manual(labels = c("1", "2"),
-										values = c("#8CD926", "#7326D9")) + # HULK SMASH!
+										values = c("#8CD926", "#7326D9")) +
 	theme_rbook()
 ```
 
@@ -1521,7 +1519,7 @@ ggplot(flower) +
 	geom_freqpoly(aes(x = flowers, colour = factor(block)), size = 1, bins = 20) +
 	labs(y = "Count", x = "Number of Flowers", colour = "Greenhouse\nBlock") +
 	scale_colour_manual(labels = c("1", "2"),
-											values = c("#8CD926", "#7326D9")) + # HULK SMASH!
+											values = c("#8CD926", "#7326D9")) +
 	theme_rbook()
 ```
 
