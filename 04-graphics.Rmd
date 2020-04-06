@@ -265,7 +265,8 @@ knitr::include_graphics(path = "images/data_mapping.png")
 ggplot() +
 	# Moved aes() and data into geoms
   geom_point(aes(x = weight, y = shootarea), data = flower) +
-  geom_smooth(aes(x = weight, y = shootarea, colour = nitrogen), data = flower, method = "lm", se = FALSE)
+  geom_smooth(aes(x = weight, y = shootarea, colour = nitrogen), 
+  						data = flower, method = "lm", se = FALSE)
 ```
 
 \  
@@ -549,7 +550,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	# Adding labels for shape, colour and a caption	
-	labs(shape = "Nitrogen Concentration", colour = "Nitrogen Concentration", caption = "Regression assumptions are unvalidated")
+	labs(shape = "Nitrogen Concentration", colour = "Nitrogen Concentration", 
+			 caption = "Regression assumptions are unvalidated")
 ```
 
 ***
@@ -570,7 +572,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	# Including \n to split legend title over two lines	
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated")
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated")
 ```
 
 \  
@@ -592,7 +595,8 @@ classic <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flow
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Classic theme
 	theme_classic()
 
@@ -602,7 +606,8 @@ bw <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Black and white theme
 	theme_bw()
 
@@ -612,7 +617,8 @@ minimal <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flow
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Minimal theme
 	theme_minimal()
 
@@ -622,7 +628,8 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Light theme
 	theme_light()
 
@@ -693,7 +700,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Updated theme to our theme_rbook
 	theme_rbook()
 ```
@@ -728,7 +736,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Added a horizontal line using geom_hline
 	geom_hline(aes(yintercept = mean(shootarea)), size = 0.5, colour = "black", linetype = 3) +
 	
@@ -752,7 +761,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	# Manually entering mean value
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	
@@ -778,7 +788,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	theme_rbook()
 ```
@@ -805,7 +816,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	# Setting colour and associated labels
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
@@ -841,7 +853,8 @@ rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data =
 	facet_grid(block ~ treat) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -861,8 +874,9 @@ This is the point when having assigned the code to the object named `rbook_figur
 Other important arguments to take note of are: `device =` where we tell `ggplot2` in what form we want the figure saved as (in this case saved as a .pdf) though `ggplot2` is often smart enough to guess this based on the extension we give our file name, so it is often redundant; `units =` which specifies the units used in `width =` and `height =`; `width =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a figure of e.g. 1 km x 1 km.
 
 ```{r ggsave, eval = FALSE, message=FALSE}
-ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", path = "C:\\Users\\A.Nobel\\Prize",
-			 width = 250, height = 150, units = "mm", dpi = 500, limitsize = TRUE)
+ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", 
+			 path = "C:\\Users\\A.Nobel\\Prize", width = 250, height = 150, units = "mm", 
+			 dpi = 500, limitsize = TRUE)
 ```
 
 This concludes the worked example to reproduce our final figure. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or, perhaps likely when starting, copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done).
@@ -928,7 +942,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
@@ -957,7 +972,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
@@ -990,7 +1006,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
@@ -1020,7 +1037,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	# Changed colour argument label
-	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
 	theme_rbook()
@@ -1041,7 +1059,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	# Updated legend name for colour
-	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradient
@@ -1063,7 +1082,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradient2
@@ -1086,7 +1106,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
+			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
 										 labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradientn
@@ -1117,7 +1138,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
 	# Including size label
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated",
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated",
 			 size = "Plant\nHeight (cm)") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1145,7 +1167,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1179,7 +1202,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1208,7 +1232,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1236,7 +1261,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1263,7 +1289,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	# Including tag argument
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated", tag = "A") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated", tag = "A") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1291,7 +1318,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
@@ -1317,7 +1345,8 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_smooth(method = "lm", se = FALSE, linetype = 2, alpha = 0.6, colour = "black") +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", caption = "Regression assumptions are unvalidated") +
+	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
+			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
 											labels = c("High", "Medium", "Low")) +
