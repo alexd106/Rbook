@@ -326,7 +326,7 @@ knitr::include_graphics(path = "images/new_proj2.png")
 
 \  
 
-Now enter the name of the directory you want to create in the 'Directory name:' field (we'll call it `first_project` for this Chapter). If you want to change the location of the directory on your computer click the 'Browse...' button and navigate to where you would like to create the directory. I always tick the 'Open in new session' box as well. Finally, hit the 'Create Project' to create the new project.
+Now enter the name of the directory you want to create in the 'Directory name:' field (we'll call it `first_project` for this Chapter). If you want to change the location of the directory on your computer click the 'Browse...' button and navigate to where you would like to create the directory. We always tick the 'Open in new session' box as well. Finally, hit the 'Create Project' to create the new project.
 
 \  
 
@@ -346,7 +346,7 @@ knitr::include_graphics(path = "images/new_proj4.png")
 
 \  
 
-The last thing we suggest you do is select `Tools` -> `Project Options...` from the menu. Click on the 'General' tab on the left hand side and then change the values for 'Restore .RData into workspace at startup' and 'Save workspace to .RData on exit' from 'Default' to 'No'. This ensures that every time you open your project you start with a clean R session. You don't have to do this (many people don't) but we prefer to start with a completely clean workspace whenever I open my projects to avoid any potential conflicts with things we have done in previous sessions. The downside to this is that you will need to rerun your R code every time you open you project.
+The last thing we suggest you do is select `Tools` -> `Project Options...` from the menu. Click on the 'General' tab on the left hand side and then change the values for 'Restore .RData into workspace at startup' and 'Save workspace to .RData on exit' from 'Default' to 'No'. This ensures that every time you open your project you start with a clean R session. You don't have to do this (many people don't) but we prefer to start with a completely clean workspace whenever we open our projects to avoid any potential conflicts with things we have done in previous sessions. The downside to this is that you will need to rerun your R code every time you open you project.
 
 \  
 
@@ -360,7 +360,7 @@ Now that you have an RStudio project set up you can start creating R scripts (or
 
 ## Working directories {#work-d}
 
-The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the `~` symbol above is shorthand for `/Users/nhy163/` on my Mac computer (the same on Linux computers).  
+The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the `~` symbol above is shorthand for `/Users/nhy163/` on a Mac computer (the same on Linux computers).  
 
 \  
 
@@ -380,9 +380,9 @@ knitr::include_graphics(path = "images/dir_struct2.png")
 
 \ 
 
-In the example above, my working directory is a folder called 'first_project' which is a subfolder of "Teaching' in my 'Alex' folder which in turn is in a 'Documents' folder located in the 'nhy163' folder which itself is in the 'Users' folder. On a Windows based computer my working directory would also include a drive letter (i.e. `C:/Users/nhy163/Documents/Alex/Teaching/first_project`).  
+In the example above, our working directory is a folder called 'first_project' which is a subfolder of "Teaching' in our 'Alex' folder which in turn is in a 'Documents' folder located in the 'nhy163' folder which itself is in the 'Users' folder. On a Windows based computer our working directory would also include a drive letter (i.e. `C:/Users/nhy163/Documents/Alex/Teaching/first_project`).  
 
-If you weren't using an RStudio Project then you would have to set your working directory using the `setwd()` function at the start of every R script (something I did for many years). 
+If you weren't using an RStudio Project then you would have to set your working directory using the `setwd()` function at the start of every R script (something we did for many years). 
 
 ```{r wd, echo=TRUE, eval=FALSE}
 setwd('/Users/nhy163/Documents/Alex/Teaching/first_project')
@@ -421,7 +421,7 @@ dataf <- read.table(here::here("raw_data", "mydata.txt"), header = TRUE, sep = '
 
 ## Directory structure
 
-In addition to using RStudio Projects, it's also really good practice to structure your directory in a consistent and logical way to help both you and your collaborators. I frequently use the following directory structure in my R based projects
+In addition to using RStudio Projects, it's also really good practice to structure your directory in a consistent and logical way to help both you and your collaborators. We frequently use the following directory structure in our R based projects
 
 \  
 
@@ -431,21 +431,21 @@ knitr::include_graphics(path = "images/directory_structure.png")
 
 \  
 
-In my working directory I have the following directories: 
+In our working directory we have the following directories: 
 
   - **Root** - This is your project directory containing your .Rproj file.  
   
-  - **data** - I store all my data in this directory. The subdirectory called `raw_data` contains raw data files and only raw data files. These files should be treated as **read only** and should not be changed in any way. If you need to process/clean/modify your data do this in R (not MS Excel) as you can document (and justify) any changes made. Any processed data should be saved to a separate file and stored in the `processed_data` subdirectory. Information about data collection methods, details of data download and any other useful metadata should be saved in a text document (see README text files below) in the `metadata` subdirectory.  
+  - **data** - We store all our data in this directory. The subdirectory called `raw_data` contains raw data files and only raw data files. These files should be treated as **read only** and should not be changed in any way. If you need to process/clean/modify your data do this in R (not MS Excel) as you can document (and justify) any changes made. Any processed data should be saved to a separate file and stored in the `processed_data` subdirectory. Information about data collection methods, details of data download and any other useful metadata should be saved in a text document (see README text files below) in the `metadata` subdirectory.  
   
-  - **R** - This is an optional directory where I save all of my custom R functions I have written for the current analysis. These can then be sourced into R using the `source()` function.  
+  - **R** - This is an optional directory where we save all of our custom R functions we have written for the current analysis. These can then be sourced into R using the `source()` function.  
   
-  - **Rmd** - An optional directory where I save my R markdown documents.  
+  - **Rmd** - An optional directory where we save our R markdown documents.  
   
-  - **scripts** - All of the main R scripts I have written for the current project are saved here.  
+  - **scripts** - All of the main R scripts we have written for the current project are saved here.  
   
-  - **output** - Outputs from my R scripts such as plots, HTML files and data summaries are saved in this directory. This helps me and my collaborators distinguish what files are outputs and which are source files.  
+  - **output** - Outputs from our R scripts such as plots, HTML files and data summaries are saved in this directory. This helps us and our collaborators distinguish what files are outputs and which are source files.  
 
-Of course, the structure described above is just what works for me most of the time and should be viewed as a starting point for your own needs. I tend to have a fairly consistent directory structure across my projects as this allows me to quickly orientate myself when I return to a project after a while. Having said that, different projects will have different requirements so I happily add and remove directories as required.   
+Of course, the structure described above is just what works for us most of the time and should be viewed as a starting point for your own needs. We tend to have a fairly consistent directory structure across our projects as this allows us to quickly orientate ourselves when we return to a project after a while. Having said that, different projects will have different requirements so we happily add and remove directories as required.   
 
 You can create your directory structure using Windows Explorer (or Finder on a Mac) or within RStudio by clicking on the 'New folder' button in the 'Files' pane. 
 
@@ -501,7 +501,7 @@ Whatever file naming convention you decide to use, try to adopt early, stick wit
 
 ## Project documentation
 
-A quick note or two about writing R code and creating R scripts. Unless you're doing something really quick and dirty I suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments `#` or, even better, by mixing executable code with narrative into an [R markdown](#rmarkdown_r) document. It's also good practice to include the output of the `sessionInfo()` function at the end of any script which prints the R version, details of the operating system and also loaded packages. 
+A quick note or two about writing R code and creating R scripts. Unless you're doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments `#` or, even better, by mixing executable code with narrative into an [R markdown](#rmarkdown_r) document. It's also good practice to include the output of the `sessionInfo()` function at the end of any script which prints the R version, details of the operating system and also loaded packages. 
 
 Here is an example of including meta-information at the start of an R script
 
@@ -537,11 +537,11 @@ sessionInfo()
 
 This is just one example and there are no hard and fast rules so feel free to develop a system that works for you. A really useful shortcut in RStudio is to automatically include a time and date stamp in your R script. To do this, write `ts` where you want to insert your time stamp in your R script and then press the 'shift + tab' keys. RStudio will magically convert `ts` into the current date and time and also automatically comment out this line with a `#`. Another really useful RStudio shortcut is to comment out multiple lines in your script with a `#` symbol. To do this, highlight the lines of text you want to comment and then press 'ctrl + shift + c'. To uncomment the lines just use 'ctrl + shift + c' again.  
 
-In addition to including metadata in your R scripts it's also common practice to create a separate text file to record important information. By convention these text files are named `README`. I often include a `README` file in the directory where I keep my raw data. In this file I include details about when data were collected (or downloaded), how data were collected, information about specialised equipment, preservation methods, type and version of any machines used (i.e. sequencing equipment) etc. You can create a README file for your project in RStudio by clicking on the `File` -> `New File` -> `Text File` menu. 
+In addition to including metadata in your R scripts it's also common practice to create a separate text file to record important information. By convention these text files are named `README`. We often include a `README` file in the directory where we keep our raw data. In this file we include details about when data were collected (or downloaded), how data were collected, information about specialised equipment, preservation methods, type and version of any machines used (i.e. sequencing equipment) etc. You can create a README file for your project in RStudio by clicking on the `File` -> `New File` -> `Text File` menu. 
 
 ## R style guide
 
-How you write your code is more or less up to you although your goal should be to make it as easy to read as possible (for you and others). Whilst there are no rules (and no code police), I encourage you to get into the habit of writing readable R code by adopting a particular style. I suggest that you follow Google's [R style guide][style-google] whenever possible. This style guide will help you decide where to use spaces, how to indent code and how to use square `[ ]` and curly `{ }` brackets amongst other things. If all that sounds like too much hard work you can install the `styler` package which includes an RStudio add-in to allow you to automatically restyle selected code (or entire files and projects) with the click of your mouse. You can find more information about the `styler` package including how to install [here][styler]. Once installed, you can highlight the code you want to restyle, click on the 'Addins' button at the top of RStudio and select the 'Style Selection' option. Here is an example of poorly formatted R code
+How you write your code is more or less up to you although your goal should be to make it as easy to read as possible (for you and others). Whilst there are no rules (and no code police), I encourage you to get into the habit of writing readable R code by adopting a particular style. We suggest that you follow Google's [R style guide][style-google] whenever possible. This style guide will help you decide where to use spaces, how to indent code and how to use square `[ ]` and curly `{ }` brackets amongst other things. If all that sounds like too much hard work you can install the `styler` package which includes an RStudio add-in to allow you to automatically restyle selected code (or entire files and projects) with the click of your mouse. You can find more information about the `styler` package including how to install [here][styler]. Once installed, you can highlight the code you want to restyle, click on the 'Addins' button at the top of RStudio and select the 'Style Selection' option. Here is an example of poorly formatted R code
 
 \  
 
@@ -571,11 +571,11 @@ knitr::include_graphics(path = "images/after_rcode.png")
 
 ## Backing up projects
 
-Don't be that person who loses hard won (and often expensive) data and analyses. Don't be that person who thinks it'll never happen to me - it will! Always think of the absolute worst case scenario, something that makes you wake up in a cold sweat at night, and do all you can to make sure this never happens. Just to be clear, if you're relying on copying your precious files to an external hard disk or USB stick this is **NOT** an effective backup strategy. These things go wrong all the time as you lob them into your rucksack or 'bag for life' and then lug them between your office and home. Even if you do leave them plugged into your computer what happens when the building burns down (I did say worst case!)?  
+Don't be that person who loses hard won (and often expensive) data and analyses. Don't be that person who thinks it'll never happen to me - it will! Always think of the absolute worst case scenario, something that makes you wake up in a cold sweat at night, and do all you can to make sure this never happens. Just to be clear, if you're relying on copying your precious files to an external hard disk or USB stick this is **NOT** an effective backup strategy. These things go wrong all the time as you lob them into your rucksack or 'bag for life' and then lug them between your office and home. Even if you do leave them plugged into your computer what happens when the building burns down (we did say worst case!)?  
 
 Ideally, your backups should be offsite and incremental. Happily there are numerous options for backing up your files. The first place to look is in your own institute. Most (all?) Universities have some form of network based storage that should be easily accessible and is also underpinned by a comprehensive disaster recovery plan. Other options include cloud based services such as Google Docs and Dropbox (to name but a few), but make sure you're not storing sensitive data on these services and are comfortable with the often eye watering privacy policies.  
 
-Whilst these services are pretty good at storing files, they don't really help with incremental backups. Finding previous versions of files often involves spending inordinate amounts of time trawling through multiple files named *'final.doc'*, *'final_v2.doc'* and *'final_usethisone.doc'* etc until you find the one you were looking for. The best way I know for both backing up files and managing different versions of files is to use Git and GitHub. To find out more about how you can use RStudio, Git and GitHub together see the Git and GitHub [Chapter](#github_r).         
+Whilst these services are pretty good at storing files, they don't really help with incremental backups. Finding previous versions of files often involves spending inordinate amounts of time trawling through multiple files named *'final.doc'*, *'final_v2.doc'* and *'final_usethisone.doc'* etc until you find the one you were looking for. The best way we know for both backing up files and managing different versions of files is to use Git and GitHub. To find out more about how you can use RStudio, Git and GitHub together see the Git and GitHub [Chapter](#github_r).         
 
 \  
 
