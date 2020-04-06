@@ -1,7 +1,7 @@
 # Graphics in R {#graphics_r}
 
 ```{r setup-gg, echo=FALSE}
-knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
+# knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=80), tidy=TRUE) 
 ```
 
 For many people, one of their favourite uses of R is making figures. These can either take the form of a quick dirty plot to get a feel for what's going on in your dataset, or fancier, more complex figures to use in a publication or a report. This process is often as close as many scientists get to having a professional creative side (at least that's true for me), and it's a source of pride for some folk.
@@ -110,7 +110,7 @@ With that taken care of, let's make our first `ggplot()`!
 
 ### The purest of ggplots
 
-When we run our 'in person' R course that accompanies this book, we often ask our students to name all of the functions they have either learnt during the course, have heard of previously, or have used before (we call it R bingo!). At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student suggested the function `ggplot()`. When asked what the `ggplot()` function does, they joked that it obviously makes a `ggplot.` This makes intuitive sense, so let's make a `ggplot` now:
+When we run our 'in person' R courses that accompany this book, we often ask our students to name all of the functions they have either learnt during the course, have heard of previously, or have used before (we call it R bingo!). At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student suggested the function `ggplot()`. When asked what the `ggplot()` function does, they joked that it obviously makes a `ggplot.` This makes intuitive sense, so let's make a `ggplot` now:
 
 ```{r pure-ggplot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot()
@@ -233,7 +233,7 @@ knitr::include_graphics(path = "images/statistics.png")
 ```{r geom_smooth-lm, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
-	geom_smooth(method = "lm", se = FALSE)    # Specifying the method as lm and se to FALSE
+	geom_smooth(method = "lm", se = FALSE)    # method and se 
 ```
 
 \  
