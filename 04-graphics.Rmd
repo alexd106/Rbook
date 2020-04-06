@@ -2,7 +2,7 @@
 
 For many people, one of their favourite uses of R is making figures. These can either take the form of a quick dirty plot to get a feel for what's going on in your dataset, or fancier, more complex figures to use in a publication or a report. This process is often as close as many scientists get to having a professional creative side (at least that's true for me), and it's a source of pride for some folk.
 
-As stated in the introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but the means in which the figures are produced also offered a wide-range of customisation. This in turn allows users to create their own particular styles and brands of figures (well beyond the cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
+As stated in the Introduction, one of the many reasons for the rise in the popularity of R is due to its ability to produce publication standard figures (as well as those quick and dirty figures - which are the type you and I and everyone else will produce most of). Not only can R users make figures well suited for publication, but the means in which the figures are produced also offered a wide-range of customisation. This in turn allows users to create their own particular styles and brands of figures (well beyond the cookie-cutter styles in more traditional point and click programs). Because of this inherent flexibility when producing figures, the data visualisation side of R and supporting packages has grown substantially over the years.
 
 In this Chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
@@ -27,8 +27,6 @@ It is important to note here that `ggplot2` is not required to make "fancy" figu
 
 With that in mind, let's get started making some figures.
 
-\
-
 ## Beginning at the end
 
 The approach I'll use in this Chapter will be to start off by showing you a figure which I will say is at a standard that you could use in a poster or presentation. Using that as the aim, we will then work towards it step-by-step. You should not view this final figure as any sort of holy grail. For instance, you would be very unlikely to use this in a publication (you'd be much more likely to use some results of your hard earned-analysis). Regardless, this "final figure" is, and will only ever be, a reflection of what my personal preferences are. As with anything subjective, you may well disagree, and to some extent I hope you do. Much better that we all have slightly (or grossly) different views on what a good figure is - otherwise we may as well go back to using cookie-cutter figures.
@@ -37,7 +35,7 @@ So what is the figure we're going to make together?
 
 \  
 
-```{r final figure - start, echo = FALSE, out.width = "75%", fig.align = "center", warning = FALSE}
+```{r final-figure-start, echo = FALSE, out.width = "75%", fig.align = "center", warning = FALSE, message=FALSE}
 flower <- read.csv("data/flower.csv")
 library(ggplot2)
 
@@ -95,26 +93,22 @@ The final line, the thin dotted grey line, shows the mean shoot area regardless 
 
 For the purposes of this Chapter, we won't worry about the biology here. Do not take this to be standard, you should absolutely care deeply about the science in your own data. It is the science that should be the driving force behind the questions you ask, in turn determining what figures you want to make.
 
-\
-
 ## The start of the end
 
 The first step in producing a `ggplot()` is the easiest! We just need to install and then load the package. Use the skills you learnt in [Chapter 1.5](#packages) to install and load the package. Note that although most people refer to the package as `ggplot`, it's proper name is `ggplot2`.
 
-```{r installing & loading ggplot, eval = FALSE, message=FALSE}
+```{r installing-loading-ggplot, eval = FALSE, message=FALSE}
 install.packages("ggplot2")
 library(ggplot2)
 ```
 
 With that taken care of, let's make our first `ggplot()`!
 
-\
-
 ### The purest of ggplots
 
 During the R course that this book is based on, the students are asked at one point to name all of the functions they have either learnt during the course, have heard of previously, or have used before. At this point in the course, the students have not yet learnt about `ggplot2`, but never-the-less one year a student suggested the function `ggplot()`. When asked what the `ggplot()` function does, they joked that it obviously makes a `ggplot.` This makes intuitive sense, so let's make a `ggplot` now:
 
-```{r pure ggplot, out.width = "75%", fig.align = "center", message=FALSE}
+```{r pure-ggplot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot()
 ```
 
@@ -134,12 +128,12 @@ All features in the figure which alter the displayed information, not based on a
 
 Let's update our code to include the data and mapping layers (indicated by the grey Data and mustard Mapping _layer bubbles_ which will precede relevant code chunks):
 
-```{r, echo=FALSE, out.width="7.5%", fig.align="center"}
-knitr::include_graphics(path = "images/mapping.png")
+```{r, echo=FALSE, out.width="15%", fig.align="center"}
+knitr::include_graphics(path = "images/data_mapping.png")
 ```
 
 
-```{r ggplot with xy axis, out.width = "75%", fig.align = "center", message=FALSE}
+```{r ggplot-with-xy-axis, out.width = "75%", fig.align = "center", message=FALSE}
 # Including aesthetics for x and y axes as well as specifying the dataset
 ggplot(mapping = aes(x = weight, y = shootarea), data = flower)
 ```
@@ -158,7 +152,7 @@ Let's add (`+`) a new geometry layer now:
 knitr::include_graphics(path = "images/geoms.png")
 ```
 
-```{r ggplot with geom_point, out.width = "75%", fig.align = "center", message=FALSE}
+```{r ggplot-with-geom_point, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 
   # Adding a geom to display data as point data
@@ -168,6 +162,8 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 \  
 
 ***
+
+\  
 
 When you are starting with `ggplot2` there are three crucial layers that require your input. You can safely ignore the other layers initially as they all recieve sensible defaults (if sometimes ugly). The three crucial layers are:
 
@@ -199,7 +195,7 @@ If what we wanted was a quick and dirty figure to get a grasp of the trend in th
 knitr::include_graphics(path = "images/geoms.png")
 ```
 
-```{r geom_line, out.width = "75%", fig.align = "center", message=FALSE}
+```{r geom_line, out.width="75%", fig.align="center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
 
@@ -269,7 +265,7 @@ We're getting closer, especially since `ggplot2` has automatically created a leg
 knitr::include_graphics(path = "images/data_mapping.png")
 ```
 
-```{r universal vrs geom, out.width = "75%", fig.align = "center", message=FALSE}
+```{r universal-vrs-geom, out.width="75%", fig.align="center", message=FALSE}
 ggplot() +
 
   # Moved aes() and data into geoms
@@ -287,7 +283,7 @@ For this worked example, we'll move the same information back to the universal `
 knitr::include_graphics(path = "images/data_mapping.png")
 ```
 
-```{r universal colours, out.width = "75%", fig.align = "center", message=FALSE}
+```{r universal-colours, out.width = "75%", fig.align = "center", message=FALSE}
 # Moved colour = nitrogen into the universal ggplot()
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
   geom_point() +
@@ -299,8 +295,6 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 This figure is now what I would consider to be the typical `ggplot2` figure (once you know to look for it, you'll see it everywhere). We have specified some information, with only a few lines of code at that, yet we have something that looks quite attractive. While it's not yet the "final figure" it is perfectly suited for showing trends in the data. You have now created your first "pure" `ggplot` using only the data, mapping and geom layer (as well as others indirectly).
 
 Let's keep going as we're aiming for something a bit more "sophisticated".
-
-\
 
 ### Wrapping grids
 
@@ -382,18 +376,16 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
   facet_grid(block ~ treat)
 ```
 
-\
-
 ### Plotting multiple ggplots
 
 And we're there. Although the styling is not the same as the "final figure" this is showing the same core fundamental information. While we have made multiples of the same figure, what if we wanted to take two completely different figures and plot them together in the same frame? To show we can do this we can plot our current figure from above and the final figure side-by-side to see how they compare. To do so we will use an additional package called `patchwork`. Go ahead and install and load patchwork.
 
-```{r loading patchwork, eval = FALSE, echo = TRUE, message=FALSE}
+```{r loading-patchwork, eval = FALSE, echo = TRUE, message=FALSE}
 install.packages("patchwork")
 library(patchwork)
 ```
 
-```{r loading patchwork_true, eval = TRUE, echo = FALSE, message=FALSE}
+```{r loading-patchwork_true, eval = TRUE, echo = FALSE, message=FALSE}
 library(patchwork)
 ```
 
@@ -401,13 +393,13 @@ An important note: For those who have used base R to produce their figure and ar
 
 We'll need to go back to our previous code and do something clever. We can assign figures a name and then use that to call the figure whenever we run the name. For instance, I have assigned the "final figure" the name.... `final_figure` (I'm not a clever person). You may see this method used a lot in other textbooks or online, especially when adding addition layers (e.g. `final_figure + geom_point()`). Something like this:
 
-```{r named ggplot example, eval = FALSE, message=FALSE}
+```{r named-ggplot-example, eval = FALSE, message=FALSE}
 p <- ggplot(df, mapping = aes(x = x, y = y))
 ```
 
 And later to add additional layers, people do:
 
-```{r named ggplot example adding layer, eval = FALSE, message=FALSE}
+```{r named-ggplot-example-adding-layer, eval = FALSE, message=FALSE}
 p + geom_point()
 ```
 
@@ -415,7 +407,7 @@ I prefer not to do use that approach here, instead favouring that the entire cod
 
 \  
 
-```{r calling figure name, out.width = "75%", fig.align = "center", message=FALSE}
+```{r calling-figure-name, echo=FALSE, out.width = "75%", fig.align = "center", message=FALSE}
 final_figure
 ```
 
@@ -425,7 +417,7 @@ We'll do the same with the figure we've created together:
 
 \  
 
-```{r naming figure, out.width = "75%", fig.align = "center", message=FALSE}
+```{r naming-figure, out.width = "75%", fig.align = "center", message=FALSE}
 # Naming our figure object
 rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
   geom_point() +
@@ -441,7 +433,7 @@ An old headache when using `ggplot2` was that it could be difficult to create a 
 
 \  
 
-```{r side-by-side patchwork, out.width = "85%", fig.align = "center", message=FALSE}
+```{r side-by-side-patchwork, echo=FALSE, out.width = "85%", fig.align = "center", message=FALSE}
 rbook_figure / final_figure
 ```
 
@@ -459,7 +451,7 @@ We can also assign nested `patchwork` figures a name and use this in turn to cre
 
 \  
 
-```{r labelled nested, out.width = "75%", fig.align = "center", message=FALSE}
+```{r labelled-nested, out.width = "75%", fig.align = "center", message=FALSE}
 nested_compare <- rbook_figure / final_figure
 
 nested_compare +
@@ -470,8 +462,6 @@ nested_compare +
 
 This is only the basics of what the patchwork package can do but there are many other uses. We won't go into them in any great detail here, but later in the tips and tricks section I'll show some more features.
 
-\
-
 ### Make it your own
 
 While we have a great figure already that shows the data we want it to show, it uses many default layer options. While the default options are arguably fine, they may not be what we want ourselves. Maybe we're going to use this figure in a presentation and we want to make sure someone in the very back of the room can easily read the figure. Maybe we want to use our own colour scheme. Maybe we want to change the grey background to a nice bright neon pink. In essence, maybe we want to decide things for ourselves. This next section will go through how to customise the appearance of our figure.
@@ -480,7 +470,7 @@ Let's start with the easier stuff, namely changing the size of the points using 
 
 \  
 
-```{r change size, out.width = "75%", fig.align = "center", message=FALSE}
+```{r change-size, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	
 	# Including size argument to change the size of the points
@@ -500,7 +490,7 @@ If we wanted to change the shape of the points to reflect nitrogen concentration
 knitr::include_graphics(path = "images/scales_mapping.png")
 ```
 
-```{r change shape, out.width = "75%", fig.align = "center", message=FALSE}
+```{r change-shape, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	
 	# Including shape argument to change the shape of the points
@@ -518,7 +508,7 @@ We're getting closer and closer to the "final figure". Another thing we may want
 
 \  
 
-```{r change alpha, out.width = "75%", fig.align = "center", message=FALSE}
+```{r change-alpha, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	
 	# Including alpha argument to change the transparency of the points
@@ -534,7 +524,7 @@ We can also include defined labels for the x and y axis. There are a couple of w
 
 \  
 
-```{r axis labels, out.width = "75%", fig.align = "center", message=FALSE}
+```{r axis-labels, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -568,7 +558,7 @@ Let's now work on the legend title while also including a caption to warn people
 
 \  
 
-```{r extra labels, out.width = "75%", fig.align = "center", message=FALSE}
+```{r extra-labels, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -590,7 +580,7 @@ Now is a good time to introduce "backslash n". This is a base R feature which ca
 
 \  
 
-```{r compact labels, out.width = "75%", fig.align = "center", message=FALSE}
+```{r compact-labels, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -614,7 +604,7 @@ We can now move onto some more wholesale-stylistic choices using the themes laye
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r testing themes, out.width = "75%", fig.align = "center", message=FALSE}
+```{r testing-themes, out.width = "85%", fig.align = "center", message=FALSE}
 classic <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -667,11 +657,13 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 
 In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, I don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 6](#prog_r) for a bit more on this).
 
-```{r theme_classic, message=FALSE}
+```{r theme_classic, message=FALSE, comment=""}
 theme_classic
 ```
 
 Let's use this code as the basis for our own theme and modify it according to our needs. We'll call the theme, `theme_rbook`. Not all of the options will immediately make sense, but don't worry about this too much for now. Just know that the settings we're putting in place are:
+
+\  
 
 - Font size for axis titles = 13
 - Font size for x axis text = 10
@@ -684,13 +676,15 @@ Let's use this code as the basis for our own theme and modify it according to ou
 - Strip text colour (for facets) = black
 - Legend box colours = No colour 
 
+\  
+
 This is by no means an exhaustive list of features you can specify in your own theme, but this will get you started. Of course, there is no need to use a personalised theme as the pre-built options are perfectly suitable.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r rbook theme, message=FALSE}
+```{r rbook-theme, message=FALSE}
 theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
   theme( 
     axis.title = element_text(size = 13),                               
@@ -715,7 +709,7 @@ theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r rbook figure, out.width = "75%", fig.align = "center", message=FALSE}
+```{r rbook-figure, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -738,7 +732,7 @@ Let's remind ourselves of what that "final figure" looked like. Remember, since 
 
 \  
 
-```{r final figure reminder, out.width = "75%", fig.align = "center", message=FALSE}
+```{r final-figure-reminder, out.width = "75%", fig.align = "center", message=FALSE}
 final_figure + 
 	labs(title = "Reminder of the final figure")
 ```
@@ -770,13 +764,13 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Notice how we included the function `mean(shootarea)` within the `geom_hline()` function? We could also do that externally to the `ggplot2` code and get the same result.
 
-```{r shootarea mean, message=FALSE}
+```{r shootarea-mean, message=FALSE}
 mean(flower$shootarea)
 ```
 
 \  
 
-```{r geom_hline alternative, out.width = "75%", fig.align = "center", message=F}
+```{r geom_hline-alternative, out.width = "75%", fig.align = "center", message=F}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -801,7 +795,7 @@ Let's tackle that "overall" nitrogen effect. This overall line is effectively th
 knitr::include_graphics(path = "images/geoms_statistics.png")
 ```
 
-```{r 2nd geom_smooth, out.width = "75%", fig.align = "center", message=FALSE}
+```{r geom_smooth2, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -831,7 +825,7 @@ Choosing colours can be fiddly. I've found using a colour wheel helps with this 
 knitr::include_graphics(path = "images/scales.png")
 ```
 
-```{r scale manual, out.width = "75%", fig.align = "center", message=FALSE}
+```{r scale-manual, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -861,7 +855,7 @@ But if you're paying close attention you'll notice that there's a mistake with t
 
 So how do we fix this? We need to do a little data manipulation to rearrange our factors so that the order goes High, Medium, Low. Let's do that:
 
-```{r relevel factor, message=FALSE}
+```{r relevel-factor, message=FALSE}
 flower$nitrogen <- factor(flower$nitrogen, levels = c("high", "medium", "low"))
 ```
 
@@ -869,7 +863,7 @@ With that done, we can re-run our above code to get a correct figure and assign 
 
 \  
 
-```{r corrected factor level, out.width = "75%", fig.align = "center", message=FALSE}
+```{r corrected-factor-level, out.width = "75%", fig.align = "center", message=FALSE}
 rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -896,14 +890,10 @@ This is the point when having assigned the code to the object named `rbook_figur
 
 Other important arguments to take note of are: `device =` where we tell `ggplot2` in what form we want the figure saved as (in this case saved as a .pdf) though `ggplot2` is often smart enough to guess this based on the extension we give our file name, so it is often redundant; `units =` which specifies the units used in `width =` and `height =`; `width =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a figure of e.g. 1 km x 1 km.
 
-\  
-
 ```{r ggsave, eval = FALSE, message=FALSE}
 ggsave(filename = "areashoot_weight_facet.pdf", plot = rbook_figure, device = "pdf", path = "C:\\Users\\A.Nobel\\Prize",
 			 width = 250, height = 150, units = "mm", dpi = 500, limitsize = TRUE)
 ```
-
-\  
 
 This concludes the worked example to reproduce our final figure. While absolutely not an exhaustive list of what you can do with `ggplot2`, this will hopefully help when you're making your own from scratch or, perhaps likely when starting, copying `ggplots` made by other people (in which case hopefully this will help you understand what they've done).
 
@@ -941,7 +931,7 @@ If we wanted to recreate the above figure using the statistical layer we would d
 knitr::include_graphics(path = "images/statistics.png")
 ```
 
-```{r stat_smooth lm, out.width = "75%", fig.align = "center", message=FALSE}
+```{r stat_smooth-lm, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
   geom_point() +
 
@@ -961,7 +951,7 @@ Fairly often, you may want to limit the range of your axes. Maybe you want to fo
 knitr::include_graphics(path = "images/coords.png")
 ```
 
-```{r axis limits, out.width = "75%", fig.align = "center", message=FALSE}
+```{r axis-limits, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
@@ -1024,7 +1014,7 @@ We'll move both the points and the overall black dashed line down in the code so
 
 \  
 
-```{r layering layers, out.width = "75%", fig.align = "center", message=FALSE}
+```{r layering-layers, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, size = 1.2) +
 	
@@ -1057,7 +1047,7 @@ We'll start with the default option. Here we only need to change nitrogen (which
 knitr::include_graphics(path = "images/scales.png")
 ```
 
-```{r continuous colour, out.width = "75%", fig.align = "center", message=FALSE}
+```{r continuous-colour, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
 	# Deleted geom_smooths for illustrative purposes only (and also removed alpha argument from geom_point)
@@ -1163,7 +1153,7 @@ Previously, we altered to size of points to be a constant number (e.g. `size = 2
 knitr::include_graphics(path = "images/scales_mapping.png")
 ```
 
-```{r cont point size, out.width = "75%", fig.align = "center", message=FALSE}
+```{r cont-point-size, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	
 	# Moving size into aes and changing to a continuous variable
@@ -1198,7 +1188,7 @@ To move the position of the legend requires tweaking the theme, just as we did b
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r moving legend, out.width = "75%", fig.align = "center", message=FALSE}
+```{r moving-legend, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -1234,7 +1224,7 @@ Suppose we don't want a legend at all. How would we go about hiding it?
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r hiding legend, out.width = "75%", fig.align = "center", message=FALSE}
+```{r hiding-legend, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -1264,7 +1254,7 @@ What if we really don't want points included in the legend? Instead of stating t
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r hiding part of legend, out.width = "75%", fig.align = "center", message=FALSE}
+```{r hiding-part-of-legend, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	
 	# Including show.legend = FALSE to prevent inclusion in legend
@@ -1322,7 +1312,7 @@ Similarly, we want to include a tag for the figure, for instance we may want to 
 
 \  
 
-```{r tag A, out.width = "75%", fig.align = "center", message=FALSE}
+```{r tag-A, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -1353,7 +1343,7 @@ What are we to do if we want more or fewer ticks on an axis? We can do this usin
 knitr::include_graphics(path = "images/scales.png")
 ```
 
-```{r axis ticks, out.width = "75%", fig.align = "center", message=FALSE}
+```{r axis-ticks, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -1381,7 +1371,7 @@ Axis tick labels sometimes need to be rotated. If you've ever worked with data f
 knitr::include_graphics(path = "images/theme.png")
 ```
 
-```{r rotate axis, out.width = "75%", fig.align = "center", message=FALSE}
+```{r rotate-axis, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_point(aes(shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(method = "lm", se = FALSE) +
@@ -1496,7 +1486,7 @@ Notice that we haven't used `data = flowers` here and instead just used `flowers
 
 \  
 
-```{r density plot, out.width = "75%", fig.align = "center", message=FALSE}
+```{r density-plot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
 	geom_density(aes(x = flowers, fill = nitrogen), alpha = 0.5) +
 	labs(y = "Density", x = "Number of Flowers", fill = "Nitrogen\nConcentration") +
@@ -1558,7 +1548,7 @@ Finally, I'm also using this plot to show `scale_y_log10`. Hopefully this is lar
 
 \  
 
-```{r violin plot, out.width = "75%", fig.align = "center", message=FALSE}
+```{r violin-plot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
   geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75)) +
   geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, width = 0.1, alpha = 0.5) +
@@ -1594,7 +1584,7 @@ While we can draw a straight line, perhaps we would also like to include the des
 
 \  
 
-```{r quantile lines, out.width = "75%", fig.align = "center", message=FALSE}
+```{r quantile-lines, out.width = "75%", fig.align = "center", message=FALSE}
 library(quantreg)
 
 ggplot(aes(x = weight, y = shootarea), data = flower) +
@@ -1658,7 +1648,7 @@ We can then expand on this using the statistics layer, via `stat_X`. For instanc
 
 \  
 
-```{r stat contour, out.width = "75%", fig.align = "center", message=FALSE}
+```{r stat-contour, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 	stat_density_2d(aes(fill = stat(level)), geom = "polygon") +
 	labs(y = "Shoot Area", x = "Leaf Area") +
@@ -1696,7 +1686,7 @@ I've included two additional arguments in the code below. `cardinality_threshold
 
 \  
 
-```{r pairs plot, out.width = "75%", fig.align = "center", warning = FALSE, message = FALSE}
+```{r pairs-plot, out.width = "75%", fig.align = "center", warning = FALSE, message = FALSE}
 library(GGally)
 flower$block <- factor(flower$block)
 
