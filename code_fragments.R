@@ -8,3 +8,13 @@
 #	htmltools.dir.version = FALSE, formatR.indent = 2,
 #	width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE)
 
+
+# ```{r, include=FALSE}
+# library(knitr)
+# library(stringr)
+# knitr::opts_chunk$set(message=FALSE, warning=FALSE, eval=TRUE, echo=FALSE)
+# suppressPackageStartupMessages(library(dplyr))
+# suppressPackageStartupMessages(library(stringr))
+# source('reveal.R')
+# ```
+
