@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.3 Get started with R markdown | A Introduction to R</title>
+  <title>3.1 Data types | A Introduction to R</title>
   <meta name="description" content="An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.3 Get started with R markdown | A Introduction to R" />
+  <meta property="og:title" content="3.1 Data types | A Introduction to R" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.3 Get started with R markdown | A Introduction to R" />
+  <meta name="twitter:title" content="3.1 Data types | A Introduction to R" />
   
   <meta name="twitter:description" content="An Introduction to R" />
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="why-use-r-markdown.html"/>
-<link rel="next" href="new-rm.html"/>
+<link rel="prev" href="data-r.html"/>
+<link rel="next" href="data-structures.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -313,17 +313,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="get-started-with-r-markdown" class="section level2">
-<h2><span class="header-section-number">7.3</span> Get started with R markdown</h2>
-<p>To use R markdown you will first need to install the <code>rmarkdown</code> package in RStudio (or in the R console if you’re not using RStudio) and any package dependencies. You can find instructions on how to do this for both Windows and Mac OSX operating systems <a href="install-rm.html#install-rm">here</a>. If you would like to create pdf documents (or MS Word documents) from your R markdown file you will also need to install a version of LaTeX on your computer. If you’ve not installed LaTeX before, I recommend that you install <a href="https://yihui.name/tinytex/">TinyTeX</a>. Again, instructions on how to do this can be found <a href="install-rm.html#install-rm">here</a>.</p>
+<div id="data-types" class="section level2">
+<h2><span class="header-section-number">3.1</span> Data types</h2>
+<p>Understanding the different types of data and how R deals with these data is important. The temptation is to glaze over and skip these technical details, but beware, this can come back to bite you somewhere unpleasant if you don’t pay attention. We’ve already seen an <a href="objects-in-r.html#r_objs">example</a> of this when we tried (and failed) to add two character objects together using the <code>+</code> operator.</p>
+<p>R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we’ve only listed five data types here, the final data type is raw which we won’t cover as it’s not useful 99.999% of the time. We also won’t cover complex numbers as we don’t have the <a href="https://www.mathsisfun.com/numbers/complex-numbers.html">imagination</a>!</p>
+<ul>
+<li><p><strong>Numeric</strong> data are numbers that contain a decimal. Actually they can also be whole numbers but we’ll gloss over that.</p></li>
+<li><p><strong>Integers</strong> are whole numbers (those numbers without a decimal point).</p></li>
+<li><p><strong>Logical</strong> data take on the value of either <code>TRUE</code> or <code>FALSE</code>. There’s also another special type of logical called <code>NA</code> to represent missing values.</p></li>
+<li><p><strong>Character</strong> data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a <em>factor</em>, which is a character string but with additional attributes (like levels or an order). We will cover factors later.</p></li>
+</ul>
+<p>R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they are used although you should bear in mind that R can’t actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the class of any object using the <code>class()</code> function.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">num &lt;-<span class="st"> </span><span class="fl">2.2</span></a>
+<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="kw">class</span>(num)</a>
+<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb80-5" data-line-number="5">char &lt;-<span class="st"> &quot;hello&quot;</span></a>
+<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="kw">class</span>(char)</a>
+<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb80-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb80-9" data-line-number="9">logi &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb80-10" data-line-number="10"><span class="kw">class</span>(log)</a>
+<a class="sourceLine" id="cb80-11" data-line-number="11"><span class="co"># [1] &quot;function&quot;</span></a></code></pre></div>
+<p>Alternatively, you can ask if an object is a specific class using using a logical test. The <code>is.**typeOfData()**</code> family of functions will return either a <code>TRUE</code> or a <code>FALSE</code></p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">is.numeric</span>(num)</a>
+<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb81-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="kw">is.character</span>(num)</a>
+<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="co"># [1] FALSE</span></a>
+<a class="sourceLine" id="cb81-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb81-7" data-line-number="7"><span class="kw">is.character</span>(char)</a>
+<a class="sourceLine" id="cb81-8" data-line-number="8"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb81-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb81-10" data-line-number="10"><span class="kw">is.logical</span>(logi)</a>
+<a class="sourceLine" id="cb81-11" data-line-number="11"><span class="co"># [1] TRUE</span></a></code></pre></div>
+<p>It can sometimes be useful to be able to change the class of a variable using the <code>as.**className**()</code> family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="co"># coerce numeric to character</span></a>
+<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">class</span>(num)</a>
+<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb82-4" data-line-number="4">num_char &lt;-<span class="st">  </span><span class="kw">as.character</span>(num)</a>
+<a class="sourceLine" id="cb82-5" data-line-number="5"><span class="kw">class</span>(num_char)</a>
+<a class="sourceLine" id="cb82-6" data-line-number="6"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb82-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb82-8" data-line-number="8"><span class="co"># coerce character to numeric!</span></a>
+<a class="sourceLine" id="cb82-9" data-line-number="9"><span class="kw">class</span>(char)</a>
+<a class="sourceLine" id="cb82-10" data-line-number="10"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb82-11" data-line-number="11">char_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(char)</a>
+<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># Warning: NAs introduced by coercion</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="why-use-r-markdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="new-rm.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="data-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-structures.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -355,7 +399,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/07-rmarkdown.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
 "text": "Edit"
 },
 "history": {

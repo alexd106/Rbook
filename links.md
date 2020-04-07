@@ -138,6 +138,7 @@
 [com_err]: https://www.google.com/search?client=firefox-b-d&q=common+r+error+messages
 [non_num_err]: https://www.google.com/search?client=firefox-b-d&q=non-numeric+argument+to+binary+operator+error+%2B+r
 [boolean]: https://en.wikipedia.org/wiki/Boolean_expression
+[complex_num]: https://www.mathsisfun.com/numbers/complex-numbers.html
 
 
 

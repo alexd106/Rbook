@@ -1,11 +1,115 @@
 # Data in R {#data_r}
 
-vectors
-useful functions seq(), rep()
+Until now, you've created fairly simple data in R and stored it in a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
+
+In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate and summarise (wrangle) data and finally how to export data from R to an external file.
+
+## Data types
+
+Understanding the different types of data and how R deals with these data is important. The temptation is to glaze over and skip these technical details, but beware, this can come back to bite you somewhere unpleasant if you don't pay attention. We've already seen an [example](#r_objs) of this when we tried (and failed) to add two character objects together using the `+` operator.
+
+R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we've only listed five data types here, the final data type is raw which we won't cover as it's not useful 99.999% of the time. We also won't cover complex numbers as we don't have the [imagination][complex_num]!
+
+  - **Numeric** data are numbers that contain a decimal. Actually they can also be whole numbers but we'll gloss over that.
+
+  - **Integers** are whole numbers (those numbers without a decimal point).
+
+  - **Logical** data take on the value of either `TRUE` or `FALSE`. There's also another special type of logical called `NA` to represent missing values.
+
+  - **Character** data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a *factor*, which is a character string but with additional attributes (like levels or an order). We will cover factors later. 
+
+R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they are used although you should bear in mind that R can't actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the class of any object using the `class()` function.
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+num <- 2.2
+class(num)
+
+char <- "hello"
+class(char)
+
+logi <- TRUE
+class(log)
+
+```
+
+Alternatively, you can ask if an object is a specific class using using a logical test. The `is.**typeOfData()**` family of functions will return either a `TRUE` or a `FALSE`
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+is.numeric(num)
+
+is.character(num)
+
+is.character(char)
+
+is.logical(logi)
+
+```
+
+It can sometimes be useful to be able to change the class of a variable using the `as.**className**()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+# coerce numeric to character
+class(num)
+num_char <-  as.character(num)
+class(num_char)
+
+# coerce character to numeric!
+class(char)
+char_num <- as.numeric(char)
+
+```
+
+## Data structures
+
+Now that you've been introduced to some of the most important classes of data in R, let’s have a look at some of main structures that we have for storing these data. 
+
+### Scalars and vectors
+
+Perhaps the simplest type of data structure is the **vector**. You've already been introduced to vectors in [Chapter 2](#funcs) although some of only contained a single value. Vectors that have a single value are called **scalars**. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside the vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals (TRUE/FALSE) but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of string) to denote missing data in vectors with other data types. Although vectors are very useful, perhaps the most common type of data structure you will use is the all powerful dataframe.
+
+### Data frames
+
+
+
+## Importing data
+
+## Wrangling data frames
+
+## Summarising data frames
+
+## Other data strctures
+
+### Matrices
+
+Another useful data structure used in many disciplines such as population ecology, theoretical and practical statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. R has numerous built in functions to perform matrix operations. 
+
+### Lists
+
+The final data structure we will consider is a list. A list is a data structure that can contain any class of variable and are invaluable for storing complicated output from functions among other things. In fact, many of R’s statistical functions (see Section 5) generate lists which contain useful information which can be accessed directly (residuals and fitted values for example). 
+
+## Exporting data
+
+**plan**
+
+Vectors we have already seen
 
 dataframes
-import data
-summarise data 
-manipulate data using []
+	- overview of structure
+	- going from excel/calc to txt or csv file
+	- import data
+	- `read.table` and variants `read.csv`, `read.delim`
+	- `read_table` in `readr` package
+	- `data.table` package - `fread` 
+
+data wrangling using `$` and `[ ]`
+
+summarising data 
 
 exporting data
+
+
+\  
+
+```{r links, child="links.md"}
+```
+

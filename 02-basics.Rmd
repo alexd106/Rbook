@@ -43,7 +43,7 @@ It's important to realise that when you run code as we've done above, the result
 
 At the heart of almost everything you will do (or ever likely to do) in R is the concept that everything in R is an [object][chambers]. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.
 
-### Creating objects
+### Creating objects {#r_objs}
 
 To create an object we simply give the object a name. We can then assign a value to this object using the *assignment operator* `<-` (sometimes called the *gets operator*). The assignment operator is a composite symbol comprised of a ‘less than’ symbol `<` and a hyphen `-` .
 
@@ -414,9 +414,44 @@ names_ord
 
 You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in [Chapter 3](#data_r).
 
+### Vectorisation
+
+One of the great things about R functions is that most of them are vectorised. This means that the function will operate on all elements of a vector without needing to apply the function on each element separately. For example, to multiple each element of a vector by 5 we can simply use 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+# create a vector
+my_vec2 <- c(3, 5, 7, 1, 9, 20)
+
+# multiply each element by 5
+my_vec2 * 5
+```
+
+Or we can add the elements of two or more vectors
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+# create a second vector
+my_vec3 <- c(17, 15, 13, 19, 11, 0)
+
+# add both vectors
+my_vec2 + my_vec3
+
+# multiply both vectors
+my_vec2 * my_vec3
+```
+
+However, you must be careful when using vectorisation with vectors of different lengths as R will quietly recycle the elements in the shorter vector rather than throw a wobbly (error)
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+# create a third vector
+my_vec4 <- c(1, 2)
+
+# add both vectors - quiet recycling!
+my_vec2 + my_vec4
+```
+
 ### Missing data
 
-In R, missing data is usually represented by an `NA` symbol. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways.  For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days
+In R, missing data is usually represented by an `NA` symbol meaning 'Not Available'. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways.  For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 temp  <- c(7.2, NA, 7.1, 6.9, 6.5, 5.8, 5.8, 5.5, NA, 5.5)
