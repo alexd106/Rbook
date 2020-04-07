@@ -1,6 +1,6 @@
 # Data in R {#data_r}
 
-Until now, you've created fairly simple data in R and stored it in a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
+Until now, you've created fairly simple data in R and stored it in a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
 
 In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate and summarise (wrangle) data and finally how to export data from R to an external file.
 
@@ -10,6 +10,8 @@ Understanding the different types of data and how R deals with these data is imp
 
 R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we've only listed five data types here, the final data type is raw which we won't cover as it's not useful 99.999% of the time. We also won't cover complex numbers as we don't have the [imagination][complex_num]!
 
+\  
+
   - **Numeric** data are numbers that contain a decimal. Actually they can also be whole numbers but we'll gloss over that.
 
   - **Integers** are whole numbers (those numbers without a decimal point).
@@ -18,7 +20,9 @@ R has six basic types of data; numeric, integer, logical, complex and character.
 
   - **Character** data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a *factor*, which is a character string but with additional attributes (like levels or an order). We will cover factors later. 
 
-R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they are used although you should bear in mind that R can't actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the class of any object using the `class()` function.
+\  
+
+R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they're used although you should bear in mind that R can't actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the type (or class) of any object using the `class()` function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 num <- 2.2
@@ -28,11 +32,11 @@ char <- "hello"
 class(char)
 
 logi <- TRUE
-class(log)
+class(logi)
 
 ```
 
-Alternatively, you can ask if an object is a specific class using using a logical test. The `is.**typeOfData()**` family of functions will return either a `TRUE` or a `FALSE`
+Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 is.numeric(num)
@@ -45,12 +49,13 @@ is.logical(logi)
 
 ```
 
-It can sometimes be useful to be able to change the class of a variable using the `as.**className**()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results
+It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # coerce numeric to character
 class(num)
 num_char <-  as.character(num)
+num_char
 class(num_char)
 
 # coerce character to numeric!
@@ -58,6 +63,18 @@ class(char)
 char_num <- as.numeric(char)
 
 ```
+
+Here is a summary table of logical test and coercion functions available to you
+
+\  
+
+|     Type       |    Logical test       |     Coercing       |
+|:--------------:|:-------------------:|:-----------------:|
+|  Character     |   `is.character`   |   `as.character`   |
+|  Numeric   |   `is.numeric`   |   `as.numeric`   |
+|  Logical | `is.logical` | `as.logical` |
+|  Factor   |   `is.factor`  |   `as.factor`  |
+|  Complex     |   `is.complex`    |   `as.complex`    |
 
 ## Data structures
 
