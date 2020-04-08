@@ -49,7 +49,7 @@ is.logical(logi)
 
 ```
 
-It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results.
+It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # coerce numeric to character
@@ -132,7 +132,7 @@ my_mat_diag <- diag(my_mat)
 my_mat_diag
 ```
 
-The usual matrix addition, multiplication etc can be performed. Note the use of the `%*%` operator to perform matrix multuplication.
+The usual matrix addition, multiplication etc can be performed. Note the use of the `%*%` operator to perform matrix multiplication.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mat.1 <- matrix(c(2, 0, 1, 1), nrow = 2)	# notice that the matrix has been filled 
@@ -149,9 +149,9 @@ mat.1 %*% mat.2			# matrix multiplication
 
 ### Data frames
 
-By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual oberservation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors. 
+By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors. 
 
-As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (*Petunia sp.*) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The dataframe has 8 variables (columns) and each row represents an individual plant. The variables `tip treatment` and `nitrogen level` are factors ([categorical][cat-var] variables). The `tip treatment` variable has 2 levels (`tip` and `notip`) and the `nitrogen level` variable has 3 levels (`low`, `medium` and `high`). The variables `shoot height`, `shoot weight`, `leaf area` and `side shoot area` are numeric and the variable `flower number` is an integer. Although the variable `block` has numerical values, these do not have an order and could also be treated as a factor (i.e. they could also have been called A and B).  You will see why this is important later (**TODO**).
+As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (*Petunia sp.*) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables `tip treatment` and `nitrogen level` are factors ([categorical][cat-var] variables). The `tip treatment` variable has 2 levels (`tip` and `notip`) and the `nitrogen level` variable has 3 levels (`low`, `medium` and `high`). The variables `shoot height`, `shoot weight`, `leaf area` and `side shoot area` are numeric and the variable `flower number` is an integer. Although the variable `block` has numerical values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).  You will see why this is important later (**TODO**). 
 
 \  
 
@@ -162,13 +162,28 @@ knitr::kable(rbind(head(flowers), tail(flowers)), row.names = FALSE)
 
 \  
 
+There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an `NA` just as we did with our vectors. 
+
+We can construct a data frame from existing data objects such as vectors using the `data.frame()` function. As an example, lets create three vectors `height`, `weight` and `p.names` and include all of these vectors in a data frame object called `dataf`.
+
+```{r dataf, echo=TRUE, collapse=TRUE}
+height <- c(180, 155, 160, 167, 181)
+weight <- c(65, 50, 52, 58, 70)
+p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
+
+dataf <- data.frame(height = height, weight = weight, names = p.names)
+dataf
+```
+
+But much more common way to create a data frame is to import data from an external file, something we will cover in the next section. 
+
 ## Importing data
 
 ## Wrangling data frames
 
 ## Summarising data frames
 
-## Other data strctures
+## Other data strictures
 
 ### Matrices
 
@@ -184,7 +199,7 @@ The final data structure we will consider is a list. A list is a data structure 
 
 Vectors we have already seen
 
-dataframes
+data frames
 	- overview of structure
 	- going from excel/calc to txt or csv file
 	- import data

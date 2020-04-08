@@ -203,9 +203,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a></li>
 <li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
-<li class="chapter" data-level="3.6" data-path="other-data-strctures.html"><a href="other-data-strctures.html"><i class="fa fa-check"></i><b>3.6</b> Other data strctures</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="other-data-strctures.html"><a href="other-data-strctures.html#matrices"><i class="fa fa-check"></i><b>3.6.1</b> Matrices</a></li>
-<li class="chapter" data-level="3.6.2" data-path="other-data-strctures.html"><a href="other-data-strctures.html#lists"><i class="fa fa-check"></i><b>3.6.2</b> Lists</a></li>
+<li class="chapter" data-level="3.6" data-path="other-data-strictures.html"><a href="other-data-strictures.html"><i class="fa fa-check"></i><b>3.6</b> Other data strictures</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="other-data-strictures.html"><a href="other-data-strictures.html#matrices"><i class="fa fa-check"></i><b>3.6.1</b> Matrices</a></li>
+<li class="chapter" data-level="3.6.2" data-path="other-data-strictures.html"><a href="other-data-strictures.html#lists"><i class="fa fa-check"></i><b>3.6.2</b> Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.7</b> Exporting data</a></li>
 </ul></li>
@@ -372,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">my_mat_diag &lt;-<span class="st"> </span><span class="kw">diag</span>(my_mat)</a>
 <a class="sourceLine" id="cb86-2" data-line-number="2">my_mat_diag</a>
 <a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co"># [1]  1  6 11 16</span></a></code></pre></div>
-<p>The usual matrix addition, multiplication etc can be performed. Note the use of the <code>%*%</code> operator to perform matrix multuplication.</p>
+<p>The usual matrix addition, multiplication etc can be performed. Note the use of the <code>%*%</code> operator to perform matrix multiplication.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></a>
 <a class="sourceLine" id="cb87-2" data-line-number="2">mat<span class="fl">.1</span>                                     <span class="co"># column-wise</span></a>
 <a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
@@ -400,8 +400,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Data frames</h3>
-<p>By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual oberservation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors.</p>
-<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (<em>Petunia sp.</em>) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The dataframe has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>shoot height</code>, <code>shoot weight</code>, <code>leaf area</code> and <code>side shoot area</code> are numeric and the variable <code>flower number</code> is an integer. Although the variable <code>block</code> has numerical values, these do not have an order and could also be treated as a factor (i.e. they could also have been called A and B). You will see why this is important later (<strong>TODO</strong>).</p>
+<p>By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors.</p>
+<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (<em>Petunia sp.</em>) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>shoot height</code>, <code>shoot weight</code>, <code>leaf area</code> and <code>side shoot area</code> are numeric and the variable <code>flower number</code> is an integer. Although the variable <code>block</code> has numerical values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B). You will see why this is important later (<strong>TODO</strong>).</p>
 <p> </p>
 <table>
 <thead>
@@ -540,6 +540,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p> </p>
+<p>There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an <code>NA</code> just as we did with our vectors.</p>
+<p>We can construct a data frame from existing data objects such as vectors using the <code>data.frame()</code> function. As an example, lets create three vectors <code>height</code>, <code>weight</code> and <code>p.names</code> and include all of these vectors in a data frame object called <code>dataf</code>.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb88-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names)</a>
+<a class="sourceLine" id="cb88-6" data-line-number="6">dataf</a>
+<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="co">#   height weight     names</span></a>
+<a class="sourceLine" id="cb88-8" data-line-number="8"><span class="co"># 1    180     65    Joanna</span></a>
+<a class="sourceLine" id="cb88-9" data-line-number="9"><span class="co"># 2    155     50 Charlotte</span></a>
+<a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co"># 3    160     52     Helen</span></a>
+<a class="sourceLine" id="cb88-11" data-line-number="11"><span class="co"># 4    167     58     Karen</span></a>
+<a class="sourceLine" id="cb88-12" data-line-number="12"><span class="co"># 5    181     70       Amy</span></a></code></pre></div>
+<p>But much more common way to create a data frame is to import data from an external file, something we will cover in the next section.</p>
 </div>
 </div>
             </section>
