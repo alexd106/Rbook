@@ -321,14 +321,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.2.1</span> Scalars and vectors</h3>
 <p>Perhaps the simplest type of data structure is the <strong>vector</strong>. You’ve already been introduced to vectors in <a href="r-functions.html#funcs">Chapter 2</a> although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called <strong>scalars</strong>. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include <code>NA</code> (remember this is special type of logical) to denote missing data in vectors with other data types.</p>
 <p> </p>
-<p><img src="images/scal_vec.png" width="70%" style="display: block; margin: auto;" /></p>
-<p> </p>
+<p><img src="images/scal_vec.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="matrices-and-arrays" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Matrices and arrays</h3>
 <p>Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are simply multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.</p>
 <p> </p>
-<p><img src="images/mat_array.png" width="70%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>A convenient way to create a matrix or an array is to use the <code>matrix()</code> and <code>array()</code> functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (<code>nrow = 4</code>) and fill the matrix row-wise (<code>byrow = TRUE</code>) rather than the default column-wise. When using the <code>array()</code> funcrion we define the dimensions using the <code>dim =</code> argument.</p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb83-1" data-line-number="1">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
@@ -352,11 +351,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb83-19" data-line-number="19"><span class="co">#      [,1] [,2] [,3] [,4]</span></a>
 <a class="sourceLine" id="cb83-20" data-line-number="20"><span class="co"># [1,]    9   11   13   15</span></a>
 <a class="sourceLine" id="cb83-21" data-line-number="21"><span class="co"># [2,]   10   12   14   16</span></a></code></pre></div>
-<p>It’s often useful to define row and column names</p>
+<p>It’s also often useful to define row and column names for your matrix (but not required)</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1"><span class="kw">rownames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>)</a>
-<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="kw">colnames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</a></code></pre></div>
-<p>R has numerous built in functions to perform matrix operations. Below are some of the most useful</p>
-<p>To transpose a matrix use the transposition function <code>t()</code></p>
+<a class="sourceLine" id="cb84-2" data-line-number="2"><span class="kw">colnames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</a>
+<a class="sourceLine" id="cb84-3" data-line-number="3">my_mat</a>
+<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">#    a  b  c  d</span></a>
+<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="co"># A  1  2  3  4</span></a>
+<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="co"># B  5  6  7  8</span></a>
+<a class="sourceLine" id="cb84-7" data-line-number="7"><span class="co"># C  9 10 11 12</span></a>
+<a class="sourceLine" id="cb84-8" data-line-number="8"><span class="co"># D 13 14 15 16</span></a></code></pre></div>
+<p>Once you’ve created your matrices we can do useful stuff with them. As you’d expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function <code>t()</code></p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1">my_mat_t &lt;-<span class="st"> </span><span class="kw">t</span>(my_mat)</a>
 <a class="sourceLine" id="cb85-2" data-line-number="2">my_mat_t</a>
 <a class="sourceLine" id="cb85-3" data-line-number="3"><span class="co">#   A B  C  D</span></a>
@@ -364,31 +368,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb85-5" data-line-number="5"><span class="co"># b 2 6 10 14</span></a>
 <a class="sourceLine" id="cb85-6" data-line-number="6"><span class="co"># c 3 7 11 15</span></a>
 <a class="sourceLine" id="cb85-7" data-line-number="7"><span class="co"># d 4 8 12 16</span></a></code></pre></div>
-<p>To extract a vector of the diagonal elements of the matrix use the <code>diag()</code> function</p>
+<p>To extract the diagonal elements of the matrix and store them as a vector we can use the <code>diag()</code> function</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">my_mat_diag &lt;-<span class="st"> </span><span class="kw">diag</span>(my_mat)</a>
 <a class="sourceLine" id="cb86-2" data-line-number="2">my_mat_diag</a>
 <a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co"># [1]  1  6 11 16</span></a></code></pre></div>
-<p>All the usual operations using matrices may be performed such as matrix addition, multiplication etc</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled column-wise</span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">mat<span class="fl">.1</span></a>
+<p>And matrix addition, multiplication etc can be performed</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">mat<span class="fl">.1</span>                                     <span class="co"># column-wise</span></a>
 <a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
 <a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co"># [1,]    2    1</span></a>
 <a class="sourceLine" id="cb87-5" data-line-number="5"><span class="co"># [2,]    0    1</span></a>
 <a class="sourceLine" id="cb87-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb87-7" data-line-number="7">mat<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb87-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb87-9" data-line-number="9">mat<span class="fl">.1</span> <span class="op">+</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></a>
-<a class="sourceLine" id="cb87-10" data-line-number="10"><span class="co">#      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb87-11" data-line-number="11"><span class="co"># [1,]    3    1</span></a>
-<a class="sourceLine" id="cb87-12" data-line-number="12"><span class="co"># [2,]    1    3</span></a>
-<a class="sourceLine" id="cb87-13" data-line-number="13">mat<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># element by element products</span></a>
+<a class="sourceLine" id="cb87-8" data-line-number="8">mat<span class="fl">.2</span></a>
+<a class="sourceLine" id="cb87-9" data-line-number="9"><span class="co">#      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb87-10" data-line-number="10"><span class="co"># [1,]    1    0</span></a>
+<a class="sourceLine" id="cb87-11" data-line-number="11"><span class="co"># [2,]    1    2</span></a>
+<a class="sourceLine" id="cb87-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb87-13" data-line-number="13">mat<span class="fl">.1</span> <span class="op">+</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></a>
 <a class="sourceLine" id="cb87-14" data-line-number="14"><span class="co">#      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb87-15" data-line-number="15"><span class="co"># [1,]    2    0</span></a>
-<a class="sourceLine" id="cb87-16" data-line-number="16"><span class="co"># [2,]    0    2</span></a>
-<a class="sourceLine" id="cb87-17" data-line-number="17">mat<span class="fl">.1</span> <span class="op">%*%</span><span class="st"> </span>mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></a>
+<a class="sourceLine" id="cb87-15" data-line-number="15"><span class="co"># [1,]    3    1</span></a>
+<a class="sourceLine" id="cb87-16" data-line-number="16"><span class="co"># [2,]    1    3</span></a>
+<a class="sourceLine" id="cb87-17" data-line-number="17">mat<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># element by element products</span></a>
 <a class="sourceLine" id="cb87-18" data-line-number="18"><span class="co">#      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb87-19" data-line-number="19"><span class="co"># [1,]    3    2</span></a>
-<a class="sourceLine" id="cb87-20" data-line-number="20"><span class="co"># [2,]    1    2</span></a></code></pre></div>
+<a class="sourceLine" id="cb87-19" data-line-number="19"><span class="co"># [1,]    2    0</span></a>
+<a class="sourceLine" id="cb87-20" data-line-number="20"><span class="co"># [2,]    0    2</span></a>
+<a class="sourceLine" id="cb87-21" data-line-number="21">mat<span class="fl">.1</span> <span class="op">%*%</span><span class="st"> </span>mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></a>
+<a class="sourceLine" id="cb87-22" data-line-number="22"><span class="co">#      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb87-23" data-line-number="23"><span class="co"># [1,]    3    2</span></a>
+<a class="sourceLine" id="cb87-24" data-line-number="24"><span class="co"># [2,]    1    2</span></a></code></pre></div>
 </div>
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Data frames</h3>

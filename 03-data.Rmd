@@ -84,11 +84,9 @@ Perhaps the simplest type of data structure is the **vector**. You've already be
 
 \  
 
-```{r data_struc, echo=FALSE, out.width="70%", fig.align="center"}
+```{r data_struc, echo=FALSE, out.width="40%", fig.align="center"}
 knitr::include_graphics(path = "images/scal_vec.png")
 ```
-
-\  
 
 ### Matrices and arrays
 
@@ -96,7 +94,7 @@ Another useful data structure used in many disciplines such as population ecolog
 
 \  
 
-```{r data_struc2, echo=FALSE, out.width="70%", fig.align="center"}
+```{r data_struc2, echo=FALSE, out.width="50%", fig.align="center"}
 knitr::include_graphics(path = "images/mat_array.png")
 ```
 
@@ -112,36 +110,36 @@ my_array <- array(1:16, dim = c(2, 4, 2))
 my_array
 ```
 
-It's often useful to define row and column names 
+It's also often useful to define row and column names for your matrix (but not required)
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 rownames(my_mat) <- c("A", "B", "C", "D")
 colnames(my_mat) <- c("a", "b", "c", "d")
+my_mat
 ```
 
-R has numerous built in functions to perform matrix operations. Below are some of the most useful
-
-To transpose a matrix use the transposition function `t()`
+Once you've created your matrices we can do useful stuff with them. As you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_t <- t(my_mat)
 my_mat_t
 ```
 
-To extract a vector of the diagonal elements of the matrix use the `diag()` function
+To extract the diagonal elements of the matrix and store them as a vector we can use the `diag()` function
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_diag <- diag(my_mat)
 my_mat_diag
 ```
 
-All the usual operations using matrices may be performed such as matrix addition, multiplication etc
+And matrix addition, multiplication etc can be performed 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-mat.1 <- matrix(c(2, 0, 1, 1), nrow = 2)	# notice that the matrix has been filled column-wise
-mat.1
+mat.1 <- matrix(c(2, 0, 1, 1), nrow = 2)	# notice that the matrix has been filled 
+mat.1                                     # column-wise
 
 mat.2 <- matrix(c(1, 1, 0, 2), nrow = 2)
+mat.2
 
 mat.1 + mat.2			# matrix addition
 mat.1 * mat.2			# element by element products
