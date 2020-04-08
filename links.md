@@ -92,8 +92,11 @@
 [leland]: https://www.springer.com/gp/book/9780387245447
 [leland-summary]: https://www.jstatsoft.org/article/view/v017b03/v17b03.pdf
 
-<!--basics links-->
+<!--Basics links-->
 [vector]: https://www.datamentor.io/r-programming/vector/
+
+<!--Data links-->
+[cat-var]: https://en.wikipedia.org/wiki/Categorical_variable
 
 <!--Resource Links-->
 [swirl]: http://swirlstats.com/

@@ -80,7 +80,7 @@ Now that you've been introduced to some of the most important classes of data in
 
 ### Scalars and vectors
 
-Perhaps the simplest type of data structure is the **vector**. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called **scalars**. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
+Perhaps the simplest type of data structure is the vector. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
 
 \  
 
@@ -100,7 +100,7 @@ knitr::include_graphics(path = "images/mat_array.png")
 
 \ 
 
-A convenient way to create a matrix or an array is to use the `matrix()` and `array()` functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (`nrow = 4`) and fill the matrix row-wise (`byrow = TRUE`) rather than the default column-wise. When using the `array()` funcrion we define the dimensions using the `dim =` argument.  
+A convenient way to create a matrix or an array is to use the `matrix()` and `array()` functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (`nrow = 4`) and fill the matrix row-wise (`byrow = TRUE`) rather than the default column-wise. When using the `array()` function we define the dimensions using the `dim =` argument, in our case 2 rows, 4 columns in 2 different matrices.   
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat <- matrix(1:16, nrow = 4, byrow = TRUE)
@@ -110,7 +110,7 @@ my_array <- array(1:16, dim = c(2, 4, 2))
 my_array
 ```
 
-It's also often useful to define row and column names for your matrix (but not required)
+Sometimes it's also useful to define row and column names for your matrix but this is not a requirement. To do this use the `rownames()` and `colnames()` functions,
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 rownames(my_mat) <- c("A", "B", "C", "D")
@@ -118,21 +118,21 @@ colnames(my_mat) <- c("a", "b", "c", "d")
 my_mat
 ```
 
-Once you've created your matrices we can do useful stuff with them. As you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`
+Once you've created your matrices you can do useful stuff with them and as you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_t <- t(my_mat)
 my_mat_t
 ```
 
-To extract the diagonal elements of the matrix and store them as a vector we can use the `diag()` function
+To extract the diagonal elements of a matrix and store them as a vector we can use the `diag()` function
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_diag <- diag(my_mat)
 my_mat_diag
 ```
 
-And matrix addition, multiplication etc can be performed 
+The usual matrix addition, multiplication etc can be performed. Note the use of the `%*%` operator to perform matrix multuplication.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mat.1 <- matrix(c(2, 0, 1, 1), nrow = 2)	# notice that the matrix has been filled 
@@ -149,7 +149,18 @@ mat.1 %*% mat.2			# matrix multiplication
 
 ### Data frames
 
+By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual oberservation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors. 
 
+As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (*Petunia sp.*) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The dataframe has 8 variables (columns) and each row represents an individual plant. The variables `tip treatment` and `nitrogen level` are factors ([categorical][cat-var] variables). The `tip treatment` variable has 2 levels (`tip` and `notip`) and the `nitrogen level` variable has 3 levels (`low`, `medium` and `high`). The variables `shoot height`, `shoot weight`, `leaf area` and `side shoot area` are numeric and the variable `flower number` is an integer. Although the variable `block` has numerical values, these do not have an order and could also be treated as a factor (i.e. they could also have been called A and B).  You will see why this is important later (**TODO**).
+
+\  
+
+```{r import-data, echo=FALSE, collapse=TRUE}
+flowers <- read.table('data/flower.txt', header = TRUE)
+knitr::kable(rbind(head(flowers), tail(flowers)), row.names = FALSE)
+```
+
+\  
 
 ## Importing data
 
