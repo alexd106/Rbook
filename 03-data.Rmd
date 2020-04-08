@@ -18,7 +18,7 @@ R has six basic types of data; numeric, integer, logical, complex and character.
 
   - **Logical** data take on the value of either `TRUE` or `FALSE`. There's also another special type of logical called `NA` to represent missing values.
 
-  - **Character** data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a *factor*, which is a character string but with additional attributes (like levels or an order). We will cover factors later. 
+  - **Character** data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a *factor*, which is a character string but with additional attributes (like levels or an order). We'll cover factors later. 
 
 \  
 
@@ -36,7 +36,7 @@ class(logi)
 
 ```
 
-Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`
+Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 is.numeric(num)
@@ -49,7 +49,7 @@ is.logical(logi)
 
 ```
 
-It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results
+It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coersion functions, although you need to be careful when doing this as you might receive some unexpected results.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # coerce numeric to character
@@ -64,9 +64,7 @@ char_num <- as.numeric(char)
 
 ```
 
-Here is a summary table of logical test and coercion functions available to you
-
-\  
+Here's a summary table of some of the logical test and coercion functions available to you.
 
 |     Type       |    Logical test       |     Coercing       |
 |:--------------:|:-------------------:|:-----------------:|
@@ -82,7 +80,74 @@ Now that you've been introduced to some of the most important classes of data in
 
 ### Scalars and vectors
 
-Perhaps the simplest type of data structure is the **vector**. You've already been introduced to vectors in [Chapter 2](#funcs) although some of only contained a single value. Vectors that have a single value are called **scalars**. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside the vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals (TRUE/FALSE) but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of string) to denote missing data in vectors with other data types. Although vectors are very useful, perhaps the most common type of data structure you will use is the all powerful dataframe.
+Perhaps the simplest type of data structure is the **vector**. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called **scalars**. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
+
+\  
+
+```{r data_struc, echo=FALSE, out.width="70%", fig.align="center"}
+knitr::include_graphics(path = "images/scal_vec.png")
+```
+
+\  
+
+### Matrices and arrays
+
+Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are simply multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.
+
+\  
+
+```{r data_struc2, echo=FALSE, out.width="70%", fig.align="center"}
+knitr::include_graphics(path = "images/mat_array.png")
+```
+
+\ 
+
+A convenient way to create a matrix or an array is to use the `matrix()` and `array()` functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (`nrow = 4`) and fill the matrix row-wise (`byrow = TRUE`) rather than the default column-wise. When using the `array()` funcrion we define the dimensions using the `dim =` argument.  
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_mat <- matrix(1:16, nrow = 4, byrow = TRUE)
+my_mat
+
+my_array <- array(1:16, dim = c(2, 4, 2))
+my_array
+```
+
+It's often useful to define row and column names 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+rownames(my_mat) <- c("A", "B", "C", "D")
+colnames(my_mat) <- c("a", "b", "c", "d")
+```
+
+R has numerous built in functions to perform matrix operations. Below are some of the most useful
+
+To transpose a matrix use the transposition function `t()`
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_mat_t <- t(my_mat)
+my_mat_t
+```
+
+To extract a vector of the diagonal elements of the matrix use the `diag()` function
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_mat_diag <- diag(my_mat)
+my_mat_diag
+```
+
+All the usual operations using matrices may be performed such as matrix addition, multiplication etc
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+mat.1 <- matrix(c(2, 0, 1, 1), nrow = 2)	# notice that the matrix has been filled column-wise
+mat.1
+
+mat.2 <- matrix(c(1, 1, 0, 2), nrow = 2)
+
+mat.1 + mat.2			# matrix addition
+mat.1 * mat.2			# element by element products
+mat.1 %*% mat.2			# matrix multiplication
+
+```
 
 ### Data frames
 
