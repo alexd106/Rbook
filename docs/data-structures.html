@@ -167,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="work-d.html"><a href="work-d.html"><i class="fa fa-check"></i><b>1.7</b> Working directories</a></li>
 <li class="chapter" data-level="1.8" data-path="dir-struct.html"><a href="dir-struct.html"><i class="fa fa-check"></i><b>1.8</b> Directory structure</a></li>
 <li class="chapter" data-level="1.9" data-path="file-names.html"><a href="file-names.html"><i class="fa fa-check"></i><b>1.9</b> File names</a></li>
-<li class="chapter" data-level="1.10" data-path="project-documentation.html"><a href="project-documentation.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
+<li class="chapter" data-level="1.10" data-path="proj-doc.html"><a href="proj-doc.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
 <li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
 <li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
 </ul></li>
@@ -325,7 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="matrices-and-arrays" class="section level3">
 <h3><span class="header-section-number">3.2.2</span> Matrices and arrays</h3>
-<p>Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are simply multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.</p>
+<p>Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are just multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.</p>
 <p> </p>
 <p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co"># [1]  1  6 11 16</span></a></code></pre></div>
 <p>The usual matrix addition, multiplication etc can be performed. Note the use of the <code>%*%</code> operator to perform matrix multiplication.</p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">mat<span class="fl">.1</span>                                     <span class="co"># column-wise</span></a>
+<a class="sourceLine" id="cb87-2" data-line-number="2">mat<span class="fl">.1</span>                                       <span class="co"># column-wise by default</span></a>
 <a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
 <a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co"># [1,]    2    1</span></a>
 <a class="sourceLine" id="cb87-5" data-line-number="5"><span class="co"># [2,]    0    1</span></a>
@@ -401,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-frames" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Data frames</h3>
 <p>By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors.</p>
-<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia (<em>Petunia sp.</em>) plants grown at 3 levels of nitrogen on various measures of growth (note: data below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>shoot height</code>, <code>shoot weight</code>, <code>leaf area</code> and <code>side shoot area</code> are numeric and the variable <code>flower number</code> is an integer. Although the variable <code>block</code> has numerical values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B). You will see why this is important later (<strong>TODO</strong>).</p>
+<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia plants (<em>Petunia sp.</em>) grown at 3 levels of nitrogen on various measures of growth (note: data shown below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> are numeric and the variable <code>flowers</code> is an integer representing the numebr of flowers. Although the variable <code>block</code> has numeric values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).</p>
 <p> </p>
 <table>
 <thead>
@@ -541,7 +541,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p> </p>
 <p>There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an <code>NA</code> just as we did with our vectors.</p>
-<p>We can construct a data frame from existing data objects such as vectors using the <code>data.frame()</code> function. As an example, lets create three vectors <code>height</code>, <code>weight</code> and <code>p.names</code> and include all of these vectors in a data frame object called <code>dataf</code>.</p>
+<p>We can construct a data frame from existing data objects such as vectors using the <code>data.frame()</code> function. As an example, let’s create three vectors <code>height</code>, <code>weight</code> and <code>p.names</code> and include all of these vectors in a data frame object called <code>dataf</code>.</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
 <a class="sourceLine" id="cb88-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
 <a class="sourceLine" id="cb88-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
@@ -554,7 +554,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co"># 3    160     52     Helen</span></a>
 <a class="sourceLine" id="cb88-11" data-line-number="11"><span class="co"># 4    167     58     Karen</span></a>
 <a class="sourceLine" id="cb88-12" data-line-number="12"><span class="co"># 5    181     70       Amy</span></a></code></pre></div>
-<p>But much more common way to create a data frame is to import data from an external file, something we will cover in the next section.</p>
+<p>You’ll notice that each of the columns are named with variable name we supplied when we used the <code>data.frame</code> function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the <code>dataf</code> object using the <code>dim()</code> function. We se that there are 5 rows and 3 columns.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></a>
+<a class="sourceLine" id="cb89-2" data-line-number="2"><span class="co"># [1] 5 3</span></a></code></pre></div>
+<p>Another really useful function which we use all the time is <code>str()</code> which will return a compact summary of the structure of the data frame object (or any object for that matter).</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1"><span class="kw">str</span>(dataf)   </a>
+<a class="sourceLine" id="cb90-2" data-line-number="2"><span class="co"># &#39;data.frame&#39;: 5 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">#  $ height: num  180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co">#  $ weight: num  65 50 52 58 70</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="co">#  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></a></code></pre></div>
+<p>The <code>str()</code> function gives us the data frame dimensions and also reminds us that <code>dataf</code> is a <code>data.frame</code> type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you haw to comment blocks in RStudio <a href="proj-doc.html#proj_doc">here</a>.</p>
+<p>Also notice that R has automatically decided that our <code>p.names</code> variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn’t such a good idea we can change the default behaviour of the <code>data.frame()</code> function by including the argument <code>stringsAsFactors = FALSE</code>. Now our strings are not automatically converted to factors and remain as characters (<code>chr</code>).</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb91-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names, </a>
+<a class="sourceLine" id="cb91-6" data-line-number="6">                                        <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="kw">str</span>(dataf)</a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co"># &#39;data.frame&#39;: 5 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">#  $ height: num  180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="co">#  $ weight: num  65 50 52 58 70</span></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co">#  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></a></code></pre></div>
 </div>
 </div>
             </section>
