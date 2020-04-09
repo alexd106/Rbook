@@ -142,6 +142,7 @@
 [non_num_err]: https://www.google.com/search?client=firefox-b-d&q=non-numeric+argument+to+binary+operator+error+%2B+r
 [boolean]: https://en.wikipedia.org/wiki/Boolean_expression
 [complex_num]: https://www.mathsisfun.com/numbers/complex-numbers.html
+[excel_gotcha]: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7
 
 
 

@@ -78,7 +78,7 @@ Here's a summary table of some of the logical test and coercion functions availa
 
 Now that you've been introduced to some of the most important classes of data in R, let’s have a look at some of main structures that we have for storing these data. 
 
-### Scalars and vectors
+### Scalars and vectors {#vectors}
 
 Perhaps the simplest type of data structure is the vector. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
 
@@ -147,11 +147,11 @@ mat.1 %*% mat.2			# matrix multiplication
 
 ```
 
-### Data frames
+### Data frames {#df}
 
 By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors. 
 
-As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia plants (*Petunia sp.*) grown at 3 levels of nitrogen on various measures of growth (note: data shown below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables `tip treatment` and `nitrogen level` are factors ([categorical][cat-var] variables). The `tip treatment` variable has 2 levels (`tip` and `notip`) and the `nitrogen level` variable has 3 levels (`low`, `medium` and `high`). The variables `height`, `weight`, `leafarea` and `shootarea` are numeric and the variable `flowers` is an integer representing the numebr of flowers. Although the variable `block` has numeric values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).
+As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia plants (*Petunia sp.*) grown at 3 levels of nitrogen on various measures of growth (note: data shown below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables `tip treatment` and `nitrogen level` are factors ([categorical][cat-var] variables). The `tip treatment` variable has 2 levels (`tip` and `notip`) and the `nitrogen level` variable has 3 levels (`low`, `medium` and `high`). The variables `height`, `weight`, `leafarea` and `shootarea` are numeric and the variable `flowers` is an integer representing the number of flowers. Although the variable `block` has numeric values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).
 
 \  
 
@@ -175,7 +175,7 @@ dataf <- data.frame(height = height, weight = weight, names = p.names)
 dataf
 ```
 
-You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()` function. We se that there are 5 rows and 3 columns.
+You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()` function. We see that there are 5 rows and 3 columns.
 
 ```{r dataf2, echo=TRUE, collapse=TRUE}
 dim(dataf)   # 5 rows and 3 columns
@@ -201,20 +201,112 @@ dataf <- data.frame(height = height, weight = weight, names = p.names,
 str(dataf)
 ```
 
+\  
+
 ## Importing data
 
-But much more common way to create a data frame is to import data from an external file, something we will cover in the next section. 
+Although creating data frames from existing data structures is extremely useful, by far the most common approach is to create a data frame by importing data from an external file. To do this, you'll need to have your data formatted correctly and saved in a file format that R is able to recognise. Fortunately for us, R is able to recognise a wide variety of file formats, although in reality you will probably end up using two or three regularly. 
 
+### saving files
+
+Arguably, the easiest method of creating a data file to import into R is to enter your data into a spreadsheet using either Microsoft Excel or LibreOffice Calc and save the spreadsheet as a tab delimited file. We prefer LibreOffice Calc as it's open source, platform independent and free but MS Excel is OK too (but see [here][excel_gotcha] for some gotchas). For those of you unfamiliar with the tab delimited file format it simply means that data are separated with a 'tab' character (yes, the same one as on your keyboard) which is usually saved as a file with a '.txt' extension.
+
+In LibreOffice Calc select `File` -> `Save as ...` from the main menu and specify the location you wish to save your file in the 'Save in folder' option and the name of the file in the 'Name' option. In the drop down menu located above the 'Save' button change the default  'All formats' to 'Text CSV (.csv)'.
+
+\  
+
+```{r LO-calc, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/libre_off1.png")
+```
+
+\  
+
+Click the Save button and then select the 'Use Text CSV Format' option. In the next pop-up window select `{Tab}` from the drop down menu in the 'Field delimiter' option. Click on OK to save the file. 
+
+\  
+
+```{r LO-calc2, echo=FALSE, out.width="40%", fig.align="center"}
+knitr::include_graphics(path = "images/libre_off2.png")
+```
+
+\  
+
+The resulting file will annoyingly have a '.csv' extension even though we've saved it as a tab delimited file. Either live with it or rename the file with a '.txt' extension instead.
+
+In MS Excel, select `File` -> `Save as ...` from the main menu and navigate to the folder where you want to save the file. Enter the file name (keep it fairly short, [no spaces](#file_names)!) in the 'Save as:' dialogue box. In the 'File format:' dialogue box click on the down arrow to open the drop down menu and select 'Text (Tab delimited)' as your file type. Select OK to save the file.
+
+\  
+
+```{r ms-excel, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/ms_excel1.png")
+```
+
+\ 
+
+There are a couple of things to bear in mind when saving files to import into R which will make your life easier in the long run. Keep your column headings (if you have them) short and informative. Also avoid spaces in your column headings by replacing them with an underscore or a dot (i.e. replace `shoot height` with `shoot_height` or `shoot.height`) and avoid using special characters (i.e. `leaf area (mm^2)`). Remember, you have missing data in your data frame (i.e. empty cells) you should use an `NA` to represent these missing values. This will keep the data frame tidy. 
+
+### Import functions
+
+Once you've saved your data in a file with a suitable format we can now read this file into R. The workhorse function of importing data into R is the `read.table()` function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` we would use the following
+
+```{r df1, echo=TRUE, collapse=TRUE}
+flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t")
+```
+
+There are a few things to note about the above command. First, the file path and the filename including the file extension needs to be enclosed in quotes (i.e. `data/flower.txt` bit) as the `read.table()` function expects this to be a character string. If your working directory is already set to the directory which contains the file, you don’t need to include the entire file path just the filename. In the example above, the file path is separated with a single forward slash `/`. This will work regardless of the operating system you are using. Windows users may be more familiar with the single backslash notation and if you want to keep using these you will need to include them as double backslashes. Note though that the double backslash notation will **not** work on computers using Mac OSX or Linux. 
+
+```{r df2, echo=TRUE, eval=FALSE}
+flowers <- read.table(file = 'c:\\Documents\\Prog1\\data\\flower.txt', header = TRUE, sep = "\t")
+```
+
+The `header = TRUE` argument specifies that the first row of your data contains the variable names (i.e. `nitrogen`, `block` etc). If this is not the case you can specify `header = FALSE` (actually, this is the default value so you can omit this argument entirely). The `sep = "\t"` argument tells R that the file delimiter is a tab (`\t`).  
+
+After importing our data into R it doesn't appear that R has done much, at least nothing appears in the R Console! To see the contents of the data frame we could just type the name of the object as we have done previously. **BUT** before you do that, think about why you're doing this. If your data frame is reasonably big all you're going to do is fill up your Console with data. It's not like you can easily check whether there are any errors or that your data has been imported correctly. A much better solution is to to use the `str()` function to return a compact and informative summary of your data frame.
+
+```{r df3, echo=TRUE, collapse=TRUE}
+str(flowers) 
+```
+
+Here we see that `flowers` is a data.frame object which contains 96 rows and 8 variables (columns). Each of the variables are listed along with their data class and the first 10 values. As we mentioned previously in this Chapter, it can be quite convenient to copy and paste this into your R script as a comment block for later reference. Notice also that R has decided that your character string variables (`treat` and `nitrogen`) should be treated as factors. If this is not what you want you can prevent this by using the `stringsAsFactors = FALSE` argument when you use the `read.table()` function.
+
+```{r df4, echo=TRUE, collapse=TRUE}
+flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t", 
+											stringsAsFactors = FALSE)
+str(flowers) 
+```
+
+Other useful arguments include `dec =` and `na.strings =`. The `dec =` argument allows you to change the default character (`.`) used for a decimal point. This is useful if you are in a country where decimal places are represented by a comma (i.e. `dec = ","`). The `na.strings =` argument allows you to import data where missing values are represented with symbols other than `NA`. This can be quite common if you are importing data from other statistical software. 
+
+It's quite common to get a bunch of really frustrating error messages when you first start importing data into R. Perhaps the most common is
+
+```{block}
+Error in file(file, "rt") : cannot open the connection
+In addition: Warning message:
+In file(file, "rt") :
+  cannot open file 'flower.txt': No such file or directory
+```
+
+This error message is telling us that R cannot find the file you are trying to import. It usually rears it's head for one of a couple of reasons. The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Finally, the file is not where you say it is or you have an used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
+
+Another really common mistake is to forget to include the `header = TRUE` argument when the first row of the data contains variable names. For example, if we omit this argument when we import our `flowers.txt` file all looks OK at first (no error message at least)
+
+```{r df5, echo=TRUE, collapse=TRUE}
+flowers_bad <- read.table(file = 'data/flower.txt', sep = "\t")
+```
+
+but when we take a look at our data frame using `str()`
+
+```{r df6, echo=TRUE, collapse=TRUE}
+str(flowers_bad)
+```
+
+We can see an obvious problem, all of our variables have been imported as factors and are called `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#vectors)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings are converted to factors by default (unless we use the `stringsAsFactors =` argument as above).
 
 ## Wrangling data frames
 
 ## Summarising data frames
 
 ## Other data strictures
-
-### Matrices
-
-Another useful data structure used in many disciplines such as population ecology, theoretical and practical statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. R has numerous built in functions to perform matrix operations. 
 
 ### Lists
 

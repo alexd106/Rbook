@@ -196,16 +196,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a><ul>
 <li class="chapter" data-level="3.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3.1</b> Data types</a></li>
 <li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
-<li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scalars-and-vectors"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
+<li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#vectors"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#data-frames"><i class="fa fa-check"></i><b>3.2.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.3</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a></li>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files"><i class="fa fa-check"></i><b>3.3.1</b> saving files</a></li>
+<li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import-functions"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
+</ul></li>
 <li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="other-data-strictures.html"><a href="other-data-strictures.html"><i class="fa fa-check"></i><b>3.6</b> Other data strictures</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="other-data-strictures.html"><a href="other-data-strictures.html#matrices"><i class="fa fa-check"></i><b>3.6.1</b> Matrices</a></li>
-<li class="chapter" data-level="3.6.2" data-path="other-data-strictures.html"><a href="other-data-strictures.html#lists"><i class="fa fa-check"></i><b>3.6.2</b> Lists</a></li>
+<li class="chapter" data-level="3.6.1" data-path="other-data-strictures.html"><a href="other-data-strictures.html#lists"><i class="fa fa-check"></i><b>3.6.1</b> Lists</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.7</b> Exporting data</a></li>
 </ul></li>
@@ -317,7 +319,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-structures" class="section level2">
 <h2><span class="header-section-number">3.2</span> Data structures</h2>
 <p>Now that you’ve been introduced to some of the most important classes of data in R, let’s have a look at some of main structures that we have for storing these data.</p>
-<div id="scalars-and-vectors" class="section level3">
+<div id="vectors" class="section level3">
 <h3><span class="header-section-number">3.2.1</span> Scalars and vectors</h3>
 <p>Perhaps the simplest type of data structure is the vector. You’ve already been introduced to vectors in <a href="r-functions.html#funcs">Chapter 2</a> although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include <code>NA</code> (remember this is special type of logical) to denote missing data in vectors with other data types.</p>
 <p> </p>
@@ -398,10 +400,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb87-23" data-line-number="23"><span class="co"># [1,]    3    2</span></a>
 <a class="sourceLine" id="cb87-24" data-line-number="24"><span class="co"># [2,]    1    2</span></a></code></pre></div>
 </div>
-<div id="data-frames" class="section level3">
+<div id="df" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Data frames</h3>
 <p>By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors.</p>
-<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia plants (<em>Petunia sp.</em>) grown at 3 levels of nitrogen on various measures of growth (note: data shown below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> are numeric and the variable <code>flowers</code> is an integer representing the numebr of flowers. Although the variable <code>block</code> has numeric values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).</p>
+<p>As an example, the data frame below contains the results of an experiment to determine the effect of removing the tip of petunia plants (<em>Petunia sp.</em>) grown at 3 levels of nitrogen on various measures of growth (note: data shown below are a subset of the full dataset). The data frame has 8 variables (columns) and each row represents an individual plant. The variables <code>tip treatment</code> and <code>nitrogen level</code> are factors (<a href="https://en.wikipedia.org/wiki/Categorical_variable">categorical</a> variables). The <code>tip treatment</code> variable has 2 levels (<code>tip</code> and <code>notip</code>) and the <code>nitrogen level</code> variable has 3 levels (<code>low</code>, <code>medium</code> and <code>high</code>). The variables <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> are numeric and the variable <code>flowers</code> is an integer representing the number of flowers. Although the variable <code>block</code> has numeric values, these do not really have any order and could also be treated as a factor (i.e. they could also have been called A and B).</p>
 <p> </p>
 <table>
 <thead>
@@ -554,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co"># 3    160     52     Helen</span></a>
 <a class="sourceLine" id="cb88-11" data-line-number="11"><span class="co"># 4    167     58     Karen</span></a>
 <a class="sourceLine" id="cb88-12" data-line-number="12"><span class="co"># 5    181     70       Amy</span></a></code></pre></div>
-<p>You’ll notice that each of the columns are named with variable name we supplied when we used the <code>data.frame</code> function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the <code>dataf</code> object using the <code>dim()</code> function. We se that there are 5 rows and 3 columns.</p>
+<p>You’ll notice that each of the columns are named with variable name we supplied when we used the <code>data.frame</code> function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the <code>dataf</code> object using the <code>dim()</code> function. We see that there are 5 rows and 3 columns.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1"><span class="kw">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></a>
 <a class="sourceLine" id="cb89-2" data-line-number="2"><span class="co"># [1] 5 3</span></a></code></pre></div>
 <p>Another really useful function which we use all the time is <code>str()</code> which will return a compact summary of the structure of the data frame object (or any object for that matter).</p>
@@ -576,6 +578,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">#  $ height: num  180 155 160 167 181</span></a>
 <a class="sourceLine" id="cb91-10" data-line-number="10"><span class="co">#  $ weight: num  65 50 52 58 70</span></a>
 <a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co">#  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></a></code></pre></div>
+<p> </p>
 </div>
 </div>
             </section>
