@@ -78,7 +78,7 @@ Here's a summary table of some of the logical test and coercion functions availa
 
 Now that you've been introduced to some of the most important classes of data in R, let’s have a look at some of main structures that we have for storing these data. 
 
-### Scalars and vectors {#vectors}
+### Scalars and vectors {#scal_vecs}
 
 Perhaps the simplest type of data structure is the vector. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
 
@@ -279,6 +279,12 @@ str(flowers)
 
 Other useful arguments include `dec =` and `na.strings =`. The `dec =` argument allows you to change the default character (`.`) used for a decimal point. This is useful if you are in a country where decimal places are usually represented by a comma (i.e. `dec = ","`). The `na.strings =` argument allows you to import data where missing values are represented with symbols other than `NA`. This can be quite common if you are importing data from other statistical software such as Minitab which represents missing values as a `*` (`na.strings = "*"`). 
 
+If we just wanted to see the names of our variables (columns) in the data frame we can use the `names()` function which will return a character vector of the variable names.
+
+```{r df4.1, echo=TRUE, collapse=TRUE}
+names(flowers)
+```
+
 R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`, `read.csv2()` and `read.delim()` functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many mainland European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
 
 ```{r df5, echo=TRUE, eval=FALSE}
@@ -319,7 +325,7 @@ but when we take a look at our data frame using `str()`
 str(flowers_bad)
 ```
 
-We can see an obvious problem, all of our variables have been imported as factors and are called `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#vectors)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings are converted to factors by default (unless we use the `stringsAsFactors =` argument as above).
+We can see an obvious problem, all of our variables have been imported as factors and are called `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings are converted to factors by default (unless we use the `stringsAsFactors =` argument as above).
 
 ### Other import options
 
@@ -329,7 +335,7 @@ The `fread()` function from the `read.table` package is great for importing larg
 
 ```{r df8, echo=TRUE, eval=FALSE}
 library(read.table)
-all_data <- fread('data/flower.txt')
+all_data <- fread(file = 'data/flower.txt')
 ```
 
 Various functions from the `readr` package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()` function the `header = TRUE` argument is replaced by `col_names = TRUE`. Also, character class variables are not automatically converted to factors when using `read_table()` and the function returns a 'tibble' class object which is the tidyverse equivalent of a 'data.frame' object (see [here][tibbles] for differences). 
@@ -337,22 +343,98 @@ Various functions from the `readr` package are also very efficient at reading in
 ```{r df9, echo=TRUE, eval=FALSE}
 library(readr)
 # import white space delimited files
-all_data <- read_table('data/flower.txt', col_names = TRUE)
+all_data <- read_table(file = 'data/flower.txt', col_names = TRUE)
 
 # import comma delimited files
-all_data <- read_csv('data/flower.txt')
+all_data <- read_csv(file = 'data/flower.txt')
 
 # import tab delimited files
-all_data <- read_delim('data/flower.txt', delim = "\t")
+all_data <- read_delim(file = 'data/flower.txt', delim = "\t")
 
 # or use
-all_data <- read_tsv('data/flower.txt')
+all_data <- read_tsv(file = 'data/flower.txt')
 ```
 
 If your data file is ginormous, then the `ff` and `bigmemory` packages may be useful as they're both able to store large  data in a memory efficient manner. You can find out more about these functions [here][ff] and [here][bigmem].
 
 
 ## Wrangling data frames
+
+Now that we're able to successfully import our data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you'll need to develop and spend time honing as you'll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you will quickly get the hang of it, especially with some practice.  
+
+Let's remind ourselves of the structure of the `flowers` data frame we imported in the previous section. 
+
+```{r dw1, echo=TRUE, collapse=TRUE}
+flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t")
+str(flowers)
+```
+
+To access the data of any of the variables (columns) in our data frame we can use the `$` notation. For example, to access the `height` variable in our `flowers` data frame we can use
+
+```{r dw2, echo=TRUE, collapse=TRUE}
+flowers$height
+```
+
+This will return a vector of the `height` data. If we want to we can assign this vector to another object and do stuff with it, like calculate a mean
+
+```{r dw3, echo=TRUE, collapse=TRUE}
+f_height <- flowers$height
+mean(f_height)
+```
+
+Just as we did with [vectors](#vectors), we can access specific data in data frames using our square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
+
+### Positional index
+
+For example if for some reason we wanted to extract the first value (1^st^ row ) of our `height` variable (4^th^ column)
+
+```{r dw4, echo=TRUE, collapse=TRUE}
+flowers[1, 4]
+```
+
+We can also extract values from multiple rows or columns by specifying these as indexes. To extract the first 10 rows and the first 4 columns
+
+```{r dw5, echo=TRUE, collapse=TRUE}
+flowers[1:10, 1:4]
+```
+
+Or extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
+
+```{r dw6, echo=TRUE, collapse=TRUE}
+flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
+```
+
+All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by simply using the skills we developed in [Chapter 2](#funcs) when we generated vectors using the `c()` function or the `:` notation.
+
+But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
+
+```{r dw7, echo=TRUE, collapse=TRUE}
+flowers[1:8, ]
+```
+
+or all of the rows and the first 3 columns
+
+```{r dw8, echo=TRUE, collapse=TRUE}
+flowers[, 1:3]
+```
+
+We can even use negative positional indexes to exclude certain row and columns. As an example, lets extract all of the rows except the first 70 rows and all columns except the 4^th, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we just use `-1:70` this would actually generate a regular sequence from -1 to 70 - not what we want!
+
+```{r dw9, echo=TRUE, collapse=TRUE}
+flowers[-c(1:70), -c(4, 7, 8)]
+```
+
+In addition to using a position index for extracting particular variables (columns) you can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can use
+
+```{r dw10, echo=TRUE, collapse=TRUE}
+flowers[1:5, c("treat", "nitrogen", "leafarea")]
+```
+
+We often use this method in preference to the positional index as it will still give us what we want even if the position of the variables change. 
+
+with()
+adding new columns
+add columns/rows
 
 ## Summarising data frames
 
@@ -364,21 +446,18 @@ The final data structure we will consider is a list. A list is a data structure 
 
 ## Exporting data
 
-**plan**
+<!-- **plan** -->
+<!-- data wrangling using `$` and `[ ]` -->
+<!-- positional -->
+<!-- logical -->
 
-	- `read_table` in `readr` package
-	- `data.table` package - `fread` 
 
-data wrangling using `$` and `[ ]`
+<!-- summarising data  -->
+<!-- include wide -> log and long -> wide -->
+<!-- apply, tapply, by, aggregate, merge -->
 
-positional
-logical
-include wide -> log and long -> wide
-summarising data 
-apply, tapply, by, aggregate, merge
-
-exporting data
-write.table
+<!-- exporting data -->
+<!-- write.table() -->
 
 \  
 
