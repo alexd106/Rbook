@@ -211,10 +211,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
-<li class="chapter" data-level="3.6" data-path="other-data-structures.html"><a href="other-data-structures.html"><i class="fa fa-check"></i><b>3.6</b> Other data structures</a><ul>
-<li class="chapter" data-level="3.6.1" data-path="other-data-structures.html"><a href="other-data-structures.html#lists"><i class="fa fa-check"></i><b>3.6.1</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="3.7" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.7</b> Exporting data</a></li>
+<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
 <li class="chapter" data-level="4.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>4.1</b> Beginning at the end</a></li>
@@ -323,7 +320,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="wrangling-data-frames" class="section level2">
 <h2><span class="header-section-number">3.4</span> Wrangling data frames</h2>
-<p>Now that we’re able to successfully import our data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you’ll need to develop and spend time honing as you’ll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you will quickly get the hang of it, especially with some practice.</p>
+<p>Now that you’re able to successfully import your data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you’ll need to develop and spend time honing as you’ll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you’ll quickly get the hang of it, especially with some practice.</p>
 <p>Let’s remind ourselves of the structure of the <code>flowers</code> data frame we imported in the previous section.</p>
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
 <a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw">str</span>(flowers)</a>
@@ -336,7 +333,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb103-9" data-line-number="9"><span class="co">#  $ leafarea : num  11.7 14.1 7.1 11.9 14.5 12.2 13.2 14 10.5 16.1 ...</span></a>
 <a class="sourceLine" id="cb103-10" data-line-number="10"><span class="co">#  $ shootarea: num  31.9 46 66.7 20.3 26.9 72.7 43.1 28.5 57.8 36.9 ...</span></a>
 <a class="sourceLine" id="cb103-11" data-line-number="11"><span class="co">#  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></a></code></pre></div>
-<p>To access the data of any of the variables (columns) in our data frame we can use the <code>$</code> notation. For example, to access the <code>height</code> variable in our <code>flowers</code> data frame we can use</p>
+<p>To access the data in any of the variables (columns) in our data frame we can use the <code>$</code> notation. For example, to access the <code>height</code> variable in our <code>flowers</code> data frame we can use</p>
 <div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1">flowers<span class="op">$</span>height</a>
 <a class="sourceLine" id="cb104-2" data-line-number="2"><span class="co">#  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0</span></a>
 <a class="sourceLine" id="cb104-3" data-line-number="3"><span class="co"># [16]  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5  7.7  6.4  8.8  9.2  6.2</span></a>
@@ -345,14 +342,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb104-6" data-line-number="6"><span class="co"># [61]  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></a>
 <a class="sourceLine" id="cb104-7" data-line-number="7"><span class="co"># [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7</span></a>
 <a class="sourceLine" id="cb104-8" data-line-number="8"><span class="co"># [91]  3.7  3.2  3.9  3.3  5.5  4.4</span></a></code></pre></div>
-<p>This will return a vector of the <code>height</code> data. If we want to we can assign this vector to another object and do stuff with it, like calculate a mean</p>
+<p>This will return a vector of the <code>height</code> data. If we need to we can assign this vector to another object and do stuff with it, like calculate a mean</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">f_height &lt;-<span class="st"> </span>flowers<span class="op">$</span>height</a>
 <a class="sourceLine" id="cb105-2" data-line-number="2"><span class="kw">mean</span>(f_height)</a>
 <a class="sourceLine" id="cb105-3" data-line-number="3"><span class="co"># [1] 6.84</span></a></code></pre></div>
-<p>Just as we did with <a href="vectors.html#vectors">vectors</a>, we can access specific data in data frames using our square bracket <code>[ ]</code> notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation <code>my_data[rows, columns]</code> where <code>rows</code> and <code>columns</code> are indexes. Again, just like with our vectors our indexes can be positional or the result of a logical test.</p>
+<p>Just as we did with <a href="vectors.html#vectors">vectors</a>, we can access specific data in data frames using the square bracket <code>[ ]</code> notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation <code>my_data[rows, columns]</code> where <code>rows</code> and <code>columns</code> are indexes. Again, just like with our vectors our indexes can be positional or the result of a logical test.</p>
 <div id="positional-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Positional indexes</h3>
-<p>To use positional indexes we simple have to write the positon of the rows and columns we want to extract inside our <code>[ ]</code>. For example, if for some reason we wanted to extract the first value (1<sup>st</sup> row ) of our <code>height</code> variable (4<sup>th</sup> column)</p>
+<p>To use positional indexes we simple have to write the position of the rows and columns we want to extract inside our <code>[ ]</code>. For example, if for some reason we wanted to extract the first value (1<sup>st</sup> row ) of our <code>height</code> variable (4<sup>th</sup> column)</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">flowers[<span class="dv">1</span>, <span class="dv">4</span>]</a>
 <a class="sourceLine" id="cb106-2" data-line-number="2"><span class="co"># [1] 7.5</span></a></code></pre></div>
 <p>We can also extract values from multiple rows or columns by specifying these as indexes as vectors inside the <code>[ ]</code>. To extract the first 10 rows and the first 4 columns</p>
@@ -375,7 +372,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb108-4" data-line-number="4"><span class="co"># 5    tip     1     14.5       4</span></a>
 <a class="sourceLine" id="cb108-5" data-line-number="5"><span class="co"># 12   tip     2     12.6       6</span></a>
 <a class="sourceLine" id="cb108-6" data-line-number="6"><span class="co"># 30   tip     2     11.6       5</span></a></code></pre></div>
-<p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by simply using the skills we developed in <a href="r-functions.html#funcs">Chapter 2</a> when we generated vectors using the <code>c()</code> function or the <code>:</code> notation.</p>
+<p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in <a href="r-functions.html#funcs">Chapter 2</a> when we generated vectors using the <code>c()</code> function or the <code>:</code> notation.</p>
 <p>But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don’t specify either a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the <code>flower</code> data frame</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, ]</a>
 <a class="sourceLine" id="cb109-2" data-line-number="2"><span class="co">#   treat nitrogen block height weight leafarea shootarea flowers</span></a>
@@ -387,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb109-8" data-line-number="8"><span class="co"># 6   tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
 <a class="sourceLine" id="cb109-9" data-line-number="9"><span class="co"># 7   tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
 <a class="sourceLine" id="cb109-10" data-line-number="10"><span class="co"># 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></a></code></pre></div>
-<p>or all of the rows and the first 3 columns (scroll down in output box to see all of the data)</p>
+<p>or all of the rows and the first 3 columns (scroll down in output panel to see all of the data)</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block
 # 1    tip   medium     1
@@ -486,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 94 notip      low     2
 # 95 notip      low     2
 # 96 notip      low     2</code></pre>
-<p>We can even use negative positional indexes to exclude certain row and columns. As an example, lets extract all of the rows except the first 70 rows and all columns except the 4<sup>th</sup>, 7<sup>th</sup> and 8<sup>th</sup> columns. Notice we need to use the <code>-c()</code> function even though we have generated a vector for the rows using the <code>:</code> method. If we just use <code>-1:70</code> this would actually generate a regular sequence from -1 to 70 and not what we want (we could of course used <code>-1:-70</code>).</p>
+<p>We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 70 rows and all columns except the 4<sup>th</sup>, 7<sup>th</sup> and 8<sup>th</sup> columns. Notice we need to use the <code>-c()</code> function even though we have generated a vector for the rows using the <code>:</code> method. If we just use <code>-1:70</code> this would actually generate a regular sequence from -1 to 70 and not what we want (we can of course use <code>-1:-70</code>).</p>
 <div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">flowers[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">70</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)]</a>
 <a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co">#    treat nitrogen block weight leafarea</span></a>
 <a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co"># 71 notip     high     1  15.21     15.9</span></a>
@@ -527,11 +524,205 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Logical indexes</h3>
-<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test.</p>
-<p>log
+<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let’s extract all rows where <code>height</code> is greater than 6 and extract all columns by default.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ]</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">big_flowers</a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="co"># 1    tip   medium     1    7.5   7.62     11.7      31.9       1</span></a>
+<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="co"># 2    tip   medium     1   10.7  12.14     14.1      46.0      10</span></a>
+<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="co"># 3    tip   medium     1   11.2  12.76      7.1      66.7      10</span></a>
+<a class="sourceLine" id="cb114-7" data-line-number="7"><span class="co"># 4    tip   medium     1   10.4   8.78     11.9      20.3       1</span></a>
+<a class="sourceLine" id="cb114-8" data-line-number="8"><span class="co"># 5    tip   medium     1   10.4  13.58     14.5      26.9       4</span></a>
+<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="co"># 6    tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
+<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="co"># 7    tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
+<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="co"># 8    tip   medium     1    9.4  10.28     14.0      28.5       6</span></a>
+<a class="sourceLine" id="cb114-12" data-line-number="12"><span class="co"># 9    tip   medium     2   10.4  10.48     10.5      57.8       5</span></a>
+<a class="sourceLine" id="cb114-13" data-line-number="13"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
+<a class="sourceLine" id="cb114-14" data-line-number="14"><span class="co"># 11   tip   medium     2   10.4  13.18     11.1      56.8      12</span></a>
+<a class="sourceLine" id="cb114-15" data-line-number="15"><span class="co"># 12   tip   medium     2   11.0  11.56     12.6      31.3       6</span></a>
+<a class="sourceLine" id="cb114-16" data-line-number="16"><span class="co"># 13   tip   medium     2    7.1   8.16     29.6       9.7       2</span></a>
+<a class="sourceLine" id="cb114-17" data-line-number="17"><span class="co"># 15   tip   medium     2    9.0  10.20     10.8      90.1       6</span></a>
+<a class="sourceLine" id="cb114-18" data-line-number="18"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
+<a class="sourceLine" id="cb114-19" data-line-number="19"><span class="co"># 18   tip     high     1   10.0  18.07     16.9      90.5       3</span></a>
+<a class="sourceLine" id="cb114-20" data-line-number="20"><span class="co"># 19   tip     high     1   10.0  13.29     15.8     142.7      12</span></a>
+<a class="sourceLine" id="cb114-21" data-line-number="21"><span class="co"># 20   tip     high     1    8.5  14.33     13.2      91.4       5</span></a>
+<a class="sourceLine" id="cb114-22" data-line-number="22"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
+<a class="sourceLine" id="cb114-23" data-line-number="23"><span class="co"># 22   tip     high     1   10.1  15.49     12.6      77.2      12</span></a>
+<a class="sourceLine" id="cb114-24" data-line-number="24"><span class="co"># 23   tip     high     1    8.5  17.82     20.5      54.4       3</span></a>
+<a class="sourceLine" id="cb114-25" data-line-number="25"><span class="co"># 24   tip     high     1    6.5  17.13     24.1     147.4       6</span></a>
+<a class="sourceLine" id="cb114-26" data-line-number="26"><span class="co"># 25   tip     high     2   11.5  23.89     14.3     101.5      12</span></a>
+<a class="sourceLine" id="cb114-27" data-line-number="27"><span class="co"># 26   tip     high     2    7.7  14.77     17.2     104.5       4</span></a>
+<a class="sourceLine" id="cb114-28" data-line-number="28"><span class="co"># 27   tip     high     2    6.4  13.60     13.6     152.6       7</span></a>
+<a class="sourceLine" id="cb114-29" data-line-number="29"><span class="co"># 28   tip     high     2    8.8  16.58     16.7     100.1       9</span></a>
+<a class="sourceLine" id="cb114-30" data-line-number="30"><span class="co"># 29   tip     high     2    9.2  13.26     11.3     108.0       9</span></a>
+<a class="sourceLine" id="cb114-31" data-line-number="31"><span class="co"># 30   tip     high     2    6.2  17.32     11.6      85.9       5</span></a>
+<a class="sourceLine" id="cb114-32" data-line-number="32"><span class="co"># 31   tip     high     2    6.3  14.50     18.3      55.6       8</span></a>
+<a class="sourceLine" id="cb114-33" data-line-number="33"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
+<a class="sourceLine" id="cb114-34" data-line-number="34"><span class="co"># 33   tip      low     1    8.0   6.88      9.3      16.1       4</span></a>
+<a class="sourceLine" id="cb114-35" data-line-number="35"><span class="co"># 34   tip      low     1    8.0  10.23     11.9      88.1       4</span></a>
+<a class="sourceLine" id="cb114-36" data-line-number="36"><span class="co"># 35   tip      low     1    6.4   5.97      8.7       7.3       2</span></a>
+<a class="sourceLine" id="cb114-37" data-line-number="37"><span class="co"># 36   tip      low     1    7.6  13.05      7.2      47.2       8</span></a>
+<a class="sourceLine" id="cb114-38" data-line-number="38"><span class="co"># 37   tip      low     1    9.7   6.49      8.1      18.0       3</span></a>
+<a class="sourceLine" id="cb114-39" data-line-number="39"><span class="co"># 38   tip      low     1   12.3  11.27     13.7      28.7       5</span></a>
+<a class="sourceLine" id="cb114-40" data-line-number="40"><span class="co"># 39   tip      low     1    9.1   8.96      9.7      23.8       3</span></a>
+<a class="sourceLine" id="cb114-41" data-line-number="41"><span class="co"># 40   tip      low     1    8.9  11.48     11.1      39.4       7</span></a>
+<a class="sourceLine" id="cb114-42" data-line-number="42"><span class="co"># 41   tip      low     2    7.4  10.89     13.3       9.5       5</span></a>
+<a class="sourceLine" id="cb114-43" data-line-number="43"><span class="co"># 43   tip      low     2    7.9   8.89      8.4      34.1       4</span></a>
+<a class="sourceLine" id="cb114-44" data-line-number="44"><span class="co"># 44   tip      low     2    8.8   9.39      7.1      38.9       4</span></a>
+<a class="sourceLine" id="cb114-45" data-line-number="45"><span class="co"># 45   tip      low     2    8.5   7.16      8.7      29.9       4</span></a>
+<a class="sourceLine" id="cb114-46" data-line-number="46"><span class="co"># 47   tip      low     2   11.5   8.72     10.2      28.3       6</span></a>
+<a class="sourceLine" id="cb114-47" data-line-number="47"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
+<a class="sourceLine" id="cb114-48" data-line-number="48"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
+<a class="sourceLine" id="cb114-49" data-line-number="49"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a>
+<a class="sourceLine" id="cb114-50" data-line-number="50"><span class="co"># 65 notip     high     1    8.5  22.53     20.8     166.9      16</span></a>
+<a class="sourceLine" id="cb114-51" data-line-number="51"><span class="co"># 66 notip     high     1    8.5  17.33     19.8     184.4      12</span></a>
+<a class="sourceLine" id="cb114-52" data-line-number="52"><span class="co"># 67 notip     high     1    6.4  11.52     12.1     140.5       7</span></a>
+<a class="sourceLine" id="cb114-53" data-line-number="53"><span class="co"># 70 notip     high     1   10.9  17.22     49.2     189.6      17</span></a>
+<a class="sourceLine" id="cb114-54" data-line-number="54"><span class="co"># 71 notip     high     1    7.2  15.21     15.9     135.0      14</span></a>
+<a class="sourceLine" id="cb114-55" data-line-number="55"><span class="co"># 75 notip     high     2    6.5  14.00     10.1     126.5       7</span></a>
+<a class="sourceLine" id="cb114-56" data-line-number="56"><span class="co"># 78 notip     high     2    9.3  18.75     18.4     181.1      16</span></a></code></pre></div>
+<p>Notice in the code above that we need to use the <code>flowers$height</code> notation for the logical test. If we only named the <code>height</code> variable we would receive an error telling us R couldn’t find the variable <code>height</code>. The reason for this is that the <code>height</code> variable only exists inside the <code>flowers</code> object.</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ]</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(flowers, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ) <span class="op">:</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span>object <span class="st">&#39;height&#39;</span> not found</a></code></pre></div>
+<p>OK, so how does this work? Well, the logical test is <code>flowers$height &gt; 6</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> values if <code>height</code> is greater than 6 and <code>FALSE</code> if <code>height</code> is not greater than 6.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co"># [13]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co"># [25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="co"># [37]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="co"># [49] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="co"># [61]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE</span></a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co"># [73] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co"># [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a></code></pre></div>
+<p>So our row index is a vector contain either <code>TRUE</code> and <code>FALSE</code> values and only those rows that contain are <code>TRUE</code> are selected. Remember, when we don’t select columns to extract (nothing after the comma) all columns are returned by default.</p>
+<p>Some other common operators are shown below</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>, ]        <span class="co"># values greater or equal to 6</span></a>
+<a class="sourceLine" id="cb117-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb117-3" data-line-number="3">flowers[flowers<span class="op">$</span>height <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>, ]          <span class="co"># values less than or equal to 6</span></a>
+<a class="sourceLine" id="cb117-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb117-5" data-line-number="5">flowers[flowers<span class="op">$</span>height <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  equal to 8</span></a>
+<a class="sourceLine" id="cb117-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb117-7" data-line-number="7">flowers[flowers<span class="op">$</span>height <span class="op">!=</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  not equal to 8</span></a></code></pre></div>
+<p>We can also extract rows based on the value of a character string or factor level. Let’s extract all rows where the <code>nitrogen</code> level is equal to <code>high</code> (again also output all columns). Notice that the double equals <code>==</code> sign must be used for a logical test and that the character string must be enclosed in either single or double quotes i.e. <code>&quot;high&quot;</code>).</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">nut_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb118-2" data-line-number="2">nut_high</a>
+<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb118-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
+<a class="sourceLine" id="cb118-5" data-line-number="5"><span class="co"># 18   tip     high     1   10.0  18.07     16.9      90.5       3</span></a>
+<a class="sourceLine" id="cb118-6" data-line-number="6"><span class="co"># 19   tip     high     1   10.0  13.29     15.8     142.7      12</span></a>
+<a class="sourceLine" id="cb118-7" data-line-number="7"><span class="co"># 20   tip     high     1    8.5  14.33     13.2      91.4       5</span></a>
+<a class="sourceLine" id="cb118-8" data-line-number="8"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
+<a class="sourceLine" id="cb118-9" data-line-number="9"><span class="co"># 22   tip     high     1   10.1  15.49     12.6      77.2      12</span></a>
+<a class="sourceLine" id="cb118-10" data-line-number="10"><span class="co"># 23   tip     high     1    8.5  17.82     20.5      54.4       3</span></a>
+<a class="sourceLine" id="cb118-11" data-line-number="11"><span class="co"># 24   tip     high     1    6.5  17.13     24.1     147.4       6</span></a>
+<a class="sourceLine" id="cb118-12" data-line-number="12"><span class="co"># 25   tip     high     2   11.5  23.89     14.3     101.5      12</span></a>
+<a class="sourceLine" id="cb118-13" data-line-number="13"><span class="co"># 26   tip     high     2    7.7  14.77     17.2     104.5       4</span></a>
+<a class="sourceLine" id="cb118-14" data-line-number="14"><span class="co"># 27   tip     high     2    6.4  13.60     13.6     152.6       7</span></a>
+<a class="sourceLine" id="cb118-15" data-line-number="15"><span class="co"># 28   tip     high     2    8.8  16.58     16.7     100.1       9</span></a>
+<a class="sourceLine" id="cb118-16" data-line-number="16"><span class="co"># 29   tip     high     2    9.2  13.26     11.3     108.0       9</span></a>
+<a class="sourceLine" id="cb118-17" data-line-number="17"><span class="co"># 30   tip     high     2    6.2  17.32     11.6      85.9       5</span></a>
+<a class="sourceLine" id="cb118-18" data-line-number="18"><span class="co"># 31   tip     high     2    6.3  14.50     18.3      55.6       8</span></a>
+<a class="sourceLine" id="cb118-19" data-line-number="19"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
+<a class="sourceLine" id="cb118-20" data-line-number="20"><span class="co"># 65 notip     high     1    8.5  22.53     20.8     166.9      16</span></a>
+<a class="sourceLine" id="cb118-21" data-line-number="21"><span class="co"># 66 notip     high     1    8.5  17.33     19.8     184.4      12</span></a>
+<a class="sourceLine" id="cb118-22" data-line-number="22"><span class="co"># 67 notip     high     1    6.4  11.52     12.1     140.5       7</span></a>
+<a class="sourceLine" id="cb118-23" data-line-number="23"><span class="co"># 68 notip     high     1    1.2  18.24     16.6     148.1       7</span></a>
+<a class="sourceLine" id="cb118-24" data-line-number="24"><span class="co"># 69 notip     high     1    2.6  16.57     17.1     141.1       3</span></a>
+<a class="sourceLine" id="cb118-25" data-line-number="25"><span class="co"># 70 notip     high     1   10.9  17.22     49.2     189.6      17</span></a>
+<a class="sourceLine" id="cb118-26" data-line-number="26"><span class="co"># 71 notip     high     1    7.2  15.21     15.9     135.0      14</span></a>
+<a class="sourceLine" id="cb118-27" data-line-number="27"><span class="co"># 72 notip     high     1    2.1  19.15     15.6     176.7       6</span></a>
+<a class="sourceLine" id="cb118-28" data-line-number="28"><span class="co"># 73 notip     high     2    4.7  13.42     19.8     124.7       5</span></a>
+<a class="sourceLine" id="cb118-29" data-line-number="29"><span class="co"># 74 notip     high     2    5.0  16.82     17.3     182.5      15</span></a>
+<a class="sourceLine" id="cb118-30" data-line-number="30"><span class="co"># 75 notip     high     2    6.5  14.00     10.1     126.5       7</span></a>
+<a class="sourceLine" id="cb118-31" data-line-number="31"><span class="co"># 76 notip     high     2    2.6  18.88     16.4     181.5      14</span></a>
+<a class="sourceLine" id="cb118-32" data-line-number="32"><span class="co"># 77 notip     high     2    6.0  13.68     16.2     133.7       2</span></a>
+<a class="sourceLine" id="cb118-33" data-line-number="33"><span class="co"># 78 notip     high     2    9.3  18.75     18.4     181.1      16</span></a>
+<a class="sourceLine" id="cb118-34" data-line-number="34"><span class="co"># 79 notip     high     2    4.6  14.65     16.7      91.7      11</span></a>
+<a class="sourceLine" id="cb118-35" data-line-number="35"><span class="co"># 80 notip     high     2    5.2  17.70     19.1     181.1       8</span></a></code></pre></div>
+<p>Or <code>nitrogen</code> level is not equal to <code>medium</code> and only return columns 1 to 4</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">nut_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">nut_not_medium</a>
+<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="co">#    treat nitrogen block height</span></a>
+<a class="sourceLine" id="cb119-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6</span></a>
+<a class="sourceLine" id="cb119-5" data-line-number="5"><span class="co"># 18   tip     high     1   10.0</span></a>
+<a class="sourceLine" id="cb119-6" data-line-number="6"><span class="co"># 19   tip     high     1   10.0</span></a>
+<a class="sourceLine" id="cb119-7" data-line-number="7"><span class="co"># 20   tip     high     1    8.5</span></a>
+<a class="sourceLine" id="cb119-8" data-line-number="8"><span class="co"># 21   tip     high     1   14.1</span></a>
+<a class="sourceLine" id="cb119-9" data-line-number="9"><span class="co"># 22   tip     high     1   10.1</span></a>
+<a class="sourceLine" id="cb119-10" data-line-number="10"><span class="co"># 23   tip     high     1    8.5</span></a>
+<a class="sourceLine" id="cb119-11" data-line-number="11"><span class="co"># 24   tip     high     1    6.5</span></a>
+<a class="sourceLine" id="cb119-12" data-line-number="12"><span class="co"># 25   tip     high     2   11.5</span></a>
+<a class="sourceLine" id="cb119-13" data-line-number="13"><span class="co"># 26   tip     high     2    7.7</span></a>
+<a class="sourceLine" id="cb119-14" data-line-number="14"><span class="co"># 27   tip     high     2    6.4</span></a>
+<a class="sourceLine" id="cb119-15" data-line-number="15"><span class="co"># 28   tip     high     2    8.8</span></a>
+<a class="sourceLine" id="cb119-16" data-line-number="16"><span class="co"># 29   tip     high     2    9.2</span></a>
+<a class="sourceLine" id="cb119-17" data-line-number="17"><span class="co"># 30   tip     high     2    6.2</span></a>
+<a class="sourceLine" id="cb119-18" data-line-number="18"><span class="co"># 31   tip     high     2    6.3</span></a>
+<a class="sourceLine" id="cb119-19" data-line-number="19"><span class="co"># 32   tip     high     2   17.2</span></a>
+<a class="sourceLine" id="cb119-20" data-line-number="20"><span class="co"># 33   tip      low     1    8.0</span></a>
+<a class="sourceLine" id="cb119-21" data-line-number="21"><span class="co"># 34   tip      low     1    8.0</span></a>
+<a class="sourceLine" id="cb119-22" data-line-number="22"><span class="co"># 35   tip      low     1    6.4</span></a>
+<a class="sourceLine" id="cb119-23" data-line-number="23"><span class="co"># 36   tip      low     1    7.6</span></a>
+<a class="sourceLine" id="cb119-24" data-line-number="24"><span class="co"># 37   tip      low     1    9.7</span></a>
+<a class="sourceLine" id="cb119-25" data-line-number="25"><span class="co"># 38   tip      low     1   12.3</span></a>
+<a class="sourceLine" id="cb119-26" data-line-number="26"><span class="co"># 39   tip      low     1    9.1</span></a>
+<a class="sourceLine" id="cb119-27" data-line-number="27"><span class="co"># 40   tip      low     1    8.9</span></a>
+<a class="sourceLine" id="cb119-28" data-line-number="28"><span class="co"># 41   tip      low     2    7.4</span></a>
+<a class="sourceLine" id="cb119-29" data-line-number="29"><span class="co"># 42   tip      low     2    3.1</span></a>
+<a class="sourceLine" id="cb119-30" data-line-number="30"><span class="co"># 43   tip      low     2    7.9</span></a>
+<a class="sourceLine" id="cb119-31" data-line-number="31"><span class="co"># 44   tip      low     2    8.8</span></a>
+<a class="sourceLine" id="cb119-32" data-line-number="32"><span class="co"># 45   tip      low     2    8.5</span></a>
+<a class="sourceLine" id="cb119-33" data-line-number="33"><span class="co"># 46   tip      low     2    5.6</span></a>
+<a class="sourceLine" id="cb119-34" data-line-number="34"><span class="co"># 47   tip      low     2   11.5</span></a>
+<a class="sourceLine" id="cb119-35" data-line-number="35"><span class="co"># 48   tip      low     2    5.8</span></a>
+<a class="sourceLine" id="cb119-36" data-line-number="36"><span class="co"># 65 notip     high     1    8.5</span></a>
+<a class="sourceLine" id="cb119-37" data-line-number="37"><span class="co"># 66 notip     high     1    8.5</span></a>
+<a class="sourceLine" id="cb119-38" data-line-number="38"><span class="co"># 67 notip     high     1    6.4</span></a>
+<a class="sourceLine" id="cb119-39" data-line-number="39"><span class="co"># 68 notip     high     1    1.2</span></a>
+<a class="sourceLine" id="cb119-40" data-line-number="40"><span class="co"># 69 notip     high     1    2.6</span></a>
+<a class="sourceLine" id="cb119-41" data-line-number="41"><span class="co"># 70 notip     high     1   10.9</span></a>
+<a class="sourceLine" id="cb119-42" data-line-number="42"><span class="co"># 71 notip     high     1    7.2</span></a>
+<a class="sourceLine" id="cb119-43" data-line-number="43"><span class="co"># 72 notip     high     1    2.1</span></a>
+<a class="sourceLine" id="cb119-44" data-line-number="44"><span class="co"># 73 notip     high     2    4.7</span></a>
+<a class="sourceLine" id="cb119-45" data-line-number="45"><span class="co"># 74 notip     high     2    5.0</span></a>
+<a class="sourceLine" id="cb119-46" data-line-number="46"><span class="co"># 75 notip     high     2    6.5</span></a>
+<a class="sourceLine" id="cb119-47" data-line-number="47"><span class="co"># 76 notip     high     2    2.6</span></a>
+<a class="sourceLine" id="cb119-48" data-line-number="48"><span class="co"># 77 notip     high     2    6.0</span></a>
+<a class="sourceLine" id="cb119-49" data-line-number="49"><span class="co"># 78 notip     high     2    9.3</span></a>
+<a class="sourceLine" id="cb119-50" data-line-number="50"><span class="co"># 79 notip     high     2    4.6</span></a>
+<a class="sourceLine" id="cb119-51" data-line-number="51"><span class="co"># 80 notip     high     2    5.2</span></a>
+<a class="sourceLine" id="cb119-52" data-line-number="52"><span class="co"># 81 notip      low     1    3.9</span></a>
+<a class="sourceLine" id="cb119-53" data-line-number="53"><span class="co"># 82 notip      low     1    2.3</span></a>
+<a class="sourceLine" id="cb119-54" data-line-number="54"><span class="co"># 83 notip      low     1    5.2</span></a>
+<a class="sourceLine" id="cb119-55" data-line-number="55"><span class="co"># 84 notip      low     1    2.2</span></a>
+<a class="sourceLine" id="cb119-56" data-line-number="56"><span class="co"># 85 notip      low     1    4.5</span></a>
+<a class="sourceLine" id="cb119-57" data-line-number="57"><span class="co"># 86 notip      low     1    1.8</span></a>
+<a class="sourceLine" id="cb119-58" data-line-number="58"><span class="co"># 87 notip      low     1    3.0</span></a>
+<a class="sourceLine" id="cb119-59" data-line-number="59"><span class="co"># 88 notip      low     1    3.7</span></a>
+<a class="sourceLine" id="cb119-60" data-line-number="60"><span class="co"># 89 notip      low     2    2.4</span></a>
+<a class="sourceLine" id="cb119-61" data-line-number="61"><span class="co"># 90 notip      low     2    5.7</span></a>
+<a class="sourceLine" id="cb119-62" data-line-number="62"><span class="co"># 91 notip      low     2    3.7</span></a>
+<a class="sourceLine" id="cb119-63" data-line-number="63"><span class="co"># 92 notip      low     2    3.2</span></a>
+<a class="sourceLine" id="cb119-64" data-line-number="64"><span class="co"># 93 notip      low     2    3.9</span></a>
+<a class="sourceLine" id="cb119-65" data-line-number="65"><span class="co"># 94 notip      low     2    3.3</span></a>
+<a class="sourceLine" id="cb119-66" data-line-number="66"><span class="co"># 95 notip      low     2    5.5</span></a>
+<a class="sourceLine" id="cb119-67" data-line-number="67"><span class="co"># 96 notip      low     2    4.4</span></a></code></pre></div>
+<p>We can increase the complexity of our logical expression by combining them with <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a> just as we did for vector objects. For example, to extract all rows where <code>height</code> is greater or equal to <code>6</code> and <code>nitrogen</code> is <code>medium</code> and <code>treat</code> is equal to <code>notip</code> we combine a series of logical expressions with the <code>&amp;</code> symbol.</p>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">low_notip_high6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="st">                                                            </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">low_notip_high6</a>
+<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb120-5" data-line-number="5"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
+<a class="sourceLine" id="cb120-6" data-line-number="6"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
+<a class="sourceLine" id="cb120-7" data-line-number="7"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a></code></pre></div>
+<p>order
+log
 with()
 adding new columns
-add columns/rows</p>
+add columns/rows
+wide -&gt; long, long -&gt; wide
+merge()</p>
 </div>
 </div>
             </section>
