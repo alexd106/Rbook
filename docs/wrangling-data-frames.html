@@ -183,7 +183,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
-<li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#ordering-elements"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#vec_ord"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
 <li class="chapter" data-level="2.4.4" data-path="vectors.html"><a href="vectors.html#vectorisation"><i class="fa fa-check"></i><b>2.4.4</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4.5" data-path="vectors.html"><a href="vectors.html#missing-data"><i class="fa fa-check"></i><b>2.4.5</b> Missing data</a></li>
 </ul></li>
@@ -209,6 +209,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
 <li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
+<li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns</a></li>
+<li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-rows"><i class="fa fa-check"></i><b>3.4.5</b> Adding rows</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Merging data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a></li>
@@ -524,76 +528,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Logical indexes</h3>
-<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let’s extract all rows where <code>height</code> is greater than 6 and extract all columns by default.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ]</a>
+<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let’s extract all rows where <code>height</code> is greater than 15 and extract all columns by default.</p>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>, ]</a>
 <a class="sourceLine" id="cb114-2" data-line-number="2">big_flowers</a>
 <a class="sourceLine" id="cb114-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="co"># 1    tip   medium     1    7.5   7.62     11.7      31.9       1</span></a>
-<a class="sourceLine" id="cb114-5" data-line-number="5"><span class="co"># 2    tip   medium     1   10.7  12.14     14.1      46.0      10</span></a>
-<a class="sourceLine" id="cb114-6" data-line-number="6"><span class="co"># 3    tip   medium     1   11.2  12.76      7.1      66.7      10</span></a>
-<a class="sourceLine" id="cb114-7" data-line-number="7"><span class="co"># 4    tip   medium     1   10.4   8.78     11.9      20.3       1</span></a>
-<a class="sourceLine" id="cb114-8" data-line-number="8"><span class="co"># 5    tip   medium     1   10.4  13.58     14.5      26.9       4</span></a>
-<a class="sourceLine" id="cb114-9" data-line-number="9"><span class="co"># 6    tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
-<a class="sourceLine" id="cb114-10" data-line-number="10"><span class="co"># 7    tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
-<a class="sourceLine" id="cb114-11" data-line-number="11"><span class="co"># 8    tip   medium     1    9.4  10.28     14.0      28.5       6</span></a>
-<a class="sourceLine" id="cb114-12" data-line-number="12"><span class="co"># 9    tip   medium     2   10.4  10.48     10.5      57.8       5</span></a>
-<a class="sourceLine" id="cb114-13" data-line-number="13"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
-<a class="sourceLine" id="cb114-14" data-line-number="14"><span class="co"># 11   tip   medium     2   10.4  13.18     11.1      56.8      12</span></a>
-<a class="sourceLine" id="cb114-15" data-line-number="15"><span class="co"># 12   tip   medium     2   11.0  11.56     12.6      31.3       6</span></a>
-<a class="sourceLine" id="cb114-16" data-line-number="16"><span class="co"># 13   tip   medium     2    7.1   8.16     29.6       9.7       2</span></a>
-<a class="sourceLine" id="cb114-17" data-line-number="17"><span class="co"># 15   tip   medium     2    9.0  10.20     10.8      90.1       6</span></a>
-<a class="sourceLine" id="cb114-18" data-line-number="18"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
-<a class="sourceLine" id="cb114-19" data-line-number="19"><span class="co"># 18   tip     high     1   10.0  18.07     16.9      90.5       3</span></a>
-<a class="sourceLine" id="cb114-20" data-line-number="20"><span class="co"># 19   tip     high     1   10.0  13.29     15.8     142.7      12</span></a>
-<a class="sourceLine" id="cb114-21" data-line-number="21"><span class="co"># 20   tip     high     1    8.5  14.33     13.2      91.4       5</span></a>
-<a class="sourceLine" id="cb114-22" data-line-number="22"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
-<a class="sourceLine" id="cb114-23" data-line-number="23"><span class="co"># 22   tip     high     1   10.1  15.49     12.6      77.2      12</span></a>
-<a class="sourceLine" id="cb114-24" data-line-number="24"><span class="co"># 23   tip     high     1    8.5  17.82     20.5      54.4       3</span></a>
-<a class="sourceLine" id="cb114-25" data-line-number="25"><span class="co"># 24   tip     high     1    6.5  17.13     24.1     147.4       6</span></a>
-<a class="sourceLine" id="cb114-26" data-line-number="26"><span class="co"># 25   tip     high     2   11.5  23.89     14.3     101.5      12</span></a>
-<a class="sourceLine" id="cb114-27" data-line-number="27"><span class="co"># 26   tip     high     2    7.7  14.77     17.2     104.5       4</span></a>
-<a class="sourceLine" id="cb114-28" data-line-number="28"><span class="co"># 27   tip     high     2    6.4  13.60     13.6     152.6       7</span></a>
-<a class="sourceLine" id="cb114-29" data-line-number="29"><span class="co"># 28   tip     high     2    8.8  16.58     16.7     100.1       9</span></a>
-<a class="sourceLine" id="cb114-30" data-line-number="30"><span class="co"># 29   tip     high     2    9.2  13.26     11.3     108.0       9</span></a>
-<a class="sourceLine" id="cb114-31" data-line-number="31"><span class="co"># 30   tip     high     2    6.2  17.32     11.6      85.9       5</span></a>
-<a class="sourceLine" id="cb114-32" data-line-number="32"><span class="co"># 31   tip     high     2    6.3  14.50     18.3      55.6       8</span></a>
-<a class="sourceLine" id="cb114-33" data-line-number="33"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
-<a class="sourceLine" id="cb114-34" data-line-number="34"><span class="co"># 33   tip      low     1    8.0   6.88      9.3      16.1       4</span></a>
-<a class="sourceLine" id="cb114-35" data-line-number="35"><span class="co"># 34   tip      low     1    8.0  10.23     11.9      88.1       4</span></a>
-<a class="sourceLine" id="cb114-36" data-line-number="36"><span class="co"># 35   tip      low     1    6.4   5.97      8.7       7.3       2</span></a>
-<a class="sourceLine" id="cb114-37" data-line-number="37"><span class="co"># 36   tip      low     1    7.6  13.05      7.2      47.2       8</span></a>
-<a class="sourceLine" id="cb114-38" data-line-number="38"><span class="co"># 37   tip      low     1    9.7   6.49      8.1      18.0       3</span></a>
-<a class="sourceLine" id="cb114-39" data-line-number="39"><span class="co"># 38   tip      low     1   12.3  11.27     13.7      28.7       5</span></a>
-<a class="sourceLine" id="cb114-40" data-line-number="40"><span class="co"># 39   tip      low     1    9.1   8.96      9.7      23.8       3</span></a>
-<a class="sourceLine" id="cb114-41" data-line-number="41"><span class="co"># 40   tip      low     1    8.9  11.48     11.1      39.4       7</span></a>
-<a class="sourceLine" id="cb114-42" data-line-number="42"><span class="co"># 41   tip      low     2    7.4  10.89     13.3       9.5       5</span></a>
-<a class="sourceLine" id="cb114-43" data-line-number="43"><span class="co"># 43   tip      low     2    7.9   8.89      8.4      34.1       4</span></a>
-<a class="sourceLine" id="cb114-44" data-line-number="44"><span class="co"># 44   tip      low     2    8.8   9.39      7.1      38.9       4</span></a>
-<a class="sourceLine" id="cb114-45" data-line-number="45"><span class="co"># 45   tip      low     2    8.5   7.16      8.7      29.9       4</span></a>
-<a class="sourceLine" id="cb114-46" data-line-number="46"><span class="co"># 47   tip      low     2   11.5   8.72     10.2      28.3       6</span></a>
-<a class="sourceLine" id="cb114-47" data-line-number="47"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
-<a class="sourceLine" id="cb114-48" data-line-number="48"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
-<a class="sourceLine" id="cb114-49" data-line-number="49"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a>
-<a class="sourceLine" id="cb114-50" data-line-number="50"><span class="co"># 65 notip     high     1    8.5  22.53     20.8     166.9      16</span></a>
-<a class="sourceLine" id="cb114-51" data-line-number="51"><span class="co"># 66 notip     high     1    8.5  17.33     19.8     184.4      12</span></a>
-<a class="sourceLine" id="cb114-52" data-line-number="52"><span class="co"># 67 notip     high     1    6.4  11.52     12.1     140.5       7</span></a>
-<a class="sourceLine" id="cb114-53" data-line-number="53"><span class="co"># 70 notip     high     1   10.9  17.22     49.2     189.6      17</span></a>
-<a class="sourceLine" id="cb114-54" data-line-number="54"><span class="co"># 71 notip     high     1    7.2  15.21     15.9     135.0      14</span></a>
-<a class="sourceLine" id="cb114-55" data-line-number="55"><span class="co"># 75 notip     high     2    6.5  14.00     10.1     126.5       7</span></a>
-<a class="sourceLine" id="cb114-56" data-line-number="56"><span class="co"># 78 notip     high     2    9.3  18.75     18.4     181.1      16</span></a></code></pre></div>
+<a class="sourceLine" id="cb114-4" data-line-number="4"><span class="co"># 32   tip     high     2   17.2   19.2     10.9      89.9      14</span></a></code></pre></div>
 <p>Notice in the code above that we need to use the <code>flowers$height</code> notation for the logical test. If we only named the <code>height</code> variable we would receive an error telling us R couldn’t find the variable <code>height</code>. The reason for this is that the <code>height</code> variable only exists inside the <code>flowers</code> object.</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ]</a>
-<a class="sourceLine" id="cb115-2" data-line-number="2">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(flowers, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span>, ) <span class="op">:</span><span class="st"> </span></a>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[height <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>, ]</a>
+<a class="sourceLine" id="cb115-2" data-line-number="2">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(flowers, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span>, ) <span class="op">:</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb115-3" data-line-number="3"><span class="st">  </span>object <span class="st">&#39;height&#39;</span> not found</a></code></pre></div>
-<p>OK, so how does this work? Well, the logical test is <code>flowers$height &gt; 6</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> values if <code>height</code> is greater than 6 and <code>FALSE</code> if <code>height</code> is not greater than 6.</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span></a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co"># [13]  TRUE FALSE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co"># [25]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</span></a>
-<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="co"># [37]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE FALSE  TRUE FALSE</span></a>
-<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="co"># [49] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="co"># [61]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE  TRUE  TRUE FALSE</span></a>
-<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co"># [73] FALSE FALSE  TRUE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<p>OK, so how does this work? Well, the logical test is <code>flowers$height &gt; 15</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> values if <code>height</code> is greater than 15 and <code>FALSE</code> if <code>height</code> is not greater than 6.</p>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">15</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co"># [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co"># [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="co"># [37] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="co"># [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="co"># [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co"># [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
 <a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co"># [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a></code></pre></div>
 <p>So our row index is a vector contain either <code>TRUE</code> and <code>FALSE</code> values and only those rows that contain are <code>TRUE</code> are selected. Remember, when we don’t select columns to extract (nothing after the comma) all columns are returned by default.</p>
 <p>Some other common operators are shown below</p>
@@ -605,8 +557,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb117-6" data-line-number="6"></a>
 <a class="sourceLine" id="cb117-7" data-line-number="7">flowers[flowers<span class="op">$</span>height <span class="op">!=</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  not equal to 8</span></a></code></pre></div>
 <p>We can also extract rows based on the value of a character string or factor level. Let’s extract all rows where the <code>nitrogen</code> level is equal to <code>high</code> (again also output all columns). Notice that the double equals <code>==</code> sign must be used for a logical test and that the character string must be enclosed in either single or double quotes i.e. <code>&quot;high&quot;</code>).</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">nut_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </a>
-<a class="sourceLine" id="cb118-2" data-line-number="2">nut_high</a>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">nit_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb118-2" data-line-number="2">nit_high</a>
 <a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
 <a class="sourceLine" id="cb118-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
 <a class="sourceLine" id="cb118-5" data-line-number="5"><span class="co"># 18   tip     high     1   10.0  18.07     16.9      90.5       3</span></a>
@@ -640,9 +592,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb118-33" data-line-number="33"><span class="co"># 78 notip     high     2    9.3  18.75     18.4     181.1      16</span></a>
 <a class="sourceLine" id="cb118-34" data-line-number="34"><span class="co"># 79 notip     high     2    4.6  14.65     16.7      91.7      11</span></a>
 <a class="sourceLine" id="cb118-35" data-line-number="35"><span class="co"># 80 notip     high     2    5.2  17.70     19.1     181.1       8</span></a></code></pre></div>
-<p>Or <code>nitrogen</code> level is not equal to <code>medium</code> and only return columns 1 to 4</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">nut_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </a>
-<a class="sourceLine" id="cb119-2" data-line-number="2">nut_not_medium</a>
+<p>Or <code>nitrogen</code> level is not equal to <code>medium</code> and only return columns 1 to 4.</p>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">nit_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">nit_not_medium</a>
 <a class="sourceLine" id="cb119-3" data-line-number="3"><span class="co">#    treat nitrogen block height</span></a>
 <a class="sourceLine" id="cb119-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6</span></a>
 <a class="sourceLine" id="cb119-5" data-line-number="5"><span class="co"># 18   tip     high     1   10.0</span></a>
@@ -709,16 +661,452 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb119-66" data-line-number="66"><span class="co"># 95 notip      low     2    5.5</span></a>
 <a class="sourceLine" id="cb119-67" data-line-number="67"><span class="co"># 96 notip      low     2    4.4</span></a></code></pre></div>
 <p>We can increase the complexity of our logical expression by combining them with <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a> just as we did for vector objects. For example, to extract all rows where <code>height</code> is greater or equal to <code>6</code> and <code>nitrogen</code> is <code>medium</code> and <code>treat</code> is equal to <code>notip</code> we combine a series of logical expressions with the <code>&amp;</code> symbol.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">low_notip_high6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">low_notip_heigh6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
 <a class="sourceLine" id="cb120-2" data-line-number="2"><span class="st">                                                            </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
-<a class="sourceLine" id="cb120-3" data-line-number="3">low_notip_high6</a>
+<a class="sourceLine" id="cb120-3" data-line-number="3">low_notip_heigh6</a>
 <a class="sourceLine" id="cb120-4" data-line-number="4"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
 <a class="sourceLine" id="cb120-5" data-line-number="5"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
 <a class="sourceLine" id="cb120-6" data-line-number="6"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
 <a class="sourceLine" id="cb120-7" data-line-number="7"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a></code></pre></div>
-<p>order
-log
-with()
+<p>An alternative method of selecting parts of a data frame based on a logical expression is to use the <code>subset()</code> function. The advantage of subset is you no longer need to use the <code>$</code> notation when specifying variables. The disadvantage is that <code>subset()</code> is less flexible than the <code>[ ]</code> notation.</p>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">tip_med_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat<span class="op">==</span><span class="st">&quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen<span class="op">==</span><span class="st">&quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block<span class="op">==</span><span class="st">&quot;2&quot;</span>)</a>
+<a class="sourceLine" id="cb121-2" data-line-number="2">tip_med_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb121-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="co"># 9    tip   medium     2   10.4  10.48     10.5      57.8       5</span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
+<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="co"># 11   tip   medium     2   10.4  13.18     11.1      56.8      12</span></a>
+<a class="sourceLine" id="cb121-7" data-line-number="7"><span class="co"># 12   tip   medium     2   11.0  11.56     12.6      31.3       6</span></a>
+<a class="sourceLine" id="cb121-8" data-line-number="8"><span class="co"># 13   tip   medium     2    7.1   8.16     29.6       9.7       2</span></a>
+<a class="sourceLine" id="cb121-9" data-line-number="9"><span class="co"># 14   tip   medium     2    6.0  11.22     13.0      16.4       3</span></a>
+<a class="sourceLine" id="cb121-10" data-line-number="10"><span class="co"># 15   tip   medium     2    9.0  10.20     10.8      90.1       6</span></a>
+<a class="sourceLine" id="cb121-11" data-line-number="11"><span class="co"># 16   tip   medium     2    4.5  12.55     13.4      14.4       6</span></a></code></pre></div>
+<p>And if you only want certain columns you can use the <code>select =</code> argument</p>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">tipplants &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat<span class="op">==</span><span class="st">&quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block<span class="op">==</span><span class="st">&quot;2&quot;</span>, </a>
+<a class="sourceLine" id="cb122-2" data-line-number="2">                                        <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>))</a>
+<a class="sourceLine" id="cb122-3" data-line-number="3">tipplants</a>
+<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="co">#    treat nitrogen leafarea</span></a>
+<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="co"># 9    tip   medium     10.5</span></a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"><span class="co"># 10   tip   medium     16.1</span></a>
+<a class="sourceLine" id="cb122-7" data-line-number="7"><span class="co"># 11   tip   medium     11.1</span></a>
+<a class="sourceLine" id="cb122-8" data-line-number="8"><span class="co"># 12   tip   medium     12.6</span></a>
+<a class="sourceLine" id="cb122-9" data-line-number="9"><span class="co"># 13   tip   medium     29.6</span></a>
+<a class="sourceLine" id="cb122-10" data-line-number="10"><span class="co"># 14   tip   medium     13.0</span></a>
+<a class="sourceLine" id="cb122-11" data-line-number="11"><span class="co"># 15   tip   medium     10.8</span></a>
+<a class="sourceLine" id="cb122-12" data-line-number="12"><span class="co"># 16   tip   medium     13.4</span></a></code></pre></div>
+</div>
+<div id="ordering-data-frames" class="section level3">
+<h3><span class="header-section-number">3.4.3</span> Ordering data frames</h3>
+<p>Remember when we used the function <code>order()</code> to order one vector based on the order of another vector (way back in <a href="vectors.html#vec_ord">Chapter 2</a>). This comes in very handy if you want to reorder columns in your data frame but keep each value associated with the correct row. For example, if we want all of the rows in the data frame <code>flowers</code> to be ordered in ascending value of <code>height</code> and output all columns by default (scroll down in the output panel to see the whole data frame).</p>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb123-2" data-line-number="2">height_ord</a></code></pre></div>
+<pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
+# 68 notip     high     1    1.2  18.24     16.6     148.1       7
+# 62 notip   medium     2    1.8  10.47     11.8     120.8       9
+# 86 notip      low     1    1.8   6.01     17.6      46.2       4
+# 72 notip     high     1    2.1  19.15     15.6     176.7       6
+# 63 notip   medium     2    2.2  10.70     15.3      97.1       7
+# 84 notip      low     1    2.2   9.97      9.6      63.1       2
+# 82 notip      low     1    2.3   7.28     13.8      32.8       6
+# 89 notip      low     2    2.4   9.10     14.5      78.7       8
+# 56 notip   medium     1    2.5  14.85     17.5      77.8      10
+# 69 notip     high     1    2.6  16.57     17.1     141.1       3
+# 76 notip     high     2    2.6  18.88     16.4     181.5      14
+# 87 notip      low     1    3.0   9.93     12.0      56.6       6
+# 42   tip      low     2    3.1   8.74     16.1      39.1       3
+# 92 notip      low     2    3.2   7.45     14.1      38.1       4
+# 94 notip      low     2    3.3   8.92     11.6      55.2       6
+# 53 notip   medium     1    3.5  12.93     16.6     109.3       3
+# 88 notip      low     1    3.7   7.03      7.9      36.7       5
+# 91 notip      low     2    3.7   8.10     10.5      60.5       6
+# 58 notip   medium     2    3.9   9.07      9.6      90.4       7
+# 64 notip   medium     2    3.9  12.97     17.0      97.5       5
+# 81 notip      low     1    3.9   7.17     13.5      52.8       6
+# 93 notip      low     2    3.9   9.19     12.4      52.6       9
+# 52 notip   medium     1    4.1  12.58     13.9     136.6      11
+# 96 notip      low     2    4.4  10.60     16.2      63.3       6
+# 16   tip   medium     2    4.5  12.55     13.4      14.4       6
+# 60 notip   medium     2    4.5  13.68     14.8     125.5       9
+# 85 notip      low     1    4.5   8.60      9.4     113.5       7
+# 79 notip     high     2    4.6  14.65     16.7      91.7      11
+# 73 notip     high     2    4.7  13.42     19.8     124.7       5
+# 55 notip   medium     1    4.9   6.89      8.2      52.9       3
+# 74 notip     high     2    5.0  16.82     17.3     182.5      15
+# 80 notip     high     2    5.2  17.70     19.1     181.1       8
+# 83 notip      low     1    5.2   5.79     11.0      67.4       5
+# 50 notip   medium     1    5.3   9.29     11.5      82.3       6
+# 57 notip   medium     2    5.4  11.36     17.8     104.6      12
+# 95 notip      low     2    5.5   8.44     13.5      77.6       9
+# 46   tip      low     2    5.6   8.10     10.1       5.8       2
+# 49 notip   medium     1    5.6  11.03     18.6      49.9       8
+# 90 notip      low     2    5.7   9.05      9.6      63.2       6
+# 48   tip      low     2    5.8   8.04      5.8      30.7       7
+# 59 notip   medium     2    5.8  10.18     15.7      88.8       6
+# 14   tip   medium     2    6.0  11.22     13.0      16.4       3
+# 77 notip     high     2    6.0  13.68     16.2     133.7       2
+# 30   tip     high     2    6.2  17.32     11.6      85.9       5
+# 31   tip     high     2    6.3  14.50     18.3      55.6       8
+# 27   tip     high     2    6.4  13.60     13.6     152.6       7
+# 35   tip      low     1    6.4   5.97      8.7       7.3       2
+# 67 notip     high     1    6.4  11.52     12.1     140.5       7
+# 24   tip     high     1    6.5  17.13     24.1     147.4       6
+# 75 notip     high     2    6.5  14.00     10.1     126.5       7
+# 7    tip   medium     1    6.9  10.11     13.2      43.1       7
+# 13   tip   medium     2    7.1   8.16     29.6       9.7       2
+# 71 notip     high     1    7.2  15.21     15.9     135.0      14
+# 41   tip      low     2    7.4  10.89     13.3       9.5       5
+# 1    tip   medium     1    7.5   7.62     11.7      31.9       1
+# 51 notip   medium     1    7.5  13.60     13.6     122.2      11
+# 36   tip      low     1    7.6  13.05      7.2      47.2       8
+# 26   tip     high     2    7.7  14.77     17.2     104.5       4
+# 43   tip      low     2    7.9   8.89      8.4      34.1       4
+# 33   tip      low     1    8.0   6.88      9.3      16.1       4
+# 34   tip      low     1    8.0  10.23     11.9      88.1       4
+# 61 notip   medium     2    8.0  11.43     12.6      43.2      14
+# 20   tip     high     1    8.5  14.33     13.2      91.4       5
+# 23   tip     high     1    8.5  17.82     20.5      54.4       3
+# 45   tip      low     2    8.5   7.16      8.7      29.9       4
+# 54 notip   medium     1    8.5  10.04     12.3     113.6       4
+# 65 notip     high     1    8.5  22.53     20.8     166.9      16
+# 66 notip     high     1    8.5  17.33     19.8     184.4      12
+# 28   tip     high     2    8.8  16.58     16.7     100.1       9
+# 44   tip      low     2    8.8   9.39      7.1      38.9       4
+# 40   tip      low     1    8.9  11.48     11.1      39.4       7
+# 15   tip   medium     2    9.0  10.20     10.8      90.1       6
+# 39   tip      low     1    9.1   8.96      9.7      23.8       3
+# 29   tip     high     2    9.2  13.26     11.3     108.0       9
+# 78 notip     high     2    9.3  18.75     18.4     181.1      16
+# 8    tip   medium     1    9.4  10.28     14.0      28.5       6
+# 37   tip      low     1    9.7   6.49      8.1      18.0       3
+# 6    tip   medium     1    9.8  10.08     12.2      72.7       9
+# 18   tip     high     1   10.0  18.07     16.9      90.5       3
+# 19   tip     high     1   10.0  13.29     15.8     142.7      12
+# 22   tip     high     1   10.1  15.49     12.6      77.2      12
+# 4    tip   medium     1   10.4   8.78     11.9      20.3       1
+# 5    tip   medium     1   10.4  13.58     14.5      26.9       4
+# 9    tip   medium     2   10.4  10.48     10.5      57.8       5
+# 11   tip   medium     2   10.4  13.18     11.1      56.8      12
+# 2    tip   medium     1   10.7  12.14     14.1      46.0      10
+# 70 notip     high     1   10.9  17.22     49.2     189.6      17
+# 12   tip   medium     2   11.0  11.56     12.6      31.3       6
+# 3    tip   medium     1   11.2  12.76      7.1      66.7      10
+# 25   tip     high     2   11.5  23.89     14.3     101.5      12
+# 47   tip      low     2   11.5   8.72     10.2      28.3       6
+# 10   tip   medium     2   12.3  13.48     16.1      36.9       8
+# 38   tip      low     1   12.3  11.27     13.7      28.7       5
+# 17   tip     high     1   12.6  18.66     18.6      54.0       9
+# 21   tip     high     1   14.1  19.12     13.1     113.2      13
+# 32   tip     high     2   17.2  19.20     10.9      89.9      14</code></pre>
+<p>or descending value of <code>leafarea</code></p>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">leafarea_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>leafarea, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ]        </a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">leafarea_ord</a></code></pre></div>
+<pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
+# 70 notip     high     1   10.9  17.22     49.2     189.6      17
+# 13   tip   medium     2    7.1   8.16     29.6       9.7       2
+# 24   tip     high     1    6.5  17.13     24.1     147.4       6
+# 65 notip     high     1    8.5  22.53     20.8     166.9      16
+# 23   tip     high     1    8.5  17.82     20.5      54.4       3
+# 66 notip     high     1    8.5  17.33     19.8     184.4      12
+# 73 notip     high     2    4.7  13.42     19.8     124.7       5
+# 80 notip     high     2    5.2  17.70     19.1     181.1       8
+# 17   tip     high     1   12.6  18.66     18.6      54.0       9
+# 49 notip   medium     1    5.6  11.03     18.6      49.9       8
+# 78 notip     high     2    9.3  18.75     18.4     181.1      16
+# 31   tip     high     2    6.3  14.50     18.3      55.6       8
+# 57 notip   medium     2    5.4  11.36     17.8     104.6      12
+# 86 notip      low     1    1.8   6.01     17.6      46.2       4
+# 56 notip   medium     1    2.5  14.85     17.5      77.8      10
+# 74 notip     high     2    5.0  16.82     17.3     182.5      15
+# 26   tip     high     2    7.7  14.77     17.2     104.5       4
+# 69 notip     high     1    2.6  16.57     17.1     141.1       3
+# 64 notip   medium     2    3.9  12.97     17.0      97.5       5
+# 18   tip     high     1   10.0  18.07     16.9      90.5       3
+# 28   tip     high     2    8.8  16.58     16.7     100.1       9
+# 79 notip     high     2    4.6  14.65     16.7      91.7      11
+# 53 notip   medium     1    3.5  12.93     16.6     109.3       3
+# 68 notip     high     1    1.2  18.24     16.6     148.1       7
+# 76 notip     high     2    2.6  18.88     16.4     181.5      14
+# 77 notip     high     2    6.0  13.68     16.2     133.7       2
+# 96 notip      low     2    4.4  10.60     16.2      63.3       6
+# 10   tip   medium     2   12.3  13.48     16.1      36.9       8
+# 42   tip      low     2    3.1   8.74     16.1      39.1       3
+# 71 notip     high     1    7.2  15.21     15.9     135.0      14
+# 19   tip     high     1   10.0  13.29     15.8     142.7      12
+# 59 notip   medium     2    5.8  10.18     15.7      88.8       6
+# 72 notip     high     1    2.1  19.15     15.6     176.7       6
+# 63 notip   medium     2    2.2  10.70     15.3      97.1       7
+# 60 notip   medium     2    4.5  13.68     14.8     125.5       9
+# 5    tip   medium     1   10.4  13.58     14.5      26.9       4
+# 89 notip      low     2    2.4   9.10     14.5      78.7       8
+# 25   tip     high     2   11.5  23.89     14.3     101.5      12
+# 2    tip   medium     1   10.7  12.14     14.1      46.0      10
+# 92 notip      low     2    3.2   7.45     14.1      38.1       4
+# 8    tip   medium     1    9.4  10.28     14.0      28.5       6
+# 52 notip   medium     1    4.1  12.58     13.9     136.6      11
+# 82 notip      low     1    2.3   7.28     13.8      32.8       6
+# 38   tip      low     1   12.3  11.27     13.7      28.7       5
+# 27   tip     high     2    6.4  13.60     13.6     152.6       7
+# 51 notip   medium     1    7.5  13.60     13.6     122.2      11
+# 81 notip      low     1    3.9   7.17     13.5      52.8       6
+# 95 notip      low     2    5.5   8.44     13.5      77.6       9
+# 16   tip   medium     2    4.5  12.55     13.4      14.4       6
+# 41   tip      low     2    7.4  10.89     13.3       9.5       5
+# 7    tip   medium     1    6.9  10.11     13.2      43.1       7
+# 20   tip     high     1    8.5  14.33     13.2      91.4       5
+# 21   tip     high     1   14.1  19.12     13.1     113.2      13
+# 14   tip   medium     2    6.0  11.22     13.0      16.4       3
+# 12   tip   medium     2   11.0  11.56     12.6      31.3       6
+# 22   tip     high     1   10.1  15.49     12.6      77.2      12
+# 61 notip   medium     2    8.0  11.43     12.6      43.2      14
+# 93 notip      low     2    3.9   9.19     12.4      52.6       9
+# 54 notip   medium     1    8.5  10.04     12.3     113.6       4
+# 6    tip   medium     1    9.8  10.08     12.2      72.7       9
+# 67 notip     high     1    6.4  11.52     12.1     140.5       7
+# 87 notip      low     1    3.0   9.93     12.0      56.6       6
+# 4    tip   medium     1   10.4   8.78     11.9      20.3       1
+# 34   tip      low     1    8.0  10.23     11.9      88.1       4
+# 62 notip   medium     2    1.8  10.47     11.8     120.8       9
+# 1    tip   medium     1    7.5   7.62     11.7      31.9       1
+# 30   tip     high     2    6.2  17.32     11.6      85.9       5
+# 94 notip      low     2    3.3   8.92     11.6      55.2       6
+# 50 notip   medium     1    5.3   9.29     11.5      82.3       6
+# 29   tip     high     2    9.2  13.26     11.3     108.0       9
+# 11   tip   medium     2   10.4  13.18     11.1      56.8      12
+# 40   tip      low     1    8.9  11.48     11.1      39.4       7
+# 83 notip      low     1    5.2   5.79     11.0      67.4       5
+# 32   tip     high     2   17.2  19.20     10.9      89.9      14
+# 15   tip   medium     2    9.0  10.20     10.8      90.1       6
+# 9    tip   medium     2   10.4  10.48     10.5      57.8       5
+# 91 notip      low     2    3.7   8.10     10.5      60.5       6
+# 47   tip      low     2   11.5   8.72     10.2      28.3       6
+# 46   tip      low     2    5.6   8.10     10.1       5.8       2
+# 75 notip     high     2    6.5  14.00     10.1     126.5       7
+# 39   tip      low     1    9.1   8.96      9.7      23.8       3
+# 58 notip   medium     2    3.9   9.07      9.6      90.4       7
+# 84 notip      low     1    2.2   9.97      9.6      63.1       2
+# 90 notip      low     2    5.7   9.05      9.6      63.2       6
+# 85 notip      low     1    4.5   8.60      9.4     113.5       7
+# 33   tip      low     1    8.0   6.88      9.3      16.1       4
+# 35   tip      low     1    6.4   5.97      8.7       7.3       2
+# 45   tip      low     2    8.5   7.16      8.7      29.9       4
+# 43   tip      low     2    7.9   8.89      8.4      34.1       4
+# 55 notip   medium     1    4.9   6.89      8.2      52.9       3
+# 37   tip      low     1    9.7   6.49      8.1      18.0       3
+# 88 notip      low     1    3.7   7.03      7.9      36.7       5
+# 36   tip      low     1    7.6  13.05      7.2      47.2       8
+# 3    tip   medium     1   11.2  12.76      7.1      66.7      10
+# 44   tip      low     2    8.8   9.39      7.1      38.9       4
+# 48   tip      low     2    5.8   8.04      5.8      30.7       7</code></pre>
+<p>We can even order data frames based on multiple variables. For example, to order <code>flowers</code> in ascending order of both <code>block</code> and <code>height</code></p>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">block_height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">block_height_ord</a></code></pre></div>
+<pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
+# 68 notip     high     1    1.2  18.24     16.6     148.1       7
+# 86 notip      low     1    1.8   6.01     17.6      46.2       4
+# 72 notip     high     1    2.1  19.15     15.6     176.7       6
+# 84 notip      low     1    2.2   9.97      9.6      63.1       2
+# 82 notip      low     1    2.3   7.28     13.8      32.8       6
+# 56 notip   medium     1    2.5  14.85     17.5      77.8      10
+# 69 notip     high     1    2.6  16.57     17.1     141.1       3
+# 87 notip      low     1    3.0   9.93     12.0      56.6       6
+# 53 notip   medium     1    3.5  12.93     16.6     109.3       3
+# 88 notip      low     1    3.7   7.03      7.9      36.7       5
+# 81 notip      low     1    3.9   7.17     13.5      52.8       6
+# 52 notip   medium     1    4.1  12.58     13.9     136.6      11
+# 85 notip      low     1    4.5   8.60      9.4     113.5       7
+# 55 notip   medium     1    4.9   6.89      8.2      52.9       3
+# 83 notip      low     1    5.2   5.79     11.0      67.4       5
+# 50 notip   medium     1    5.3   9.29     11.5      82.3       6
+# 49 notip   medium     1    5.6  11.03     18.6      49.9       8
+# 35   tip      low     1    6.4   5.97      8.7       7.3       2
+# 67 notip     high     1    6.4  11.52     12.1     140.5       7
+# 24   tip     high     1    6.5  17.13     24.1     147.4       6
+# 7    tip   medium     1    6.9  10.11     13.2      43.1       7
+# 71 notip     high     1    7.2  15.21     15.9     135.0      14
+# 1    tip   medium     1    7.5   7.62     11.7      31.9       1
+# 51 notip   medium     1    7.5  13.60     13.6     122.2      11
+# 36   tip      low     1    7.6  13.05      7.2      47.2       8
+# 33   tip      low     1    8.0   6.88      9.3      16.1       4
+# 34   tip      low     1    8.0  10.23     11.9      88.1       4
+# 20   tip     high     1    8.5  14.33     13.2      91.4       5
+# 23   tip     high     1    8.5  17.82     20.5      54.4       3
+# 54 notip   medium     1    8.5  10.04     12.3     113.6       4
+# 65 notip     high     1    8.5  22.53     20.8     166.9      16
+# 66 notip     high     1    8.5  17.33     19.8     184.4      12
+# 40   tip      low     1    8.9  11.48     11.1      39.4       7
+# 39   tip      low     1    9.1   8.96      9.7      23.8       3
+# 8    tip   medium     1    9.4  10.28     14.0      28.5       6
+# 37   tip      low     1    9.7   6.49      8.1      18.0       3
+# 6    tip   medium     1    9.8  10.08     12.2      72.7       9
+# 18   tip     high     1   10.0  18.07     16.9      90.5       3
+# 19   tip     high     1   10.0  13.29     15.8     142.7      12
+# 22   tip     high     1   10.1  15.49     12.6      77.2      12
+# 4    tip   medium     1   10.4   8.78     11.9      20.3       1
+# 5    tip   medium     1   10.4  13.58     14.5      26.9       4
+# 2    tip   medium     1   10.7  12.14     14.1      46.0      10
+# 70 notip     high     1   10.9  17.22     49.2     189.6      17
+# 3    tip   medium     1   11.2  12.76      7.1      66.7      10
+# 38   tip      low     1   12.3  11.27     13.7      28.7       5
+# 17   tip     high     1   12.6  18.66     18.6      54.0       9
+# 21   tip     high     1   14.1  19.12     13.1     113.2      13
+# 62 notip   medium     2    1.8  10.47     11.8     120.8       9
+# 63 notip   medium     2    2.2  10.70     15.3      97.1       7
+# 89 notip      low     2    2.4   9.10     14.5      78.7       8
+# 76 notip     high     2    2.6  18.88     16.4     181.5      14
+# 42   tip      low     2    3.1   8.74     16.1      39.1       3
+# 92 notip      low     2    3.2   7.45     14.1      38.1       4
+# 94 notip      low     2    3.3   8.92     11.6      55.2       6
+# 91 notip      low     2    3.7   8.10     10.5      60.5       6
+# 58 notip   medium     2    3.9   9.07      9.6      90.4       7
+# 64 notip   medium     2    3.9  12.97     17.0      97.5       5
+# 93 notip      low     2    3.9   9.19     12.4      52.6       9
+# 96 notip      low     2    4.4  10.60     16.2      63.3       6
+# 16   tip   medium     2    4.5  12.55     13.4      14.4       6
+# 60 notip   medium     2    4.5  13.68     14.8     125.5       9
+# 79 notip     high     2    4.6  14.65     16.7      91.7      11
+# 73 notip     high     2    4.7  13.42     19.8     124.7       5
+# 74 notip     high     2    5.0  16.82     17.3     182.5      15
+# 80 notip     high     2    5.2  17.70     19.1     181.1       8
+# 57 notip   medium     2    5.4  11.36     17.8     104.6      12
+# 95 notip      low     2    5.5   8.44     13.5      77.6       9
+# 46   tip      low     2    5.6   8.10     10.1       5.8       2
+# 90 notip      low     2    5.7   9.05      9.6      63.2       6
+# 48   tip      low     2    5.8   8.04      5.8      30.7       7
+# 59 notip   medium     2    5.8  10.18     15.7      88.8       6
+# 14   tip   medium     2    6.0  11.22     13.0      16.4       3
+# 77 notip     high     2    6.0  13.68     16.2     133.7       2
+# 30   tip     high     2    6.2  17.32     11.6      85.9       5
+# 31   tip     high     2    6.3  14.50     18.3      55.6       8
+# 27   tip     high     2    6.4  13.60     13.6     152.6       7
+# 75 notip     high     2    6.5  14.00     10.1     126.5       7
+# 13   tip   medium     2    7.1   8.16     29.6       9.7       2
+# 41   tip      low     2    7.4  10.89     13.3       9.5       5
+# 26   tip     high     2    7.7  14.77     17.2     104.5       4
+# 43   tip      low     2    7.9   8.89      8.4      34.1       4
+# 61 notip   medium     2    8.0  11.43     12.6      43.2      14
+# 45   tip      low     2    8.5   7.16      8.7      29.9       4
+# 28   tip     high     2    8.8  16.58     16.7     100.1       9
+# 44   tip      low     2    8.8   9.39      7.1      38.9       4
+# 15   tip   medium     2    9.0  10.20     10.8      90.1       6
+# 29   tip     high     2    9.2  13.26     11.3     108.0       9
+# 78 notip     high     2    9.3  18.75     18.4     181.1      16
+# 9    tip   medium     2   10.4  10.48     10.5      57.8       5
+# 11   tip   medium     2   10.4  13.18     11.1      56.8      12
+# 12   tip   medium     2   11.0  11.56     12.6      31.3       6
+# 25   tip     high     2   11.5  23.89     14.3     101.5      12
+# 47   tip      low     2   11.5   8.72     10.2      28.3       6
+# 10   tip   medium     2   12.3  13.48     16.1      36.9       8
+# 32   tip     high     2   17.2  19.20     10.9      89.9      14</code></pre>
+<p>What if we wanted to order <code>flowers</code> by ascending order of <code>block</code> but descending order of <code>height</code>? We can use a simple trick by adding a <code>-</code> before the <code>flowers$height</code> variable when we use the <code>order()</code> function.<br />
+</p>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, <span class="op">-</span>flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">block_revheight_ord</a></code></pre></div>
+<pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
+# 21   tip     high     1   14.1  19.12     13.1     113.2      13
+# 17   tip     high     1   12.6  18.66     18.6      54.0       9
+# 38   tip      low     1   12.3  11.27     13.7      28.7       5
+# 3    tip   medium     1   11.2  12.76      7.1      66.7      10
+# 70 notip     high     1   10.9  17.22     49.2     189.6      17
+# 2    tip   medium     1   10.7  12.14     14.1      46.0      10
+# 4    tip   medium     1   10.4   8.78     11.9      20.3       1
+# 5    tip   medium     1   10.4  13.58     14.5      26.9       4
+# 22   tip     high     1   10.1  15.49     12.6      77.2      12
+# 18   tip     high     1   10.0  18.07     16.9      90.5       3
+# 19   tip     high     1   10.0  13.29     15.8     142.7      12
+# 6    tip   medium     1    9.8  10.08     12.2      72.7       9
+# 37   tip      low     1    9.7   6.49      8.1      18.0       3
+# 8    tip   medium     1    9.4  10.28     14.0      28.5       6
+# 39   tip      low     1    9.1   8.96      9.7      23.8       3
+# 40   tip      low     1    8.9  11.48     11.1      39.4       7
+# 20   tip     high     1    8.5  14.33     13.2      91.4       5
+# 23   tip     high     1    8.5  17.82     20.5      54.4       3
+# 54 notip   medium     1    8.5  10.04     12.3     113.6       4
+# 65 notip     high     1    8.5  22.53     20.8     166.9      16
+# 66 notip     high     1    8.5  17.33     19.8     184.4      12
+# 33   tip      low     1    8.0   6.88      9.3      16.1       4
+# 34   tip      low     1    8.0  10.23     11.9      88.1       4
+# 36   tip      low     1    7.6  13.05      7.2      47.2       8
+# 1    tip   medium     1    7.5   7.62     11.7      31.9       1
+# 51 notip   medium     1    7.5  13.60     13.6     122.2      11
+# 71 notip     high     1    7.2  15.21     15.9     135.0      14
+# 7    tip   medium     1    6.9  10.11     13.2      43.1       7
+# 24   tip     high     1    6.5  17.13     24.1     147.4       6
+# 35   tip      low     1    6.4   5.97      8.7       7.3       2
+# 67 notip     high     1    6.4  11.52     12.1     140.5       7
+# 49 notip   medium     1    5.6  11.03     18.6      49.9       8
+# 50 notip   medium     1    5.3   9.29     11.5      82.3       6
+# 83 notip      low     1    5.2   5.79     11.0      67.4       5
+# 55 notip   medium     1    4.9   6.89      8.2      52.9       3
+# 85 notip      low     1    4.5   8.60      9.4     113.5       7
+# 52 notip   medium     1    4.1  12.58     13.9     136.6      11
+# 81 notip      low     1    3.9   7.17     13.5      52.8       6
+# 88 notip      low     1    3.7   7.03      7.9      36.7       5
+# 53 notip   medium     1    3.5  12.93     16.6     109.3       3
+# 87 notip      low     1    3.0   9.93     12.0      56.6       6
+# 69 notip     high     1    2.6  16.57     17.1     141.1       3
+# 56 notip   medium     1    2.5  14.85     17.5      77.8      10
+# 82 notip      low     1    2.3   7.28     13.8      32.8       6
+# 84 notip      low     1    2.2   9.97      9.6      63.1       2
+# 72 notip     high     1    2.1  19.15     15.6     176.7       6
+# 86 notip      low     1    1.8   6.01     17.6      46.2       4
+# 68 notip     high     1    1.2  18.24     16.6     148.1       7
+# 32   tip     high     2   17.2  19.20     10.9      89.9      14
+# 10   tip   medium     2   12.3  13.48     16.1      36.9       8
+# 25   tip     high     2   11.5  23.89     14.3     101.5      12
+# 47   tip      low     2   11.5   8.72     10.2      28.3       6
+# 12   tip   medium     2   11.0  11.56     12.6      31.3       6
+# 9    tip   medium     2   10.4  10.48     10.5      57.8       5
+# 11   tip   medium     2   10.4  13.18     11.1      56.8      12
+# 78 notip     high     2    9.3  18.75     18.4     181.1      16
+# 29   tip     high     2    9.2  13.26     11.3     108.0       9
+# 15   tip   medium     2    9.0  10.20     10.8      90.1       6
+# 28   tip     high     2    8.8  16.58     16.7     100.1       9
+# 44   tip      low     2    8.8   9.39      7.1      38.9       4
+# 45   tip      low     2    8.5   7.16      8.7      29.9       4
+# 61 notip   medium     2    8.0  11.43     12.6      43.2      14
+# 43   tip      low     2    7.9   8.89      8.4      34.1       4
+# 26   tip     high     2    7.7  14.77     17.2     104.5       4
+# 41   tip      low     2    7.4  10.89     13.3       9.5       5
+# 13   tip   medium     2    7.1   8.16     29.6       9.7       2
+# 75 notip     high     2    6.5  14.00     10.1     126.5       7
+# 27   tip     high     2    6.4  13.60     13.6     152.6       7
+# 31   tip     high     2    6.3  14.50     18.3      55.6       8
+# 30   tip     high     2    6.2  17.32     11.6      85.9       5
+# 14   tip   medium     2    6.0  11.22     13.0      16.4       3
+# 77 notip     high     2    6.0  13.68     16.2     133.7       2
+# 48   tip      low     2    5.8   8.04      5.8      30.7       7
+# 59 notip   medium     2    5.8  10.18     15.7      88.8       6
+# 90 notip      low     2    5.7   9.05      9.6      63.2       6
+# 46   tip      low     2    5.6   8.10     10.1       5.8       2
+# 95 notip      low     2    5.5   8.44     13.5      77.6       9
+# 57 notip   medium     2    5.4  11.36     17.8     104.6      12
+# 80 notip     high     2    5.2  17.70     19.1     181.1       8
+# 74 notip     high     2    5.0  16.82     17.3     182.5      15
+# 73 notip     high     2    4.7  13.42     19.8     124.7       5
+# 79 notip     high     2    4.6  14.65     16.7      91.7      11
+# 16   tip   medium     2    4.5  12.55     13.4      14.4       6
+# 60 notip   medium     2    4.5  13.68     14.8     125.5       9
+# 96 notip      low     2    4.4  10.60     16.2      63.3       6
+# 58 notip   medium     2    3.9   9.07      9.6      90.4       7
+# 64 notip   medium     2    3.9  12.97     17.0      97.5       5
+# 93 notip      low     2    3.9   9.19     12.4      52.6       9
+# 91 notip      low     2    3.7   8.10     10.5      60.5       6
+# 94 notip      low     2    3.3   8.92     11.6      55.2       6
+# 92 notip      low     2    3.2   7.45     14.1      38.1       4
+# 42   tip      low     2    3.1   8.74     16.1      39.1       3
+# 76 notip     high     2    2.6  18.88     16.4     181.5      14
+# 89 notip      low     2    2.4   9.10     14.5      78.7       8
+# 63 notip   medium     2    2.2  10.70     15.3      97.1       7
+# 62 notip   medium     2    1.8  10.47     11.8     120.8       9</code></pre>
+</div>
+<div id="adding-columns" class="section level3">
+<h3><span class="header-section-number">3.4.4</span> Adding columns</h3>
+</div>
+<div id="adding-rows" class="section level3">
+<h3><span class="header-section-number">3.4.5</span> Adding rows</h3>
+</div>
+<div id="merging-data-frames" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> Merging data frames</h3>
+<p>log
 adding new columns
 add columns/rows
 wide -&gt; long, long -&gt; wide

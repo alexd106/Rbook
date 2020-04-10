@@ -434,25 +434,25 @@ We often use this method in preference to the positional index for selecting col
 
 ### Logical indexes
 
-Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let's extract all rows where `height` is greater than 6 and extract all columns by default.
+Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let's extract all rows where `height` is greater than 15 and extract all columns by default.
 
 ```{r dw11, echo=TRUE, collapse=TRUE}
-big_flowers <- flowers[flowers$height > 6, ]
+big_flowers <- flowers[flowers$height > 15, ]
 big_flowers
 ```
 
 Notice in the code above that we need to use the `flowers$height` notation for the logical test. If we only named the `height` variable we would receive an error telling us R couldn't find the variable `height`. The reason for this is that the `height` variable only exists inside the `flowers` object.
 
 ```{r dw12, echo=TRUE, eval=FALSE}
-big_flowers <- flowers[height > 6, ]
-Error in `[.data.frame`(flowers, height > 6, ) : 
+big_flowers <- flowers[height > 15, ]
+Error in `[.data.frame`(flowers, height > 15, ) : 
   object 'height' not found
 ```
 
-OK, so how does this work? Well, the logical test is `flowers$height > 6` and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing `TRUE` values if `height` is greater than 6 and `FALSE` if `height` is not greater than 6.
+OK, so how does this work? Well, the logical test is `flowers$height > 15` and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing `TRUE` values if `height` is greater than 15 and `FALSE` if `height` is not greater than 6.
 
 ```{r dw13, echo=TRUE, collapse=TRUE}
-flowers$height > 6
+flowers$height > 15
 ```
 
 So our row index is a vector contain either `TRUE` and `FALSE` values and only those rows that contain are `TRUE` are selected. Remember, when we don't select columns to extract (nothing after the comma) all columns are returned by default.
@@ -472,29 +472,77 @@ flowers[flowers$height != 8, ]         # values  not equal to 8
 We can also extract rows based on the value of a character string or factor level. Let's extract all rows where the `nitrogen` level is equal to `high` (again also output all columns). Notice that the double equals `==` sign must be used for a logical test and that the character string must be enclosed in either single or double quotes i.e. `"high"`).
 
 ```{r dw15, echo=TRUE, collapse=TRUE}
-nut_high <- flowers[flowers$nitrogen == "high", ]        
-nut_high
+nit_high <- flowers[flowers$nitrogen == "high", ]        
+nit_high
 ```
 
-Or `nitrogen` level is not equal to `medium` and only return columns 1 to 4
+Or `nitrogen` level is not equal to `medium` and only return columns 1 to 4. 
 
 ```{r dw16, echo=TRUE, collapse=TRUE}
-nut_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]        
-nut_not_medium
+nit_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]        
+nit_not_medium
 ```
 
 We can increase the complexity of our logical expression by combining them with [Boolean expressions][boolean] just as we did for vector objects. For example, to extract all rows where `height` is greater or equal to `6` and `nitrogen` is `medium` and `treat` is equal to `notip` we combine a series of logical expressions with the `&` symbol. 
 
 ```{r dw17, echo=TRUE, collapse=TRUE}
-low_notip_high6 <- flowers[flowers$height >= 6 & flowers$nitrogen == "medium" &
+low_notip_heigh6 <- flowers[flowers$height >= 6 & flowers$nitrogen == "medium" &
 															flowers$treat == "notip", ]        
-low_notip_high6
+low_notip_heigh6
 ```
 
+An alternative method of selecting parts of a data frame based on a logical expression is to use the `subset()` function. The advantage of subset is you no longer need to use the `$` notation when specifying variables. The disadvantage is that `subset()` is less flexible than the `[ ]` notation. 
 
-order
+```{r dw18, echo=TRUE, collapse=TRUE}
+tip_med_2 <- subset(flowers, treat=="tip" & nitrogen=="medium" & block=="2")
+tip_med_2
+```
+
+And if you only want certain columns you can use the `select =` argument
+
+```{r dw19, echo=TRUE, collapse=TRUE}
+tipplants <- subset(flowers, treat=="tip" & nitrogen == "medium" & block=="2", 
+										select = c("treat", "nitrogen", "leafarea"))
+tipplants
+```
+
+### Ordering data frames
+
+Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder columns in your data frame but keep each value associated with the correct row. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default (scroll down in the output panel to see the whole data frame).
+
+```{r dw20, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+height_ord <- flowers[order(flowers$height), ]        
+height_ord
+```
+
+or descending value of `leafarea`
+
+```{r dw21, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
+leafarea_ord
+```
+
+We can even order data frames based on multiple variables. For example, to order `flowers` in ascending order of both `block` and `height`
+
+```{r dw22, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+block_height_ord <- flowers[order(flowers$block, flowers$height), ]        
+block_height_ord
+```
+
+What if we wanted to order `flowers` by ascending order of `block` but descending order of `height`? We can use a simple trick by adding a `-` before the `flowers$height` variable when we use the `order()` function.\
+
+```{r dw23, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]        
+block_revheight_ord
+```
+
+### Adding columns
+
+### Adding rows
+
+### Merging data frames
+
 log
-with()
 adding new columns
 add columns/rows
 wide -> long, long -> wide
@@ -510,6 +558,7 @@ aggregate()
 
 ## Exporting data
 
+write.table()
 
 \  
 
