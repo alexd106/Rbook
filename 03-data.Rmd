@@ -283,13 +283,13 @@ R has a number of variants of the `read.table()` function that you can use to im
 
 ```{r df5, echo=TRUE, eval=FALSE}
 # import .csv file
-flowers <- read.csv(file = 'data/flowers.csv') 
+flowers <- read.csv(file = 'data/flower.csv') 
 
 # import .csv file with dec = "," and sep = ";"
-flowers <- read.csv2(file = 'data/flowers.csv') 
+flowers <- read.csv2(file = 'data/flower.csv') 
 
 # import tab delim file with sep = "\t"
-flowers <- read.delim(file = 'data/flowers.txt') 
+flowers <- read.delim(file = 'data/flower.txt') 
 ```
 
 You can even import spreadsheet files from MS Excel or other statistics software directly into R but our advice is that this should generally be avoided if possible as it just adds a layer of uncertainty between you and your data. In our opinion it's almost always better to export your spreadsheets as tab or comma delimited files and then import them into R using the `read.table()` function. If you're hell bent on directly importing data from other software you will need to install the `foreign` package which has functions for importing Minitab, SPSS, Stata and SAS files or the `xlsx` package to import Excel spreadsheets. 
@@ -321,6 +321,37 @@ str(flowers_bad)
 
 We can see an obvious problem, all of our variables have been imported as factors and are called `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#vectors)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings are converted to factors by default (unless we use the `stringsAsFactors =` argument as above).
 
+### Other import options
+
+There are numerous other functions to import data from a variety of sources and formats. Most of these functions are contained in packages that you will need to install before using them. We list a couple of the more useful packages and functions below. 
+
+The `fread()` function from the `read.table` package is great for importing large data files quickly and efficiently (much faster than the `read.table()` function). One of the great things about the `fread()` function is that it will automatically detect many of the arguments you would normally need to specify (like `sep =` etc). One of the things you will need to consider though is that the `fread()` function will return a `data.table` object not a `data.frame` as would be the case with the `read.table()` function. This is usually not a problem as you can pass a `data.table` object to any function that only accepts `data.frame` objects. To learn more about the differences between `data.table` and `data.frame` objects see [here][data-table]. 
+
+```{r df8, echo=TRUE, eval=FALSE}
+library(read.table)
+all_data <- fread('data/flower.txt')
+```
+
+Various functions from the `readr` package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()` function the `header = TRUE` argument is replaced by `col_names = TRUE`. Also, character class variables are not automatically converted to factors when using `read_table()` and the function returns a 'tibble' class object which is the tidyverse equivalent of a 'data.frame' object (see [here][tibbles] for differences). 
+
+```{r df9, echo=TRUE, eval=FALSE}
+library(readr)
+# import white space delimited files
+all_data <- read_table('data/flower.txt', col_names = TRUE)
+
+# import comma delimited files
+all_data <- read_csv('data/flower.txt')
+
+# import tab delimited files
+all_data <- read_delim('data/flower.txt', delim = "\t")
+
+# or use
+all_data <- read_tsv('data/flower.txt')
+```
+
+If your data file is ginormous, then the `ff` and `bigmemory` packages may be useful as they're both able to store large  data in a memory efficient manner. You can find out more about these functions [here][ff] and [here][bigmem].
+
+
 ## Wrangling data frames
 
 ## Summarising data frames
@@ -335,22 +366,19 @@ The final data structure we will consider is a list. A list is a data structure 
 
 **plan**
 
-Vectors we have already seen
-
-data frames
-	- overview of structure
-	- going from excel/calc to txt or csv file
-	- import data
-	- `read.table` and variants `read.csv`, `read.delim`
 	- `read_table` in `readr` package
 	- `data.table` package - `fread` 
 
 data wrangling using `$` and `[ ]`
 
+positional
+logical
+include wide -> log and long -> wide
 summarising data 
+apply, tapply, by, aggregate, merge
 
 exporting data
-
+write.table
 
 \  
 

@@ -97,6 +97,10 @@
 
 <!--Data links-->
 [cat-var]: https://en.wikipedia.org/wiki/Categorical_variable
+[data-table]: http://datatable.r-forge.r-project.org/datatable-intro.pdf
+[tibbles]: https://blog.rstudio.com/2016/03/24/tibble-1-0-0/
+[ff]: https://www.rdocumentation.org/packages/ff/versions/2.2-14/topics/read.table.ffdf
+[bigmem]: https://cran.r-project.org/web/packages/bigmemory/bigmemory.pdf
 
 <!--Resource Links-->
 [swirl]: http://swirlstats.com/
