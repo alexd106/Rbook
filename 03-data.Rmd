@@ -384,15 +384,15 @@ mean(f_height)
 
 Just as we did with [vectors](#vectors), we can access specific data in data frames using our square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
 
-### Positional index
+### Positional indexes
 
-For example if for some reason we wanted to extract the first value (1^st^ row ) of our `height` variable (4^th^ column)
+To use positional indexes we simple have to write the positon of the rows and columns we want to extract inside our `[ ]`. For example, if for some reason we wanted to extract the first value (1^st^ row ) of our `height` variable (4^th^ column)
 
 ```{r dw4, echo=TRUE, collapse=TRUE}
 flowers[1, 4]
 ```
 
-We can also extract values from multiple rows or columns by specifying these as indexes. To extract the first 10 rows and the first 4 columns
+We can also extract values from multiple rows or columns by specifying these as indexes as vectors inside the `[ ]`. To extract the first 10 rows and the first 4 columns
 
 ```{r dw5, echo=TRUE, collapse=TRUE}
 flowers[1:10, 1:4]
@@ -406,32 +406,39 @@ flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
 
 All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by simply using the skills we developed in [Chapter 2](#funcs) when we generated vectors using the `c()` function or the `:` notation.
 
-But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
+But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify either a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
 
 ```{r dw7, echo=TRUE, collapse=TRUE}
 flowers[1:8, ]
 ```
 
-or all of the rows and the first 3 columns
+or all of the rows and the first 3 columns (scroll down output box to see all of the data)
 
-```{r dw8, echo=TRUE, collapse=TRUE}
+```{r dw8, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 flowers[, 1:3]
 ```
 
-We can even use negative positional indexes to exclude certain row and columns. As an example, lets extract all of the rows except the first 70 rows and all columns except the 4^th, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we just use `-1:70` this would actually generate a regular sequence from -1 to 70 - not what we want!
+We can even use negative positional indexes to exclude certain row and columns. As an example, lets extract all of the rows except the first 70 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we just use `-1:70` this would actually generate a regular sequence from -1 to 70 and not what we want (we could of course used `-1:-70`).
 
 ```{r dw9, echo=TRUE, collapse=TRUE}
 flowers[-c(1:70), -c(4, 7, 8)]
 ```
 
-In addition to using a position index for extracting particular variables (columns) you can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can use
+In addition to using a positional index for extracting particular variables (columns) you can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can use
 
 ```{r dw10, echo=TRUE, collapse=TRUE}
 flowers[1:5, c("treat", "nitrogen", "leafarea")]
 ```
 
-We often use this method in preference to the positional index as it will still give us what we want even if the position of the variables change. 
+We often use this method in preference to the positional index for selecting columns as it will still give us what we want even if we've changed the position of the variables in our data frame for some reason. 
 
+### Logical indexes
+
+As we did 
+
+
+
+log
 with()
 adding new columns
 add columns/rows
