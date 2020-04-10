@@ -376,7 +376,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb108-5" data-line-number="5"><span class="co"># 12   tip     2     12.6       6</span></a>
 <a class="sourceLine" id="cb108-6" data-line-number="6"><span class="co"># 30   tip     2     11.6       5</span></a></code></pre></div>
 <p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by simply using the skills we developed in <a href="r-functions.html#funcs">Chapter 2</a> when we generated vectors using the <code>c()</code> function or the <code>:</code> notation.</p>
-<p>But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don’t specify a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the <code>flower</code> data frame</p>
+<p>But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don’t specify either a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the <code>flower</code> data frame</p>
 <div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, ]</a>
 <a class="sourceLine" id="cb109-2" data-line-number="2"><span class="co">#   treat nitrogen block height weight leafarea shootarea flowers</span></a>
 <a class="sourceLine" id="cb109-3" data-line-number="3"><span class="co"># 1   tip   medium     1    7.5   7.62     11.7      31.9       1</span></a>
@@ -387,7 +387,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb109-8" data-line-number="8"><span class="co"># 6   tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
 <a class="sourceLine" id="cb109-9" data-line-number="9"><span class="co"># 7   tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
 <a class="sourceLine" id="cb109-10" data-line-number="10"><span class="co"># 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></a></code></pre></div>
-<p>or all of the rows and the first 3 columns (scroll down output box to see all of the data)</p>
+<p>or all of the rows and the first 3 columns (scroll down in output box to see all of the data)</p>
 <div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block
 # 1    tip   medium     1
@@ -527,7 +527,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Logical indexes</h3>
-<p>As we did</p>
+<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test.</p>
 <p>log
 with()
 adding new columns
