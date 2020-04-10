@@ -279,7 +279,7 @@ str(flowers)
 
 Other useful arguments include `dec =` and `na.strings =`. The `dec =` argument allows you to change the default character (`.`) used for a decimal point. This is useful if you are in a country where decimal places are usually represented by a comma (i.e. `dec = ","`). The `na.strings =` argument allows you to import data where missing values are represented with symbols other than `NA`. This can be quite common if you are importing data from other statistical software such as Minitab which represents missing values as a `*` (`na.strings = "*"`). 
 
-R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`, `read.csv2()` and `read.delim()` functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (i.e. it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many mainland European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
+R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`, `read.csv2()` and `read.delim()` functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many mainland European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
 
 ```{r df5, echo=TRUE, eval=FALSE}
 # import .csv file
@@ -298,16 +298,16 @@ You can even import spreadsheet files from MS Excel or other statistics software
 
 It's quite common to get a bunch of really frustrating error messages when you first start importing data into R. Perhaps the most common is
 
-```{block}
+```{r, eval=FALSE}
 Error in file(file, "rt") : cannot open the connection
 In addition: Warning message:
 In file(file, "rt") :
   cannot open file 'flower.txt': No such file or directory
 ```
 
-This error message is telling us that R cannot find the file you are trying to import. It usually rears it's head for one of a couple of reasons. The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Finally, the file is not where you say it is or you have an used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
+This error message is telling you that R cannot find the file you are trying to import. It usually rears it's head for one of a couple of reasons (or all of them!). The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Lastly, the file is not where you say it is or you've an used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
 
-Another really common mistake is to forget to include the `header = TRUE` argument when the first row of the data contains variable names. For example, if we omit this argument when we import our `flowers.txt` file all looks OK at first (no error message at least)
+Another really common mistake is to forget to include the `header = TRUE` argument when the first row of the data contains variable names. For example, if we omit this argument when we import our `flowers.txt` file everything looks OK at first (no error message at least)
 
 ```{r df6, echo=TRUE, collapse=TRUE}
 flowers_bad <- read.table(file = 'data/flower.txt', sep = "\t")
