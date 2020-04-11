@@ -212,6 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a></li>
@@ -1289,8 +1290,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.4.5</span> Merging data frames</h3>
 <p>Instead of just appending either rows or columns to a data frame we can also merge two different data frames together. let’s say we have one data frame that contains taxonomic information on some common rocky shore invertebrates and another data frame that contains information on where they are commonly found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">                        <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3">                        <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">                   <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">                   <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
 <a class="sourceLine" id="cb139-4" data-line-number="4">taxa</a>
 <a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co">#          GENUS    species           family</span></a>
 <a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co"># 1      Patella    vulgata       patellidae</span></a>
@@ -1299,8 +1300,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae</span></a>
 <a class="sourceLine" id="cb139-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb139-11" data-line-number="11">zonation &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
-<a class="sourceLine" id="cb139-12" data-line-number="12">                                             <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
-<a class="sourceLine" id="cb139-13" data-line-number="13">                                             <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
+<a class="sourceLine" id="cb139-12" data-line-number="12">                    <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
+<a class="sourceLine" id="cb139-13" data-line-number="13">                    <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
 <a class="sourceLine" id="cb139-14" data-line-number="14">zonation</a>
 <a class="sourceLine" id="cb139-15" data-line-number="15"><span class="co">#          genus    species    zone</span></a>
 <a class="sourceLine" id="cb139-16" data-line-number="16"><span class="co"># 1    Laminaria   digitata   v_low</span></a>
@@ -1339,7 +1340,342 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb142-8" data-line-number="8"><span class="co"># 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
 <a class="sourceLine" id="cb142-9" data-line-number="9"><span class="co"># 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
 <a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co"># 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
-<p>reshape?</p>
+</div>
+<div id="reshaping-data-frames" class="section level3">
+<h3><span class="header-section-number">3.4.6</span> Reshaping data frames</h3>
+<p>Reshaping data into different formats is a common task. With rectangular type data (same number of rows in each column) there are two main data frame shapes that you will come across: the ‘long’ format (sometimes called stacked) and the ‘wide’ format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+subject
+</th>
+<th style="text-align:left;">
+sex
+</th>
+<th style="text-align:left;">
+condition
+</th>
+<th style="text-align:right;">
+measurement
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+12.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+cond1
+</td>
+<td style="text-align:right;">
+14.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+cond2
+</td>
+<td style="text-align:right;">
+8.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+cond1
+</td>
+<td style="text-align:right;">
+12.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+cond2
+</td>
+<td style="text-align:right;">
+10.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+cond1
+</td>
+<td style="text-align:right;">
+12.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+cond2
+</td>
+<td style="text-align:right;">
+14.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+control
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+cond1
+</td>
+<td style="text-align:right;">
+12.9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:left;">
+cond2
+</td>
+<td style="text-align:right;">
+11.9
+</td>
+</tr>
+</tbody>
+</table>
+<p>And the same data in the wide format. In this format we have multiple observations from a subject in a single row with each observation in a different column. This is a common format when you have repeated measurements from sampling units.</p>
+<table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+subject
+</th>
+<th style="text-align:left;">
+sex
+</th>
+<th style="text-align:right;">
+control
+</th>
+<th style="text-align:right;">
+cond1
+</th>
+<th style="text-align:right;">
+cond2
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:right;">
+12.9
+</td>
+<td style="text-align:right;">
+14.2
+</td>
+<td style="text-align:right;">
+8.7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+B
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+5.2
+</td>
+<td style="text-align:right;">
+12.6
+</td>
+<td style="text-align:right;">
+10.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+C
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:right;">
+8.9
+</td>
+<td style="text-align:right;">
+12.1
+</td>
+<td style="text-align:right;">
+14.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+M
+</td>
+<td style="text-align:right;">
+10.5
+</td>
+<td style="text-align:right;">
+12.9
+</td>
+<td style="text-align:right;">
+11.9
+</td>
+</tr>
+</tbody>
+</table>
+<p>Whilst there’s no inherent problem with either of these formats we will often need to convert between the two as some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.</p>
+<p>There are many ways to convert between these two formats but we’ll use the <code>melt()</code> and <code>dcast()</code> functions from the <code>reshape2</code> package (you will need to install this package first). The <code>melt()</code> function is used to convert from wide to long formats. The first argument for the <code>melt()</code> function is the data frame we want to melt (in our case <code>wide_data</code>). The <code>id.vars =</code> argument is vector of the variables you want to stack, the <code>measured.vars =</code> argument identifies the columns of the different conditions, the <code>variable.name =</code> argument specifies what you want to call the stacked column of your different conditions and <code>value.name =</code> is the name of the column of your stacked measurements.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">wide_data    <span class="co"># remind ourselves what the wide format looks like</span></a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="co">#   subject sex control cond1 cond2</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="co"># 1       A   M    12.9  14.2   8.7</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="co"># 2       B   F     5.2  12.6  10.1</span></a>
+<a class="sourceLine" id="cb143-6" data-line-number="6"><span class="co"># 3       C   F     8.9  12.1  14.2</span></a>
+<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="co"># 4       D   M    10.5  12.9  11.9</span></a>
+<a class="sourceLine" id="cb143-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb143-9" data-line-number="9"><span class="co"># convert wide to long</span></a>
+<a class="sourceLine" id="cb143-10" data-line-number="10">my_long_df &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="dt">data =</span> wide_data, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;sex&quot;</span>),</a>
+<a class="sourceLine" id="cb143-11" data-line-number="11">                  <span class="dt">measured.vars =</span> <span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;cond1&quot;</span>, <span class="st">&quot;cond2&quot;</span>),</a>
+<a class="sourceLine" id="cb143-12" data-line-number="12">                  <span class="dt">variable.name =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb143-13" data-line-number="13">my_long_df</a>
+<a class="sourceLine" id="cb143-14" data-line-number="14"><span class="co">#    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb143-15" data-line-number="15"><span class="co"># 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb143-16" data-line-number="16"><span class="co"># 2        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb143-17" data-line-number="17"><span class="co"># 3        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb143-18" data-line-number="18"><span class="co"># 4        D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb143-19" data-line-number="19"><span class="co"># 5        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb143-20" data-line-number="20"><span class="co"># 6        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb143-21" data-line-number="21"><span class="co"># 7        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb143-22" data-line-number="22"><span class="co"># 8        D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb143-23" data-line-number="23"><span class="co"># 9        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb143-24" data-line-number="24"><span class="co"># 10       B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb143-25" data-line-number="25"><span class="co"># 11       C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb143-26" data-line-number="26"><span class="co"># 12       D   M     cond2        11.9</span></a></code></pre></div>
+<p>The <code>dcast()</code> function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (<code>long_data</code> for this example). The second argument is in formula syntax. The <code>subject + age</code> bit of the formula means that we want to keep these columns separate, and the <code>~ condition</code> is the column that contains the labels that we want to split into new columns in new data frame. The <code>value.var =</code> argument is the column that contains the actual measurements</p>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">long_data   <span class="co"># remind ourselves what the long format look like</span></a>
+<a class="sourceLine" id="cb144-2" data-line-number="2"><span class="co">#    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="co"># 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="co"># 2        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co"># 3        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co"># 4        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co"># 5        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co"># 6        B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co"># 7        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># 8        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb144-11" data-line-number="11"><span class="co"># 9        C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="co"># 10       D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb144-13" data-line-number="13"><span class="co"># 11       D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb144-14" data-line-number="14"><span class="co"># 12       D   M     cond2        11.9</span></a>
+<a class="sourceLine" id="cb144-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb144-16" data-line-number="16"><span class="co"># convert long to wide</span></a>
+<a class="sourceLine" id="cb144-17" data-line-number="17">my_wide_df &lt;-<span class="st"> </span><span class="kw">dcast</span>(<span class="dt">data =</span> long_data, subject <span class="op">+</span><span class="st"> </span>sex <span class="op">~</span><span class="st"> </span>condition, <span class="dt">value.var=</span><span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb144-18" data-line-number="18">my_wide_df</a>
+<a class="sourceLine" id="cb144-19" data-line-number="19"><span class="co">#   subject sex cond1 cond2 control</span></a>
+<a class="sourceLine" id="cb144-20" data-line-number="20"><span class="co"># 1       A   M  14.2   8.7    12.9</span></a>
+<a class="sourceLine" id="cb144-21" data-line-number="21"><span class="co"># 2       B   F  12.6  10.1     5.2</span></a>
+<a class="sourceLine" id="cb144-22" data-line-number="22"><span class="co"># 3       C   F  12.1  14.2     8.9</span></a>
+<a class="sourceLine" id="cb144-23" data-line-number="23"><span class="co"># 4       D   M  12.9  11.9    10.5</span></a></code></pre></div>
 </div>
 </div>
             </section>

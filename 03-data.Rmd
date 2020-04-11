@@ -605,13 +605,13 @@ Instead of just appending either rows or columns to a data frame we can also mer
 
 ```{r dw28, echo=TRUE, collapse=TRUE}
 taxa <- data.frame(GENUS = c("Patella", "Littorina", "Halichondria", "Semibalanus"),
-                        species = c("vulgata", "littoria", "panacea", "balanoides"),
-                        family = c("patellidae", "Littorinidae", "Halichondriidae", "Archaeobalanidae"))
+                   species = c("vulgata", "littoria", "panacea", "balanoides"),
+                   family = c("patellidae", "Littorinidae", "Halichondriidae", "Archaeobalanidae"))
 taxa
 
 zonation <- data.frame(genus = c("Laminaria", "Halichondria", "Xanthoria", "Littorina", "Semibalanus", "Fucus"),
-											 species = c("digitata", "panacea", "parietina", "littoria", "balanoides", "serratus"),
-											 zone = c( "v_low", "low", "v_high", "low_mid", "high", "low_mid"))
+                    species = c("digitata", "panacea", "parietina", "littoria", "balanoides", "serratus"),
+                    zone = c( "v_low", "low", "v_high", "low_mid", "high", "low_mid"))
 zonation
 ```
 
@@ -638,7 +638,75 @@ taxa_zone <- merge(x = taxa, y = zonation, by.x = "GENUS", by.y = "genus", all =
 taxa_zone
 ```
 
-reshape?
+### Reshaping  data frames
+
+Reshaping data into different formats is a common task. With rectangular type data (same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows.  
+
+```{r dw32, echo=FALSE}
+long_data <- read.table(header=TRUE, text='
+ subject sex condition measurement
+       A   M   control        12.9
+       A   M     cond1        14.2
+       A   M     cond2        8.7
+       B   F   control        5.2
+       B   F     cond1        12.6
+       B   F     cond2        10.1
+       C   F   control        8.9
+       C   F     cond1        12.1
+       C   F     cond2        14.2
+       D   M   control        10.5
+       D   M     cond1        12.9
+       D   M     cond2        11.9
+')
+```
+
+```{r dw33, echo=FALSE}
+library(kableExtra)
+kable(long_data) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```
+
+And the same data in the wide format. In this format we have multiple observations from a subject in a single row with each observation in a different column. This is a common format when you have repeated measurements from sampling units.
+
+```{r dw34, echo=FALSE}
+wide_data <- read.table(header=TRUE, text='
+ subject sex control cond1 cond2
+       A   M    12.9 14.2  8.7
+       B   F    5.2  12.6  10.1
+       C   F    8.9  12.1  14.2
+       D   M    10.5 12.9  11.9
+')
+```
+
+```{r dw35, echo=FALSE}
+kable(wide_data) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```
+
+Whilst there's no inherent problem with either of these formats we will often need to convert between the two as some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.
+
+There are many ways to convert between these two formats but we'll use the `melt()` and `dcast()` functions from the `reshape2` package (you will need to install this package first). The `melt()` function is used to convert from wide to long formats. The first argument for the `melt()` function is the data frame we want to melt (in our case `wide_data`). The `id.vars =` argument is vector of the variables you want to stack, the `measured.vars =` argument identifies the columns of the different conditions, the `variable.name =` argument specifies what you want to call the stacked column of your different conditions and `value.name =` is the name of the column of your stacked measurements.
+
+```{r dw36, echo=TRUE, collapse=TRUE}
+library(reshape2)
+wide_data    # remind ourselves what the wide format looks like
+
+# convert wide to long
+my_long_df <- melt(data = wide_data, id.vars = c("subject", "sex"),
+                  measured.vars = c("control", "cond1", "cond2"),
+                  variable.name = "condition", value.name = "measurement")
+my_long_df
+```
+
+The `dcast()` function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (`long_data` for this example). The second argument is in formula syntax. The `subject + age` bit of the formula means that we want to keep these columns separate, and the `~ condition` is the column that contains the labels that we want to split into new columns in new data frame. The `value.var =` argument is the column that contains the actual measurements  
+
+```{r dw37, echo=TRUE, collapse=TRUE}
+long_data   # remind ourselves what the long format look like
+
+# convert long to wide
+my_wide_df <- dcast(data = long_data, subject + sex ~ condition, value.var="measurement")
+my_wide_df
+```
 
 ## Summarising data frames
 
