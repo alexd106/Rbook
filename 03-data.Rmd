@@ -360,7 +360,7 @@ If your data file is ginormous, then the `ff` and `bigmemory` packages may be us
 
 ## Wrangling data frames
 
-Now that you're able to successfully import your data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you'll need to develop and spend time honing as you'll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you'll quickly get the hang of it, especially with some practice.  
+Now that you're able to successfully import your data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you'll need to develop and get comfortable with as you'll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you'll quickly get the hang of it, especially with some practice.  
 
 Let's remind ourselves of the structure of the `flowers` data frame we imported in the previous section. 
 
@@ -369,44 +369,45 @@ flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t")
 str(flowers)
 ```
 
-To access the data in any of the variables (columns) in our data frame we can use the `$` notation. For example, to access the `height` variable in our `flowers` data frame we can use
+To access the data in any of the variables (columns) in our data frame we can use the `$` notation. For example, to access the `height` variable in our `flowers` data frame we can use `flowers$height`. This tells R that the `height` variable is contained within the data frame `flowers`.
 
 ```{r dw2, echo=TRUE, collapse=TRUE}
 flowers$height
 ```
 
-This will return a vector of the `height` data. If we need to we can assign this vector to another object and do stuff with it, like calculate a mean
+This will return a vector of the `height` data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the `summary()` function.
 
 ```{r dw3, echo=TRUE, collapse=TRUE}
 f_height <- flowers$height
 mean(f_height)
+summary(f_height)
 ```
 
-Just as we did with [vectors](#vectors), we can access specific data in data frames using the square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
+Just as we did with [vectors](#vectors), we also can access specific data in data frames using the square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes and `my_data` is the name of the data frame. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
 
 ### Positional indexes
 
-To use positional indexes we simple have to write the position of the rows and columns we want to extract inside our `[ ]`. For example, if for some reason we wanted to extract the first value (1^st^ row ) of our `height` variable (4^th^ column)
+To use positional indexes we simple have to write the position of the rows and columns we want to extract inside the `[ ]`. For example, if for some reason we wanted to extract the first value (1^st^ row ) of the `height` variable (4^th^ column)
 
 ```{r dw4, echo=TRUE, collapse=TRUE}
 flowers[1, 4]
 ```
 
-We can also extract values from multiple rows or columns by specifying these as indexes as vectors inside the `[ ]`. To extract the first 10 rows and the first 4 columns
+We can also extract values from multiple rows or columns by specifying these indexes as vectors inside the `[ ]`. So, to extract the first 10 rows and the first 4 columns we simple supply a vector containing a sequence from 1 to 10 for the rows index (`1:10`) and a vector from 1 to 4 for the column index (`1:4`).
 
 ```{r dw5, echo=TRUE, collapse=TRUE}
 flowers[1:10, 1:4]
 ```
 
-Or extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
+Or if our row and columns are not sequential then we can supply vectors of positions using the `c()` function. To extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
 
 ```{r dw6, echo=TRUE, collapse=TRUE}
 flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
 ```
 
-All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in [Chapter 2](#funcs) when we generated vectors using the `c()` function or the `:` notation.
+All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in [Chapter 2](#funcs) when we generated vectors using the `c()` function or using the `:` notation.
 
-But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify either a row or column index R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
+But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify either a row or column index in the `[ ]` then R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
 
 ```{r dw7, echo=TRUE, collapse=TRUE}
 flowers[1:8, ]
@@ -418,13 +419,13 @@ or all of the rows and the first 3 columns (scroll down in output panel to see a
 flowers[, 1:3]
 ```
 
-We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we just use `-1:85` this would actually generate a regular sequence from -1 to 85 and not what we want (we can of course use `-1:-85`).
+We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 and not what we want (we can of course use `-1:-85`).
 
 ```{r dw9, echo=TRUE, collapse=TRUE}
 flowers[-c(1:85), -c(4, 7, 8)]
 ```
 
-In addition to using a positional index for extracting particular variables (columns) you can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can use
+In addition to using a positional index for extracting particular variables (columns) we can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can instead use
 
 ```{r dw10, echo=TRUE, collapse=TRUE}
 flowers[1:5, c("treat", "nitrogen", "leafarea")]
@@ -434,14 +435,14 @@ We often use this method in preference to the positional index for selecting col
 
 ### Logical indexes
 
-Just as we did with vectors, we can also extract data from our data frame based on a logical test. Let's extract all rows where `height` is greater than 12 and extract all columns by default.
+Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe [pop back](#log_idx) and refresh your memory.  Let's extract all rows where `height` is greater than 12 and extract all columns by default (remember, if you don't include a column index after the comma it means all columns).
 
 ```{r dw11, echo=TRUE, collapse=TRUE}
 big_flowers <- flowers[flowers$height > 12, ]
 big_flowers
 ```
 
-Notice in the code above that we need to use the `flowers$height` notation for the logical test. If we only named the `height` variable we would receive an error telling us R couldn't find the variable `height`. The reason for this is that the `height` variable only exists inside the `flowers` object.
+Notice in the code above that we need to use the `flowers$height` notation for the logical test. If we only named the `height` variable without the name of the data frame we would receive an error telling us R couldn't find the variable `height`. The reason for this is that the `height` variable only exists inside the `flowers` object so you need to tell R exactly where it is.
 
 ```{r dw12, echo=TRUE, eval=FALSE}
 big_flowers <- flowers[height > 12, ]
@@ -455,7 +456,7 @@ OK, so how does this work? Well, the logical test is `flowers$height > 12` and R
 flowers$height > 12
 ```
 
-So our row index is a vector contain either `TRUE` and `FALSE` values and only those rows that contain are `TRUE` are selected. Remember, when we don't select columns to extract (nothing after the comma) all columns are returned by default.
+So our row index is a vector contain either `TRUE` and `FALSE` values and only those rows that are `TRUE` are selected. Remember, when we don't select columns to extract (nothing after the comma) all columns are returned by default.
 
 The other commonly used operators are shown below
 
@@ -483,7 +484,7 @@ nit_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]
 nit_not_medium
 ```
 
-We can increase the complexity of our logical expression by combining them with [Boolean expressions][boolean] just as we did for vector objects. For example, to extract all rows where `height` is greater or equal to `6` and `nitrogen` is equal to `medium` and `treat` is equal to `notip` we combine a series of logical expressions with the `&` symbol. 
+We can increase the complexity of our logical expression by combining them with [Boolean expressions][boolean] just as we did for vector objects. For example, to extract all rows where `height` is greater or equal to `6` AND `nitrogen` is equal to `medium` AND `treat` is equal to `notip` we combine a series of logical expressions with the `&` symbol. 
 
 ```{r dw17, echo=TRUE, collapse=TRUE}
 low_notip_heigh6 <- flowers[flowers$height >= 6 & flowers$nitrogen == "medium" &
@@ -491,38 +492,38 @@ low_notip_heigh6 <- flowers[flowers$height >= 6 & flowers$nitrogen == "medium" &
 low_notip_heigh6
 ```
 
-To extract rows based on an `OR` Bollean expression we can use the `|` symbol. Let's extract all rows where `height` is greater than 12.3 OR less than 2.2
+To extract rows based on an 'OR' Boolean expression we can use the `|` symbol. Let's extract all rows where `height` is greater than 12.3 OR less than 2.2
 
 ```{r dw17.1, echo=TRUE, collapse=TRUE}
 height2.2_12.3 <- flowers[flowers$height > 12.3 | flowers$height < 2.2, ]        
 height2.2_12.3
 ```
 
-An alternative method of selecting parts of a data frame based on a logical expression is to use the `subset()` function. The advantage of subset is you no longer need to use the `$` notation when specifying variables. The disadvantage is that `subset()` is less flexible than the `[ ]` notation. 
+An alternative method of selecting parts of a data frame based on a logical expression is to use the `subset()` function instead of the `[ ]`. The advantage of using `subset()` is you no longer need to use the `$` notation when specifying variables inside the data frame as the first argument to the function is the name of the data frame to be subsetted. The disadvantage is that `subset()` is less flexible than the `[ ]` notation. 
 
 ```{r dw18, echo=TRUE, collapse=TRUE}
-tip_med_2 <- subset(flowers, treat=="tip" & nitrogen=="medium" & block=="2")
+tip_med_2 <- subset(flowers, treat == "tip" & nitrogen == "medium" & block == 2)
 tip_med_2
 ```
 
-And if you only want certain columns you can use the `select =` argument
+And if you only want certain columns you can use the `select =` argument.
 
 ```{r dw19, echo=TRUE, collapse=TRUE}
-tipplants <- subset(flowers, treat=="tip" & nitrogen == "medium" & block=="2", 
+tipplants <- subset(flowers, treat == "tip" & nitrogen == "medium" & block == 2, 
 										select = c("treat", "nitrogen", "leafarea"))
 tipplants
 ```
 
 ### Ordering data frames
 
-Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder columns in your data frame but keep each value associated with the correct row. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default (scroll down in the output panel to see the whole data frame).
+Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default (scroll down in the output panel to see the whole data frame).
 
 ```{r dw20, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 height_ord <- flowers[order(flowers$height), ]        
 height_ord
 ```
 
-or descending value of `leafarea`
+or perhaps descending value of `leafarea`
 
 ```{r dw21, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
@@ -536,23 +537,69 @@ block_height_ord <- flowers[order(flowers$block, flowers$height), ]
 block_height_ord
 ```
 
-What if we wanted to order `flowers` by ascending order of `block` but descending order of `height`? We can use a simple trick by adding a `-` before the `flowers$height` variable when we use the `order()` function.\
+What if we wanted to order `flowers` by ascending order of `block` but descending order of `height`? We can use a simple trick by adding a `-` symbol before the `flowers$height` variable when we use the `order()` function. This will essentially turn all of the `height` values negative which will result in reversing the order. Note, that this trick will only work with numeric variables. 
 
 ```{r dw23, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]        
 block_revheight_ord
 ```
 
-### Adding columns
+If we wanted to do the same thing with a character (or factor) variable like `nitrogen` we would need to use another function `xtfrm()` for this variable.
 
-### Adding rows
+```{r dw24, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
+block_revheight_ord
+```
+
+Notice that the `nitrogen` variable had been reverse ordered alphabetically and `height` has been ordered by increasing values within each level of `nitrogen`. 
+
+### Adding columns and rows
+
+Sometimes it's useful to be able to add extra rows and columns to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()` function and to append columns the `cbind()` function. Let's create couple of test data frames to see this in action using our old friend the `data.frame()` function.
+
+```{r dw25, echo=TRUE, collapse=TRUE}
+# rbind for rows
+df1 <- data.frame(id = 1:4, height = c(120, 150, 132, 122),
+									weight = c(44, 56, 49, 45))
+df1
+
+df2 <- data.frame(id = 5:6, height = c(119, 110),
+									weight = c(39, 35))
+df2
+
+df_rcomb <- rbind(df1, df2)
+df_rcomb
+
+# cbind for columns
+df3 <- data.frame(id = 1:4, height = c(120, 150, 132, 122),
+									weight = c(44, 56, 49, 45))
+df3
+
+df4 <- data.frame(location = c("UK", "CZ", "CZ", "UK"))
+df4
+
+df_ccomb <- cbind(df3, df4)
+df_ccomb
+```
+
+Another reason to add an additional column (or columns) to a data.frame is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log_10_ transformation to the height variable in the `df_rcomb` data frame we created above. We could just create a separate variable to contains these values but it's good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let's call this new variable `height_log10`.  
+
+```{r dw26, echo=TRUE, collapse=TRUE}
+# log10 transformation
+df_rcomb$height_log10 <- log10(df_rcomb$height)
+df_rcomb
+```
+
+This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the `id` variable in the `df_rcomb` data frame is numeric class (use the `str()` or `class()` functions to check for yourself. If we wanted to convert the `id` variable to a factor to use later in our analysis we can create a new variable called `Fid` in our data frame and use the `factor()` function to convert the `id` variable. 
+
+```{r dw27, echo=TRUE, collapse=TRUE}
+# convert to a factor 
+df_rcomb$Fid <- factor(df_rcomb$id)
+df_rcomb
+```
 
 ### Merging data frames
 
-log
-adding new columns
-add columns/rows
-wide -> long, long -> wide
 merge()
 
 ## Summarising data frames
