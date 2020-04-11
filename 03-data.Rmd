@@ -419,10 +419,10 @@ or all of the rows and the first 3 columns (scroll down in output panel to see a
 flowers[, 1:3]
 ```
 
-We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use the `-c()` function even though we have generated a vector for the rows using the `:` method. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 and not what we want (we can of course use `-1:-85`).
+We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use `-()` and `-c()` when we generate our positional vectors. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use `-1:-85`).
 
 ```{r dw9, echo=TRUE, collapse=TRUE}
-flowers[-c(1:85), -c(4, 7, 8)]
+flowers[-(1:85), -c(4, 7, 8)]
 ```
 
 In addition to using a positional index for extracting particular variables (columns) we can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can instead use
@@ -488,7 +488,7 @@ We can increase the complexity of our logical expression by combining them with 
 
 ```{r dw17, echo=TRUE, collapse=TRUE}
 low_notip_heigh6 <- flowers[flowers$height >= 6 & flowers$nitrogen == "medium" &
-										flowers$treat == "notip", ]        
+							 flowers$treat == "notip", ]        
 low_notip_heigh6
 ```
 
@@ -510,7 +510,7 @@ And if you only want certain columns you can use the `select =` argument.
 
 ```{r dw19, echo=TRUE, collapse=TRUE}
 tipplants <- subset(flowers, treat == "tip" & nitrogen == "medium" & block == 2, 
-										select = c("treat", "nitrogen", "leafarea"))
+							select = c("treat", "nitrogen", "leafarea"))
 tipplants
 ```
 
@@ -560,11 +560,11 @@ Sometimes it's useful to be able to add extra rows and columns to our data frame
 ```{r dw25, echo=TRUE, collapse=TRUE}
 # rbind for rows
 df1 <- data.frame(id = 1:4, height = c(120, 150, 132, 122),
-									weight = c(44, 56, 49, 45))
+						weight = c(44, 56, 49, 45))
 df1
 
 df2 <- data.frame(id = 5:6, height = c(119, 110),
-									weight = c(39, 35))
+						weight = c(39, 35))
 df2
 
 df_rcomb <- rbind(df1, df2)
@@ -572,7 +572,7 @@ df_rcomb
 
 # cbind for columns
 df3 <- data.frame(id = 1:4, height = c(120, 150, 132, 122),
-									weight = c(44, 56, 49, 45))
+						weight = c(44, 56, 49, 45))
 df3
 
 df4 <- data.frame(location = c("UK", "CZ", "CZ", "UK"))
@@ -596,11 +596,49 @@ This situation also crops up when we want to convert an existing variable in a d
 # convert to a factor 
 df_rcomb$Fid <- factor(df_rcomb$id)
 df_rcomb
+str(df_rcomb)
 ```
 
 ### Merging data frames
 
-merge()
+Instead of just appending either rows or columns to a data frame we can also merge two different data frames together. let's say we have one data frame that contains taxonomic information on some common rocky shore invertebrates and another data frame that contains information on where they are commonly found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let's first create both of these data frames (in reality you would probably just import your different datasets).
+
+```{r dw28, echo=TRUE, collapse=TRUE}
+taxa <- data.frame(GENUS = c("Patella", "Littorina", "Halichondria", "Semibalanus"),
+                        species = c("vulgata", "littoria", "panacea", "balanoides"),
+                        family = c("patellidae", "Littorinidae", "Halichondriidae", "Archaeobalanidae"))
+taxa
+
+zonation <- data.frame(genus = c("Laminaria", "Halichondria", "Xanthoria", "Littorina", "Semibalanus", "Fucus"),
+											 species = c("digitata", "panacea", "parietina", "littoria", "balanoides", "serratus"),
+											 zone = c( "v_low", "low", "v_high", "low_mid", "high", "low_mid"))
+zonation
+```
+
+Because both of our data frames contains contains at least one variable in common (`species` in our case) we can simply use the `merge()` function to create a new data frame called `taxa_zone`
+
+```{r dw29, echo=TRUE, collapse=TRUE}
+taxa_zone <- merge(x = taxa, y = zonation)
+taxa_zone
+```
+
+Notice that the merged data frame contains only the rows that have both `species` information in **both** data frames. There are also two columns called `GENUS` and `genus` because the `merge()` function treats these as two different variables that originate from the two data frames. 
+
+If we want to include all data from both data frames then we will need to use the `all = TRUE` argument. The missing values will be included as `NA`
+
+```{r dw30, echo=TRUE, collapse=TRUE}
+taxa_zone <- merge(x = taxa, y = zonation, all = TRUE)
+taxa_zone
+```
+
+If the variable names that you want to base the merge on are different in each data frame (in our example `GENUS` and `genus`) you can specify the names in the first data frame (known as `x`) and the second data frame (known as `y`) using the `by.x =` and `by.y =` arguments.
+
+```{r dw31, echo=TRUE, collapse=TRUE}
+taxa_zone <- merge(x = taxa, y = zonation, by.x = "GENUS", by.y = "genus", all = TRUE)
+taxa_zone
+```
+
+reshape?
 
 ## Summarising data frames
 

@@ -489,8 +489,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 94 notip      low     2
 # 95 notip      low     2
 # 96 notip      low     2</code></pre>
-<p>We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4<sup>th</sup>, 7<sup>th</sup> and 8<sup>th</sup> columns. Notice we need to use the <code>-c()</code> function even though we have generated a vector for the rows using the <code>:</code> method. If we had just used <code>-1:85</code> this would actually generate a regular sequence from -1 to 85 and not what we want (we can of course use <code>-1:-85</code>).</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">flowers[<span class="op">-</span><span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">85</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)]</a>
+<p>We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4<sup>th</sup>, 7<sup>th</sup> and 8<sup>th</sup> columns. Notice we need to use <code>-()</code> and <code>-c()</code> when we generate our positional vectors. If we had just used <code>-1:85</code> this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use <code>-1:-85</code>).</p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">flowers[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">85</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)]</a>
 <a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co">#    treat nitrogen block weight leafarea</span></a>
 <a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co"># 86 notip      low     1   6.01     17.6</span></a>
 <a class="sourceLine" id="cb112-4" data-line-number="4"><span class="co"># 87 notip      low     1   9.93     12.0</span></a>
@@ -653,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 96 notip      low     2    4.4</code></pre>
 <p>We can increase the complexity of our logical expression by combining them with <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a> just as we did for vector objects. For example, to extract all rows where <code>height</code> is greater or equal to <code>6</code> AND <code>nitrogen</code> is equal to <code>medium</code> AND <code>treat</code> is equal to <code>notip</code> we combine a series of logical expressions with the <code>&amp;</code> symbol.</p>
 <div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">low_notip_heigh6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">                                        </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb122-2" data-line-number="2"><span class="st">                             </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
 <a class="sourceLine" id="cb122-3" data-line-number="3">low_notip_heigh6</a>
 <a class="sourceLine" id="cb122-4" data-line-number="4"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
 <a class="sourceLine" id="cb122-5" data-line-number="5"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
@@ -684,7 +684,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb124-11" data-line-number="11"><span class="co"># 16   tip   medium     2    4.5  12.55     13.4      14.4       6</span></a></code></pre></div>
 <p>And if you only want certain columns you can use the <code>select =</code> argument.</p>
 <div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">tipplants &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat <span class="op">==</span><span class="st"> &quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb125-2" data-line-number="2">                                        <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>))</a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">                            <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>))</a>
 <a class="sourceLine" id="cb125-3" data-line-number="3">tipplants</a>
 <a class="sourceLine" id="cb125-4" data-line-number="4"><span class="co">#    treat nitrogen leafarea</span></a>
 <a class="sourceLine" id="cb125-5" data-line-number="5"><span class="co"># 9    tip   medium     10.5</span></a>
@@ -1205,7 +1205,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Sometimes it’s useful to be able to add extra rows and columns to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the <code>rbind()</code> function and to append columns the <code>cbind()</code> function. Let’s create couple of test data frames to see this in action using our old friend the <code>data.frame()</code> function.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="co"># rbind for rows</span></a>
 <a class="sourceLine" id="cb136-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb136-3" data-line-number="3">                                    <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb136-3" data-line-number="3">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
 <a class="sourceLine" id="cb136-4" data-line-number="4">df1</a>
 <a class="sourceLine" id="cb136-5" data-line-number="5"><span class="co">#   id height weight</span></a>
 <a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co"># 1  1    120     44</span></a>
@@ -1214,7 +1214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb136-9" data-line-number="9"><span class="co"># 4  4    122     45</span></a>
 <a class="sourceLine" id="cb136-10" data-line-number="10"></a>
 <a class="sourceLine" id="cb136-11" data-line-number="11">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">119</span>, <span class="dv">110</span>),</a>
-<a class="sourceLine" id="cb136-12" data-line-number="12">                                    <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
+<a class="sourceLine" id="cb136-12" data-line-number="12">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
 <a class="sourceLine" id="cb136-13" data-line-number="13">df2</a>
 <a class="sourceLine" id="cb136-14" data-line-number="14"><span class="co">#   id height weight</span></a>
 <a class="sourceLine" id="cb136-15" data-line-number="15"><span class="co"># 1  5    119     39</span></a>
@@ -1232,7 +1232,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb136-27" data-line-number="27"></a>
 <a class="sourceLine" id="cb136-28" data-line-number="28"><span class="co"># cbind for columns</span></a>
 <a class="sourceLine" id="cb136-29" data-line-number="29">df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb136-30" data-line-number="30">                                    <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb136-30" data-line-number="30">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
 <a class="sourceLine" id="cb136-31" data-line-number="31">df3</a>
 <a class="sourceLine" id="cb136-32" data-line-number="32"><span class="co">#   id height weight</span></a>
 <a class="sourceLine" id="cb136-33" data-line-number="33"><span class="co"># 1  1    120     44</span></a>
@@ -1276,11 +1276,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb138-7" data-line-number="7"><span class="co"># 3  3    132     49        2.121   3</span></a>
 <a class="sourceLine" id="cb138-8" data-line-number="8"><span class="co"># 4  4    122     45        2.086   4</span></a>
 <a class="sourceLine" id="cb138-9" data-line-number="9"><span class="co"># 5  5    119     39        2.076   5</span></a>
-<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041   6</span></a></code></pre></div>
+<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041   6</span></a>
+<a class="sourceLine" id="cb138-11" data-line-number="11"><span class="kw">str</span>(df_rcomb)</a>
+<a class="sourceLine" id="cb138-12" data-line-number="12"><span class="co"># &#39;data.frame&#39;: 6 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb138-13" data-line-number="13"><span class="co">#  $ id          : int  1 2 3 4 5 6</span></a>
+<a class="sourceLine" id="cb138-14" data-line-number="14"><span class="co">#  $ height      : num  120 150 132 122 119 110</span></a>
+<a class="sourceLine" id="cb138-15" data-line-number="15"><span class="co">#  $ weight      : num  44 56 49 45 39 35</span></a>
+<a class="sourceLine" id="cb138-16" data-line-number="16"><span class="co">#  $ height_log10: num  2.08 2.18 2.12 2.09 2.08 ...</span></a>
+<a class="sourceLine" id="cb138-17" data-line-number="17"><span class="co">#  $ Fid         : Factor w/ 6 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6</span></a></code></pre></div>
 </div>
 <div id="merging-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Merging data frames</h3>
-<p>merge()</p>
+<p>Instead of just appending either rows or columns to a data frame we can also merge two different data frames together. let’s say we have one data frame that contains taxonomic information on some common rocky shore invertebrates and another data frame that contains information on where they are commonly found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">                        <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">                        <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4">taxa</a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co">#          GENUS    species           family</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co"># 1      Patella    vulgata       patellidae</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co"># 2    Littorina   littoria     Littorinidae</span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="co"># 3 Halichondria    panacea  Halichondriidae</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae</span></a>
+<a class="sourceLine" id="cb139-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb139-11" data-line-number="11">zonation &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
+<a class="sourceLine" id="cb139-12" data-line-number="12">                                             <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
+<a class="sourceLine" id="cb139-13" data-line-number="13">                                             <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
+<a class="sourceLine" id="cb139-14" data-line-number="14">zonation</a>
+<a class="sourceLine" id="cb139-15" data-line-number="15"><span class="co">#          genus    species    zone</span></a>
+<a class="sourceLine" id="cb139-16" data-line-number="16"><span class="co"># 1    Laminaria   digitata   v_low</span></a>
+<a class="sourceLine" id="cb139-17" data-line-number="17"><span class="co"># 2 Halichondria    panacea     low</span></a>
+<a class="sourceLine" id="cb139-18" data-line-number="18"><span class="co"># 3    Xanthoria  parietina  v_high</span></a>
+<a class="sourceLine" id="cb139-19" data-line-number="19"><span class="co"># 4    Littorina   littoria low_mid</span></a>
+<a class="sourceLine" id="cb139-20" data-line-number="20"><span class="co"># 5  Semibalanus balanoides    high</span></a>
+<a class="sourceLine" id="cb139-21" data-line-number="21"><span class="co"># 6        Fucus   serratus low_mid</span></a></code></pre></div>
+<p>Because both of our data frames contains contains at least one variable in common (<code>species</code> in our case) we can simply use the <code>merge()</code> function to create a new data frame called <code>taxa_zone</code></p>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation)</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb140-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
+<p>Notice that the merged data frame contains only the rows that have both <code>species</code> information in <strong>both</strong> data frames. There are also two columns called <code>GENUS</code> and <code>genus</code> because the <code>merge()</code> function treats these as two different variables that originate from the two data frames.</p>
+<p>If we want to include all data from both data frames then we will need to use the <code>all = TRUE</code> argument. The missing values will be included as <code>NA</code></p>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a>
+<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co"># 4    vulgata      Patella       patellidae         &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb141-8" data-line-number="8"><span class="co"># 5   digitata         &lt;NA&gt;             &lt;NA&gt;    Laminaria   v_low</span></a>
+<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co"># 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
+<a class="sourceLine" id="cb141-10" data-line-number="10"><span class="co"># 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
+<p>If the variable names that you want to base the merge on are different in each data frame (in our example <code>GENUS</code> and <code>genus</code>) you can specify the names in the first data frame (known as <code>x</code>) and the second data frame (known as <code>y</code>) using the <code>by.x =</code> and <code>by.y =</code> arguments.</p>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="co">#          GENUS  species.x           family  species.y    zone</span></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="co"># 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="co"># 2    Littorina   littoria     Littorinidae   littoria low_mid</span></a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="co"># 3      Patella    vulgata       patellidae       &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae balanoides    high</span></a>
+<a class="sourceLine" id="cb142-8" data-line-number="8"><span class="co"># 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
+<a class="sourceLine" id="cb142-9" data-line-number="9"><span class="co"># 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co"># 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
+<p>reshape?</p>
 </div>
 </div>
             </section>
