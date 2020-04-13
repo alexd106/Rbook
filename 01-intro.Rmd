@@ -11,7 +11,7 @@ Although R is not new, it's popularity has increased rapidly over the last 10 ye
 
 All of the reasons above are great reasons to use R. However, in our opinion, the single biggest reason to use R is that it facilitates robust and reproducible research practices. In contrast to more traditional 'point and click' software, writing R code to perform your analysis ensures you have a permanent and accurate record of all the methods you used (and decisions you made) whilst analysing your data. You are then able to share this code (and your data) with other researchers / colleagues / journal reviewers who will be able to reproduce your analysis exactly. This is one of the tenets of [open science][open-sci]. We will cover other topics to facilitate open science throughout this book, including creating [reproducible reports](#rmarkdown_r) and [version control](#github_r).   
 
-In this Chapter we'll cover downloading and installing R and RStudio on your computer, a brief RStudio orientation including working with RStudio Projects, installing and working with R packages to extend R's capabilities, some good habits to get into  when working on projects and with files and finally some advice on documenting your workflow and writing nice R code.
+In this Chapter we'll cover downloading and installing R and RStudio on your computer, a brief RStudio orientation including working with RStudio Projects, installing and working with R packages to extend R's capabilities, some good habits to get into when working on projects and finally some advice on documenting your workflow and writing nice readable R code.
 
 ## Installing R {#install_r}
 
@@ -46,9 +46,9 @@ This is the source.list for the latest version of Ubuntu (19.04 Disco Dingoat th
 
 ### Testing R
 
-Whichever operating system you're using, once you have installed R you need to check its working properly. The easiest way to do this is to start R by double clicking on the R icon (Windows or Mac) or by typing `R` into the console (Linux). You should see the R console and you should be able to type R commands into the console. Try typing the following R code and then press enter (don't worry of you don't understand this - we're just checking if R works)
+Whichever operating system you're using, once you have installed R you need to check its working properly. The easiest way to do this is to start R by double clicking on the R icon (Windows or Mac) or by typing `R` into the Console (Linux). You should see the R Console and you should be able to type R commands into the Console. Try typing the following R code and then press enter (don't worry of you don't understand this - we're just checking if R works)
 
-A plot of the numbers 1 to 10 on both the x and y axes should appear. If you see this, you're good to go. If not then we suggest you make a note of any errors produced and then use Google to troubleshoot). 
+A plot of the numbers 1 to 10 on both the x and y axes should appear. If you see this, you're good to go. If not then we suggest you make a note of any errors produced and then use Google to troubleshoot. 
 
 ```{r, out.width="75%", fig.align="center", fig.cap="plot to test R installation"}
 plot(1:10)
@@ -58,7 +58,7 @@ plot(1:10)
 
 ## Installing RStudio
 
-Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular **I**ntegrated **D**evelopment **E**nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R console, script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about [RStudio here][rstudio]. 
+Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular **I**ntegrated **D**evelopment **E**nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R Console, script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about [RStudio here][rstudio]. 
 
 RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the [RStudio site][rstudio-download]. You should select the 'RStudio Desktop' version. Note: you must install R before you install RStudio (see [previous section](#install_r) for details).
 
@@ -81,7 +81,7 @@ To install the `*.deb` file navigate to where you downloaded the file and then e
     sudo gdebi rstudio-xenial-1.2.5XXX-amd64.deb
 ```
 
-where '-1.2.5XXX' is the current version for Ubuntu (rstudio-xenial-1.2.5019-amd64.deb at the time of writing). You can then start RStudio from the console by simply typing
+where '-1.2.5XXX' is the current version for Ubuntu (rstudio-xenial-1.2.5019-amd64.deb at the time of writing). You can then start RStudio from the Console by simply typing
 
 ```{block}
     rstudio
@@ -115,7 +115,7 @@ The large window (aka pane) on the left is the **Console** window. The window on
 
 ### Console {#cons}
 
-The console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) you create. You can type R code directly into the console at the command line prompt, `>`. For example, if you type `2 + 2` into the console you should obtain the answer `4` (reassuringly). Don't worry about the `[1]` at the start of the line for now. 
+The Console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) you create. You can type R code directly into the Console at the command line prompt, `>`. For example, if you type `2 + 2` into the Console you should obtain the answer `4` (reassuringly). Don't worry about the `[1]` at the start of the line for now. 
 
 \  
 
@@ -125,7 +125,7 @@ knitr::include_graphics(path = "images/rconsole_eval.png")
 
 \  
 
-However, once you start writing more R code this becomes rather cumbersome. Instead of typing R code directly into the console a better approach is to create an R script. An R script is just a plain text file with a `.R` file extension which contains your lines of R code. These lines of code are then sourced into the R console line by line. To create a new R script click on the 'File' menu then select New File --> R Script.   
+However, once you start writing more R code this becomes rather cumbersome. Instead of typing R code directly into the Console a better approach is to create an R script. An R script is just a plain text file with a `.R` file extension which contains your lines of R code. These lines of code are then sourced into the R Console line by line. To create a new R script click on the 'File' menu then select New File --> R Script.   
 
 \  
 
@@ -135,7 +135,7 @@ knitr::include_graphics(path = "images/new_script.png")
 
 \  
 
-Notice that you have a new window (called the Source pane) in the top left of RStudio and the console is now in the bottom left position. The new window is a script editor and where you will write your code.  
+Notice that you have a new window (called the Source pane) in the top left of RStudio and the Console is now in the bottom left position. The new window is a script editor and where you will write your code.  
 
 \  
 
@@ -145,7 +145,7 @@ knitr::include_graphics(path = "images/rstudio_new.png")
 
 \  
 
-To source your code from your script editor to the console simply place your cursor on the line of code and then click on the 'Run' button in the top right of the script editor pane. 
+To source your code from your script editor to the Console simply place your cursor on the line of code and then click on the 'Run' button in the top right of the script editor pane. 
 
 \  
 
@@ -155,7 +155,7 @@ knitr::include_graphics(path = "images/rstudio_run.png")
 
 \  
 
-You should see the result in the console window. If clicking on the 'Run' button starts to become tiresome you can use the keyboard shortcut 'ctrl + enter' (on Windows and Linux) or 'cmd + enter' (on Mac). You can save your R scripts as a `.R` file by selecting the 'File' menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the 'File' menu and then 'Open File...'. Finally, its worth noting that although R scripts are saved with a `.R` extension they are actually just plain text files which can be opened with any text editor. 
+You should see the result in the Console window. If clicking on the 'Run' button starts to become tiresome you can use the keyboard shortcut 'ctrl + enter' (on Windows and Linux) or 'cmd + enter' (on Mac). You can save your R scripts as a `.R` file by selecting the 'File' menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the 'File' menu and then 'Open File...'. Finally, its worth noting that although R scripts are saved with a `.R` extension they are actually just plain text files which can be opened with any text editor. 
 
 ### Environment / History / Connections
 
@@ -163,7 +163,7 @@ The Environment / History / Connections window shows you lots of useful informat
 
 - The 'Environment' tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you're in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There's also an 'Import Dataset' button which will import data saved in a variety of file formats. However, we would suggest that you don't use this approach to import your data as it's not reproducible and therefore not robust (see [Chapter 3](#data_r) for more details).        
 
-- The 'History' tab contains a list of all the commands you have entered into the R console. You can search back through your history for the line of code you have forgotten, send selected code back to the console or Source window. We usually never use this as we always refer back to our R script.  
+- The 'History' tab contains a list of all the commands you have entered into the R Console. You can search back through your history for the line of code you have forgotten, send selected code back to the Console or Source window. We usually never use this as we always refer back to our R script.  
 
 ### Files / Plots / Packages / Help / Viewer
 
@@ -195,7 +195,7 @@ Although RStudio is becoming increasingly popular it might not be the best choic
 
 - gedit (comes with Ubuntu already)
 - [Atom][atom]
-- vim/nano (console based editors)
+- vim/nano (Console based editors)
 
 Which one you choose is up to you. One of the great things about R is that *YOU* get to choose how you want to use R
 
@@ -205,7 +205,7 @@ The base installation of R comes with many useful packages as standard. These pa
 
 ### CRAN packages {#cran_packages}
 
-To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `remotes` package enter the following code into the console window of RStudio (note: you will need a working internet connection to do this)
+To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `remotes` package enter the following code into the Console window of RStudio (note: you will need a working internet connection to do this)
 
 ```{r, echo = TRUE, eval=FALSE}
 install.packages('remotes', dependencies = TRUE)

@@ -710,11 +710,129 @@ my_wide_df
 
 ## Summarising data frames
 
-summary()
-apply()
-tapply()
-by()
-aggregate()
+Now that we're able to manipulate and extract data from our data frames our next task is to start exploring and getting to know our data. In this section we'll start producing tables of useful summary statistics of the variables in our data frame and in the next [Chapter](#graphics_r) we'll cover visualising our data. 
+
+A really useful starting point is to produce some simple summary statistics of all of the variables in our `flowers` data frame using the `summary()` function.
+
+```{r sum1, echo=TRUE, collapse=TRUE}
+summary(flowers)
+```
+
+Continuous variables (i.e. `height`, `weight` etc) are summarised as the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile. For factor variables (i.e. `treat` and `nitrogen`) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of `NA` values is also reported.
+
+If we wanted to summarise a smaller subset of variables in our data frame we can use our indexing skills in combination with the `summary()` function. For example, to summarise only the `height`, `weight`, `leafarea` and `shootarea` variables we can include the appropriate column indexes when using the `[ ]`. Notice we include all rows by not specifying a row index.  
+
+```{r sum2, echo=TRUE, collapse=TRUE}
+summary(flowers[, 4:7])
+
+# or equivalently 
+# summary(flowers[, c("height", "weight", "leafarea", "shootarea")])
+```
+
+And to summarise a single variable.
+
+```{r sum3, echo=TRUE, collapse=TRUE}
+summary(flowers$leafarea)
+
+# or equivalently
+# summary(flowers[, 6])
+```
+
+As you've seen above, the `summary()` function reports the number of observations in each level of our factor variables. Another useful function for generating tables of counts is the `table()` function. The `table()` function can be used to build contingency tables of different combinations of factor levels. For example, to count the number of observations for each level of `nitrogen`
+
+```{r sum4, echo=TRUE, collapse=TRUE}
+table(flowers$nitrogen)
+```
+
+We can extend this further by producing a table of counts for each combination of `nitrogen` and `treat` factor levels.
+
+```{r sum5, echo=TRUE, collapse=TRUE}
+table(flowers$nitrogen, flowers$treat)
+```
+
+A more flexible version of the `table()` function is the `xtabs()` function. The `xtabs()` function uses a formula notation (`~`) to build contingency tables with the cross-classifying variables separated by a `+` symbol on the right hand side of the formula. `xtabs()` also has a useful `data =` argument so you don't have to include the data frame name when specifying each variable. 
+
+```{r sum6, echo=TRUE, collapse=TRUE}
+xtabs(~ nitrogen + treat, data = flowers)
+```
+
+We can even build more complicated contingency tables using more variables. Note, in the example below the `xtabs()` function has quietly coerced our `block` variable to a factor. 
+
+```{r sum7, echo=TRUE, collapse=TRUE}
+xtabs(~ nitrogen + treat + block, data = flowers)
+```
+
+And for a nicer formatted table we can nest the `xtabs()` function inside the `ftable()` function to 'flatten' the table.
+
+```{r sum8, echo=TRUE, collapse=TRUE}
+ftable(xtabs(~ nitrogen + treat + block, data = flowers))
+```
+
+We can also summarise our data for each level of a factor variable. Let's say we want to calculate the mean value of `height` for each of our `low`, `meadium` and `high` levels of `nitrogen`. To do this we will use the `mean()` function and apply this on the `height` variable for each level of `nitrogen` using the `tapply()` function.
+
+```{r sum9, echo=TRUE, collapse=TRUE}
+tapply(flowers$height, flowers$nitrogen, mean)
+```
+
+The `tapply()` is not just restricted to calculating mean values, you can use it to apply other functions or even functions you've written yourself. For example, we can apply the `sd()` function to calculate the standard deviation for each level of `nitrogen`.
+
+```{r sum10, echo=TRUE, collapse=TRUE}
+tapply(flowers$height, flowers$nitrogen, sd)
+```
+
+Note, if the variable you want to summarise contains missing values (`NA`) you will also need to include an argument specifying how you want the function to deal with the `NA` values. We saw an example if this in [Chapter 2](#na_vals) where the `mean()` function returned an `NA` when we had missing data. 
+
+```{r sum11, echo=TRUE, collapse=TRUE}
+tapply(flowers$height, flowers$nitrogen, mean, na.rm = TRUE)
+```
+
+We can also use `tapply()` to apply functions to more than one factor. The only thing to remember is that the factors need to be supplied to the `tapply()` function in the form of a list using the `list()` function. To calculate the mean `height` for each combination of `nitrogen` and `treat` factor levels we can use the `list(flowers$nitrogen, flowers$treat)` notation.
+
+```{r sum12, echo=TRUE, collapse=TRUE}
+tapply(flowers$height, list(flowers$nitrogen, flowers$treat), mean)
+```
+
+And if you get a little fed up with having to write `flowers$` for every variable you can nest the `tapply()` function inside the `with()` function. The `with()` function allows R to evaluate an R expression with respect to a named data object (in this case `flowers`).  
+
+```{r sum13, echo=TRUE, collapse=TRUE}
+with(flowers, tapply(height, list(nitrogen, treat), mean))
+```
+
+The `with()` function also works with many other functions and can save you alot of typing!
+
+Another really useful function for summarising data is the `aggregate()` function. The `aggregate()` function works in a very similar fashion to `tapply()` (actually, `aggregate()` is a convenience function for `tapply()`) but is a bit more flexible. 
+
+For example, to calculate the mean of the variables `height`, `weight`, `leafarea` and `shootarea` for each level of `nitrogen`.
+
+```{r sum14, echo=TRUE, collapse=TRUE}
+aggregate(flowers[, 4:7], by = list(nitrogen = flowers$nitrogen), FUN = mean)
+```
+
+In the code above we have indexed the columns we want to summarise in the `flowers` data frame using `flowers[, 4:7]`. The `by =` argument specifies a list of factors (`list(mean_nitrogen = flowers$nitrogen)`) and the `FUN =` argument names the function to apply (`mean` in this example).
+
+Similar to the `tapply()` function we can include more than one factor to apply a function to. Here we calculate the mean values for each combination of `nitrogen` and `treat`
+
+```{r sum15, echo=TRUE, collapse=TRUE}
+aggregate(flowers[, 4:7], by = list(nitrogen = flowers$nitrogen, treat = flowers$treat), FUN = mean)
+```
+
+We can also use the `aggregate()` in a different way by using the formula method (as we did with `xtabs()`). The formula method specifies the the variable to apply the function on the left hand side of the `~` and the factors on the right hand side separated by a `+` symbol. The formula method also allows you to use the `data =` argument for convenience.  
+
+```{r sum16, echo=TRUE, collapse=TRUE}
+aggregate(height ~ nitrogen + treat, FUN = mean, data = flowers)
+```
+
+One advantage of using the formula method is that you can also use the `subset =` argument to apply the function to subsets of the original data. For example, to calculate the mean `height` for each combination of the `nitrogen` and `treat` factors but only for those plants that have less than 7 flowers.
+
+```{r sum17, echo=TRUE, collapse=TRUE}
+aggregate(height ~ nitrogen + treat, FUN = mean, subset = flowers < 7, data = flowers)
+```
+
+Or only those plants in `block` 1.
+
+```{r sum18, echo=TRUE, collapse=TRUE}
+aggregate(height ~ nitrogen + treat, FUN = mean, subset = block == 1, data = flowers)
+```
 
 ## Exporting data
 
