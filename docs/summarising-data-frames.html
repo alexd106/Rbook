@@ -439,16 +439,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb158-3" data-line-number="3"><span class="co"># 1     high  7.653 16.647    17.18    126.69</span></a>
 <a class="sourceLine" id="cb158-4" data-line-number="4"><span class="co"># 2      low  5.853  8.653    11.14     45.10</span></a>
 <a class="sourceLine" id="cb158-5" data-line-number="5"><span class="co"># 3   medium  7.013 11.164    13.83     67.56</span></a></code></pre></div>
-<p>In the code above we have indexed the columns we want to summarise in the <code>flowers</code> data frame using <code>flowers[, 4:7]</code>. The <code>by =</code> argument specifies a list of factors (<code>list(mean_nitrogen = flowers$nitrogen)</code>) and the <code>FUN =</code> argument names the function to apply (<code>mean</code> in this example).</p>
+<p>In the code above we have indexed the columns we want to summarise in the <code>flowers</code> data frame using <code>flowers[, 4:7]</code>. The <code>by =</code> argument specifies a list of factors (<code>list(nitrogen = flowers$nitrogen)</code>) and the <code>FUN =</code> argument names the function to apply (<code>mean</code> in this example).</p>
 <p>Similar to the <code>tapply()</code> function we can include more than one factor to apply a function to. Here we calculate the mean values for each combination of <code>nitrogen</code> and <code>treat</code></p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen, <span class="dt">treat =</span> flowers<span class="op">$</span>treat), <span class="dt">FUN =</span> mean)</a>
-<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="co">#   nitrogen treat height weight leafarea shootarea</span></a>
-<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co"># 1     high notip  5.706 16.604   18.819    155.32</span></a>
-<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="co"># 2      low notip  3.669  8.289   12.325     59.89</span></a>
-<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="co"># 3   medium notip  4.838 11.317   14.175     94.53</span></a>
-<a class="sourceLine" id="cb159-6" data-line-number="6"><span class="co"># 4     high   tip  9.600 16.689   15.544     98.06</span></a>
-<a class="sourceLine" id="cb159-7" data-line-number="7"><span class="co"># 5      low   tip  8.037  9.016    9.963     30.31</span></a>
-<a class="sourceLine" id="cb159-8" data-line-number="8"><span class="co"># 6   medium   tip  9.188 11.011   13.488     40.59</span></a></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen,</a>
+<a class="sourceLine" id="cb159-2" data-line-number="2">                                 <span class="dt">treat =</span> flowers<span class="op">$</span>treat), <span class="dt">FUN =</span> mean)</a>
+<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co">#   nitrogen treat height weight leafarea shootarea</span></a>
+<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="co"># 1     high notip  5.706 16.604   18.819    155.32</span></a>
+<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="co"># 2      low notip  3.669  8.289   12.325     59.89</span></a>
+<a class="sourceLine" id="cb159-6" data-line-number="6"><span class="co"># 3   medium notip  4.838 11.317   14.175     94.53</span></a>
+<a class="sourceLine" id="cb159-7" data-line-number="7"><span class="co"># 4     high   tip  9.600 16.689   15.544     98.06</span></a>
+<a class="sourceLine" id="cb159-8" data-line-number="8"><span class="co"># 5      low   tip  8.037  9.016    9.963     30.31</span></a>
+<a class="sourceLine" id="cb159-9" data-line-number="9"><span class="co"># 6   medium   tip  9.188 11.011   13.488     40.59</span></a></code></pre></div>
 <p>We can also use the <code>aggregate()</code> in a different way by using the formula method (as we did with <code>xtabs()</code>). The formula method specifies the the variable to apply the function on the left hand side of the <code>~</code> and the factors on the right hand side separated by a <code>+</code> symbol. The formula method also allows you to use the <code>data =</code> argument for convenience.</p>
 <div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">data =</span> flowers)</a>
 <a class="sourceLine" id="cb160-2" data-line-number="2"><span class="co">#   nitrogen treat height</span></a>
@@ -458,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb160-6" data-line-number="6"><span class="co"># 4     high   tip  9.600</span></a>
 <a class="sourceLine" id="cb160-7" data-line-number="7"><span class="co"># 5      low   tip  8.037</span></a>
 <a class="sourceLine" id="cb160-8" data-line-number="8"><span class="co"># 6   medium   tip  9.188</span></a></code></pre></div>
-<p>One advantage of using the formula method is that you can also use the <code>subset =</code> argument to apply the function to subsets of the original data. For example, to calculate the mean <code>height</code> for each combination of the <code>nitrogen</code> and <code>treat</code> factors but only for those plants that have less than 7 flowers.</p>
+<p>One advantage of using the formula method is that you can also use the <code>subset =</code> argument to apply the function to subsets of the original data. For example, to calculate the mean <code>height</code> for each combination of the <code>nitrogen</code> and <code>treat</code> factors but only for those plants that have less than 7 <code>flowers</code>.</p>
 <div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> flowers <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span>, <span class="dt">data =</span> flowers)</a>
 <a class="sourceLine" id="cb161-2" data-line-number="2"><span class="co">#   nitrogen treat height</span></a>
 <a class="sourceLine" id="cb161-3" data-line-number="3"><span class="co"># 1     high notip  3.850</span></a>
@@ -467,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb161-6" data-line-number="6"><span class="co"># 4     high   tip  7.900</span></a>
 <a class="sourceLine" id="cb161-7" data-line-number="7"><span class="co"># 5      low   tip  8.177</span></a>
 <a class="sourceLine" id="cb161-8" data-line-number="8"><span class="co"># 6   medium   tip  8.570</span></a></code></pre></div>
-<p>Or only those plants in <code>block</code> 1.</p>
+<p>Or for only those plants in <code>block</code> 1.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> block <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="dt">data =</span> flowers)</a>
 <a class="sourceLine" id="cb162-2" data-line-number="2"><span class="co">#   nitrogen treat height</span></a>
 <a class="sourceLine" id="cb162-3" data-line-number="3"><span class="co"># 1     high notip  5.925</span></a>
