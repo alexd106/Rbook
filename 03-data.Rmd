@@ -383,7 +383,14 @@ mean(f_height)
 summary(f_height)
 ```
 
-Just as we did with [vectors](#vectors), we also can access specific data in data frames using the square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes and `my_data` is the name of the data frame. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
+Or is we don't want to create an additional vector object we can use functions 'on the fly'.
+
+```{r dw3.1, echo=TRUE, collapse=TRUE}
+mean(flowers$height)
+summary(flowers$height)
+```
+
+Just as we did with [vectors](#vectors), we also can access data in data frames using the square bracket `[ ]` notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation `my_data[rows, columns]` where `rows` and `columns` are indexes and `my_data` is the name of the data frame. Again, just like with our vectors our indexes can be positional or the result of a logical test. 
 
 ### Positional indexes
 
@@ -391,15 +398,18 @@ To use positional indexes we simple have to write the position of the rows and c
 
 ```{r dw4, echo=TRUE, collapse=TRUE}
 flowers[1, 4]
+
+# this would give you the same
+flowers$height[1]
 ```
 
-We can also extract values from multiple rows or columns by specifying these indexes as vectors inside the `[ ]`. So, to extract the first 10 rows and the first 4 columns we simple supply a vector containing a sequence from 1 to 10 for the rows index (`1:10`) and a vector from 1 to 4 for the column index (`1:4`).
+We can also extract values from multiple rows or columns by specifying these indexes as vectors inside the `[ ]`. To extract the first 10 rows and the first 4 columns we simple supply a vector containing a sequence from 1 to 10 for the rows index (`1:10`) and a vector from 1 to 4 for the column index (`1:4`).
 
 ```{r dw5, echo=TRUE, collapse=TRUE}
 flowers[1:10, 1:4]
 ```
 
-Or if our row and columns are not sequential then we can supply vectors of positions using the `c()` function. To extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
+Or for non sequential rows and columns then we can supply vectors of positions using the `c()` function. To extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
 
 ```{r dw6, echo=TRUE, collapse=TRUE}
 flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
@@ -419,19 +429,19 @@ or all of the rows and the first 3 columns (scroll down in output panel to see a
 flowers[, 1:3]
 ```
 
-We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use `-()` and `-c()` when we generate our positional vectors. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use `-1:-85`).
+We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use `-()` when we generate our row positional vectors. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use `-1:-85`).
 
 ```{r dw9, echo=TRUE, collapse=TRUE}
 flowers[-(1:85), -c(4, 7, 8)]
 ```
 
-In addition to using a positional index for extracting particular variables (columns) we can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can instead use
+In addition to using a positional index for extracting particular columns (variables) we can also name the variables directly when using the square bracket `[ ]` notation. For example, let's extract the first 5 rows and the variables `treat`, `nitrogen` and `leafarea`. Instead of using `flowers[1:5, c(1, 2, 6)]` we can instead use
 
 ```{r dw10, echo=TRUE, collapse=TRUE}
 flowers[1:5, c("treat", "nitrogen", "leafarea")]
 ```
 
-We often use this method in preference to the positional index for selecting columns as it will still give us what we want even if we've changed the position of the variables in our data frame for some reason. 
+We often use this method in preference to the positional index for selecting columns as it will still give us what we want even if we've changed the order of the columns in our data frame for some reason. 
 
 ### Logical indexes
 
@@ -442,7 +452,7 @@ big_flowers <- flowers[flowers$height > 12, ]
 big_flowers
 ```
 
-Notice in the code above that we need to use the `flowers$height` notation for the logical test. If we only named the `height` variable without the name of the data frame we would receive an error telling us R couldn't find the variable `height`. The reason for this is that the `height` variable only exists inside the `flowers` object so you need to tell R exactly where it is.
+Notice in the code above that we need to use the `flowers$height` notation for the logical test. If we just named the `height` variable without the name of the data frame we would receive an error telling us R couldn't find the variable `height`. The reason for this is that the `height` variable only exists inside the `flowers` data frame so you need to tell R exactly where it is.
 
 ```{r dw12, echo=TRUE, eval=FALSE}
 big_flowers <- flowers[height > 12, ]
@@ -450,7 +460,7 @@ Error in `[.data.frame`(flowers, height > 12, ) :
   object 'height' not found
 ```
 
-OK, so how does this work? The logical test is `flowers$height > 12` and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing `TRUE` if `height` is greater than 12 and `FALSE` if `height` is not greater than 12.
+So how does this work? The logical test is `flowers$height > 12` and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing `TRUE` if `height` is greater than 12 and `FALSE` if `height` is not greater than 12.
 
 ```{r dw13, echo=TRUE, collapse=TRUE}
 flowers$height > 12
@@ -523,7 +533,7 @@ height_ord <- flowers[order(flowers$height), ]
 height_ord
 ```
 
-We can also order by descending order of a variable (i.e. `leafarea`) using the `decreasing =` argument. 
+We can also order by descending order of a variable (i.e. `leafarea`) using the `decreasing = TRUE` argument. 
 
 ```{r dw21, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
@@ -544,7 +554,7 @@ block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]
 block_revheight_ord
 ```
 
-If we wanted to do the same thing with a character (or factor) variable like `nitrogen` we would need to use the function `xtfrm()` for this variable inside our `order()` function.
+If we wanted to do the same thing with a factor (or character) variable like `nitrogen` we would need to use the function `xtfrm()` for this variable inside our `order()` function.
 
 ```{r dw24, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
 block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
@@ -555,7 +565,7 @@ Notice that the `nitrogen` variable has been reverse ordered alphabetically and 
 
 ### Adding columns and rows
 
-Sometimes it's useful to be able to add extra rows and columns to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()` function and to append columns the `cbind()` function. Let's create a couple of test data frames to see this in action using our old friend the `data.frame()` function.
+Sometimes it's useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()` function and to append columns the `cbind()` function. Let's create a couple of test data frames to see this in action using our old friend the `data.frame()` function.
 
 ```{r dw25, echo=TRUE, collapse=TRUE}
 # rbind for rows
@@ -567,22 +577,29 @@ df2 <- data.frame(id = 5:6, height = c(119, 110),
 						weight = c(39, 35))
 df2
 
-df_rcomb <- rbind(df1, df2)
-df_rcomb
-
-# cbind for columns
 df3 <- data.frame(id = 1:4, height = c(120, 150, 132, 122),
 						weight = c(44, 56, 49, 45))
 df3
 
 df4 <- data.frame(location = c("UK", "CZ", "CZ", "UK"))
 df4
+```
 
+We can use the `rbind()` function to append the rows of data in `df2` to the rows in `df1` and assign the new data frame to `df_rcomb`.
+
+```{r dw25.1, echo=TRUE, collapse=TRUE}
+df_rcomb <- rbind(df1, df2)
+df_rcomb
+```
+
+And `cbind` to append the column in `df4` to the `df3` data frame and assign to df_ccomb`.
+
+```{r dw25.2, echo=TRUE, collapse=TRUE}
 df_ccomb <- cbind(df3, df4)
 df_ccomb
 ```
 
-Another reason to add an additional column (or columns) to a data frame is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log~10~ transformation on the height variable in the `df_rcomb` data frame we created above. We could just create a separate variable to contains these values but it's good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let's call this new variable `height_log10`.  
+Another situation when adding a new column to a data frame is useful is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log~10~ transformation on the height variable in the `df_rcomb` data frame we created above. We could just create a separate variable to contains these values but it's good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let's call this new variable `height_log10`.  
 
 ```{r dw26, echo=TRUE, collapse=TRUE}
 # log10 transformation
@@ -590,7 +607,7 @@ df_rcomb$height_log10 <- log10(df_rcomb$height)
 df_rcomb
 ```
 
-This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the `id` variable in the `df_rcomb` data frame is numeric class (use the `str()` or `class()` functions to check for yourself). If we wanted to convert the `id` variable to a factor to use later in our analysis we can create a new variable called `Fid` in our data frame and use the `factor()` function to convert the `id` variable. 
+This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the `id` variable in the `df_rcomb` data frame is numeric type data (use the `str()` or `class()` functions to check for yourself). If we wanted to convert the `id` variable to a factor to use later in our analysis we can create a new variable called `Fid` in our data frame and use the `factor()` function to convert the `id` variable. 
 
 ```{r dw27, echo=TRUE, collapse=TRUE}
 # convert to a factor 
@@ -601,7 +618,7 @@ str(df_rcomb)
 
 ### Merging data frames
 
-Instead of just appending either rows or columns to a data frame we can also merge two different data frames together. let's say we have one data frame that contains taxonomic information on some common rocky shore invertebrates and another data frame that contains information on where they are commonly found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let's first create both of these data frames (in reality you would probably just import your different datasets).
+Instead of just appending either rows or columns to a data frame we can also merge two data frames together. let's say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates and another data frame that contains information on where they are usually found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let's first create both of these data frames (in reality you would probably just import your different datasets).
 
 ```{r dw28, echo=TRUE, collapse=TRUE}
 taxa <- data.frame(GENUS = c("Patella", "Littorina", "Halichondria", "Semibalanus"),
@@ -631,16 +648,24 @@ taxa_zone <- merge(x = taxa, y = zonation, all = TRUE)
 taxa_zone
 ```
 
-If the variable names that you want to base the merge on are different in each data frame (in our example `GENUS` and `genus`) you can specify the names in the first data frame (known as `x`) and the second data frame (known as `y`) using the `by.x =` and `by.y =` arguments.
+If the variable names that you want to base the merge on are different in each data frame (for example `GENUS` and `genus`) you can specify the names in the first data frame (known as `x`) and the second data frame (known as `y`) using the `by.x =` and `by.y =` arguments.
 
 ```{r dw31, echo=TRUE, collapse=TRUE}
 taxa_zone <- merge(x = taxa, y = zonation, by.x = "GENUS", by.y = "genus", all = TRUE)
 taxa_zone
 ```
 
+Or using multiple variable names. 
+
+```{r dw31.1, echo=TRUE, collapse=TRUE}
+taxa_zone <- merge(x = taxa, y = zonation, by.x = c("species", "GENUS"), 
+                    by.y = c("species", "genus"), all = TRUE)
+taxa_zone
+```
+
 ### Reshaping  data frames
 
-Reshaping data into different formats is a common task. With rectangular type data (same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows.  
+Reshaping data into different formats is a common task. With rectangular type data (data frames have the same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows. This results ona single column of our `measurement`. 
 
 ```{r dw32, echo=FALSE}
 long_data <- read.table(header=TRUE, text='
@@ -660,13 +685,17 @@ long_data <- read.table(header=TRUE, text='
 ')
 ```
 
+\  
+
 ```{r dw33, echo=FALSE}
 library(kableExtra)
 kable(long_data) %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
-We can also format the same data in the wide format as shown below. In this format we have multiple observations from each subject in a single row with observations in different columns. This is a common format when you have repeated measurements from sampling units.
+\  
+
+We can also format the same data in the wide format as shown below. In this format we have multiple observations from each subject in a single row with measurements in different columns (`control`, `cond1` and `cond2`). This is a common format when you have repeated measurements from sampling units.
 
 ```{r dw34, echo=FALSE}
 wide_data <- read.table(header=TRUE, text='
@@ -678,14 +707,18 @@ wide_data <- read.table(header=TRUE, text='
 ')
 ```
 
+\  
+
 ```{r dw35, echo=FALSE}
 kable(wide_data) %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
-Whilst there's no inherent problem with either of these formats we will often need to convert between the two as some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.
+\  
 
-There are many ways to convert between these two formats but we'll use the `melt()` and `dcast()` functions from the `reshape2` package (you will need to install this package first). The `melt()` function is used to convert from wide to long formats. The first argument for the `melt()` function is the data frame we want to melt (in our case `wide_data`). The `id.vars =` argument is a vector of the variables you want to stack, the `measured.vars =` argument identifies the columns of the measurements in different conditions, the `variable.name =` argument specifies what you want to call the stacked column of your different conditions in your output data frame and `value.name =` is the name of the column of your stacked measurements again in your output data frame.
+Whilst there's no inherent problem with either of these formats we will sometimes need to convert between the two because some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.
+
+There are many ways to convert between these two formats but we'll use the `melt()` and `dcast()` functions from the `reshape2` package (you will need to install this package first). The `melt()` function is used to convert from wide to long formats. The first argument for the `melt()` function is the data frame we want to melt (in our case `wide_data`). The `id.vars = c("subject", "sex")` argument is a vector of the variables you want to stack, the `measured.vars = c("control", "cond1", "cond2")` argument identifies the columns of the measurements in different conditions, the `variable.name = "condition"` argument specifies what you want to call the stacked column of your different conditions in your output data frame and `value.name = "measurement"` is the name of the column of your stacked measurements in your output data frame.
 
 ```{r dw36, echo=TRUE, collapse=TRUE}
 library(reshape2)
@@ -693,18 +726,19 @@ wide_data    # remind ourselves what the wide format looks like
 
 # convert wide to long
 my_long_df <- melt(data = wide_data, id.vars = c("subject", "sex"),
-                  measured.vars = c("control", "cond1", "cond2"),
-                  variable.name = "condition", value.name = "measurement")
+                   measured.vars = c("control", "cond1", "cond2"),
+                   variable.name = "condition", value.name = "measurement")
 my_long_df
 ```
 
-The `dcast()` function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (`long_data` for this example). The second argument is in formula syntax. The `subject + age` bit of the formula means that we want to keep these columns separate, and the `~ condition` is the column that contains the labels that we want to split into new columns in our new data frame. The `value.var =` argument is the column that contains the actual measurements  
+The `dcast()` function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (`long_data` for this example). The second argument is in formula syntax. The `subject + age` bit of the formula means that we want to keep these columns separate, and the `~ condition` part is the column that contains the labels that we want to split into new columns in our new data frame. The `value.var = "measurement"` argument is the column that contains the measured data.  
 
 ```{r dw37, echo=TRUE, collapse=TRUE}
 long_data   # remind ourselves what the long format look like
 
 # convert long to wide
-my_wide_df <- dcast(data = long_data, subject + sex ~ condition, value.var = "measurement")
+my_wide_df <- dcast(data = long_data, subject + sex ~ condition, 
+                    value.var = "measurement")
 my_wide_df
 ```
 
@@ -718,7 +752,7 @@ A really useful starting point is to produce some simple summary statistics of a
 summary(flowers)
 ```
 
-Continuous variables (i.e. `height`, `weight` etc) are summarised as the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile. For factor variables (i.e. `treat` and `nitrogen`) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of `NA` values is also reported.
+For numeric variables (i.e. `height`, `weight` etc) the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile are presented. For factor variables (i.e. `treat` and `nitrogen`) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of `NA` values is also reported.
 
 If we wanted to summarise a smaller subset of variables in our data frame we can use our indexing skills in combination with the `summary()` function. For example, to summarise only the `height`, `weight`, `leafarea` and `shootarea` variables we can include the appropriate column indexes when using the `[ ]`. Notice we include all rows by not specifying a row index.  
 
@@ -768,19 +802,20 @@ And for a nicer formatted table we can nest the `xtabs()` function inside the `f
 ftable(xtabs(~ nitrogen + treat + block, data = flowers))
 ```
 
-We can also summarise our data for each level of a factor variable. Let's say we want to calculate the mean value of `height` for each of our `low`, `meadium` and `high` levels of `nitrogen`. To do this we will use the `mean()` function and apply this on the `height` variable for each level of `nitrogen` using the `tapply()` function.
+We can also summarise our data for each level of a factor variable. Let's say we want to calculate the mean value of `height` for each of our `low`, `meadium` and `high` levels of `nitrogen`. To do this we will use the `mean()` function and apply this to the `height` variable for each level of `nitrogen` using the `tapply()` function.
 
 ```{r sum9, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, mean)
 ```
 
-The `tapply()` is not just restricted to calculating mean values, you can use it to apply other functions or even functions you've written yourself. For example, we can apply the `sd()` function to calculate the standard deviation for each level of `nitrogen`.
+The `tapply()` function is not just restricted to calculating mean values, you can use it to apply many of the functions that come with R or even functions you've written yourself (see [Chapter 6](#prog_r) for more details). For example, we can apply the `sd()` function to calculate the standard deviation for each level of `nitrogen` or even the `summary()` function.
 
 ```{r sum10, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, sd)
+tapply(flowers$height, flowers$nitrogen, summary)
 ```
 
-Note, if the variable you want to summarise contains missing values (`NA`) you will also need to include an argument specifying how you want the function to deal with the `NA` values. We saw an example if this in [Chapter 2](#na_vals) where the `mean()` function returned an `NA` when we had missing data. 
+Note, if the variable you want to summarise contains missing values (`NA`) you will also need to include an argument specifying how you want the function to deal with the `NA` values. We saw an example if this in [Chapter 2](#na_vals) where the `mean()` function returned an `NA` when we had missing data. To include the `na.rm = TRUE` argument we simply add this as another argument when using `tapply()`.
 
 ```{r sum11, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, mean, na.rm = TRUE)
@@ -800,7 +835,7 @@ with(flowers, tapply(height, list(nitrogen, treat), mean))
 
 The `with()` function also works with many other functions and can save you alot of typing!
 
-Another really useful function for summarising data is the `aggregate()` function. The `aggregate()` function works in a very similar fashion to `tapply()` (actually, `aggregate()` is a convenience function for `tapply()`) but is a bit more flexible. 
+Another really useful function for summarising data is the `aggregate()` function. The `aggregate()` function works in a very similar way to `tapply()` but is a bit more flexible. 
 
 For example, to calculate the mean of the variables `height`, `weight`, `leafarea` and `shootarea` for each level of `nitrogen`.
 
@@ -817,13 +852,13 @@ aggregate(flowers[, 4:7], by = list(nitrogen = flowers$nitrogen,
                                  treat = flowers$treat), FUN = mean)
 ```
 
-We can also use the `aggregate()` in a different way by using the formula method (as we did with `xtabs()`). The formula method specifies the the variable to apply the function on the left hand side of the `~` and the factors on the right hand side separated by a `+` symbol. The formula method also allows you to use the `data =` argument for convenience.  
+We can also use the `aggregate()` function in a different way by using the formula method (as we did with `xtabs()`). On the left hand side of the formula (`~`) we specify the variable we want to apply the mean function on and to the right hand side our factors separated by a `+` symbol. The formula method also allows you to use the `data =` argument for convenience.  
 
 ```{r sum16, echo=TRUE, collapse=TRUE}
 aggregate(height ~ nitrogen + treat, FUN = mean, data = flowers)
 ```
 
-One advantage of using the formula method is that you can also use the `subset =` argument to apply the function to subsets of the original data. For example, to calculate the mean `height` for each combination of the `nitrogen` and `treat` factors but only for those plants that have less than 7 `flowers`.
+One advantage of using the formula method is that we can also use the `subset =` argument to apply the function to subsets of the original data. For example, to calculate the mean `height` for each combination of the `nitrogen` and `treat` levels but only for those plants that have less than 7 `flowers`.
 
 ```{r sum17, echo=TRUE, collapse=TRUE}
 aggregate(height ~ nitrogen + treat, FUN = mean, subset = flowers < 7, data = flowers)
@@ -832,14 +867,16 @@ aggregate(height ~ nitrogen + treat, FUN = mean, subset = flowers < 7, data = fl
 Or for only those plants in `block` 1.
 
 ```{r sum18, echo=TRUE, collapse=TRUE}
-aggregate(height ~ nitrogen + treat, FUN = mean, subset = block == 1, data = flowers)
+aggregate(height ~ nitrogen + treat, FUN = mean, subset = block == "1", data = flowers)
 ```
 
 ## Exporting data
 
-By now hopefully you're getting a feel for how powerful and useful R is for manipulating and summarising data (and we've only really scratched the surface). One of the great benefits of doing all your data wrangling in R is that you now have a permanent record of all the things you've done to your data. No more making undocumented changes in Excel or Calc! By treating your data as 'read only' and documenting all of your decisions you will have made great strides towards making your analysis more reproducible and transparent to others. It's important to realise, however, that any changes you've made to your data frame in R will not change the original data file you imported into R (and that's a good thing). Happily it's straight forward to export data frames to external files in a wide variety of formats.
+By now we hope you're getting a feel for how powerful and useful R is for manipulating and summarising data (and we've only really scratched the surface). One of the great benefits of doing all your data wrangling in R is that you have a permanent record of all the things you've done to your data. Gone are the days of making undocumented changes in Excel or Calc! By treating your data as 'read only' and documenting all of your decisions in R you will have made great strides towards making your analysis more reproducible and transparent to others. It's important to realise, however, that any changes you've made to your data frame in R will not change the original data file you imported into R (and that's a good thing). Happily it's straight forward to export data frames to external files in a wide variety of formats.
 
-The main workhorse function for exporting data frames is the `write.table()` function. As with the `read.table()` function, the `write.table()` function is very flexible with lots of arguments to help customise it's behaviour. Let's take our original `flowers` data frame, order the rows in ascending order of `height` within each level `nitrogen`. We also want to apply a square root transformation on the number of flowers variable (`flowers`) and a log~10~ transformation on the `height` variable and save these as additional columns in our data frame. 
+The main workhorse function for exporting data frames is the `write.table()` function. As with the `read.table()` function, the `write.table()` function is very flexible with lots of arguments to help customise it's behaviour. As an example, let's take our original `flowers` data frame, do some useful stuff to it and then export these changes to an external file.  
+
+Let's order the rows in the data frame in ascending order of `height` within each level `nitrogen`. We will also apply a square root transformation on the number of flowers variable (`flowers`) and a log~10~ transformation on the `height` variable and save these as additional columns in our data frame (hopefully this will be somewhat familiar to you!). 
 
 ```{r export1, echo=TRUE, collapse=TRUE}
 flowers_df2 <- flowers[order(flowers$nitrogen, flowers$height), ]
@@ -848,14 +885,14 @@ flowers_df2$log10_height <- log10(flowers_df2$height)
 str(flowers_df2)
 ```
 
-Now we can export our new data frame `flowers_df2` using the `write.table()` function. The first argument is the data frame you want to export (`flowers_df2` in our example). We then give the filename (with file extension) and the file path in either single or double quotes using the `file =` argument. In this example we are exporting the data frame to file called `flowers_04_12.txt` in the `data` directory. The `col.names = TRUE` argument indicates that the variable names should be written in the first row of the file and the `row.names = FALSE` argument stops R from including the row names in the first column of the file. Finally, the `sep = "\t"` argument indicates that a tab should be used as the delimiter in the exported file.
+Now we can export our new data frame `flowers_df2` using the `write.table()` function. The first argument is the data frame you want to export (`flowers_df2` in our example). We then give the filename (with file extension) and the file path in either single or double quotes using the `file =` argument. In this example we're exporting the data frame to a file called `flowers_04_12.txt` in the `data` directory. The `col.names = TRUE` argument indicates that the variable names should be written in the first row of the file and the `row.names = FALSE` argument stops R from including the row names in the first column of the file. Finally, the `sep = "\t"` argument indicates that a Tab should be used as the delimiter in the exported file.
 
 ```{r export2, echo=TRUE, eval=FALSE}
 write.table(flowers_df2, file = 'data/flowers_04_12.txt', col.names = TRUE,
              row.names = FALSE, sep = "\t")
 ```
 
-As we saved the file as a tab delimited text file we could open this up in any text editor. Perhaps a more familiar option would be to open the file in Excel by selecting `File` -> `Open ..` in the main menu and then select the file. Choose the 'Tab' option to set the delimiter and then click on the 'Finish' button.
+As we saved the file as a tab delimited text file we could open this file in any text editor. Perhaps a more familiar option would be to open the file in Excel. First start Excel and then select `File` -> `Open ..` in the main menu and then select our `flowers_04_12.txt` file to open. Next. choose the 'Tab' option to set the delimiter and then click on the 'Finish' button.
 
 \  
 
@@ -865,14 +902,14 @@ knitr::include_graphics(path = "images/excel_export.png")
 
 \  
 
-We can of course export our files in a variety of formats. Another popular option is to export files in csv (comma separated values) format. We can do this using the `write.table()` function by setting the separator argument to `sep = ","`.
+We can of course export our files in a variety of other formats. Another popular option is to export files in csv (comma separated values) format. We can do this using the `write.table()` function by setting the separator argument to `sep = ","`.
 
 ```{r export3, echo=TRUE, eval=FALSE}
 write.table(flowers_df2, file = 'data/flowers_04_12.csv', col.names = TRUE,
              row.names = FALSE, sep = ",")
 ```
 
-Or alternatively by using the convenience function `write.csv()`
+Or alternatively by using the convenience function `write.csv()`. Notice that we don't need to set the `sep =` or `col.names = TRUE` arguments as these are the defaults when using the `read.csv()` function.
 
 ```{r export4, echo=TRUE, eval=FALSE}
 write.csv(flowers_df2, file = 'data/flowers_04_12.csv', row.names = FALSE)
