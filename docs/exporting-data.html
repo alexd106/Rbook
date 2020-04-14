@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
 <li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import-functions"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
 <li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
-<li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#other-import-options"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
+<li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
 <li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
@@ -357,11 +357,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can of course export our files in a variety of other formats. Another popular option is to export files in csv (comma separated values) format. We can do this using the <code>write.table()</code> function by setting the separator argument to <code>sep = &quot;,&quot;</code>.</p>
 <div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">write.table</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>,</a>
 <a class="sourceLine" id="cb169-2" data-line-number="2">             <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
-<p>Or alternatively by using the convenience function <code>write.csv()</code>. Notice that we don’t need to set the <code>sep =</code> or <code>col.names = TRUE</code> arguments as these are the defaults when using the <code>read.csv()</code> function.</p>
+<p>Or alternatively by using the convenience function <code>write.csv()</code>. Notice that we don’t need to set the <code>sep = &quot;,&quot;</code> or <code>col.names = TRUE</code> arguments as these are the defaults when using the <code>read.csv()</code> function.</p>
 <div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">write.csv</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 </div>
 <div id="other-export-functions" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Other export functions</h3>
+<p>As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the <code>write.table()</code> function. If you followed the <a href="importing-data.html#import_other">‘Other import functions’</a> section of this Chapter you will already have the required packages installed.</p>
+<p>The <code>fwrite()</code> function from the <code>read.table</code> package is very efficient at exporting large data objects and is much faster than the <code>write.table()</code> function. It’s also quite simple to use as it has most of the same arguments as <code>write.table()</code>. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">library</span>(read.table)</a>
+<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="kw">fwrite</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<p>To export a csv delimited file it’s even easier as we don’t even need to include the <code>sep =</code> argument.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">library</span>(read.table)</a>
+<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="kw">fwrite</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</a></code></pre></div>
+<p>The <code>readr</code> package also comes with two useful functions for quickly writing data to external files: the <code>read_tsv()</code> function for writing tab delimited files and the <code>read_csv()</code> function for saving comma separated values (csv) files.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="kw">read_tsv</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>)</a>
+<a class="sourceLine" id="cb173-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="kw">read_csv</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</a></code></pre></div>
+<p>You can even save data directly to an Excel spreadsheet using the <code>write_excel_csv()</code> function but again we don’t recommend this!</p>
 <p> </p>
 <!--course website Links-->
 <!--cran Links-->

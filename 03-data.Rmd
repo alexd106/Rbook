@@ -327,7 +327,7 @@ str(flowers_bad)
 
 We can see an obvious problem, all of our variables have been imported as factors and are variables are named `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings is converted to a factor by default (unless we use the `stringsAsFactors =` argument as above).
 
-### Other import options
+### Other import options {#import_other}
 
 There are numerous other functions to import data from a variety of sources and formats. Most of these functions are contained in packages that you will need to install before using them. We list a couple of the more useful packages and functions below. 
 
@@ -665,7 +665,7 @@ taxa_zone
 
 ### Reshaping  data frames
 
-Reshaping data into different formats is a common task. With rectangular type data (data frames have the same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows. This results ona single column of our `measurement`. 
+Reshaping data into different formats is a common task. With rectangular type data (data frames have the same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows. This results in a single column of our `measurement`. 
 
 ```{r dw32, echo=FALSE}
 long_data <- read.table(header=TRUE, text='
@@ -911,13 +911,40 @@ write.table(flowers_df2, file = 'data/flowers_04_12.csv', col.names = TRUE,
              row.names = FALSE, sep = ",")
 ```
 
-Or alternatively by using the convenience function `write.csv()`. Notice that we don't need to set the `sep =` or `col.names = TRUE` arguments as these are the defaults when using the `read.csv()` function.
+Or alternatively by using the convenience function `write.csv()`. Notice that we don't need to set the `sep = ","` or `col.names = TRUE` arguments as these are the defaults when using the `read.csv()` function.
 
 ```{r export4, echo=TRUE, eval=FALSE}
 write.csv(flowers_df2, file = 'data/flowers_04_12.csv', row.names = FALSE)
 ```
 
 ### Other export functions
+
+As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the `write.table()` function. If you followed the ['Other import functions'](#import_other) section of this Chapter you will already have the required packages installed. 
+
+The `fwrite()` function from the `read.table` package is very efficient at exporting large data objects and is much faster than the `write.table()` function. It's also quite simple to use as it has most of the same arguments as `write.table()`. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.
+
+```{r export5, echo=TRUE, eval=FALSE}
+library(read.table)
+fwrite(flowers_df2, file = 'data/flowers_04_12.txt', sep = "\t")
+```
+
+To export a csv delimited file it's even easier as we don't even need to include the `sep =` argument.
+
+```{r export6, echo=TRUE, eval=FALSE}
+library(read.table)
+fwrite(flowers_df2, file = 'data/flowers_04_12.csv')
+```
+
+The `readr` package also comes with two useful functions for quickly writing data to external files: the `read_tsv()` function for writing tab delimited files and the `read_csv()` function for saving comma separated values (csv) files.
+
+```{r export7, echo=TRUE, eval=FALSE}
+library(readr)
+read_tsv(flowers_df2, file = 'data/flowers_04_12.txt')
+
+read_csv(flowers_df2, file = 'data/flowers_04_12.csv')
+```
+
+You can even save data directly to an Excel spreadsheet using the `write_excel_csv()` function but again we don't recommend this!   
 
 \  
 
