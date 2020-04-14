@@ -18,3 +18,13 @@
 # source('reveal.R')
 # ```
 
+
+# ```{r setup, echo=FALSE, message=FALSE, include=FALSE, warning=FALSE} 
+# ## CHECK COMPILATION TYPE 
+# out_type <- knitr::opts_knit$get("rmarkdown.pandoc.to") 
+# ```
+# 
+# Then in your code, all you need is
+# 
+# ```{r chunk_name, eval = (out_type=="epub3"), echo=FALSE, results='asis'} 
+# ```
