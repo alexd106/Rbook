@@ -28,3 +28,11 @@
 # 
 # ```{r chunk_name, eval = (out_type=="epub3"), echo=FALSE, results='asis'} 
 # ```
+
+# ````
+# `r ''````{r,}
+# 1 + 1
+# 2 + 2
+# ```
+# ````
+

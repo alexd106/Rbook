@@ -331,21 +331,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When rendering my R markdown document to pdf my code runs off the edge of the page.</p>
 <p><strong>Solution:</strong></p>
 <p>Add a global_options argument at the start of your .Rmd file in a code chunk:</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
+<pre><code>```{r, global_options, include=FALSE}
 knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
-&#96;&#96;&#96;
-</code></pre>
+```</code></pre>
 <p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
 <p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
 <p><strong>Problem:</strong></p>
 <p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
 <p><strong>Solution:</strong></p>
 <p>You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
+<pre><code>```{r, global_options, include=FALSE}
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) 
 suppressPackageStartupMessages(library(ggplot2))
-&#96;&#96;&#96;
-</code></pre>
+```</code></pre>
 <p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
 <p><strong>Problem:</strong></p>
 <p>When rendering my R markdown document to pdf my tables and/or figures are split over two pages.</p>
@@ -355,10 +353,9 @@ suppressPackageStartupMessages(library(ggplot2))
 <p>The code in my rendered document looks ugly!</p>
 <p><strong>Solution:</strong></p>
 <p>Add the argument <code>tidy=TRUE</code> to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.</p>
-<pre class="markdown"><code>&#96;&#96;&#96;{r global_options, include=FALSE}
+<pre><code>```{r, global_options, include=FALSE}
 knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
-&#96;&#96;&#96;
-</code></pre>
+```</code></pre>
 </div>
             </section>
 
