@@ -433,8 +433,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="undo" class="section level3">
 <h3><span class="header-section-number">8.6.3</span> Reverting changes</h3>
 <p>One the great things about using Git is that you are able to revert to previous versions of files if you’ve made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We’ll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).</p>
-<div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.1</span> Changes saved but not staged, committed or pushed</h4>
+<div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4 unnumbered">
+<h4>Changes saved but not staged, committed or pushed</h4>
 <p>If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select ‘Revert …’. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution.</p>
 <p> </p>
 <p><img src="images/revert1.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -443,12 +443,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/revert2.png" width="80%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="staged-but-not-committed-and-not-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.2</span> Staged but not committed and not pushed</h4>
+<div id="staged-but-not-committed-and-not-pushed" class="section level4 unnumbered">
+<h4>Staged but not committed and not pushed</h4>
 <p>If you have staged your files, but not committed them then simply unstage them by clicking on the ‘Staged’ check box in the Git pane (or in the ‘Review Changes’ window) to remove the tick. You can then revert all or parts of the file as described in the section above.</p>
 </div>
-<div id="staged-and-committed-but-not-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.3</span> Staged and committed but not pushed</h4>
+<div id="staged-and-committed-but-not-pushed" class="section level4 unnumbered">
+<h4>Staged and committed but not pushed</h4>
 <p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit` box in the ’Review Changes’ window before committing.</p>
 <p> </p>
 <p><img src="images/revert3.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -480,8 +480,8 @@ git checkout 2b4693d1 .
 </code></pre>
 <p>Note that this will delete all files that you have created since you made this commit so be careful!</p>
 </div>
-<div id="staged-committed-and-pushed" class="section level4">
-<h4><span class="header-section-number">8.6.3.4</span> Staged, committed and pushed</h4>
+<div id="staged-committed-and-pushed" class="section level4 unnumbered">
+<h4>Staged, committed and pushed</h4>
 <p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as I can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
 <p> </p>
 <p><img src="images/revert8.png" width="80%" style="display: block; margin: auto;" /></p>

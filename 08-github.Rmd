@@ -584,7 +584,7 @@ knitr::include_graphics(path = "images/c_history5.png")
 
 One the great things about using Git is that you are able to revert to previous versions of files if you've made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We'll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).  
 
-#### Changes saved but not staged, committed or pushed
+#### Changes saved but not staged, committed or pushed {-}
 
 If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select 'Revert ...'. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution. 
 
@@ -604,11 +604,11 @@ You can also undo changes to just part of a file by opening up the 'Diff' window
 knitr::include_graphics(path = "images/revert2.png")
 ```
 
-#### Staged but not committed and not pushed
+#### Staged but not committed and not pushed {-}
 
 If you have staged your files, but not committed them then simply unstage them by clicking on the 'Staged' check box in the Git pane (or in the 'Review Changes' window) to remove the tick. You can then revert all or parts of the file as described in the section above. 
 
-#### Staged and committed but not pushed
+#### Staged and committed but not pushed {-}
 
 If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the 'Amend previous commit` box in the 'Review Changes' window before committing.   
 
@@ -680,7 +680,7 @@ git checkout 2b4693d1 .
 
 Note that this will delete all files that you have created since you made this commit so be careful!
 
-#### Staged, committed and pushed
+#### Staged, committed and pushed {-}
 
 If you have already pushed your commits to GitHub you can use the `git checkout` strategy described above and then commit and push to update GitHub (although this is not really considered 'best' practice). Another approach would be to use `git revert` (Note: as far as I can tell `git revert` is not the same as the 'Revert' option in RStudio). The `revert` command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the `revert` command in the Terminal. Let's say we want to revert back to our 'First commit' which has a SHA identifier `d27e79f1`. 
 

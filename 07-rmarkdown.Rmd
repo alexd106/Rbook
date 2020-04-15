@@ -147,11 +147,10 @@ rmarkdown::render('my_first_rmarkdown.Rmd', output_format = 'html_document')
 # see ?render for more options
 ```
 
-\  
-
 ## R markdown anatomy
 
 OK, now that you can render an R markdown file in RStudio into both HTML and pdf formats let's take a closer look at the different components of a typical R markdown document. Normally each R markdown document is composed of 3 main components, 1) a YAML header, 2) formatted text and 3) one or more code chunks.
+
 \  
 
 ```{r, echo=FALSE, fig.align='left', out.width='80%'}
@@ -207,9 +206,7 @@ which would look like this in the final rendered document (can you spot the mark
 
 >These data were obtained from a mesocosm experiment which aimed to examine the effect of benthic polychaete (*Nereis diversicolor*) biomass on sediment nutrient (NH~4~, NO~3~ and PO~3~) release. At the start of the experiment replicate mesocosms were filled with 20 cm^2^ of **homogenised** marine sediment and assigned to one of five polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).
 
-\  
-
-#### Emphasis
+#### Emphasis {-}
 
 Some of the most common R markdown syntax for providing emphasis and formatting text is given below.
 
@@ -227,9 +224,7 @@ Some of the most common R markdown syntax for providing emphasis and formatting 
 
 Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other [reasons][underline]). If you really want to underline text you can use `<span style="text-decoration:underline">underline this text</span>` for HTML output or `$\text{\underline{This sentence underlined using \LaTeX}}$` for pdf output. I just avoid underlining!
 
-\  
-
-#### White space and line breaks
+#### White space and line breaks {-}
 
 One of the things that can be confusing for new users of R markdown is the use of spaces and carriage returns (the enter key on your keyboard). In R markdown multiple spaces within the text are generally ignored as are carriage returns. For example this R markdown text
 
@@ -269,9 +264,7 @@ effect &nbsp; &nbsp; &nbsp; &nbsp; benthic polychaete (*Nereis diversicolor*) bi
 >mesocosm experiment which &nbsp; &nbsp; aimed to examine the    
 >effect &nbsp; &nbsp; &nbsp; &nbsp; benthic polychaete (*Nereis diversicolor*) biomass.
 
-\  
-
-#### Headings
+#### Headings {-}
 
 You can add headings and subheadings to your R markdown document by using the `#` symbol at the beginning of the line. You can decrease the size of the headings by simply adding more `#` symbols. For example 
 
@@ -293,9 +286,7 @@ results in headings in decreasing size order
 >##### Benthic Biodiversity experiment {.unlisted .unnumbered}
 >###### Benthic Biodiversity experiment {.unlisted .unnumbered}
 
-\  
-
-#### Comments
+#### Comments {-}
 
 As you can see above the meaning of the `#` symbol is different when formatting text in an R markdown document compared to a standard R script (which is used to included a comment - remember?!). You can, however, use a `#` symbol to comment code inside a [code chunk](#code_chunks) as usual (more about this in a bit). If you want to include a comment in your R markdown document outside a code chunk which won't be included in the final rendered document then enclose your comment between `<!--` and `-->`.
 
@@ -304,9 +295,8 @@ As you can see above the meaning of the `#` symbol is different when formatting 
 this is an example of how to format a comment using R markdown.
 -->
 ```
-\  
 
-#### Lists
+#### Lists {-}
 
 If you want to create a bullet point list of text you can format an unordered list with sub items. Notice that the sub-items need to be indented.  
 
@@ -351,9 +341,7 @@ If you need an ordered list
 >3. item 3
 >4. item 4
 
-\  
-
-#### Images
+#### Images {-}
 
 Another useful feature is the ability to embed images and links to web pages (or other documents) into your R markdown document. You can include images into your R markdown document in a number of different ways. Perhaps the simplest method is to use
 
@@ -375,15 +363,14 @@ library(knitr)
 include_graphics("images/Cute_grey_kitten.jpg")
 ```
 ````
+
 \  
 
 ```{r, echo=FALSE, fig.align='center', out.width='50%'}
 include_graphics("images/Cute_grey_kitten.jpg")
 ```
 
-\  
-
-#### Links
+#### Links {-}
 
 In addition to images you can also include links to webpages or other links in your document. Use the following syntax to create a clickable link to an existing webpage. The link text goes between the square brackets and the URL for the webpage between the round brackets immediately after.
  
@@ -395,8 +382,6 @@ You can include a text for your clickable [link](https://www.worldwildlife.org)
 which gives you: 
 
 >You can include a text for your clickable [link](https://www.worldwildlife.org)
-
-\  
 
 ### Code chunks {#code_chunks}
 

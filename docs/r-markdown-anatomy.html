@@ -327,8 +327,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="r-markdown-anatomy" class="section level2">
 <h2><span class="header-section-number">7.5</span> R markdown anatomy</h2>
-<p>OK, now that you can render an R markdown file in RStudio into both HTML and pdf formats let’s take a closer look at the different components of a typical R markdown document. Normally each R markdown document is composed of 3 main components, 1) a YAML header, 2) formatted text and 3) one or more code chunks.
- </p>
+<p>OK, now that you can render an R markdown file in RStudio into both HTML and pdf formats let’s take a closer look at the different components of a typical R markdown document. Normally each R markdown document is composed of 3 main components, 1) a YAML header, 2) formatted text and 3) one or more code chunks.</p>
+<p> </p>
 <p><img src="images/rm_components.png" width="80%" style="display: block; margin: auto auto auto 0;" /></p>
 <p> </p>
 <div id="yaml-header" class="section level3">
@@ -367,9 +367,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <blockquote>
 <p>These data were obtained from a mesocosm experiment which aimed to examine the effect of benthic polychaete (<em>Nereis diversicolor</em>) biomass on sediment nutrient (NH<sub>4</sub>, NO<sub>3</sub> and PO<sub>3</sub>) release. At the start of the experiment replicate mesocosms were filled with 20 cm<sup>2</sup> of <strong>homogenised</strong> marine sediment and assigned to one of five polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).</p>
 </blockquote>
-<p> </p>
-<div id="emphasis" class="section level4">
-<h4><span class="header-section-number">7.5.2.1</span> Emphasis</h4>
+<div id="emphasis" class="section level4 unnumbered">
+<h4>Emphasis</h4>
 <p>Some of the most common R markdown syntax for providing emphasis and formatting text is given below.</p>
 <p> </p>
 <table>
@@ -410,10 +409,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p> </p>
 <p>Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other <a href="https://softwareengineering.stackexchange.com/questions/207727/why-there-is-no-markdown-for-underline">reasons</a>). If you really want to underline text you can use <code>&lt;span style=&quot;text-decoration:underline&quot;&gt;underline this text&lt;/span&gt;</code> for HTML output or <code>$\text{\underline{This sentence underlined using \LaTeX}}$</code> for pdf output. I just avoid underlining!</p>
-<p> </p>
 </div>
-<div id="white-space-and-line-breaks" class="section level4">
-<h4><span class="header-section-number">7.5.2.2</span> White space and line breaks</h4>
+<div id="white-space-and-line-breaks" class="section level4 unnumbered">
+<h4>White space and line breaks</h4>
 <p>One of the things that can be confusing for new users of R markdown is the use of spaces and carriage returns (the enter key on your keyboard). In R markdown multiple spaces within the text are generally ignored as are carriage returns. For example this R markdown text</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb252-1" data-line-number="1">These      data were      obtained from a</a>
 <a class="sourceLine" id="cb252-2" data-line-number="2">mesocosm experiment which    aimed to examine the</a>
@@ -441,10 +439,9 @@ effect &amp;nbsp; &amp;nbsp; &amp;nbsp; &amp;nbsp; benthic polychaete (*Nereis d
 mesocosm experiment which     aimed to examine the<br />
 effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p>
 </blockquote>
-<p> </p>
 </div>
-<div id="headings" class="section level4">
-<h4><span class="header-section-number">7.5.2.3</span> Headings</h4>
+<div id="headings" class="section level4 unnumbered">
+<h4>Headings</h4>
 <p>You can add headings and subheadings to your R markdown document by using the <code>#</code> symbol at the beginning of the line. You can decrease the size of the headings by simply adding more <code>#</code> symbols. For example</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="fu"># Benthic Biodiversity experiment</span></a>
 <a class="sourceLine" id="cb254-2" data-line-number="2"><span class="fu">## Benthic Biodiversity experiment</span></a>
@@ -461,18 +458,16 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <h5 id="benthic-biodiversity-experiment-5" class="unlisted unnumbered">Benthic Biodiversity experiment</h5>
 <h6 id="benthic-biodiversity-experiment-6" class="unlisted unnumbered">Benthic Biodiversity experiment</h6>
 </blockquote>
-<p> </p>
 </div>
-<div id="comments" class="section level4">
-<h4><span class="header-section-number">7.5.2.4</span> Comments</h4>
+<div id="comments" class="section level4 unnumbered">
+<h4>Comments</h4>
 <p>As you can see above the meaning of the <code>#</code> symbol is different when formatting text in an R markdown document compared to a standard R script (which is used to included a comment - remember?!). You can, however, use a <code>#</code> symbol to comment code inside a <a href="r-markdown-anatomy.html#code_chunks">code chunk</a> as usual (more about this in a bit). If you want to include a comment in your R markdown document outside a code chunk which won’t be included in the final rendered document then enclose your comment between <code>&lt;!--</code> and <code>--&gt;</code>.</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb255-1" data-line-number="1">&lt;!--</a>
 <a class="sourceLine" id="cb255-2" data-line-number="2"><span class="co">this is an example of how to format a comment using R markdown.</span></a>
 <a class="sourceLine" id="cb255-3" data-line-number="3"><span class="co">--&gt;</span></a></code></pre></div>
-<p> </p>
 </div>
-<div id="lists" class="section level4">
-<h4><span class="header-section-number">7.5.2.5</span> Lists</h4>
+<div id="lists" class="section level4 unnumbered">
+<h4>Lists</h4>
 <p>If you want to create a bullet point list of text you can format an unordered list with sub items. Notice that the sub-items need to be indented.</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb256-1" data-line-number="1">- <span class="fl">item 1</span></a>
 <a class="sourceLine" id="cb256-2" data-line-number="2"><span class="fl">- item 2</span></a>
@@ -515,10 +510,9 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <li>item 4</li>
 </ol>
 </blockquote>
-<p> </p>
 </div>
-<div id="images" class="section level4">
-<h4><span class="header-section-number">7.5.2.6</span> Images</h4>
+<div id="images" class="section level4 unnumbered">
+<h4>Images</h4>
 <p>Another useful feature is the ability to embed images and links to web pages (or other documents) into your R markdown document. You can include images into your R markdown document in a number of different ways. Perhaps the simplest method is to use</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="al">![Cute grey kitten](images/Cute_grey_kitten.jpg)</span></a></code></pre></div>
 <p>resulting in:</p>
@@ -534,17 +528,15 @@ include_graphics(&quot;images/Cute_grey_kitten.jpg&quot;)
 ```</code></pre>
 <p> </p>
 <p><img src="images/Cute_grey_kitten.jpg" width="50%" style="display: block; margin: auto;" /></p>
-<p> </p>
 </div>
-<div id="links" class="section level4">
-<h4><span class="header-section-number">7.5.2.7</span> Links</h4>
+<div id="links" class="section level4 unnumbered">
+<h4>Links</h4>
 <p>In addition to images you can also include links to webpages or other links in your document. Use the following syntax to create a clickable link to an existing webpage. The link text goes between the square brackets and the URL for the webpage between the round brackets immediately after.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode markdown"><code class="sourceCode markdown"><a class="sourceLine" id="cb260-1" data-line-number="1">You can include a text for your clickable <span class="ot">[link](https://www.worldwildlife.org)</span></a></code></pre></div>
 <p>which gives you:</p>
 <blockquote>
 <p>You can include a text for your clickable <a href="https://www.worldwildlife.org">link</a></p>
 </blockquote>
-<p> </p>
 </div>
 </div>
 <div id="code_chunks" class="section level3">
