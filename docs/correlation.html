@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data in R | An Introduction to R</title>
-  <meta name="description" content="Chapter 3 Data in R | An Introduction to R" />
+  <title>5.2 Correlation | An Introduction to R</title>
+  <meta name="description" content="5.2 Correlation | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta property="og:title" content="5.2 Correlation | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta property="og:description" content="5.2 Correlation | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta name="twitter:title" content="5.2 Correlation | An Introduction to R" />
   
-  <meta name="twitter:description" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta name="twitter:description" content="5.2 Correlation | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="saving-stuff-in-r.html"/>
-<link rel="next" href="data-types.html"/>
+<link rel="prev" href="one-and-two-sample-tests.html"/>
+<link rel="next" href="simple-linear-modelling.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -329,18 +329,64 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_r" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Data in R</h1>
-<p>Until now, you’ve created fairly simple data in R and stored it in a <a href="r-functions.html#funcs">vector</a>. However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master.</p>
-<p>In this Chapter we’ll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate and summarise (wrangle) data and finally how to export data from R to an external file.</p>
+<div id="correlation" class="section level2">
+<h2><span class="header-section-number">5.2</span> Correlation</h2>
+<p>In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be found using the <code>cor()</code> function. Using the <code>trees</code> data set again, we can determine the correlation coefficient of the association between tree <code>Height</code> and <code>Volume</code>.</p>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
+<a class="sourceLine" id="cb266-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
+<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb266-4" data-line-number="4"><span class="co">#  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></a>
+<a class="sourceLine" id="cb266-5" data-line-number="5"><span class="co">#  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></a>
+<a class="sourceLine" id="cb266-6" data-line-number="6"><span class="co">#  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></a>
+<a class="sourceLine" id="cb266-7" data-line-number="7"><span class="kw">cor</span>(trees<span class="op">$</span>Height, trees<span class="op">$</span>Volume)</a>
+<a class="sourceLine" id="cb266-8" data-line-number="8"><span class="co"># [1] 0.5982</span></a></code></pre></div>
+<p>or we can produce a matrix of correlation coefficients for all variables in a data frame</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">cor</span>(trees)</a>
+<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="co">#         Girth Height Volume</span></a>
+<a class="sourceLine" id="cb267-3" data-line-number="3"><span class="co"># Girth  1.0000 0.5193 0.9671</span></a>
+<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="co"># Height 0.5193 1.0000 0.5982</span></a>
+<a class="sourceLine" id="cb267-5" data-line-number="5"><span class="co"># Volume 0.9671 0.5982 1.0000</span></a></code></pre></div>
+<p>Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using <code>cor()</code> on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an <em>a priori</em> reason for doing so.</p>
+<p>If you have missing values in the variables you are trying to correlate, <code>cor()</code> will return an error message (as will most basic statistics tests in R). You will either have to remove these observations or tell R what to do when an observation is missing. A useful argument to use in this situation is <code>use = &quot;complete.obs&quot;</code>.</p>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">cor</span>(trees, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="co">#         Girth Height Volume</span></a>
+<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="co"># Girth  1.0000 0.5193 0.9671</span></a>
+<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="co"># Height 0.5193 1.0000 0.5982</span></a>
+<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="co"># Volume 0.9671 0.5982 1.0000</span></a></code></pre></div>
+<p>The function <code>cor()</code> will return the correlation coefficient of two variables, but gives no indication whether the coefficient is significantly different from zero. To do this you need to use the function <code>cor.test()</code>.</p>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw">cor.test</span>(trees<span class="op">$</span>Height, trees<span class="op">$</span>Volume)</a>
+<a class="sourceLine" id="cb269-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb269-3" data-line-number="3"><span class="co">#   Pearson&#39;s product-moment correlation</span></a>
+<a class="sourceLine" id="cb269-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb269-5" data-line-number="5"><span class="co"># data:  trees$Height and trees$Volume</span></a>
+<a class="sourceLine" id="cb269-6" data-line-number="6"><span class="co"># t = 4, df = 29, p-value = 4e-04</span></a>
+<a class="sourceLine" id="cb269-7" data-line-number="7"><span class="co"># alternative hypothesis: true correlation is not equal to 0</span></a>
+<a class="sourceLine" id="cb269-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb269-9" data-line-number="9"><span class="co">#  0.3095 0.7860</span></a>
+<a class="sourceLine" id="cb269-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb269-11" data-line-number="11"><span class="co">#    cor </span></a>
+<a class="sourceLine" id="cb269-12" data-line-number="12"><span class="co"># 0.5982</span></a></code></pre></div>
+<p>Two non-parametric equivalents to Pearson correlation are available within the <code>cor.test()</code> function; Spearman’s rank and Kendall’s tau coefficient. To call these simply include the argument <code>method = &quot;spearman&quot;</code> or <code>method = &quot;kendall&quot;</code> depending on the test you wish to use. For example</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">cor.test</span>(trees<span class="op">$</span>Height, trees<span class="op">$</span>Volume, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a>
+<a class="sourceLine" id="cb270-2" data-line-number="2"><span class="co"># Warning in cor.test.default(trees$Height, trees$Volume, method = &quot;spearman&quot;):</span></a>
+<a class="sourceLine" id="cb270-3" data-line-number="3"><span class="co"># Cannot compute exact p-value with ties</span></a>
+<a class="sourceLine" id="cb270-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb270-5" data-line-number="5"><span class="co">#   Spearman&#39;s rank correlation rho</span></a>
+<a class="sourceLine" id="cb270-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb270-7" data-line-number="7"><span class="co"># data:  trees$Height and trees$Volume</span></a>
+<a class="sourceLine" id="cb270-8" data-line-number="8"><span class="co"># S = 2090, p-value = 6e-04</span></a>
+<a class="sourceLine" id="cb270-9" data-line-number="9"><span class="co"># alternative hypothesis: true rho is not equal to 0</span></a>
+<a class="sourceLine" id="cb270-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb270-11" data-line-number="11"><span class="co">#    rho </span></a>
+<a class="sourceLine" id="cb270-12" data-line-number="12"><span class="co"># 0.5787</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="saving-stuff-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="one-and-two-sample-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="simple-linear-modelling.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -362,7 +408,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/05-stats.Rmd",
 "text": "Edit"
 },
 "history": {

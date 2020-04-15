@@ -1,3 +1,224 @@
 # Simple Statistics in R {#stats_r}
 
-content to follow
+| Note: The content of this Chapter is a very old draft which we have included here as a placeholder. Although you may still find some of the the content useful we are in the process of substantially rewriting this Chapter.
+
+\  
+
+In addition to R’s powerful data manipulation and graphics facilities, R includes a host of procedures which you can use to analyse your data. Many of these procedures are included with the base installation of R, however, even more can be installed with packages available from the CRAN website (see [Chapter 1](#packages) for more details). All of the procedures described in this Chapter can be carried out without installing additional packages. 
+
+## One and two sample tests
+
+The two main functions for these types of tests are the `t.test()` and `wilcox.test()` that perform t tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.
+
+As an example of a one sample t test we will use the `trees` dataset which is included with R. To access this in-built dataset we can use the `data()` function. 
+
+```{r ss1, echo=TRUE, collapse=TRUE}
+data(trees)
+str(trees)
+summary(trees)
+```
+
+If we wanted to test whether mean height of black cherry trees in this sample is 70 ft or not assuming these data are normally distributed .
+
+```{r ss2, echo=TRUE, collapse=TRUE}
+t.test(trees$Height, mu = 70)
+```
+
+The above summary has a fairly logical layout and includes the name of the test that we have asked for (`One Sample t-test`), which data has been used (`data:  Height`), the t statistic, degrees of freedom and associated p value (`t = 5.2429, df = 30, p-value = 1.173e-05`). It also states the alternative hypothesis (`alternative hypothesis: true mean is not equal to 70`) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (`95 percent confidence interval:73.6628 78.3372`) and also an estimate of the mean (`sample estimates: mean of x : 76`). In the above example, the p value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70. 
+
+The function `t.test()` also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either `alternative = "greater"` or `alternative = "less` which tests whether the sample mean is greater or less than the mean specified.  For example, to test whether our sample mean is greater than 70 ft.
+
+```{r ss3, echo=TRUE, collapse=TRUE}
+t.test(trees$Height, mu = 70, alternative="greater")
+```
+
+You can also change the confidence level used for estimating the confidence intervals using the argument `conf.level = 0.99`. In this case the new confidence interval would be 99%.
+
+Although t tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the `wilcox.test()` function.
+
+```{r ss4, echo=TRUE, collapse=TRUE}
+wilcox.test(trees$Height, mu = 70)
+```
+
+Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact p value. This is only really a problem with small sample sizes. You can also use the arguments `alternative = "greater"` and `alternative = "less"`.
+
+It is always a good idea to examine your data for departures from normality, rather than just assuming everything is ok. In addition to the functions you have already come across (`hist()`, `boxplot()`, `summary()` etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.
+
+To construct a Q-Q plot you need to use both the `qqnorm()` and `qqline()` functions
+
+```{r ss5, echo=TRUE, collapse=TRUE}
+qqnorm(trees$Height)
+qqline(trees$Height, lty = 2)
+```
+
+If you insist on performing a specific test for normality you can use the function `shapiro.test()` which performs a Shapiro – Wilk test of normality.
+
+```{r ss6, echo=TRUE, collapse=TRUE}
+shapiro.test(trees$Height)
+```
+
+In the example above, the p value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed. 
+
+In addition to one-sample tests, both the `t.test()` and `wilcox.test()` functions can be used to test for differences between two samples. A two sample t test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the `atmosphere.txt` data file located in the `data/` directory.
+
+```{r ss7, echo=TRUE, collapse=TRUE}
+atmos <- read.table('data/atmosphere.txt', header = TRUE)
+str(atmos)
+```
+
+As with our previous data frame (`flowers`), these data are in the long format. The column `moisture` contains the moisture content measured in each cloud and the column `treatment` identifies whether the cloud was `seeded` or `unseeded`. To perform a two-sample t test
+
+```{r ss8, echo=TRUE, collapse=TRUE}
+t.test(atmos$moisture ~ atmos$treatment)
+```
+
+Notice the use of the formula method (`atmos$moisture~ atmos$treatment`, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the dataframe. Use `?t.test` for further details. The details of the output are similar to the one-sample t test. The Welch’s variant of the t test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the `var.equal = TRUE` argument
+
+```{r ss9, echo=TRUE, collapse=TRUE}
+t.test(atmos$moisture ~ atmos$treatment, var.equal = TRUE)
+```
+
+To test whether the assumption of equal variances is valid you can perform an F-test on the ratio of the group variances using the `var.test()` function.
+
+```{r ss10, echo=TRUE, collapse=TRUE}
+var.test(atmos$moisture ~ atmos$treatment)
+```
+
+As the p value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the F-test is sensitive to departures from normality and should not be used with data which is not normal. See the `car` package for alternatives. 
+
+The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method  
+
+```{r ss11, echo=TRUE, collapse=TRUE}
+wilcox.test(atmos$moisture ~ atmos$treatment)
+```
+
+You can also use the `t.test()` and `wilcox.test()` functions to test paired data. Paired data are where there are two measurements on the same experimental unit (either individual, site etc) and essentially tests for differences between the paired observations.  For example, the pollution dataset gives the biodiversity score of aquatic invertebrates collected using kick samples in 17 different rivers. These data are paired because two samples were taken on each river, one upstream of a paper mill and one downstream.
+
+```{r ss12, echo=TRUE, collapse=TRUE}
+pollution <- read.table('data/pollution.txt', header = TRUE)
+str(pollution)
+```
+
+Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired t test use the `paired = TRUE` argument.
+
+```{r ss13, echo=TRUE, collapse=TRUE}
+t.test(pollution$down, pollution$up, paired = TRUE)
+```
+
+The output is almost identical to that of a one-sample t test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way
+
+```{r ss14, echo=TRUE, collapse=TRUE}
+wilcox.test(pollution$down, pollution$up, paired = TRUE)
+```
+
+The function `prop.test()` can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below
+
+|                |    before   |     after   |
+|:--------------:|:-----------:|:-----------:|
+|  would buy     |      45     |      71     |
+|  would not buy |      35     |      32     |
+
+From the table above we can conclude that 56% of cat owners would buy the cat food before the campaign compared to 69% after. But, has the advertising campaign been a success?
+
+The `prop.test()` function has two main arguments which are given as two vectors. The first vector contains the number of positive outcomes and the second vector the total numbers for each group. So to perform the test we first need to define these vectors 
+
+```{r ss15, echo=TRUE, collapse=TRUE}
+buy <- c(45,71)                  	# creates a vector of positive outcomes
+total <-c((45 + 35), (71 + 32))	  # creates a vector of total numbers
+prop.test(buy,total)		          # perform the test
+```
+
+There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (p = 0.107). Use `?prop.test` to explore additional uses of the binomial proportions test.
+
+We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2x2 matrix using the `matrix()` function (note, there are many alternative methods of constructing a table like this).
+
+```{r ss16, echo=TRUE, collapse=TRUE}
+buyers <- matrix(c(45, 35, 71, 32), nrow = 2)
+buyers
+```
+
+Notice that you enter the data column wise into the matrix and then specify the number of rows using `nrow =`.
+
+We can also change the row names and column names from the defaults to make it look more like a table (you don’t really need to do this to perform a Chi-square test)
+
+```{r ss17, echo=TRUE, collapse=TRUE}
+colnames(buyers) <- c("before", "after")
+rownames(buyers) <- c("buy", "notbuy")
+buyers
+```
+
+You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the `chisq.test()` function. In this example the only argument is our matrix of counts.
+
+```{r ss18, echo=TRUE, collapse=TRUE}
+chisq.test(buyers)
+```
+
+There is no evidence (p = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the `prop.test()`. You can also use the `chisq.test()` function on raw (untabulated) data and to test for goodness of fit (see `?chisq.test` for more details).
+
+## Correlation
+
+In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be found using the `cor()` function. Using the `trees` data set again, we can determine the correlation coefficient of the association between tree `Height` and `Volume`.
+
+```{r ss19, echo=TRUE, collapse=TRUE}
+data(trees)
+str(trees)
+cor(trees$Height, trees$Volume)
+```
+
+or we can produce a matrix of correlation coefficients for all variables in a data frame 
+
+```{r ss20, echo=TRUE, collapse=TRUE}
+cor(trees)
+```
+
+Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using `cor()` on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an *a priori* reason for doing so. 
+
+If you have missing values in the variables you are trying to correlate, `cor()` will return an error message (as will most basic statistics tests in R). You will either have to remove these observations or tell R what to do when an observation is missing. A useful argument to use in this situation is `use = "complete.obs"`. 
+
+```{r ss21, echo=TRUE, collapse=TRUE}
+cor(trees, use = "complete.obs")
+```
+
+The function `cor()` will return the correlation coefficient of two variables, but gives no indication whether the coefficient is significantly different from zero. To do this you need to use the function `cor.test()`.
+
+```{r ss22, echo=TRUE, collapse=TRUE}
+cor.test(trees$Height, trees$Volume)
+```
+
+Two non-parametric equivalents to Pearson correlation are available within the `cor.test()` function; Spearman’s rank and Kendall’s tau coefficient. To call these simply include the argument `method = "spearman"` or `method = "kendall"` depending on the test you wish to use. For example
+
+```{r ss23, echo=TRUE, collapse=TRUE}
+cor.test(trees$Height, trees$Volume, method = "spearman")
+```
+
+
+## Simple linear modelling
+
+To fit a linear model to your data, we use the `lm()` function (linear model). This function can be used to fit a wide variety of models including bivariate linear regression, multiple linear regression, polynomial regression and ANOVA type designs. In this section we won't go into any of the detail of linear model theory, we'll just briefly introduce you to fitting some of these models in R.
+
+The structure of the main argument when using the `lm()` function is specified using model formula
+
+| *response variable ~ explanatory variable(s)*
+
+You've already come across this type of model specification in connection with the t and Wilcoxon’s tests (which are just types of linear models). It's simply read as ‘the variation in the response variable modelled as a function (~) of the explanatory variable(s)’. So a bivariate linear regression of a response variable, `y` and a single continuous explanatory variable, `x` would be written as 
+
+```{r ss24, echo=TRUE, eval=FALSE}
+lm(y ~ x)
+```
+
+We can also include multiple explanatory variables separating them with either a `+` symbol for additive effects or a `:` for interactions
+
+```{r ss25, echo=TRUE, eval=FALSE}
+lm(y ~ x1 + x2)
+lm(y ~ x1 + x2 + x1:x2)
+```
+
+So how does the `lm()` function know whether you want to model a relationship between two continuous variables (i.e. bivariate regression) or model the differences between group means (i.e. one-way ANOVA)? To answer that we also need to take into account the type (or class) of the explanatory variables(s)? 
+\  
+
+```{r links, child="links.md"}
+```
+
+
+
+

@@ -4,24 +4,24 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>7.4 Create an R markdown document | A Introduction to R</title>
-  <meta name="description" content="An Introduction to R" />
+  <title>7.4 Create an R markdown document | An Introduction to R</title>
+  <meta name="description" content="7.4 Create an R markdown document | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="7.4 Create an R markdown document | A Introduction to R" />
+  <meta property="og:title" content="7.4 Create an R markdown document | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="An Introduction to R" />
+  <meta property="og:description" content="7.4 Create an R markdown document | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="7.4 Create an R markdown document | A Introduction to R" />
+  <meta name="twitter:title" content="7.4 Create an R markdown document | An Introduction to R" />
   
-  <meta name="twitter:description" content="An Introduction to R" />
+  <meta name="twitter:description" content="7.4 Create an R markdown document | An Introduction to R" />
   
 
-<meta name="author" content="Alex Douglas, Francesca Mancini, Deon Roos, Ana Couto &amp; David Lusseau" />
+<meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
 
@@ -258,7 +258,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.4.12" data-path="bestiary.html"><a href="bestiary.html#pairs-plot"><i class="fa fa-check"></i><b>4.4.12</b> Pairs plot</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a></li>
+<li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>5.1</b> One and two sample tests</a></li>
+<li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
 <li class="chapter" data-level="7" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports with R markdown</a><ul>
 <li class="chapter" data-level="7.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>7.1</b> What is R markdown?</a></li>
@@ -317,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Introduction to R</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to R</a>
           </h1>
         </div>
 
@@ -351,15 +355,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb248-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb248-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
-<a class="sourceLine" id="cb248-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb248-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb248-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb248-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
+<a class="sourceLine" id="cb273-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb273-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb273-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb273-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
+<a class="sourceLine" id="cb273-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb273-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb273-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb273-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
 </div>
             </section>
 

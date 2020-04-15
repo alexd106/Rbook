@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 3 Data in R | An Introduction to R</title>
-  <meta name="description" content="Chapter 3 Data in R | An Introduction to R" />
+  <title>5.3 Simple linear modelling | An Introduction to R</title>
+  <meta name="description" content="5.3 Simple linear modelling | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta property="og:title" content="5.3 Simple linear modelling | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta property="og:description" content="5.3 Simple linear modelling | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta name="twitter:title" content="5.3 Simple linear modelling | An Introduction to R" />
   
-  <meta name="twitter:description" content="Chapter 3 Data in R | An Introduction to R" />
+  <meta name="twitter:description" content="5.3 Simple linear modelling | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="saving-stuff-in-r.html"/>
-<link rel="next" href="data-types.html"/>
+<link rel="prev" href="correlation.html"/>
+<link rel="next" href="prog-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -329,18 +329,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data_r" class="section level1">
-<h1><span class="header-section-number">Chapter 3</span> Data in R</h1>
-<p>Until now, you’ve created fairly simple data in R and stored it in a <a href="r-functions.html#funcs">vector</a>. However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master.</p>
-<p>In this Chapter we’ll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate and summarise (wrangle) data and finally how to export data from R to an external file.</p>
+<div id="simple-linear-modelling" class="section level2">
+<h2><span class="header-section-number">5.3</span> Simple linear modelling</h2>
+<p>To fit a linear model to your data, we use the <code>lm()</code> function (linear model). This function can be used to fit a wide variety of models including bivariate linear regression, multiple linear regression, polynomial regression and ANOVA type designs. In this section we won’t go into any of the detail of linear model theory, we’ll just briefly introduce you to fitting some of these models in R.</p>
+<p>The structure of the main argument when using the <code>lm()</code> function is specified using model formula</p>
+<div class="line-block"><em>response variable ~ explanatory variable(s)</em></div>
+<p>You’ve already come across this type of model specification in connection with the t and Wilcoxon’s tests (which are just types of linear models). It’s simply read as ‘the variation in the response variable modelled as a function (~) of the explanatory variable(s)’. So a bivariate linear regression of a response variable, <code>y</code> and a single continuous explanatory variable, <code>x</code> would be written as</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</a></code></pre></div>
+<p>We can also include multiple explanatory variables separating them with either a <code>+</code> symbol for additive effects or a <code>:</code> for interactions</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2)</a>
+<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span>x1<span class="op">:</span>x2)</a></code></pre></div>
+<p>So how does the <code>lm()</code> function know whether you want to model a relationship between two continuous variables (i.e. bivariate regression) or model the differences between group means (i.e. one-way ANOVA)? To answer that we also need to take into account the type (or class) of the explanatory variables(s)?
+ </p>
+<!--course website Links-->
+<!--cran Links-->
+<!--RStudio-->
+<!--style guides-->
+<!--Package Links-->
+<!--Editors-->
+<!--Bioconductor Links-->
+<!--GitHub Links-->
+<!--R markdown Links-->
+<!--ggplot Links-->
+<!--Basics links-->
+<!--Data links-->
+<!--Resource Links-->
+<!--Misc Links-->
+
 </div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="saving-stuff-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="data-types.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="correlation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="prog-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -362,7 +386,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/05-stats.Rmd",
 "text": "Edit"
 },
 "history": {

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5.1 One and two sample tests | An Introduction to R</title>
+  <meta name="description" content="5.1 One and two sample tests | An Introduction to R" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5.1 One and two sample tests | An Introduction to R" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="5.1 One and two sample tests | An Introduction to R" />
+  <meta name="github-repo" content="alexd106/Rbook" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5.1 One and two sample tests | An Introduction to R" />
+  
+  <meta name="twitter:description" content="5.1 One and two sample tests | An Introduction to R" />
+  
+
+<meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="stats-r.html"/>
+<link rel="next" href="correlation.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">An Introduction R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="0.1" data-path="the-aim-of-this-book.html"><a href="the-aim-of-this-book.html"><i class="fa fa-check"></i><b>0.1</b> The aim of this book</a></li>
+<li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
+<li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
+<li class="chapter" data-level="0.4" data-path="who-are-we.html"><a href="who-are-we.html"><i class="fa fa-check"></i><b>0.4</b> Who are we?</a></li>
+<li class="chapter" data-level="0.5" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.5</b> Book website</a></li>
+<li class="chapter" data-level="0.6" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.6</b> Some R pointers</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
+<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
+<li class="chapter" data-level="1.1.1" data-path="install-r.html"><a href="install-r.html#windows-users"><i class="fa fa-check"></i><b>1.1.1</b> Windows users</a></li>
+<li class="chapter" data-level="1.1.2" data-path="install-r.html"><a href="install-r.html#mac-users"><i class="fa fa-check"></i><b>1.1.2</b> Mac users</a></li>
+<li class="chapter" data-level="1.1.3" data-path="install-r.html"><a href="install-r.html#linux-users"><i class="fa fa-check"></i><b>1.1.3</b> Linux users</a></li>
+<li class="chapter" data-level="1.1.4" data-path="install-r.html"><a href="install-r.html#testing-r"><i class="fa fa-check"></i><b>1.1.4</b> Testing R</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="installing-rstudio.html"><a href="installing-rstudio.html#windows-and-mac-users"><i class="fa fa-check"></i><b>1.2.1</b> Windows and Mac users</a></li>
+<li class="chapter" data-level="1.2.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html#linux-users-1"><i class="fa fa-check"></i><b>1.2.2</b> Linux users</a></li>
+<li class="chapter" data-level="1.2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html#testing-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Testing RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a><ul>
+<li class="chapter" data-level="1.3.1" data-path="rstudio-orient.html"><a href="rstudio-orient.html#cons"><i class="fa fa-check"></i><b>1.3.1</b> Console</a></li>
+<li class="chapter" data-level="1.3.2" data-path="rstudio-orient.html"><a href="rstudio-orient.html#environment-history-connections"><i class="fa fa-check"></i><b>1.3.2</b> Environment / History / Connections</a></li>
+<li class="chapter" data-level="1.3.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html#files-plots-packages-help-viewer"><i class="fa fa-check"></i><b>1.3.3</b> Files / Plots / Packages / Help / Viewer</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a></li>
+<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a><ul>
+<li class="chapter" data-level="1.5.1" data-path="packages.html"><a href="packages.html#cran_packages"><i class="fa fa-check"></i><b>1.5.1</b> CRAN packages</a></li>
+<li class="chapter" data-level="1.5.2" data-path="packages.html"><a href="packages.html#bioconductor-packages"><i class="fa fa-check"></i><b>1.5.2</b> Bioconductor packages</a></li>
+<li class="chapter" data-level="1.5.3" data-path="packages.html"><a href="packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
+<li class="chapter" data-level="1.5.4" data-path="packages.html"><a href="packages.html#using-packages"><i class="fa fa-check"></i><b>1.5.4</b> Using packages</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="rsprojs.html"><a href="rsprojs.html"><i class="fa fa-check"></i><b>1.6</b> Projects in RStudio</a></li>
+<li class="chapter" data-level="1.7" data-path="work-d.html"><a href="work-d.html"><i class="fa fa-check"></i><b>1.7</b> Working directories</a></li>
+<li class="chapter" data-level="1.8" data-path="dir-struct.html"><a href="dir-struct.html"><i class="fa fa-check"></i><b>1.8</b> Directory structure</a></li>
+<li class="chapter" data-level="1.9" data-path="file-names.html"><a href="file-names.html"><i class="fa fa-check"></i><b>1.9</b> File names</a></li>
+<li class="chapter" data-level="1.10" data-path="proj-doc.html"><a href="proj-doc.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
+<li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
+<li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
+<li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
+<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
+<li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#funcs"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
+<li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
+<li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#vec_ord"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
+<li class="chapter" data-level="2.4.4" data-path="vectors.html"><a href="vectors.html#vectorisation"><i class="fa fa-check"></i><b>2.4.4</b> Vectorisation</a></li>
+<li class="chapter" data-level="2.4.5" data-path="vectors.html"><a href="vectors.html#na_vals"><i class="fa fa-check"></i><b>2.4.5</b> Missing data</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
+<li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a><ul>
+<li class="chapter" data-level="3.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3.1</b> Data types</a></li>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
+<li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scal_vecs"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
+<li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.3</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
+<li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import-functions"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
+<li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
+<li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
+<li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
+<li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
+<li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
+<li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
+<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="exporting-data.html"><a href="exporting-data.html#export-functions"><i class="fa fa-check"></i><b>3.6.1</b> Export functions</a></li>
+<li class="chapter" data-level="3.6.2" data-path="exporting-data.html"><a href="exporting-data.html#other-export-functions"><i class="fa fa-check"></i><b>3.6.2</b> Other export functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>4</b> Graphics in R</a><ul>
+<li class="chapter" data-level="4.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>4.1</b> Beginning at the end</a></li>
+<li class="chapter" data-level="4.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>4.2</b> The start of the end</a><ul>
+<li class="chapter" data-level="4.2.1" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#the-purest-of-ggplots"><i class="fa fa-check"></i><b>4.2.1</b> The purest of ggplots</a></li>
+<li class="chapter" data-level="4.2.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#wrapping-grids"><i class="fa fa-check"></i><b>4.2.2</b> Wrapping grids</a></li>
+<li class="chapter" data-level="4.2.3" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#plotting-multiple-ggplots"><i class="fa fa-check"></i><b>4.2.3</b> Plotting multiple ggplots</a></li>
+<li class="chapter" data-level="4.2.4" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#make-it-your-own"><i class="fa fa-check"></i><b>4.2.4</b> Make it your own</a></li>
+<li class="chapter" data-level="4.2.5" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#setting-the-theme"><i class="fa fa-check"></i><b>4.2.5</b> Setting the theme</a></li>
+<li class="chapter" data-level="4.2.6" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#prettification"><i class="fa fa-check"></i><b>4.2.6</b> Prettification</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>4.3</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="4.3.1" data-path="tips.html"><a href="tips.html#statistics-layer"><i class="fa fa-check"></i><b>4.3.1</b> Statistics layer</a></li>
+<li class="chapter" data-level="4.3.2" data-path="tips.html"><a href="tips.html#axis-limits-and-zooms"><i class="fa fa-check"></i><b>4.3.2</b> Axis limits and zooms</a></li>
+<li class="chapter" data-level="4.3.3" data-path="tips.html"><a href="tips.html#layering-layers"><i class="fa fa-check"></i><b>4.3.3</b> Layering layers</a></li>
+<li class="chapter" data-level="4.3.4" data-path="tips.html"><a href="tips.html#continuous-colours"><i class="fa fa-check"></i><b>4.3.4</b> Continuous colours</a></li>
+<li class="chapter" data-level="4.3.5" data-path="tips.html"><a href="tips.html#size-of-points"><i class="fa fa-check"></i><b>4.3.5</b> Size of points</a></li>
+<li class="chapter" data-level="4.3.6" data-path="tips.html"><a href="tips.html#moving-the-legend"><i class="fa fa-check"></i><b>4.3.6</b> Moving the legend</a></li>
+<li class="chapter" data-level="4.3.7" data-path="tips.html"><a href="tips.html#hiding-the-legend"><i class="fa fa-check"></i><b>4.3.7</b> Hiding the legend</a></li>
+<li class="chapter" data-level="4.3.8" data-path="tips.html"><a href="tips.html#hiding-part-of-the-legend"><i class="fa fa-check"></i><b>4.3.8</b> Hiding part of the legend</a></li>
+<li class="chapter" data-level="4.3.9" data-path="tips.html"><a href="tips.html#writing-on-a-figure"><i class="fa fa-check"></i><b>4.3.9</b> Writing on a figure</a></li>
+<li class="chapter" data-level="4.3.10" data-path="tips.html"><a href="tips.html#ticks-and-tick-labels"><i class="fa fa-check"></i><b>4.3.10</b> Ticks and tick labels</a></li>
+<li class="chapter" data-level="4.3.11" data-path="tips.html"><a href="tips.html#more-advanced-patchwork"><i class="fa fa-check"></i><b>4.3.11</b> More advanced patchwork</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>4.4</b> A ggplot bestiary</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="bestiary.html"><a href="bestiary.html#density-plot"><i class="fa fa-check"></i><b>4.4.1</b> Density plot</a></li>
+<li class="chapter" data-level="4.4.2" data-path="bestiary.html"><a href="bestiary.html#histogram"><i class="fa fa-check"></i><b>4.4.2</b> Histogram</a></li>
+<li class="chapter" data-level="4.4.3" data-path="bestiary.html"><a href="bestiary.html#frequency-polygons"><i class="fa fa-check"></i><b>4.4.3</b> Frequency polygons</a></li>
+<li class="chapter" data-level="4.4.4" data-path="bestiary.html"><a href="bestiary.html#boxplot"><i class="fa fa-check"></i><b>4.4.4</b> Boxplot</a></li>
+<li class="chapter" data-level="4.4.5" data-path="bestiary.html"><a href="bestiary.html#violin-plots"><i class="fa fa-check"></i><b>4.4.5</b> Violin plots</a></li>
+<li class="chapter" data-level="4.4.6" data-path="bestiary.html"><a href="bestiary.html#barchart"><i class="fa fa-check"></i><b>4.4.6</b> Barchart</a></li>
+<li class="chapter" data-level="4.4.7" data-path="bestiary.html"><a href="bestiary.html#quantile-lines"><i class="fa fa-check"></i><b>4.4.7</b> Quantile lines</a></li>
+<li class="chapter" data-level="4.4.8" data-path="bestiary.html"><a href="bestiary.html#heatmap"><i class="fa fa-check"></i><b>4.4.8</b> Heatmap</a></li>
+<li class="chapter" data-level="4.4.9" data-path="bestiary.html"><a href="bestiary.html#hex-map"><i class="fa fa-check"></i><b>4.4.9</b> Hex map</a></li>
+<li class="chapter" data-level="4.4.10" data-path="bestiary.html"><a href="bestiary.html#contour-map"><i class="fa fa-check"></i><b>4.4.10</b> Contour map</a></li>
+<li class="chapter" data-level="4.4.11" data-path="bestiary.html"><a href="bestiary.html#cleveland-dotplot"><i class="fa fa-check"></i><b>4.4.11</b> Cleveland dotplot</a></li>
+<li class="chapter" data-level="4.4.12" data-path="bestiary.html"><a href="bestiary.html#pairs-plot"><i class="fa fa-check"></i><b>4.4.12</b> Pairs plot</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a><ul>
+<li class="chapter" data-level="5.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>5.1</b> One and two sample tests</a></li>
+<li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
+<li class="chapter" data-level="7" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports with R markdown</a><ul>
+<li class="chapter" data-level="7.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>7.1</b> What is R markdown?</a></li>
+<li class="chapter" data-level="7.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>7.2</b> Why use R markdown?</a></li>
+<li class="chapter" data-level="7.3" data-path="get-started-with-r-markdown.html"><a href="get-started-with-r-markdown.html"><i class="fa fa-check"></i><b>7.3</b> Get started with R markdown</a></li>
+<li class="chapter" data-level="7.4" data-path="new-rm.html"><a href="new-rm.html"><i class="fa fa-check"></i><b>7.4</b> Create an R markdown document</a></li>
+<li class="chapter" data-level="7.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>7.5</b> R markdown anatomy</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#yaml-header"><i class="fa fa-check"></i><b>7.5.1</b> YAML header</a></li>
+<li class="chapter" data-level="7.5.2" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#formatted-text"><i class="fa fa-check"></i><b>7.5.2</b> Formatted text</a></li>
+<li class="chapter" data-level="7.5.3" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#code_chunks"><i class="fa fa-check"></i><b>7.5.3</b> Code chunks</a></li>
+<li class="chapter" data-level="7.5.4" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#adding-figures"><i class="fa fa-check"></i><b>7.5.4</b> Adding figures</a></li>
+<li class="chapter" data-level="7.5.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#adding-tables"><i class="fa fa-check"></i><b>7.5.5</b> Adding tables</a></li>
+<li class="chapter" data-level="7.5.6" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#inline-r-code"><i class="fa fa-check"></i><b>7.5.6</b> Inline R code</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="tips-tricks.html"><a href="tips-tricks.html"><i class="fa fa-check"></i><b>7.6</b> Some tips and tricks</a></li>
+<li class="chapter" data-level="7.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>7.7</b> Further Information</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>8</b> Version control with Git and GitHub</a><ul>
+<li class="chapter" data-level="8.1" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>8.1</b> What is version control?</a></li>
+<li class="chapter" data-level="8.2" data-path="why-use-version-control.html"><a href="why-use-version-control.html"><i class="fa fa-check"></i><b>8.2</b> Why use version control?</a></li>
+<li class="chapter" data-level="8.3" data-path="what-is-git-and-github.html"><a href="what-is-git-and-github.html"><i class="fa fa-check"></i><b>8.3</b> What is Git and GitHub?</a></li>
+<li class="chapter" data-level="8.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>8.4</b> Getting started</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="setup-git.html"><a href="setup-git.html#install-git"><i class="fa fa-check"></i><b>8.4.1</b> Install Git</a></li>
+<li class="chapter" data-level="8.4.2" data-path="setup-git.html"><a href="setup-git.html#configure-git"><i class="fa fa-check"></i><b>8.4.2</b> Configure Git</a></li>
+<li class="chapter" data-level="8.4.3" data-path="setup-git.html"><a href="setup-git.html#rs_config"><i class="fa fa-check"></i><b>8.4.3</b> Configure RStudio</a></li>
+<li class="chapter" data-level="8.4.4" data-path="setup-git.html"><a href="setup-git.html#register-a-github-account"><i class="fa fa-check"></i><b>8.4.4</b> Register a GitHub account</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>8.5</b> Setting up a project in RStudio</a><ul>
+<li class="chapter" data-level="8.5.1" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt1"><i class="fa fa-check"></i><b>8.5.1</b> Option 1 - GitHub first</a></li>
+<li class="chapter" data-level="8.5.2" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt2"><i class="fa fa-check"></i><b>8.5.2</b> Option 2 - RStudio first</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>8.6</b> Using Git</a><ul>
+<li class="chapter" data-level="8.6.1" data-path="use-git.html"><a href="use-git.html#tracking-changes"><i class="fa fa-check"></i><b>8.6.1</b> Tracking changes</a></li>
+<li class="chapter" data-level="8.6.2" data-path="use-git.html"><a href="use-git.html#commit-history"><i class="fa fa-check"></i><b>8.6.2</b> Commit history</a></li>
+<li class="chapter" data-level="8.6.3" data-path="use-git.html"><a href="use-git.html#undo"><i class="fa fa-check"></i><b>8.6.3</b> Reverting changes</a></li>
+<li class="chapter" data-level="8.6.4" data-path="use-git.html"><a href="use-git.html#collab"><i class="fa fa-check"></i><b>8.6.4</b> Collaborate with Git</a></li>
+<li class="chapter" data-level="8.6.5" data-path="use-git.html"><a href="use-git.html#git-tips"><i class="fa fa-check"></i><b>8.6.5</b> Git tips</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>8.7</b> Further resources</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="appendix.html"><a href="appendix.html"><i class="fa fa-check"></i><b>9</b> Appendix</a><ul>
+<li class="chapter" data-level="9.1" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>9.1</b> Installing R Markdown</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="install-rm.html"><a href="install-rm.html#ms-windows"><i class="fa fa-check"></i><b>9.1.1</b> MS Windows</a></li>
+<li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">An Introduction to R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="one-and-two-sample-tests" class="section level2">
+<h2><span class="header-section-number">5.1</span> One and two sample tests</h2>
+<p>The two main functions for these types of tests are the <code>t.test()</code> and <code>wilcox.test()</code> that perform t tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.</p>
+<p>As an example of a one sample t test we will use the <code>trees</code> dataset which is included with R. To access this in-built dataset we can use the <code>data()</code> function.</p>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
+<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
+<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb248-4" data-line-number="4"><span class="co">#  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></a>
+<a class="sourceLine" id="cb248-5" data-line-number="5"><span class="co">#  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></a>
+<a class="sourceLine" id="cb248-6" data-line-number="6"><span class="co">#  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></a>
+<a class="sourceLine" id="cb248-7" data-line-number="7"><span class="kw">summary</span>(trees)</a>
+<a class="sourceLine" id="cb248-8" data-line-number="8"><span class="co">#      Girth          Height       Volume    </span></a>
+<a class="sourceLine" id="cb248-9" data-line-number="9"><span class="co">#  Min.   : 8.3   Min.   :63   Min.   :10.2  </span></a>
+<a class="sourceLine" id="cb248-10" data-line-number="10"><span class="co">#  1st Qu.:11.1   1st Qu.:72   1st Qu.:19.4  </span></a>
+<a class="sourceLine" id="cb248-11" data-line-number="11"><span class="co">#  Median :12.9   Median :76   Median :24.2  </span></a>
+<a class="sourceLine" id="cb248-12" data-line-number="12"><span class="co">#  Mean   :13.2   Mean   :76   Mean   :30.2  </span></a>
+<a class="sourceLine" id="cb248-13" data-line-number="13"><span class="co">#  3rd Qu.:15.2   3rd Qu.:80   3rd Qu.:37.3  </span></a>
+<a class="sourceLine" id="cb248-14" data-line-number="14"><span class="co">#  Max.   :20.6   Max.   :87   Max.   :77.0</span></a></code></pre></div>
+<p>If we wanted to test whether mean height of black cherry trees in this sample is 70 ft or not assuming these data are normally distributed .</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
+<a class="sourceLine" id="cb249-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb249-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb249-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 1e-05</span></a>
+<a class="sourceLine" id="cb249-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is not equal to 70</span></a>
+<a class="sourceLine" id="cb249-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb249-9" data-line-number="9"><span class="co">#  73.66 78.34</span></a>
+<a class="sourceLine" id="cb249-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb249-11" data-line-number="11"><span class="co"># mean of x </span></a>
+<a class="sourceLine" id="cb249-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
+<p>The above summary has a fairly logical layout and includes the name of the test that we have asked for (<code>One Sample t-test</code>), which data has been used (<code>data:  Height</code>), the t statistic, degrees of freedom and associated p value (<code>t = 5.2429, df = 30, p-value = 1.173e-05</code>). It also states the alternative hypothesis (<code>alternative hypothesis: true mean is not equal to 70</code>) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (<code>95 percent confidence interval:73.6628 78.3372</code>) and also an estimate of the mean (<code>sample estimates: mean of x : 76</code>). In the above example, the p value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70.</p>
+<p>The function <code>t.test()</code> also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either <code>alternative = &quot;greater&quot;</code> or <code>alternative = &quot;less</code> which tests whether the sample mean is greater or less than the mean specified. For example, to test whether our sample mean is greater than 70 ft.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>, <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>)</a>
+<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb250-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
+<a class="sourceLine" id="cb250-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb250-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb250-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 6e-06</span></a>
+<a class="sourceLine" id="cb250-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is greater than 70</span></a>
+<a class="sourceLine" id="cb250-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb250-9" data-line-number="9"><span class="co">#  74.06   Inf</span></a>
+<a class="sourceLine" id="cb250-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb250-11" data-line-number="11"><span class="co"># mean of x </span></a>
+<a class="sourceLine" id="cb250-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
+<p>You can also change the confidence level used for estimating the confidence intervals using the argument <code>conf.level = 0.99</code>. In this case the new confidence interval would be 99%.</p>
+<p>Although t tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the <code>wilcox.test()</code> function.</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">wilcox.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="co"># value with ties</span></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co"># value with zeroes</span></a>
+<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb251-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
+<a class="sourceLine" id="cb251-8" data-line-number="8"><span class="co"># </span></a>
+<a class="sourceLine" id="cb251-9" data-line-number="9"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb251-10" data-line-number="10"><span class="co"># V = 420, p-value = 1e-04</span></a>
+<a class="sourceLine" id="cb251-11" data-line-number="11"><span class="co"># alternative hypothesis: true location is not equal to 70</span></a></code></pre></div>
+<p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact p value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = &quot;greater&quot;</code> and <code>alternative = &quot;less&quot;</code>.</p>
+<p>It is always a good idea to examine your data for departures from normality, rather than just assuming everything is ok. In addition to the functions you have already come across (<code>hist()</code>, <code>boxplot()</code>, <code>summary()</code> etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
+<p>To construct a Q-Q plot you need to use both the <code>qqnorm()</code> and <code>qqline()</code> functions</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">qqnorm</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">qqline</span>(trees<span class="op">$</span>Height, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss5-1.png" width="672" /></p>
+<p>If you insist on performing a specific test for normality you can use the function <code>shapiro.test()</code> which performs a Shapiro – Wilk test of normality.</p>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">shapiro.test</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="co">#   Shapiro-Wilk normality test</span></a>
+<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co"># W = 0.97, p-value = 0.4</span></a></code></pre></div>
+<p>In the example above, the p value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed.</p>
+<p>In addition to one-sample tests, both the <code>t.test()</code> and <code>wilcox.test()</code> functions can be used to test for differences between two samples. A two sample t test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the <code>atmosphere.txt</code> data file located in the <code>data/</code> directory.</p>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">atmos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">str</span>(atmos)</a>
+<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 20 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb254-4" data-line-number="4"><span class="co">#  $ moisture : num  301 302 299 316 307 ...</span></a>
+<a class="sourceLine" id="cb254-5" data-line-number="5"><span class="co">#  $ treatment: Factor w/ 2 levels &quot;seeded&quot;,&quot;unseeded&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></a></code></pre></div>
+<p>As with our previous data frame (<code>flowers</code>), these data are in the long format. The column <code>moisture</code> contains the moisture content measured in each cloud and the column <code>treatment</code> identifies whether the cloud was <code>seeded</code> or <code>unseeded</code>. To perform a two-sample t test</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb255-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="co">#   Welch Two Sample t-test</span></a>
+<a class="sourceLine" id="cb255-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb255-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb255-6" data-line-number="6"><span class="co"># t = 2.5, df = 17, p-value = 0.02</span></a>
+<a class="sourceLine" id="cb255-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
+<a class="sourceLine" id="cb255-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb255-9" data-line-number="9"><span class="co">#   1.446 15.694</span></a>
+<a class="sourceLine" id="cb255-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb255-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
+<a class="sourceLine" id="cb255-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
+<p>Notice the use of the formula method (<code>atmos$moisture~ atmos$treatment</code>, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the dataframe. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample t test. The Welch’s variant of the t test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="co">#   Two Sample t-test</span></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb256-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb256-6" data-line-number="6"><span class="co"># t = 2.5, df = 18, p-value = 0.02</span></a>
+<a class="sourceLine" id="cb256-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
+<a class="sourceLine" id="cb256-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb256-9" data-line-number="9"><span class="co">#   1.483 15.657</span></a>
+<a class="sourceLine" id="cb256-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb256-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
+<a class="sourceLine" id="cb256-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
+<p>To test whether the assumption of equal variances is valid you can perform an F-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="kw">var.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="co">#   F test to compare two variances</span></a>
+<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb257-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb257-6" data-line-number="6"><span class="co"># F = 0.58, num df = 9, denom df = 9, p-value = 0.4</span></a>
+<a class="sourceLine" id="cb257-7" data-line-number="7"><span class="co"># alternative hypothesis: true ratio of variances is not equal to 1</span></a>
+<a class="sourceLine" id="cb257-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb257-9" data-line-number="9"><span class="co">#  0.1439 2.3318</span></a>
+<a class="sourceLine" id="cb257-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb257-11" data-line-number="11"><span class="co"># ratio of variances </span></a>
+<a class="sourceLine" id="cb257-12" data-line-number="12"><span class="co">#             0.5792</span></a></code></pre></div>
+<p>As the p value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the F-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
+<p>The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">wilcox.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb258-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="co">#   Wilcoxon rank sum test</span></a>
+<a class="sourceLine" id="cb258-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb258-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb258-6" data-line-number="6"><span class="co"># W = 79, p-value = 0.03</span></a>
+<a class="sourceLine" id="cb258-7" data-line-number="7"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
+<p>You can also use the <code>t.test()</code> and <code>wilcox.test()</code> functions to test paired data. Paired data are where there are two measurements on the same experimental unit (either individual, site etc) and essentially tests for differences between the paired observations. For example, the pollution dataset gives the biodiversity score of aquatic invertebrates collected using kick samples in 17 different rivers. These data are paired because two samples were taken on each river, one upstream of a paper mill and one downstream.</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1">pollution &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/pollution.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="kw">str</span>(pollution)</a>
+<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 16 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb259-4" data-line-number="4"><span class="co">#  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></a>
+<a class="sourceLine" id="cb259-5" data-line-number="5"><span class="co">#  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></a></code></pre></div>
+<p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired t test use the <code>paired = TRUE</code> argument.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">t.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="co">#   Paired t-test</span></a>
+<a class="sourceLine" id="cb260-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="co"># data:  pollution$down and pollution$up</span></a>
+<a class="sourceLine" id="cb260-6" data-line-number="6"><span class="co"># t = -3.1, df = 15, p-value = 0.008</span></a>
+<a class="sourceLine" id="cb260-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
+<a class="sourceLine" id="cb260-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb260-9" data-line-number="9"><span class="co">#  -1.4864 -0.2636</span></a>
+<a class="sourceLine" id="cb260-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb260-11" data-line-number="11"><span class="co"># mean of the differences </span></a>
+<a class="sourceLine" id="cb260-12" data-line-number="12"><span class="co">#                  -0.875</span></a></code></pre></div>
+<p>The output is almost identical to that of a one-sample t test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">wilcox.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
+<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="co"># cannot compute exact p-value with ties</span></a>
+<a class="sourceLine" id="cb261-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
+<a class="sourceLine" id="cb261-5" data-line-number="5"><span class="co"># cannot compute exact p-value with zeroes</span></a>
+<a class="sourceLine" id="cb261-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb261-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
+<a class="sourceLine" id="cb261-8" data-line-number="8"><span class="co"># </span></a>
+<a class="sourceLine" id="cb261-9" data-line-number="9"><span class="co"># data:  pollution$down and pollution$up</span></a>
+<a class="sourceLine" id="cb261-10" data-line-number="10"><span class="co"># V = 8, p-value = 0.01</span></a>
+<a class="sourceLine" id="cb261-11" data-line-number="11"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
+<p>The function <code>prop.test()</code> can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below</p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"></th>
+<th align="center">before</th>
+<th align="center">after</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">would buy</td>
+<td align="center">45</td>
+<td align="center">71</td>
+</tr>
+<tr class="even">
+<td align="center">would not buy</td>
+<td align="center">35</td>
+<td align="center">32</td>
+</tr>
+</tbody>
+</table>
+<p>From the table above we can conclude that 56% of cat owners would buy the cat food before the campaign compared to 69% after. But, has the advertising campaign been a success?</p>
+<p>The <code>prop.test()</code> function has two main arguments which are given as two vectors. The first vector contains the number of positive outcomes and the second vector the total numbers for each group. So to perform the test we first need to define these vectors</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">buy &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">71</span>)                     <span class="co"># creates a vector of positive outcomes</span></a>
+<a class="sourceLine" id="cb262-2" data-line-number="2">total &lt;-<span class="kw">c</span>((<span class="dv">45</span> <span class="op">+</span><span class="st"> </span><span class="dv">35</span>), (<span class="dv">71</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span>))   <span class="co"># creates a vector of total numbers</span></a>
+<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="kw">prop.test</span>(buy,total)                  <span class="co"># perform the test</span></a>
+<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="co">#   2-sample test for equality of proportions with continuity correction</span></a>
+<a class="sourceLine" id="cb262-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb262-7" data-line-number="7"><span class="co"># data:  buy out of total</span></a>
+<a class="sourceLine" id="cb262-8" data-line-number="8"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a>
+<a class="sourceLine" id="cb262-9" data-line-number="9"><span class="co"># alternative hypothesis: two.sided</span></a>
+<a class="sourceLine" id="cb262-10" data-line-number="10"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb262-11" data-line-number="11"><span class="co">#  -0.27865  0.02501</span></a>
+<a class="sourceLine" id="cb262-12" data-line-number="12"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb262-13" data-line-number="13"><span class="co"># prop 1 prop 2 </span></a>
+<a class="sourceLine" id="cb262-14" data-line-number="14"><span class="co"># 0.5625 0.6893</span></a></code></pre></div>
+<p>There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (p = 0.107). Use <code>?prop.test</code> to explore additional uses of the binomial proportions test.</p>
+<p>We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2x2 matrix using the <code>matrix()</code> function (note, there are many alternative methods of constructing a table like this).</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">buyers &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb263-2" data-line-number="2">buyers</a>
+<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="co"># [1,]   45   71</span></a>
+<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="co"># [2,]   35   32</span></a></code></pre></div>
+<p>Notice that you enter the data column wise into the matrix and then specify the number of rows using <code>nrow =</code>.</p>
+<p>We can also change the row names and column names from the defaults to make it look more like a table (you don’t really need to do this to perform a Chi-square test)</p>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw">colnames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>)</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="kw">rownames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;buy&quot;</span>, <span class="st">&quot;notbuy&quot;</span>)</a>
+<a class="sourceLine" id="cb264-3" data-line-number="3">buyers</a>
+<a class="sourceLine" id="cb264-4" data-line-number="4"><span class="co">#        before after</span></a>
+<a class="sourceLine" id="cb264-5" data-line-number="5"><span class="co"># buy        45    71</span></a>
+<a class="sourceLine" id="cb264-6" data-line-number="6"><span class="co"># notbuy     35    32</span></a></code></pre></div>
+<p>You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the <code>chisq.test()</code> function. In this example the only argument is our matrix of counts.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">chisq.test</span>(buyers)</a>
+<a class="sourceLine" id="cb265-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb265-3" data-line-number="3"><span class="co">#   Pearson&#39;s Chi-squared test with Yates&#39; continuity correction</span></a>
+<a class="sourceLine" id="cb265-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb265-5" data-line-number="5"><span class="co"># data:  buyers</span></a>
+<a class="sourceLine" id="cb265-6" data-line-number="6"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a></code></pre></div>
+<p>There is no evidence (p = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the <code>prop.test()</code>. You can also use the <code>chisq.test()</code> function on raw (untabulated) data and to test for goodness of fit (see <code>?chisq.test</code> for more details).</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="stats-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correlation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/alexd106/Rbook/edit/master/05-stats.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": [["book.pdf", "PDF"]],
+"toc": {
+"collapse": "subsection"
+},
+"highlight": "tango"
+});
+});
+</script>
+
+</body>
+
+</html>
