@@ -263,7 +263,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
 <li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
+<li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>6.1</b> Looking behind the curtain</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-in-r.html"><a href="functions-in-r.html"><i class="fa fa-check"></i><b>6.2</b> Functions in R</a></li>
+<li class="chapter" data-level="6.3" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>6.3</b> Conditional statements</a></li>
+<li class="chapter" data-level="6.4" data-path="is-it-gonna-be-a-good-day.html"><a href="is-it-gonna-be-a-good-day.html"><i class="fa fa-check"></i><b>6.4</b> “Is it gonna be a good day?”</a></li>
+<li class="chapter" data-level="6.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>6.5</b> Loops</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="loops.html"><a href="loops.html#for-loop"><i class="fa fa-check"></i><b>6.5.1</b> For loop</a></li>
+<li class="chapter" data-level="6.5.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>6.5.2</b> While loop</a></li>
+<li class="chapter" data-level="6.5.3" data-path="loops.html"><a href="loops.html#when-to-use-a-loop"><i class="fa fa-check"></i><b>6.5.3</b> When to use a loop?</a></li>
+<li class="chapter" data-level="6.5.4" data-path="loops.html"><a href="loops.html#if-not-loops-then-what"><i class="fa fa-check"></i><b>6.5.4</b> If not loops, then what?</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports with R markdown</a><ul>
 <li class="chapter" data-level="7.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>7.1</b> What is R markdown?</a></li>
 <li class="chapter" data-level="7.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>7.2</b> Why use R markdown?</a></li>
@@ -331,15 +342,229 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="simple-linear-modelling" class="section level2">
 <h2><span class="header-section-number">5.3</span> Simple linear modelling</h2>
-<p>To fit a linear model to your data, we use the <code>lm()</code> function (linear model). This function can be used to fit a wide variety of models including bivariate linear regression, multiple linear regression, polynomial regression and ANOVA type designs. In this section we won’t go into any of the detail of linear model theory, we’ll just briefly introduce you to fitting some of these models in R.</p>
-<p>The structure of the main argument when using the <code>lm()</code> function is specified using model formula</p>
-<div class="line-block"><em>response variable ~ explanatory variable(s)</em></div>
-<p>You’ve already come across this type of model specification in connection with the t and Wilcoxon’s tests (which are just types of linear models). It’s simply read as ‘the variation in the response variable modelled as a function (~) of the explanatory variable(s)’. So a bivariate linear regression of a response variable, <code>y</code> and a single continuous explanatory variable, <code>x</code> would be written as</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x)</a></code></pre></div>
-<p>We can also include multiple explanatory variables separating them with either a <code>+</code> symbol for additive effects or a <code>:</code> for interactions</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb272-1" data-line-number="1"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2)</a>
-<a class="sourceLine" id="cb272-2" data-line-number="2"><span class="kw">lm</span>(y <span class="op">~</span><span class="st"> </span>x1 <span class="op">+</span><span class="st"> </span>x2 <span class="op">+</span><span class="st"> </span>x1<span class="op">:</span>x2)</a></code></pre></div>
-<p>So how does the <code>lm()</code> function know whether you want to model a relationship between two continuous variables (i.e. bivariate regression) or model the differences between group means (i.e. one-way ANOVA)? To answer that we also need to take into account the type (or class) of the explanatory variables(s)?
+<p>Linear models are one of the most widely used models in statistics and data science. They are often thought of as simple models but they’re very flexible and able to model a wide variety of experimental and survey designs. Many of the statistical approaches you may have used previously (such as linear regression, <em>t</em>-test, ANOVA, ANCOVA etc) can be expressed as a linear model so the good news is that you’re probably already familiar with linear models (albeit indirectly). They also form the foundation of more complicated modelling approaches and are relatively easy to extended to incorporate additional complexity. During this section we’ll learn how to fit some simple linear models using R and cover some of the more common applications. We won’t go into any detail of the underlying linear modelling theory but rather focus on the practicalities of model fitting and R code.</p>
+<p>The main function for fitting linear models in R is the <code>lm()</code> function (short for linear model!). The <code>lm()</code> function has many arguments but the most important is the first argument which specifies the model you want to fit using <em>model formula</em> which typically takes the general form:</p>
+<p> </p>
+<blockquote>
+<p><em>response variable ~ explanatory variable(s)</em></p>
+</blockquote>
+<p> </p>
+<p>This model formula is simply read as</p>
+<p> </p>
+<blockquote>
+<p><em>‘variation in the response variable modelled as a function (~) of the explanatory variable(s)’.</em></p>
+</blockquote>
+<p> </p>
+<p>The response variable is also commonly known as the ‘dependent variable’ and the explanatory variables known as ‘independent variables’. There is also an additional term in our model formula which represents the variation in our response variable <strong>not</strong> explained by our explanatory variables but you don’t need to specify this when using the <code>lm()</code> function.</p>
+<p>As mentioned above, many of the statistical ‘tests’ you might have previously used can be expressed as a linear model. For example, if we wanted to perform a bivariate linear regression between a response variable (<code>y</code>) and a single continuous explanatory variable (<code>x</code>) our model formula would simply be</p>
+<pre><code>y ~ x</code></pre>
+<p>On the other hand, if we wanted to use an ANOVA to test whether the group means of a response variable (<code>y</code>) were different between a three level factor (<code>x</code>) our model formula would look like</p>
+<pre><code>y ~ x</code></pre>
+<p>OK, hang on, they both look identical, what gives? In addition to the model formula, the type of linear model you fit also depends on what type of data comprises the explanatory variable (i.e. what class of data). If your explanatory variable is continuous then you will fit a bivariate linear regression. If your explanatory variable is a factor (i.e. categorical data) you will fit an ANOVA type model.</p>
+<p>You can also increase the complexity of your linear model by including additional explanatory variables in your model formula. For example, if we wanted to fit a two-way ANOVA both of our explanatory variables <code>x</code> and <code>z</code> would need to be factors and separated by a <code>+</code> symbol</p>
+<pre><code>y ~ x + z</code></pre>
+<p>If we wanted to perform a factorial ANOVA to identify an interaction between both explanatory variables we would separate our explanatory variables with a <code>:</code> symbol whilst also including our main effects in our model formula</p>
+<pre><code>y ~ x + z + x:z</code></pre>
+<p>or by using the equivalent shortcut notation</p>
+<pre><code>y ~ x * z </code></pre>
+<p>It’s important that you get to grips with model formula (and we’ve only given the briefest of explanations above) as this is the main format used by R for many different types of statistical analyses. A summary table of various linear model formula and equivalent analyses is given below.</p>
+<p> </p>
+<table>
+<colgroup>
+<col width="32%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Traditional name</th>
+<th align="left">Model formula</th>
+<th align="left">R code</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Bivariate regression</td>
+<td align="left">Y ~ X1 (continuous)</td>
+<td align="left"><code>lm(Y ~ X)</code></td>
+</tr>
+<tr class="even">
+<td align="left">One-way ANOVA</td>
+<td align="left">Y ~ X1 (categorical)</td>
+<td align="left"><code>lm(Y ~ X)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Two-way ANOVA</td>
+<td align="left">Y ~ X1 (cat) + X2(cat)</td>
+<td align="left"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="even">
+<td align="left">ANCOVA</td>
+<td align="left">Y ~ X1 (cat) + X2(cont)</td>
+<td align="left"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Multiple regression</td>
+<td align="left">Y ~ X1 (cont) + X2(cont)</td>
+<td align="left"><code>lm(Y ~ X1 + X2)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Factorial ANOVA</td>
+<td align="left">Y ~ X1 (cat) * X2(cat)</td>
+<td align="left"><code>lm(Y ~ X1 * X2)</code> or <code>lm(Y ~ X1 + X2 + X1:X2)</code></td>
+</tr>
+</tbody>
+</table>
+<p> </p>
+<p>OK, time for an example. The data file <code>smoking.txt</code> summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable <code>occupational.group</code> specifies the different occupational groups studied, the <code>risk.group</code> variable indicates the relative risk to lung disease for the various occupational groups and <code>smoking</code> is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable <code>mortality</code> is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is <code>mortality</code> and the explanatory variables are <code>smoking</code> and <code>risk.group</code>. The first thing to do is import our data file using the <code>read.table()</code> function as usual and assign the data to an object called <code>smoke</code>.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb276-1" data-line-number="1">smoke &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/smoking.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb276-2" data-line-number="2"><span class="kw">str</span>(smoke)</a>
+<a class="sourceLine" id="cb276-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 25 obs. of  4 variables:</span></a>
+<a class="sourceLine" id="cb276-4" data-line-number="4"><span class="co">#  $ occupational.group: Factor w/ 25 levels &quot;Administrators&quot;,..: 9 14 2 11 10 7..</span></a>
+<a class="sourceLine" id="cb276-5" data-line-number="5"><span class="co">#  $ risk.group        : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 2 1 1 3 1 3 3..</span></a>
+<a class="sourceLine" id="cb276-6" data-line-number="6"><span class="co">#  $ smoking           : int  77 137 117 94 116 102 111 93 88 102 ...</span></a>
+<a class="sourceLine" id="cb276-7" data-line-number="7"><span class="co">#  $ mortality         : int  84 116 123 128 155 101 118 113 104 88 ...</span></a></code></pre></div>
+<p> </p>
+<p>Next, let’s investigate the relationship between <code>mortality</code> and <code>smoking</code> variables by plotting a scatterplot. We can use either the <code>ggplot2</code> package or base R graphics to do this. We’ll use <code>ggplot2</code> this time.</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb277-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
+<a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss25-1.png" width="672" /></p>
+<p>The plot does suggest that there is a positive relationship between the smoking index and mortality index.</p>
+<p>To fit a simple linear model to these data we will use the <code>lm()</code> function and include our model formula <code>mortality ~ smoking</code> and assign the results to an object called <code>smoke_lm</code>.</p>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">smoke_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>smoking, <span class="dt">data =</span> smoke)</a></code></pre></div>
+<p>Notice that we have not used the <code>$</code> notation to specify the variables in our model formula, instead we’ve used the <code>data = smoke</code> argument. Although the <code>$</code> notation will work (i.e. <code>smoke$mortality ~ smoke$smoking</code>) it will more than likely cause you problems later on and should be avoided. Infact, we would go as far to suggest that if a function has a <code>data =</code> argument you should <strong>always</strong> use it. How do you know if a function has a <code>data =</code> argument? Just look in the associated help file.</p>
+<p>Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a ‘lm’ class object (which we have called <code>smoke_lm</code>) from which you are able to extract exactly what you want using various other functions. If you’re brave, you can examine the structure of the <code>smoke_lm</code> model onject using the <code>str()</code> function.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">str</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb279-2" data-line-number="2"><span class="co"># List of 12</span></a>
+<a class="sourceLine" id="cb279-3" data-line-number="3"><span class="co">#  $ coefficients : Named num [1:2] -2.89 1.09</span></a>
+<a class="sourceLine" id="cb279-4" data-line-number="4"><span class="co">#   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-5" data-line-number="5"><span class="co">#  $ residuals    : Named num [1:25] 3.15 -30.11 -1.36 28.66 31.73 ...</span></a>
+<a class="sourceLine" id="cb279-6" data-line-number="6"><span class="co">#   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb279-7" data-line-number="7"><span class="co">#  $ effects      : Named num [1:25] -545 -91.63 2.72 26.99 35.56 ...</span></a>
+<a class="sourceLine" id="cb279-8" data-line-number="8"><span class="co">#   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;(Intercept)&quot; &quot;smoking&quot; &quot;&quot; &quot;&quot; ...</span></a>
+<a class="sourceLine" id="cb279-9" data-line-number="9"><span class="co">#  $ rank         : int 2</span></a>
+<a class="sourceLine" id="cb279-10" data-line-number="10"><span class="co">#  $ fitted.values: Named num [1:25] 80.9 146.1 124.4 99.3 123.3 ...</span></a>
+<a class="sourceLine" id="cb279-11" data-line-number="11"><span class="co">#   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb279-12" data-line-number="12"><span class="co">#  $ assign       : int [1:2] 0 1</span></a>
+<a class="sourceLine" id="cb279-13" data-line-number="13"><span class="co">#  $ qr           :List of 5</span></a>
+<a class="sourceLine" id="cb279-14" data-line-number="14"><span class="co">#   ..$ qr   : num [1:25, 1:2] -5 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 ...</span></a>
+<a class="sourceLine" id="cb279-15" data-line-number="15"><span class="co">#   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb279-16" data-line-number="16"><span class="co">#   .. .. ..$ : chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb279-17" data-line-number="17"><span class="co">#   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-18" data-line-number="18"><span class="co">#   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span></a>
+<a class="sourceLine" id="cb279-19" data-line-number="19"><span class="co">#   ..$ qraux: num [1:2] 1.2 1.46</span></a>
+<a class="sourceLine" id="cb279-20" data-line-number="20"><span class="co">#   ..$ pivot: int [1:2] 1 2</span></a>
+<a class="sourceLine" id="cb279-21" data-line-number="21"><span class="co">#   ..$ tol  : num 1e-07</span></a>
+<a class="sourceLine" id="cb279-22" data-line-number="22"><span class="co">#   ..$ rank : int 2</span></a>
+<a class="sourceLine" id="cb279-23" data-line-number="23"><span class="co">#   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span></a>
+<a class="sourceLine" id="cb279-24" data-line-number="24"><span class="co">#  $ df.residual  : int 23</span></a>
+<a class="sourceLine" id="cb279-25" data-line-number="25"><span class="co">#  $ xlevels      : Named list()</span></a>
+<a class="sourceLine" id="cb279-26" data-line-number="26"><span class="co">#  $ call         : language lm(formula = mortality ~ smoking, data = smoke)</span></a>
+<a class="sourceLine" id="cb279-27" data-line-number="27"><span class="co">#  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
+<a class="sourceLine" id="cb279-28" data-line-number="28"><span class="co">#   .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb279-29" data-line-number="29"><span class="co">#   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
+<a class="sourceLine" id="cb279-30" data-line-number="30"><span class="co">#   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb279-31" data-line-number="31"><span class="co">#   .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-32" data-line-number="32"><span class="co">#   .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-33" data-line-number="33"><span class="co">#   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-34" data-line-number="34"><span class="co">#   .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-35" data-line-number="35"><span class="co">#   .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-36" data-line-number="36"><span class="co">#   .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-37" data-line-number="37"><span class="co">#   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
+<a class="sourceLine" id="cb279-38" data-line-number="38"><span class="co">#   .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb279-39" data-line-number="39"><span class="co">#   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb279-40" data-line-number="40"><span class="co">#   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-41" data-line-number="41"><span class="co">#  $ model        :&#39;data.frame&#39;:    25 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb279-42" data-line-number="42"><span class="co">#   ..$ mortality: int [1:25] 84 116 123 128 155 101 118 113 104 88 ...</span></a>
+<a class="sourceLine" id="cb279-43" data-line-number="43"><span class="co">#   ..$ smoking  : int [1:25] 77 137 117 94 116 102 111 93 88 102 ...</span></a>
+<a class="sourceLine" id="cb279-44" data-line-number="44"><span class="co">#   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
+<a class="sourceLine" id="cb279-45" data-line-number="45"><span class="co">#   .. .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb279-46" data-line-number="46"><span class="co">#   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
+<a class="sourceLine" id="cb279-47" data-line-number="47"><span class="co">#   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb279-48" data-line-number="48"><span class="co">#   .. .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-49" data-line-number="49"><span class="co">#   .. .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-50" data-line-number="50"><span class="co">#   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-51" data-line-number="51"><span class="co">#   .. .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-52" data-line-number="52"><span class="co">#   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-53" data-line-number="53"><span class="co">#   .. .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb279-54" data-line-number="54"><span class="co">#   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
+<a class="sourceLine" id="cb279-55" data-line-number="55"><span class="co">#   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb279-56" data-line-number="56"><span class="co">#   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb279-57" data-line-number="57"><span class="co">#   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb279-58" data-line-number="58"><span class="co">#  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></a></code></pre></div>
+<p>To obtain a summary of our analysis we can use the <code>summary()</code> function on our <code>smoke_lm</code> model object.</p>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">summary</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb280-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb280-3" data-line-number="3"><span class="co"># Call:</span></a>
+<a class="sourceLine" id="cb280-4" data-line-number="4"><span class="co"># lm(formula = mortality ~ smoking, data = smoke)</span></a>
+<a class="sourceLine" id="cb280-5" data-line-number="5"><span class="co"># </span></a>
+<a class="sourceLine" id="cb280-6" data-line-number="6"><span class="co"># Residuals:</span></a>
+<a class="sourceLine" id="cb280-7" data-line-number="7"><span class="co">#    Min     1Q Median     3Q    Max </span></a>
+<a class="sourceLine" id="cb280-8" data-line-number="8"><span class="co"># -30.11 -17.89   3.15  14.13  31.73 </span></a>
+<a class="sourceLine" id="cb280-9" data-line-number="9"><span class="co"># </span></a>
+<a class="sourceLine" id="cb280-10" data-line-number="10"><span class="co"># Coefficients:</span></a>
+<a class="sourceLine" id="cb280-11" data-line-number="11"><span class="co">#             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb280-12" data-line-number="12"><span class="co"># (Intercept)   -2.885     23.034   -0.13      0.9    </span></a>
+<a class="sourceLine" id="cb280-13" data-line-number="13"><span class="co"># smoking        1.088      0.221    4.92  5.7e-05 ***</span></a>
+<a class="sourceLine" id="cb280-14" data-line-number="14"><span class="co"># ---</span></a>
+<a class="sourceLine" id="cb280-15" data-line-number="15"><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb280-16" data-line-number="16"><span class="co"># </span></a>
+<a class="sourceLine" id="cb280-17" data-line-number="17"><span class="co"># Residual standard error: 18.6 on 23 degrees of freedom</span></a>
+<a class="sourceLine" id="cb280-18" data-line-number="18"><span class="co"># Multiple R-squared:  0.513,   Adjusted R-squared:  0.492 </span></a>
+<a class="sourceLine" id="cb280-19" data-line-number="19"><span class="co"># F-statistic: 24.2 on 1 and 23 DF,  p-value: 5.66e-05</span></a></code></pre></div>
+<p>This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated <em>t</em> statistics and <em>p</em> values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is <code>-2.885</code>! The <em>p</em> value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the <em>p</em> value is large we fail to reject this null hypothesis. The <code>smoking</code> parameter estimate is <code>1.0875</code> and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The <em>p</em> value associated with the <code>smoking</code> parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our <em>p</em> value is small we reject this hypothesis and therefore the slope is different from zero (i.e. there is a significant relationship). The summary table also includes other important information such as the coefficient of determination (<em>R<sup>2</sup></em>), adjusted <em>R<sup>2</sup></em> , <em>F</em> statistic, associated degrees of freedom and <em>p</em> value. This information is a condensed form of an ANOVA table which you can see by using the <code>anova()</code> function.</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">anova</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="co"># Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="co"># </span></a>
+<a class="sourceLine" id="cb281-4" data-line-number="4"><span class="co"># Response: mortality</span></a>
+<a class="sourceLine" id="cb281-5" data-line-number="5"><span class="co">#           Df Sum Sq Mean Sq F value  Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb281-6" data-line-number="6"><span class="co"># smoking    1   8396    8396    24.2 5.7e-05 ***</span></a>
+<a class="sourceLine" id="cb281-7" data-line-number="7"><span class="co"># Residuals 23   7970     347                    </span></a>
+<a class="sourceLine" id="cb281-8" data-line-number="8"><span class="co"># ---</span></a>
+<a class="sourceLine" id="cb281-9" data-line-number="9"><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<p>Now let’s fit a linear model again, but this time we will use the <code>risk.group</code> variable as our explanatory variable. Remember the <code>risk.group</code> variable is a factor and so our linear model will be equivalent to an ANOVA type analysis. We will be testing the null hypothesis that the mean mortality rate is the same between <code>low</code>, <code>medium</code> and <code>high</code> groups in the <code>risk.group</code> variable (i.e. no difference). We fit the model in exactly the same way as before.</p>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">smoke_risk_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>risk.group, <span class="dt">data =</span> smoke)</a></code></pre></div>
+<p>Again, we can produce an ANOVA table using the <code>anova()</code> function</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">anova</span>(smoke_risk_lm)</a>
+<a class="sourceLine" id="cb283-2" data-line-number="2"><span class="co"># Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb283-3" data-line-number="3"><span class="co"># </span></a>
+<a class="sourceLine" id="cb283-4" data-line-number="4"><span class="co"># Response: mortality</span></a>
+<a class="sourceLine" id="cb283-5" data-line-number="5"><span class="co">#            Df Sum Sq Mean Sq F value  Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb283-6" data-line-number="6"><span class="co"># risk.group  2  11514    5757    26.1 1.6e-06 ***</span></a>
+<a class="sourceLine" id="cb283-7" data-line-number="7"><span class="co"># Residuals  22   4852     221                    </span></a>
+<a class="sourceLine" id="cb283-8" data-line-number="8"><span class="co"># ---</span></a>
+<a class="sourceLine" id="cb283-9" data-line-number="9"><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<p>The results presented in the ANOVA table suggest that we can reject the null hypothesis (very small <em>p</em> value) and therefore the mean mortality rate index is different between <code>low</code>, <code>medium</code> and <code>high</code> risk groups.</p>
+<p>As we did with our first linear model we can also produce a summary of the estimated parameters using the <code>summary()</code> function.</p>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb284-1" data-line-number="1"><span class="kw">summary</span>(smoke_risk_lm)</a>
+<a class="sourceLine" id="cb284-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb284-3" data-line-number="3"><span class="co"># Call:</span></a>
+<a class="sourceLine" id="cb284-4" data-line-number="4"><span class="co"># lm(formula = mortality ~ risk.group, data = smoke)</span></a>
+<a class="sourceLine" id="cb284-5" data-line-number="5"><span class="co"># </span></a>
+<a class="sourceLine" id="cb284-6" data-line-number="6"><span class="co"># Residuals:</span></a>
+<a class="sourceLine" id="cb284-7" data-line-number="7"><span class="co">#    Min     1Q Median     3Q    Max </span></a>
+<a class="sourceLine" id="cb284-8" data-line-number="8"><span class="co">#  -26.2  -11.5    4.0    9.0   26.8 </span></a>
+<a class="sourceLine" id="cb284-9" data-line-number="9"><span class="co"># </span></a>
+<a class="sourceLine" id="cb284-10" data-line-number="10"><span class="co"># Coefficients:</span></a>
+<a class="sourceLine" id="cb284-11" data-line-number="11"><span class="co">#                  Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb284-12" data-line-number="12"><span class="co"># (Intercept)        135.00       5.25   25.71  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb284-13" data-line-number="13"><span class="co"># risk.grouplow      -57.83       8.02   -7.21  3.2e-07 ***</span></a>
+<a class="sourceLine" id="cb284-14" data-line-number="14"><span class="co"># risk.groupmedium   -27.55       6.90   -3.99  0.00062 ***</span></a>
+<a class="sourceLine" id="cb284-15" data-line-number="15"><span class="co"># ---</span></a>
+<a class="sourceLine" id="cb284-16" data-line-number="16"><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb284-17" data-line-number="17"><span class="co"># </span></a>
+<a class="sourceLine" id="cb284-18" data-line-number="18"><span class="co"># Residual standard error: 14.9 on 22 degrees of freedom</span></a>
+<a class="sourceLine" id="cb284-19" data-line-number="19"><span class="co"># Multiple R-squared:  0.704,   Adjusted R-squared:  0.677 </span></a>
+<a class="sourceLine" id="cb284-20" data-line-number="20"><span class="co"># F-statistic: 26.1 on 2 and 22 DF,  p-value: 1.55e-06</span></a></code></pre></div>
+<p>In the summary table the Intercept is set to the first level of <code>risk.group</code> (<code>high</code>) as this occurs first alphabetically. Therefore, the estimated mean mortality index for <code>high</code> risk individuals is <code>135</code>. The estimates for <code>risk.grouplow</code> and <code>risk.groupmedium</code> are mean differences from the intercept (<code>high</code> group). So the mortality index for the <code>low</code> group is <code>135 - 57.83 = 77.17</code> and for the <code>medium</code> group is <code>135 - 27.55 = 107.45</code>. The <em>t</em> values and <em>p</em> values in the summary table are associated with testing specific hypotheses. The <em>p</em> value associated with the intercept tests the null hypothesis that the mean mortality index for the <code>high</code> group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small <em>p</em> value. The <em>p</em> value for the <code>risk.grouplow</code> parameter tests the null hypothesis that the mean difference between <code>high</code> and <code>low</code> risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarily, the <em>p</em> value for <code>risk.groupmedium</code> tests the null hypothesis that the mean difference between <code>high</code> and <code>medium</code> groups is equal to zero which we also reject.</p>
+<p>Don’t worry too much if you find the output from the <code>summary()</code> function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated a model is, the more complicated it is to interpret and a model that you can’t interpret is not worth fitting!</p>
+<p>Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let’s go back to the first linear model we fitted (<code>smoke_lm</code>). We can add the fitted line to our previous plot using the `<code>ggplot2</code> package.<code>geom_smooth</code> geom and also include the standard errors by specifying the <code>se = TRUE</code> argument.</p>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
+<a class="sourceLine" id="cb285-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb285-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb285-4" data-line-number="4"><span class="co"># `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss33-1.png" width="672" />
  </p>
 <!--course website Links-->
 <!--cran Links-->
@@ -406,6 +631,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

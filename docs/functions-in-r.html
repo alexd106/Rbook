@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.7 Working directories | An Introduction to R</title>
-  <meta name="description" content="1.7 Working directories | An Introduction to R" />
+  <title>6.2 Functions in R | An Introduction to R</title>
+  <meta name="description" content="6.2 Functions in R | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.7 Working directories | An Introduction to R" />
+  <meta property="og:title" content="6.2 Functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="1.7 Working directories | An Introduction to R" />
+  <meta property="og:description" content="6.2 Functions in R | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.7 Working directories | An Introduction to R" />
+  <meta name="twitter:title" content="6.2 Functions in R | An Introduction to R" />
   
-  <meta name="twitter:description" content="1.7 Working directories | An Introduction to R" />
+  <meta name="twitter:description" content="6.2 Functions in R | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rsprojs.html"/>
-<link rel="next" href="dir-struct.html"/>
+<link rel="prev" href="looking-behind-the-curtain.html"/>
+<link rel="next" href="conditional-statements.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -340,46 +340,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="work-d" class="section level2">
-<h2><span class="header-section-number">1.7</span> Working directories</h2>
-<p>The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the <code>~</code> symbol above is shorthand for <code>/Users/nhy163/</code> on a Mac computer (the same on Linux computers).</p>
-<p> </p>
-<p><img src="images/dir_struct.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can also use the <code>getwd()</code> function in the Console which returns the file path of the current working directory.</p>
-<p> </p>
-<p><img src="images/dir_struct2.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>In the example above, our working directory is a folder called ‘first_project’ which is a subfolder of &quot;Teaching’ in our ‘Alex’ folder which in turn is in a ‘Documents’ folder located in the ‘nhy163’ folder which itself is in the ‘Users’ folder. On a Windows based computer our working directory would also include a drive letter (i.e. <code>C:/Users/nhy163/Documents/Alex/Teaching/first_project</code>).</p>
-<p>If you weren’t using an RStudio Project then you would have to set your working directory using the <code>setwd()</code> function at the start of every R script (something we did for many years).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&#39;/Users/nhy163/Documents/Alex/Teaching/first_project&#39;</span>)</a></code></pre></div>
-<p>However, the problem with <code>setwd()</code> is that it uses an <em>absolute</em> file path which is specific to the computer you are working on. If you want to send your script to someone else (or if you’re working on a different computer) this absolute file path is not going to work on your friend/colleagues computer as their directory configuration will be different (you are unlikely to have a directory structure <code>/Users/nhy163/Documents/Alex/Teaching/</code> on your computer). This results in a project that is not self-contained and not easily portable. RStudio solves this problem by allowing you to use <em>relative</em> file paths which are relative to the <em>Root</em> project directory. The Root project directory is just the directory that contains the <code>.Rproj</code> file (<code>first_project.Rproj</code> in our case). If you want to share your analysis with someone else, all you need to do is save the entire project directory and send to your to your collaborator. They would then just need to open the project file and any R scripts that contain references to relative file paths will just work. For example, let’s say that you’ve created a subdirectory called <code>raw_data</code> in your Root project directory that contains a tab delimited datafile called <code>mydata.txt</code> (we will cover directory structures <a href="dir-struct.html#dir_struct">below</a>). To import this datafile in an RStudio project using the <code>read.table()</code> function (don’t worry about this now, we will cover this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>) all you need to include in your R script is</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;raw_data/mydata.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a></code></pre></div>
-<p>Because the file path <code>raw_data/mydata.txt</code> is relative to the project directory it doesn’t matter where you collaborator saves the project directory on their computer it will still work.</p>
-<p>If you weren’t using an RStudio project then you would have to use either of the options below neither of which would work on a different computer.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/&quot;</span>)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;raw_data/mydata.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co"># or</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/raw_data/mydata.txt&quot;</span>, </a>
-<a class="sourceLine" id="cb19-8" data-line-number="8">    <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
-<p>For those of you who want to take the notion of relative file paths a step further, take a look at the <code>here()</code> function in the <code>here</code> <a href="https://github.com/r-lib/here">package</a>. The <code>here()</code> function allows you to automagically build file paths for any file relative to the project root directory that are also operating system agnostic (works on a Mac or Windows machine). For example, to import our <code>mydata.txt</code> file from the <code>raw_data</code> directory just use</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(here)  <span class="co"># you may need to install the here package first</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">here</span>(<span class="st">&quot;raw_data&quot;</span>, <span class="st">&quot;mydata.txt&quot;</span>), <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co"># or without loading the here package</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;raw_data&quot;</span>, <span class="st">&quot;mydata.txt&quot;</span>), <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a></code></pre></div>
+<div id="functions-in-r" class="section level2">
+<h2><span class="header-section-number">6.2</span> Functions in R</h2>
+<p>Functions are you loyal servants, waiting to do your bidding to the best of their ability. They are made with the utmost care and attention… though sometimes may end up being something of a Frankenstein’s monster - with an extra limb or two and a head put backwards. But they are completely faithful to you.</p>
+<p>They are also very stupid.</p>
+<p>If I asked you to go to the supermarket and get me some ingredients to make <em>Francesinha</em>, even if you don’t know what the hell that is, you’d be able to have a complete guess and bring at least <em>something</em> back. Or you could decide to make something else. Or you could ask a policeman for help. Or you could search online for what <em>Francesinha</em> is. The point is, even if I don’t give you enough information to do the task, you are intelligent enough to, at the very least, try to find a work around.</p>
+<p>If instead, I asked our loyal function to do the same, it would listen intently to our request, stand still for a few seconds, compose itself, and then start shouting <code>Error: 'data' must be a data frame, or other object ...</code>. It would then repeat this every single time I asked it to do the job. The point here is that code and functions are not intelligent. It cannot find work arounds. It is totally reliant on you, the “master”, telling it very explicitly what it needs to do.</p>
+<p>Remember two things: the intelligence of code comes from the coder, not the computer; and functions need exact instructions to work.</p>
+<p>To prevent functions from being <em>too</em> stupid, you the user, provide the information the function needs in order to function As with the <em>Francesinha</em> example, if we’d supplied a recipe list to the function, it would have managed just fine. We call this “fulfilling an argument”. The vast majority of functions require the user to fulfill at least one function.</p>
+<p>This means that when we make a function, we can specify what arguments the user must fulfill (e.g. <code>argument1</code> and <code>argument2</code>), as well as what to do once it has this information (<code>expression</code>):</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">nameOfFunction &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2,…) {expression}</a></code></pre></div>
+<p>The first thing to note is that we’ve used the function <code>function()</code> to create a new function. To walk through the above code; we’re creating a function called <code>name</code>. Within the brackets we specify what information (i.e. arguments) the function requires to run (as many or as few as needed). These arguments are then passed to the expression part of the function. The expression can be any valid R command or set of R commands and is usually contained between the braces {} (if a function is only one line long you can omit the braces). Once you run the above code, you could then use your new function by typing:</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="kw">nameOfFunction</span>(exp1, exp2)</a></code></pre></div>
+<p><code>exp1</code> and <code>exp2</code> are values you wish to supply to the arguments. Confused? Let’s run an example.</p>
+<p>First we are going to create a data frame called <code>city</code>, where columns <code>porto</code>, <code>aberdeen</code>, <code>nairobi</code>, and <code>genoa</code> are filled with 100 random values drawn from a bag (using the <code>rnorm()</code> function to draw random values from a Normal distribution). We also include a “problem”, for us to solve later, by including 10 rows of NAs within the <code>nairobi</code> column (using <code>rep(NA, 10)</code>).</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb289-2" data-line-number="2">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb289-3" data-line-number="3">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb289-4" data-line-number="4">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
+<a class="sourceLine" id="cb289-5" data-line-number="5">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb289-6" data-line-number="6">)</a></code></pre></div>
+<p>Let’s say that you want to use this dataframe and multiply <code>Porto</code> with <code>Aberdeen</code>. We can do this by “hand” using:</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a></code></pre></div>
+<p>We’ve now created an object called <code>porto_aberdeen</code> by multiplying <code>city$porto</code> and <code>city$aberdeen</code>. Simple. If this was all we needed to do, we can stop here. R works with vectors, so doing these kinds of operations in R is actually much simpler than other programming languages, where this type of code might require loops. Something to keep in mind for later is that doing these kinds of operations in loops can be much slower than with vectors and functions.</p>
+<p>But what if we want to repeat this multiplication many times? Let’s say we wanted to multiply columns <code>a</code> and <code>b</code>, <code>b</code> and <code>c</code>, and <code>c</code> and <code>d</code>. In this case we could copy and paste the code, replacing the relevant information.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb291-2" data-line-number="2">aberdeen_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb291-3" data-line-number="3">nairobi_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>genoa</a></code></pre></div>
+<p>While this approach works, it is easy to make mistakes. In fact, here I’ve “forgotten” to change <code>aberdeen</code> to <code>genoa</code> in the second line of code when copying and pasting. This is where writing a fuction comes in handy. If we were to write this as a function, there is only one source of potential error (within the function itself) instead of many copy-pasted lines of code (which we also cut down on by using a function).</p>
+<p>In this case, we’re using some fairly trivial code where it’s maybe hard to make a genuine mistake. But what if we increased the complexity?</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">/</span><span class="st"> </span>city<span class="op">$</span>porto <span class="op">+</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span>(city<span class="op">$</span>aberdeen)) <span class="op">-</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">-</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(city<span class="op">$</span>aberdeen <span class="op">+</span><span class="st"> </span><span class="dv">10</span>))</a></code></pre></div>
+<p>Now imagine having to copy and paste this three times, and in each case having to change <code>porto</code> and <code>aberdeen</code>. I’m daunted at the thought of that, especially if we had to do it more than three times.</p>
+<p>What we could do is write code for <code>x</code> and <code>y</code> instead of specific cities. If we did this, we could recycle the <code>x * y</code> code. Whenever we wanted to multiple columns together, we assign a city to either <code>x</code> or <code>y</code>. We’ll assign the multiplication to the objects <code>porto_aberdeen</code> and <code>aberdeen_nairobi</code> so we can come back to them later.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="co"># Assign x and y values</span></a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">x &lt;-<span class="st"> </span>city<span class="op">$</span>porto</a>
+<a class="sourceLine" id="cb293-3" data-line-number="3">y &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb293-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb293-5" data-line-number="5"><span class="co"># Use multiplication code</span></a>
+<a class="sourceLine" id="cb293-6" data-line-number="6">porto_aberdeen &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb293-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb293-8" data-line-number="8"><span class="co"># Assign new x and y values</span></a>
+<a class="sourceLine" id="cb293-9" data-line-number="9">x &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb293-10" data-line-number="10">y &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi</a>
+<a class="sourceLine" id="cb293-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb293-12" data-line-number="12"><span class="co"># Reuse multiplication code</span></a>
+<a class="sourceLine" id="cb293-13" data-line-number="13">aberdeen_nairobi &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a></code></pre></div>
+<p>This is essential what a function does. To help reinforce that, think of as though we are using two “arguments”; <code>x</code> and <code>y</code>. We can now do the same as above but wrap up that multiplication into a function to make it even easier to use in future. Where above we were previously manually setting <code>x &lt;- city$porto</code>, when we use a function where this is replaced by stating that the argument <code>x</code> is <code>city$porto</code> and <code>y</code> is <code>city$aberdeen</code>. Let’s call it <code>porto_aberdeen_func</code>. We place the multiplication within the <code>return()</code> function so that</p>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb294-2" data-line-number="2">  <span class="kw">return</span>(x <span class="op">*</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb294-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb294-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb294-5" data-line-number="5">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a></code></pre></div>
+<p>If we were only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, we’d be overkilling it by creating a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
+<p>To satisfy ourselves that the function has worked properly, we can compare <code>porto_aberdeen</code> with <code>porto_aberdeen_func</code> using the <code>identical()</code> function. Use <code>?identical</code> if you want to know more about the function.</p>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a>
+<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="co"># [1] TRUE</span></a></code></pre></div>
+<p>And we confirm that the function has produced the same result as when we do the calculation manually. We recommend getting into a habit of checking that the function you’ve created works the way you think it has.</p>
+<p>Now let’s use our <code>multiply_columns</code> function to multiply columns <code>aberdeen</code> and <code>nairobi</code>. Notice now that argument <code>x</code> is fulfilled by <code>city$aberdeen</code>and <code>y</code> by <code>city$nairobi</code>.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb296-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb296-3" data-line-number="3"><span class="kw">summary</span>(aberdeen_nairobi_func)</a>
+<a class="sourceLine" id="cb296-4" data-line-number="4"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></a>
+<a class="sourceLine" id="cb296-5" data-line-number="5"><span class="co">#  -4.280  -0.273   0.051   0.141   0.435   4.187      10</span></a></code></pre></div>
+<p>So far so good. All we’ve really done is wrapped the base code <code>x * y</code> into a function, where we ask the user to specify what their x and y values are.</p>
+<p>Now let’s add a little complexity. If you look at the output of nairobi_genoa (<code>summary(nairobi_genoa)</code>) some of the calculations haven’t been done and the function has produced some NAs. This is because of those NAs we included in <code>nairobi</code> at the start of the Chapter. Despite there being NAs, the function worked and it gave us no indication that there was a problem. In such cases we may prefer if it had warned us that something was wrong. How would we get the funtion to give us a warning when there are NAs produced?</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb297-2" data-line-number="2">  temp &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb297-3" data-line-number="3">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp))) {</a>
+<a class="sourceLine" id="cb297-4" data-line-number="4">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
+<a class="sourceLine" id="cb297-5" data-line-number="5">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb297-6" data-line-number="6">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb297-7" data-line-number="7">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb297-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb297-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb297-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb297-11" data-line-number="11">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb297-12" data-line-number="12"><span class="co"># Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
+<a class="sourceLine" id="cb297-13" data-line-number="13"><span class="co"># produced NAs</span></a>
+<a class="sourceLine" id="cb297-14" data-line-number="14">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a></code></pre></div>
+<p>The core of the function is still the same. We still have <code>x * y</code> in there, but we’ve now got an extra six lines of code. Namely, we’ve included some <code>if</code> and <code>else</code> statements. The next section of this Chapter will explain how these work and how to use them.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="rsprojs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dir-struct.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="looking-behind-the-curtain.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="conditional-statements.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -401,7 +448,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/06-programming.Rmd",
 "text": "Edit"
 },
 "history": {

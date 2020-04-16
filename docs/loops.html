@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.7 Working directories | An Introduction to R</title>
-  <meta name="description" content="1.7 Working directories | An Introduction to R" />
+  <title>6.5 Loops | An Introduction to R</title>
+  <meta name="description" content="6.5 Loops | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.7 Working directories | An Introduction to R" />
+  <meta property="og:title" content="6.5 Loops | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="1.7 Working directories | An Introduction to R" />
+  <meta property="og:description" content="6.5 Loops | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.7 Working directories | An Introduction to R" />
+  <meta name="twitter:title" content="6.5 Loops | An Introduction to R" />
   
-  <meta name="twitter:description" content="1.7 Working directories | An Introduction to R" />
+  <meta name="twitter:description" content="6.5 Loops | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rsprojs.html"/>
-<link rel="next" href="dir-struct.html"/>
+<link rel="prev" href="is-it-gonna-be-a-good-day.html"/>
+<link rel="next" href="rmarkdown-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -340,46 +340,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="work-d" class="section level2">
-<h2><span class="header-section-number">1.7</span> Working directories</h2>
-<p>The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the <code>~</code> symbol above is shorthand for <code>/Users/nhy163/</code> on a Mac computer (the same on Linux computers).</p>
-<p> </p>
-<p><img src="images/dir_struct.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can also use the <code>getwd()</code> function in the Console which returns the file path of the current working directory.</p>
-<p> </p>
-<p><img src="images/dir_struct2.png" width="60%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>In the example above, our working directory is a folder called ‘first_project’ which is a subfolder of &quot;Teaching’ in our ‘Alex’ folder which in turn is in a ‘Documents’ folder located in the ‘nhy163’ folder which itself is in the ‘Users’ folder. On a Windows based computer our working directory would also include a drive letter (i.e. <code>C:/Users/nhy163/Documents/Alex/Teaching/first_project</code>).</p>
-<p>If you weren’t using an RStudio Project then you would have to set your working directory using the <code>setwd()</code> function at the start of every R script (something we did for many years).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&#39;/Users/nhy163/Documents/Alex/Teaching/first_project&#39;</span>)</a></code></pre></div>
-<p>However, the problem with <code>setwd()</code> is that it uses an <em>absolute</em> file path which is specific to the computer you are working on. If you want to send your script to someone else (or if you’re working on a different computer) this absolute file path is not going to work on your friend/colleagues computer as their directory configuration will be different (you are unlikely to have a directory structure <code>/Users/nhy163/Documents/Alex/Teaching/</code> on your computer). This results in a project that is not self-contained and not easily portable. RStudio solves this problem by allowing you to use <em>relative</em> file paths which are relative to the <em>Root</em> project directory. The Root project directory is just the directory that contains the <code>.Rproj</code> file (<code>first_project.Rproj</code> in our case). If you want to share your analysis with someone else, all you need to do is save the entire project directory and send to your to your collaborator. They would then just need to open the project file and any R scripts that contain references to relative file paths will just work. For example, let’s say that you’ve created a subdirectory called <code>raw_data</code> in your Root project directory that contains a tab delimited datafile called <code>mydata.txt</code> (we will cover directory structures <a href="dir-struct.html#dir_struct">below</a>). To import this datafile in an RStudio project using the <code>read.table()</code> function (don’t worry about this now, we will cover this in much more detail in <a href="data-r.html#data_r">Chapter 3</a>) all you need to include in your R script is</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;raw_data/mydata.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a></code></pre></div>
-<p>Because the file path <code>raw_data/mydata.txt</code> is relative to the project directory it doesn’t matter where you collaborator saves the project directory on their computer it will still work.</p>
-<p>If you weren’t using an RStudio project then you would have to use either of the options below neither of which would work on a different computer.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">setwd</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/&quot;</span>)</a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;raw_data/mydata.txt&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="co"># or</span></a>
-<a class="sourceLine" id="cb19-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb19-7" data-line-number="7">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/raw_data/mydata.txt&quot;</span>, </a>
-<a class="sourceLine" id="cb19-8" data-line-number="8">    <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
-<p>For those of you who want to take the notion of relative file paths a step further, take a look at the <code>here()</code> function in the <code>here</code> <a href="https://github.com/r-lib/here">package</a>. The <code>here()</code> function allows you to automagically build file paths for any file relative to the project root directory that are also operating system agnostic (works on a Mac or Windows machine). For example, to import our <code>mydata.txt</code> file from the <code>raw_data</code> directory just use</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw">library</span>(here)  <span class="co"># you may need to install the here package first</span></a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="kw">here</span>(<span class="st">&quot;raw_data&quot;</span>, <span class="st">&quot;mydata.txt&quot;</span>), <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a>
-<a class="sourceLine" id="cb20-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb20-4" data-line-number="4"><span class="co"># or without loading the here package</span></a>
-<a class="sourceLine" id="cb20-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb20-6" data-line-number="6">dataf &lt;-<span class="st"> </span><span class="kw">read.table</span>(here<span class="op">::</span><span class="kw">here</span>(<span class="st">&quot;raw_data&quot;</span>, <span class="st">&quot;mydata.txt&quot;</span>), <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&#39;</span><span class="ch">\t</span><span class="st">&#39;</span>)</a></code></pre></div>
+<div id="loops" class="section level2">
+<h2><span class="header-section-number">6.5</span> Loops</h2>
+<p>R is very good at performing repetitive tasks. If we want a set of operations to be repeated several times we use what is known as a loop. When you create a loop, R will execute the instructions in the loop a specified number of times or until a specified condition is met. There are three main types of loop in R: the <em>for</em> loop, the <em>while</em> loop and the <em>repeat</em> loop.</p>
+<p>Loops are one of the staples of all progamming languages, not just R, and can be a powerful tool.</p>
+<div id="for-loop" class="section level3">
+<h3><span class="header-section-number">6.5.1</span> For loop</h3>
+<p>The most commonly used loop structure when you want to repeat a task a defined number of times is the for loop.
+The most basic example of a for loop is:</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb307-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb307-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb307-4" data-line-number="4"><span class="co"># [1] 1</span></a>
+<a class="sourceLine" id="cb307-5" data-line-number="5"><span class="co"># [1] 2</span></a>
+<a class="sourceLine" id="cb307-6" data-line-number="6"><span class="co"># [1] 3</span></a>
+<a class="sourceLine" id="cb307-7" data-line-number="7"><span class="co"># [1] 4</span></a>
+<a class="sourceLine" id="cb307-8" data-line-number="8"><span class="co"># [1] 5</span></a></code></pre></div>
+<p>But what is the code actually doing? This is a dynamic bit of code were <code>i</code> is iteratively replaced by each value after the <code>in</code>. Let’s break it down. Because the first value in our sequence (<code>1:5</code>) is 1, the loop starts by replacing <code>i</code> with <code>1</code> and runs everything between <code>{}</code>. Loops conventionally use <code>i</code> as the counter, short for iteration, but you are free to use whatever you like, even your pet’s name, it really does not matter (except when using nested loops, in which case the counters must be called different things, like <code>SenorWhiskers</code> and <code>HerrFlufferkins</code>.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb308-3" data-line-number="3"><span class="co"># [1] 1</span></a></code></pre></div>
+<p>Once this 1st iteration is complete, the for loop <em>loops</em> back to the beginning and replaces <code>i</code> with the next value in our <code>1:5</code> sequence (<code>2</code> in this case):</p>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb309-2" data-line-number="2"><span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb309-3" data-line-number="3"><span class="co"># [1] 2</span></a></code></pre></div>
+<p>This process is then repeated until the loop reaches the final value in the sequence at which point it stops.</p>
+<p>To reinforce how for loops work, while also introducing you to a valuable feaure of loops, we’ll alter our counter within the loop. This can be used, for example, if you were using a loop to iterate through a vector but want to select the next row (or a value 2 rows previous, etc.). To show this we’ll simply add 1 to each number in the sequence.</p>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb310-2" data-line-number="2">  <span class="kw">print</span>(i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb310-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb310-4" data-line-number="4"><span class="co"># [1] 2</span></a>
+<a class="sourceLine" id="cb310-5" data-line-number="5"><span class="co"># [1] 3</span></a>
+<a class="sourceLine" id="cb310-6" data-line-number="6"><span class="co"># [1] 4</span></a>
+<a class="sourceLine" id="cb310-7" data-line-number="7"><span class="co"># [1] 5</span></a>
+<a class="sourceLine" id="cb310-8" data-line-number="8"><span class="co"># [1] 6</span></a></code></pre></div>
+<p>As in the previous loop, the first value in our sequence is 1. The loop begins by replacing <code>i</code> with <code>1</code>, but this time we’ve specified that a value of 1 must be added to <code>i</code> in the expression.</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb311-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb311-3" data-line-number="3"><span class="co"># [1] 2</span></a></code></pre></div>
+<p>As before, once the iteration is complete, the loop moves onto the next value in the sequence and replaces <code>i</code> with the relevant value (<code>2</code> in this case) so that <code>i + 1</code> becomes <code>2 + 1</code>.</p>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb312-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb312-3" data-line-number="3"><span class="co"># [1] 3</span></a></code></pre></div>
+<p>And so on. I think you got the idea! In essence this is all a for loop is doing and nothing more.</p>
+<p>While above we have been using simple addition in the expression of the loop, you can also combine loops with functions.</p>
+<p>Let’s go back to our dataframe <code>city</code>. In the section above you created a function to multiply two columns and used it to calculate <code>porto_aberdeen</code>, <code>aberdeen_nairobi</code>, and <code>nairobi_genoa</code>. You could have used a loop for this.</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1"><span class="co"># Recreating our dataset</span></a>
+<a class="sourceLine" id="cb313-2" data-line-number="2">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb313-3" data-line-number="3">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb313-4" data-line-number="4">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb313-5" data-line-number="5">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
+<a class="sourceLine" id="cb313-6" data-line-number="6">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb313-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb313-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb313-9" data-line-number="9"><span class="co"># Our function</span></a>
+<a class="sourceLine" id="cb313-10" data-line-number="10">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb313-11" data-line-number="11">  temp &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb313-12" data-line-number="12">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp))) {</a>
+<a class="sourceLine" id="cb313-13" data-line-number="13">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
+<a class="sourceLine" id="cb313-14" data-line-number="14">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb313-15" data-line-number="15">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb313-16" data-line-number="16">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb313-17" data-line-number="17">  }</a>
+<a class="sourceLine" id="cb313-18" data-line-number="18">}</a></code></pre></div>
+<p>To do so here, we need to create an empty list which we call <code>temp</code> (short for temporary). <code>temp</code> will be used to hold the output of the for loop.</p>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb314-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(city) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">  temp[[i]] &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb314-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb314-5" data-line-number="5"><span class="co"># Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced</span></a>
+<a class="sourceLine" id="cb314-6" data-line-number="6"><span class="co"># NAs</span></a>
+<a class="sourceLine" id="cb314-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb314-8" data-line-number="8"><span class="co"># Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced</span></a>
+<a class="sourceLine" id="cb314-9" data-line-number="9"><span class="co"># NAs</span></a></code></pre></div>
+<p>Notice how we subtracted 1 from <code>ncol(city)</code>. Why did we do that? You can read this loop as saying:
+&quot;For the 1st to 3rd columns in the <code>city</code> dataframe, multiply the 1st column (<code>city[, i]</code>) with the very next column (<code>city[, i + 1]</code>). We have four columns in total, so if we did not do <code>ncol(city) - 1</code>, then eventually we’d try to add the 4th column with the non-existent 5th column.</p>
+<p>In this case we are using <code>i</code> as the column number (<code>ncol()</code>) in the <code>city</code> dataframe. On the first iteration of the loop, <code>i</code> takes the value of 1 and <code>city[, i]</code> becames <code>city[, 1]</code> (corresponding to <code>city$porto</code>) and <code>city[i + 1]</code> takes the value of <code>city[, 1 + 1]</code> (corresponding to <code>city$aberdeen</code>).</p>
+<p>Once the first iteration ends, <code>i</code> takes the value of 2, the second element in the sequence. Meaning <code>city[, i]</code> becames <code>city[, 2]</code> (or <code>city$aberdeen</code>) and <code>city[, i + 1]</code> becomes <code>city[, 3]</code> (or <code>city$nairobi</code>). In each iteration we are storing the results of our <code>multiply_columns()</code> function to the <code>temp</code> list (<code>temp[i] &lt;- ...</code>).</p>
+<p>We can compare this method with the two alternative results where we calculated these “by hand”, and by using our function:</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
+<a class="sourceLine" id="cb315-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb315-3" data-line-number="3"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), porto_aberdeen_func)</a>
+<a class="sourceLine" id="cb315-4" data-line-number="4"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb315-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb315-6" data-line-number="6">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb315-7" data-line-number="7"><span class="co"># Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
+<a class="sourceLine" id="cb315-8" data-line-number="8"><span class="co"># produced NAs</span></a>
+<a class="sourceLine" id="cb315-9" data-line-number="9">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb315-10" data-line-number="10"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), aberdeen_nairobi_func)</a>
+<a class="sourceLine" id="cb315-11" data-line-number="11"><span class="co"># Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced</span></a>
+<a class="sourceLine" id="cb315-12" data-line-number="12"><span class="co"># NAs</span></a>
+<a class="sourceLine" id="cb315-13" data-line-number="13"><span class="co"># [1] TRUE</span></a></code></pre></div>
+<p>Let’s go back to our <code>good.day()</code> function and use a for loop to predict how our entire week is going to unfold. First, let’s create a vector with the day of the week and let fate decide if the code is going to work or not (like a magic 8 ball!).</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1"><span class="co"># Running the function code again</span></a>
+<a class="sourceLine" id="cb316-2" data-line-number="2">good.day &lt;-<span class="st"> </span><span class="cf">function</span>(code.working, day) {</a>
+<a class="sourceLine" id="cb316-3" data-line-number="3">  <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb316-4" data-line-number="4">    <span class="st">&quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></a>
+<a class="sourceLine" id="cb316-5" data-line-number="5">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb316-6" data-line-number="6">    <span class="st">&quot;Oh well, but at least it&#39;s friday! Pub time!&quot;</span></a>
+<a class="sourceLine" id="cb316-7" data-line-number="7">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb316-8" data-line-number="8">    <span class="st">&quot;So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
+<a class="sourceLine" id="cb316-9" data-line-number="9">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb316-10" data-line-number="10">    <span class="st">&quot;Hello darkness.&quot;</span></a>
+<a class="sourceLine" id="cb316-11" data-line-number="11">  }</a>
+<a class="sourceLine" id="cb316-12" data-line-number="12">}</a>
+<a class="sourceLine" id="cb316-13" data-line-number="13"></a>
+<a class="sourceLine" id="cb316-14" data-line-number="14"><span class="co"># Creating a list with weekdays</span></a>
+<a class="sourceLine" id="cb316-15" data-line-number="15">week.days &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, <span class="st">&quot;Wednesday&quot;</span>, <span class="st">&quot;Thursday&quot;</span>, <span class="st">&quot;Friday&quot;</span>)</a>
+<a class="sourceLine" id="cb316-16" data-line-number="16"></a>
+<a class="sourceLine" id="cb316-17" data-line-number="17"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(week.days)) {</a>
+<a class="sourceLine" id="cb316-18" data-line-number="18">  code.work &lt;-<span class="st"> </span><span class="kw">as.logical</span>(<span class="kw">sample.int</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="co"># don&#39;t worry too much about this line - uses as.logical to generate a random TRUE FALSE</span></a>
+<a class="sourceLine" id="cb316-19" data-line-number="19">  <span class="kw">print</span>(<span class="kw">paste</span>(week.days[i], <span class="kw">good.day</span>(<span class="dt">code.working =</span> code.work, <span class="dt">day =</span> week.days[i]), <span class="dt">sep =</span> <span class="st">&quot;: &quot;</span>))</a>
+<a class="sourceLine" id="cb316-20" data-line-number="20">}</a>
+<a class="sourceLine" id="cb316-21" data-line-number="21"><span class="co"># [1] &quot;Monday: So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
+<a class="sourceLine" id="cb316-22" data-line-number="22"><span class="co"># [1] &quot;Tuesday: Hello darkness.&quot;</span></a>
+<a class="sourceLine" id="cb316-23" data-line-number="23"><span class="co"># [1] &quot;Wednesday: So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
+<a class="sourceLine" id="cb316-24" data-line-number="24"><span class="co"># [1] &quot;Thursday: So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
+<a class="sourceLine" id="cb316-25" data-line-number="25"><span class="co"># [1] &quot;Friday: BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></a></code></pre></div>
+<p>Notice how we used <code>length(week.days)</code> when setting up our initial sequence to iterate through? We do this as it makes the loop future proofed. Instead of manually specifying how many <code>week.days</code> we’ve included, if we do it as above, we won’t have to change the loop every time we change <code>week.days</code>. This is also incredibly useful when working with larger vectors (imagine if <code>week.days</code> was &gt;100,000), as you wouldn’t have to count them yourself; use R to do the hard work for you.</p>
+<p>If you can follow the examples above, you’ll be in a good spot to begin writing some of your own for loops. That said there are other types of loops available to you.</p>
 </div>
+<div id="while-loop" class="section level3">
+<h3><span class="header-section-number">6.5.2</span> While loop</h3>
+<p>Another type of loop that you may use less frequently is the <em>while</em> loop. The while loop is used when you want to keep looping until a specific logical condition is satisfied (contrast this with the <em>for</em> loop which will always iterate through an entire sequence).</p>
+<p>The basic structure of the while loop is:</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="cf">while</span>(logical_condition){ commands }</a></code></pre></div>
+<p>A simple example of a while loop is:</p>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb318-2" data-line-number="2"><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>) {</a>
+<a class="sourceLine" id="cb318-3" data-line-number="3">  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb318-4" data-line-number="4">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb318-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb318-6" data-line-number="6"><span class="co"># [1] 2</span></a>
+<a class="sourceLine" id="cb318-7" data-line-number="7"><span class="co"># [1] 3</span></a>
+<a class="sourceLine" id="cb318-8" data-line-number="8"><span class="co"># [1] 4</span></a>
+<a class="sourceLine" id="cb318-9" data-line-number="9"><span class="co"># [1] 5</span></a></code></pre></div>
+<p>Here the loop will only continue to pass values to the main body of the loop (the <code>commands</code> body) when <code>i</code> is less than or equal to 4 (specified using the <code>&lt;=</code> operator in this example). Once <code>i</code> is greater than 5 the loop will stop.</p>
+<p>There is another, very rarely used type of loop; the repeat loop. The repeat loop has no conditional check so can keep iterating indefinitely (meaning a break, or “stop here”, has to be coded into it). It is worthwhile being aware of it’s existence, but for now we don’t think you need to worry about it; the for and while loops will see you through the vast majority of your looping needs.</p>
+</div>
+<div id="when-to-use-a-loop" class="section level3">
+<h3><span class="header-section-number">6.5.3</span> When to use a loop?</h3>
+<p>Loops are fairly commonly used, though sometimes without reason. Equivalent tasks can be performed with functions, which are often more efficient than loops. The question is then; When should you use loops?</p>
+<p>In general loops are implemented very inefficiently in R and should be avoided whenever possible, especially when you’re working with large datasets. However, loop are sometimes the only way to achieve the result we want.</p>
+<p><strong>Some examples of when using loops can be appropriate:</strong></p>
+<ul>
+<li><p>Some simulations (e.g. the ricker model can, in part, be built using loops)</p></li>
+<li><p>Recursive relationships (a relationship which depends on the value of the previous relationship [“to understand recursion, you must understand recursion”])</p></li>
+<li><p>More complex problems (e.g., how long since the last badger was seen at site <span class="math inline">\(j\)</span>, given a pine marten was seen at time <span class="math inline">\(t\)</span>, at the same location <span class="math inline">\(j\)</span> as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detections)</p></li>
+<li><p>While loops (keep jumping until you’ve reached the moon)</p></li>
+</ul>
+</div>
+<div id="if-not-loops-then-what" class="section level3">
+<h3><span class="header-section-number">6.5.4</span> If not loops, then what?</h3>
+<p>In short, use the *apply functions; <code>apply()</code>, <code>lapply()</code>, <code>tapply()</code>, <code>sapply()</code>, <code>vapply()</code>, <code>mapply()</code>, <code>sleepy</code> <sup>a</sup>, <code>sneezy</code> <sup>a</sup>, and <code>dopey</code> <sup>a</sup>. The apply functions can often do the tasks of most “home-brewed” loops, sometimes faster (though that won’t really be an issue for most people) but more importantly with much lower risks of error. A strategy to have in the back of your mind which may be useful is; for every loop you make, try to remake it using an apply function (often <code>lapply</code> or <code>sapply</code> will work). If you can, use the apply version. There is nothing worse than realising there was a small, tiny, seemingly meaningless mistake in a loop which weeks or months or years down the line has propagated into a huge mess. We strongly recommend trying to use apply whenever possible.</p>
+<p><sup>a</sup> these are not really functions.</p>
+<div id="lapply" class="section level4 unnumbered">
+<h4>lapply</h4>
+<p>Your go to apply function will be <code>lapply()</code> at least in the beginning. The way that <code>lapply()</code> works, and the reason it is often a good alternative to for loops, is that it will go through each element in a list (e.g. values in our <code>porto</code> vector) and perform a task (i.e. a function). It has the added benefit that it will output the results as a list - something you’d have to otherwise code yourself into a loop.</p>
+<p>An <code>lapply()</code> has the following structure:</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">lapply</span>(X, FUN)</a></code></pre></div>
+<p>Here <code>X</code> is the vector which we want to do <em>something</em> to. <code>FUN</code> stands for how much fun this is. It also is short for “function”.</p>
+<p>Let’s start with a simple demonstration first. Let’s use the <code>lapply()</code> create a sequence from 1 to 5, which will be our <code>X</code>, and add 1 to each observation (like we did above for the loops):</p>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb320-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(a) {a<span class="op">+</span><span class="dv">1</span>})</a>
+<a class="sourceLine" id="cb320-2" data-line-number="2"><span class="co"># [[1]]</span></a>
+<a class="sourceLine" id="cb320-3" data-line-number="3"><span class="co"># [1] 2</span></a>
+<a class="sourceLine" id="cb320-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb320-5" data-line-number="5"><span class="co"># [[2]]</span></a>
+<a class="sourceLine" id="cb320-6" data-line-number="6"><span class="co"># [1] 3</span></a>
+<a class="sourceLine" id="cb320-7" data-line-number="7"><span class="co"># </span></a>
+<a class="sourceLine" id="cb320-8" data-line-number="8"><span class="co"># [[3]]</span></a>
+<a class="sourceLine" id="cb320-9" data-line-number="9"><span class="co"># [1] 4</span></a>
+<a class="sourceLine" id="cb320-10" data-line-number="10"><span class="co"># </span></a>
+<a class="sourceLine" id="cb320-11" data-line-number="11"><span class="co"># [[4]]</span></a>
+<a class="sourceLine" id="cb320-12" data-line-number="12"><span class="co"># [1] 5</span></a>
+<a class="sourceLine" id="cb320-13" data-line-number="13"><span class="co"># </span></a>
+<a class="sourceLine" id="cb320-14" data-line-number="14"><span class="co"># [[5]]</span></a>
+<a class="sourceLine" id="cb320-15" data-line-number="15"><span class="co"># [1] 6</span></a></code></pre></div>
+<p>Briefly, the <code>sapply</code> does exactly the same thing as an <code>lapply</code> but instead of storing the results as a list, it stores them as a vector.</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="kw">sapply</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="cf">function</span>(a) {a<span class="op">+</span><span class="dv">1</span>})</a>
+<a class="sourceLine" id="cb321-2" data-line-number="2"><span class="co"># [1] 2 3 4 5 6</span></a></code></pre></div>
+<p>As you can see, in both cases, we get the exact same results that we did using a loop. Now let’ use the <code>lapply()</code> instead of a loop to predict how our week is going to be.</p>
+<p>Within <code>lapply()</code>, we;</p>
+<ul>
+<li><p>fulfill the <code>X</code> argument with a sequence from 1 to the total number of days in <code>week.days</code>.</p></li>
+<li><p>State that we will be using a function called <code>function(a)</code>, where what we are actually doing is using <code>a</code> to subset <code>week.days</code>.</p></li>
+</ul>
+<p>This is exactly the same sequence that we applied in the beginning of the loop.</p>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">good.week &lt;-<span class="st"> </span><span class="kw">lapply</span>(<span class="dv">1</span><span class="op">:</span><span class="kw">length</span>(week.days), <span class="cf">function</span>(a) {</a>
+<a class="sourceLine" id="cb322-2" data-line-number="2">  cw &lt;-<span class="st"> </span><span class="kw">as.logical</span>(<span class="kw">sample.int</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb322-3" data-line-number="3">  t &lt;-<span class="st"> </span><span class="kw">good.day</span>(<span class="dt">code.working =</span> cw, <span class="dt">day =</span> week.days[a])</a>
+<a class="sourceLine" id="cb322-4" data-line-number="4">  <span class="kw">paste</span>(week.days[a], t, <span class="dt">sep =</span> <span class="st">&quot;: &quot;</span>)</a>
+<a class="sourceLine" id="cb322-5" data-line-number="5">})</a>
+<a class="sourceLine" id="cb322-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb322-7" data-line-number="7"><span class="kw">print</span>(good.week)      </a></code></pre></div>
+<p> </p>
+<!--course website Links-->
+<!--cran Links-->
+<!--RStudio-->
+<!--style guides-->
+<!--Package Links-->
+<!--Editors-->
+<!--Bioconductor Links-->
+<!--GitHub Links-->
+<!--R markdown Links-->
+<!--ggplot Links-->
+<!--Basics links-->
+<!--Data links-->
+<!--Resource Links-->
+<!--Misc Links-->
+
+</div>
+</div>
+</div>
+<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
-<a href="rsprojs.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="dir-struct.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="is-it-gonna-be-a-good-day.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="rmarkdown-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -401,7 +581,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/06-programming.Rmd",
 "text": "Edit"
 },
 "history": {

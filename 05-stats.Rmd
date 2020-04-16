@@ -1,6 +1,6 @@
 # Simple Statistics in R {#stats_r}
 
-| Note: The content of this Chapter is a very old draft which we have included here as a placeholder. Although you may still find some of the the content useful we are in the process of substantially rewriting this Chapter.
+>Note: The content of this Chapter is a very old draft which we've included here as a placeholder. Although you may still find some of the the content useful we are in the process of substantially rewriting this Chapter.
 
 \  
 
@@ -8,9 +8,9 @@ In addition to R’s powerful data manipulation and graphics facilities, R inclu
 
 ## One and two sample tests
 
-The two main functions for these types of tests are the `t.test()` and `wilcox.test()` that perform t tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.
+The two main functions for these types of tests are the `t.test()` and `wilcox.test()` that perform *t* tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.
 
-As an example of a one sample t test we will use the `trees` dataset which is included with R. To access this in-built dataset we can use the `data()` function. 
+As an example of a one sample *t* test we will use the `trees` dataset which is included with R. To access this in-built dataset we can use the `data()` function. 
 
 ```{r ss1, echo=TRUE, collapse=TRUE}
 data(trees)
@@ -24,7 +24,7 @@ If we wanted to test whether mean height of black cherry trees in this sample is
 t.test(trees$Height, mu = 70)
 ```
 
-The above summary has a fairly logical layout and includes the name of the test that we have asked for (`One Sample t-test`), which data has been used (`data:  Height`), the t statistic, degrees of freedom and associated p value (`t = 5.2429, df = 30, p-value = 1.173e-05`). It also states the alternative hypothesis (`alternative hypothesis: true mean is not equal to 70`) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (`95 percent confidence interval:73.6628 78.3372`) and also an estimate of the mean (`sample estimates: mean of x : 76`). In the above example, the p value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70. 
+The above summary has a fairly logical layout and includes the name of the test that we have asked for (`One Sample t-test`), which data has been used (`data:  Height`), the *t* statistic, degrees of freedom and associated *p* value (`t = 5.2429, df = 30, p-value = 1.173e-05`). It also states the alternative hypothesis (`alternative hypothesis: true mean is not equal to 70`) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (`95 percent confidence interval:73.6628 78.3372`) and also an estimate of the mean (`sample estimates: mean of x : 76`). In the above example, the *p* value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70. 
 
 The function `t.test()` also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either `alternative = "greater"` or `alternative = "less` which tests whether the sample mean is greater or less than the mean specified.  For example, to test whether our sample mean is greater than 70 ft.
 
@@ -34,15 +34,15 @@ t.test(trees$Height, mu = 70, alternative="greater")
 
 You can also change the confidence level used for estimating the confidence intervals using the argument `conf.level = 0.99`. In this case the new confidence interval would be 99%.
 
-Although t tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the `wilcox.test()` function.
+Although *t* tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the `wilcox.test()` function.
 
 ```{r ss4, echo=TRUE, collapse=TRUE}
 wilcox.test(trees$Height, mu = 70)
 ```
 
-Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact p value. This is only really a problem with small sample sizes. You can also use the arguments `alternative = "greater"` and `alternative = "less"`.
+Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact *p* value. This is only really a problem with small sample sizes. You can also use the arguments `alternative = "greater"` and `alternative = "less"`.
 
-It is always a good idea to examine your data for departures from normality, rather than just assuming everything is ok. In addition to the functions you have already come across (`hist()`, `boxplot()`, `summary()` etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.
+It is always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. In addition to the functions you have already come across (`hist()`, `boxplot()`, `summary()` etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.
 
 To construct a Q-Q plot you need to use both the `qqnorm()` and `qqline()` functions
 
@@ -51,40 +51,40 @@ qqnorm(trees$Height)
 qqline(trees$Height, lty = 2)
 ```
 
-If you insist on performing a specific test for normality you can use the function `shapiro.test()` which performs a Shapiro – Wilk test of normality.
+If you insist on performing a specific test for normality you can use the function `shapiro.test()` which performs a Shapiro – Wilks test of normality.
 
 ```{r ss6, echo=TRUE, collapse=TRUE}
 shapiro.test(trees$Height)
 ```
 
-In the example above, the p value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed. 
+In the example above, the *p* value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed. 
 
-In addition to one-sample tests, both the `t.test()` and `wilcox.test()` functions can be used to test for differences between two samples. A two sample t test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the `atmosphere.txt` data file located in the `data/` directory.
+In addition to one-sample tests, both the `t.test()` and `wilcox.test()` functions can be used to test for differences between two samples. A two sample *t* test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the `atmosphere.txt` data file located in the `data/` directory.
 
 ```{r ss7, echo=TRUE, collapse=TRUE}
 atmos <- read.table('data/atmosphere.txt', header = TRUE)
 str(atmos)
 ```
 
-As with our previous data frame (`flowers`), these data are in the long format. The column `moisture` contains the moisture content measured in each cloud and the column `treatment` identifies whether the cloud was `seeded` or `unseeded`. To perform a two-sample t test
+As with our previous data frame (`flowers`), these data are in the long format. The column `moisture` contains the moisture content measured in each cloud and the column `treatment` identifies whether the cloud was `seeded` or `unseeded`. To perform a two-sample *t* test
 
 ```{r ss8, echo=TRUE, collapse=TRUE}
 t.test(atmos$moisture ~ atmos$treatment)
 ```
 
-Notice the use of the formula method (`atmos$moisture~ atmos$treatment`, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the dataframe. Use `?t.test` for further details. The details of the output are similar to the one-sample t test. The Welch’s variant of the t test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the `var.equal = TRUE` argument
+Notice the use of the formula method (`atmos$moisture~ atmos$treatment`, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the data frame. Use `?t.test` for further details. The details of the output are similar to the one-sample *t* test. The Welch’s variant of the *t* test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the `var.equal = TRUE` argument
 
 ```{r ss9, echo=TRUE, collapse=TRUE}
 t.test(atmos$moisture ~ atmos$treatment, var.equal = TRUE)
 ```
 
-To test whether the assumption of equal variances is valid you can perform an F-test on the ratio of the group variances using the `var.test()` function.
+To test whether the assumption of equal variances is valid you can perform an *F*-test on the ratio of the group variances using the `var.test()` function.
 
 ```{r ss10, echo=TRUE, collapse=TRUE}
 var.test(atmos$moisture ~ atmos$treatment)
 ```
 
-As the p value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the F-test is sensitive to departures from normality and should not be used with data which is not normal. See the `car` package for alternatives. 
+As the *p* value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the *F*-test is sensitive to departures from normality and should not be used with data which is not normal. See the `car` package for alternatives. 
 
 The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method  
 
@@ -99,13 +99,13 @@ pollution <- read.table('data/pollution.txt', header = TRUE)
 str(pollution)
 ```
 
-Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired t test use the `paired = TRUE` argument.
+Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired *t* test use the `paired = TRUE` argument.
 
 ```{r ss13, echo=TRUE, collapse=TRUE}
 t.test(pollution$down, pollution$up, paired = TRUE)
 ```
 
-The output is almost identical to that of a one-sample t test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way
+The output is almost identical to that of a one-sample *t* test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way
 
 ```{r ss14, echo=TRUE, collapse=TRUE}
 wilcox.test(pollution$down, pollution$up, paired = TRUE)
@@ -128,7 +128,7 @@ total <-c((45 + 35), (71 + 32))	  # creates a vector of total numbers
 prop.test(buy,total)		          # perform the test
 ```
 
-There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (p = 0.107). Use `?prop.test` to explore additional uses of the binomial proportions test.
+There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (*p* = 0.107). Use `?prop.test` to explore additional uses of the binomial proportions test.
 
 We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2x2 matrix using the `matrix()` function (note, there are many alternative methods of constructing a table like this).
 
@@ -153,7 +153,7 @@ You can then perform a Chi-square test to test whether the number of cat owners 
 chisq.test(buyers)
 ```
 
-There is no evidence (p = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the `prop.test()`. You can also use the `chisq.test()` function on raw (untabulated) data and to test for goodness of fit (see `?chisq.test` for more details).
+There is no evidence (*p* = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the `prop.test()`. You can also use the `chisq.test()` function on raw (untabulated) data and to test for goodness of fit (see `?chisq.test` for more details).
 
 ## Correlation
 
@@ -194,26 +194,149 @@ cor.test(trees$Height, trees$Volume, method = "spearman")
 
 ## Simple linear modelling
 
-To fit a linear model to your data, we use the `lm()` function (linear model). This function can be used to fit a wide variety of models including bivariate linear regression, multiple linear regression, polynomial regression and ANOVA type designs. In this section we won't go into any of the detail of linear model theory, we'll just briefly introduce you to fitting some of these models in R.
+Linear models are one of the most widely used models in statistics and data science. They are often thought of as simple models but they're very flexible and able to model a wide variety of experimental and survey designs. Many of the statistical approaches you may have used previously (such as linear regression, *t*-test, ANOVA, ANCOVA etc) can be expressed as a linear model so the good news is that you're probably already familiar with linear models (albeit indirectly). They also form the foundation of more complicated modelling approaches and are relatively easy to extended to incorporate additional complexity. During this section we'll learn how to fit some simple linear models using R and cover some of the more common applications. We won't go into any detail of the underlying linear modelling theory but rather focus on the practicalities of model fitting and R code. 
 
-The structure of the main argument when using the `lm()` function is specified using model formula
+The main function for fitting linear models in R is the `lm()` function (short for linear model!). The `lm()` function has many arguments but the most important is the first argument which specifies the model you want to fit using *model formula* which typically takes the general form: 
 
-| *response variable ~ explanatory variable(s)*
+\  
 
-You've already come across this type of model specification in connection with the t and Wilcoxon’s tests (which are just types of linear models). It's simply read as ‘the variation in the response variable modelled as a function (~) of the explanatory variable(s)’. So a bivariate linear regression of a response variable, `y` and a single continuous explanatory variable, `x` would be written as 
+>*response variable ~ explanatory variable(s)*
 
-```{r ss24, echo=TRUE, eval=FALSE}
-lm(y ~ x)
+\  
+
+This model formula is simply read as 
+
+\  
+
+>*'variation in the response variable modelled as a function (~) of the explanatory variable(s)'.* 
+
+\  
+
+The response variable is also commonly known as the 'dependent variable' and the explanatory variables known as 'independent variables'. There is also an additional term in our model formula which represents the variation in our response variable **not** explained by our explanatory variables but you don't need to specify this when using the `lm()` function.
+
+As mentioned above, many of the statistical 'tests' you might have previously used can be expressed as a linear model. For example, if we wanted to perform a bivariate linear regression between a response variable (`y`) and a single continuous explanatory variable (`x`) our model formula would simply be
+
+```
+y ~ x
 ```
 
-We can also include multiple explanatory variables separating them with either a `+` symbol for additive effects or a `:` for interactions
+On the other hand, if we wanted to use an ANOVA to test whether the group means of a response variable (`y`) were different between a three level factor (`x`) our model formula would look like
 
-```{r ss25, echo=TRUE, eval=FALSE}
-lm(y ~ x1 + x2)
-lm(y ~ x1 + x2 + x1:x2)
+```
+y ~ x
 ```
 
-So how does the `lm()` function know whether you want to model a relationship between two continuous variables (i.e. bivariate regression) or model the differences between group means (i.e. one-way ANOVA)? To answer that we also need to take into account the type (or class) of the explanatory variables(s)? 
+OK, hang on, they both look identical, what gives? In addition to the model formula, the type of linear model you fit also depends on what type of data comprises the explanatory variable (i.e. what class of data). If your explanatory variable is continuous then you will fit a bivariate linear regression. If your explanatory variable is a factor (i.e. categorical data) you will fit an ANOVA type model. 
+
+You can also increase the complexity of your linear model by including additional explanatory variables in your model formula. For example, if we wanted to fit a two-way ANOVA both of our explanatory variables `x` and `z` would need to be factors and separated by a `+` symbol
+
+```
+y ~ x + z
+```
+
+If we wanted to perform a factorial ANOVA to identify an interaction between both explanatory variables we would separate our explanatory variables with a `:` symbol whilst also including our main effects in our model formula
+
+```
+y ~ x + z + x:z
+```
+
+or by using the equivalent shortcut notation
+
+```
+y ~ x * z 
+```
+
+It's important that you get to grips with model formula (and we've only given the briefest of explanations above) as this is the main format used by R for many different types of statistical analyses. A summary table of various linear model formula and equivalent analyses is given below.
+
+\  
+
+|Traditional name           |         Model formula      |          R code            |
+|:--------------------------|:---------------------------|:---------------------------|
+|Bivariate regression       | Y ~ X1 (continuous)        | `lm(Y ~ X)`                |
+|One-way ANOVA              | Y ~ X1 (categorical)       | `lm(Y ~ X)`                |
+|Two-way ANOVA              | Y ~ X1 (cat) + X2(cat)     | `lm(Y ~ X1 + X2)`          |
+|ANCOVA                     | Y ~ X1 (cat) + X2(cont)    | `lm(Y ~ X1 + X2)`          |
+|Multiple regression        | Y ~ X1 (cont) + X2(cont)   | `lm(Y ~ X1 + X2)`          |
+|Factorial ANOVA            | Y ~ X1 (cat) * X2(cat)     | `lm(Y ~ X1 * X2)` or `lm(Y ~ X1 + X2 + X1:X2)`|
+
+\  
+
+OK, time for an example. The data file `smoking.txt` summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable `occupational.group` specifies the different occupational groups studied, the `risk.group` variable indicates the relative risk to lung disease for the various occupational groups and `smoking` is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable `mortality` is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is `mortality` and the explanatory variables are `smoking` and `risk.group`. The first thing to do is import our data file using the `read.table()` function as usual and assign the data to an object called `smoke`.
+
+```{r ss24, echo=TRUE, collapse=TRUE}
+smoke <- read.table('data/smoking.txt', header = TRUE, sep = "\t")
+str(smoke)
+```
+
+\  
+
+Next, let's investigate the relationship between `mortality` and `smoking` variables by plotting a scatterplot. We can use either the `ggplot2` package or base R graphics to do this. We'll use `ggplot2` this time. 
+
+```{r ss25, echo=TRUE, collapse=TRUE}
+library(ggplot2)
+ggplot(mapping = aes(x = smoking, y = mortality), data = smoke) +
+	geom_point()
+```
+
+The plot does suggest that there is a positive relationship between the smoking index and mortality index.
+
+To fit a simple linear model to these data we will use the `lm()` function and include our model formula `mortality ~ smoking` and assign the results to an object called `smoke_lm`.
+
+```{r ss26, echo=TRUE, collapse=TRUE}
+smoke_lm <- lm(mortality ~ smoking, data = smoke)
+```
+
+Notice that we have not used the `$` notation to specify the variables in our model formula, instead we've used the `data = smoke` argument. Although the `$` notation will work (i.e. `smoke$mortality ~ smoke$smoking`) it will more than likely cause you problems later on and should be avoided. Infact, we would go as far to suggest that if a function has a `data =` argument you should **always** use it. How do you know if a function has a `data =` argument? Just look in the associated help file.
+
+Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a 'lm' class object (which we have called `smoke_lm`) from which you are able to extract exactly what you want using various other functions. If you're brave, you can examine the structure of the `smoke_lm` model onject using the `str()` function. 
+
+```{r ss27, echo=TRUE, collapse=TRUE}
+str(smoke_lm)
+```
+
+To obtain a summary of our analysis we can use the `summary()` function on our `smoke_lm` model object.
+
+```{r ss28, echo=TRUE, collapse=TRUE}
+summary(smoke_lm)
+```
+
+This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated *t* statistics and *p* values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is `-2.885`! The *p* value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the *p* value is large we fail to reject this null hypothesis. The `smoking` parameter estimate is `1.0875` and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The *p* value associated with the `smoking` parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our *p* value is small we reject this hypothesis and therefore the slope is different from zero (i.e. there is a significant relationship). The summary table also includes other important information such as the coefficient of determination (*R^2^*), adjusted *R^2^* , *F* statistic, associated degrees of freedom and *p* value. This information is a condensed form of an ANOVA table which you can see by using the `anova()` function. 
+
+```{r ss29, echo=TRUE, collapse=TRUE}
+anova(smoke_lm)
+```
+
+Now let's fit a linear model again, but this time we will use the `risk.group` variable as our explanatory variable. Remember the `risk.group` variable is a factor and so our linear model will be equivalent to an ANOVA type analysis. We will be testing the null hypothesis that the mean mortality rate is the same between `low`, `medium` and `high` groups in the `risk.group` variable (i.e. no difference). We fit the model in exactly the same way as before.
+
+```{r ss30, echo=TRUE, collapse=TRUE}
+smoke_risk_lm <- lm(mortality ~ risk.group, data = smoke)
+```
+
+Again, we can produce an ANOVA table using the `anova()` function
+
+```{r ss31, echo=TRUE, collapse=TRUE}
+anova(smoke_risk_lm)
+```
+
+The results presented in the ANOVA table suggest that we can reject the null hypothesis (very small *p* value) and therefore the mean mortality rate index is different between `low`, `medium` and `high` risk groups.
+
+As we did with our first linear model we can also produce a summary of the estimated parameters using the `summary()` function.
+
+```{r ss32, echo=TRUE, collapse=TRUE}
+summary(smoke_risk_lm)
+```
+
+In the summary table the Intercept is set to the first level of `risk.group` (`high`) as this occurs first alphabetically. Therefore, the estimated mean mortality index for `high` risk individuals is `135`. The estimates for `risk.grouplow` and `risk.groupmedium` are mean differences from the intercept (`high` group). So the mortality index for the `low` group is `135 - 57.83 = 77.17` and for the `medium` group is `135 - 27.55 = 107.45`. The *t* values and *p* values in the summary table are associated with testing specific hypotheses. The *p* value associated with the intercept tests the null hypothesis that the mean mortality index for the `high` group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small *p* value. The *p* value for the `risk.grouplow` parameter tests the null hypothesis that the mean difference between `high` and `low` risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarily, the *p* value for `risk.groupmedium` tests the null hypothesis that the mean difference between `high` and `medium` groups is equal to zero which we also reject. 
+
+Don't worry too much if you find the output from the `summary()` function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated a model is, the more complicated it is to interpret and a model that you can't interpret is not worth fitting!
+
+Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let's go back to the first linear model we fitted (`smoke_lm`). We can add the fitted line to our previous plot using the ``ggplot2` package.`geom_smooth` geom and also include the standard errors by specifying the `se = TRUE` argument.
+
+```{r ss33, echo=TRUE, collapse=TRUE}
+ggplot(mapping = aes(x = smoking, y = mortality), data = smoke) +
+	geom_point() +
+	geom_smooth(method = "lm", se = TRUE)
+```
 \  
 
 ```{r links, child="links.md"}

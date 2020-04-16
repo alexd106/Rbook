@@ -263,7 +263,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
 <li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a></li>
+<li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a><ul>
+<li class="chapter" data-level="6.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>6.1</b> Looking behind the curtain</a></li>
+<li class="chapter" data-level="6.2" data-path="functions-in-r.html"><a href="functions-in-r.html"><i class="fa fa-check"></i><b>6.2</b> Functions in R</a></li>
+<li class="chapter" data-level="6.3" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>6.3</b> Conditional statements</a></li>
+<li class="chapter" data-level="6.4" data-path="is-it-gonna-be-a-good-day.html"><a href="is-it-gonna-be-a-good-day.html"><i class="fa fa-check"></i><b>6.4</b> “Is it gonna be a good day?”</a></li>
+<li class="chapter" data-level="6.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>6.5</b> Loops</a><ul>
+<li class="chapter" data-level="6.5.1" data-path="loops.html"><a href="loops.html#for-loop"><i class="fa fa-check"></i><b>6.5.1</b> For loop</a></li>
+<li class="chapter" data-level="6.5.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>6.5.2</b> While loop</a></li>
+<li class="chapter" data-level="6.5.3" data-path="loops.html"><a href="loops.html#when-to-use-a-loop"><i class="fa fa-check"></i><b>6.5.3</b> When to use a loop?</a></li>
+<li class="chapter" data-level="6.5.4" data-path="loops.html"><a href="loops.html#if-not-loops-then-what"><i class="fa fa-check"></i><b>6.5.4</b> If not loops, then what?</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="7" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>7</b> Reproducible reports with R markdown</a><ul>
 <li class="chapter" data-level="7.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>7.1</b> What is R markdown?</a></li>
 <li class="chapter" data-level="7.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>7.2</b> Why use R markdown?</a></li>
@@ -331,8 +342,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="one-and-two-sample-tests" class="section level2">
 <h2><span class="header-section-number">5.1</span> One and two sample tests</h2>
-<p>The two main functions for these types of tests are the <code>t.test()</code> and <code>wilcox.test()</code> that perform t tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.</p>
-<p>As an example of a one sample t test we will use the <code>trees</code> dataset which is included with R. To access this in-built dataset we can use the <code>data()</code> function.</p>
+<p>The two main functions for these types of tests are the <code>t.test()</code> and <code>wilcox.test()</code> that perform <em>t</em> tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.</p>
+<p>As an example of a one sample <em>t</em> test we will use the <code>trees</code> dataset which is included with R. To access this in-built dataset we can use the <code>data()</code> function.</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
 <a class="sourceLine" id="cb248-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
 <a class="sourceLine" id="cb248-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
@@ -360,7 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb249-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb249-11" data-line-number="11"><span class="co"># mean of x </span></a>
 <a class="sourceLine" id="cb249-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
-<p>The above summary has a fairly logical layout and includes the name of the test that we have asked for (<code>One Sample t-test</code>), which data has been used (<code>data:  Height</code>), the t statistic, degrees of freedom and associated p value (<code>t = 5.2429, df = 30, p-value = 1.173e-05</code>). It also states the alternative hypothesis (<code>alternative hypothesis: true mean is not equal to 70</code>) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (<code>95 percent confidence interval:73.6628 78.3372</code>) and also an estimate of the mean (<code>sample estimates: mean of x : 76</code>). In the above example, the p value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70.</p>
+<p>The above summary has a fairly logical layout and includes the name of the test that we have asked for (<code>One Sample t-test</code>), which data has been used (<code>data:  Height</code>), the <em>t</em> statistic, degrees of freedom and associated <em>p</em> value (<code>t = 5.2429, df = 30, p-value = 1.173e-05</code>). It also states the alternative hypothesis (<code>alternative hypothesis: true mean is not equal to 70</code>) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (<code>95 percent confidence interval:73.6628 78.3372</code>) and also an estimate of the mean (<code>sample estimates: mean of x : 76</code>). In the above example, the <em>p</em> value is very small and therefore we would reject the null hypothesis and therefore the mean height of our sample of black cherry trees is not equal to 70.</p>
 <p>The function <code>t.test()</code> also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either <code>alternative = &quot;greater&quot;</code> or <code>alternative = &quot;less</code> which tests whether the sample mean is greater or less than the mean specified. For example, to test whether our sample mean is greater than 70 ft.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>, <span class="dt">alternative=</span><span class="st">&quot;greater&quot;</span>)</a>
 <a class="sourceLine" id="cb250-2" data-line-number="2"><span class="co"># </span></a>
@@ -375,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb250-11" data-line-number="11"><span class="co"># mean of x </span></a>
 <a class="sourceLine" id="cb250-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
 <p>You can also change the confidence level used for estimating the confidence intervals using the argument <code>conf.level = 0.99</code>. In this case the new confidence interval would be 99%.</p>
-<p>Although t tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the <code>wilcox.test()</code> function.</p>
+<p>Although <em>t</em> tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the t test but using the <code>wilcox.test()</code> function.</p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">wilcox.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
 <a class="sourceLine" id="cb251-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
 <a class="sourceLine" id="cb251-3" data-line-number="3"><span class="co"># value with ties</span></a>
@@ -387,27 +398,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb251-9" data-line-number="9"><span class="co"># data:  trees$Height</span></a>
 <a class="sourceLine" id="cb251-10" data-line-number="10"><span class="co"># V = 420, p-value = 1e-04</span></a>
 <a class="sourceLine" id="cb251-11" data-line-number="11"><span class="co"># alternative hypothesis: true location is not equal to 70</span></a></code></pre></div>
-<p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact p value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = &quot;greater&quot;</code> and <code>alternative = &quot;less&quot;</code>.</p>
-<p>It is always a good idea to examine your data for departures from normality, rather than just assuming everything is ok. In addition to the functions you have already come across (<code>hist()</code>, <code>boxplot()</code>, <code>summary()</code> etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
+<p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact <em>p</em> value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = &quot;greater&quot;</code> and <code>alternative = &quot;less&quot;</code>.</p>
+<p>It is always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. In addition to the functions you have already come across (<code>hist()</code>, <code>boxplot()</code>, <code>summary()</code> etc), perhaps the simplest test of normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your sample is normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
 <p>To construct a Q-Q plot you need to use both the <code>qqnorm()</code> and <code>qqline()</code> functions</p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">qqnorm</span>(trees<span class="op">$</span>Height)</a>
 <a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">qqline</span>(trees<span class="op">$</span>Height, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss5-1.png" width="672" /></p>
-<p>If you insist on performing a specific test for normality you can use the function <code>shapiro.test()</code> which performs a Shapiro – Wilk test of normality.</p>
+<p>If you insist on performing a specific test for normality you can use the function <code>shapiro.test()</code> which performs a Shapiro – Wilks test of normality.</p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">shapiro.test</span>(trees<span class="op">$</span>Height)</a>
 <a class="sourceLine" id="cb253-2" data-line-number="2"><span class="co"># </span></a>
 <a class="sourceLine" id="cb253-3" data-line-number="3"><span class="co">#   Shapiro-Wilk normality test</span></a>
 <a class="sourceLine" id="cb253-4" data-line-number="4"><span class="co"># </span></a>
 <a class="sourceLine" id="cb253-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
 <a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co"># W = 0.97, p-value = 0.4</span></a></code></pre></div>
-<p>In the example above, the p value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed.</p>
-<p>In addition to one-sample tests, both the <code>t.test()</code> and <code>wilcox.test()</code> functions can be used to test for differences between two samples. A two sample t test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the <code>atmosphere.txt</code> data file located in the <code>data/</code> directory.</p>
+<p>In the example above, the <em>p</em> value = 0.403 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed.</p>
+<p>In addition to one-sample tests, both the <code>t.test()</code> and <code>wilcox.test()</code> functions can be used to test for differences between two samples. A two sample <em>t</em> test is used to test the hypothesis that the two samples come from distributions with the same mean. For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate altered the moisture content of the clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the <code>atmosphere.txt</code> data file located in the <code>data/</code> directory.</p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1">atmos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb254-2" data-line-number="2"><span class="kw">str</span>(atmos)</a>
 <a class="sourceLine" id="cb254-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 20 obs. of  2 variables:</span></a>
 <a class="sourceLine" id="cb254-4" data-line-number="4"><span class="co">#  $ moisture : num  301 302 299 316 307 ...</span></a>
 <a class="sourceLine" id="cb254-5" data-line-number="5"><span class="co">#  $ treatment: Factor w/ 2 levels &quot;seeded&quot;,&quot;unseeded&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></a></code></pre></div>
-<p>As with our previous data frame (<code>flowers</code>), these data are in the long format. The column <code>moisture</code> contains the moisture content measured in each cloud and the column <code>treatment</code> identifies whether the cloud was <code>seeded</code> or <code>unseeded</code>. To perform a two-sample t test</p>
+<p>As with our previous data frame (<code>flowers</code>), these data are in the long format. The column <code>moisture</code> contains the moisture content measured in each cloud and the column <code>treatment</code> identifies whether the cloud was <code>seeded</code> or <code>unseeded</code>. To perform a two-sample <em>t</em> test</p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
 <a class="sourceLine" id="cb255-2" data-line-number="2"><span class="co"># </span></a>
 <a class="sourceLine" id="cb255-3" data-line-number="3"><span class="co">#   Welch Two Sample t-test</span></a>
@@ -420,7 +431,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb255-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb255-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
 <a class="sourceLine" id="cb255-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
-<p>Notice the use of the formula method (<code>atmos$moisture~ atmos$treatment</code>, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the dataframe. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample t test. The Welch’s variant of the t test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
+<p>Notice the use of the formula method (<code>atmos$moisture~ atmos$treatment</code>, which reads as moisture described by treatment) to specify the test. You can also use other methods depending on the format of the data frame. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample <em>t</em> test. The Welch’s variant of the <em>t</em> test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb256-2" data-line-number="2"><span class="co"># </span></a>
 <a class="sourceLine" id="cb256-3" data-line-number="3"><span class="co">#   Two Sample t-test</span></a>
@@ -433,7 +444,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb256-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb256-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
 <a class="sourceLine" id="cb256-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
-<p>To test whether the assumption of equal variances is valid you can perform an F-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
+<p>To test whether the assumption of equal variances is valid you can perform an <em>F</em>-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1"><span class="kw">var.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
 <a class="sourceLine" id="cb257-2" data-line-number="2"><span class="co"># </span></a>
 <a class="sourceLine" id="cb257-3" data-line-number="3"><span class="co">#   F test to compare two variances</span></a>
@@ -446,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb257-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb257-11" data-line-number="11"><span class="co"># ratio of variances </span></a>
 <a class="sourceLine" id="cb257-12" data-line-number="12"><span class="co">#             0.5792</span></a></code></pre></div>
-<p>As the p value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the F-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
+<p>As the <em>p</em> value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the <em>F</em>-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
 <p>The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method</p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">wilcox.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
 <a class="sourceLine" id="cb258-2" data-line-number="2"><span class="co"># </span></a>
@@ -461,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 16 obs. of  2 variables:</span></a>
 <a class="sourceLine" id="cb259-4" data-line-number="4"><span class="co">#  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></a>
 <a class="sourceLine" id="cb259-5" data-line-number="5"><span class="co">#  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></a></code></pre></div>
-<p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired t test use the <code>paired = TRUE</code> argument.</p>
+<p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (you can use the formula method on long data if you wish). To conduct a paired <em>t</em> test use the <code>paired = TRUE</code> argument.</p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">t.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb260-2" data-line-number="2"><span class="co"># </span></a>
 <a class="sourceLine" id="cb260-3" data-line-number="3"><span class="co">#   Paired t-test</span></a>
@@ -474,7 +485,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb260-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb260-11" data-line-number="11"><span class="co"># mean of the differences </span></a>
 <a class="sourceLine" id="cb260-12" data-line-number="12"><span class="co">#                  -0.875</span></a></code></pre></div>
-<p>The output is almost identical to that of a one-sample t test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
+<p>The output is almost identical to that of a one-sample <em>t</em> test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">wilcox.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb261-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
 <a class="sourceLine" id="cb261-3" data-line-number="3"><span class="co"># cannot compute exact p-value with ties</span></a>
@@ -524,7 +535,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb262-12" data-line-number="12"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb262-13" data-line-number="13"><span class="co"># prop 1 prop 2 </span></a>
 <a class="sourceLine" id="cb262-14" data-line-number="14"><span class="co"># 0.5625 0.6893</span></a></code></pre></div>
-<p>There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (p = 0.107). Use <code>?prop.test</code> to explore additional uses of the binomial proportions test.</p>
+<p>There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (<em>p</em> = 0.107). Use <code>?prop.test</code> to explore additional uses of the binomial proportions test.</p>
 <p>We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2x2 matrix using the <code>matrix()</code> function (note, there are many alternative methods of constructing a table like this).</p>
 <div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">buyers &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
 <a class="sourceLine" id="cb263-2" data-line-number="2">buyers</a>
@@ -546,7 +557,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb265-4" data-line-number="4"><span class="co"># </span></a>
 <a class="sourceLine" id="cb265-5" data-line-number="5"><span class="co"># data:  buyers</span></a>
 <a class="sourceLine" id="cb265-6" data-line-number="6"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a></code></pre></div>
-<p>There is no evidence (p = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the <code>prop.test()</code>. You can also use the <code>chisq.test()</code> function on raw (untabulated) data and to test for goodness of fit (see <code>?chisq.test</code> for more details).</p>
+<p>There is no evidence (<em>p</em> = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the <code>prop.test()</code>. You can also use the <code>chisq.test()</code> function on raw (untabulated) data and to test for goodness of fit (see <code>?chisq.test</code> for more details).</p>
 </div>
             </section>
 
@@ -596,6 +607,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>
