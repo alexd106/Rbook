@@ -323,7 +323,7 @@ In addition to the `<` and `>` operators you can also use composite operators to
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[my_vec >= 4]         # values greater or equal to 4
-my_vec[my_vec < 4]         # values less than 4
+my_vec[my_vec < 4]          # values less than 4
 my_vec[my_vec <= 4]         # values less than or equal to 4
 my_vec[my_vec == 4]         # values equal to 4
 my_vec[my_vec != 4]         # values not equal to 4
@@ -450,7 +450,7 @@ my_vec2 + my_vec4
 
 ### Missing data {#na_vals}
 
-In R, missing data is usually represented by an `NA` symbol meaning 'Not Available'. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways.  For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days
+In R, missing data is usually represented by an `NA` symbol meaning 'Not Available'. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 temp  <- c(7.2, NA, 7.1, 6.9, 6.5, 5.8, 5.8, 5.5, NA, 5.5)
@@ -466,7 +466,7 @@ mean_temp
 
 Flippin heck, what's happened here? Why does the `mean()` function return an `NA`? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is `NA`. R doesn't know that you perhaps want to ignore the `NA` values (R can't read your mind - yet!). Happily, if we look at the help file (use `help("mean")` - see the [next section](#help) for more details) associated with the `mean()` function we can see there is an argument `na.rm = ` which is set to `FALSE` by default. 
 
-|na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.
+> na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.
 
 If we change this argument to `na.rm = TRUE` when we use the `mean()` function this will allow us to ignore the `NA` values when calculating the mean 
 
@@ -525,7 +525,6 @@ The first line of the help document contains information such as the name of the
   - **Examples:** 	gives some examples of using the function. These are really helpful, all you need to do is copy and paste them into the console to see what happens. You can also access examples at any time by using the `example()` function (i.e. `example("mean")`)
 
 The `help()` function is useful if you know the name of the function. If you're not sure of the name, but can remember a key word then you can search R's help system using the `help.search()` function. 
-
 
 ```{r, echo=TRUE, eval=FALSE}
 help.search("mean")
