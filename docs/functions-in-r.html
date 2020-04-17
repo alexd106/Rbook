@@ -402,7 +402,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb304-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb304-3" data-line-number="3"><span class="kw">summary</span>(aberdeen_nairobi_func)</a>
 <a class="sourceLine" id="cb304-4" data-line-number="4"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s </span></a>
-<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="co">#  -3.179  -0.656   0.009  -0.134   0.345   3.601      10</span></a></code></pre></div>
+<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="co">#  -3.926  -0.344   0.021  -0.055   0.388   1.959      10</span></a></code></pre></div>
 <p>So far so good. All we’ve really done is wrapped the base code <code>x * y</code> into a function, where we ask the user to specify what their x and y values are.</p>
 <p>Now let’s add a little complexity. If you look at the output of nairobi_genoa (<code>summary(nairobi_genoa)</code>) some of the calculations haven’t been done and the function has produced some NAs. This is because of those NAs we included in <code>nairobi</code> at the start of the Chapter. Despite there being NAs, the function worked and it gave us no indication that there was a problem. In such cases we may prefer if it had warned us that something was wrong. How would we get the function to give us a warning when there are NAs produced?</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
