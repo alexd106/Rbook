@@ -1,8 +1,8 @@
 # Programming in R {#prog_r}
 
-After learning the basics, programming in R is the next big step towards getting your coding freedom. In R this freedom is gained by being able to weild and manipulate code to get it to do specifically what you want, rather than contort, bend and restrict yourself to what others have built. It is worth remembering that many packages are written with the goal of solving a problem the author had. Your problem may be similar, but not exactly the same. In such cases you could contort, bend and restrict your data so that it works with the package, or you could build your own functions that solves your specific problem.
+After learning the basics, programming in R is the next big step towards getting your coding freedom. In R this freedom is gained by being able to wield and manipulate code to get it to do specifically what you want, rather than contort, bend and restrict yourself to what others have built. It is worth remembering that many packages are written with the goal of solving a problem the author had. Your problem may be similar, but not exactly the same. In such cases you could contort, bend and restrict your data so that it works with the package, or you could build your own functions that solves your specific problem.
 
-But there are an incredible amount of R packages already, surely more than enough to cover everything you could possibly want to do. Why then, would you ever need to programme in R? Why not just stick to the functions from a package? Well, in some cases you'll want to customise those existing functions to suit your specific needs. Or in other cases you may come up with an entirely novel idea, which means there won't be any pre-existing packages that work for you. Both of these are not particularly common early-on when you start using R, but you may well find as you progress, the reliance on existing functions become increasingly frsutrating. In addition, if you ever start doing more advanced statistics (e.g. Bayesian models coded through Stan or JAGS) then understanding basic programming skills, especially loops, becomes fundamental.
+But there are an incredible amount of R packages already, surely more than enough to cover everything you could possibly want to do. Why then, would you ever need to program in R? Why not just stick to the functions from a package? Well, in some cases you'll want to customise those existing functions to suit your specific needs. Or in other cases you may come up with an entirely novel idea, which means there won't be any pre-existing packages that work for you. Both of these are not particularly common early-on when you start using R, but you may well find as you progress, the reliance on existing functions become increasingly frustrating. In addition, if you ever start doing more advanced statistics (e.g. Bayesian models coded through Stan or JAGS) then understanding basic programming skills, especially loops, becomes fundamental.
 
 What we'll aim do in this Chapter is to explore the basics of the programming side of R. Even if you never create your own function, you will at the very least use functions on a daily basis. Pulling back the curtain and showing the nitty-gritty of how these work will hopefully, in the worst case, help your confidence and in the best case, provide a starting point for doing some clever coding.
 
@@ -32,7 +32,7 @@ They are also very stupid.
 
 If I asked you to go to the supermarket and get me some ingredients to make _Francesinha_, even if you don't know what the hell that is, you'd be able to have a complete guess and bring at least _something_ back. Or you could decide to make something else. Or you could ask a policeman for help. Or you could search online for what _Francesinha_ is. The point is, even if I don't give you enough information to do the task, you are intelligent enough to, at the very least, try to find a work around.
 
-If instead, I asked our loyal function to do the same, it would listen intently to our request, stand still for a few seconds, compose itself, and then start shouting `Error: 'data' must be a data frame, or other object ...`. It would then repeat this every single time I asked it to do the job. The point here is that code and functions are not intelligent. It cannot find work arounds. It is totally reliant on you, the "master", telling it very explicitly what it needs to do. 
+If instead, I asked our loyal function to do the same, it would listen intently to our request, stand still for a few seconds, compose itself, and then start shouting `Error: 'data' must be a data frame, or other object ...`. It would then repeat this every single time I asked it to do the job. The point here is that code and functions are not intelligent. It cannot find workarounds. It is totally reliant on you, the "master", telling it very explicitly what it needs to do. 
 
 Remember two things: the intelligence of code comes from the coder, not the computer; and functions need exact instructions to work.
 
@@ -63,7 +63,7 @@ city <- data.frame(
 )
 ```
 
-Let's say that you want to use this dataframe and multiply `Porto` with `Aberdeen`. We can do this by "hand" using:
+Let's say that you want to use this data frame and multiply `Porto` with `Aberdeen`. We can do this by "hand" using:
 
 ```{r manual, out.width="75%"}
 porto_aberdeen <- city$porto * city$aberdeen
@@ -79,7 +79,7 @@ aberdeen_genoa <- city$aberdeen * city$aberdeen
 nairobi_genoa <- city$nairobi * city$genoa
 ```
 
-While this approach works, it is easy to make mistakes. In fact, here I've "forgotten" to change `aberdeen` to `genoa` in the second line of code when copying and pasting. This is where writing a fuction comes in handy. If we were to write this as a function, there is only one source of potential error (within the function itself) instead of many copy-pasted lines of code (which we also cut down on by using a function). 
+While this approach works, it is easy to make mistakes. In fact, here I've "forgotten" to change `aberdeen` to `genoa` in the second line of code when copying and pasting. This is where writing a function comes in handy. If we were to write this as a function, there is only one source of potential error (within the function itself) instead of many copy-pasted lines of code (which we also cut down on by using a function). 
 
 In this case, we're using some fairly trivial code where it's maybe hard to make a genuine mistake. But what if we increased the complexity?
 
@@ -117,7 +117,7 @@ multiply_columns <- function(x, y) {
 porto_aberdeen_func <- multiply_columns(city$porto, city$aberdeen)
 ```
 
-If we were only interested in multiplying `city$porto` and `city$aberdeen`, we'd be overkilling it by creating a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.
+If we were only interested in multiplying `city$porto` and `city$aberdeen`, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.
 
 To satisfy ourselves that the function has worked properly, we can compare `porto_aberdeen` with `porto_aberdeen_func` using the `identical()` function. Use `?identical` if you want to know more about the function.
 
@@ -136,7 +136,7 @@ summary(aberdeen_nairobi_func)
 
 So far so good. All we've really done is wrapped the base code `x * y` into a function, where we ask the user to specify what their x and y values are.
 
-Now let's add a little complexity. If you look at the output of nairobi_genoa (`summary(nairobi_genoa)`) some of the calculations haven't been done and the function has produced some NAs. This is because of those NAs we included in `nairobi` at the start of the Chapter. Despite there being NAs, the function worked and it gave us no indication that there was a problem. In such cases we may prefer if it had warned us that something was wrong. How would we get the funtion to give us a warning when there are NAs produced?
+Now let's add a little complexity. If you look at the output of nairobi_genoa (`summary(nairobi_genoa)`) some of the calculations haven't been done and the function has produced some NAs. This is because of those NAs we included in `nairobi` at the start of the Chapter. Despite there being NAs, the function worked and it gave us no indication that there was a problem. In such cases we may prefer if it had warned us that something was wrong. How would we get the function to give us a warning when there are NAs produced?
 
 ```{r example condition}
 multiply_columns <- function(x, y) {
@@ -169,7 +169,7 @@ if (condition) {
 }
 ```
 
-To delve into this a bit more, we can use an old progammer joke to set up a problem.
+To delve into this a bit more, we can use an old programmer joke to set up a problem.
 
 ---
 
@@ -219,7 +219,7 @@ We can check again to make sure the logic is still returning 6 cartons of milk:
 n.milk
 ```
 
-Currently we'd have to copy and paste code if we wanted to change if eggs were in the store or not. We learnt above how to avoid lots of copy and pasting by creating a function. Just as with the simple `x * y`, the logical statements we have made here are straighforward code, well suited to be turned into a function. How about we do just that and wrap this logical statement up in a function?
+Currently we'd have to copy and paste code if we wanted to change if eggs were in the store or not. We learnt above how to avoid lots of copy and pasting by creating a function. Just as with the simple `x * y`, the logical statements we have made here are straightforward code, well suited to be turned into a function. How about we do just that and wrap this logical statement up in a function?
 
 ```{r joke_function}
 n.milk <- function(eggs) {
@@ -256,7 +256,7 @@ good.day <- function(code.working, day) {
   if (code.working == TRUE && day == "Friday") {
     "BEST. DAY. EVER. Stop while you are ahead and go to the pub!"
   } else if (code.working == FALSE && day == "Friday") {
-    "Oh well, but at least it's friday! Pub time!"
+    "Oh well, but at least it's Friday! Pub time!"
   } else if (code.working == TRUE && day != "Friday") {
     "So close to a good day... shame it's not a Friday"
   } else if (code.working == FALSE && day != "Friday") {
@@ -275,7 +275,7 @@ We've also been using logical operators whenever we've used `if` statements. Log
 
 \  
 
-| Operator | Technical Decription    | What it means               | Example                              |
+| Operator | Technical Description    | What it means               | Example                              |
 |---------:|:-----------------------:|:----------------------------|:-------------------------------------|
 | `&&`     | Logical AND             | Both conditions must be met | `if(cond1 == test && cond2 == test)` |
 | `||`     | Logical OR              | Either condition must be met| `if(cond1 == test || cond2 == test)` |
@@ -292,7 +292,7 @@ We've also been using logical operators whenever we've used `if` statements. Log
 
 R is very good at performing repetitive tasks. If we want a set of operations to be repeated several times we use what is known as a loop. When you create a loop, R will execute the instructions in the loop a specified number of times or until a specified condition is met. There are three main types of loop in R: the _for_ loop, the _while_ loop and the _repeat_ loop.
 
-Loops are one of the staples of all progamming languages, not just R, and can be a powerful tool. 
+Loops are one of the staples of all programming languages, not just R, and can be a powerful tool. 
 
 ### For loop
 
@@ -321,7 +321,7 @@ print(i)
 
 This process is then repeated until the loop reaches the final value in the sequence at which point it stops.
 
-To reinforce how for loops work, while also introducing you to a valuable feaure of loops, we'll alter our counter within the loop. This can be used, for example, if you were using a loop to iterate through a vector but want to select the next row (or a value 2 rows previous, etc.). To show this we'll simply add 1 to each number in the sequence.
+To reinforce how for loops work, while also introducing you to a valuable feature of loops, we'll alter our counter within the loop. This can be used, for example, if you were using a loop to iterate through a vector but want to select the next row (or a value 2 rows previous, etc.). To show this we'll simply add 1 to each number in the sequence.
 
 ```{r altering_i}
 for (i in 1:5) {
@@ -347,7 +347,7 @@ And so on. I think you got the idea! In essence this is all a for loop is doing 
 
 While above we have been using simple addition in the expression of the loop, you can also combine loops with functions.
 
-Let's go back to our dataframe `city`. In the section above you created a function to multiply two columns and used it to calculate `porto_aberdeen`, `aberdeen_nairobi`, and `nairobi_genoa`.  You could have used a loop for this.
+Let's go back to our data frame `city`. In the section above you created a function to multiply two columns and used it to calculate `porto_aberdeen`, `aberdeen_nairobi`, and `nairobi_genoa`.  You could have used a loop for this.
 
 ```{r recreate_data_function}
 # Recreating our dataset
@@ -380,11 +380,11 @@ for (i in 1:(ncol(city) - 1)) {
 ```
 
 Notice how we subtracted 1 from `ncol(city)`. Why did we do that? You can read this loop as saying:
-"For the 1st to 3rd columns in the `city` dataframe, multiply the 1st column (`city[, i]`) with the very next column (`city[, i + 1]`). We have four columns in total, so if we did not do `ncol(city) - 1`, then eventually we'd try to add the 4th column with the non-existent 5th column.
+"For the 1^st^ to 3^rd^ columns in the `city` data frame, multiply the 1^st^ column (`city[, i]`) with the very next column (`city[, i + 1]`). We have four columns in total, so if we did not do `ncol(city) - 1`, then eventually we'd try to add the 4^th^ column with the non-existent 5^th^ column.
 
-In this case we are using `i` as the column number (`ncol()`) in the `city` dataframe. On the first iteration of the loop, `i` takes the value of 1 and `city[, i]` becames `city[, 1]` (corresponding to `city$porto`) and `city[i + 1]` takes the value of `city[, 1 + 1]` (corresponding to `city$aberdeen`). 
+In this case we are using `i` as the column number (`ncol()`) in the `city` data frame. On the first iteration of the loop, `i` takes the value of 1 and `city[, i]` becomes `city[, 1]` (corresponding to `city$porto`) and `city[i + 1]` takes the value of `city[, 1 + 1]` (corresponding to `city$aberdeen`). 
 
-Once the first iteration ends, `i` takes the value of 2, the second element in the sequence. Meaning `city[, i]` becames `city[, 2]` (or `city$aberdeen`) and `city[, i + 1]` becomes `city[, 3]` (or `city$nairobi`). In each iteration we are storing the results of our `multiply_columns()` function to the `temp` list (`temp[i] <- ...`).
+Once the first iteration ends, `i` takes the value of 2, the second element in the sequence. Meaning `city[, i]` becomes `city[, 2]` (or `city$aberdeen`) and `city[, i + 1]` becomes `city[, 3]` (or `city$nairobi`). In each iteration we are storing the results of our `multiply_columns()` function to the `temp` list (`temp[i] <- ...`).
 
 We can compare this method with the two alternative results where we calculated these "by hand", and by using our function:
 
@@ -406,7 +406,7 @@ good.day <- function(code.working, day) {
   if (code.working == TRUE && day == "Friday") {
     "BEST. DAY. EVER. Stop while you are ahead and go to the pub!"
   } else if (code.working == FALSE && day == "Friday") {
-    "Oh well, but at least it's friday! Pub time!"
+    "Oh well, but at least it's Friday! Pub time!"
   } else if (code.working == TRUE && day != "Friday") {
     "So close to a good day... shame it's not a Friday"
   } else if (code.working == FALSE && day != "Friday") {
@@ -459,11 +459,11 @@ In general loops are implemented very inefficiently in R and should be avoided w
 
 __Some examples of when using loops can be appropriate:__
 
- - Some simulations (e.g. the ricker model can, in part, be built using loops)
+ - Some simulations (e.g. the Ricker model can, in part, be built using loops)
 
  - Recursive relationships (a relationship which depends on the value of the previous relationship ["to understand recursion, you must understand recursion"])
 
- - More complex problems (e.g., how long since the last badger was seen at site $j$, given a pine marten was seen at time $t$, at the same location $j$ as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detections)
+ - More complex problems (e.g., how long since the last badger was seen at site $j$, given a pine marten was seen at time $t$, at the same location $j$ as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detection's)
 
  - While loops (keep jumping until you've reached the moon)
 

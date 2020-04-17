@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="correlation.html"/>
-<link rel="next" href="prog-r.html"/>
+<link rel="next" href="other-modelling-approaches.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
-<li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#other-sources-of-help"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
+<li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#rhelp"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 </ul></li>
@@ -262,6 +262,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>5.1</b> One and two sample tests</a></li>
 <li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
 <li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
+<li class="chapter" data-level="5.4" data-path="other-modelling-approaches.html"><a href="other-modelling-approaches.html"><i class="fa fa-check"></i><b>5.4</b> Other modelling approaches</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a><ul>
 <li class="chapter" data-level="6.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>6.1</b> Looking behind the curtain</a></li>
@@ -425,7 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb276-6" data-line-number="6"><span class="co">#  $ smoking           : int  77 137 117 94 116 102 111 93 88 102 ...</span></a>
 <a class="sourceLine" id="cb276-7" data-line-number="7"><span class="co">#  $ mortality         : int  84 116 123 128 155 101 118 113 104 88 ...</span></a></code></pre></div>
 <p> </p>
-<p>Next, let’s investigate the relationship between <code>mortality</code> and <code>smoking</code> variables by plotting a scatterplot. We can use either the <code>ggplot2</code> package or base R graphics to do this. We’ll use <code>ggplot2</code> this time.</p>
+<p>Next, let’s investigate the relationship between <code>mortality</code> and <code>smoking</code> variables by plotting a scatter plot. We can use either the <code>ggplot2</code> package or base R graphics to do this. We’ll use <code>ggplot2</code> this time.</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
 <a class="sourceLine" id="cb277-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
 <a class="sourceLine" id="cb277-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
@@ -433,8 +434,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The plot does suggest that there is a positive relationship between the smoking index and mortality index.</p>
 <p>To fit a simple linear model to these data we will use the <code>lm()</code> function and include our model formula <code>mortality ~ smoking</code> and assign the results to an object called <code>smoke_lm</code>.</p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb278-1" data-line-number="1">smoke_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>smoking, <span class="dt">data =</span> smoke)</a></code></pre></div>
-<p>Notice that we have not used the <code>$</code> notation to specify the variables in our model formula, instead we’ve used the <code>data = smoke</code> argument. Although the <code>$</code> notation will work (i.e. <code>smoke$mortality ~ smoke$smoking</code>) it will more than likely cause you problems later on and should be avoided. Infact, we would go as far to suggest that if a function has a <code>data =</code> argument you should <strong>always</strong> use it. How do you know if a function has a <code>data =</code> argument? Just look in the associated help file.</p>
-<p>Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a ‘lm’ class object (which we have called <code>smoke_lm</code>) from which you are able to extract exactly what you want using various other functions. If you’re brave, you can examine the structure of the <code>smoke_lm</code> model onject using the <code>str()</code> function.</p>
+<p>Notice that we have not used the <code>$</code> notation to specify the variables in our model formula, instead we’ve used the <code>data = smoke</code> argument. Although the <code>$</code> notation will work (i.e. <code>smoke$mortality ~ smoke$smoking</code>) it will more than likely cause you problems later on and should be avoided. In fact, we would go as far to suggest that if a function has a <code>data =</code> argument you should <strong>always</strong> use it. How do you know if a function has a <code>data =</code> argument? Just look in the associated help file.</p>
+<p>Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a ‘lm’ class object (which we have called <code>smoke_lm</code>) from which you are able to extract exactly what you want using various other functions. If you’re brave, you can examine the structure of the <code>smoke_lm</code> model object using the <code>str()</code> function.</p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">str</span>(smoke_lm)</a>
 <a class="sourceLine" id="cb279-2" data-line-number="2"><span class="co"># List of 12</span></a>
 <a class="sourceLine" id="cb279-3" data-line-number="3"><span class="co">#  $ coefficients : Named num [1:2] -2.89 1.09</span></a>
@@ -557,39 +558,77 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb284-18" data-line-number="18"><span class="co"># Residual standard error: 14.9 on 22 degrees of freedom</span></a>
 <a class="sourceLine" id="cb284-19" data-line-number="19"><span class="co"># Multiple R-squared:  0.704,   Adjusted R-squared:  0.677 </span></a>
 <a class="sourceLine" id="cb284-20" data-line-number="20"><span class="co"># F-statistic: 26.1 on 2 and 22 DF,  p-value: 1.55e-06</span></a></code></pre></div>
-<p>In the summary table the Intercept is set to the first level of <code>risk.group</code> (<code>high</code>) as this occurs first alphabetically. Therefore, the estimated mean mortality index for <code>high</code> risk individuals is <code>135</code>. The estimates for <code>risk.grouplow</code> and <code>risk.groupmedium</code> are mean differences from the intercept (<code>high</code> group). So the mortality index for the <code>low</code> group is <code>135 - 57.83 = 77.17</code> and for the <code>medium</code> group is <code>135 - 27.55 = 107.45</code>. The <em>t</em> values and <em>p</em> values in the summary table are associated with testing specific hypotheses. The <em>p</em> value associated with the intercept tests the null hypothesis that the mean mortality index for the <code>high</code> group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small <em>p</em> value. The <em>p</em> value for the <code>risk.grouplow</code> parameter tests the null hypothesis that the mean difference between <code>high</code> and <code>low</code> risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarily, the <em>p</em> value for <code>risk.groupmedium</code> tests the null hypothesis that the mean difference between <code>high</code> and <code>medium</code> groups is equal to zero which we also reject.</p>
+<p>In the summary table the Intercept is set to the first level of <code>risk.group</code> (<code>high</code>) as this occurs first alphabetically. Therefore, the estimated mean mortality index for <code>high</code> risk individuals is <code>135</code>. The estimates for <code>risk.grouplow</code> and <code>risk.groupmedium</code> are mean differences from the intercept (<code>high</code> group). So the mortality index for the <code>low</code> group is <code>135 - 57.83 = 77.17</code> and for the <code>medium</code> group is <code>135 - 27.55 = 107.45</code>. The <em>t</em> values and <em>p</em> values in the summary table are associated with testing specific hypotheses. The <em>p</em> value associated with the intercept tests the null hypothesis that the mean mortality index for the <code>high</code> group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small <em>p</em> value. The <em>p</em> value for the <code>risk.grouplow</code> parameter tests the null hypothesis that the mean difference between <code>high</code> and <code>low</code> risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarly, the <em>p</em> value for <code>risk.groupmedium</code> tests the null hypothesis that the mean difference between <code>high</code> and <code>medium</code> groups is equal to zero which we also reject.</p>
 <p>Don’t worry too much if you find the output from the <code>summary()</code> function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated a model is, the more complicated it is to interpret and a model that you can’t interpret is not worth fitting!</p>
-<p>Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let’s go back to the first linear model we fitted (<code>smoke_lm</code>). We can add the fitted line to our previous plot using the `<code>ggplot2</code> package.<code>geom_smooth</code> geom and also include the standard errors by specifying the <code>se = TRUE</code> argument.</p>
+<p>Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let’s go back to the first linear model we fitted (<code>smoke_lm</code>). We can add the fitted line to our previous plot using the <code>ggplot2</code> package and the <code>geom_smooth</code> geom. We can easily include the standard errors by specifying the <code>se = TRUE</code> argument.</p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
 <a class="sourceLine" id="cb285-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
 <a class="sourceLine" id="cb285-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb285-4" data-line-number="4"><span class="co"># `geom_smooth()` using formula &#39;y ~ x&#39;</span></a></code></pre></div>
-<p><img src="Rbook_files/figure-html/ss33-1.png" width="672" />
- </p>
-<!--course website Links-->
-<!--cran Links-->
-<!--RStudio-->
-<!--style guides-->
-<!--Package Links-->
-<!--Editors-->
-<!--Bioconductor Links-->
-<!--GitHub Links-->
-<!--R markdown Links-->
-<!--ggplot Links-->
-<!--Basics links-->
-<!--Data links-->
-<!--Resource Links-->
-<!--Misc Links-->
-
+<p><img src="Rbook_files/figure-html/ss33-1.png" width="672" /></p>
+<p>You can also do this with R’s base graphics. Note that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the <code>predict()</code> function within the range of your data and then add these values to the plot using the <code>lines()</code> function (not shown).</p>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb286-1" data-line-number="1"><span class="kw">plot</span>(smoke<span class="op">$</span>smoking, smoke<span class="op">$</span>mortality, <span class="dt">xlab =</span> <span class="st">&quot;smoking rate&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot; mortality rate&quot;</span>)</a>
+<a class="sourceLine" id="cb286-2" data-line-number="2"><span class="kw">abline</span>(smoke_lm, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss34-1.png" width="672" /></p>
+<p>Before we sit back and relax and admire our model (or go write that high impact paper) the jobs not finished. It is vitally important to check the underlying assumptions of linear modelling namely; equal variances (homogeneity of variance) and normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the <code>resid()</code> and <code>fitted()</code> functions.</p>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">smoke_res &lt;-<span class="st"> </span><span class="kw">resid</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb287-2" data-line-number="2">smoke_fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(smoke_lm)</a></code></pre></div>
+<p>And then plot them using <code>ggplot</code> or base R graphics.</p>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoke_fit, <span class="dt">y =</span> smoke_res)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb288-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss36-1.png" width="672" /></p>
+<p>It takes a little practice to interpret these types of graph, but what you are looking for is no pattern or structure in your residuals. What you definitely don’t want to see is the scatter increasing as the fitted values get bigger (this has been described as looking like a trumpet or a wedge of cheese) which would indicate unequal variances (heteroscedacity).</p>
+<p>To check for normality of residuals we can use the Q-Q plot which was introduced earlier in this Chapter.</p>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">sample =</span> smoke_res)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb289-2" data-line-number="2"><span class="st">    </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb289-3" data-line-number="3"><span class="st">    </span><span class="kw">stat_qq_line</span>()</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss37-1.png" width="672" /></p>
+<p>Or with base graphics</p>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb290-1" data-line-number="1"><span class="kw">qqnorm</span>(smoke_res)</a>
+<a class="sourceLine" id="cb290-2" data-line-number="2"><span class="kw">qqline</span>(smoke_res) </a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss38-1.png" width="672" /></p>
+<p>Alternatively, you can get R to do most of the hard work for you by using the <code>plot()</code> function on the model object <code>smoke_lm</code>. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the <code>par(mfrow = c(2,2))</code>. This command splits the plotting window into 2 rows and 2 columns.</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb291-2" data-line-number="2"><span class="kw">plot</span>(smoke_lm)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss39-1.png" width="672" /></p>
+<p>The first two graphs (top left and top right) are the same residual versus fitted and Q-Q plot we produced before. The third graph (bottom left) is the same as the first but produced on a different scale (the absolute value of the square root of the standardised residuals) and again you are looking for no pattern or structure in the data points. The fourth graph (bottom right) gives you an indication whether any of your observations are having a large influence (Cook’s distance) on your regression coefficient estimates. Levearge identifies observations which have unusually large values in their explanatory variables.</p>
+<p>What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the <code>update()</code> function. To remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called <code>smoke_lm2</code>. Note, we do this to demonstrate the use of the <code>update()</code> function. You should think long and hard about removing any data point(s) and if you do you should <strong>always</strong> report this and justify your decision.</p>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb292-1" data-line-number="1">smoke_lm2 &lt;-<span class="st"> </span><span class="kw">update</span>(smoke_lm, <span class="dt">subset =</span> <span class="dv">-2</span>)</a>
+<a class="sourceLine" id="cb292-2" data-line-number="2"><span class="kw">summary</span>(smoke_lm2)</a>
+<a class="sourceLine" id="cb292-3" data-line-number="3"><span class="co"># </span></a>
+<a class="sourceLine" id="cb292-4" data-line-number="4"><span class="co"># Call:</span></a>
+<a class="sourceLine" id="cb292-5" data-line-number="5"><span class="co"># lm(formula = mortality ~ smoking, data = smoke, subset = -2)</span></a>
+<a class="sourceLine" id="cb292-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb292-7" data-line-number="7"><span class="co"># Residuals:</span></a>
+<a class="sourceLine" id="cb292-8" data-line-number="8"><span class="co">#     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb292-9" data-line-number="9"><span class="co"># -29.743 -11.692  -0.474  13.614  28.759 </span></a>
+<a class="sourceLine" id="cb292-10" data-line-number="10"><span class="co"># </span></a>
+<a class="sourceLine" id="cb292-11" data-line-number="11"><span class="co"># Coefficients:</span></a>
+<a class="sourceLine" id="cb292-12" data-line-number="12"><span class="co">#             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb292-13" data-line-number="13"><span class="co"># (Intercept)   -20.08      23.58   -0.85      0.4    </span></a>
+<a class="sourceLine" id="cb292-14" data-line-number="14"><span class="co"># smoking         1.27       0.23    5.53  1.5e-05 ***</span></a>
+<a class="sourceLine" id="cb292-15" data-line-number="15"><span class="co"># ---</span></a>
+<a class="sourceLine" id="cb292-16" data-line-number="16"><span class="co"># Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb292-17" data-line-number="17"><span class="co"># </span></a>
+<a class="sourceLine" id="cb292-18" data-line-number="18"><span class="co"># Residual standard error: 17.6 on 22 degrees of freedom</span></a>
+<a class="sourceLine" id="cb292-19" data-line-number="19"><span class="co"># Multiple R-squared:  0.581,   Adjusted R-squared:  0.562 </span></a>
+<a class="sourceLine" id="cb292-20" data-line-number="20"><span class="co"># F-statistic: 30.5 on 1 and 22 DF,  p-value: 1.49e-05</span></a></code></pre></div>
+<p>There are numerous other functions which are useful for producing diagnostic plots. For example, <code>rstandard()</code> and <code>rstudent()</code> returns the standardised and studentised residuals. The function <code>dffits()</code> expresses how much an observation affects the associated fitted value and the function <code>dfbetas()</code> gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">dffits</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">rstudent</span>(smoke_lm))</a>
+<a class="sourceLine" id="cb293-4" data-line-number="4"><span class="kw">matplot</span>(<span class="kw">dfbetas</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb293-5" data-line-number="5"><span class="kw">lines</span>(<span class="kw">sqrt</span>(<span class="kw">cooks.distance</span>(smoke_lm)), <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/ss41-1.png" width="672" /></p>
 </div>
-<!-- </div> -->
             </section>
 
           </div>
         </div>
       </div>
 <a href="correlation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="prog-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="other-modelling-approaches.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

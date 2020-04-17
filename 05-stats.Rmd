@@ -270,7 +270,7 @@ str(smoke)
 
 \  
 
-Next, let's investigate the relationship between `mortality` and `smoking` variables by plotting a scatterplot. We can use either the `ggplot2` package or base R graphics to do this. We'll use `ggplot2` this time. 
+Next, let's investigate the relationship between `mortality` and `smoking` variables by plotting a scatter plot. We can use either the `ggplot2` package or base R graphics to do this. We'll use `ggplot2` this time. 
 
 ```{r ss25, echo=TRUE, collapse=TRUE}
 library(ggplot2)
@@ -286,9 +286,9 @@ To fit a simple linear model to these data we will use the `lm()` function and i
 smoke_lm <- lm(mortality ~ smoking, data = smoke)
 ```
 
-Notice that we have not used the `$` notation to specify the variables in our model formula, instead we've used the `data = smoke` argument. Although the `$` notation will work (i.e. `smoke$mortality ~ smoke$smoking`) it will more than likely cause you problems later on and should be avoided. Infact, we would go as far to suggest that if a function has a `data =` argument you should **always** use it. How do you know if a function has a `data =` argument? Just look in the associated help file.
+Notice that we have not used the `$` notation to specify the variables in our model formula, instead we've used the `data = smoke` argument. Although the `$` notation will work (i.e. `smoke$mortality ~ smoke$smoking`) it will more than likely cause you problems later on and should be avoided. In fact, we would go as far to suggest that if a function has a `data =` argument you should **always** use it. How do you know if a function has a `data =` argument? Just look in the associated help file.
 
-Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a 'lm' class object (which we have called `smoke_lm`) from which you are able to extract exactly what you want using various other functions. If you're brave, you can examine the structure of the `smoke_lm` model onject using the `str()` function. 
+Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a 'lm' class object (which we have called `smoke_lm`) from which you are able to extract exactly what you want using various other functions. If you're brave, you can examine the structure of the `smoke_lm` model object using the `str()` function. 
 
 ```{r ss27, echo=TRUE, collapse=TRUE}
 str(smoke_lm)
@@ -326,17 +326,104 @@ As we did with our first linear model we can also produce a summary of the estim
 summary(smoke_risk_lm)
 ```
 
-In the summary table the Intercept is set to the first level of `risk.group` (`high`) as this occurs first alphabetically. Therefore, the estimated mean mortality index for `high` risk individuals is `135`. The estimates for `risk.grouplow` and `risk.groupmedium` are mean differences from the intercept (`high` group). So the mortality index for the `low` group is `135 - 57.83 = 77.17` and for the `medium` group is `135 - 27.55 = 107.45`. The *t* values and *p* values in the summary table are associated with testing specific hypotheses. The *p* value associated with the intercept tests the null hypothesis that the mean mortality index for the `high` group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small *p* value. The *p* value for the `risk.grouplow` parameter tests the null hypothesis that the mean difference between `high` and `low` risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarily, the *p* value for `risk.groupmedium` tests the null hypothesis that the mean difference between `high` and `medium` groups is equal to zero which we also reject. 
+In the summary table the Intercept is set to the first level of `risk.group` (`high`) as this occurs first alphabetically. Therefore, the estimated mean mortality index for `high` risk individuals is `135`. The estimates for `risk.grouplow` and `risk.groupmedium` are mean differences from the intercept (`high` group). So the mortality index for the `low` group is `135 - 57.83 = 77.17` and for the `medium` group is `135 - 27.55 = 107.45`. The *t* values and *p* values in the summary table are associated with testing specific hypotheses. The *p* value associated with the intercept tests the null hypothesis that the mean mortality index for the `high` group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small *p* value. The *p* value for the `risk.grouplow` parameter tests the null hypothesis that the mean difference between `high` and `low` risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarly, the *p* value for `risk.groupmedium` tests the null hypothesis that the mean difference between `high` and `medium` groups is equal to zero which we also reject. 
 
 Don't worry too much if you find the output from the `summary()` function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated a model is, the more complicated it is to interpret and a model that you can't interpret is not worth fitting!
 
-Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let's go back to the first linear model we fitted (`smoke_lm`). We can add the fitted line to our previous plot using the ``ggplot2` package.`geom_smooth` geom and also include the standard errors by specifying the `se = TRUE` argument.
+Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let's go back to the first linear model we fitted (`smoke_lm`). We can add the fitted line to our previous plot using the `ggplot2` package and  the `geom_smooth` geom. We can easily include the standard errors by specifying the `se = TRUE` argument.
 
 ```{r ss33, echo=TRUE, collapse=TRUE}
 ggplot(mapping = aes(x = smoking, y = mortality), data = smoke) +
 	geom_point() +
 	geom_smooth(method = "lm", se = TRUE)
 ```
+
+You can also do this with R's base graphics. Note that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the `predict()` function  within the range of your data and then add these values to the plot using the `lines()` function (not shown). 
+
+```{r ss34, echo=TRUE, collapse=TRUE}
+plot(smoke$smoking, smoke$mortality, xlab = "smoking rate", ylab = " mortality rate")
+abline(smoke_lm, col = "red")
+```
+
+Before we sit back and relax and admire our model (or go write that high impact paper) the jobs not finished. It is vitally important to check the underlying assumptions of linear modelling namely; equal variances (homogeneity of variance) and  normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the `resid()` and `fitted()` functions.
+
+```{r ss35, echo=TRUE, collapse=TRUE}
+smoke_res <- resid(smoke_lm)
+smoke_fit <- fitted(smoke_lm)
+```
+
+And then plot them using `ggplot` or base R graphics.
+
+```{r ss36, echo=TRUE, collapse=TRUE}
+ggplot(mapping = aes(x = smoke_fit, y = smoke_res)) +
+	geom_point() +
+	geom_hline(yintercept = 0, colour = "red", linetype = "dashed")
+```
+
+It takes a little practice to interpret these types of graph, but what you are looking for is no pattern or structure in your residuals. What you definitely don’t want to see is the scatter increasing as the fitted values get bigger (this has been described as looking like a trumpet or a wedge of cheese) which would indicate unequal variances (heteroscedacity).
+
+To check for normality of residuals we can use the Q-Q plot which was introduced earlier in this Chapter. 
+
+```{r ss37, echo=TRUE, collapse=TRUE}
+ggplot(mapping = aes(sample = smoke_res)) +
+	stat_qq() + 
+	stat_qq_line()
+```
+
+Or with base graphics
+
+```{r ss38, echo=TRUE, collapse=TRUE}
+qqnorm(smoke_res)
+qqline(smoke_res) 
+```
+
+Alternatively, you can get R to do most of the hard work for you by using the `plot()` function on the model object `smoke_lm`. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the `par(mfrow = c(2,2))`. This command splits the plotting window into 2 rows and 2 columns.
+
+```{r ss39, echo=TRUE, collapse=TRUE}
+par(mfrow = c(2,2))
+plot(smoke_lm)
+```
+
+The first two graphs (top left and top right) are the same residual versus fitted and Q-Q plot we produced before. The third graph (bottom left) is the same as the first but produced on a different scale (the absolute value of the square root of the standardised residuals) and again you are looking for no pattern or structure in the data points. The fourth graph (bottom right) gives you an indication whether any of your observations are having a large influence (Cook’s distance) on your regression coefficient estimates. Levearge identifies observations which have unusually large values in their explanatory variables.
+
+
+What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the `update()` function. To remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called `smoke_lm2`. Note, we do this to demonstrate the use of the `update()` function. You should think long and hard about removing any data point(s) and if you do you should **always** report this and justify your decision. 
+
+```{r ss40, echo=TRUE, collapse=TRUE}
+smoke_lm2 <- update(smoke_lm, subset = -2)
+summary(smoke_lm2)
+```
+
+There are numerous other functions which are useful for producing diagnostic plots. For example, `rstandard()` and `rstudent()` returns the standardised and studentised residuals. The function `dffits()` expresses how much an observation affects the associated fitted value and the function `dfbetas()` gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.
+
+```{r ss41, echo=TRUE, collapse=TRUE}
+par(mfrow=c(2,2))
+plot(dffits(smoke_lm), type = "l")
+plot(rstudent(smoke_lm))
+matplot(dfbetas(smoke_lm), type = "l", col = "black")
+lines(sqrt(cooks.distance(smoke_lm)), lwd = 2)
+```
+
+## Other modelling approaches
+
+As with most things R related, a complete description of the variety and flexibility of different statistical analyses you can perform is beyond the scope of this introductory text. Further information can be found in any of the excellent documents referred to in [Chapter 2](#rhelp). A table of some of the more common statistical functions is given below. 
+
+\  
+
+|    R function        |       Use                                                              |
+|:---------------------|:-----------------------------------------------------------------------|
+| `glm()`              | Fit a generalised linear model with a specific error structure         |
+|                      | specified using the `family =` argument (Poisson, binomial, gamma)     |
+| `gam()`              | Fit a generalised additive model                                       |
+| `lme()` & `nlme()`   | Fit linear and non-linear mixed effects models. The package `nlme`     |
+|                      | must be installed                                                      |
+| `lmer()`             | Fit linear and generalised linear and non-linear mixed effects models. |
+|                      | The package `lme4` must be installed                                   |
+| `gls()`              | Fit generalised least squares models. The package `nlme` must be       |
+|                      | installed                                                              |
+| `kruskal.test()`     | Performs a Kruskal-Wallis rank sum test                                |
+| `friedman.test()`    | Performs a Friedman’s test                                             |
+
 \  
 
 ```{r links, child="links.md"}
