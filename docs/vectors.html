@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
-<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
@@ -382,7 +382,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In addition to the <code>&lt;</code> and <code>&gt;</code> operators you can also use composite operators to increase the complexity of your expressions. For example the expression for ‘greater or equal to’ is <code>&gt;=</code>. To test whether a value is equal to a value we need to use a double equals symbol <code>==</code> and for ‘not equal to’ we use <code>!=</code> (the <code>!</code> symbol means ‘not’).</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values greater or equal to 4</span></a>
 <a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co"># [1] 6 4 7</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than 4</span></a>
+<a class="sourceLine" id="cb53-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]          <span class="co"># values less than 4</span></a>
 <a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co"># [1] 2 3 1 3 3</span></a>
 <a class="sourceLine" id="cb53-5" data-line-number="5">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than or equal to 4</span></a>
 <a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># [1] 2 3 1 4 3 3</span></a>
@@ -488,7 +488,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb68-2" data-line-number="2">mean_temp</a>
 <a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co"># [1] NA</span></a></code></pre></div>
 <p>Flippin heck, what’s happened here? Why does the <code>mean()</code> function return an <code>NA</code>? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is <code>NA</code>. R doesn’t know that you perhaps want to ignore the <code>NA</code> values (R can’t read your mind - yet!). Happily, if we look at the help file (use <code>help(&quot;mean&quot;)</code> - see the <a href="help.html#help">next section</a> for more details) associated with the <code>mean()</code> function we can see there is an argument <code>na.rm =</code> which is set to <code>FALSE</code> by default.</p>
-<p>|na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.</p>
+<blockquote>
+<p>na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.</p>
+</blockquote>
 <p>If we change this argument to <code>na.rm = TRUE</code> when we use the <code>mean()</code> function this will allow us to ignore the <code>NA</code> values when calculating the mean</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb69-2" data-line-number="2">mean_temp</a>

@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
-<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="correlation" class="section level2">
 <h2><span class="header-section-number">5.2</span> Correlation</h2>
-<p>In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be found using the <code>cor()</code> function. Using the <code>trees</code> data set again, we can determine the correlation coefficient of the association between tree <code>Height</code> and <code>Volume</code>.</p>
+<p>In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be estimated using the <code>cor()</code> function. Using the <code>trees</code> data set again, we can determine the correlation coefficient of the association between tree <code>Height</code> and <code>Volume</code>.</p>
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
 <a class="sourceLine" id="cb266-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
 <a class="sourceLine" id="cb266-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
@@ -358,8 +358,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb267-3" data-line-number="3"><span class="co"># Girth  1.0000 0.5193 0.9671</span></a>
 <a class="sourceLine" id="cb267-4" data-line-number="4"><span class="co"># Height 0.5193 1.0000 0.5982</span></a>
 <a class="sourceLine" id="cb267-5" data-line-number="5"><span class="co"># Volume 0.9671 0.5982 1.0000</span></a></code></pre></div>
-<p>Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using <code>cor()</code> on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an <em>a priori</em> reason for doing so.</p>
-<p>If you have missing values in the variables you are trying to correlate, <code>cor()</code> will return an error message (as will most basic statistics tests in R). You will either have to remove these observations or tell R what to do when an observation is missing. A useful argument to use in this situation is <code>use = &quot;complete.obs&quot;</code>.</p>
+<p>Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using <code>cor()</code> on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an <em>a priori</em> reason for doing so and remember the correlation coefficient assumes that associations are linear.</p>
+<p>If you have missing values in the variables you are trying to correlate, <code>cor()</code> will return an error message (as will many functions in R). You will either have to remove these observations (be very careful if you do this) or tell R what to do when an observation is missing. A useful argument you can use with the <code>cor()</code> function is <code>use = &quot;complete.obs&quot;</code>.</p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">cor</span>(trees, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</a>
 <a class="sourceLine" id="cb268-2" data-line-number="2"><span class="co">#         Girth Height Volume</span></a>
 <a class="sourceLine" id="cb268-3" data-line-number="3"><span class="co"># Girth  1.0000 0.5193 0.9671</span></a>
@@ -378,7 +378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb269-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
 <a class="sourceLine" id="cb269-11" data-line-number="11"><span class="co">#    cor </span></a>
 <a class="sourceLine" id="cb269-12" data-line-number="12"><span class="co"># 0.5982</span></a></code></pre></div>
-<p>Two non-parametric equivalents to Pearson correlation are available within the <code>cor.test()</code> function; Spearman’s rank and Kendall’s tau coefficient. To call these simply include the argument <code>method = &quot;spearman&quot;</code> or <code>method = &quot;kendall&quot;</code> depending on the test you wish to use. For example</p>
+<p>Two non-parametric equivalents to Pearson correlation are available within the <code>cor.test()</code> function; Spearman’s rank and Kendall’s tau coefficient. To use either of these simply include the argument <code>method = &quot;spearman&quot;</code> or <code>method = &quot;kendall&quot;</code> depending on the test you wish to use. For example</p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb270-1" data-line-number="1"><span class="kw">cor.test</span>(trees<span class="op">$</span>Height, trees<span class="op">$</span>Volume, <span class="dt">method =</span> <span class="st">&quot;spearman&quot;</span>)</a>
 <a class="sourceLine" id="cb270-2" data-line-number="2"><span class="co"># Warning in cor.test.default(trees$Height, trees$Volume, method = &quot;spearman&quot;):</span></a>
 <a class="sourceLine" id="cb270-3" data-line-number="3"><span class="co"># Cannot compute exact p-value with ties</span></a>

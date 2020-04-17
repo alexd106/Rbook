@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
-<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
@@ -343,7 +343,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="other-modelling-approaches" class="section level2">
 <h2><span class="header-section-number">5.4</span> Other modelling approaches</h2>
-<p>As with most things R related, a complete description of the variety and flexibility of different statistical analyses you can perform is beyond the scope of this introductory text. Further information can be found in any of the excellent documents referred to in <a href="help.html#rhelp">Chapter 2</a>. A table of some of the more common statistical functions is given below.</p>
+<p>As with most things R related, a complete description of the variety and flexibility of different statistical analyses you can perform is beyond the scope of this introductory text. Further information can be found in any of the excellent documents referred to in <a href="help.html#rhelp">Chapter 2</a>. A table of some of the more common statistical functions is given below to get you started.</p>
 <p> </p>
 <table>
 <colgroup>
@@ -359,23 +359,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <tbody>
 <tr class="odd">
 <td align="left"><code>glm()</code></td>
-<td align="left">Fit a generalised linear model with a specific error structure</td>
+<td align="left">Fit a generalised linear model with a specific error structure specified using the <code>family =</code> argument (Poisson, binomial, gamma)</td>
 </tr>
 <tr class="even">
-<td align="left"></td>
-<td align="left">specified using the <code>family =</code> argument (Poisson, binomial, gamma)</td>
-</tr>
-<tr class="odd">
 <td align="left"><code>gam()</code></td>
 <td align="left">Fit a generalised additive model</td>
 </tr>
-<tr class="even">
-<td align="left"><code>lme()</code> &amp; <code>nlme()</code></td>
-<td align="left">Fit linear and non-linear mixed effects models. The package <code>nlme</code></td>
-</tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">must be installed</td>
+<td align="left"><code>lme()</code> &amp; <code>nlme()</code></td>
+<td align="left">Fit linear and non-linear mixed effects models. The package <code>nlme</code> must be installed</td>
 </tr>
 <tr class="even">
 <td align="left"><code>lmer()</code></td>
@@ -387,17 +379,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td align="left"><code>gls()</code></td>
-<td align="left">Fit generalised least squares models. The package <code>nlme</code> must be</td>
+<td align="left">Fit generalised least squares models. The package <code>nlme</code> must be installed</td>
 </tr>
 <tr class="odd">
-<td align="left"></td>
-<td align="left">installed</td>
-</tr>
-<tr class="even">
 <td align="left"><code>kruskal.test()</code></td>
 <td align="left">Performs a Kruskal-Wallis rank sum test</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>friedman.test()</code></td>
 <td align="left">Performs a Friedman’s test</td>
 </tr>

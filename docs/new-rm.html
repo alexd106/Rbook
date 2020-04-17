@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
-<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
@@ -367,15 +367,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
-<a class="sourceLine" id="cb331-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb331-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb331-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb331-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
-<a class="sourceLine" id="cb331-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb331-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
-<a class="sourceLine" id="cb331-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb331-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r fold-show"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1"><span class="kw">library</span>(rmarkdown)</a>
+<a class="sourceLine" id="cb332-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb332-3" data-line-number="3"><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb332-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb332-5" data-line-number="5"><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></a>
+<a class="sourceLine" id="cb332-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb332-7" data-line-number="7">rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</a>
+<a class="sourceLine" id="cb332-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb332-9" data-line-number="9"><span class="co"># see ?render for more options</span></a></code></pre></div>
 </div>
             </section>
 

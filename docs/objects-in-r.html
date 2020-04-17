@@ -212,7 +212,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
 <li class="chapter" data-level="3.4.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#adding-columns-and-rows"><i class="fa fa-check"></i><b>3.4.4</b> Adding columns and rows</a></li>
 <li class="chapter" data-level="3.4.5" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#merging-data-frames"><i class="fa fa-check"></i><b>3.4.5</b> Merging data frames</a></li>
-<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshaping-data-frames"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
+<li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
 <li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
@@ -369,9 +369,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/rs_env3.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>To change the value of an existing object we simple reassign a new value to it. For example, to change the value of <code>my_obj2</code> from <code>&quot;R is cool&quot;</code> to the number <code>1024</code></p>
+<p>To change the value of an existing object we simply reassign a new value to it. For example, to change the value of <code>my_obj2</code> from <code>&quot;R is cool&quot;</code> to the number <code>1024</code></p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">my_obj2 &lt;-<span class="st"> </span><span class="dv">1024</span></a></code></pre></div>
-<p>Notice that the Type has changed to numeric and the value has changed to 1024 in the workspace</p>
+<p>Notice that the Type has changed to numeric and the value has changed to 1024 in the environment</p>
 <p> </p>
 <p><img src="images/rs_env4.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -386,11 +386,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb31-4" data-line-number="4">Error <span class="cf">in</span> char_obj <span class="op">+</span><span class="st"> </span>char_obj2 <span class="op">:</span><span class="st"> </span>non<span class="op">-</span>numeric argument to binary operator</a></code></pre></div>
 <p>The error message is essentially telling you that either one or both of the objects <code>char_obj</code> and <code>char_obj2</code> is not a number and therefore cannot be added together.</p>
 <p>When you first start learning R, dealing with errors and warnings can be frustrating as they’re often difficult to understand (what’s an <a href="https://www.quora.com/What-is-an-%E2%80%9Cargument%E2%80%9D-in-an-R-function"><em>argument</em></a>? what’s a <a href="https://www.statmethods.net/management/operators.html"><em>binary operator</em></a>?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling <a href="https://www.google.com/search?client=firefox-b-d&amp;q=non-numeric+argument+to+binary+operator+error+%2B+r"><em>‘non-numeric argument to binary operator error + r’</em></a> or even <a href="https://www.google.com/search?client=firefox-b-d&amp;q=common+r+error+messages"><em>‘common r error messages’</em></a>.</p>
-<p>Another error message that you’ll get quite alot when you first start using R is <code>Error: object 'XXX' not found</code>. As an example, take a look at the code below</p>
+<p>Another error message that you’ll get quite a lot when you first start using R is <code>Error: object 'XXX' not found</code>. As an example, take a look at the code below</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a>
 <a class="sourceLine" id="cb32-2" data-line-number="2">my_obj4 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>no_obj</a>
 <a class="sourceLine" id="cb32-3" data-line-number="3">Error<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;no_obj&#39;</span> not found</a></code></pre></div>
-<p>R returns an error message because we haven’t created (defined) the object <code>no_obj</code> yet. You should also realise that because the code returned an error message the object <code>my_obj4</code> has not been created.</p>
+<p>R returns an error message because we haven’t created (defined) the object <code>no_obj</code> yet. Another clue that there’s a problem with this code is that, if you check your environment, you’ll see that object <code>my_obj4</code> has not been created.</p>
 </div>
 <div id="naming-objects" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Naming objects</h3>
