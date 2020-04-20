@@ -198,7 +198,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
 <li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scal_vecs"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#matrices-and-arrays"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
-<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.3</b> Data frames</a></li>
+<li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>3.2.3</b> Lists</a></li>
+<li class="chapter" data-level="3.2.4" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.4</b> Data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
@@ -345,20 +346,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> Looking behind the curtain</h2>
 <p>A good way to learn programming is to see what others have done. We can start by peaking behind the curtain for just a brief second. In <a href="graphics-r.html#graphics_r">Chapter 4</a> we made use of the <code>theme_classic()</code> function when customising our <code>ggplot</code> figures. With many functions in R, if you want to have a quick glance at the machinery behind the scenes, we can simply write the function name but without the <code>()</code>. This is the same trick we used in <a href="graphics-r.html#graphics_r">Chapter 4</a> to alter the <code>theme_classic()</code> style of <code>ggplot2</code> to make <code>theme_rbook()</code>.</p>
 <p>Note that to view the source code of base R packages (those that come with R) requires some additional steps which we won’t cover here, but for most other packages that you install yourself, generally entering the function name without <code>()</code> will show the source code of the function.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1">theme_classic</a>
-<a class="sourceLine" id="cb295-2" data-line-number="2"><span class="co"># function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></a>
-<a class="sourceLine" id="cb295-3" data-line-number="3"><span class="co">#     base_rect_size = base_size/22) </span></a>
-<a class="sourceLine" id="cb295-4" data-line-number="4"><span class="co"># {</span></a>
-<a class="sourceLine" id="cb295-5" data-line-number="5"><span class="co">#     theme_bw(base_size = base_size, base_family = base_family, </span></a>
-<a class="sourceLine" id="cb295-6" data-line-number="6"><span class="co">#         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></a>
-<a class="sourceLine" id="cb295-7" data-line-number="7"><span class="co">#         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></a>
-<a class="sourceLine" id="cb295-8" data-line-number="8"><span class="co">#             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></a>
-<a class="sourceLine" id="cb295-9" data-line-number="9"><span class="co">#                 size = rel(1)), legend.key = element_blank(), </span></a>
-<a class="sourceLine" id="cb295-10" data-line-number="10"><span class="co">#             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
-<a class="sourceLine" id="cb295-11" data-line-number="11"><span class="co">#                 size = rel(2)), complete = TRUE)</span></a>
-<a class="sourceLine" id="cb295-12" data-line-number="12"><span class="co"># }</span></a>
-<a class="sourceLine" id="cb295-13" data-line-number="13"><span class="co"># &lt;bytecode: 0x7fa9c5267c70&gt;</span></a>
-<a class="sourceLine" id="cb295-14" data-line-number="14"><span class="co"># &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">theme_classic</a>
+<a class="sourceLine" id="cb298-2" data-line-number="2"><span class="co"># function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></a>
+<a class="sourceLine" id="cb298-3" data-line-number="3"><span class="co">#     base_rect_size = base_size/22) </span></a>
+<a class="sourceLine" id="cb298-4" data-line-number="4"><span class="co"># {</span></a>
+<a class="sourceLine" id="cb298-5" data-line-number="5"><span class="co">#     theme_bw(base_size = base_size, base_family = base_family, </span></a>
+<a class="sourceLine" id="cb298-6" data-line-number="6"><span class="co">#         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></a>
+<a class="sourceLine" id="cb298-7" data-line-number="7"><span class="co">#         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></a>
+<a class="sourceLine" id="cb298-8" data-line-number="8"><span class="co">#             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></a>
+<a class="sourceLine" id="cb298-9" data-line-number="9"><span class="co">#                 size = rel(1)), legend.key = element_blank(), </span></a>
+<a class="sourceLine" id="cb298-10" data-line-number="10"><span class="co">#             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></a>
+<a class="sourceLine" id="cb298-11" data-line-number="11"><span class="co">#                 size = rel(2)), complete = TRUE)</span></a>
+<a class="sourceLine" id="cb298-12" data-line-number="12"><span class="co"># }</span></a>
+<a class="sourceLine" id="cb298-13" data-line-number="13"><span class="co"># &lt;bytecode: 0x7faacea10908&gt;</span></a>
+<a class="sourceLine" id="cb298-14" data-line-number="14"><span class="co"># &lt;environment: namespace:ggplot2&gt;</span></a></code></pre></div>
 <p>What we see above is the underlying code for this particular function. As we did in <a href="graphics-r.html#graphics_r">Chapter 4</a>, we could copy and paste this into our own script and make any changes we deemed necessary. This approach isn’t limited to <code>ggplot2</code> functions and can be used for other functions as well, although tread carefully and test the changes you’ve made.</p>
 <p>Don’t worry overly if most of the code contained in functions doesn’t make sense immediately. This will be especially true if you are new to R, in which case it seems incredibly intimidating. To help with that, we’ll begin by making our own functions in R in the next section.</p>
 </div>

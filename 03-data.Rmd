@@ -147,6 +147,35 @@ mat.1 %*% mat.2			# matrix multiplication
 
 ```
 
+### Lists {#lists}
+
+The next data structure we will quickly take a look at is a list. Whilst vectors and matrices are constrained to contain data of the same type, lists are able to store mixtures of data types. In fact we can even store other data structures such as vectors and arrays within a list or even have a list of a list. This makes for a very flexible data structure which is ideal for storing irregular or non-rectangular data. 
+
+To create a list we can use the `list()` function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+list_1 <- list(c("black", "yellow", "orange"),
+               c(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE),
+               matrix(1:6, nrow = 3))
+list_1
+```
+
+Elements of the list can be named during the construction of the list 
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+list_2 <- list(colours = c("black", "yellow", "orange"), 
+               evaluation = c(TRUE, TRUE, FALSE, TRUE, FALSE, FALSE), 
+               time = matrix(1:6, nrow = 3))
+list_2
+```
+
+or after the list has been created using the `names()` function
+
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+names(list_1) <- c("colours", "evaluation", "time")
+list_1
+```
+
 ### Data frames {#df}
 
 By far the most commonly used data structure to store data in is the data frame. A data frame is a powerful two-dimensional object made up of rows and columns which looks superficially very similar to a matrix. However, whilst matrices are restricted to containing data all of the same type, data frames can contain a mixture of different types of data. Typically, in a data frame each row corresponds to an individual observation and each column corresponds to a different measured or recorded variable. This setup may be familiar to those of you who use LibreOffice Calc or Microsoft Excel to manage and store your data. Perhaps a useful way to think about data frames is that they are essentially made up of a bunch of vectors (columns) with each vector containing its own data type but the data type can be different between vectors. 
