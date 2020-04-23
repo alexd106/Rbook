@@ -348,159 +348,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> One and two sample tests</h2>
 <p>The two main functions for these types of tests are the <code>t.test()</code> and <code>wilcox.test()</code> that perform <em>t</em> tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.</p>
 <p>As an example of a one sample <em>t</em> test we will use the <code>trees</code> dataset which is included with R. To access this in-built dataset we can use the <code>data()</code> function. This data set provides measurements of the diameter, height and volume of timber in 31 felled black cherry trees (see <code>?trees</code> for more detail).</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb246-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
-<a class="sourceLine" id="cb246-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
-<a class="sourceLine" id="cb246-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
-<a class="sourceLine" id="cb246-4" data-line-number="4"><span class="co">#  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></a>
-<a class="sourceLine" id="cb246-5" data-line-number="5"><span class="co">#  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></a>
-<a class="sourceLine" id="cb246-6" data-line-number="6"><span class="co">#  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></a>
-<a class="sourceLine" id="cb246-7" data-line-number="7"><span class="kw">summary</span>(trees)</a>
-<a class="sourceLine" id="cb246-8" data-line-number="8"><span class="co">#      Girth          Height       Volume    </span></a>
-<a class="sourceLine" id="cb246-9" data-line-number="9"><span class="co">#  Min.   : 8.3   Min.   :63   Min.   :10.2  </span></a>
-<a class="sourceLine" id="cb246-10" data-line-number="10"><span class="co">#  1st Qu.:11.1   1st Qu.:72   1st Qu.:19.4  </span></a>
-<a class="sourceLine" id="cb246-11" data-line-number="11"><span class="co">#  Median :12.9   Median :76   Median :24.2  </span></a>
-<a class="sourceLine" id="cb246-12" data-line-number="12"><span class="co">#  Mean   :13.2   Mean   :76   Mean   :30.2  </span></a>
-<a class="sourceLine" id="cb246-13" data-line-number="13"><span class="co">#  3rd Qu.:15.2   3rd Qu.:80   3rd Qu.:37.3  </span></a>
-<a class="sourceLine" id="cb246-14" data-line-number="14"><span class="co">#  Max.   :20.6   Max.   :87   Max.   :77.0</span></a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">data</span>(trees)</a>
+<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="kw">str</span>(trees)</a>
+<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 31 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="co">#  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></a>
+<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co">#  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></a>
+<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="co">#  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></a>
+<a class="sourceLine" id="cb251-7" data-line-number="7"><span class="kw">summary</span>(trees)</a>
+<a class="sourceLine" id="cb251-8" data-line-number="8"><span class="co">#      Girth          Height       Volume    </span></a>
+<a class="sourceLine" id="cb251-9" data-line-number="9"><span class="co">#  Min.   : 8.3   Min.   :63   Min.   :10.2  </span></a>
+<a class="sourceLine" id="cb251-10" data-line-number="10"><span class="co">#  1st Qu.:11.1   1st Qu.:72   1st Qu.:19.4  </span></a>
+<a class="sourceLine" id="cb251-11" data-line-number="11"><span class="co">#  Median :12.9   Median :76   Median :24.2  </span></a>
+<a class="sourceLine" id="cb251-12" data-line-number="12"><span class="co">#  Mean   :13.2   Mean   :76   Mean   :30.2  </span></a>
+<a class="sourceLine" id="cb251-13" data-line-number="13"><span class="co">#  3rd Qu.:15.2   3rd Qu.:80   3rd Qu.:37.3  </span></a>
+<a class="sourceLine" id="cb251-14" data-line-number="14"><span class="co">#  Max.   :20.6   Max.   :87   Max.   :77.0</span></a></code></pre></div>
 <p>If we wanted to test whether mean height of black cherry trees in this sample is equal to 70 ft assuming these data are normally distributed .</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb247-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb247-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
-<a class="sourceLine" id="cb247-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 1e-05</span></a>
-<a class="sourceLine" id="cb247-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is not equal to 70</span></a>
-<a class="sourceLine" id="cb247-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb247-9" data-line-number="9"><span class="co">#  73.66 78.34</span></a>
-<a class="sourceLine" id="cb247-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb247-11" data-line-number="11"><span class="co"># mean of x </span></a>
-<a class="sourceLine" id="cb247-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
+<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb252-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 1e-05</span></a>
+<a class="sourceLine" id="cb252-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is not equal to 70</span></a>
+<a class="sourceLine" id="cb252-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb252-9" data-line-number="9"><span class="co">#  73.66 78.34</span></a>
+<a class="sourceLine" id="cb252-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb252-11" data-line-number="11"><span class="co"># mean of x </span></a>
+<a class="sourceLine" id="cb252-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
 <p>The above summary has a fairly logical layout and includes the name of the test that we have asked for (<code>One Sample t-test</code>), which data has been used (<code>data:  trees$Height</code>), the <em>t</em> statistic, degrees of freedom and associated <em>p</em> value (<code>t = 5.2, df = 30, p-value = 1e-05</code>). It also states the alternative hypothesis (<code>alternative hypothesis: true mean is not equal to 70</code>) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (<code>95 percent confidence interval:73.66 78.34</code>) and also an estimate of the mean (<code>sample estimates: mean of x : 76</code>). In the above example, the <em>p</em> value is very small and therefore we would reject the null hypothesis and conclude that the mean height of our sample of black cherry trees is not equal to 70 ft.</p>
 <p>The function <code>t.test()</code> also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either <code>alternative = &quot;greater&quot;</code> or <code>alternative = &quot;less</code> arguments which tests whether the sample mean is greater or less than the mean specified. For example, to test whether our sample mean is greater than 70 ft.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb248-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
-<a class="sourceLine" id="cb248-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb248-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
-<a class="sourceLine" id="cb248-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 6e-06</span></a>
-<a class="sourceLine" id="cb248-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is greater than 70</span></a>
-<a class="sourceLine" id="cb248-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb248-9" data-line-number="9"><span class="co">#  74.06   Inf</span></a>
-<a class="sourceLine" id="cb248-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb248-11" data-line-number="11"><span class="co"># mean of x </span></a>
-<a class="sourceLine" id="cb248-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">t.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>, <span class="dt">alternative =</span> <span class="st">&quot;greater&quot;</span>)</a>
+<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="co">#   One Sample t-test</span></a>
+<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co"># t = 5.2, df = 30, p-value = 6e-06</span></a>
+<a class="sourceLine" id="cb253-7" data-line-number="7"><span class="co"># alternative hypothesis: true mean is greater than 70</span></a>
+<a class="sourceLine" id="cb253-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb253-9" data-line-number="9"><span class="co">#  74.06   Inf</span></a>
+<a class="sourceLine" id="cb253-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb253-11" data-line-number="11"><span class="co"># mean of x </span></a>
+<a class="sourceLine" id="cb253-12" data-line-number="12"><span class="co">#        76</span></a></code></pre></div>
 <p>You can also change the confidence level used for estimating the confidence intervals using the argument <code>conf.level = 0.99</code>. In this case 99% confidence intervals would be estimated.</p>
 <p>Although <em>t</em> tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the <em>t</em> test but using the <code>wilcox.test()</code> function.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1"><span class="kw">wilcox.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
-<a class="sourceLine" id="cb249-3" data-line-number="3"><span class="co"># value with ties</span></a>
-<a class="sourceLine" id="cb249-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
-<a class="sourceLine" id="cb249-5" data-line-number="5"><span class="co"># value with zeroes</span></a>
-<a class="sourceLine" id="cb249-6" data-line-number="6"><span class="co"># </span></a>
-<a class="sourceLine" id="cb249-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
-<a class="sourceLine" id="cb249-8" data-line-number="8"><span class="co"># </span></a>
-<a class="sourceLine" id="cb249-9" data-line-number="9"><span class="co"># data:  trees$Height</span></a>
-<a class="sourceLine" id="cb249-10" data-line-number="10"><span class="co"># V = 420, p-value = 1e-04</span></a>
-<a class="sourceLine" id="cb249-11" data-line-number="11"><span class="co"># alternative hypothesis: true location is not equal to 70</span></a></code></pre></div>
+<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">wilcox.test</span>(trees<span class="op">$</span>Height, <span class="dt">mu =</span> <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
+<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="co"># value with ties</span></a>
+<a class="sourceLine" id="cb254-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-</span></a>
+<a class="sourceLine" id="cb254-5" data-line-number="5"><span class="co"># value with zeroes</span></a>
+<a class="sourceLine" id="cb254-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb254-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
+<a class="sourceLine" id="cb254-8" data-line-number="8"><span class="co"># </span></a>
+<a class="sourceLine" id="cb254-9" data-line-number="9"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb254-10" data-line-number="10"><span class="co"># V = 420, p-value = 1e-04</span></a>
+<a class="sourceLine" id="cb254-11" data-line-number="11"><span class="co"># alternative hypothesis: true location is not equal to 70</span></a></code></pre></div>
 <p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact <em>p</em> value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = &quot;greater&quot;</code> and <code>alternative = &quot;less&quot;</code>.</p>
 <p>In our one sample test it’s always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. Perhaps the simplest way to assess normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your data are normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
 <p>To construct a Q-Q plot you need to use both the <code>qqnorm()</code> and <code>qqline()</code> functions. The <code>lty = 2</code> argument changes the line to a dashed line.</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1"><span class="kw">qqnorm</span>(trees<span class="op">$</span>Height)</a>
-<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="kw">qqline</span>(trees<span class="op">$</span>Height, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">qqnorm</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb255-2" data-line-number="2"><span class="kw">qqline</span>(trees<span class="op">$</span>Height, <span class="dt">lty =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss5-1.png" width="672" /></p>
 <p>If you insist on performing a specific test for normality you can use the function <code>shapiro.test()</code> which performs a Shapiro – Wilks test of normality.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1"><span class="kw">shapiro.test</span>(trees<span class="op">$</span>Height)</a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb251-3" data-line-number="3"><span class="co">#   Shapiro-Wilk normality test</span></a>
-<a class="sourceLine" id="cb251-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb251-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
-<a class="sourceLine" id="cb251-6" data-line-number="6"><span class="co"># W = 0.97, p-value = 0.4</span></a></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">shapiro.test</span>(trees<span class="op">$</span>Height)</a>
+<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="co">#   Shapiro-Wilk normality test</span></a>
+<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb256-5" data-line-number="5"><span class="co"># data:  trees$Height</span></a>
+<a class="sourceLine" id="cb256-6" data-line-number="6"><span class="co"># W = 0.97, p-value = 0.4</span></a></code></pre></div>
 <p>In the example above, the <em>p</em> value = 0.4 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed.</p>
 <p>In addition to one-sample tests, both the <code>t.test()</code> and <code>wilcox.test()</code> functions can be used to test for differences between two samples. A two sample <em>t</em> test is used to test the null hypothesis that the two samples come from distributions with the same mean (i.e. the means are not different). For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate alters the moisture content of clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the <code>atmosphere.txt</code> data file located in the <code>data/</code> directory.</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1">atmos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">str</span>(atmos)</a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 20 obs. of  2 variables:</span></a>
-<a class="sourceLine" id="cb252-4" data-line-number="4"><span class="co">#  $ moisture : num  301 302 299 316 307 ...</span></a>
-<a class="sourceLine" id="cb252-5" data-line-number="5"><span class="co">#  $ treatment: Factor w/ 2 levels &quot;seeded&quot;,&quot;unseeded&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">atmos &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">str</span>(atmos)</a>
+<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 20 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="co">#  $ moisture : num  301 302 299 316 307 ...</span></a>
+<a class="sourceLine" id="cb257-5" data-line-number="5"><span class="co">#  $ treatment: Factor w/ 2 levels &quot;seeded&quot;,&quot;unseeded&quot;: 1 1 1 1 1 1 1 1 1 1 ...</span></a></code></pre></div>
 <p>As with our previous data frame (<code>flowers</code>), these data are in the long format. The column <code>moisture</code> contains the moisture content measured in each cloud and the column <code>treatment</code> identifies whether the cloud was <code>seeded</code> or <code>unseeded</code>. To perform a two-sample <em>t</em> test</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb253-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
-<a class="sourceLine" id="cb253-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb253-3" data-line-number="3"><span class="co">#   Welch Two Sample t-test</span></a>
-<a class="sourceLine" id="cb253-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb253-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
-<a class="sourceLine" id="cb253-6" data-line-number="6"><span class="co"># t = 2.5, df = 17, p-value = 0.02</span></a>
-<a class="sourceLine" id="cb253-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
-<a class="sourceLine" id="cb253-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb253-9" data-line-number="9"><span class="co">#   1.446 15.694</span></a>
-<a class="sourceLine" id="cb253-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb253-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
-<a class="sourceLine" id="cb253-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
-<p>Notice the use of the formula method (<code>atmos$moisture ~ atmos$treatment</code>, which can be read as ‘the moisture described by treatment’) to specify the test. You can also use other methods depending on the format of the data frame. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample <em>t</em> test. The Welch’s variant of the <em>t</em> test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb254-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb254-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb254-3" data-line-number="3"><span class="co">#   Two Sample t-test</span></a>
-<a class="sourceLine" id="cb254-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb254-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
-<a class="sourceLine" id="cb254-6" data-line-number="6"><span class="co"># t = 2.5, df = 18, p-value = 0.02</span></a>
-<a class="sourceLine" id="cb254-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
-<a class="sourceLine" id="cb254-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb254-9" data-line-number="9"><span class="co">#   1.483 15.657</span></a>
-<a class="sourceLine" id="cb254-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb254-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
-<a class="sourceLine" id="cb254-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
-<p>To test whether the assumption of equal variances is valid you can perform an <em>F</em>-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb255-1" data-line-number="1"><span class="kw">var.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
-<a class="sourceLine" id="cb255-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb255-3" data-line-number="3"><span class="co">#   F test to compare two variances</span></a>
-<a class="sourceLine" id="cb255-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb255-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
-<a class="sourceLine" id="cb255-6" data-line-number="6"><span class="co"># F = 0.58, num df = 9, denom df = 9, p-value = 0.4</span></a>
-<a class="sourceLine" id="cb255-7" data-line-number="7"><span class="co"># alternative hypothesis: true ratio of variances is not equal to 1</span></a>
-<a class="sourceLine" id="cb255-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb255-9" data-line-number="9"><span class="co">#  0.1439 2.3318</span></a>
-<a class="sourceLine" id="cb255-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb255-11" data-line-number="11"><span class="co"># ratio of variances </span></a>
-<a class="sourceLine" id="cb255-12" data-line-number="12"><span class="co">#             0.5792</span></a></code></pre></div>
-<p>As the <em>p</em> value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the <em>F</em>-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
-<p>The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb256-1" data-line-number="1"><span class="kw">wilcox.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
-<a class="sourceLine" id="cb256-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb256-3" data-line-number="3"><span class="co">#   Wilcoxon rank sum test</span></a>
-<a class="sourceLine" id="cb256-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb256-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
-<a class="sourceLine" id="cb256-6" data-line-number="6"><span class="co"># W = 79, p-value = 0.03</span></a>
-<a class="sourceLine" id="cb256-7" data-line-number="7"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
-<p>You can also use the <code>t.test()</code> and <code>wilcox.test()</code> functions to test paired data. Paired data are where there are two measurements on the same experimental unit (individual, site etc) and essentially tests for whether the mean difference between the paired observations is equal to zero. For example, the <code>pollution</code> dataset gives the biodiversity score of aquatic invertebrates collected using kick samples in 17 different rivers. These data are paired because two samples were taken on each river, one upstream of a paper mill and one downstream.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">pollution &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/pollution.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb257-2" data-line-number="2"><span class="kw">str</span>(pollution)</a>
-<a class="sourceLine" id="cb257-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 16 obs. of  2 variables:</span></a>
-<a class="sourceLine" id="cb257-4" data-line-number="4"><span class="co">#  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></a>
-<a class="sourceLine" id="cb257-5" data-line-number="5"><span class="co">#  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></a></code></pre></div>
-<p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (see <a href="wrangling-data-frames.html#reshape">Chapter 3</a> on how to convert to long format if you want). To conduct a paired <em>t</em> test use the <code>paired = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">t.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb258-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
 <a class="sourceLine" id="cb258-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="co">#   Paired t-test</span></a>
+<a class="sourceLine" id="cb258-3" data-line-number="3"><span class="co">#   Welch Two Sample t-test</span></a>
 <a class="sourceLine" id="cb258-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb258-5" data-line-number="5"><span class="co"># data:  pollution$down and pollution$up</span></a>
-<a class="sourceLine" id="cb258-6" data-line-number="6"><span class="co"># t = -3.1, df = 15, p-value = 0.008</span></a>
+<a class="sourceLine" id="cb258-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb258-6" data-line-number="6"><span class="co"># t = 2.5, df = 17, p-value = 0.02</span></a>
 <a class="sourceLine" id="cb258-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
 <a class="sourceLine" id="cb258-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb258-9" data-line-number="9"><span class="co">#  -1.4864 -0.2636</span></a>
+<a class="sourceLine" id="cb258-9" data-line-number="9"><span class="co">#   1.446 15.694</span></a>
 <a class="sourceLine" id="cb258-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb258-11" data-line-number="11"><span class="co"># mean of the differences </span></a>
-<a class="sourceLine" id="cb258-12" data-line-number="12"><span class="co">#                  -0.875</span></a></code></pre></div>
+<a class="sourceLine" id="cb258-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
+<a class="sourceLine" id="cb258-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
+<p>Notice the use of the formula method (<code>atmos$moisture ~ atmos$treatment</code>, which can be read as ‘the moisture described by treatment’) to specify the test. You can also use other methods depending on the format of the data frame. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample <em>t</em> test. The Welch’s variant of the <em>t</em> test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">t.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co">#   Two Sample t-test</span></a>
+<a class="sourceLine" id="cb259-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb259-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb259-6" data-line-number="6"><span class="co"># t = 2.5, df = 18, p-value = 0.02</span></a>
+<a class="sourceLine" id="cb259-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
+<a class="sourceLine" id="cb259-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb259-9" data-line-number="9"><span class="co">#   1.483 15.657</span></a>
+<a class="sourceLine" id="cb259-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb259-11" data-line-number="11"><span class="co">#   mean in group seeded mean in group unseeded </span></a>
+<a class="sourceLine" id="cb259-12" data-line-number="12"><span class="co">#                  303.6                  295.1</span></a></code></pre></div>
+<p>To test whether the assumption of equal variances is valid you can perform an <em>F</em>-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">var.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb260-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="co">#   F test to compare two variances</span></a>
+<a class="sourceLine" id="cb260-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb260-6" data-line-number="6"><span class="co"># F = 0.58, num df = 9, denom df = 9, p-value = 0.4</span></a>
+<a class="sourceLine" id="cb260-7" data-line-number="7"><span class="co"># alternative hypothesis: true ratio of variances is not equal to 1</span></a>
+<a class="sourceLine" id="cb260-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb260-9" data-line-number="9"><span class="co">#  0.1439 2.3318</span></a>
+<a class="sourceLine" id="cb260-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb260-11" data-line-number="11"><span class="co"># ratio of variances </span></a>
+<a class="sourceLine" id="cb260-12" data-line-number="12"><span class="co">#             0.5792</span></a></code></pre></div>
+<p>As the <em>p</em> value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the <em>F</em>-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
+<p>The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">wilcox.test</span>(atmos<span class="op">$</span>moisture <span class="op">~</span><span class="st"> </span>atmos<span class="op">$</span>treatment)</a>
+<a class="sourceLine" id="cb261-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="co">#   Wilcoxon rank sum test</span></a>
+<a class="sourceLine" id="cb261-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb261-5" data-line-number="5"><span class="co"># data:  atmos$moisture by atmos$treatment</span></a>
+<a class="sourceLine" id="cb261-6" data-line-number="6"><span class="co"># W = 79, p-value = 0.03</span></a>
+<a class="sourceLine" id="cb261-7" data-line-number="7"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
+<p>You can also use the <code>t.test()</code> and <code>wilcox.test()</code> functions to test paired data. Paired data are where there are two measurements on the same experimental unit (individual, site etc) and essentially tests for whether the mean difference between the paired observations is equal to zero. For example, the <code>pollution</code> dataset gives the biodiversity score of aquatic invertebrates collected using kick samples in 17 different rivers. These data are paired because two samples were taken on each river, one upstream of a paper mill and one downstream.</p>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1">pollution &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/pollution.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="kw">str</span>(pollution)</a>
+<a class="sourceLine" id="cb262-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 16 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="co">#  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></a>
+<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="co">#  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></a></code></pre></div>
+<p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (see <a href="wrangling-data-frames.html#reshape">Chapter 3</a> on how to convert to long format if you want). To conduct a paired <em>t</em> test use the <code>paired = TRUE</code> argument.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">t.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="co">#   Paired t-test</span></a>
+<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="co"># data:  pollution$down and pollution$up</span></a>
+<a class="sourceLine" id="cb263-6" data-line-number="6"><span class="co"># t = -3.1, df = 15, p-value = 0.008</span></a>
+<a class="sourceLine" id="cb263-7" data-line-number="7"><span class="co"># alternative hypothesis: true difference in means is not equal to 0</span></a>
+<a class="sourceLine" id="cb263-8" data-line-number="8"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb263-9" data-line-number="9"><span class="co">#  -1.4864 -0.2636</span></a>
+<a class="sourceLine" id="cb263-10" data-line-number="10"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb263-11" data-line-number="11"><span class="co"># mean of the differences </span></a>
+<a class="sourceLine" id="cb263-12" data-line-number="12"><span class="co">#                  -0.875</span></a></code></pre></div>
 <p>The output is almost identical to that of a one-sample <em>t</em> test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">wilcox.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb259-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
-<a class="sourceLine" id="cb259-3" data-line-number="3"><span class="co"># cannot compute exact p-value with ties</span></a>
-<a class="sourceLine" id="cb259-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
-<a class="sourceLine" id="cb259-5" data-line-number="5"><span class="co"># cannot compute exact p-value with zeroes</span></a>
-<a class="sourceLine" id="cb259-6" data-line-number="6"><span class="co"># </span></a>
-<a class="sourceLine" id="cb259-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
-<a class="sourceLine" id="cb259-8" data-line-number="8"><span class="co"># </span></a>
-<a class="sourceLine" id="cb259-9" data-line-number="9"><span class="co"># data:  pollution$down and pollution$up</span></a>
-<a class="sourceLine" id="cb259-10" data-line-number="10"><span class="co"># V = 8, p-value = 0.01</span></a>
-<a class="sourceLine" id="cb259-11" data-line-number="11"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb264-1" data-line-number="1"><span class="kw">wilcox.test</span>(pollution<span class="op">$</span>down, pollution<span class="op">$</span>up, <span class="dt">paired =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb264-2" data-line-number="2"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
+<a class="sourceLine" id="cb264-3" data-line-number="3"><span class="co"># cannot compute exact p-value with ties</span></a>
+<a class="sourceLine" id="cb264-4" data-line-number="4"><span class="co"># Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></a>
+<a class="sourceLine" id="cb264-5" data-line-number="5"><span class="co"># cannot compute exact p-value with zeroes</span></a>
+<a class="sourceLine" id="cb264-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb264-7" data-line-number="7"><span class="co">#   Wilcoxon signed rank test with continuity correction</span></a>
+<a class="sourceLine" id="cb264-8" data-line-number="8"><span class="co"># </span></a>
+<a class="sourceLine" id="cb264-9" data-line-number="9"><span class="co"># data:  pollution$down and pollution$up</span></a>
+<a class="sourceLine" id="cb264-10" data-line-number="10"><span class="co"># V = 8, p-value = 0.01</span></a>
+<a class="sourceLine" id="cb264-11" data-line-number="11"><span class="co"># alternative hypothesis: true location shift is not equal to 0</span></a></code></pre></div>
 <p>The function <code>prop.test()</code> can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below</p>
 <table>
 <thead>
@@ -525,42 +525,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>From the table above we can conclude that 56% of cat owners would buy the cat food before the campaign compared to 69% after. But, has the advertising campaign been a success?</p>
 <p>The <code>prop.test()</code> function has two main arguments which are given as two vectors. The first vector contains the number of positive outcomes and the second vector the total numbers for each group. So to perform the test we first need to define these vectors</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1">buy &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">71</span>)                     <span class="co"># creates a vector of positive outcomes</span></a>
-<a class="sourceLine" id="cb260-2" data-line-number="2">total &lt;-<span class="kw">c</span>((<span class="dv">45</span> <span class="op">+</span><span class="st"> </span><span class="dv">35</span>), (<span class="dv">71</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span>))   <span class="co"># creates a vector of total numbers</span></a>
-<a class="sourceLine" id="cb260-3" data-line-number="3"><span class="kw">prop.test</span>(buy, total)                 <span class="co"># perform the test</span></a>
-<a class="sourceLine" id="cb260-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb260-5" data-line-number="5"><span class="co">#   2-sample test for equality of proportions with continuity correction</span></a>
-<a class="sourceLine" id="cb260-6" data-line-number="6"><span class="co"># </span></a>
-<a class="sourceLine" id="cb260-7" data-line-number="7"><span class="co"># data:  buy out of total</span></a>
-<a class="sourceLine" id="cb260-8" data-line-number="8"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a>
-<a class="sourceLine" id="cb260-9" data-line-number="9"><span class="co"># alternative hypothesis: two.sided</span></a>
-<a class="sourceLine" id="cb260-10" data-line-number="10"><span class="co"># 95 percent confidence interval:</span></a>
-<a class="sourceLine" id="cb260-11" data-line-number="11"><span class="co">#  -0.27865  0.02501</span></a>
-<a class="sourceLine" id="cb260-12" data-line-number="12"><span class="co"># sample estimates:</span></a>
-<a class="sourceLine" id="cb260-13" data-line-number="13"><span class="co"># prop 1 prop 2 </span></a>
-<a class="sourceLine" id="cb260-14" data-line-number="14"><span class="co"># 0.5625 0.6893</span></a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1">buy &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">45</span>,<span class="dv">71</span>)                     <span class="co"># creates a vector of positive outcomes</span></a>
+<a class="sourceLine" id="cb265-2" data-line-number="2">total &lt;-<span class="kw">c</span>((<span class="dv">45</span> <span class="op">+</span><span class="st"> </span><span class="dv">35</span>), (<span class="dv">71</span> <span class="op">+</span><span class="st"> </span><span class="dv">32</span>))   <span class="co"># creates a vector of total numbers</span></a>
+<a class="sourceLine" id="cb265-3" data-line-number="3"><span class="kw">prop.test</span>(buy, total)                 <span class="co"># perform the test</span></a>
+<a class="sourceLine" id="cb265-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb265-5" data-line-number="5"><span class="co">#   2-sample test for equality of proportions with continuity correction</span></a>
+<a class="sourceLine" id="cb265-6" data-line-number="6"><span class="co"># </span></a>
+<a class="sourceLine" id="cb265-7" data-line-number="7"><span class="co"># data:  buy out of total</span></a>
+<a class="sourceLine" id="cb265-8" data-line-number="8"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a>
+<a class="sourceLine" id="cb265-9" data-line-number="9"><span class="co"># alternative hypothesis: two.sided</span></a>
+<a class="sourceLine" id="cb265-10" data-line-number="10"><span class="co"># 95 percent confidence interval:</span></a>
+<a class="sourceLine" id="cb265-11" data-line-number="11"><span class="co">#  -0.27865  0.02501</span></a>
+<a class="sourceLine" id="cb265-12" data-line-number="12"><span class="co"># sample estimates:</span></a>
+<a class="sourceLine" id="cb265-13" data-line-number="13"><span class="co"># prop 1 prop 2 </span></a>
+<a class="sourceLine" id="cb265-14" data-line-number="14"><span class="co"># 0.5625 0.6893</span></a></code></pre></div>
 <p>There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (<em>p</em> = 0.1). Use <code>?prop.test</code> to explore additional uses of the binomial proportions test.</p>
 <p>We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2 x 2 matrix using the <code>matrix()</code> function (note, there are many alternative methods of constructing a table like this).</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1">buyers &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb261-2" data-line-number="2">buyers</a>
-<a class="sourceLine" id="cb261-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb261-4" data-line-number="4"><span class="co"># [1,]   45   71</span></a>
-<a class="sourceLine" id="cb261-5" data-line-number="5"><span class="co"># [2,]   35   32</span></a></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb266-1" data-line-number="1">buyers &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb266-2" data-line-number="2">buyers</a>
+<a class="sourceLine" id="cb266-3" data-line-number="3"><span class="co">#      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb266-4" data-line-number="4"><span class="co"># [1,]   45   71</span></a>
+<a class="sourceLine" id="cb266-5" data-line-number="5"><span class="co"># [2,]   35   32</span></a></code></pre></div>
 <p>Notice that you enter the data column wise into the matrix and then specify the number of rows using <code>nrow =</code>.</p>
 <p>We can also change the row names and column names from the defaults to make it look more like a table (you don’t really need to do this to perform a Chi-square test)</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb262-1" data-line-number="1"><span class="kw">colnames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>)</a>
-<a class="sourceLine" id="cb262-2" data-line-number="2"><span class="kw">rownames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;buy&quot;</span>, <span class="st">&quot;notbuy&quot;</span>)</a>
-<a class="sourceLine" id="cb262-3" data-line-number="3">buyers</a>
-<a class="sourceLine" id="cb262-4" data-line-number="4"><span class="co">#        before after</span></a>
-<a class="sourceLine" id="cb262-5" data-line-number="5"><span class="co"># buy        45    71</span></a>
-<a class="sourceLine" id="cb262-6" data-line-number="6"><span class="co"># notbuy     35    32</span></a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">colnames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>)</a>
+<a class="sourceLine" id="cb267-2" data-line-number="2"><span class="kw">rownames</span>(buyers) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;buy&quot;</span>, <span class="st">&quot;notbuy&quot;</span>)</a>
+<a class="sourceLine" id="cb267-3" data-line-number="3">buyers</a>
+<a class="sourceLine" id="cb267-4" data-line-number="4"><span class="co">#        before after</span></a>
+<a class="sourceLine" id="cb267-5" data-line-number="5"><span class="co"># buy        45    71</span></a>
+<a class="sourceLine" id="cb267-6" data-line-number="6"><span class="co"># notbuy     35    32</span></a></code></pre></div>
 <p>You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the <code>chisq.test()</code> function. In this example the only argument is our matrix of counts.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1"><span class="kw">chisq.test</span>(buyers)</a>
-<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="co"># </span></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="co">#   Pearson&#39;s Chi-squared test with Yates&#39; continuity correction</span></a>
-<a class="sourceLine" id="cb263-4" data-line-number="4"><span class="co"># </span></a>
-<a class="sourceLine" id="cb263-5" data-line-number="5"><span class="co"># data:  buyers</span></a>
-<a class="sourceLine" id="cb263-6" data-line-number="6"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a></code></pre></div>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb268-1" data-line-number="1"><span class="kw">chisq.test</span>(buyers)</a>
+<a class="sourceLine" id="cb268-2" data-line-number="2"><span class="co"># </span></a>
+<a class="sourceLine" id="cb268-3" data-line-number="3"><span class="co">#   Pearson&#39;s Chi-squared test with Yates&#39; continuity correction</span></a>
+<a class="sourceLine" id="cb268-4" data-line-number="4"><span class="co"># </span></a>
+<a class="sourceLine" id="cb268-5" data-line-number="5"><span class="co"># data:  buyers</span></a>
+<a class="sourceLine" id="cb268-6" data-line-number="6"><span class="co"># X-squared = 2.6, df = 1, p-value = 0.1</span></a></code></pre></div>
 <p>There is no evidence (<em>p</em> = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the <code>prop.test()</code>. You can also use the <code>chisq.test()</code> function on raw (untabulated) data and to test for goodness of fit (see <code>?chisq.test</code> for more details).</p>
 </div>
             </section>

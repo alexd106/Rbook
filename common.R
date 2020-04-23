@@ -41,16 +41,16 @@ if (knitr::is_latex_output()) {
 # )
 
 
-knitr::knit_hooks$set(chunk_envvar = function(before, options, envir) {
-	envvar <- options$chunk_envvar
-	if (before && !is.null(envvar)) {
-		old_envvar <<- Sys.getenv(names(envvar), names = TRUE, unset = NA)
-		do.call("Sys.setenv", as.list(envvar))
-		#print(str(options))
-	} else {
-		do.call("Sys.setenv", as.list(old_envvar))
-	}
-})
+# knitr::knit_hooks$set(chunk_envvar = function(before, options, envir) {
+# 	envvar <- options$chunk_envvar
+# 	if (before && !is.null(envvar)) {
+# 		old_envvar <<- Sys.getenv(names(envvar), names = TRUE, unset = NA)
+# 		do.call("Sys.setenv", as.list(envvar))
+# 		#print(str(options))
+# 	} else {
+# 		do.call("Sys.setenv", as.list(old_envvar))
+# 	}
+# })
 
 check_quietly <- purrr::quietly(devtools::check)
 install_quietly <- purrr::quietly(devtools::install)

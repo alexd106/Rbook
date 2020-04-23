@@ -4,6 +4,8 @@ author: "Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto & David Lusseau"
 date: "Draft: `r gsub(' 0', ' ', format(Sys.Date(), '%B %d, %Y'))`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
+header-includes:
+  - \usepackage{multicol}
 always_allow_html: true
 documentclass: book
 #bibliography: [book.bib, packages.bib]
@@ -33,48 +35,136 @@ We hope this book will be a useful introduction for anyone who wants to learn ho
 
 ## Why an open book?
 
-We decided to write this book as a freely available open source document for a number of reasons. Firstly, we hope this book will be a living document that naturally evolves over time. As such, if you find any errors in the book or want to make a suggestion on how to improve it, please open an issue on the GitHub [site][github-issue] or click on the edit button `r icon::fa_edit()` in the navigation bar at the top of this page and issue a pull request. If you want to take a peek at all the code behind the book visit the book GitHub [repo][github-repo]. If you feel like contributing to the book, please get in touch, we would be happy to hear from you. Secondly, the release of the [bookdown][bookdown] package by Yihui Xie has made it incredibly easy to collaboratively write, update and maintain this book using [RMarkdown][rmarkdown] and [RStudio][rstudio]. Without the bookdown package this book wouldn't exist in its current format. Lastly, R is not just software, it's also a wonderful open community with many thousands of contributors all working to make R even better. This is our small contribution.  
+We decided to write this book as a freely available open source document for a number of reasons. Firstly, we hope this book will be a living document that naturally evolves over time. As such, if you find any errors in the book or want to make a suggestion on how to improve it, please open an issue on the GitHub [site][github-issue] or click on the edit button `r icon::fa_edit()` in the navigation bar at the top of this page and issue a pull request. If you want to take a peek at all the code behind the book visit the book GitHub [repo][github-repo]. If you feel like contributing to the book, please get in touch, we would be happy to hear from you. Secondly, the release of the [bookdown][bookdown] package by Yihui Xie has made it incredibly easy to collaboratively write, update and maintain this book using [RMarkdown][rmarkdown] and [RStudio][rstudio]. Without the bookdown package this book wouldn't exist in its current format. Lastly, R is not just software, it's also a wonderful open community with many thousands of contributors all working to make R even easier to learn and use. This is our small contribution.  
 
 This book is completely free for you to use and is licensed according to the Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0) License.
 
 ## Who are we?
 
+:::::: {.columns}
+
+::: {.column width="20%" data-latex="{0.20\textwidth}"}
+```{r, echo=FALSE, out.width="90%", fig.align="center"}
+knitr::include_graphics(path = "images/alex.png")
+```
+:::
+
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.column width="75%" data-latex="{0.75\textwidth}"}
+**Alex Douglas** is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years.
+
+- Web:https://www.abdn.ac.uk/people/a.douglas/
+- Twitter:https://twitter.com/Scedacity
+- GitHub:https://github.com/alexd106
+:::
+::::::
+
 \  
 
-```{r who-are-we, echo=FALSE, warning=FALSE, message=FALSE}
-library(dplyr)
-library(knitr)
-library(kableExtra)
+:::::: {.columns}
 
-AD <- '**Alex Douglas** is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years.<br>- Web: https://www.abdn.ac.uk/people/a.douglas/<br>- Twitter: https://twitter.com/Scedacity<br>- GitHub: https://github.com/alexd106'
-
-DR <- '**Deon Roos** is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years.<br>- Web: https://www.abdn.ac.uk/people/deon.roos<br>- Twitter: https://twitter.com/DeonRoos88<br>- GitHub: https://github.com/Deon88'
-
-AC <- '**Ana Couto** is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years.<br>- Web: https://www.abdn.ac.uk/people/r01ac17<br>- Twitter: https://twitter.com/AnaSofiaCouto<br>- GitHub: https://github.com/Anofia'
-
-FM <- '**Francesca Mancini** is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.<br>- Web: https://FrancescaMancini.github.io<br>- Twitter: https://twitter.com/frances_mancini<br>- GitHub: https://github.com/FrancescaMancini'
-
-DL <- '**David Lusseau** is a Professor of Marine Sustainability at the Danish Technical University. He\'s been using R for 15 years and teaching it for 12 years.<br>- Twitter: https://twitter.com/lusseau<br>- GitHub: https://github.com/dlusseau'
-
-df1 <- data.frame(col1 = c('![](images/alex.png)', '![](images/deon.png)', '![](images/ana.png)', '![](images/francesca2.png)', '![](images/lusseau.png)'), col2 = c(AD, DR, AC, FM, DL))
-
-knit_table <- function(df){
-  if (is_html_output()) {
-    df %>%
-      kable("html", escape = F, col.names = NULL, linesep = "") %>%
-      kable_styling()
-  } else {
-    df <- data.frame(lapply(df, function(x) {gsub("<br>", "\n", x)}), stringsAsFactors = F)
-
-    df %>%  
-      mutate_all(linebreak) %>%
-      kable("latex", booktabs = T, escape = F, col.names = NULL, linesep = "")  
-  }
-}
-
-knit_table(df1)
-
+::: {.column width="20%" data-latex="{0.20\textwidth}"}
+```{r, echo=FALSE, out.width="90%", fig.align="center"}
+knitr::include_graphics(path = "images/deon.png")
 ```
+:::
+
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.column width="77%" data-latex="{0.75\textwidth}"}
+**Deon Roos** is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years.
+
+- Web:https://www.abdn.ac.uk/people/deon.roos
+- Twitter:https://twitter.com/DeonRoos88
+- GitHub:https://github.com/Deon88
+:::
+::::::
+
+\  
+
+:::::: {.columns}
+
+::: {.column width="20%" data-latex="{0.20\textwidth}"}
+```{r, echo=FALSE, out.width="90%", fig.align="center"}
+knitr::include_graphics(path = "images/ana.png")
+```
+:::
+
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.column width="75%" data-latex="{0.75\textwidth}"}
+**Ana Couto** is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years.
+
+- Web:https://www.abdn.ac.uk/people/r01ac17
+- Twitter:https://twitter.com/AnaSofiaCouto
+- GitHub:https://github.com/Anofia
+
+:::
+::::::
+
+\  
+
+:::::: {.columns}
+
+::: {.column width="20%" data-latex="{0.20\textwidth}"}
+```{r, echo=FALSE, out.width="90%", fig.align="center"}
+knitr::include_graphics(path = "images/francesca2.png")
+```
+:::
+
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.column width="75%" data-latex="{0.75\textwidth}"}
+**Francesca Mancini** is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.
+
+- Web:https://FrancescaMancini.github.io
+- Twitter:https://twitter.com/frances_mancini
+- GitHub:https://github.com/FrancescaMancini
+
+:::
+::::::
+
+\  
+
+:::::: {.columns}
+
+::: {.column width="20%" data-latex="{0.20\textwidth}"}
+```{r, echo=FALSE, out.width="90%", fig.align="center"}
+knitr::include_graphics(path = "images/lusseau.png")
+```
+:::
+
+::: {.column width="5%" data-latex="{0.05\textwidth}"}
+\ 
+<!-- an empty Div (with a white space), serving as
+a column separator -->
+:::
+
+::: {.column width="75%" data-latex="{0.75\textwidth}"}
+**David Lusseau** is a Professor of Marine Sustainability at the Danish Technical University. He's been using R for 15 years and teaching it for 12 years.
+
+- Twitter:https://twitter.com/lusseau
+- GitHub:https://github.com/dlusseau
+
+:::
+::::::
 
 ## Book website
 

@@ -352,14 +352,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>In our working directory we have the following directories:</p>
 <ul>
-<li><p><strong>Root</strong> - This is your project directory containing your <code>.Rproj</code> file.</p>
-<ul>
+<li><p><strong>Root</strong> - This is your project directory containing your <code>.Rproj</code> file.</p></li>
 <li><p><strong>data</strong> - We store all our data in this directory. The subdirectory called <code>raw_data</code> contains raw data files and only raw data files. These files should be treated as <strong>read only</strong> and should not be changed in any way. If you need to process/clean/modify your data do this in R (not MS Excel) as you can document (and justify) any changes made. Any processed data should be saved to a separate file and stored in the <code>processed_data</code> subdirectory. Information about data collection methods, details of data download and any other useful metadata should be saved in a text document (see README text files below) in the <code>metadata</code> subdirectory.</p></li>
 <li><p><strong>R</strong> - This is an optional directory where we save all of the custom R functions we’ve written for the current analysis. These can then be sourced into R using the <code>source()</code> function.</p></li>
 <li><p><strong>Rmd</strong> - An optional directory where we save our R markdown documents.</p></li>
 <li><p><strong>scripts</strong> - All of the main R scripts we have written for the current project are saved here.</p></li>
 <li><p><strong>output</strong> - Outputs from our R scripts such as plots, HTML files and data summaries are saved in this directory. This helps us and our collaborators distinguish what files are outputs and which are source files.</p></li>
-</ul></li>
 </ul>
 <p>Of course, the structure described above is just what works for us most of the time and should be viewed as a starting point for your own needs. We tend to have a fairly consistent directory structure across our projects as this allows us to quickly orientate ourselves when we return to a project after a while. Having said that, different projects will have different requirements so we happily add and remove directories as required.</p>
 <p>You can create your directory structure using Windows Explorer (or Finder on a Mac) or within RStudio by clicking on the ‘New folder’ button in the ‘Files’ pane.</p>
@@ -367,16 +365,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/dir_struct3.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>An alternative approach is to use the <code>dir.create()</code> function in the R Console</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="co"># create directory called &#39;data&#39;</span></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw">dir.create</span>(<span class="st">&#39;data&#39;</span>)</a>
-<a class="sourceLine" id="cb16-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb16-4" data-line-number="4"><span class="co"># create subdirectory raw_data in the data directory</span></a>
-<a class="sourceLine" id="cb16-5" data-line-number="5"><span class="kw">dir.create</span>(<span class="st">&#39;data/raw_data&#39;</span>)</a>
-<a class="sourceLine" id="cb16-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb16-7" data-line-number="7"><span class="co"># list the files and directories</span></a>
-<a class="sourceLine" id="cb16-8" data-line-number="8"><span class="kw">list.files</span>(<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">include.dirs =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb16-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb16-10" data-line-number="10"><span class="co"># [1] &quot;data&quot;                &quot;data/raw_data&quot;       &quot;first_project.Rproj&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># create directory called &#39;data&#39;</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="kw">dir.create</span>(<span class="st">&#39;data&#39;</span>)</a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># create subdirectory raw_data in the data directory</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw">dir.create</span>(<span class="st">&#39;data/raw_data&#39;</span>)</a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co"># list the files and directories</span></a>
+<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="kw">list.files</span>(<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">include.dirs =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb21-10" data-line-number="10"><span class="co"># [1] &quot;data&quot;                &quot;data/raw_data&quot;       &quot;first_project.Rproj&quot;</span></a></code></pre></div>
 </div>
             </section>
 
