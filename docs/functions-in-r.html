@@ -323,6 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -352,103 +353,103 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Remember two things: the intelligence of code comes from the coder, not the computer; and functions need exact instructions to work.</p>
 <p>To prevent functions from being <em>too</em> stupid, you the user, provide the information the function needs in order for it to function. As with the <em>Francesinha</em> example, if we’d supplied a recipe list to the function, it would have managed just fine. We call this “fulfilling an argument”. The vast majority of functions require the user to fulfill at least one argument.</p>
 <p>This means that when we make a function, we can specify what arguments the user must fulfill (e.g. <code>argument1</code> and <code>argument2</code>), as well as what to do once it has this information (<code>expression</code>):</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">nameOfFunction &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2,…) {expression}</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">nameOfFunction &lt;-<span class="st"> </span><span class="cf">function</span>(argument1, argument2,…) {expression}</a></code></pre></div>
 <p>The first thing to note is that we’ve used the function <code>function()</code> to create a new function. To walk through the above code; we’re creating a function called <code>nameOfFunction</code>. Within the brackets we specify what information (i.e. arguments) the function requires to run (as many or as few as needed). These arguments are then passed to the expression part of the function. The expression can be any valid R command or set of R commands and is usually contained between a pair of braces <code>{ }</code> (if a function is only one line long you can omit the braces). Once you run the above code, you can then use your new function by typing:</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="kw">nameOfFunction</span>(argument1, argument2)</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">nameOfFunction</span>(argument1, argument2)</a></code></pre></div>
 <p>Confused? Let’s work through an example.</p>
 <p>First we are going to create a data frame called <code>city</code>, where columns <code>porto</code>, <code>aberdeen</code>, <code>nairobi</code>, and <code>genoa</code> are filled with 100 random values drawn from a bag (using the <code>rnorm()</code> function to draw random values from a Normal distribution with mean 0 and standard deviation of 1). We also include a “problem”, for us to solve later, by including 10 <code>NA</code> values within the <code>nairobi</code> column (using <code>rep(NA, 10)</code>).</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb301-2" data-line-number="2">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb301-3" data-line-number="3">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb301-4" data-line-number="4">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
-<a class="sourceLine" id="cb301-5" data-line-number="5">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb301-6" data-line-number="6">)</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb296-1" data-line-number="1">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb296-2" data-line-number="2">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb296-3" data-line-number="3">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb296-4" data-line-number="4">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
+<a class="sourceLine" id="cb296-5" data-line-number="5">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb296-6" data-line-number="6">)</a></code></pre></div>
 <p>Let’s say that you want to multiply the values in <code>Porto</code> and <code>Aberdeen</code> and create a new object called <code>porto_aberdeen</code>. We can do this by “hand” using:</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a></code></pre></div>
 <p>We’ve now created an object called <code>porto_aberdeen</code> by multiplying <code>city$porto</code> and <code>city$aberdeen</code>. Simple. If this was all we needed to do, we can stop here. R works with vectors, so doing these kinds of operations in R is actually much simpler than other programming languages, where this type of code might require loops (we say that R is a vectorised language). Something to keep in mind for later is that doing these kinds of operations with loops can be much slower compared to vectorisation.</p>
 <p>But what if we want to repeat this multiplication many times? Let’s say we wanted to multiply columns <code>porto</code> and <code>aberdeen</code>, <code>aberdeen</code> and <code>genoa</code>, and <code>nairobi</code> and <code>genoa</code>. In this case we could copy and paste the code, replacing the relevant information.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
-<a class="sourceLine" id="cb303-2" data-line-number="2">aberdeen_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
-<a class="sourceLine" id="cb303-3" data-line-number="3">nairobi_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>genoa</a></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb298-1" data-line-number="1">porto_aberdeen &lt;-<span class="st"> </span>city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb298-2" data-line-number="2">aberdeen_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb298-3" data-line-number="3">nairobi_genoa &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>genoa</a></code></pre></div>
 <p>While this approach works, it’s easy to make mistakes. In fact, here I’ve “forgotten” to change <code>aberdeen</code> to <code>genoa</code> in the second line of code when copying and pasting. This is where writing a function comes in handy. If we were to write this as a function, there is only one source of potential error (within the function itself) instead of many copy-pasted lines of code (which we also cut down on by using a function).</p>
 <p>In this case, we’re using some fairly trivial code where it’s maybe hard to make a genuine mistake. But what if we increased the complexity?</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">/</span><span class="st"> </span>city<span class="op">$</span>porto <span class="op">+</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span>(city<span class="op">$</span>aberdeen)) <span class="op">-</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">-</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(city<span class="op">$</span>aberdeen <span class="op">+</span><span class="st"> </span><span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1">city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">/</span><span class="st"> </span>city<span class="op">$</span>porto <span class="op">+</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="dv">10</span><span class="op">^</span>(city<span class="op">$</span>aberdeen)) <span class="op">-</span><span class="st"> </span>city<span class="op">$</span>aberdeen <span class="op">-</span><span class="st"> </span>(city<span class="op">$</span>porto <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(city<span class="op">$</span>aberdeen <span class="op">+</span><span class="st"> </span><span class="dv">10</span>))</a></code></pre></div>
 <p>Now imagine having to copy and paste this three times, and in each case having to change the <code>porto</code> and <code>aberdeen</code> variables (especially if we had to do it more than three times).</p>
 <p>What we could do is write code for <code>x</code> and <code>y</code> instead of specific cities. If we did this, we could recycle the <code>x * y</code> code. Whenever we wanted to multiple columns together, we assign a city to either <code>x</code> or <code>y</code>. We’ll assign the multiplication to the objects <code>porto_aberdeen</code> and <code>aberdeen_nairobi</code> so we can come back to them later.</p>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1"><span class="co"># Assign x and y values</span></a>
-<a class="sourceLine" id="cb305-2" data-line-number="2">x &lt;-<span class="st"> </span>city<span class="op">$</span>porto</a>
-<a class="sourceLine" id="cb305-3" data-line-number="3">y &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
-<a class="sourceLine" id="cb305-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb305-5" data-line-number="5"><span class="co"># Use multiplication code</span></a>
-<a class="sourceLine" id="cb305-6" data-line-number="6">porto_aberdeen &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb305-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb305-8" data-line-number="8"><span class="co"># Assign new x and y values</span></a>
-<a class="sourceLine" id="cb305-9" data-line-number="9">x &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
-<a class="sourceLine" id="cb305-10" data-line-number="10">y &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi</a>
-<a class="sourceLine" id="cb305-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb305-12" data-line-number="12"><span class="co"># Reuse multiplication code</span></a>
-<a class="sourceLine" id="cb305-13" data-line-number="13">aberdeen_nairobi &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1"><span class="co"># Assign x and y values</span></a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">x &lt;-<span class="st"> </span>city<span class="op">$</span>porto</a>
+<a class="sourceLine" id="cb300-3" data-line-number="3">y &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb300-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb300-5" data-line-number="5"><span class="co"># Use multiplication code</span></a>
+<a class="sourceLine" id="cb300-6" data-line-number="6">porto_aberdeen &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb300-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb300-8" data-line-number="8"><span class="co"># Assign new x and y values</span></a>
+<a class="sourceLine" id="cb300-9" data-line-number="9">x &lt;-<span class="st"> </span>city<span class="op">$</span>aberdeen</a>
+<a class="sourceLine" id="cb300-10" data-line-number="10">y &lt;-<span class="st"> </span>city<span class="op">$</span>nairobi</a>
+<a class="sourceLine" id="cb300-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb300-12" data-line-number="12"><span class="co"># Reuse multiplication code</span></a>
+<a class="sourceLine" id="cb300-13" data-line-number="13">aberdeen_nairobi &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a></code></pre></div>
 <p>This is essentially what a function does. OK, let’s call our new function <code>multiply_columns()</code> and define it with two arguments, <code>x</code> and <code>y</code>. In the function code we simply return the value of <code>x * y</code> using the <code>return()</code> function. Using the <code>return()</code> function is not strictly necessary in this example as R will automatically return the value of the last line of code in our function. We include it here to make this explicit.</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
-<a class="sourceLine" id="cb306-2" data-line-number="2">  <span class="kw">return</span>(x <span class="op">*</span><span class="st"> </span>y)</a>
-<a class="sourceLine" id="cb306-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb301-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb301-2" data-line-number="2">  <span class="kw">return</span>(x <span class="op">*</span><span class="st"> </span>y)</a>
+<a class="sourceLine" id="cb301-3" data-line-number="3">}</a></code></pre></div>
 <p>No that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb307-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
-<a class="sourceLine" id="cb307-2" data-line-number="2">porto_aberdeen_func</a>
-<a class="sourceLine" id="cb307-3" data-line-number="3"><span class="co">#   [1] -1.824367 -2.177940 -0.298859 -0.234666  0.189392  0.646305 -0.970929</span></a>
-<a class="sourceLine" id="cb307-4" data-line-number="4"><span class="co">#   [8]  0.182064  0.280784 -2.012689  1.008941  3.486110 -0.017715  0.531627</span></a>
-<a class="sourceLine" id="cb307-5" data-line-number="5"><span class="co">#  [15]  0.029664  0.017608 -2.385288  0.503314 -0.099234 -0.032227  0.213052</span></a>
-<a class="sourceLine" id="cb307-6" data-line-number="6"><span class="co">#  [22] -0.082827  1.189486 -0.234746 -0.876096 -0.307701 -0.536927 -0.207965</span></a>
-<a class="sourceLine" id="cb307-7" data-line-number="7"><span class="co">#  [29]  1.297436  0.350080  0.032526  0.231423  0.183163  0.071884 -1.372164</span></a>
-<a class="sourceLine" id="cb307-8" data-line-number="8"><span class="co">#  [36]  0.557061  0.017818 -0.238818  0.060538  0.385800  0.377638  0.446166</span></a>
-<a class="sourceLine" id="cb307-9" data-line-number="9"><span class="co">#  [43] -0.225298 -0.467838  0.194453 -0.723032 -0.044004 -0.624820  0.557873</span></a>
-<a class="sourceLine" id="cb307-10" data-line-number="10"><span class="co">#  [50]  2.486801  4.853866 -0.016587 -0.456065 -0.073196 -0.081008  0.408185</span></a>
-<a class="sourceLine" id="cb307-11" data-line-number="11"><span class="co">#  [57]  0.348014 -0.063578  0.319608  0.057930 -0.120245 -0.216059 -0.906853</span></a>
-<a class="sourceLine" id="cb307-12" data-line-number="12"><span class="co">#  [64]  0.862418  0.018240  0.372562 -0.001705  0.250890  0.283439  0.194825</span></a>
-<a class="sourceLine" id="cb307-13" data-line-number="13"><span class="co">#  [71]  0.546331 -0.092116 -3.015309 -0.702266 -0.424791 -0.857690  1.074439</span></a>
-<a class="sourceLine" id="cb307-14" data-line-number="14"><span class="co">#  [78]  0.262441  0.476016 -0.364467  4.847833 -0.606032 -0.584966  0.243687</span></a>
-<a class="sourceLine" id="cb307-15" data-line-number="15"><span class="co">#  [85]  2.002709  0.189990  0.817891  0.920915  0.452188  1.959681 -0.053037</span></a>
-<a class="sourceLine" id="cb307-16" data-line-number="16"><span class="co">#  [92]  0.279339 -1.638906  1.094186  0.048441 -0.897344 -2.086883  0.128302</span></a>
-<a class="sourceLine" id="cb307-17" data-line-number="17"><span class="co">#  [99] -1.564821  2.475843</span></a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
+<a class="sourceLine" id="cb302-2" data-line-number="2">porto_aberdeen_func</a>
+<a class="sourceLine" id="cb302-3" data-line-number="3"><span class="co">#   [1] -1.596287  0.419788  0.009167  1.549524 -0.043025  0.244045 -0.768309</span></a>
+<a class="sourceLine" id="cb302-4" data-line-number="4"><span class="co">#   [8]  0.096014  0.236858  1.680953 -1.071875 -0.186379 -0.342359  0.735800</span></a>
+<a class="sourceLine" id="cb302-5" data-line-number="5"><span class="co">#  [15]  0.022662  0.288262 -1.734164  0.147836  0.013404 -0.972966 -0.134970</span></a>
+<a class="sourceLine" id="cb302-6" data-line-number="6"><span class="co">#  [22] -0.403845  0.193599 -0.176547  0.100977 -0.669277  0.165737  1.966967</span></a>
+<a class="sourceLine" id="cb302-7" data-line-number="7"><span class="co">#  [29]  0.160465  0.625246 -0.303348 -1.036928  0.569384 -0.918159  0.489280</span></a>
+<a class="sourceLine" id="cb302-8" data-line-number="8"><span class="co">#  [36] -0.429175  0.147063  1.263116 -0.094095  0.301997 -0.810567 -0.484729</span></a>
+<a class="sourceLine" id="cb302-9" data-line-number="9"><span class="co">#  [43]  0.033303  0.215847  0.046726 -1.171728 -0.513208 -0.004982  1.367543</span></a>
+<a class="sourceLine" id="cb302-10" data-line-number="10"><span class="co">#  [50]  1.994101 -3.870328  0.184270 -1.505200  0.048041  0.387390 -0.101804</span></a>
+<a class="sourceLine" id="cb302-11" data-line-number="11"><span class="co">#  [57]  0.233444 -0.020574  0.306253  0.008499  0.559011  0.056878 -0.669669</span></a>
+<a class="sourceLine" id="cb302-12" data-line-number="12"><span class="co">#  [64] -0.526399 -0.671715 -3.272915 -0.515259  0.406414 -0.570266  0.076528</span></a>
+<a class="sourceLine" id="cb302-13" data-line-number="13"><span class="co">#  [71]  0.446085 -0.119444  1.326225 -0.312426 -1.169430  0.193654  0.130674</span></a>
+<a class="sourceLine" id="cb302-14" data-line-number="14"><span class="co">#  [78] -0.391159 -2.020663  0.043689  0.506399 -0.263036 -0.083628  0.288173</span></a>
+<a class="sourceLine" id="cb302-15" data-line-number="15"><span class="co">#  [85] -0.710891 -1.235401 -0.122602 -0.096073  0.421178  0.535541 -0.866973</span></a>
+<a class="sourceLine" id="cb302-16" data-line-number="16"><span class="co">#  [92]  0.605592  0.651580 -0.022040  0.903975  1.002208 -2.784577  0.319825</span></a>
+<a class="sourceLine" id="cb302-17" data-line-number="17"><span class="co">#  [99] -1.809806  0.015558</span></a></code></pre></div>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. Use <code>?identical</code> if you want to know more about this function.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a>
-<a class="sourceLine" id="cb308-2" data-line-number="2"><span class="co"># [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb303-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a>
+<a class="sourceLine" id="cb303-2" data-line-number="2"><span class="co"># [1] TRUE</span></a></code></pre></div>
 <p>And we confirm that the function has produced the same result as when we do the calculation manually. We recommend getting into a habit of checking that the function you’ve created works the way you think it has.</p>
 <p>Now let’s use our <code>multiply_columns()</code> function to multiply columns <code>aberdeen</code> and <code>nairobi</code>. Notice now that argument <code>x</code> is given the value <code>city$aberdeen</code>and <code>y</code> the value <code>city$nairobi</code>.</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb309-1" data-line-number="1">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
-<a class="sourceLine" id="cb309-2" data-line-number="2">aberdeen_nairobi_func</a>
-<a class="sourceLine" id="cb309-3" data-line-number="3"><span class="co">#   [1]        NA        NA        NA        NA        NA        NA        NA</span></a>
-<a class="sourceLine" id="cb309-4" data-line-number="4"><span class="co">#   [8]        NA        NA        NA  0.106096 -0.839600  0.006961  0.102033</span></a>
-<a class="sourceLine" id="cb309-5" data-line-number="5"><span class="co">#  [15] -0.049620  0.018963  0.729578  0.076050 -0.576125  0.450190 -0.699822</span></a>
-<a class="sourceLine" id="cb309-6" data-line-number="6"><span class="co">#  [22] -2.698299 -0.149852  0.740375  1.490607 -0.259920 -0.190743  0.689884</span></a>
-<a class="sourceLine" id="cb309-7" data-line-number="7"><span class="co">#  [29]  3.344137  0.119178 -0.023344 -0.259095 -0.266965 -0.292599  2.766335</span></a>
-<a class="sourceLine" id="cb309-8" data-line-number="8"><span class="co">#  [36]  0.581271 -0.150789  0.211828  0.033976  0.149276 -0.322101 -0.764954</span></a>
-<a class="sourceLine" id="cb309-9" data-line-number="9"><span class="co">#  [43]  0.300082  0.289415 -0.097615 -2.135692 -0.085969  0.091695 -0.980565</span></a>
-<a class="sourceLine" id="cb309-10" data-line-number="10"><span class="co">#  [50] -0.866819 -0.134925 -0.018416 -0.843298  0.016152 -0.141445 -0.170948</span></a>
-<a class="sourceLine" id="cb309-11" data-line-number="11"><span class="co">#  [57] -2.789328  0.092481 -0.456886 -0.511422  0.576551  0.146841 -0.246388</span></a>
-<a class="sourceLine" id="cb309-12" data-line-number="12"><span class="co">#  [64]  0.031806  2.169249  0.584570 -0.007996 -0.226659  0.218358  0.126305</span></a>
-<a class="sourceLine" id="cb309-13" data-line-number="13"><span class="co">#  [71]  0.025707 -0.544522  3.038359  0.285835 -0.590245  0.387753  2.775248</span></a>
-<a class="sourceLine" id="cb309-14" data-line-number="14"><span class="co">#  [78]  2.664007  0.282240  0.219213  0.854110 -1.512016  0.812513 -0.203657</span></a>
-<a class="sourceLine" id="cb309-15" data-line-number="15"><span class="co">#  [85] -0.545948 -0.155936 -0.613866  0.199873  0.464982 -2.945539  0.024430</span></a>
-<a class="sourceLine" id="cb309-16" data-line-number="16"><span class="co">#  [92] -1.810590 -2.744717  1.560332 -0.045265  0.058911 -2.986066 -0.009632</span></a>
-<a class="sourceLine" id="cb309-17" data-line-number="17"><span class="co">#  [99]  0.303760 -0.802483</span></a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb304-2" data-line-number="2">aberdeen_nairobi_func</a>
+<a class="sourceLine" id="cb304-3" data-line-number="3"><span class="co">#   [1]        NA        NA        NA        NA        NA        NA        NA</span></a>
+<a class="sourceLine" id="cb304-4" data-line-number="4"><span class="co">#   [8]        NA        NA        NA -0.049227  0.046148  2.176158 -0.458119</span></a>
+<a class="sourceLine" id="cb304-5" data-line-number="5"><span class="co">#  [15] -0.384661 -0.257132 -0.691830  1.155546 -0.101960  0.551018 -0.010549</span></a>
+<a class="sourceLine" id="cb304-6" data-line-number="6"><span class="co">#  [22] -0.334154 -0.997770  0.478554 -0.061802 -0.358211 -0.250396 -4.157624</span></a>
+<a class="sourceLine" id="cb304-7" data-line-number="7"><span class="co">#  [29] -0.323481  0.351489  0.433604 -0.364819  2.378842 -0.174901  2.143892</span></a>
+<a class="sourceLine" id="cb304-8" data-line-number="8"><span class="co">#  [36] -0.148272  0.067539  0.453314 -0.054571  0.210265 -0.417319 -0.836961</span></a>
+<a class="sourceLine" id="cb304-9" data-line-number="9"><span class="co">#  [43] -0.041182  0.024057 -0.260786 -0.865487  0.795853 -0.005679  0.539692</span></a>
+<a class="sourceLine" id="cb304-10" data-line-number="10"><span class="co">#  [50]  1.100074  0.876187 -0.117330  0.841259  0.704811 -0.293321 -0.111652</span></a>
+<a class="sourceLine" id="cb304-11" data-line-number="11"><span class="co">#  [57] -0.014968 -0.627670 -0.005589 -0.023616 -0.082553  0.011540 -0.597707</span></a>
+<a class="sourceLine" id="cb304-12" data-line-number="12"><span class="co">#  [64]  1.217620 -0.136129  0.787650  0.189432  0.038071  0.945236 -0.124127</span></a>
+<a class="sourceLine" id="cb304-13" data-line-number="13"><span class="co">#  [71]  0.186611 -0.425154 -0.986433 -0.314504 -0.478078  0.414297  0.395855</span></a>
+<a class="sourceLine" id="cb304-14" data-line-number="14"><span class="co">#  [78] -0.448203 -0.097429  0.028267  0.387111 -0.218302  0.072687  0.023322</span></a>
+<a class="sourceLine" id="cb304-15" data-line-number="15"><span class="co">#  [85] -0.064940  0.829660 -0.024280 -0.160367  0.688283 -0.269274 -1.233467</span></a>
+<a class="sourceLine" id="cb304-16" data-line-number="16"><span class="co">#  [92] -0.518285 -0.040947 -0.013228  1.021961  0.804412 -1.470416 -2.985785</span></a>
+<a class="sourceLine" id="cb304-17" data-line-number="17"><span class="co">#  [99]  0.391395  0.071748</span></a></code></pre></div>
 <p>So far so good. All we’ve really done is wrapped the base code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of nairobi_genoa some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these NA values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
-<a class="sourceLine" id="cb310-2" data-line-number="2">  temp_var &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb310-3" data-line-number="3">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp_var))) {</a>
-<a class="sourceLine" id="cb310-4" data-line-number="4">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
-<a class="sourceLine" id="cb310-5" data-line-number="5">    <span class="kw">return</span>(temp_var)</a>
-<a class="sourceLine" id="cb310-6" data-line-number="6">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb310-7" data-line-number="7">    <span class="kw">return</span>(temp_var)</a>
-<a class="sourceLine" id="cb310-8" data-line-number="8">  }</a>
-<a class="sourceLine" id="cb310-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb310-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb310-11" data-line-number="11">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
-<a class="sourceLine" id="cb310-12" data-line-number="12"><span class="co"># Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
-<a class="sourceLine" id="cb310-13" data-line-number="13"><span class="co"># produced NAs</span></a>
-<a class="sourceLine" id="cb310-14" data-line-number="14">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a></code></pre></div>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb305-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb305-2" data-line-number="2">  temp_var &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb305-3" data-line-number="3">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp_var))) {</a>
+<a class="sourceLine" id="cb305-4" data-line-number="4">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
+<a class="sourceLine" id="cb305-5" data-line-number="5">    <span class="kw">return</span>(temp_var)</a>
+<a class="sourceLine" id="cb305-6" data-line-number="6">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb305-7" data-line-number="7">    <span class="kw">return</span>(temp_var)</a>
+<a class="sourceLine" id="cb305-8" data-line-number="8">  }</a>
+<a class="sourceLine" id="cb305-9" data-line-number="9">}</a>
+<a class="sourceLine" id="cb305-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb305-11" data-line-number="11">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb305-12" data-line-number="12"><span class="co"># Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
+<a class="sourceLine" id="cb305-13" data-line-number="13"><span class="co"># produced NAs</span></a>
+<a class="sourceLine" id="cb305-14" data-line-number="14">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a></code></pre></div>
 <p>The core of our function is still the same. We still have <code>x * y</code>, but we’ve now got an extra six lines of code. Namely, we’ve included some <code>if</code> and <code>else</code> statements. The next section of this Chapter will explain how these work and how to use them.</p>
 </div>
             </section>

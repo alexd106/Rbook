@@ -323,6 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -347,83 +348,83 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.4</span> Wrangling data frames</h2>
 <p>Now that you’re able to successfully import your data from an external file into R our next task is to do something useful with our data. Working with data is a fundamental skill which you’ll need to develop and get comfortable with as you’ll likely do a lot of it during any project. The good news is that R is especially good at manipulating, summarising and visualising data. Manipulating data (often known as data wrangling or munging) in R can at first seem a little daunting for the new user but if you follow a few simple logical rules then you’ll quickly get the hang of it, especially with some practice.</p>
 <p>Let’s remind ourselves of the structure of the <code>flowers</code> data frame we imported in the previous section.</p>
-<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="kw">str</span>(flowers)</a>
-<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 96 obs. of  8 variables:</span></a>
-<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="co">#  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
-<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="co">#  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb106-6" data-line-number="6"><span class="co">#  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></a>
-<a class="sourceLine" id="cb106-7" data-line-number="7"><span class="co">#  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></a>
-<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="co">#  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></a>
-<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co">#  $ leafarea : num  11.7 14.1 7.1 11.9 14.5 12.2 13.2 14 10.5 16.1 ...</span></a>
-<a class="sourceLine" id="cb106-10" data-line-number="10"><span class="co">#  $ shootarea: num  31.9 46 66.7 20.3 26.9 72.7 43.1 28.5 57.8 36.9 ...</span></a>
-<a class="sourceLine" id="cb106-11" data-line-number="11"><span class="co">#  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb101-1" data-line-number="1">flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb101-2" data-line-number="2"><span class="kw">str</span>(flowers)</a>
+<a class="sourceLine" id="cb101-3" data-line-number="3"><span class="co"># &#39;data.frame&#39;: 96 obs. of  8 variables:</span></a>
+<a class="sourceLine" id="cb101-4" data-line-number="4"><span class="co">#  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></a>
+<a class="sourceLine" id="cb101-5" data-line-number="5"><span class="co">#  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb101-6" data-line-number="6"><span class="co">#  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></a>
+<a class="sourceLine" id="cb101-7" data-line-number="7"><span class="co">#  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></a>
+<a class="sourceLine" id="cb101-8" data-line-number="8"><span class="co">#  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></a>
+<a class="sourceLine" id="cb101-9" data-line-number="9"><span class="co">#  $ leafarea : num  11.7 14.1 7.1 11.9 14.5 12.2 13.2 14 10.5 16.1 ...</span></a>
+<a class="sourceLine" id="cb101-10" data-line-number="10"><span class="co">#  $ shootarea: num  31.9 46 66.7 20.3 26.9 72.7 43.1 28.5 57.8 36.9 ...</span></a>
+<a class="sourceLine" id="cb101-11" data-line-number="11"><span class="co">#  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></a></code></pre></div>
 <p>To access the data in any of the variables (columns) in our data frame we can use the <code>$</code> notation. For example, to access the <code>height</code> variable in our <code>flowers</code> data frame we can use <code>flowers$height</code>. This tells R that the <code>height</code> variable is contained within the data frame <code>flowers</code>.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">flowers<span class="op">$</span>height</a>
-<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="co">#  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0</span></a>
-<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="co"># [16]  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5  7.7  6.4  8.8  9.2  6.2</span></a>
-<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="co"># [31]  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5</span></a>
-<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="co"># [46]  5.6 11.5  5.8  5.6  5.3  7.5  4.1  3.5  8.5  4.9  2.5  5.4  3.9  5.8  4.5</span></a>
-<a class="sourceLine" id="cb107-6" data-line-number="6"><span class="co"># [61]  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></a>
-<a class="sourceLine" id="cb107-7" data-line-number="7"><span class="co"># [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7</span></a>
-<a class="sourceLine" id="cb107-8" data-line-number="8"><span class="co"># [91]  3.7  3.2  3.9  3.3  5.5  4.4</span></a></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb102-1" data-line-number="1">flowers<span class="op">$</span>height</a>
+<a class="sourceLine" id="cb102-2" data-line-number="2"><span class="co">#  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0</span></a>
+<a class="sourceLine" id="cb102-3" data-line-number="3"><span class="co"># [16]  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5  7.7  6.4  8.8  9.2  6.2</span></a>
+<a class="sourceLine" id="cb102-4" data-line-number="4"><span class="co"># [31]  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5</span></a>
+<a class="sourceLine" id="cb102-5" data-line-number="5"><span class="co"># [46]  5.6 11.5  5.8  5.6  5.3  7.5  4.1  3.5  8.5  4.9  2.5  5.4  3.9  5.8  4.5</span></a>
+<a class="sourceLine" id="cb102-6" data-line-number="6"><span class="co"># [61]  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></a>
+<a class="sourceLine" id="cb102-7" data-line-number="7"><span class="co"># [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7</span></a>
+<a class="sourceLine" id="cb102-8" data-line-number="8"><span class="co"># [91]  3.7  3.2  3.9  3.3  5.5  4.4</span></a></code></pre></div>
 <p>This will return a vector of the <code>height</code> data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">f_height &lt;-<span class="st"> </span>flowers<span class="op">$</span>height</a>
-<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="kw">mean</span>(f_height)</a>
-<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="co"># [1] 6.84</span></a>
-<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="kw">summary</span>(f_height)</a>
-<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="co">#    1.20    4.47    6.45    6.84    9.03   17.20</span></a></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb103-1" data-line-number="1">f_height &lt;-<span class="st"> </span>flowers<span class="op">$</span>height</a>
+<a class="sourceLine" id="cb103-2" data-line-number="2"><span class="kw">mean</span>(f_height)</a>
+<a class="sourceLine" id="cb103-3" data-line-number="3"><span class="co"># [1] 6.84</span></a>
+<a class="sourceLine" id="cb103-4" data-line-number="4"><span class="kw">summary</span>(f_height)</a>
+<a class="sourceLine" id="cb103-5" data-line-number="5"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
+<a class="sourceLine" id="cb103-6" data-line-number="6"><span class="co">#    1.20    4.47    6.45    6.84    9.03   17.20</span></a></code></pre></div>
 <p>Or is we don’t want to create an additional vector object we can use functions ‘on the fly’.</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1"><span class="kw">mean</span>(flowers<span class="op">$</span>height)</a>
-<a class="sourceLine" id="cb109-2" data-line-number="2"><span class="co"># [1] 6.84</span></a>
-<a class="sourceLine" id="cb109-3" data-line-number="3"><span class="kw">summary</span>(flowers<span class="op">$</span>height)</a>
-<a class="sourceLine" id="cb109-4" data-line-number="4"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb109-5" data-line-number="5"><span class="co">#    1.20    4.47    6.45    6.84    9.03   17.20</span></a></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb104-1" data-line-number="1"><span class="kw">mean</span>(flowers<span class="op">$</span>height)</a>
+<a class="sourceLine" id="cb104-2" data-line-number="2"><span class="co"># [1] 6.84</span></a>
+<a class="sourceLine" id="cb104-3" data-line-number="3"><span class="kw">summary</span>(flowers<span class="op">$</span>height)</a>
+<a class="sourceLine" id="cb104-4" data-line-number="4"><span class="co">#    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
+<a class="sourceLine" id="cb104-5" data-line-number="5"><span class="co">#    1.20    4.47    6.45    6.84    9.03   17.20</span></a></code></pre></div>
 <p>Just as we did with <a href="vectors.html#vectors">vectors</a>, we also can access data in data frames using the square bracket <code>[ ]</code> notation. However, instead of just using a single index, we now need to use two indexes, one to specify the rows and one for the columns. To do this, we can use the notation <code>my_data[rows, columns]</code> where <code>rows</code> and <code>columns</code> are indexes and <code>my_data</code> is the name of the data frame. Again, just like with our vectors our indexes can be positional or the result of a logical test.</p>
 <div id="positional-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.1</span> Positional indexes</h3>
 <p>To use positional indexes we simple have to write the position of the rows and columns we want to extract inside the <code>[ ]</code>. For example, if for some reason we wanted to extract the first value (1<sup>st</sup> row ) of the <code>height</code> variable (4<sup>th</sup> column)</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb110-1" data-line-number="1">flowers[<span class="dv">1</span>, <span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb110-2" data-line-number="2"><span class="co"># [1] 7.5</span></a>
-<a class="sourceLine" id="cb110-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb110-4" data-line-number="4"><span class="co"># this would give you the same</span></a>
-<a class="sourceLine" id="cb110-5" data-line-number="5">flowers<span class="op">$</span>height[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb110-6" data-line-number="6"><span class="co"># [1] 7.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb105-1" data-line-number="1">flowers[<span class="dv">1</span>, <span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb105-2" data-line-number="2"><span class="co"># [1] 7.5</span></a>
+<a class="sourceLine" id="cb105-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb105-4" data-line-number="4"><span class="co"># this would give you the same</span></a>
+<a class="sourceLine" id="cb105-5" data-line-number="5">flowers<span class="op">$</span>height[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb105-6" data-line-number="6"><span class="co"># [1] 7.5</span></a></code></pre></div>
 <p>We can also extract values from multiple rows or columns by specifying these indexes as vectors inside the <code>[ ]</code>. To extract the first 10 rows and the first 4 columns we simple supply a vector containing a sequence from 1 to 10 for the rows index (<code>1:10</code>) and a vector from 1 to 4 for the column index (<code>1:4</code>).</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="co">#    treat nitrogen block height</span></a>
-<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="co"># 1    tip   medium     1    7.5</span></a>
-<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="co"># 2    tip   medium     1   10.7</span></a>
-<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="co"># 3    tip   medium     1   11.2</span></a>
-<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="co"># 4    tip   medium     1   10.4</span></a>
-<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="co"># 5    tip   medium     1   10.4</span></a>
-<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="co"># 6    tip   medium     1    9.8</span></a>
-<a class="sourceLine" id="cb111-9" data-line-number="9"><span class="co"># 7    tip   medium     1    6.9</span></a>
-<a class="sourceLine" id="cb111-10" data-line-number="10"><span class="co"># 8    tip   medium     1    9.4</span></a>
-<a class="sourceLine" id="cb111-11" data-line-number="11"><span class="co"># 9    tip   medium     2   10.4</span></a>
-<a class="sourceLine" id="cb111-12" data-line-number="12"><span class="co"># 10   tip   medium     2   12.3</span></a></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb106-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb106-2" data-line-number="2"><span class="co">#    treat nitrogen block height</span></a>
+<a class="sourceLine" id="cb106-3" data-line-number="3"><span class="co"># 1    tip   medium     1    7.5</span></a>
+<a class="sourceLine" id="cb106-4" data-line-number="4"><span class="co"># 2    tip   medium     1   10.7</span></a>
+<a class="sourceLine" id="cb106-5" data-line-number="5"><span class="co"># 3    tip   medium     1   11.2</span></a>
+<a class="sourceLine" id="cb106-6" data-line-number="6"><span class="co"># 4    tip   medium     1   10.4</span></a>
+<a class="sourceLine" id="cb106-7" data-line-number="7"><span class="co"># 5    tip   medium     1   10.4</span></a>
+<a class="sourceLine" id="cb106-8" data-line-number="8"><span class="co"># 6    tip   medium     1    9.8</span></a>
+<a class="sourceLine" id="cb106-9" data-line-number="9"><span class="co"># 7    tip   medium     1    6.9</span></a>
+<a class="sourceLine" id="cb106-10" data-line-number="10"><span class="co"># 8    tip   medium     1    9.4</span></a>
+<a class="sourceLine" id="cb106-11" data-line-number="11"><span class="co"># 9    tip   medium     2   10.4</span></a>
+<a class="sourceLine" id="cb106-12" data-line-number="12"><span class="co"># 10   tip   medium     2   12.3</span></a></code></pre></div>
 <p>Or for non sequential rows and columns then we can supply vectors of positions using the <code>c()</code> function. To extract the 1<sup>st</sup>, 5<sup>th</sup>, 12<sup>th</sup>, 30<sup>th</sup> rows from the 1<sup>st</sup>, 3<sup>rd</sup>, 6<sup>th</sup> and 8<sup>th</sup> columns</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">flowers[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">30</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
-<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co">#    treat block leafarea flowers</span></a>
-<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co"># 1    tip     1     11.7       1</span></a>
-<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="co"># 5    tip     1     14.5       4</span></a>
-<a class="sourceLine" id="cb112-5" data-line-number="5"><span class="co"># 12   tip     2     12.6       6</span></a>
-<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="co"># 30   tip     2     11.6       5</span></a></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb107-1" data-line-number="1">flowers[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">12</span>, <span class="dv">30</span>), <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
+<a class="sourceLine" id="cb107-2" data-line-number="2"><span class="co">#    treat block leafarea flowers</span></a>
+<a class="sourceLine" id="cb107-3" data-line-number="3"><span class="co"># 1    tip     1     11.7       1</span></a>
+<a class="sourceLine" id="cb107-4" data-line-number="4"><span class="co"># 5    tip     1     14.5       4</span></a>
+<a class="sourceLine" id="cb107-5" data-line-number="5"><span class="co"># 12   tip     2     12.6       6</span></a>
+<a class="sourceLine" id="cb107-6" data-line-number="6"><span class="co"># 30   tip     2     11.6       5</span></a></code></pre></div>
 <p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in <a href="r-functions.html#funcs">Chapter 2</a> when we generated vectors using the <code>c()</code> function or using the <code>:</code> notation.</p>
 <p>But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don’t specify either a row or column index in the <code>[ ]</code> then R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the <code>flower</code> data frame</p>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, ]</a>
-<a class="sourceLine" id="cb113-2" data-line-number="2"><span class="co">#   treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="co"># 1   tip   medium     1    7.5   7.62     11.7      31.9       1</span></a>
-<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="co"># 2   tip   medium     1   10.7  12.14     14.1      46.0      10</span></a>
-<a class="sourceLine" id="cb113-5" data-line-number="5"><span class="co"># 3   tip   medium     1   11.2  12.76      7.1      66.7      10</span></a>
-<a class="sourceLine" id="cb113-6" data-line-number="6"><span class="co"># 4   tip   medium     1   10.4   8.78     11.9      20.3       1</span></a>
-<a class="sourceLine" id="cb113-7" data-line-number="7"><span class="co"># 5   tip   medium     1   10.4  13.58     14.5      26.9       4</span></a>
-<a class="sourceLine" id="cb113-8" data-line-number="8"><span class="co"># 6   tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
-<a class="sourceLine" id="cb113-9" data-line-number="9"><span class="co"># 7   tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
-<a class="sourceLine" id="cb113-10" data-line-number="10"><span class="co"># 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></a></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb108-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">8</span>, ]</a>
+<a class="sourceLine" id="cb108-2" data-line-number="2"><span class="co">#   treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb108-3" data-line-number="3"><span class="co"># 1   tip   medium     1    7.5   7.62     11.7      31.9       1</span></a>
+<a class="sourceLine" id="cb108-4" data-line-number="4"><span class="co"># 2   tip   medium     1   10.7  12.14     14.1      46.0      10</span></a>
+<a class="sourceLine" id="cb108-5" data-line-number="5"><span class="co"># 3   tip   medium     1   11.2  12.76      7.1      66.7      10</span></a>
+<a class="sourceLine" id="cb108-6" data-line-number="6"><span class="co"># 4   tip   medium     1   10.4   8.78     11.9      20.3       1</span></a>
+<a class="sourceLine" id="cb108-7" data-line-number="7"><span class="co"># 5   tip   medium     1   10.4  13.58     14.5      26.9       4</span></a>
+<a class="sourceLine" id="cb108-8" data-line-number="8"><span class="co"># 6   tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
+<a class="sourceLine" id="cb108-9" data-line-number="9"><span class="co"># 7   tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
+<a class="sourceLine" id="cb108-10" data-line-number="10"><span class="co"># 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></a></code></pre></div>
 <p>or all of the rows and the first 3 columns (scroll down in output panel to see all of the data)</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb109-1" data-line-number="1">flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block
 # 1    tip   medium     1
 # 2    tip   medium     1
@@ -522,66 +523,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 95 notip      low     2
 # 96 notip      low     2</code></pre>
 <p>We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4<sup>th</sup>, 7<sup>th</sup> and 8<sup>th</sup> columns. Notice we need to use <code>-()</code> when we generate our row positional vectors. If we had just used <code>-1:85</code> this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use <code>-1:-85</code>).</p>
-<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">flowers[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">85</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)]</a>
-<a class="sourceLine" id="cb116-2" data-line-number="2"><span class="co">#    treat nitrogen block weight leafarea</span></a>
-<a class="sourceLine" id="cb116-3" data-line-number="3"><span class="co"># 86 notip      low     1   6.01     17.6</span></a>
-<a class="sourceLine" id="cb116-4" data-line-number="4"><span class="co"># 87 notip      low     1   9.93     12.0</span></a>
-<a class="sourceLine" id="cb116-5" data-line-number="5"><span class="co"># 88 notip      low     1   7.03      7.9</span></a>
-<a class="sourceLine" id="cb116-6" data-line-number="6"><span class="co"># 89 notip      low     2   9.10     14.5</span></a>
-<a class="sourceLine" id="cb116-7" data-line-number="7"><span class="co"># 90 notip      low     2   9.05      9.6</span></a>
-<a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co"># 91 notip      low     2   8.10     10.5</span></a>
-<a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co"># 92 notip      low     2   7.45     14.1</span></a>
-<a class="sourceLine" id="cb116-10" data-line-number="10"><span class="co"># 93 notip      low     2   9.19     12.4</span></a>
-<a class="sourceLine" id="cb116-11" data-line-number="11"><span class="co"># 94 notip      low     2   8.92     11.6</span></a>
-<a class="sourceLine" id="cb116-12" data-line-number="12"><span class="co"># 95 notip      low     2   8.44     13.5</span></a>
-<a class="sourceLine" id="cb116-13" data-line-number="13"><span class="co"># 96 notip      low     2  10.60     16.2</span></a></code></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb111-1" data-line-number="1">flowers[<span class="op">-</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">85</span>), <span class="op">-</span><span class="kw">c</span>(<span class="dv">4</span>, <span class="dv">7</span>, <span class="dv">8</span>)]</a>
+<a class="sourceLine" id="cb111-2" data-line-number="2"><span class="co">#    treat nitrogen block weight leafarea</span></a>
+<a class="sourceLine" id="cb111-3" data-line-number="3"><span class="co"># 86 notip      low     1   6.01     17.6</span></a>
+<a class="sourceLine" id="cb111-4" data-line-number="4"><span class="co"># 87 notip      low     1   9.93     12.0</span></a>
+<a class="sourceLine" id="cb111-5" data-line-number="5"><span class="co"># 88 notip      low     1   7.03      7.9</span></a>
+<a class="sourceLine" id="cb111-6" data-line-number="6"><span class="co"># 89 notip      low     2   9.10     14.5</span></a>
+<a class="sourceLine" id="cb111-7" data-line-number="7"><span class="co"># 90 notip      low     2   9.05      9.6</span></a>
+<a class="sourceLine" id="cb111-8" data-line-number="8"><span class="co"># 91 notip      low     2   8.10     10.5</span></a>
+<a class="sourceLine" id="cb111-9" data-line-number="9"><span class="co"># 92 notip      low     2   7.45     14.1</span></a>
+<a class="sourceLine" id="cb111-10" data-line-number="10"><span class="co"># 93 notip      low     2   9.19     12.4</span></a>
+<a class="sourceLine" id="cb111-11" data-line-number="11"><span class="co"># 94 notip      low     2   8.92     11.6</span></a>
+<a class="sourceLine" id="cb111-12" data-line-number="12"><span class="co"># 95 notip      low     2   8.44     13.5</span></a>
+<a class="sourceLine" id="cb111-13" data-line-number="13"><span class="co"># 96 notip      low     2  10.60     16.2</span></a></code></pre></div>
 <p>In addition to using a positional index for extracting particular columns (variables) we can also name the variables directly when using the square bracket <code>[ ]</code> notation. For example, let’s extract the first 5 rows and the variables <code>treat</code>, <code>nitrogen</code> and <code>leafarea</code>. Instead of using <code>flowers[1:5, c(1, 2, 6)]</code> we can instead use</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>)]</a>
-<a class="sourceLine" id="cb117-2" data-line-number="2"><span class="co">#   treat nitrogen leafarea</span></a>
-<a class="sourceLine" id="cb117-3" data-line-number="3"><span class="co"># 1   tip   medium     11.7</span></a>
-<a class="sourceLine" id="cb117-4" data-line-number="4"><span class="co"># 2   tip   medium     14.1</span></a>
-<a class="sourceLine" id="cb117-5" data-line-number="5"><span class="co"># 3   tip   medium      7.1</span></a>
-<a class="sourceLine" id="cb117-6" data-line-number="6"><span class="co"># 4   tip   medium     11.9</span></a>
-<a class="sourceLine" id="cb117-7" data-line-number="7"><span class="co"># 5   tip   medium     14.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb112-1" data-line-number="1">flowers[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>)]</a>
+<a class="sourceLine" id="cb112-2" data-line-number="2"><span class="co">#   treat nitrogen leafarea</span></a>
+<a class="sourceLine" id="cb112-3" data-line-number="3"><span class="co"># 1   tip   medium     11.7</span></a>
+<a class="sourceLine" id="cb112-4" data-line-number="4"><span class="co"># 2   tip   medium     14.1</span></a>
+<a class="sourceLine" id="cb112-5" data-line-number="5"><span class="co"># 3   tip   medium      7.1</span></a>
+<a class="sourceLine" id="cb112-6" data-line-number="6"><span class="co"># 4   tip   medium     11.9</span></a>
+<a class="sourceLine" id="cb112-7" data-line-number="7"><span class="co"># 5   tip   medium     14.5</span></a></code></pre></div>
 <p>We often use this method in preference to the positional index for selecting columns as it will still give us what we want even if we’ve changed the order of the columns in our data frame for some reason.</p>
 </div>
 <div id="logical-indexes" class="section level3">
 <h3><span class="header-section-number">3.4.2</span> Logical indexes</h3>
 <p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe <a href="#Logical-index">pop back</a> and refresh your memory. Let’s extract all rows where <code>height</code> is greater than 12 and extract all columns by default (remember, if you don’t include a column index after the comma it means all columns).</p>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb118-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ]</a>
-<a class="sourceLine" id="cb118-2" data-line-number="2">big_flowers</a>
-<a class="sourceLine" id="cb118-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb118-4" data-line-number="4"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
-<a class="sourceLine" id="cb118-5" data-line-number="5"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
-<a class="sourceLine" id="cb118-6" data-line-number="6"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
-<a class="sourceLine" id="cb118-7" data-line-number="7"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
-<a class="sourceLine" id="cb118-8" data-line-number="8"><span class="co"># 38   tip      low     1   12.3  11.27     13.7      28.7       5</span></a></code></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb113-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ]</a>
+<a class="sourceLine" id="cb113-2" data-line-number="2">big_flowers</a>
+<a class="sourceLine" id="cb113-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb113-4" data-line-number="4"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
+<a class="sourceLine" id="cb113-5" data-line-number="5"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
+<a class="sourceLine" id="cb113-6" data-line-number="6"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
+<a class="sourceLine" id="cb113-7" data-line-number="7"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
+<a class="sourceLine" id="cb113-8" data-line-number="8"><span class="co"># 38   tip      low     1   12.3  11.27     13.7      28.7       5</span></a></code></pre></div>
 <p>Notice in the code above that we need to use the <code>flowers$height</code> notation for the logical test. If we just named the <code>height</code> variable without the name of the data frame we would receive an error telling us R couldn’t find the variable <code>height</code>. The reason for this is that the <code>height</code> variable only exists inside the <code>flowers</code> data frame so you need to tell R exactly where it is.</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ]</a>
-<a class="sourceLine" id="cb119-2" data-line-number="2">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(flowers, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ) <span class="op">:</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb119-3" data-line-number="3"><span class="st">  </span>object <span class="st">&#39;height&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb114-1" data-line-number="1">big_flowers &lt;-<span class="st"> </span>flowers[height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ]</a>
+<a class="sourceLine" id="cb114-2" data-line-number="2">Error <span class="cf">in</span> <span class="st">`</span><span class="dt">[.data.frame</span><span class="st">`</span>(flowers, height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span>, ) <span class="op">:</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb114-3" data-line-number="3"><span class="st">  </span>object <span class="st">&#39;height&#39;</span> not found</a></code></pre></div>
 <p>So how does this work? The logical test is <code>flowers$height &gt; 12</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> if <code>height</code> is greater than 12 and <code>FALSE</code> if <code>height</code> is not greater than 12.</p>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb120-1" data-line-number="1">flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb120-2" data-line-number="2"><span class="co">#  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-3" data-line-number="3"><span class="co"># [13] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-4" data-line-number="4"><span class="co"># [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-5" data-line-number="5"><span class="co"># [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-6" data-line-number="6"><span class="co"># [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-7" data-line-number="7"><span class="co"># [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-8" data-line-number="8"><span class="co"># [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb120-9" data-line-number="9"><span class="co"># [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a></code></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb115-1" data-line-number="1">flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="dv">12</span></a>
+<a class="sourceLine" id="cb115-2" data-line-number="2"><span class="co">#  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-3" data-line-number="3"><span class="co"># [13] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-4" data-line-number="4"><span class="co"># [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-5" data-line-number="5"><span class="co"># [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-6" data-line-number="6"><span class="co"># [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-7" data-line-number="7"><span class="co"># [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-8" data-line-number="8"><span class="co"># [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb115-9" data-line-number="9"><span class="co"># [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></a></code></pre></div>
 <p>So our row index is a vector containing either <code>TRUE</code> or <code>FALSE</code> values and only those rows that are <code>TRUE</code> are selected.</p>
 <p>Other commonly used operators are shown below</p>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>, ]        <span class="co"># values greater or equal to 6</span></a>
-<a class="sourceLine" id="cb121-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb121-3" data-line-number="3">flowers[flowers<span class="op">$</span>height <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>, ]          <span class="co"># values less than or equal to 6</span></a>
-<a class="sourceLine" id="cb121-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb121-5" data-line-number="5">flowers[flowers<span class="op">$</span>height <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  equal to 8</span></a>
-<a class="sourceLine" id="cb121-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb121-7" data-line-number="7">flowers[flowers<span class="op">$</span>height <span class="op">!=</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  not equal to 8</span></a></code></pre></div>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb116-1" data-line-number="1">flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span>, ]        <span class="co"># values greater or equal to 6</span></a>
+<a class="sourceLine" id="cb116-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb116-3" data-line-number="3">flowers[flowers<span class="op">$</span>height <span class="op">&lt;=</span><span class="st"> </span><span class="dv">6</span>, ]          <span class="co"># values less than or equal to 6</span></a>
+<a class="sourceLine" id="cb116-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb116-5" data-line-number="5">flowers[flowers<span class="op">$</span>height <span class="op">==</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  equal to 8</span></a>
+<a class="sourceLine" id="cb116-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb116-7" data-line-number="7">flowers[flowers<span class="op">$</span>height <span class="op">!=</span><span class="st"> </span><span class="dv">8</span>, ]         <span class="co"># values  not equal to 8</span></a></code></pre></div>
 <p>We can also extract rows based on the value of a character string or factor level. Let’s extract all rows where the <code>nitrogen</code> level is equal to <code>high</code> (again we will output all columns). Notice that the double equals <code>==</code> sign must be used for a logical test and that the character string must be enclosed in either single or double quotes (i.e. <code>&quot;high&quot;</code>).</p>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">nit_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </a>
-<a class="sourceLine" id="cb122-2" data-line-number="2">nit_high</a></code></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">nit_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb117-2" data-line-number="2">nit_high</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 17   tip     high     1   12.6  18.66     18.6      54.0       9
 # 18   tip     high     1   10.0  18.07     16.9      90.5       3
@@ -616,8 +617,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 79 notip     high     2    4.6  14.65     16.7      91.7      11
 # 80 notip     high     2    5.2  17.70     19.1     181.1       8</code></pre>
 <p>Or we can extract all rows where <code>nitrogen</code> level is not equal to <code>medium</code> (using <code>!=</code>) and only return columns 1 to 4.</p>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">nit_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </a>
-<a class="sourceLine" id="cb124-2" data-line-number="2">nit_not_medium</a></code></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb119-1" data-line-number="1">nit_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </a>
+<a class="sourceLine" id="cb119-2" data-line-number="2">nit_not_medium</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height
 # 17   tip     high     1   12.6
 # 18   tip     high     1   10.0
@@ -684,55 +685,55 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 95 notip      low     2    5.5
 # 96 notip      low     2    4.4</code></pre>
 <p>We can increase the complexity of our logical tests by combining them with <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a> just as we did for vector objects. For example, to extract all rows where <code>height</code> is greater or equal to <code>6</code> AND <code>nitrogen</code> is equal to <code>medium</code> AND <code>treat</code> is equal to <code>notip</code> we combine a series of logical expressions with the <code>&amp;</code> symbol.</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb126-1" data-line-number="1">low_notip_heigh6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
-<a class="sourceLine" id="cb126-2" data-line-number="2"><span class="st">                             </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
-<a class="sourceLine" id="cb126-3" data-line-number="3">low_notip_heigh6</a>
-<a class="sourceLine" id="cb126-4" data-line-number="4"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb126-5" data-line-number="5"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
-<a class="sourceLine" id="cb126-6" data-line-number="6"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
-<a class="sourceLine" id="cb126-7" data-line-number="7"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a></code></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb121-1" data-line-number="1">low_notip_heigh6 &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;=</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span></a>
+<a class="sourceLine" id="cb121-2" data-line-number="2"><span class="st">                             </span>flowers<span class="op">$</span>treat <span class="op">==</span><span class="st"> &quot;notip&quot;</span>, ]        </a>
+<a class="sourceLine" id="cb121-3" data-line-number="3">low_notip_heigh6</a>
+<a class="sourceLine" id="cb121-4" data-line-number="4"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb121-5" data-line-number="5"><span class="co"># 51 notip   medium     1    7.5  13.60     13.6     122.2      11</span></a>
+<a class="sourceLine" id="cb121-6" data-line-number="6"><span class="co"># 54 notip   medium     1    8.5  10.04     12.3     113.6       4</span></a>
+<a class="sourceLine" id="cb121-7" data-line-number="7"><span class="co"># 61 notip   medium     2    8.0  11.43     12.6      43.2      14</span></a></code></pre></div>
 <p>To extract rows based on an ‘OR’ Boolean expression we can use the <code>|</code> symbol. Let’s extract all rows where <code>height</code> is greater than 12.3 OR less than 2.2.</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">height2<span class="fl">.2</span>_<span class="fl">12.3</span> &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.3</span> <span class="op">|</span><span class="st"> </span>flowers<span class="op">$</span>height <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.2</span>, ]        </a>
-<a class="sourceLine" id="cb127-2" data-line-number="2">height2<span class="fl">.2</span>_<span class="fl">12.3</span></a>
-<a class="sourceLine" id="cb127-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb127-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
-<a class="sourceLine" id="cb127-5" data-line-number="5"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
-<a class="sourceLine" id="cb127-6" data-line-number="6"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
-<a class="sourceLine" id="cb127-7" data-line-number="7"><span class="co"># 62 notip   medium     2    1.8  10.47     11.8     120.8       9</span></a>
-<a class="sourceLine" id="cb127-8" data-line-number="8"><span class="co"># 68 notip     high     1    1.2  18.24     16.6     148.1       7</span></a>
-<a class="sourceLine" id="cb127-9" data-line-number="9"><span class="co"># 72 notip     high     1    2.1  19.15     15.6     176.7       6</span></a>
-<a class="sourceLine" id="cb127-10" data-line-number="10"><span class="co"># 86 notip      low     1    1.8   6.01     17.6      46.2       4</span></a></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb122-1" data-line-number="1">height2<span class="fl">.2</span>_<span class="fl">12.3</span> &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>height <span class="op">&gt;</span><span class="st"> </span><span class="fl">12.3</span> <span class="op">|</span><span class="st"> </span>flowers<span class="op">$</span>height <span class="op">&lt;</span><span class="st"> </span><span class="fl">2.2</span>, ]        </a>
+<a class="sourceLine" id="cb122-2" data-line-number="2">height2<span class="fl">.2</span>_<span class="fl">12.3</span></a>
+<a class="sourceLine" id="cb122-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb122-4" data-line-number="4"><span class="co"># 17   tip     high     1   12.6  18.66     18.6      54.0       9</span></a>
+<a class="sourceLine" id="cb122-5" data-line-number="5"><span class="co"># 21   tip     high     1   14.1  19.12     13.1     113.2      13</span></a>
+<a class="sourceLine" id="cb122-6" data-line-number="6"><span class="co"># 32   tip     high     2   17.2  19.20     10.9      89.9      14</span></a>
+<a class="sourceLine" id="cb122-7" data-line-number="7"><span class="co"># 62 notip   medium     2    1.8  10.47     11.8     120.8       9</span></a>
+<a class="sourceLine" id="cb122-8" data-line-number="8"><span class="co"># 68 notip     high     1    1.2  18.24     16.6     148.1       7</span></a>
+<a class="sourceLine" id="cb122-9" data-line-number="9"><span class="co"># 72 notip     high     1    2.1  19.15     15.6     176.7       6</span></a>
+<a class="sourceLine" id="cb122-10" data-line-number="10"><span class="co"># 86 notip      low     1    1.8   6.01     17.6      46.2       4</span></a></code></pre></div>
 <p>An alternative method of selecting parts of a data frame based on a logical expression is to use the <code>subset()</code> function instead of the <code>[ ]</code>. The advantage of using <code>subset()</code> is that you no longer need to use the <code>$</code> notation when specifying variables inside the data frame as the first argument to the function is the name of the data frame to be subsetted. The disadvantage is that <code>subset()</code> is less flexible than the <code>[ ]</code> notation.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb128-1" data-line-number="1">tip_med_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat <span class="op">==</span><span class="st"> &quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb128-2" data-line-number="2">tip_med_<span class="dv">2</span></a>
-<a class="sourceLine" id="cb128-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
-<a class="sourceLine" id="cb128-4" data-line-number="4"><span class="co"># 9    tip   medium     2   10.4  10.48     10.5      57.8       5</span></a>
-<a class="sourceLine" id="cb128-5" data-line-number="5"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
-<a class="sourceLine" id="cb128-6" data-line-number="6"><span class="co"># 11   tip   medium     2   10.4  13.18     11.1      56.8      12</span></a>
-<a class="sourceLine" id="cb128-7" data-line-number="7"><span class="co"># 12   tip   medium     2   11.0  11.56     12.6      31.3       6</span></a>
-<a class="sourceLine" id="cb128-8" data-line-number="8"><span class="co"># 13   tip   medium     2    7.1   8.16     29.6       9.7       2</span></a>
-<a class="sourceLine" id="cb128-9" data-line-number="9"><span class="co"># 14   tip   medium     2    6.0  11.22     13.0      16.4       3</span></a>
-<a class="sourceLine" id="cb128-10" data-line-number="10"><span class="co"># 15   tip   medium     2    9.0  10.20     10.8      90.1       6</span></a>
-<a class="sourceLine" id="cb128-11" data-line-number="11"><span class="co"># 16   tip   medium     2    4.5  12.55     13.4      14.4       6</span></a></code></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1">tip_med_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat <span class="op">==</span><span class="st"> &quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block <span class="op">==</span><span class="st"> </span><span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb123-2" data-line-number="2">tip_med_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb123-3" data-line-number="3"><span class="co">#    treat nitrogen block height weight leafarea shootarea flowers</span></a>
+<a class="sourceLine" id="cb123-4" data-line-number="4"><span class="co"># 9    tip   medium     2   10.4  10.48     10.5      57.8       5</span></a>
+<a class="sourceLine" id="cb123-5" data-line-number="5"><span class="co"># 10   tip   medium     2   12.3  13.48     16.1      36.9       8</span></a>
+<a class="sourceLine" id="cb123-6" data-line-number="6"><span class="co"># 11   tip   medium     2   10.4  13.18     11.1      56.8      12</span></a>
+<a class="sourceLine" id="cb123-7" data-line-number="7"><span class="co"># 12   tip   medium     2   11.0  11.56     12.6      31.3       6</span></a>
+<a class="sourceLine" id="cb123-8" data-line-number="8"><span class="co"># 13   tip   medium     2    7.1   8.16     29.6       9.7       2</span></a>
+<a class="sourceLine" id="cb123-9" data-line-number="9"><span class="co"># 14   tip   medium     2    6.0  11.22     13.0      16.4       3</span></a>
+<a class="sourceLine" id="cb123-10" data-line-number="10"><span class="co"># 15   tip   medium     2    9.0  10.20     10.8      90.1       6</span></a>
+<a class="sourceLine" id="cb123-11" data-line-number="11"><span class="co"># 16   tip   medium     2    4.5  12.55     13.4      14.4       6</span></a></code></pre></div>
 <p>And if you only want certain columns you can use the <code>select =</code> argument.</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">tipplants &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat <span class="op">==</span><span class="st"> &quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, </a>
-<a class="sourceLine" id="cb129-2" data-line-number="2">                            <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>))</a>
-<a class="sourceLine" id="cb129-3" data-line-number="3">tipplants</a>
-<a class="sourceLine" id="cb129-4" data-line-number="4"><span class="co">#    treat nitrogen leafarea</span></a>
-<a class="sourceLine" id="cb129-5" data-line-number="5"><span class="co"># 9    tip   medium     10.5</span></a>
-<a class="sourceLine" id="cb129-6" data-line-number="6"><span class="co"># 10   tip   medium     16.1</span></a>
-<a class="sourceLine" id="cb129-7" data-line-number="7"><span class="co"># 11   tip   medium     11.1</span></a>
-<a class="sourceLine" id="cb129-8" data-line-number="8"><span class="co"># 12   tip   medium     12.6</span></a>
-<a class="sourceLine" id="cb129-9" data-line-number="9"><span class="co"># 13   tip   medium     29.6</span></a>
-<a class="sourceLine" id="cb129-10" data-line-number="10"><span class="co"># 14   tip   medium     13.0</span></a>
-<a class="sourceLine" id="cb129-11" data-line-number="11"><span class="co"># 15   tip   medium     10.8</span></a>
-<a class="sourceLine" id="cb129-12" data-line-number="12"><span class="co"># 16   tip   medium     13.4</span></a></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb124-1" data-line-number="1">tipplants &lt;-<span class="st"> </span><span class="kw">subset</span>(flowers, treat <span class="op">==</span><span class="st"> &quot;tip&quot;</span> <span class="op">&amp;</span><span class="st"> </span>nitrogen <span class="op">==</span><span class="st"> &quot;medium&quot;</span> <span class="op">&amp;</span><span class="st"> </span>block <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, </a>
+<a class="sourceLine" id="cb124-2" data-line-number="2">                            <span class="dt">select =</span> <span class="kw">c</span>(<span class="st">&quot;treat&quot;</span>, <span class="st">&quot;nitrogen&quot;</span>, <span class="st">&quot;leafarea&quot;</span>))</a>
+<a class="sourceLine" id="cb124-3" data-line-number="3">tipplants</a>
+<a class="sourceLine" id="cb124-4" data-line-number="4"><span class="co">#    treat nitrogen leafarea</span></a>
+<a class="sourceLine" id="cb124-5" data-line-number="5"><span class="co"># 9    tip   medium     10.5</span></a>
+<a class="sourceLine" id="cb124-6" data-line-number="6"><span class="co"># 10   tip   medium     16.1</span></a>
+<a class="sourceLine" id="cb124-7" data-line-number="7"><span class="co"># 11   tip   medium     11.1</span></a>
+<a class="sourceLine" id="cb124-8" data-line-number="8"><span class="co"># 12   tip   medium     12.6</span></a>
+<a class="sourceLine" id="cb124-9" data-line-number="9"><span class="co"># 13   tip   medium     29.6</span></a>
+<a class="sourceLine" id="cb124-10" data-line-number="10"><span class="co"># 14   tip   medium     13.0</span></a>
+<a class="sourceLine" id="cb124-11" data-line-number="11"><span class="co"># 15   tip   medium     10.8</span></a>
+<a class="sourceLine" id="cb124-12" data-line-number="12"><span class="co"># 16   tip   medium     13.4</span></a></code></pre></div>
 </div>
 <div id="ordering-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> Ordering data frames</h3>
 <p>Remember when we used the function <code>order()</code> to order one vector based on the order of another vector (way back in <a href="vectors.html#vec_ord">Chapter 2</a>). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame <code>flowers</code> to be ordered in ascending value of <code>height</code> and output all columns by default (scroll down in the output panel to see the entire ordered data frame).</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb130-1" data-line-number="1">height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>height), ]        </a>
-<a class="sourceLine" id="cb130-2" data-line-number="2">height_ord</a></code></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1">height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb125-2" data-line-number="2">height_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 68 notip     high     1    1.2  18.24     16.6     148.1       7
 # 62 notip   medium     2    1.8  10.47     11.8     120.8       9
@@ -831,8 +832,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 21   tip     high     1   14.1  19.12     13.1     113.2      13
 # 32   tip     high     2   17.2  19.20     10.9      89.9      14</code></pre>
 <p>We can also order by descending order of a variable (i.e. <code>leafarea</code>) using the <code>decreasing = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1">leafarea_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>leafarea, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ]        </a>
-<a class="sourceLine" id="cb132-2" data-line-number="2">leafarea_ord</a></code></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1">leafarea_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>leafarea, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ]        </a>
+<a class="sourceLine" id="cb127-2" data-line-number="2">leafarea_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 70 notip     high     1   10.9  17.22     49.2     189.6      17
 # 13   tip   medium     2    7.1   8.16     29.6       9.7       2
@@ -931,8 +932,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 44   tip      low     2    8.8   9.39      7.1      38.9       4
 # 48   tip      low     2    5.8   8.04      5.8      30.7       7</code></pre>
 <p>We can even order data frames based on multiple variables. For example, to order the data frame <code>flowers</code> in ascending order of both <code>block</code> and <code>height</code></p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb134-1" data-line-number="1">block_height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, flowers<span class="op">$</span>height), ]        </a>
-<a class="sourceLine" id="cb134-2" data-line-number="2">block_height_ord</a></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1">block_height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb129-2" data-line-number="2">block_height_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 68 notip     high     1    1.2  18.24     16.6     148.1       7
 # 86 notip      low     1    1.8   6.01     17.6      46.2       4
@@ -1031,8 +1032,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 10   tip   medium     2   12.3  13.48     16.1      36.9       8
 # 32   tip     high     2   17.2  19.20     10.9      89.9      14</code></pre>
 <p>What if we wanted to order <code>flowers</code> by ascending order of <code>block</code> but descending order of <code>height</code>? We can use a simple trick by adding a <code>-</code> symbol before the <code>flowers$height</code> variable when we use the <code>order()</code> function. This will essentially turn all of the <code>height</code> values negative which will result in reversing the order. Note, that this trick will only work with numeric variables.</p>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, <span class="op">-</span>flowers<span class="op">$</span>height), ]        </a>
-<a class="sourceLine" id="cb136-2" data-line-number="2">block_revheight_ord</a></code></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1">block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, <span class="op">-</span>flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb131-2" data-line-number="2">block_revheight_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 21   tip     high     1   14.1  19.12     13.1     113.2      13
 # 17   tip     high     1   12.6  18.66     18.6      54.0       9
@@ -1131,8 +1132,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 # 63 notip   medium     2    2.2  10.70     15.3      97.1       7
 # 62 notip   medium     2    1.8  10.47     11.8     120.8       9</code></pre>
 <p>If we wanted to do the same thing with a factor (or character) variable like <code>nitrogen</code> we would need to use the function <code>xtfrm()</code> for this variable inside our <code>order()</code> function.</p>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1">block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(<span class="op">-</span><span class="kw">xtfrm</span>(flowers<span class="op">$</span>nitrogen), flowers<span class="op">$</span>height), ]        </a>
-<a class="sourceLine" id="cb138-2" data-line-number="2">block_revheight_ord</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(<span class="op">-</span><span class="kw">xtfrm</span>(flowers<span class="op">$</span>nitrogen), flowers<span class="op">$</span>height), ]        </a>
+<a class="sourceLine" id="cb133-2" data-line-number="2">block_revheight_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>#    treat nitrogen block height weight leafarea shootarea flowers
 # 62 notip   medium     2    1.8  10.47     11.8     120.8       9
 # 63 notip   medium     2    2.2  10.70     15.3      97.1       7
@@ -1235,153 +1236,153 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="adding-columns-and-rows" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Adding columns and rows</h3>
 <p>Sometimes it’s useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the <code>rbind()</code> function and to append columns the <code>cbind()</code> function. Let’s create a couple of test data frames to see this in action using our old friend the <code>data.frame()</code> function.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1"><span class="co"># rbind for rows</span></a>
-<a class="sourceLine" id="cb140-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb140-3" data-line-number="3">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
-<a class="sourceLine" id="cb140-4" data-line-number="4">df1</a>
-<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co">#   id height weight</span></a>
-<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="co"># 1  1    120     44</span></a>
-<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co"># 2  2    150     56</span></a>
-<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co"># 3  3    132     49</span></a>
-<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co"># 4  4    122     45</span></a>
-<a class="sourceLine" id="cb140-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb140-11" data-line-number="11">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">119</span>, <span class="dv">110</span>),</a>
-<a class="sourceLine" id="cb140-12" data-line-number="12">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
-<a class="sourceLine" id="cb140-13" data-line-number="13">df2</a>
-<a class="sourceLine" id="cb140-14" data-line-number="14"><span class="co">#   id height weight</span></a>
-<a class="sourceLine" id="cb140-15" data-line-number="15"><span class="co"># 1  5    119     39</span></a>
-<a class="sourceLine" id="cb140-16" data-line-number="16"><span class="co"># 2  6    110     35</span></a>
-<a class="sourceLine" id="cb140-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb140-18" data-line-number="18">df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb140-19" data-line-number="19">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
-<a class="sourceLine" id="cb140-20" data-line-number="20">df3</a>
-<a class="sourceLine" id="cb140-21" data-line-number="21"><span class="co">#   id height weight</span></a>
-<a class="sourceLine" id="cb140-22" data-line-number="22"><span class="co"># 1  1    120     44</span></a>
-<a class="sourceLine" id="cb140-23" data-line-number="23"><span class="co"># 2  2    150     56</span></a>
-<a class="sourceLine" id="cb140-24" data-line-number="24"><span class="co"># 3  3    132     49</span></a>
-<a class="sourceLine" id="cb140-25" data-line-number="25"><span class="co"># 4  4    122     45</span></a>
-<a class="sourceLine" id="cb140-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb140-27" data-line-number="27">df4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;UK&quot;</span>))</a>
-<a class="sourceLine" id="cb140-28" data-line-number="28">df4</a>
-<a class="sourceLine" id="cb140-29" data-line-number="29"><span class="co">#   location</span></a>
-<a class="sourceLine" id="cb140-30" data-line-number="30"><span class="co"># 1       UK</span></a>
-<a class="sourceLine" id="cb140-31" data-line-number="31"><span class="co"># 2       CZ</span></a>
-<a class="sourceLine" id="cb140-32" data-line-number="32"><span class="co"># 3       CZ</span></a>
-<a class="sourceLine" id="cb140-33" data-line-number="33"><span class="co"># 4       UK</span></a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="co"># rbind for rows</span></a>
+<a class="sourceLine" id="cb135-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
+<a class="sourceLine" id="cb135-3" data-line-number="3">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb135-4" data-line-number="4">df1</a>
+<a class="sourceLine" id="cb135-5" data-line-number="5"><span class="co">#   id height weight</span></a>
+<a class="sourceLine" id="cb135-6" data-line-number="6"><span class="co"># 1  1    120     44</span></a>
+<a class="sourceLine" id="cb135-7" data-line-number="7"><span class="co"># 2  2    150     56</span></a>
+<a class="sourceLine" id="cb135-8" data-line-number="8"><span class="co"># 3  3    132     49</span></a>
+<a class="sourceLine" id="cb135-9" data-line-number="9"><span class="co"># 4  4    122     45</span></a>
+<a class="sourceLine" id="cb135-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb135-11" data-line-number="11">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">119</span>, <span class="dv">110</span>),</a>
+<a class="sourceLine" id="cb135-12" data-line-number="12">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
+<a class="sourceLine" id="cb135-13" data-line-number="13">df2</a>
+<a class="sourceLine" id="cb135-14" data-line-number="14"><span class="co">#   id height weight</span></a>
+<a class="sourceLine" id="cb135-15" data-line-number="15"><span class="co"># 1  5    119     39</span></a>
+<a class="sourceLine" id="cb135-16" data-line-number="16"><span class="co"># 2  6    110     35</span></a>
+<a class="sourceLine" id="cb135-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb135-18" data-line-number="18">df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
+<a class="sourceLine" id="cb135-19" data-line-number="19">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb135-20" data-line-number="20">df3</a>
+<a class="sourceLine" id="cb135-21" data-line-number="21"><span class="co">#   id height weight</span></a>
+<a class="sourceLine" id="cb135-22" data-line-number="22"><span class="co"># 1  1    120     44</span></a>
+<a class="sourceLine" id="cb135-23" data-line-number="23"><span class="co"># 2  2    150     56</span></a>
+<a class="sourceLine" id="cb135-24" data-line-number="24"><span class="co"># 3  3    132     49</span></a>
+<a class="sourceLine" id="cb135-25" data-line-number="25"><span class="co"># 4  4    122     45</span></a>
+<a class="sourceLine" id="cb135-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb135-27" data-line-number="27">df4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;UK&quot;</span>))</a>
+<a class="sourceLine" id="cb135-28" data-line-number="28">df4</a>
+<a class="sourceLine" id="cb135-29" data-line-number="29"><span class="co">#   location</span></a>
+<a class="sourceLine" id="cb135-30" data-line-number="30"><span class="co"># 1       UK</span></a>
+<a class="sourceLine" id="cb135-31" data-line-number="31"><span class="co"># 2       CZ</span></a>
+<a class="sourceLine" id="cb135-32" data-line-number="32"><span class="co"># 3       CZ</span></a>
+<a class="sourceLine" id="cb135-33" data-line-number="33"><span class="co"># 4       UK</span></a></code></pre></div>
 <p>We can use the <code>rbind()</code> function to append the rows of data in <code>df2</code> to the rows in <code>df1</code> and assign the new data frame to <code>df_rcomb</code>.</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">df_rcomb &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
-<a class="sourceLine" id="cb141-2" data-line-number="2">df_rcomb</a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="co">#   id height weight</span></a>
-<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="co"># 1  1    120     44</span></a>
-<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="co"># 2  2    150     56</span></a>
-<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="co"># 3  3    132     49</span></a>
-<a class="sourceLine" id="cb141-7" data-line-number="7"><span class="co"># 4  4    122     45</span></a>
-<a class="sourceLine" id="cb141-8" data-line-number="8"><span class="co"># 5  5    119     39</span></a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="co"># 6  6    110     35</span></a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1">df_rcomb &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
+<a class="sourceLine" id="cb136-2" data-line-number="2">df_rcomb</a>
+<a class="sourceLine" id="cb136-3" data-line-number="3"><span class="co">#   id height weight</span></a>
+<a class="sourceLine" id="cb136-4" data-line-number="4"><span class="co"># 1  1    120     44</span></a>
+<a class="sourceLine" id="cb136-5" data-line-number="5"><span class="co"># 2  2    150     56</span></a>
+<a class="sourceLine" id="cb136-6" data-line-number="6"><span class="co"># 3  3    132     49</span></a>
+<a class="sourceLine" id="cb136-7" data-line-number="7"><span class="co"># 4  4    122     45</span></a>
+<a class="sourceLine" id="cb136-8" data-line-number="8"><span class="co"># 5  5    119     39</span></a>
+<a class="sourceLine" id="cb136-9" data-line-number="9"><span class="co"># 6  6    110     35</span></a></code></pre></div>
 <p>And <code>cbind</code> to append the column in <code>df4</code> to the <code>df3</code> data frame and assign to df_ccomb`.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">df_ccomb &lt;-<span class="st"> </span><span class="kw">cbind</span>(df3, df4)</a>
-<a class="sourceLine" id="cb142-2" data-line-number="2">df_ccomb</a>
-<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="co">#   id height weight location</span></a>
-<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="co"># 1  1    120     44       UK</span></a>
-<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="co"># 2  2    150     56       CZ</span></a>
-<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="co"># 3  3    132     49       CZ</span></a>
-<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="co"># 4  4    122     45       UK</span></a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">df_ccomb &lt;-<span class="st"> </span><span class="kw">cbind</span>(df3, df4)</a>
+<a class="sourceLine" id="cb137-2" data-line-number="2">df_ccomb</a>
+<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="co">#   id height weight location</span></a>
+<a class="sourceLine" id="cb137-4" data-line-number="4"><span class="co"># 1  1    120     44       UK</span></a>
+<a class="sourceLine" id="cb137-5" data-line-number="5"><span class="co"># 2  2    150     56       CZ</span></a>
+<a class="sourceLine" id="cb137-6" data-line-number="6"><span class="co"># 3  3    132     49       CZ</span></a>
+<a class="sourceLine" id="cb137-7" data-line-number="7"><span class="co"># 4  4    122     45       UK</span></a></code></pre></div>
 <p>Another situation when adding a new column to a data frame is useful is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log<sub>10</sub> transformation on the height variable in the <code>df_rcomb</code> data frame we created above. We could just create a separate variable to contains these values but it’s good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let’s call this new variable <code>height_log10</code>.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="co"># log10 transformation</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">df_rcomb<span class="op">$</span>height_log10 &lt;-<span class="st"> </span><span class="kw">log10</span>(df_rcomb<span class="op">$</span>height)</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3">df_rcomb</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="co">#   id height weight height_log10</span></a>
-<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="co"># 1  1    120     44        2.079</span></a>
-<a class="sourceLine" id="cb143-6" data-line-number="6"><span class="co"># 2  2    150     56        2.176</span></a>
-<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="co"># 3  3    132     49        2.121</span></a>
-<a class="sourceLine" id="cb143-8" data-line-number="8"><span class="co"># 4  4    122     45        2.086</span></a>
-<a class="sourceLine" id="cb143-9" data-line-number="9"><span class="co"># 5  5    119     39        2.076</span></a>
-<a class="sourceLine" id="cb143-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041</span></a></code></pre></div>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb138-1" data-line-number="1"><span class="co"># log10 transformation</span></a>
+<a class="sourceLine" id="cb138-2" data-line-number="2">df_rcomb<span class="op">$</span>height_log10 &lt;-<span class="st"> </span><span class="kw">log10</span>(df_rcomb<span class="op">$</span>height)</a>
+<a class="sourceLine" id="cb138-3" data-line-number="3">df_rcomb</a>
+<a class="sourceLine" id="cb138-4" data-line-number="4"><span class="co">#   id height weight height_log10</span></a>
+<a class="sourceLine" id="cb138-5" data-line-number="5"><span class="co"># 1  1    120     44        2.079</span></a>
+<a class="sourceLine" id="cb138-6" data-line-number="6"><span class="co"># 2  2    150     56        2.176</span></a>
+<a class="sourceLine" id="cb138-7" data-line-number="7"><span class="co"># 3  3    132     49        2.121</span></a>
+<a class="sourceLine" id="cb138-8" data-line-number="8"><span class="co"># 4  4    122     45        2.086</span></a>
+<a class="sourceLine" id="cb138-9" data-line-number="9"><span class="co"># 5  5    119     39        2.076</span></a>
+<a class="sourceLine" id="cb138-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041</span></a></code></pre></div>
 <p>This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the <code>id</code> variable in the <code>df_rcomb</code> data frame is numeric type data (use the <code>str()</code> or <code>class()</code> functions to check for yourself). If we wanted to convert the <code>id</code> variable to a factor to use later in our analysis we can create a new variable called <code>Fid</code> in our data frame and use the <code>factor()</code> function to convert the <code>id</code> variable.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1"><span class="co"># convert to a factor </span></a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">df_rcomb<span class="op">$</span>Fid &lt;-<span class="st"> </span><span class="kw">factor</span>(df_rcomb<span class="op">$</span>id)</a>
-<a class="sourceLine" id="cb144-3" data-line-number="3">df_rcomb</a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="co">#   id height weight height_log10 Fid</span></a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co"># 1  1    120     44        2.079   1</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co"># 2  2    150     56        2.176   2</span></a>
-<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co"># 3  3    132     49        2.121   3</span></a>
-<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co"># 4  4    122     45        2.086   4</span></a>
-<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co"># 5  5    119     39        2.076   5</span></a>
-<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041   6</span></a>
-<a class="sourceLine" id="cb144-11" data-line-number="11"><span class="kw">str</span>(df_rcomb)</a>
-<a class="sourceLine" id="cb144-12" data-line-number="12"><span class="co"># &#39;data.frame&#39;: 6 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb144-13" data-line-number="13"><span class="co">#  $ id          : int  1 2 3 4 5 6</span></a>
-<a class="sourceLine" id="cb144-14" data-line-number="14"><span class="co">#  $ height      : num  120 150 132 122 119 110</span></a>
-<a class="sourceLine" id="cb144-15" data-line-number="15"><span class="co">#  $ weight      : num  44 56 49 45 39 35</span></a>
-<a class="sourceLine" id="cb144-16" data-line-number="16"><span class="co">#  $ height_log10: num  2.08 2.18 2.12 2.09 2.08 ...</span></a>
-<a class="sourceLine" id="cb144-17" data-line-number="17"><span class="co">#  $ Fid         : Factor w/ 6 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1"><span class="co"># convert to a factor </span></a>
+<a class="sourceLine" id="cb139-2" data-line-number="2">df_rcomb<span class="op">$</span>Fid &lt;-<span class="st"> </span><span class="kw">factor</span>(df_rcomb<span class="op">$</span>id)</a>
+<a class="sourceLine" id="cb139-3" data-line-number="3">df_rcomb</a>
+<a class="sourceLine" id="cb139-4" data-line-number="4"><span class="co">#   id height weight height_log10 Fid</span></a>
+<a class="sourceLine" id="cb139-5" data-line-number="5"><span class="co"># 1  1    120     44        2.079   1</span></a>
+<a class="sourceLine" id="cb139-6" data-line-number="6"><span class="co"># 2  2    150     56        2.176   2</span></a>
+<a class="sourceLine" id="cb139-7" data-line-number="7"><span class="co"># 3  3    132     49        2.121   3</span></a>
+<a class="sourceLine" id="cb139-8" data-line-number="8"><span class="co"># 4  4    122     45        2.086   4</span></a>
+<a class="sourceLine" id="cb139-9" data-line-number="9"><span class="co"># 5  5    119     39        2.076   5</span></a>
+<a class="sourceLine" id="cb139-10" data-line-number="10"><span class="co"># 6  6    110     35        2.041   6</span></a>
+<a class="sourceLine" id="cb139-11" data-line-number="11"><span class="kw">str</span>(df_rcomb)</a>
+<a class="sourceLine" id="cb139-12" data-line-number="12"><span class="co"># &#39;data.frame&#39;: 6 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb139-13" data-line-number="13"><span class="co">#  $ id          : int  1 2 3 4 5 6</span></a>
+<a class="sourceLine" id="cb139-14" data-line-number="14"><span class="co">#  $ height      : num  120 150 132 122 119 110</span></a>
+<a class="sourceLine" id="cb139-15" data-line-number="15"><span class="co">#  $ weight      : num  44 56 49 45 39 35</span></a>
+<a class="sourceLine" id="cb139-16" data-line-number="16"><span class="co">#  $ height_log10: num  2.08 2.18 2.12 2.09 2.08 ...</span></a>
+<a class="sourceLine" id="cb139-17" data-line-number="17"><span class="co">#  $ Fid         : Factor w/ 6 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6</span></a></code></pre></div>
 </div>
 <div id="merging-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Merging data frames</h3>
 <p>Instead of just appending either rows or columns to a data frame we can also merge two data frames together. let’s say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates and another data frame that contains information on where they are usually found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">           <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
-<a class="sourceLine" id="cb145-3" data-line-number="3">           <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
-<a class="sourceLine" id="cb145-4" data-line-number="4">taxa</a>
-<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="co">#          GENUS    species           family</span></a>
-<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="co"># 1      Patella    vulgata       patellidae</span></a>
-<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="co"># 2    Littorina   littoria     Littorinidae</span></a>
-<a class="sourceLine" id="cb145-8" data-line-number="8"><span class="co"># 3 Halichondria    panacea  Halichondriidae</span></a>
-<a class="sourceLine" id="cb145-9" data-line-number="9"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae</span></a>
-<a class="sourceLine" id="cb145-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb145-11" data-line-number="11">zonation &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
-<a class="sourceLine" id="cb145-12" data-line-number="12">              <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
-<a class="sourceLine" id="cb145-13" data-line-number="13">              <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
-<a class="sourceLine" id="cb145-14" data-line-number="14">zonation</a>
-<a class="sourceLine" id="cb145-15" data-line-number="15"><span class="co">#          genus    species    zone</span></a>
-<a class="sourceLine" id="cb145-16" data-line-number="16"><span class="co"># 1    Laminaria   digitata   v_low</span></a>
-<a class="sourceLine" id="cb145-17" data-line-number="17"><span class="co"># 2 Halichondria    panacea     low</span></a>
-<a class="sourceLine" id="cb145-18" data-line-number="18"><span class="co"># 3    Xanthoria  parietina  v_high</span></a>
-<a class="sourceLine" id="cb145-19" data-line-number="19"><span class="co"># 4    Littorina   littoria low_mid</span></a>
-<a class="sourceLine" id="cb145-20" data-line-number="20"><span class="co"># 5  Semibalanus balanoides    high</span></a>
-<a class="sourceLine" id="cb145-21" data-line-number="21"><span class="co"># 6        Fucus   serratus low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb140-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
+<a class="sourceLine" id="cb140-2" data-line-number="2">           <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
+<a class="sourceLine" id="cb140-3" data-line-number="3">           <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
+<a class="sourceLine" id="cb140-4" data-line-number="4">taxa</a>
+<a class="sourceLine" id="cb140-5" data-line-number="5"><span class="co">#          GENUS    species           family</span></a>
+<a class="sourceLine" id="cb140-6" data-line-number="6"><span class="co"># 1      Patella    vulgata       patellidae</span></a>
+<a class="sourceLine" id="cb140-7" data-line-number="7"><span class="co"># 2    Littorina   littoria     Littorinidae</span></a>
+<a class="sourceLine" id="cb140-8" data-line-number="8"><span class="co"># 3 Halichondria    panacea  Halichondriidae</span></a>
+<a class="sourceLine" id="cb140-9" data-line-number="9"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae</span></a>
+<a class="sourceLine" id="cb140-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb140-11" data-line-number="11">zonation &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
+<a class="sourceLine" id="cb140-12" data-line-number="12">              <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
+<a class="sourceLine" id="cb140-13" data-line-number="13">              <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
+<a class="sourceLine" id="cb140-14" data-line-number="14">zonation</a>
+<a class="sourceLine" id="cb140-15" data-line-number="15"><span class="co">#          genus    species    zone</span></a>
+<a class="sourceLine" id="cb140-16" data-line-number="16"><span class="co"># 1    Laminaria   digitata   v_low</span></a>
+<a class="sourceLine" id="cb140-17" data-line-number="17"><span class="co"># 2 Halichondria    panacea     low</span></a>
+<a class="sourceLine" id="cb140-18" data-line-number="18"><span class="co"># 3    Xanthoria  parietina  v_high</span></a>
+<a class="sourceLine" id="cb140-19" data-line-number="19"><span class="co"># 4    Littorina   littoria low_mid</span></a>
+<a class="sourceLine" id="cb140-20" data-line-number="20"><span class="co"># 5  Semibalanus balanoides    high</span></a>
+<a class="sourceLine" id="cb140-21" data-line-number="21"><span class="co"># 6        Fucus   serratus low_mid</span></a></code></pre></div>
 <p>Because both of our data frames contains at least one variable in common (<code>species</code> in our case) we can simply use the <code>merge()</code> function to create a new data frame called <code>taxa_zone</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation)</a>
-<a class="sourceLine" id="cb146-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
-<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
-<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
-<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation)</a>
+<a class="sourceLine" id="cb141-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb141-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb141-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb141-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
 <p>Notice that the merged data frame contains only the rows that have <code>species</code> information in <strong>both</strong> data frames. There are also two columns called <code>GENUS</code> and <code>genus</code> because the <code>merge()</code> function treats these as two different variables that originate from the two data frames.</p>
 <p>If we want to include all data from both data frames then we will need to use the <code>all = TRUE</code> argument. The missing values will be included as <code>NA</code>.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
-<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
-<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a>
-<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co"># 4    vulgata      Patella       patellidae         &lt;NA&gt;    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co"># 5   digitata         &lt;NA&gt;             &lt;NA&gt;    Laminaria   v_low</span></a>
-<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co"># 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
-<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="co"># 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb142-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb142-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb142-3" data-line-number="3"><span class="co">#      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb142-4" data-line-number="4"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb142-5" data-line-number="5"><span class="co"># 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb142-6" data-line-number="6"><span class="co"># 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a>
+<a class="sourceLine" id="cb142-7" data-line-number="7"><span class="co"># 4    vulgata      Patella       patellidae         &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb142-8" data-line-number="8"><span class="co"># 5   digitata         &lt;NA&gt;             &lt;NA&gt;    Laminaria   v_low</span></a>
+<a class="sourceLine" id="cb142-9" data-line-number="9"><span class="co"># 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
+<a class="sourceLine" id="cb142-10" data-line-number="10"><span class="co"># 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
 <p>If the variable names that you want to base the merge on are different in each data frame (for example <code>GENUS</code> and <code>genus</code>) you can specify the names in the first data frame (known as <code>x</code>) and the second data frame (known as <code>y</code>) using the <code>by.x =</code> and <code>by.y =</code> arguments.</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3"><span class="co">#          GENUS  species.x           family  species.y    zone</span></a>
-<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="co"># 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
-<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="co"># 2    Littorina   littoria     Littorinidae   littoria low_mid</span></a>
-<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="co"># 3      Patella    vulgata       patellidae       &lt;NA&gt;    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae balanoides    high</span></a>
-<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="co"># 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
-<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="co"># 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
-<a class="sourceLine" id="cb148-10" data-line-number="10"><span class="co"># 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb143-3" data-line-number="3"><span class="co">#          GENUS  species.x           family  species.y    zone</span></a>
+<a class="sourceLine" id="cb143-4" data-line-number="4"><span class="co"># 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
+<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="co"># 2    Littorina   littoria     Littorinidae   littoria low_mid</span></a>
+<a class="sourceLine" id="cb143-6" data-line-number="6"><span class="co"># 3      Patella    vulgata       patellidae       &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="co"># 4  Semibalanus balanoides Archaeobalanidae balanoides    high</span></a>
+<a class="sourceLine" id="cb143-8" data-line-number="8"><span class="co"># 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
+<a class="sourceLine" id="cb143-9" data-line-number="9"><span class="co"># 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
+<a class="sourceLine" id="cb143-10" data-line-number="10"><span class="co"># 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
 <p>Or using multiple variable names.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
-<a class="sourceLine" id="cb149-2" data-line-number="2">                    <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb149-3" data-line-number="3">taxa_zone</a>
-<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">#      species        GENUS           family    zone</span></a>
-<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae    high</span></a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co"># 2   littoria    Littorina     Littorinidae low_mid</span></a>
-<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="co"># 3    panacea Halichondria  Halichondriidae     low</span></a>
-<a class="sourceLine" id="cb149-8" data-line-number="8"><span class="co"># 4    vulgata      Patella       patellidae    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb149-9" data-line-number="9"><span class="co"># 5   digitata    Laminaria             &lt;NA&gt;   v_low</span></a>
-<a class="sourceLine" id="cb149-10" data-line-number="10"><span class="co"># 6  parietina    Xanthoria             &lt;NA&gt;  v_high</span></a>
-<a class="sourceLine" id="cb149-11" data-line-number="11"><span class="co"># 7   serratus        Fucus             &lt;NA&gt; low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
+<a class="sourceLine" id="cb144-2" data-line-number="2">                    <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb144-3" data-line-number="3">taxa_zone</a>
+<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="co">#      species        GENUS           family    zone</span></a>
+<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co"># 1 balanoides  Semibalanus Archaeobalanidae    high</span></a>
+<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co"># 2   littoria    Littorina     Littorinidae low_mid</span></a>
+<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co"># 3    panacea Halichondria  Halichondriidae     low</span></a>
+<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co"># 4    vulgata      Patella       patellidae    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co"># 5   digitata    Laminaria             &lt;NA&gt;   v_low</span></a>
+<a class="sourceLine" id="cb144-10" data-line-number="10"><span class="co"># 6  parietina    Xanthoria             &lt;NA&gt;  v_high</span></a>
+<a class="sourceLine" id="cb144-11" data-line-number="11"><span class="co"># 7   serratus        Fucus             &lt;NA&gt; low_mid</span></a></code></pre></div>
 </div>
 <div id="reshape" class="section level3">
 <h3><span class="header-section-number">3.4.6</span> Reshaping data frames</h3>
@@ -1672,57 +1673,57 @@ M
 <p> </p>
 <p>Whilst there’s no inherent problem with either of these formats we will sometimes need to convert between the two because some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.</p>
 <p>There are many ways to convert between these two formats but we’ll use the <code>melt()</code> and <code>dcast()</code> functions from the <code>reshape2</code> package (you will need to install this package first). The <code>melt()</code> function is used to convert from wide to long formats. The first argument for the <code>melt()</code> function is the data frame we want to melt (in our case <code>wide_data</code>). The <code>id.vars = c(&quot;subject&quot;, &quot;sex&quot;)</code> argument is a vector of the variables you want to stack, the <code>measured.vars = c(&quot;control&quot;, &quot;cond1&quot;, &quot;cond2&quot;)</code> argument identifies the columns of the measurements in different conditions, the <code>variable.name = &quot;condition&quot;</code> argument specifies what you want to call the stacked column of your different conditions in your output data frame and <code>value.name = &quot;measurement&quot;</code> is the name of the column of your stacked measurements in your output data frame.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
-<a class="sourceLine" id="cb150-2" data-line-number="2">wide_data    <span class="co"># remind ourselves what the wide format looks like</span></a>
-<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="co">#   subject sex control cond1 cond2</span></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="co"># 1       A   M    12.9  14.2   8.7</span></a>
-<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="co"># 2       B   F     5.2  12.6  10.1</span></a>
-<a class="sourceLine" id="cb150-6" data-line-number="6"><span class="co"># 3       C   F     8.9  12.1  14.2</span></a>
-<a class="sourceLine" id="cb150-7" data-line-number="7"><span class="co"># 4       D   M    10.5  12.9  11.9</span></a>
-<a class="sourceLine" id="cb150-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb150-9" data-line-number="9"><span class="co"># convert wide to long</span></a>
-<a class="sourceLine" id="cb150-10" data-line-number="10">my_long_df &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="dt">data =</span> wide_data, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;sex&quot;</span>),</a>
-<a class="sourceLine" id="cb150-11" data-line-number="11">                   <span class="dt">measured.vars =</span> <span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;cond1&quot;</span>, <span class="st">&quot;cond2&quot;</span>),</a>
-<a class="sourceLine" id="cb150-12" data-line-number="12">                   <span class="dt">variable.name =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;measurement&quot;</span>)</a>
-<a class="sourceLine" id="cb150-13" data-line-number="13">my_long_df</a>
-<a class="sourceLine" id="cb150-14" data-line-number="14"><span class="co">#    subject sex condition measurement</span></a>
-<a class="sourceLine" id="cb150-15" data-line-number="15"><span class="co"># 1        A   M   control        12.9</span></a>
-<a class="sourceLine" id="cb150-16" data-line-number="16"><span class="co"># 2        B   F   control         5.2</span></a>
-<a class="sourceLine" id="cb150-17" data-line-number="17"><span class="co"># 3        C   F   control         8.9</span></a>
-<a class="sourceLine" id="cb150-18" data-line-number="18"><span class="co"># 4        D   M   control        10.5</span></a>
-<a class="sourceLine" id="cb150-19" data-line-number="19"><span class="co"># 5        A   M     cond1        14.2</span></a>
-<a class="sourceLine" id="cb150-20" data-line-number="20"><span class="co"># 6        B   F     cond1        12.6</span></a>
-<a class="sourceLine" id="cb150-21" data-line-number="21"><span class="co"># 7        C   F     cond1        12.1</span></a>
-<a class="sourceLine" id="cb150-22" data-line-number="22"><span class="co"># 8        D   M     cond1        12.9</span></a>
-<a class="sourceLine" id="cb150-23" data-line-number="23"><span class="co"># 9        A   M     cond2         8.7</span></a>
-<a class="sourceLine" id="cb150-24" data-line-number="24"><span class="co"># 10       B   F     cond2        10.1</span></a>
-<a class="sourceLine" id="cb150-25" data-line-number="25"><span class="co"># 11       C   F     cond2        14.2</span></a>
-<a class="sourceLine" id="cb150-26" data-line-number="26"><span class="co"># 12       D   M     cond2        11.9</span></a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">wide_data    <span class="co"># remind ourselves what the wide format looks like</span></a>
+<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="co">#   subject sex control cond1 cond2</span></a>
+<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="co"># 1       A   M    12.9  14.2   8.7</span></a>
+<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="co"># 2       B   F     5.2  12.6  10.1</span></a>
+<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="co"># 3       C   F     8.9  12.1  14.2</span></a>
+<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="co"># 4       D   M    10.5  12.9  11.9</span></a>
+<a class="sourceLine" id="cb145-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb145-9" data-line-number="9"><span class="co"># convert wide to long</span></a>
+<a class="sourceLine" id="cb145-10" data-line-number="10">my_long_df &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="dt">data =</span> wide_data, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;sex&quot;</span>),</a>
+<a class="sourceLine" id="cb145-11" data-line-number="11">                   <span class="dt">measured.vars =</span> <span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;cond1&quot;</span>, <span class="st">&quot;cond2&quot;</span>),</a>
+<a class="sourceLine" id="cb145-12" data-line-number="12">                   <span class="dt">variable.name =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb145-13" data-line-number="13">my_long_df</a>
+<a class="sourceLine" id="cb145-14" data-line-number="14"><span class="co">#    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb145-15" data-line-number="15"><span class="co"># 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb145-16" data-line-number="16"><span class="co"># 2        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb145-17" data-line-number="17"><span class="co"># 3        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb145-18" data-line-number="18"><span class="co"># 4        D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb145-19" data-line-number="19"><span class="co"># 5        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb145-20" data-line-number="20"><span class="co"># 6        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb145-21" data-line-number="21"><span class="co"># 7        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb145-22" data-line-number="22"><span class="co"># 8        D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb145-23" data-line-number="23"><span class="co"># 9        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb145-24" data-line-number="24"><span class="co"># 10       B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb145-25" data-line-number="25"><span class="co"># 11       C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb145-26" data-line-number="26"><span class="co"># 12       D   M     cond2        11.9</span></a></code></pre></div>
 <p>The <code>dcast()</code> function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (<code>long_data</code> for this example). The second argument is in formula syntax. The <code>subject + age</code> bit of the formula means that we want to keep these columns separate, and the <code>~ condition</code> part is the column that contains the labels that we want to split into new columns in our new data frame. The <code>value.var = &quot;measurement&quot;</code> argument is the column that contains the measured data.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">long_data   <span class="co"># remind ourselves what the long format look like</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2"><span class="co">#    subject sex condition measurement</span></a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co"># 1        A   M   control        12.9</span></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co"># 2        A   M     cond1        14.2</span></a>
-<a class="sourceLine" id="cb151-5" data-line-number="5"><span class="co"># 3        A   M     cond2         8.7</span></a>
-<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co"># 4        B   F   control         5.2</span></a>
-<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="co"># 5        B   F     cond1        12.6</span></a>
-<a class="sourceLine" id="cb151-8" data-line-number="8"><span class="co"># 6        B   F     cond2        10.1</span></a>
-<a class="sourceLine" id="cb151-9" data-line-number="9"><span class="co"># 7        C   F   control         8.9</span></a>
-<a class="sourceLine" id="cb151-10" data-line-number="10"><span class="co"># 8        C   F     cond1        12.1</span></a>
-<a class="sourceLine" id="cb151-11" data-line-number="11"><span class="co"># 9        C   F     cond2        14.2</span></a>
-<a class="sourceLine" id="cb151-12" data-line-number="12"><span class="co"># 10       D   M   control        10.5</span></a>
-<a class="sourceLine" id="cb151-13" data-line-number="13"><span class="co"># 11       D   M     cond1        12.9</span></a>
-<a class="sourceLine" id="cb151-14" data-line-number="14"><span class="co"># 12       D   M     cond2        11.9</span></a>
-<a class="sourceLine" id="cb151-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb151-16" data-line-number="16"><span class="co"># convert long to wide</span></a>
-<a class="sourceLine" id="cb151-17" data-line-number="17">my_wide_df &lt;-<span class="st"> </span><span class="kw">dcast</span>(<span class="dt">data =</span> long_data, subject <span class="op">+</span><span class="st"> </span>sex <span class="op">~</span><span class="st"> </span>condition, </a>
-<a class="sourceLine" id="cb151-18" data-line-number="18">                    <span class="dt">value.var =</span> <span class="st">&quot;measurement&quot;</span>)</a>
-<a class="sourceLine" id="cb151-19" data-line-number="19">my_wide_df</a>
-<a class="sourceLine" id="cb151-20" data-line-number="20"><span class="co">#   subject sex cond1 cond2 control</span></a>
-<a class="sourceLine" id="cb151-21" data-line-number="21"><span class="co"># 1       A   M  14.2   8.7    12.9</span></a>
-<a class="sourceLine" id="cb151-22" data-line-number="22"><span class="co"># 2       B   F  12.6  10.1     5.2</span></a>
-<a class="sourceLine" id="cb151-23" data-line-number="23"><span class="co"># 3       C   F  12.1  14.2     8.9</span></a>
-<a class="sourceLine" id="cb151-24" data-line-number="24"><span class="co"># 4       D   M  12.9  11.9    10.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">long_data   <span class="co"># remind ourselves what the long format look like</span></a>
+<a class="sourceLine" id="cb146-2" data-line-number="2"><span class="co">#    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co"># 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co"># 2        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co"># 3        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co"># 4        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co"># 5        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="co"># 6        B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="co"># 7        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="co"># 8        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb146-11" data-line-number="11"><span class="co"># 9        C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb146-12" data-line-number="12"><span class="co"># 10       D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb146-13" data-line-number="13"><span class="co"># 11       D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb146-14" data-line-number="14"><span class="co"># 12       D   M     cond2        11.9</span></a>
+<a class="sourceLine" id="cb146-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb146-16" data-line-number="16"><span class="co"># convert long to wide</span></a>
+<a class="sourceLine" id="cb146-17" data-line-number="17">my_wide_df &lt;-<span class="st"> </span><span class="kw">dcast</span>(<span class="dt">data =</span> long_data, subject <span class="op">+</span><span class="st"> </span>sex <span class="op">~</span><span class="st"> </span>condition, </a>
+<a class="sourceLine" id="cb146-18" data-line-number="18">                    <span class="dt">value.var =</span> <span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb146-19" data-line-number="19">my_wide_df</a>
+<a class="sourceLine" id="cb146-20" data-line-number="20"><span class="co">#   subject sex cond1 cond2 control</span></a>
+<a class="sourceLine" id="cb146-21" data-line-number="21"><span class="co"># 1       A   M  14.2   8.7    12.9</span></a>
+<a class="sourceLine" id="cb146-22" data-line-number="22"><span class="co"># 2       B   F  12.6  10.1     5.2</span></a>
+<a class="sourceLine" id="cb146-23" data-line-number="23"><span class="co"># 3       C   F  12.1  14.2     8.9</span></a>
+<a class="sourceLine" id="cb146-24" data-line-number="24"><span class="co"># 4       D   M  12.9  11.9    10.5</span></a></code></pre></div>
 </div>
 </div>
             </section>

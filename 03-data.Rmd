@@ -1,3 +1,8 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
 # Data in R {#data_r}
 
 Until now, you've created fairly simple data in R and stored it in a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
@@ -964,13 +969,13 @@ library(read.table)
 fwrite(flowers_df2, file = 'data/flowers_04_12.csv')
 ```
 
-The `readr` package also comes with two useful functions for quickly writing data to external files: the `read_tsv()` function for writing tab delimited files and the `read_csv()` function for saving comma separated values (csv) files.
+The `readr` package also comes with two useful functions for quickly writing data to external files: the `write_tsv()` function for writing tab delimited files and the `write_csv()` function for saving comma separated values (csv) files.
 
 ```{r export7, echo=TRUE, eval=FALSE}
 library(readr)
-read_tsv(flowers_df2, file = 'data/flowers_04_12.txt')
+write_tsv(flowers_df2, path = 'data/flowers_04_12.txt')
 
-read_csv(flowers_df2, file = 'data/flowers_04_12.csv')
+write_csv(flowers_df2, path = 'data/flowers_04_12.csv')
 ```
 
 You can even save data directly to an Excel spreadsheet using the `write_excel_csv()` function but again we don't recommend this!   

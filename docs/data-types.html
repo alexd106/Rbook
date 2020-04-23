@@ -323,6 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -349,51 +350,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we’ve only listed five data types here, the final data type is raw which we won’t cover as it’s not useful 99.999% of the time. We also won’t cover complex numbers as we don’t have the <a href="https://www.mathsisfun.com/numbers/complex-numbers.html">imagination</a>!</p>
 <p> </p>
 <ul>
-<li><p><strong>Numeric</strong> data are numbers that contain a decimal. Actually they can also be whole numbers but we’ll gloss over that.</p></li>
+<li><p><strong>Numeric</strong> data are numbers that contain a decimal. Actually they can also be whole numbers but we’ll gloss over that.</p>
+<ul>
 <li><p><strong>Integers</strong> are whole numbers (those numbers without a decimal point).</p></li>
 <li><p><strong>Logical</strong> data take on the value of either <code>TRUE</code> or <code>FALSE</code>. There’s also another special type of logical called <code>NA</code> to represent missing values.</p></li>
 <li><p><strong>Character</strong> data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a <em>factor</em>, which is a character string but with additional attributes (like levels or an order). We’ll cover factors later.</p></li>
+</ul></li>
 </ul>
 <p> </p>
 <p>R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they’re used although you should bear in mind that R can’t actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the type (or class) of any object using the <code>class()</code> function.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb80-1" data-line-number="1">num &lt;-<span class="st"> </span><span class="fl">2.2</span></a>
-<a class="sourceLine" id="cb80-2" data-line-number="2"><span class="kw">class</span>(num)</a>
-<a class="sourceLine" id="cb80-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb80-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb80-5" data-line-number="5">char &lt;-<span class="st"> &quot;hello&quot;</span></a>
-<a class="sourceLine" id="cb80-6" data-line-number="6"><span class="kw">class</span>(char)</a>
-<a class="sourceLine" id="cb80-7" data-line-number="7"><span class="co"># [1] &quot;character&quot;</span></a>
-<a class="sourceLine" id="cb80-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb80-9" data-line-number="9">logi &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb80-10" data-line-number="10"><span class="kw">class</span>(logi)</a>
-<a class="sourceLine" id="cb80-11" data-line-number="11"><span class="co"># [1] &quot;logical&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1">num &lt;-<span class="st"> </span><span class="fl">2.2</span></a>
+<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="kw">class</span>(num)</a>
+<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb75-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb75-5" data-line-number="5">char &lt;-<span class="st"> &quot;hello&quot;</span></a>
+<a class="sourceLine" id="cb75-6" data-line-number="6"><span class="kw">class</span>(char)</a>
+<a class="sourceLine" id="cb75-7" data-line-number="7"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb75-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb75-9" data-line-number="9">logi &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb75-10" data-line-number="10"><span class="kw">class</span>(logi)</a>
+<a class="sourceLine" id="cb75-11" data-line-number="11"><span class="co"># [1] &quot;logical&quot;</span></a></code></pre></div>
 <p>Alternatively, you can ask if an object is a specific class using using a logical test. The <code>is.[typeOfData]()</code> family of functions will return either a <code>TRUE</code> or a <code>FALSE</code>.</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb81-1" data-line-number="1"><span class="kw">is.numeric</span>(num)</a>
-<a class="sourceLine" id="cb81-2" data-line-number="2"><span class="co"># [1] TRUE</span></a>
-<a class="sourceLine" id="cb81-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb81-4" data-line-number="4"><span class="kw">is.character</span>(num)</a>
-<a class="sourceLine" id="cb81-5" data-line-number="5"><span class="co"># [1] FALSE</span></a>
-<a class="sourceLine" id="cb81-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb81-7" data-line-number="7"><span class="kw">is.character</span>(char)</a>
-<a class="sourceLine" id="cb81-8" data-line-number="8"><span class="co"># [1] TRUE</span></a>
-<a class="sourceLine" id="cb81-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb81-10" data-line-number="10"><span class="kw">is.logical</span>(logi)</a>
-<a class="sourceLine" id="cb81-11" data-line-number="11"><span class="co"># [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">is.numeric</span>(num)</a>
+<a class="sourceLine" id="cb76-2" data-line-number="2"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb76-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb76-4" data-line-number="4"><span class="kw">is.character</span>(num)</a>
+<a class="sourceLine" id="cb76-5" data-line-number="5"><span class="co"># [1] FALSE</span></a>
+<a class="sourceLine" id="cb76-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb76-7" data-line-number="7"><span class="kw">is.character</span>(char)</a>
+<a class="sourceLine" id="cb76-8" data-line-number="8"><span class="co"># [1] TRUE</span></a>
+<a class="sourceLine" id="cb76-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb76-10" data-line-number="10"><span class="kw">is.logical</span>(logi)</a>
+<a class="sourceLine" id="cb76-11" data-line-number="11"><span class="co"># [1] TRUE</span></a></code></pre></div>
 <p>It can sometimes be useful to be able to change the class of a variable using the <code>as.[className]()</code> family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb82-1" data-line-number="1"><span class="co"># coerce numeric to character</span></a>
-<a class="sourceLine" id="cb82-2" data-line-number="2"><span class="kw">class</span>(num)</a>
-<a class="sourceLine" id="cb82-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb82-4" data-line-number="4">num_char &lt;-<span class="st">  </span><span class="kw">as.character</span>(num)</a>
-<a class="sourceLine" id="cb82-5" data-line-number="5">num_char</a>
-<a class="sourceLine" id="cb82-6" data-line-number="6"><span class="co"># [1] &quot;2.2&quot;</span></a>
-<a class="sourceLine" id="cb82-7" data-line-number="7"><span class="kw">class</span>(num_char)</a>
-<a class="sourceLine" id="cb82-8" data-line-number="8"><span class="co"># [1] &quot;character&quot;</span></a>
-<a class="sourceLine" id="cb82-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb82-10" data-line-number="10"><span class="co"># coerce character to numeric!</span></a>
-<a class="sourceLine" id="cb82-11" data-line-number="11"><span class="kw">class</span>(char)</a>
-<a class="sourceLine" id="cb82-12" data-line-number="12"><span class="co"># [1] &quot;character&quot;</span></a>
-<a class="sourceLine" id="cb82-13" data-line-number="13">char_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(char)</a>
-<a class="sourceLine" id="cb82-14" data-line-number="14"><span class="co"># Warning: NAs introduced by coercion</span></a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="co"># coerce numeric to character</span></a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="kw">class</span>(num)</a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="co"># [1] &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4">num_char &lt;-<span class="st">  </span><span class="kw">as.character</span>(num)</a>
+<a class="sourceLine" id="cb77-5" data-line-number="5">num_char</a>
+<a class="sourceLine" id="cb77-6" data-line-number="6"><span class="co"># [1] &quot;2.2&quot;</span></a>
+<a class="sourceLine" id="cb77-7" data-line-number="7"><span class="kw">class</span>(num_char)</a>
+<a class="sourceLine" id="cb77-8" data-line-number="8"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb77-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb77-10" data-line-number="10"><span class="co"># coerce character to numeric!</span></a>
+<a class="sourceLine" id="cb77-11" data-line-number="11"><span class="kw">class</span>(char)</a>
+<a class="sourceLine" id="cb77-12" data-line-number="12"><span class="co"># [1] &quot;character&quot;</span></a>
+<a class="sourceLine" id="cb77-13" data-line-number="13">char_num &lt;-<span class="st"> </span><span class="kw">as.numeric</span>(char)</a>
+<a class="sourceLine" id="cb77-14" data-line-number="14"><span class="co"># Warning: NAs introduced by coercion</span></a></code></pre></div>
 <p>Here’s a summary table of some of the logical test and coercion functions available to you.</p>
 <table>
 <thead>

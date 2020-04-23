@@ -323,6 +323,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -347,33 +348,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.10</span> Project documentation</h2>
 <p>A quick note or two about writing R code and creating R scripts. Unless you’re doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, by mixing executable code with narrative into an <a href="rmarkdown-r.html#rmarkdown_r">R markdown</a> document. It’s also good practice to include the output of the <code>sessionInfo()</code> function at the end of any script which prints the R version, details of the operating system and also loaded packages.</p>
 <p>Here is an example of including meta-information at the start of an R script</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># Title: Time series analysis of snouters</span></a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb22-3" data-line-number="3"><span class="co"># Purpose : This script performs a time series analyses on snouter count data.</span></a>
-<a class="sourceLine" id="cb22-4" data-line-number="4"><span class="co">#           Data consists of counts of snouter species collected from 18 islands </span></a>
-<a class="sourceLine" id="cb22-5" data-line-number="5"><span class="co">#           in the Hy-yi-yi archipelago between 1950 and 1957. </span></a>
-<a class="sourceLine" id="cb22-6" data-line-number="6"><span class="co">#           For details of snouter biology see:</span></a>
-<a class="sourceLine" id="cb22-7" data-line-number="7"><span class="co">#               https://en.wikipedia.org/wiki/Rhinogradentia</span></a>
-<a class="sourceLine" id="cb22-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb22-9" data-line-number="9"><span class="co"># Project number: #007</span></a>
-<a class="sourceLine" id="cb22-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb22-11" data-line-number="11"><span class="co"># Data file: &#39;/Users/Another/snouter_analysis/snouter_pop.txt&#39;</span></a>
-<a class="sourceLine" id="cb22-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb22-13" data-line-number="13"><span class="co"># Author: A. Nother</span></a>
-<a class="sourceLine" id="cb22-14" data-line-number="14"><span class="co"># Contact details: a.nother@uir.ac.uk</span></a>
-<a class="sourceLine" id="cb22-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb22-16" data-line-number="16"><span class="co"># Date script created: Mon Dec 2 16:06:44 2019 ------------------------------</span></a>
-<a class="sourceLine" id="cb22-17" data-line-number="17"><span class="co"># Date script last modified: Thu Dec 12 16:07:12 2019 ----------------------</span></a>
-<a class="sourceLine" id="cb22-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb22-19" data-line-number="19"><span class="co"># package dependencies</span></a>
-<a class="sourceLine" id="cb22-20" data-line-number="20"><span class="kw">library</span>(PopSnouter)</a>
-<a class="sourceLine" id="cb22-21" data-line-number="21"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb22-22" data-line-number="22"></a>
-<a class="sourceLine" id="cb22-23" data-line-number="23"><span class="kw">print</span>(<span class="st">&#39;put your lovely R code here&#39;</span>)</a>
-<a class="sourceLine" id="cb22-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb22-25" data-line-number="25"><span class="co"># good practice to include sessionInfo</span></a>
-<a class="sourceLine" id="cb22-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb22-27" data-line-number="27"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Title: Time series analysis of snouters</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="co"># Purpose : This script performs a time series analyses on snouter count data.</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co">#           Data consists of counts of snouter species collected from 18 islands </span></a>
+<a class="sourceLine" id="cb17-5" data-line-number="5"><span class="co">#           in the Hy-yi-yi archipelago between 1950 and 1957. </span></a>
+<a class="sourceLine" id="cb17-6" data-line-number="6"><span class="co">#           For details of snouter biology see:</span></a>
+<a class="sourceLine" id="cb17-7" data-line-number="7"><span class="co">#               https://en.wikipedia.org/wiki/Rhinogradentia</span></a>
+<a class="sourceLine" id="cb17-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb17-9" data-line-number="9"><span class="co"># Project number: #007</span></a>
+<a class="sourceLine" id="cb17-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb17-11" data-line-number="11"><span class="co"># Data file: &#39;/Users/Another/snouter_analysis/snouter_pop.txt&#39;</span></a>
+<a class="sourceLine" id="cb17-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb17-13" data-line-number="13"><span class="co"># Author: A. Nother</span></a>
+<a class="sourceLine" id="cb17-14" data-line-number="14"><span class="co"># Contact details: a.nother@uir.ac.uk</span></a>
+<a class="sourceLine" id="cb17-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb17-16" data-line-number="16"><span class="co"># Date script created: Mon Dec 2 16:06:44 2019 ------------------------------</span></a>
+<a class="sourceLine" id="cb17-17" data-line-number="17"><span class="co"># Date script last modified: Thu Dec 12 16:07:12 2019 ----------------------</span></a>
+<a class="sourceLine" id="cb17-18" data-line-number="18"></a>
+<a class="sourceLine" id="cb17-19" data-line-number="19"><span class="co"># package dependencies</span></a>
+<a class="sourceLine" id="cb17-20" data-line-number="20"><span class="kw">library</span>(PopSnouter)</a>
+<a class="sourceLine" id="cb17-21" data-line-number="21"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb17-22" data-line-number="22"></a>
+<a class="sourceLine" id="cb17-23" data-line-number="23"><span class="kw">print</span>(<span class="st">&#39;put your lovely R code here&#39;</span>)</a>
+<a class="sourceLine" id="cb17-24" data-line-number="24"></a>
+<a class="sourceLine" id="cb17-25" data-line-number="25"><span class="co"># good practice to include sessionInfo</span></a>
+<a class="sourceLine" id="cb17-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb17-27" data-line-number="27"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <p>This is just one example and there are no hard and fast rules so feel free to develop a system that works for you. A really useful shortcut in RStudio is to automatically include a time and date stamp in your R script. To do this, write <code>ts</code> where you want to insert your time stamp in your R script and then press the ‘shift + tab’ keys. RStudio will magically convert <code>ts</code> into the current date and time and also automatically comment out this line with a <code>#</code>. Another really useful RStudio shortcut is to comment out multiple lines in your script with a <code>#</code> symbol. To do this, highlight the lines of text you want to comment and then press ‘ctrl + shift + c’. To uncomment the lines just use ‘ctrl + shift + c’ again.</p>
 <p>In addition to including metadata in your R scripts it’s also common practice to create a separate text file to record important information. By convention these text files are named <code>README</code>. We often include a <code>README</code> file in the directory where we keep our raw data. In this file we include details about when data were collected (or downloaded), how data were collected, information about specialised equipment, preservation methods, type and version of any machines used (i.e. sequencing equipment) etc. You can create a README file for your project in RStudio by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>Text File</code> menu.</p>
 </div>

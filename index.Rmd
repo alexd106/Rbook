@@ -4,9 +4,10 @@ author: "Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto & David Lusseau"
 date: "Draft: `r gsub(' 0', ' ', format(Sys.Date(), '%B %d, %Y'))`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
+always_allow_html: true
 documentclass: book
-bibliography: [book.bib, packages.bib]
-biblio-style: apalike
+#bibliography: [book.bib, packages.bib]
+#biblio-style: apalike
 link-citations: yes
 colorlinks: yes
 fontsize: 12pt
@@ -16,7 +17,7 @@ github-repo: "alexd106/Rbook"
 description: "An Introduction to R"
 ---
 
-```{r setup, include=FALSE}
+```{r setup, echo=FALSE}
 source('common.R')
 ```
 
@@ -40,90 +41,40 @@ This book is completely free for you to use and is licensed according to the Cre
 
 \  
 
-<div style= "float:left;position: relative; top: 5px;">
-```{r, out.width = "200px", out.extra='style="padding:30px;"', echo = FALSE}
-knitr::include_graphics("images/alex.png")
+```{r who-are-we, echo=FALSE, warning=FALSE, message=FALSE}
+library(dplyr)
+library(knitr)
+library(kableExtra)
+
+AD <- '**Alex Douglas** is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years.<br>- Web: https://www.abdn.ac.uk/people/a.douglas/<br>- Twitter: https://twitter.com/Scedacity<br>- GitHub: https://github.com/alexd106'
+
+DR <- '**Deon Roos** is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years.<br>- Web: https://www.abdn.ac.uk/people/deon.roos<br>- Twitter: https://twitter.com/DeonRoos88<br>- GitHub: https://github.com/Deon88'
+
+AC <- '**Ana Couto** is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years.<br>- Web: https://www.abdn.ac.uk/people/r01ac17<br>- Twitter: https://twitter.com/AnaSofiaCouto<br>- GitHub: https://github.com/Anofia'
+
+FM <- '**Francesca Mancini** is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.<br>- Web: https://FrancescaMancini.github.io<br>- Twitter: https://twitter.com/frances_mancini<br>- GitHub: https://github.com/FrancescaMancini'
+
+DL <- '**David Lusseau** is a Professor of Marine Sustainability at the Danish Technical University. He\'s been using R for 15 years and teaching it for 12 years.<br>- Twitter: https://twitter.com/lusseau<br>- GitHub: https://github.com/dlusseau'
+
+df1 <- data.frame(col1 = c('![](images/alex.png)', '![](images/deon.png)', '![](images/ana.png)', '![](images/francesca2.png)', '![](images/lusseau.png)'), col2 = c(AD, DR, AC, FM, DL))
+
+knit_table <- function(df){
+  if (is_html_output()) {
+    df %>%
+      kable("html", escape = F, col.names = NULL, linesep = "") %>%
+      kable_styling()
+  } else {
+    df <- data.frame(lapply(df, function(x) {gsub("<br>", "\n", x)}), stringsAsFactors = F)
+
+    df %>%  
+      mutate_all(linebreak) %>%
+      kable("latex", booktabs = T, escape = F, col.names = NULL, linesep = "")  
+  }
+}
+
+knit_table(df1)
+
 ```
-</div>
-
-\ 
-
-**Alex Douglas** is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years. 
-
-- Web: https://www.abdn.ac.uk/people/a.douglas/
-- Twitter: https://twitter.com/Scedacity
-- GitHub: https://github.com/alexd106
-
-\ 
-
-\  
-
-<div style= "float:left;position: relative; top: 5px;">
-```{r, out.width = "200px", out.extra='style="padding:30px;"', echo = FALSE}
-knitr::include_graphics("images/deon.png")
-```
-</div>
-
-\  
-
-**Deon Roos** is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years. 
-
-- Web: https://www.abdn.ac.uk/people/deon.roos
-- Twitter: https://twitter.com/DeonRoos88
-- GitHub: https://github.com/Deon88
-
-\  
-
-\  
-
-<div style= "float:left;position: relative; top: 5px;">
-```{r, out.width = "200px", out.extra='style="padding:30px;"', echo = FALSE}
-knitr::include_graphics("images/ana.png")
-```
-</div>
-
-\  
-
-**Ana Couto** is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years. 
-
-- Web: https://www.abdn.ac.uk/people/r01ac17
-- Twitter: https://twitter.com/AnaSofiaCouto
-- GitHub:  https://github.com/Anofia
-
-\  
-
-\  
-
-<div style= "float:left;position: relative; top: 5px;">
-```{r, out.width = "200px", out.extra='style="padding:30px;"', echo = FALSE}
-knitr::include_graphics("images/francesca2.png")
-```
-</div>
-
-\  
-
-**Francesca Mancini** is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.
-
-- Web: https://FrancescaMancini.github.io
-- Twitter: https://twitter.com/frances_mancini
-- GitHub:  https://github.com/FrancescaMancini
-
-\  
-
-\  
-
-<div style= "float:left;position: relative; top: 5px;">
-```{r, out.width = "200px", out.extra='style="padding:30px;"', echo = FALSE}
-knitr::include_graphics("images/lusseau.png")
-```
-</div>
-
-\  
-
-**David Lusseau** is a Professor of Marine Sustainability at the Danish Technical University. He's been using R for 15 years and teaching it for 12 years.
-
-- Twitter: https://twitter.com/lusseau
-- GitHub:  https://github.com/dlusseau
 
 ## Book website
 
