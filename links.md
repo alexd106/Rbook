@@ -148,6 +148,8 @@
 [complex_num]: https://www.mathsisfun.com/numbers/complex-numbers.html
 [excel_gotcha]: https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7
 [winograd]: https://en.wikipedia.org/wiki/Winograd_Schema_Challenge
+[sturges]: https://en.wikipedia.org/wiki/Histogram
+[kernel-dens]: https://en.wikipedia.org/wiki/Kernel_density_estimation
 
 
 

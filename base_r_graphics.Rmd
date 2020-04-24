@@ -4,7 +4,9 @@ Summarising your data, either numerically or graphically, is an important (if of
 
 The base R graphics system is the original plotting system that's been around (and has evolved) since the first days of R. When creating plots with base R we tend to use high level functions (like the `plot()` function) to first create our plot and then use one or more low level functions (like `lines()` and `text()` etc) to add additional information to these plots. This can seem a little weird (and time consuming) when you first start creating fancy plots in R, but it does allow you to customise almost every aspect of your plot and build complexity up in layers. The flip side to this flexibility is that you'll often need to make many decisions about how you want your plot to look rather than rely on the software to make these decisions for you. Having said that, it's generally very quick and easy to generate simple exploratory plots with base R graphics. 
 
-The lattice system is implemented in the `lattice()` package that comes pre-installed with the standard installation of R. However, it won't be loaded by default so you'll first need to first use `library(lattice)` to access all the plotting functions. Unlike base R graphics, lattice plots are mostly generated all in one go using a single function so there's no need to use high and low level plotting functions to customise the look of a plot. This can be a real advantage as things like margin sizes and plot spacing are adjusted automatically. Lattice plots also make a few more decisions for you about how the plots will look but this comes with a slight cost as customising lattice plots to get them to look exactly how you want can become quite involved. Where lattice plots really shine is plotting multi-dimensional data using multiple panels (sometimes called trellis plots). We'll see a couple of examples of these types of plots later on in the Chapter.   
+The lattice system is implemented in the `lattice()` package that comes pre-installed with the standard installation of R. However, it won't be loaded by default so you'll first need to use `library(lattice)` to access all the plotting functions. Unlike base R graphics, lattice plots are mostly generated all in one go using a single function so there's no need to use high and low level plotting functions to customise the look of a plot. This can be a real advantage as things like margin sizes and plot spacing are adjusted automatically. Lattice plots also make a few more decisions for you about how the plots will look but this comes with a slight cost as customising lattice plots to get them to look exactly how you want can become quite involved. Where lattice plots really shine is plotting complex multi-dimensional data using panel plots (also called trellis plots). We'll see a couple of examples of these types of plots later on in the Chapter.   
+
+## Getting started
 
 When you create a plot in RStudio the plot will be displayed in the 'Plots' tab by default which is usually located in the bottom right pane in RStudio. 
 
@@ -16,7 +18,7 @@ knitr::include_graphics(path = "images/bg_plots1.png")
 
 \  
 
-You can zoom in on a plot by clicking the 'Zoom' button which will display your plot in a separate window. This can be really useful if you have a particularly large or complex plot (we've noticed that RStudio sometimes fails to display a plot if they're 'big'). You can also scroll through plots you've previously created by clicking on the 'arrow' buttons.   
+You can zoom in on a plot by clicking the 'Zoom' button which will display your plot in a separate window. This can be really useful if you have a particularly large or complex plot (we've noticed that RStudio sometimes fails to display a plot if its 'big'). You can also scroll through plots you've previously created by clicking on one of the 'arrow' buttons.   
 
 \  
 
@@ -26,7 +28,7 @@ knitr::include_graphics(path = "images/bg_plots2.png")
 
 \  
 
-Plots can also be saved in a variety of formats (pdf, png, tiff, jpeg etc) by clicking on the 'Export' button and selecting your desired format. You can also redirect your plots to an external file using R code which we will cover later in this [Chapter](TODO)
+Plots can also be saved in a variety of formats (pdf, png, tiff, jpeg etc) by clicking on the 'Export' button and selecting your desired format. You can also redirect your plots to an external file using R code which we'll cover later in this [Chapter](TODO)
 
 \  
 
@@ -36,27 +38,29 @@ knitr::include_graphics(path = "images/bg_plots3.png")
 
 ## Simple base R plots
 
-There are many functions in R used to produce graphs, ranging from the very basic to the highly complex. It's impossible to cover every aspect of producing graphics in R in this introductory book. However, we'll cover most of the more common methods of graphing data and briefly describe how to customise your graphs later on in this [Chapter](TODO).
+There are many functions in R used to produce plots ranging from the very basic to the highly complex. It's impossible to cover every aspect of producing graphics in R in this introductory book. However, we'll introduce you to most of the more common methods of graphing data and briefly describe how to customise your graphs later on in this [Chapter](#custom_plot).
 
-The most common function used to produce graphs in R is (rather unsurprisingly) the `plot()` function. For example, to plot the `height` of petunia plants in our `flowers` data frame which we imported in [Chapter 3](#import_fnc).
+### Scatterplots
 
-```{r plot1, echo=TRUE, eval=TRUE, out.width="75%", fig.align="center"}
+The most common high level function used to produce plots in R is (rather unsurprisingly) the `plot()` function. For example, to plot the `height` of petunia plants in our `flowers` data frame which we imported in [Chapter 3](#import_fnc).
+
+```{r plot1, echo=TRUE, out.width="75%", fig.align="center"}
 flowers <- read.table(file = 'data/flower.txt', 
                       header = TRUE, sep = "\t")
 
 plot(flowers$height)
 ```
 
-R has plotted the values of `height` (on the y axis) against an index since there is only one variable to plot. The index is just the row order of the values as they appear in the data frame. The `height` variable name have been automatically included as a y axis label and the axes scales have been automatically set.
+R has plotted the values of `height` (on the y axis) against an index since there is only one variable to plot. The index is just the row order of the values as they appear in the data frame. The `height` variable name has been automatically included as a y axis label and the axes scales have been automatically set.
 
-If we'd only specified the variable `height` rather than `flowers$height` the plot function will throw an error as the variable `height` only exists in the `flowers` data frame object.
+If we'd only specified the variable `height` rather than `flowers$height`, the `plot()` function will throw an error as the variable `height` only exists in the `flowers` data frame object.
 
 ```{r plot2, echo=TRUE, eval=FALSE}
 plot(height)
 Error in plot(height) : object 'height' not found
 ```
 
-As many of the plotting functions don't have a `data =` argument to specify the data frame directly we can use the `with()` function in combination with `plot()`.
+As many of the base R plotting functions don't have a `data =` argument to specify the data frame name directly we can use the `with()` function in combination with `plot()` as a shortcut.
 
 ```{r plot3, echo=TRUE, eval=FALSE}
 with(flowers, plot(height)) 
@@ -64,19 +68,104 @@ with(flowers, plot(height))
 
 To plot a scatterplot of one numeric variable against another numeric variable we just need to include both variables as arguments when using the `plot()` function. For example to plot `height` on the y axis and `weight` of the x axis from our `flowers` data frame. 
 
-```{r plot4, echo=TRUE, eval=TRUE, out.width="75%", fig.align="center"}
+```{r plot4, echo=TRUE, out.width="75%", fig.align="center"}
 plot(x = flowers$weight, y = flowers$height)
 ```
 
-There is also an equivalent approach for these types of plots which often causes some confusion at first. You can also use the formula notation when using the `plot()` function. However, in contrast to the previous method the formula method requires you to specify the y axis variable first, then a `~` and then our x axis variable on the right hand side. 
+There is an equivalent approach for these types of plots which often causes some confusion at first. You can also use the formula notation when using the `plot()` function. However, in contrast to the previous method the formula method requires you to specify the y axis variable first, then a `~` and then our x axis variable on the right hand side. 
 
-```{r plot5, echo=TRUE, eval=TRUE, out.width="75%", fig.align="center"}
+```{r plot5, echo=TRUE, out.width="75%", fig.align="center"}
 plot(flowers$height ~ flowers$weight)
 ```
 
 Both of these two approaches are equivalent so we suggest that you just choose the one you prefer and go with it. 
 
+You can also specify the type of graph you wish to plot using the argument `type =`. You can plot just the points (`type = "p"`, this is the default), just lines (`type = "l"`), both points and lines connected (`type = "b"`), both points and lines with the lines running through the points (`type = "o"`) and empty points joined by lines (`type = "c"`). For example, let's use our skills from [Chapter 2](#funcs) to generate two vectors of numbers (`my_x` and `my_y`) and then plot one against the other using different `type =` values to see what type of plots are produced. Don't worry about the `par(mfrow = c(2, 2))` line of code yet. We're just using this to split the plotting device so we can fit all four plots on the same device to save some space. See [later](TODO) in the Chapter for more details about this. The top left plot is `type = "l"`, the top right `type = "b"`, bottom left `type = "o"` and bottom right is `type = "c"`.  
 
+```{r plot6, echo=TRUE, out.width="75%", fig.align="center"}
+my_x <- 1:10
+my_y <- seq(from = 1, to = 20, by = 2)
+
+par(mfrow = c(2, 2))
+plot(my_x, my_y, type = "l")
+plot(my_x, my_y, type = "b")
+plot(my_x, my_y, type = "o")
+plot(my_x, my_y, type = "c")
+```
+
+Whilst the plots so far don't look anything particularly special the `plot()` function is incredibly versatile and can generate a large range of plots which you can customise to your own taste. We'll cover how to customise plots later in the [Chapter](#custom_plot). As a quick aside, the `plot()` function is also what's known as a generic function which means it can change it's default behaviour depending on the type of object used as an argument. You will see an example of this in [Chapter 6](#simple_lm) where we use the `plot()` function to generate diagnostic plots of residuals from a linear model object (bet you can't wait!).
+
+### Histograms
+
+Frequency histograms are useful when you want to get an idea about the distribution of values in a numeric variable. The `hist()` function takes a numeric vector as its main argument. Let's generate a histogram of the `height` values.
+
+```{r plot7, echo=TRUE, out.width="75%", fig.align="center"}
+hist(flowers$height)
+```
+
+The `hist()` function  automatically creates the breakpoints (or bins) in the histogram using the [Sturges][sturges] formula unless you specify otherwise by using the `break =` argument. For example, let's say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum height (18 rounded up) in steps of 1 using the `seq()` function. We can then use this sequence with the `breaks =` argument. While we're at it, let's also replace the ugly title for something a little better using the `main =` argument
+
+```{r plot8, echo=TRUE, out.width="75%", fig.align="center"}
+brk <- seq(0,18,1)
+hist(flowers$height, breaks = brk, main = "petunia height")
+```
+
+You can also display the histogram as a proportion rather than a frequency by using the `freq = FALSE` argument.
+
+```{r plot9, echo=TRUE, out.width="75%", fig.align="center"}
+brk <- seq(0,18,1)
+hist(flowers$height, breaks = brk, main = "petunia height",
+      freq = FALSE)
+```
+
+An alternative to plotting just a straight up histogram is to add a [kernel density][kernel-dens] curve to the plot. You can superimpose a density curve onto the histogram by first using the `density()` function to compute the kernel density estimates and then use the low level function `lines()` to add these estimates onto the plot as a line.
+
+```{r plot10, echo=TRUE, out.width="75%", fig.align="center"}
+dens <- density(flowers$height)
+hist(flowers$height, breaks = brk, main = "petunia height",
+      freq = FALSE)
+lines(dens)
+```
+
+### Boxplots
+
+Boxplots 
+
+### Dot charts
+
+Identifying unusual observations (aka outliers) in numeric variables is extremely important as they may influence parameter estimates in your statistical model or indicate an error in your data. A really useful (if undervalued) plot to help identify outliers is the Cleveland dotplot. You can produce a dotplot in R very simply by using the `dotchart()` function. 
+
+```{r plot14, echo=TRUE, out.width="75%", fig.align="center"}
+dotchart(flowers$height)
+```
+
+In the dotplot above the data from the `height` variable is plotted along the x axis and the data is plotted in the order it occurs in the `flowers` data frame on the y axis (values near the top of the y axis occur later in the data frame with those lower down occurring at the beginning of the data frame). In this plot we have a single value extending to the right at about 17 cm but it doesn't appear particularly large compared to the rest. An example of a dotplot with an unusual observation is given below.
+
+```{r plot15, echo=FALSE, out.width="75%", fig.align="center"}
+out_height <- flowers$height
+out_height[30] <- 53
+dotchart(out_height)
+```
+
+We can also group the values in our `height` variable by a factor variable such as `nitrogen` using the `groups =` argument. This is useful for identifying unusual observations within a factor level that might be obscured when looking at all the data together.
+
+```{r plot16, echo=TRUE, out.width="75%", fig.align="center"}
+dotchart(flowers$height, groups = flowers$nitrogen)
+```
+
+dotchart with groups
+
+### Pairs plots
+
+### Coplots
+
+### Lattice plots
+
+## Customising plots {#custom_plot}
+
+## Multiple graphs
+
+## Exporting plots
 
 ```{r links, child="links.md"}
 ```

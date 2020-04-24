@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="install-rm.html"/>
-<link rel="next" href="simple-base-r-plots.html"/>
+<link rel="next" href="getting-started-1.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -272,7 +272,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>5</b> Simple Statistics in R</a><ul>
 <li class="chapter" data-level="5.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>5.1</b> One and two sample tests</a></li>
 <li class="chapter" data-level="5.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>5.2</b> Correlation</a></li>
-<li class="chapter" data-level="5.3" data-path="simple-linear-modelling.html"><a href="simple-linear-modelling.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
+<li class="chapter" data-level="5.3" data-path="simple-lm.html"><a href="simple-lm.html"><i class="fa fa-check"></i><b>5.3</b> Simple linear modelling</a></li>
 <li class="chapter" data-level="5.4" data-path="other-modelling-approaches.html"><a href="other-modelling-approaches.html"><i class="fa fa-check"></i><b>5.4</b> Other modelling approaches</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>6</b> Programming in R</a><ul>
@@ -333,7 +333,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a><ul>
-<li class="chapter" data-level="10.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>10.1</b> Simple base R plots</a></li>
+<li class="chapter" data-level="10.1" data-path="getting-started-1.html"><a href="getting-started-1.html"><i class="fa fa-check"></i><b>10.1</b> Getting started</a></li>
+<li class="chapter" data-level="10.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>10.2</b> Simple base R plots</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplots"><i class="fa fa-check"></i><b>10.2.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>10.2.2</b> Histograms</a></li>
+<li class="chapter" data-level="10.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#boxplots"><i class="fa fa-check"></i><b>10.2.3</b> Boxplots</a></li>
+<li class="chapter" data-level="10.2.4" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#dot-charts"><i class="fa fa-check"></i><b>10.2.4</b> Dot charts</a></li>
+<li class="chapter" data-level="10.2.5" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#pairs-plots"><i class="fa fa-check"></i><b>10.2.5</b> Pairs plots</a></li>
+<li class="chapter" data-level="10.2.6" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#coplots"><i class="fa fa-check"></i><b>10.2.6</b> Coplots</a></li>
+<li class="chapter" data-level="10.2.7" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#lattice-plots"><i class="fa fa-check"></i><b>10.2.7</b> Lattice plots</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>10.3</b> Customising plots</a></li>
+<li class="chapter" data-level="10.4" data-path="multiple-graphs.html"><a href="multiple-graphs.html"><i class="fa fa-check"></i><b>10.4</b> Multiple graphs</a></li>
+<li class="chapter" data-level="10.5" data-path="exporting-plots.html"><a href="exporting-plots.html"><i class="fa fa-check"></i><b>10.5</b> Exporting plots</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -359,18 +371,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">Chapter 10</span> Graphics with base R</h1>
 <p>Summarising your data, either numerically or graphically, is an important (if often overlooked) component of any data analysis. Fortunately, R has excellent graphics capabilities and can be used whether you want to produce plots for initial data exploration, model validation or highly complex publication quality graphs. There are three main systems for producing graphics in R; base R graphics, lattice graphics and ggplot2. Each of these systems have their strengths and weaknesses and we often use them interchangeably. In this Chapter we’ll focus mostly on base R graphics with a sprinkling of lattice graphics for added variety. In the next <a href="graphics-r.html#graphics_r">Chapter</a> we’ll introduce you to the <code>ggplot2</code> package.</p>
 <p>The base R graphics system is the original plotting system that’s been around (and has evolved) since the first days of R. When creating plots with base R we tend to use high level functions (like the <code>plot()</code> function) to first create our plot and then use one or more low level functions (like <code>lines()</code> and <code>text()</code> etc) to add additional information to these plots. This can seem a little weird (and time consuming) when you first start creating fancy plots in R, but it does allow you to customise almost every aspect of your plot and build complexity up in layers. The flip side to this flexibility is that you’ll often need to make many decisions about how you want your plot to look rather than rely on the software to make these decisions for you. Having said that, it’s generally very quick and easy to generate simple exploratory plots with base R graphics.</p>
-<p>The lattice system is implemented in the <code>lattice()</code> package that comes pre-installed with the standard installation of R. However, it won’t be loaded by default so you’ll first need to first use <code>library(lattice)</code> to access all the plotting functions. Unlike base R graphics, lattice plots are mostly generated all in one go using a single function so there’s no need to use high and low level plotting functions to customise the look of a plot. This can be a real advantage as things like margin sizes and plot spacing are adjusted automatically. Lattice plots also make a few more decisions for you about how the plots will look but this comes with a slight cost as customising lattice plots to get them to look exactly how you want can become quite involved. Where lattice plots really shine is plotting multi-dimensional data using multiple panels (sometimes called trellis plots). We’ll see a couple of examples of these types of plots later on in the Chapter.</p>
-<p>When you create a plot in RStudio the plot will be displayed in the ‘Plots’ tab by default which is usually located in the bottom right pane in RStudio.</p>
-<p> </p>
-<p><img src="images/bg_plots1.png" width="80%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>You can zoom in on a plot by clicking the ‘Zoom’ button which will display your plot in a separate window. This can be really useful if you have a particularly large or complex plot (we’ve noticed that RStudio sometimes fails to display a plot if they’re ‘big’). You can also scroll through plots you’ve previously created by clicking on the ‘arrow’ buttons.</p>
-<p> </p>
-<p><img src="images/bg_plots2.png" width="75%" style="display: block; margin: auto;" /></p>
-<p> </p>
-<p>Plots can also be saved in a variety of formats (pdf, png, tiff, jpeg etc) by clicking on the ‘Export’ button and selecting your desired format. You can also redirect your plots to an external file using R code which we will cover later in this <a href="TODO">Chapter</a></p>
-<p> </p>
-<p><img src="images/bg_plots3.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The lattice system is implemented in the <code>lattice()</code> package that comes pre-installed with the standard installation of R. However, it won’t be loaded by default so you’ll first need to use <code>library(lattice)</code> to access all the plotting functions. Unlike base R graphics, lattice plots are mostly generated all in one go using a single function so there’s no need to use high and low level plotting functions to customise the look of a plot. This can be a real advantage as things like margin sizes and plot spacing are adjusted automatically. Lattice plots also make a few more decisions for you about how the plots will look but this comes with a slight cost as customising lattice plots to get them to look exactly how you want can become quite involved. Where lattice plots really shine is plotting complex multi-dimensional data using panel plots (also called trellis plots). We’ll see a couple of examples of these types of plots later on in the Chapter.</p>
 </div>
             </section>
 
@@ -378,7 +379,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="install-rm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="simple-base-r-plots.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="getting-started-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
