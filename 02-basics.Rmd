@@ -228,40 +228,42 @@ my_seq3
 
 You can also repeat non-numeric values
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_seq4 <- rep("abc", times = 3)	# repeats ‘abc’ 3 times 
 my_seq4
 ```
 
 or each element of a series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
-my_seq5 <- rep(1:5, times = 3)	# repeats the series 1 to 5, 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq5 <- rep(1:5, times = 3)	# repeats the series 1 to 
+                                # 5, 3 times
 my_seq5
 ```
 
 or elements of a series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
-my_seq6 <- rep(1:5, each = 3)	# repeats each element of the series 
-                              # 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq6 <- rep(1:5, each = 3)	# repeats each element of the 
+                              #series 3 times
 my_seq6
 ```
 
 We can also repeat a non-sequential series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
-my_seq7 <- rep(c(3, 1, 10, 7), each = 3)	# repeats each element of 
-                                          # the series 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+my_seq7 <- rep(c(3, 1, 10, 7), each = 3) # repeats each 
+                                         # element of the 
+                                         # series 3 times
 my_seq7
 ```
 
 Note in the code above how we've used the `c()` function inside the `seq()` function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 in_vec <- c(3, 1, 10, 7)
-my_seq7 <- rep(in_vec, each = 3)	# repeats each element of the 
-                                  # series 3 times
+my_seq7 <- rep(in_vec, each = 3)	# repeats each element of 
+                                  # the series 3 times
 my_seq7
 ```
 
@@ -326,11 +328,11 @@ and only those element that are `TRUE` will be extracted.
 In addition to the `<` and `>` operators you can also use composite operators to increase the complexity of your expressions. For example the expression for 'greater or equal to' is `>=`. To test whether a value is equal to a value we need to use a double equals symbol `==` and for 'not equal to' we use `!=` (the `!` symbol means 'not').   
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-my_vec[my_vec >= 4]         # values greater or equal to 4
-my_vec[my_vec < 4]          # values less than 4
-my_vec[my_vec <= 4]         # values less than or equal to 4
-my_vec[my_vec == 4]         # values equal to 4
-my_vec[my_vec != 4]         # values not equal to 4
+my_vec[my_vec >= 4]        # values greater or equal to 4
+my_vec[my_vec < 4]         # values less than 4
+my_vec[my_vec <= 4]        # values less than or equal to 4
+my_vec[my_vec == 4]        # values equal to 4
+my_vec[my_vec != 4]        # values not equal to 4
 ```
 
 We can also combine multiple logical expressions using [Boolean expressions][boolean]. In R the `&` symbol means AND and the `|` symbol means OR. For example, to extract values in `my_vec` which are less than 6 AND greater than 2
