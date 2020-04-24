@@ -348,11 +348,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> Conditional statements</h2>
 <p><code>x * y</code> does not apply any logic. It merely takes whatever <code>x</code> is and multiplies it by <code>y</code>. Conditional statements are how you inject some logic into your code. The most commonly used conditional statement is <code>if</code>. Whenever you see an <code>if</code> statement, read it as <em>“If X is TRUE, do a thing”</em>. Including an <code>else</code> statement simply extends the logic to <em>“If X is TRUE, do a thing, or else do something different”</em>.</p>
 <p>Both <code>if</code> and <code>else</code> statements allow you to execute code, depending on a condition being either <code>TRUE</code> or <code>FALSE</code>. It looks like this:</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb311-1" data-line-number="1"><span class="cf">if</span> (condition) {</a>
-<a class="sourceLine" id="cb311-2" data-line-number="2">  Code executed when condition is <span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb311-3" data-line-number="3">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb311-4" data-line-number="4">  Code executed when condition is <span class="ot">FALSE</span></a>
-<a class="sourceLine" id="cb311-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="cf">if</span> (condition) {</a>
+<a class="sourceLine" id="cb325-2" data-line-number="2">  Code executed when condition is <span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb325-3" data-line-number="3">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb325-4" data-line-number="4">  Code executed when condition is <span class="ot">FALSE</span></a>
+<a class="sourceLine" id="cb325-5" data-line-number="5">}</a></code></pre></div>
 <p>To delve into this a bit more, we can use an old programmer joke to set up a problem.</p>
 <hr />
 <p>A programmer’s partner says: <em>‘Please go to the store and buy a carton of milk and if they have eggs, get six.’</em></p>
@@ -361,39 +361,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The programmer replied <em>‘They had eggs’</em></p>
 <hr />
 <p>At the risk of explaining a joke, the conditional statement here is whether or not the store had eggs. If coded as per the original request, the programmer should bring 6 cartons of milk if the store had eggs (condition = TRUE), or else bring 1 carton of milk if there weren’t any eggs (condition = FALSE). In R this is coded as:</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1">eggs &lt;-<span class="st"> </span><span class="ot">TRUE</span> <span class="co"># Whether there were eggs in the store</span></a>
-<a class="sourceLine" id="cb312-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb312-3" data-line-number="3"><span class="cf">if</span> (eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) { <span class="co"># If there are eggs</span></a>
-<a class="sourceLine" id="cb312-4" data-line-number="4">  n.milk &lt;-<span class="st"> </span><span class="dv">6</span> <span class="co"># Get 6 cartons of milk</span></a>
-<a class="sourceLine" id="cb312-5" data-line-number="5">    } <span class="cf">else</span> { <span class="co"># If there are not eggs</span></a>
-<a class="sourceLine" id="cb312-6" data-line-number="6">  n.milk &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># Get 1 carton of milk</span></a>
-<a class="sourceLine" id="cb312-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb326-1" data-line-number="1">eggs &lt;-<span class="st"> </span><span class="ot">TRUE</span> <span class="co"># Whether there were eggs in the store</span></a>
+<a class="sourceLine" id="cb326-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb326-3" data-line-number="3"><span class="cf">if</span> (eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) { <span class="co"># If there are eggs</span></a>
+<a class="sourceLine" id="cb326-4" data-line-number="4">  n.milk &lt;-<span class="st"> </span><span class="dv">6</span> <span class="co"># Get 6 cartons of milk</span></a>
+<a class="sourceLine" id="cb326-5" data-line-number="5">    } <span class="cf">else</span> { <span class="co"># If there are not eggs</span></a>
+<a class="sourceLine" id="cb326-6" data-line-number="6">  n.milk &lt;-<span class="st"> </span><span class="dv">1</span> <span class="co"># Get 1 carton of milk</span></a>
+<a class="sourceLine" id="cb326-7" data-line-number="7">}</a></code></pre></div>
 <p>We can then check <code>n.milk</code> to see how many milk cartons they returned with.</p>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb313-1" data-line-number="1">n.milk</a>
-<a class="sourceLine" id="cb313-2" data-line-number="2"><span class="co"># [1] 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">n.milk</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
 <p>And just like the joke, our R code has missed that the condition was to determine whether or not to buy eggs, not more milk (this actually is a loose example of the <a href="https://en.wikipedia.org/wiki/Winograd_Schema_Challenge">Winograd Scheme</a>, designed to test the <em>intelligence</em> of artificial intelligence by whether it can reason what the intended referent of a sentence is).</p>
 <p>We could code the exact same egg-milk joke conditional statement using an <code>ifelse()</code> function.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">eggs &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
-<a class="sourceLine" id="cb314-2" data-line-number="2">n.milk &lt;-<span class="st"> </span><span class="kw">ifelse</span>(eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">6</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1">eggs &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb329-2" data-line-number="2">n.milk &lt;-<span class="st"> </span><span class="kw">ifelse</span>(eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>, <span class="dv">6</span>, <span class="dv">1</span>)</a></code></pre></div>
 <p>This <code>ifelse()</code> function is doing exactly the same as the more fleshed out version from earlier, but is now condensed down into a single line of code. It has the added benefit of working on vectors as opposed to single values (more on this later when we introduce loops). The logic is read in the same way; “If there are eggs, assign a value of 6 to <code>n.milk</code>, if there aren’t any eggs, assign 1 to <code>n.milk</code>”.</p>
 <p>We can check again to make sure the logic is still returning 6 cartons of milk:</p>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">n.milk</a>
-<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="co"># [1] 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb330-1" data-line-number="1">n.milk</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
 <p>Currently we’d have to copy and paste code if we wanted to change if eggs were in the store or not. We learned above how to avoid lots of copy and pasting by creating a function. Just as with the simple <code>x * y</code> expression in our previous <code>multiply_columns()</code> function, the logical statements above are straightforward to code and well suited to be turned into a function. How about we do just that and wrap this logical statement up in a function?</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1">n.milk &lt;-<span class="st"> </span><span class="cf">function</span>(eggs) {</a>
-<a class="sourceLine" id="cb316-2" data-line-number="2">  <span class="cf">if</span> (eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {</a>
-<a class="sourceLine" id="cb316-3" data-line-number="3">    <span class="dv">6</span></a>
-<a class="sourceLine" id="cb316-4" data-line-number="4">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb316-5" data-line-number="5">    <span class="dv">1</span></a>
-<a class="sourceLine" id="cb316-6" data-line-number="6">  }</a>
-<a class="sourceLine" id="cb316-7" data-line-number="7">}</a></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb332-1" data-line-number="1">n.milk &lt;-<span class="st"> </span><span class="cf">function</span>(eggs) {</a>
+<a class="sourceLine" id="cb332-2" data-line-number="2">  <span class="cf">if</span> (eggs <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) {</a>
+<a class="sourceLine" id="cb332-3" data-line-number="3">    <span class="dv">6</span></a>
+<a class="sourceLine" id="cb332-4" data-line-number="4">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb332-5" data-line-number="5">    <span class="dv">1</span></a>
+<a class="sourceLine" id="cb332-6" data-line-number="6">  }</a>
+<a class="sourceLine" id="cb332-7" data-line-number="7">}</a></code></pre></div>
 <p>We’ve now created a function called <code>n.milk()</code> where the only argument is <code>eggs</code>. The user of the function specifies if eggs is <code>TRUE</code> or <code>FALSE</code>, and the function will then use a conditional statement to determine how many cartons of milk are returned.</p>
 <p>Let’s quickly try:</p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="kw">n.milk</span>(<span class="dt">eggs =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb317-2" data-line-number="2"><span class="co"># [1] 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1"><span class="kw">n.milk</span>(<span class="dt">eggs =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## [1] 6</code></pre>
 <p>And the joke is maintained. Notice in this case we have actually specified that we are fulfilling the <code>eggs</code> argument (<code>eggs = TRUE</code>)? In some functions, as with ours here, when a function only has a single argument we can be lazy and not name which argument we are fulfilling. In reality, it’s generally viewed as better practice to explicitly state which arguments you are fulfilling to avoid potential mistakes.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">n.milk</span>(<span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb318-2" data-line-number="2"><span class="co"># [1] 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="kw">n.milk</span>(<span class="ot">FALSE</span>)</a></code></pre></div>
+<pre><code>## [1] 1</code></pre>
 <p>You can do this even if you create a function with many arguments. This is why doing <code>plot(city$porto, city$aberdeen)</code> works even though we aren’t specifying which arguments are being fulfilled, the function was built so that the first argument is for the <code>x</code> variable and the second is for the <code>y</code> variable.</p>
 </div>
             </section>

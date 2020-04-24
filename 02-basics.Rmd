@@ -1,9 +1,5 @@
 # Some R basics {#basics_r}
 
-```{r setup2, echo=FALSE}
-source('common.R')
-```
-
 In this Chapter we'll introduce you to using R and RStudio to perform some basic R tasks such as creating objects and assigning values to objects, exploring different types of objects and how to perform some common operations on objects. We'll also learn how to get help in R and highlight some resources to help support your R learning. Finally, we'll cover how to save your work. 
 
 Before we continue, here are a few things to bear in mind as you work through this Chapter:
@@ -135,7 +131,7 @@ Notice that to display the value of `my_obj3` we also need to write the object's
 char_obj <- "hello"
 char_obj2 <- "world!"
 char_obj3 <- char_obj + char_obj2
-Error in char_obj + char_obj2 : non-numeric argument to binary operator
+Error in char_obj+char_obj2:non-numeric argument to binary operator
 ```
 
 The error message is essentially telling you that either one or both of the objects `char_obj` and `char_obj2` is not a number and therefore cannot be added together. 
@@ -165,7 +161,8 @@ outputSummary <- "my analysis"
 There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. `2my_variable` or `.2my_variable`).  You should also avoid using non-alphanumeric characters in your object names (i.e. &, ^, /, ! etc). In addition, make sure you don’t name your objects with reserved words (i.e. `TRUE`, `NA`) and it's never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is 
 
 ```{r, echo=TRUE, eval=FALSE}
-data <- read.table("mydatafile", header = TRUE) # data is a function!
+data <- read.table("mydatafile", header = TRUE) #data is a
+                                                # function!
 ```
 
 ## R functions
@@ -191,16 +188,16 @@ my_vec
 Now that we've created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`, `var()`, `sd()` and `length()` functions
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-mean(my_vec)          # returns the mean of my_vec
-var(my_vec)           # returns the variance of my_vec
-sd(my_vec)            # returns the standard deviation of my_vec
-length(my_vec)        # returns the number of elements in my_vec
+mean(my_vec)    # returns the mean of my_vec
+var(my_vec)     # returns the variance of my_vec
+sd(my_vec)      # returns the standard deviation of my_vec
+length(my_vec)  # returns the number of elements in my_vec
 ```
 
 If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-vec_mean <- mean(my_vec)          # returns the mean of my_vec
+vec_mean <- mean(my_vec)    # returns the mean of my_vec
 vec_mean
 ```
 
@@ -231,37 +228,40 @@ my_seq3
 
 You can also repeat non-numeric values
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
 my_seq4 <- rep("abc", times = 3)	# repeats ‘abc’ 3 times 
 my_seq4
 ```
 
 or each element of a series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-my_seq5 <- rep(1:5, times = 3)		# repeats the series 1 to 5, 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
+my_seq5 <- rep(1:5, times = 3)	# repeats the series 1 to 5, 3 times
 my_seq5
 ```
 
 or elements of a series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-my_seq6 <- rep(1:5, each = 3)	# repeats each element of the series 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
+my_seq6 <- rep(1:5, each = 3)	# repeats each element of the series 
+                              # 3 times
 my_seq6
 ```
 
 We can also repeat a non-sequential series
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
-my_seq7 <- rep(c(3, 1, 10, 7), each = 3)	# repeats each element of the series 3 times
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
+my_seq7 <- rep(c(3, 1, 10, 7), each = 3)	# repeats each element of 
+                                          # the series 3 times
 my_seq7
 ```
 
 Note in the code above how we've used the `c()` function inside the `seq()` function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.
 
-```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
+```{r, echo=TRUE, eval=TRUE, collapse=TRUE, linewidth=60}
 in_vec <- c(3, 1, 10, 7)
-my_seq7 <- rep(in_vec, each = 3)	# repeats each element of the series 3 times
+my_seq7 <- rep(in_vec, each = 3)	# repeats each element of the 
+                                  # series 3 times
 my_seq7
 ```
 
@@ -397,7 +397,7 @@ Whilst sorting a single vector is fun, perhaps a more useful task would be to so
 height <- c(180, 155, 160, 167, 181)
 height
 
-p.names <- c ("Joanna", "Charlotte", "Helen", "Karen", "Amy")
+p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
 p.names
 ```
 

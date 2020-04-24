@@ -6,19 +6,12 @@ knitr::opts_chunk$set(
 	comment = "#",
 	collapse = TRUE
 	# cache = TRUE,
-	# fig.retina = 0.8, # figures are either vectors or 300 dpi diagrams
-	# dpi = 300,
-	# out.width = "70%",
-	# fig.align = 'center',
-	# fig.width = 6,
-	# fig.asp = 0.618,  # 1 / phi
-	# fig.show = "hold"
 )
 
-options(
-	rlang_trace_top_env = rlang::current_env(),
-	rlang__backtrace_on_error = "none"
-)
+# options(
+# 	rlang_trace_top_env = rlang::current_env(),
+# 	rlang__backtrace_on_error = "none"
+# )
 
 options(
 	digits = 4,
@@ -52,17 +45,17 @@ if (knitr::is_latex_output()) {
 # 	}
 # })
 
-check_quietly <- purrr::quietly(devtools::check)
-install_quietly <- purrr::quietly(devtools::install)
-
-shhh_check <- function(..., quiet = TRUE) {
-	out <- check_quietly(..., quiet = quiet)
-	out$result
-}
-
-pretty_install <- function(...) {
-	out <- install_quietly(...)
-	output <- strsplit(out$output, split = "\n")[[1]]
-	output <- grep("^(\\s*|[-|])$", output, value = TRUE, invert = TRUE)
-	c(output, out$messages)
-}
+# check_quietly <- purrr::quietly(devtools::check)
+# install_quietly <- purrr::quietly(devtools::install)
+# 
+# shhh_check <- function(..., quiet = TRUE) {
+# 	out <- check_quietly(..., quiet = quiet)
+# 	out$result
+# }
+# 
+# pretty_install <- function(...) {
+# 	out <- install_quietly(...)
+# 	output <- strsplit(out$output, split = "\n")[[1]]
+# 	output <- grep("^(\\s*|[-|])$", output, value = TRUE, invert = TRUE)
+# 	c(output, out$messages)
+# }

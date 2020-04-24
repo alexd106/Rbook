@@ -41,7 +41,7 @@ To prevent functions from being _too_ stupid, you the user, provide the informat
 This means that when we make a function, we can specify what arguments the user must fulfill (e.g. `argument1` and `argument2`), as well as what to do once it has this information (`expression`):
 
 ```{r generic_function, eval = FALSE}
-nameOfFunction <- function(argument1, argument2,…) {expression}
+nameOfFunction <- function(argument1, argument2, ...) {expression}
 ```
 
 The first thing to note is that we've used the function `function()` to create a new function. To walk through the above code; we're creating a function called `nameOfFunction`. Within the brackets we specify what information (i.e. arguments) the function requires to run (as many or as few as needed). These arguments are then passed to the expression part of the function. The expression can be any valid R command or set of R commands and is usually contained between a pair of braces `{ }` (if a function is only one line long you can omit the braces). Once you run the above code, you can then use your new function by typing:

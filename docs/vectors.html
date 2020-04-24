@@ -353,151 +353,151 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="positional-index" class="section level4 unnumbered">
 <h4>Positional index</h4>
 <p>To extract elements based on their position we simply write the position inside the <code>[ ]</code>. For example, to extract the 3rd value of <code>my_vec</code></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">my_vec        <span class="co"># remind ourselves what my_vec looks like</span></a>
-<a class="sourceLine" id="cb47-2" data-line-number="2"><span class="co"># [1] 2 3 1 6 4 3 3 7</span></a>
-<a class="sourceLine" id="cb47-3" data-line-number="3">my_vec[<span class="dv">3</span>]     <span class="co"># extract the 3rd value</span></a>
-<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co"># [1] 1</span></a>
-<a class="sourceLine" id="cb47-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb47-6" data-line-number="6"><span class="co"># if you want to store this value in another object</span></a>
-<a class="sourceLine" id="cb47-7" data-line-number="7">val_<span class="dv">3</span> &lt;-<span class="st"> </span>my_vec[<span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb47-8" data-line-number="8">val_<span class="dv">3</span></a>
-<a class="sourceLine" id="cb47-9" data-line-number="9"><span class="co"># [1] 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_vec        <span class="co"># remind ourselves what my_vec looks like</span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co">## [1] 2 3 1 6 4 3 3 7</span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">my_vec[<span class="dv">3</span>]     <span class="co"># extract the 3rd value</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb48-6" data-line-number="6"><span class="co"># if you want to store this value in another object</span></a>
+<a class="sourceLine" id="cb48-7" data-line-number="7">val_<span class="dv">3</span> &lt;-<span class="st"> </span>my_vec[<span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb48-8" data-line-number="8">val_<span class="dv">3</span></a>
+<a class="sourceLine" id="cb48-9" data-line-number="9"><span class="co">## [1] 1</span></a></code></pre></div>
 <p>Note that the positional index starts at 1 rather than 0 like some other other programming languages (i.e. Python).</p>
 <p>We can also extract more than one value by using the <code>c()</code> function inside the square brackets. Here we extract the 1<sup>st</sup>, 5<sup>th</sup>, 6<sup>th</sup> and 8<sup>th</sup> element from the <code>my_vec</code> object</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
-<a class="sourceLine" id="cb48-2" data-line-number="2"><span class="co"># [1] 2 4 3 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">8</span>)]</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co">## [1] 2 4 3 7</span></a></code></pre></div>
 <p>Or we can extract a range of values using the <code>:</code> notation. To extract the values from the 3<sup>rd</sup> to the 8<sup>th</sup> elements</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">my_vec[<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</a>
-<a class="sourceLine" id="cb49-2" data-line-number="2"><span class="co"># [1] 1 6 4 3 3 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">my_vec[<span class="dv">3</span><span class="op">:</span><span class="dv">8</span>]</a>
+<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co">## [1] 1 6 4 3 3 7</span></a></code></pre></div>
 </div>
 <div id="logical-index" class="section level4 unnumbered">
 <h4>Logical index</h4>
 <p>Another really useful way to extract data from a vector is to use a logical expression as an index. For example, to extract all elements with a value greater than 4 in the vector <code>my_vec</code></p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="co"># [1] 6 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span>]</a>
+<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co">## [1] 6 7</span></a></code></pre></div>
 <p>Here, the logical expression is <code>my_vec &gt; 4</code> and R will only extract those elements that satisfy this logical condition. So how does this actually work? If we look at the output of just the logical expression without the square brackets you can see that R returns a vector containing either <code>TRUE</code> or <code>FALSE</code> which correspond to whether the logical condition is satisfied for each element. In this case only the 4<sup>th</sup> and 8<sup>th</sup> elements return a <code>TRUE</code> as their value is greater than 4.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb51-1" data-line-number="1">my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb51-2" data-line-number="2"><span class="co"># [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co">## [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></a></code></pre></div>
 <p>So what R is actually doing under the hood is equivalent to</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="co"># [1] 6 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[<span class="kw">c</span>(<span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>)]</a>
+<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co">## [1] 6 7</span></a></code></pre></div>
 <p>and only those element that are <code>TRUE</code> will be extracted.</p>
 <p>In addition to the <code>&lt;</code> and <code>&gt;</code> operators you can also use composite operators to increase the complexity of your expressions. For example the expression for ‘greater or equal to’ is <code>&gt;=</code>. To test whether a value is equal to a value we need to use a double equals symbol <code>==</code> and for ‘not equal to’ we use <code>!=</code> (the <code>!</code> symbol means ‘not’).</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb53-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values greater or equal to 4</span></a>
-<a class="sourceLine" id="cb53-2" data-line-number="2"><span class="co"># [1] 6 4 7</span></a>
-<a class="sourceLine" id="cb53-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]          <span class="co"># values less than 4</span></a>
-<a class="sourceLine" id="cb53-4" data-line-number="4"><span class="co"># [1] 2 3 1 3 3</span></a>
-<a class="sourceLine" id="cb53-5" data-line-number="5">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than or equal to 4</span></a>
-<a class="sourceLine" id="cb53-6" data-line-number="6"><span class="co"># [1] 2 3 1 4 3 3</span></a>
-<a class="sourceLine" id="cb53-7" data-line-number="7">my_vec[my_vec <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values equal to 4</span></a>
-<a class="sourceLine" id="cb53-8" data-line-number="8"><span class="co"># [1] 4</span></a>
-<a class="sourceLine" id="cb53-9" data-line-number="9">my_vec[my_vec <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values not equal to 4</span></a>
-<a class="sourceLine" id="cb53-10" data-line-number="10"><span class="co"># [1] 2 3 1 6 3 3 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">my_vec[my_vec <span class="op">&gt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values greater or equal to 4</span></a>
+<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="co">## [1] 6 4 7</span></a>
+<a class="sourceLine" id="cb54-3" data-line-number="3">my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">4</span>]          <span class="co"># values less than 4</span></a>
+<a class="sourceLine" id="cb54-4" data-line-number="4"><span class="co">## [1] 2 3 1 3 3</span></a>
+<a class="sourceLine" id="cb54-5" data-line-number="5">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values less than or equal to 4</span></a>
+<a class="sourceLine" id="cb54-6" data-line-number="6"><span class="co">## [1] 2 3 1 4 3 3</span></a>
+<a class="sourceLine" id="cb54-7" data-line-number="7">my_vec[my_vec <span class="op">==</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values equal to 4</span></a>
+<a class="sourceLine" id="cb54-8" data-line-number="8"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb54-9" data-line-number="9">my_vec[my_vec <span class="op">!=</span><span class="st"> </span><span class="dv">4</span>]         <span class="co"># values not equal to 4</span></a>
+<a class="sourceLine" id="cb54-10" data-line-number="10"><span class="co">## [1] 2 3 1 6 3 3 7</span></a></code></pre></div>
 <p>We can also combine multiple logical expressions using <a href="https://en.wikipedia.org/wiki/Boolean_expression">Boolean expressions</a>. In R the <code>&amp;</code> symbol means AND and the <code>|</code> symbol means OR. For example, to extract values in <code>my_vec</code> which are less than 6 AND greater than 2</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1">val26 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</a>
-<a class="sourceLine" id="cb54-2" data-line-number="2">val26</a>
-<a class="sourceLine" id="cb54-3" data-line-number="3"><span class="co"># [1] 3 4 3 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">val26 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span>]</a>
+<a class="sourceLine" id="cb55-2" data-line-number="2">val26</a>
+<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co">## [1] 3 4 3 3</span></a></code></pre></div>
 <p>or extract values in <code>my_vec</code> that are greater than 6 OR less than 3</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb55-1" data-line-number="1">val63 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb55-2" data-line-number="2">val63</a>
-<a class="sourceLine" id="cb55-3" data-line-number="3"><span class="co"># [1] 2 1 7</span></a></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">val63 &lt;-<span class="st"> </span>my_vec[my_vec <span class="op">&gt;</span><span class="st"> </span><span class="dv">6</span> <span class="op">|</span><span class="st"> </span>my_vec <span class="op">&lt;</span><span class="st"> </span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb56-2" data-line-number="2">val63</a>
+<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co">## [1] 2 1 7</span></a></code></pre></div>
 </div>
 </div>
 <div id="replacing-elements" class="section level3">
 <h3><span class="header-section-number">2.4.2</span> Replacing elements</h3>
 <p>We can change the values of some elements in a vector using our <code>[ ]</code> notation in combination with the assignment operator <code>&lt;-</code>. For example, to replace the 4<sup>th</sup> value of our <code>my_vec</code> object from <code>6</code> to <code>500</code></p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">my_vec[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">500</span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2">my_vec</a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="co"># [1]   2   3   1 500   4   3   3   7</span></a></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">my_vec[<span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">500</span></a>
+<a class="sourceLine" id="cb57-2" data-line-number="2">my_vec</a>
+<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="co">## [1]   2   3   1 500   4   3   3   7</span></a></code></pre></div>
 <p>We can also replace more than one value or even replace values based on a logical expression</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1"><span class="co"># replace the 6th and 7th element with 100</span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2">my_vec[<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>)] &lt;-<span class="st"> </span><span class="dv">100</span></a>
-<a class="sourceLine" id="cb57-3" data-line-number="3">my_vec</a>
-<a class="sourceLine" id="cb57-4" data-line-number="4"><span class="co"># [1]   2   3   1 500   4 100 100   7</span></a>
-<a class="sourceLine" id="cb57-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb57-6" data-line-number="6"><span class="co"># replace element that are less than or equal to 4 with 1000</span></a>
-<a class="sourceLine" id="cb57-7" data-line-number="7">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb57-8" data-line-number="8">my_vec</a>
-<a class="sourceLine" id="cb57-9" data-line-number="9"><span class="co"># [1] 1000 1000 1000  500 1000  100  100    7</span></a></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1"><span class="co"># replace the 6th and 7th element with 100</span></a>
+<a class="sourceLine" id="cb58-2" data-line-number="2">my_vec[<span class="kw">c</span>(<span class="dv">6</span>, <span class="dv">7</span>)] &lt;-<span class="st"> </span><span class="dv">100</span></a>
+<a class="sourceLine" id="cb58-3" data-line-number="3">my_vec</a>
+<a class="sourceLine" id="cb58-4" data-line-number="4"><span class="co">## [1]   2   3   1 500   4 100 100   7</span></a>
+<a class="sourceLine" id="cb58-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb58-6" data-line-number="6"><span class="co"># replace element that are less than or equal to 4 with 1000</span></a>
+<a class="sourceLine" id="cb58-7" data-line-number="7">my_vec[my_vec <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>] &lt;-<span class="st"> </span><span class="dv">1000</span></a>
+<a class="sourceLine" id="cb58-8" data-line-number="8">my_vec</a>
+<a class="sourceLine" id="cb58-9" data-line-number="9"><span class="co">## [1] 1000 1000 1000  500 1000  100  100    7</span></a></code></pre></div>
 </div>
 <div id="vec_ord" class="section level3">
 <h3><span class="header-section-number">2.4.3</span> Ordering elements</h3>
 <p>In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest value we can use the <code>sort()</code> function</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb58-1" data-line-number="1">vec_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec)</a>
-<a class="sourceLine" id="cb58-2" data-line-number="2">vec_sort</a>
-<a class="sourceLine" id="cb58-3" data-line-number="3"><span class="co"># [1]    7  100  100  500 1000 1000 1000 1000</span></a></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">vec_sort &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec)</a>
+<a class="sourceLine" id="cb59-2" data-line-number="2">vec_sort</a>
+<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co">## [1]    7  100  100  500 1000 1000 1000 1000</span></a></code></pre></div>
 <p>To reverse the sort, from highest to lowest, we can either include the <code>decreasing = TRUE</code> argument when using the <code>sort()</code> function</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb59-1" data-line-number="1">vec_sort2 &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb59-2" data-line-number="2">vec_sort2</a>
-<a class="sourceLine" id="cb59-3" data-line-number="3"><span class="co"># [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">vec_sort2 &lt;-<span class="st"> </span><span class="kw">sort</span>(my_vec, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb60-2" data-line-number="2">vec_sort2</a>
+<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co">## [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
 <p>or first sort the vector using the <code>sort()</code> function and then reverse the sorted vector using the <code>rev()</code> function. This is another example of nesting one function inside another function.</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb60-1" data-line-number="1">vec_sort3 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">sort</span>(my_vec))</a>
-<a class="sourceLine" id="cb60-2" data-line-number="2">vec_sort3</a>
-<a class="sourceLine" id="cb60-3" data-line-number="3"><span class="co"># [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">vec_sort3 &lt;-<span class="st"> </span><span class="kw">rev</span>(<span class="kw">sort</span>(my_vec))</a>
+<a class="sourceLine" id="cb61-2" data-line-number="2">vec_sort3</a>
+<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="co">## [1] 1000 1000 1000 1000  500  100  100    7</span></a></code></pre></div>
 <p>Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the <code>order()</code> function in combination with <code>[ ]</code>. To demonstrate this let’s create a vector called <code>height</code> containing the height of 5 different people and another vector called <code>p.names</code> containing the names of these people (so Joanna is 180 cm, Charlotte is 155 cm etc)</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb61-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
-<a class="sourceLine" id="cb61-2" data-line-number="2">height</a>
-<a class="sourceLine" id="cb61-3" data-line-number="3"><span class="co"># [1] 180 155 160 167 181</span></a>
-<a class="sourceLine" id="cb61-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb61-5" data-line-number="5">p.names &lt;-<span class="st"> </span><span class="kw">c</span> (<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
-<a class="sourceLine" id="cb61-6" data-line-number="6">p.names</a>
-<a class="sourceLine" id="cb61-7" data-line-number="7"><span class="co"># [1] &quot;Joanna&quot;    &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Amy&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb62-2" data-line-number="2">height</a>
+<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="co">## [1] 180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb62-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb62-5" data-line-number="5">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb62-6" data-line-number="6">p.names</a>
+<a class="sourceLine" id="cb62-7" data-line-number="7"><span class="co">## [1] &quot;Joanna&quot;    &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Amy&quot;</span></a></code></pre></div>
 <p>Our goal is to order the people in <code>p.names</code> in ascending order of their <code>height</code>. The first thing we’ll do is use the <code>order()</code> function with the <code>height</code> variable to create a vector called <code>height_ord</code></p>
-<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb62-1" data-line-number="1">height_ord &lt;-<span class="st"> </span><span class="kw">order</span>(height)</a>
-<a class="sourceLine" id="cb62-2" data-line-number="2">height_ord</a>
-<a class="sourceLine" id="cb62-3" data-line-number="3"><span class="co"># [1] 2 3 4 1 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">height_ord &lt;-<span class="st"> </span><span class="kw">order</span>(height)</a>
+<a class="sourceLine" id="cb63-2" data-line-number="2">height_ord</a>
+<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="co">## [1] 2 3 4 1 5</span></a></code></pre></div>
 <p>OK, what’s going on here? The first value, <code>2</code>, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element <code>5</code> which is 181. Now that we have a vector of the position of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb63-1" data-line-number="1">names_ord &lt;-<span class="st"> </span>p.names[height_ord]</a>
-<a class="sourceLine" id="cb63-2" data-line-number="2">names_ord</a>
-<a class="sourceLine" id="cb63-3" data-line-number="3"><span class="co"># [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1">names_ord &lt;-<span class="st"> </span>p.names[height_ord]</a>
+<a class="sourceLine" id="cb64-2" data-line-number="2">names_ord</a>
+<a class="sourceLine" id="cb64-3" data-line-number="3"><span class="co">## [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></a></code></pre></div>
 <p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in <a href="data-r.html#data_r">Chapter 3</a>.</p>
 </div>
 <div id="vectorisation" class="section level3">
 <h3><span class="header-section-number">2.4.4</span> Vectorisation</h3>
 <p>One of the great things about R functions is that most of them are vectorised. This means that the function will operate on all elements of a vector without needing to apply the function on each element separately. For example, to multiple each element of a vector by 5 we can simply use</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb64-1" data-line-number="1"><span class="co"># create a vector</span></a>
-<a class="sourceLine" id="cb64-2" data-line-number="2">my_vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">20</span>)</a>
-<a class="sourceLine" id="cb64-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb64-4" data-line-number="4"><span class="co"># multiply each element by 5</span></a>
-<a class="sourceLine" id="cb64-5" data-line-number="5">my_vec2 <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb64-6" data-line-number="6"><span class="co"># [1]  15  25  35   5  45 100</span></a></code></pre></div>
-<p>Or we can add the elements of two or more vectors</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co"># create a second vector</span></a>
-<a class="sourceLine" id="cb65-2" data-line-number="2">my_vec3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">11</span>, <span class="dv">0</span>)</a>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb65-1" data-line-number="1"><span class="co"># create a vector</span></a>
+<a class="sourceLine" id="cb65-2" data-line-number="2">my_vec2 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">20</span>)</a>
 <a class="sourceLine" id="cb65-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="co"># add both vectors</span></a>
-<a class="sourceLine" id="cb65-5" data-line-number="5">my_vec2 <span class="op">+</span><span class="st"> </span>my_vec3</a>
-<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="co"># [1] 20 20 20 20 20 20</span></a>
-<a class="sourceLine" id="cb65-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb65-8" data-line-number="8"><span class="co"># multiply both vectors</span></a>
-<a class="sourceLine" id="cb65-9" data-line-number="9">my_vec2 <span class="op">*</span><span class="st"> </span>my_vec3</a>
-<a class="sourceLine" id="cb65-10" data-line-number="10"><span class="co"># [1] 51 75 91 19 99  0</span></a></code></pre></div>
-<p>However, you must be careful when using vectorisation with vectors of different lengths as R will quietly recycle the elements in the shorter vector rather than throw a wobbly (error).</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># create a third vector</span></a>
-<a class="sourceLine" id="cb66-2" data-line-number="2">my_vec4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb65-4" data-line-number="4"><span class="co"># multiply each element by 5</span></a>
+<a class="sourceLine" id="cb65-5" data-line-number="5">my_vec2 <span class="op">*</span><span class="st"> </span><span class="dv">5</span></a>
+<a class="sourceLine" id="cb65-6" data-line-number="6"><span class="co">## [1]  15  25  35   5  45 100</span></a></code></pre></div>
+<p>Or we can add the elements of two or more vectors</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb66-1" data-line-number="1"><span class="co"># create a second vector</span></a>
+<a class="sourceLine" id="cb66-2" data-line-number="2">my_vec3 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">17</span>, <span class="dv">15</span>, <span class="dv">13</span>, <span class="dv">19</span>, <span class="dv">11</span>, <span class="dv">0</span>)</a>
 <a class="sourceLine" id="cb66-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co"># add both vectors - quiet recycling!</span></a>
-<a class="sourceLine" id="cb66-5" data-line-number="5">my_vec2 <span class="op">+</span><span class="st"> </span>my_vec4</a>
-<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co"># [1]  4  7  8  3 10 22</span></a></code></pre></div>
+<a class="sourceLine" id="cb66-4" data-line-number="4"><span class="co"># add both vectors</span></a>
+<a class="sourceLine" id="cb66-5" data-line-number="5">my_vec2 <span class="op">+</span><span class="st"> </span>my_vec3</a>
+<a class="sourceLine" id="cb66-6" data-line-number="6"><span class="co">## [1] 20 20 20 20 20 20</span></a>
+<a class="sourceLine" id="cb66-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb66-8" data-line-number="8"><span class="co"># multiply both vectors</span></a>
+<a class="sourceLine" id="cb66-9" data-line-number="9">my_vec2 <span class="op">*</span><span class="st"> </span>my_vec3</a>
+<a class="sourceLine" id="cb66-10" data-line-number="10"><span class="co">## [1] 51 75 91 19 99  0</span></a></code></pre></div>
+<p>However, you must be careful when using vectorisation with vectors of different lengths as R will quietly recycle the elements in the shorter vector rather than throw a wobbly (error).</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1"><span class="co"># create a third vector</span></a>
+<a class="sourceLine" id="cb67-2" data-line-number="2">my_vec4 &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb67-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb67-4" data-line-number="4"><span class="co"># add both vectors - quiet recycling!</span></a>
+<a class="sourceLine" id="cb67-5" data-line-number="5">my_vec2 <span class="op">+</span><span class="st"> </span>my_vec4</a>
+<a class="sourceLine" id="cb67-6" data-line-number="6"><span class="co">## [1]  4  7  8  3 10 22</span></a></code></pre></div>
 </div>
 <div id="na_vals" class="section level3">
 <h3><span class="header-section-number">2.4.5</span> Missing data</h3>
 <p>In R, missing data is usually represented by an <code>NA</code> symbol meaning ‘Not Available’. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let’s say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb67-1" data-line-number="1">temp  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">7.2</span>, <span class="ot">NA</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">6.5</span>, <span class="fl">5.8</span>, <span class="fl">5.8</span>, <span class="fl">5.5</span>, <span class="ot">NA</span>, <span class="fl">5.5</span>)</a>
-<a class="sourceLine" id="cb67-2" data-line-number="2">temp</a>
-<a class="sourceLine" id="cb67-3" data-line-number="3"><span class="co">#  [1] 7.2  NA 7.1 6.9 6.5 5.8 5.8 5.5  NA 5.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">temp  &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="fl">7.2</span>, <span class="ot">NA</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">6.5</span>, <span class="fl">5.8</span>, <span class="fl">5.8</span>, <span class="fl">5.5</span>, <span class="ot">NA</span>, <span class="fl">5.5</span>)</a>
+<a class="sourceLine" id="cb68-2" data-line-number="2">temp</a>
+<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co">##  [1] 7.2  NA 7.1 6.9 6.5 5.8 5.8 5.5  NA 5.5</span></a></code></pre></div>
 <p>We now want to calculate the mean temperature over these days using the <code>mean()</code> function</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb68-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp)</a>
-<a class="sourceLine" id="cb68-2" data-line-number="2">mean_temp</a>
-<a class="sourceLine" id="cb68-3" data-line-number="3"><span class="co"># [1] NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp)</a>
+<a class="sourceLine" id="cb69-2" data-line-number="2">mean_temp</a>
+<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co">## [1] NA</span></a></code></pre></div>
 <p>Flippin heck, what’s happened here? Why does the <code>mean()</code> function return an <code>NA</code>? Actually, R is doing something very sensible (at least in our opinion!). If a vector has a missing value then the only possible value to return when calculating a mean is <code>NA</code>. R doesn’t know that you perhaps want to ignore the <code>NA</code> values (R can’t read your mind - yet!). Happily, if we look at the help file (use <code>help(&quot;mean&quot;)</code> - see the <a href="help.html#help">next section</a> for more details) associated with the <code>mean()</code> function we can see there is an argument <code>na.rm =</code> which is set to <code>FALSE</code> by default.</p>
 <blockquote>
 <p>na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.</p>
 </blockquote>
 <p>If we change this argument to <code>na.rm = TRUE</code> when we use the <code>mean()</code> function this will allow us to ignore the <code>NA</code> values when calculating the mean</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb69-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb69-2" data-line-number="2">mean_temp</a>
-<a class="sourceLine" id="cb69-3" data-line-number="3"><span class="co"># [1] 6.287</span></a></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb70-1" data-line-number="1">mean_temp &lt;-<span class="st"> </span><span class="kw">mean</span>(temp, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb70-2" data-line-number="2">mean_temp</a>
+<a class="sourceLine" id="cb70-3" data-line-number="3"><span class="co">## [1] 6.2875</span></a></code></pre></div>
 <p>It’s important to note that the <code>NA</code> values have not been removed from our <code>temp</code> object (that would be bad practice), rather the <code>mean()</code> function has just ignored them. The point of the above is to highlight how we can change the default behaviour of a function using an appropriate argument. The problem is that not all functions will have an <code>na.rm =</code> argument, they might deal with <code>NA</code> values differently. However, the good news is that every help file associated with any function will <strong>always</strong> tell you how missing data are handled by default.</p>
 </div>
 </div>
