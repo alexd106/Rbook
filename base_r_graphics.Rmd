@@ -36,7 +36,7 @@ knitr::include_graphics(path = "images/bg_plots3.png")
 
 ## Simple base R plots
 
-There are many functions in R used to produce graphs, ranging from the very basic to the highly complex. It's impossible to cover every aspect of producing graphics in R in this introductory book. However, we'll cover most of the more common methods of graphing data and briefly describe how to customise the standard format later on in this [Chapter](TODO).
+There are many functions in R used to produce graphs, ranging from the very basic to the highly complex. It's impossible to cover every aspect of producing graphics in R in this introductory book. However, we'll cover most of the more common methods of graphing data and briefly describe how to customise your graphs later on in this [Chapter](TODO).
 
 The most common function used to produce graphs in R is (rather unsurprisingly) the `plot()` function. For example, to plot the `height` of petunia plants in our `flowers` data frame which we imported in [Chapter 3](#import_fnc).
 
@@ -49,14 +49,14 @@ plot(flowers$height)
 
 R has plotted the values of `height` (on the y axis) against an index since there is only one variable to plot. The index is just the row order of the values as they appear in the data frame. The `height` variable name have been automatically included as a y axis label and the axes scales have been automatically set.
 
-If we had only specified the variable `height` rather than `flowers$height` the plot function will throw an error as the variable `height` only exists in the `flowers` data frame object.
+If we'd only specified the variable `height` rather than `flowers$height` the plot function will throw an error as the variable `height` only exists in the `flowers` data frame object.
 
 ```{r plot2, echo=TRUE, eval=FALSE}
 plot(height)
 Error in plot(height) : object 'height' not found
 ```
 
-As many of the plotting functions do not have a `data =` argument to specify the data frame directly we can combine using the `plot()` function with the `with()` function.  
+As many of the plotting functions don't have a `data =` argument to specify the data frame directly we can use the `with()` function in combination with `plot()`.
 
 ```{r plot3, echo=TRUE, eval=FALSE}
 with(flowers, plot(height)) 
