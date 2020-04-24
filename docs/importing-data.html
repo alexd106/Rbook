@@ -204,7 +204,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
-<li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import-functions"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
+<li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import_fnc"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
 <li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
 <li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
 </ul></li>
@@ -323,7 +323,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1.2" data-path="install-rm.html"><a href="install-rm.html#mac-osx"><i class="fa fa-check"></i><b>9.1.2</b> Mac OSX</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a></li>
+<li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a><ul>
+<li class="chapter" data-level="10.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>10.1</b> Simple base R plots</a></li>
+</ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -365,7 +367,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>There are a couple of things to bear in mind when saving files to import into R which will make your life easier in the long run. Keep your column headings (if you have them) short and informative. Also avoid spaces in your column headings by replacing them with an underscore or a dot (i.e. replace <code>shoot height</code> with <code>shoot_height</code> or <code>shoot.height</code>) and avoid using special characters (i.e. <code>leaf area (mm^2)</code>). Remember, if you have missing data in your data frame (empty cells) you should use an <code>NA</code> to represent these missing values. This will keep the data frame tidy.</p>
 </div>
-<div id="import-functions" class="section level3">
+<div id="import_fnc" class="section level3">
 <h3><span class="header-section-number">3.3.2</span> Import functions</h3>
 <p>Once you’ve saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the <code>read.table()</code> function (we discuss some alternatives later in the chapter). The <code>read.table()</code> function is a very flexible function with a shed load of arguments (see <code>?read.table</code>) but it’s quite simple to use. Let’s import a tab delimited file called <code>flower.txt</code> which contains the data we saw previously in this <a href="data-structures.html#df">Chapter</a> and assign it to an object called <code>flowers</code>. The file is located in a <code>data</code> directory which itself is located in our <a href="dir-struct.html#dir_struct">root directory</a>. The first row of the data contains the variable (column) names. To use the <code>read.table()</code> function to import this file</p>
 <div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1">flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
