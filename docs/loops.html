@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a><ul>
 <li class="chapter" data-level="10.1" data-path="getting-started-1.html"><a href="getting-started-1.html"><i class="fa fa-check"></i><b>10.1</b> Getting started</a></li>
 <li class="chapter" data-level="10.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>10.2</b> Simple base R plots</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplots"><i class="fa fa-check"></i><b>10.2.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplot"><i class="fa fa-check"></i><b>10.2.1</b> Scatterplots</a></li>
 <li class="chapter" data-level="10.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>10.2.2</b> Histograms</a></li>
 <li class="chapter" data-level="10.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#box-and-violin-plots"><i class="fa fa-check"></i><b>10.2.3</b> Box and violin plots</a></li>
 <li class="chapter" data-level="10.2.4" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#dotcharts"><i class="fa fa-check"></i><b>10.2.4</b> Dot charts</a></li>
@@ -478,9 +478,9 @@ The most basic example of a <code>for</code> loop is:</p>
 <a class="sourceLine" id="cb363-18" data-line-number="18">  code.work &lt;-<span class="st"> </span><span class="kw">as.logical</span>(<span class="kw">sample.int</span>(<span class="dt">n =</span> <span class="dv">2</span>, <span class="dt">size =</span> <span class="dv">1</span>) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>) <span class="co"># don&#39;t worry too much about this line - uses as.logical to generate a random TRUE FALSE</span></a>
 <a class="sourceLine" id="cb363-19" data-line-number="19">  <span class="kw">print</span>(<span class="kw">paste</span>(week.days[i], <span class="kw">good.day</span>(<span class="dt">code.working =</span> code.work, <span class="dt">day =</span> week.days[i]), <span class="dt">sep =</span> <span class="st">&quot;: &quot;</span>))</a>
 <a class="sourceLine" id="cb363-20" data-line-number="20">}</a></code></pre></div>
-<pre><code>## [1] &quot;Monday: Hello darkness.&quot;
-## [1] &quot;Tuesday: So close to a good day... shame it&#39;s not a Friday&quot;
-## [1] &quot;Wednesday: So close to a good day... shame it&#39;s not a Friday&quot;
+<pre><code>## [1] &quot;Monday: So close to a good day... shame it&#39;s not a Friday&quot;
+## [1] &quot;Tuesday: Hello darkness.&quot;
+## [1] &quot;Wednesday: Hello darkness.&quot;
 ## [1] &quot;Thursday: So close to a good day... shame it&#39;s not a Friday&quot;
 ## [1] &quot;Friday: BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</code></pre>
 <p>Notice how we used <code>length(week.days)</code> when setting up our initial sequence to iterate through? We do this as it makes the loop future proofed. Instead of manually specifying how many <code>week.days</code> we’ve included, if we do it as above, we won’t have to change the loop every time we change <code>week.days</code>. This is also incredibly useful when working with larger vectors (imagine if <code>week.days</code> was &gt;100,000), as you wouldn’t have to count them yourself; use R to do the hard work for you.</p>

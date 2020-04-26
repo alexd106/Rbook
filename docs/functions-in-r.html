@@ -335,7 +335,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>10</b> Graphics with base R</a><ul>
 <li class="chapter" data-level="10.1" data-path="getting-started-1.html"><a href="getting-started-1.html"><i class="fa fa-check"></i><b>10.1</b> Getting started</a></li>
 <li class="chapter" data-level="10.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>10.2</b> Simple base R plots</a><ul>
-<li class="chapter" data-level="10.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplots"><i class="fa fa-check"></i><b>10.2.1</b> Scatterplots</a></li>
+<li class="chapter" data-level="10.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplot"><i class="fa fa-check"></i><b>10.2.1</b> Scatterplots</a></li>
 <li class="chapter" data-level="10.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>10.2.2</b> Histograms</a></li>
 <li class="chapter" data-level="10.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#box-and-violin-plots"><i class="fa fa-check"></i><b>10.2.3</b> Box and violin plots</a></li>
 <li class="chapter" data-level="10.2.4" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#dotcharts"><i class="fa fa-check"></i><b>10.2.4</b> Dot charts</a></li>
@@ -419,26 +419,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>No that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
 <div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb316-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
 <a class="sourceLine" id="cb316-2" data-line-number="2">porto_aberdeen_func</a></code></pre></div>
-<pre><code>##   [1] -0.1632354194  1.9194256092  1.1591318129  1.1078973003  0.7015265033
-##   [6]  4.6062754198 -0.0229809341  0.8517763450  0.0917118605 -0.5891487317
-##  [11] -0.0864730622 -0.0739569884 -0.6361716210 -0.0911219982  0.3479358996
-##  [16]  0.8752636776 -0.7956643033 -1.2445544042  2.0107111585 -0.5194065475
-##  [21] -1.5070807850  5.0093508135  0.1261485492 -0.4297681621  0.1157072892
-##  [26] -2.7461029807  1.4656624113  1.7517259631 -1.8262982835 -1.0768522188
-##  [31] -1.3748437275 -0.1458007538 -2.0901715365  0.1227418146 -0.2022661510
-##  [36] -0.5272708883 -0.0084418077 -0.0386568884 -0.1555363649 -0.1315462937
-##  [41]  0.0118863747 -1.4194140413  0.5357730216 -2.2093653306  0.0254473758
-##  [46] -1.3477530429 -0.2686817287  0.2437088307  0.5711008775  0.0143731495
-##  [51] -0.1779812514 -0.8333529509 -1.1791499837 -0.9126886376 -1.3783982761
-##  [56]  0.2276100117  1.2666251691  0.0112296836  0.0737993758 -0.1589683053
-##  [61]  0.0164637255  0.0006474804  0.0197802958  0.1022006505  0.9473159043
-##  [66] -1.1765827671 -0.4502373451  0.2399657569  1.4065601267 -0.1160192988
-##  [71] -0.0289742537 -0.9720774039  0.0590933464 -0.4320550724  0.0447890497
-##  [76] -0.4514428974 -0.6260488463  0.0178185037  0.4016738938  0.2226336842
-##  [81] -0.8965270129  0.0572343874 -0.0047762310 -0.2574701388  1.0862671522
-##  [86] -0.0008314394  0.2405906778 -0.2495699236  0.4308413616 -1.6320906636
-##  [91]  0.6602491431 -2.2778296036  0.7561088635 -0.0426441747 -0.3312151801
-##  [96] -0.0661006866 -0.5368081683  1.2103642636 -0.2713819450  0.4129819299</code></pre>
+<pre><code>##   [1] -0.189171153 -0.043536289  0.158882677 -0.056865646  0.330046339
+##   [6]  0.668381537 -0.770510147 -0.215319817  1.129244843 -1.037463952
+##  [11]  0.006881074 -0.097222729 -0.413396873 -0.201425201  0.971027664
+##  [16]  1.158187932 -2.989373415 -0.214182511 -1.801070030  0.074189705
+##  [21] -0.167900839  0.076285143  0.067799669  0.215294007  0.093036255
+##  [26]  0.228116513 -0.406176502  0.063457197  0.411014870  0.624100024
+##  [31] -1.866480375 -2.060825243 -0.432373398 -1.708479742 -0.588662382
+##  [36] -1.387294009 -0.104197121 -0.060139310 -1.151253002  0.266982787
+##  [41]  0.007028859 -0.571755472  0.731806972 -0.327519618 -0.459922934
+##  [46]  0.313035920  1.759453512 -0.549298657  0.345580419  0.096503020
+##  [51]  0.143332413 -0.158396350  2.172967606 -0.436120645  0.093891443
+##  [56]  0.343869897 -0.066265373 -4.129450777  0.888694409  1.052837784
+##  [61] -0.596190093  0.059290188 -0.219975353 -0.167176729  0.024231136
+##  [66] -0.180121880 -0.171431148  1.047822707  0.302427324  0.108315875
+##  [71] -0.397917320 -0.818493602  0.056923610  0.015670965 -0.083504051
+##  [76] -0.418334762 -0.283058539  1.246285623  0.152014383 -0.766573460
+##  [81]  0.173329584 -0.152712954  0.193904547 -0.640873711  0.253685505
+##  [86] -0.280570721 -0.150707312  1.826102695 -1.031128975 -1.562099739
+##  [91]  0.092985821 -0.930081098  0.249299965 -0.087071236  0.607289149
+##  [96]  0.035775943  0.077275802 -0.827684009  1.541078296  0.687066001</code></pre>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. Use <code>?identical</code> if you want to know more about this function.</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb318-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a></code></pre></div>
@@ -449,24 +449,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb320-2" data-line-number="2">aberdeen_nairobi_func</a></code></pre></div>
 <pre><code>##   [1]           NA           NA           NA           NA           NA
 ##   [6]           NA           NA           NA           NA           NA
-##  [11]  0.075837350 -1.089979147 -0.353208112  0.095927241  0.191176026
-##  [16]  0.093512299 -2.124886727 -1.020083652  0.843748756  0.621167660
-##  [21] -0.978068962  1.912893361 -0.150800030  0.167634294  0.204379581
-##  [26]  2.060024576 -1.609846480  0.538677555 -2.048932401 -0.257744677
-##  [31] -0.355895798  0.419173560  0.760747975  0.094899207 -0.014679889
-##  [36]  1.952958736 -0.403534244 -0.354281395 -0.734954065 -0.018033556
-##  [41] -0.009818578 -1.695625969 -0.899201233 -1.352752943  0.005155723
-##  [46] -0.112257858  0.021381404 -0.098940610  0.514812267  0.005252367
-##  [51]  0.264029094  1.374863931  1.548486065 -2.201069867  0.514430329
-##  [56]  0.241156578  0.963974388 -0.498317872  0.287626301  0.067974497
-##  [61] -0.175578276 -0.031689888  0.023959300  0.948982627 -0.877650780
-##  [66] -0.454911648 -0.620681611  0.329369720  0.667897203  2.000729455
-##  [71]  0.154058357  0.730125615  0.144250865 -0.144833181 -0.729276836
-##  [76] -0.222796643 -0.484639521 -0.136039606  0.553010901 -0.009595024
-##  [81]  1.303603193  0.690655781 -0.076938974  0.039019592 -0.208877050
-##  [86] -0.124215921  1.743874933  0.036953625 -0.353873465  1.694061725
-##  [91] -0.080213492 -0.600061347  1.256100673 -0.043929307 -0.107539812
-##  [96]  0.497536286 -1.156950470  4.582524129  0.567931707 -0.203786166</code></pre>
+##  [11]  0.010144679 -0.040665968  0.039627083 -0.473446365  1.879312142
+##  [16] -0.109466085 -1.087285439  0.294632521  2.914473102 -0.050332327
+##  [21]  0.099502207  0.147942067  0.228772796  0.536636458  0.060010978
+##  [26]  0.197103329 -0.164163527 -0.932099609  0.103933540  1.219922731
+##  [31] -0.131509482 -1.844506391 -0.271982054  0.783660025 -0.174434318
+##  [36]  0.966978258  0.579070216 -0.139681274  0.379257271  0.937129286
+##  [41]  0.213152143  0.194154594  1.703534354 -0.574783497 -0.099188245
+##  [46] -0.751607874  0.166401357 -0.248516628 -0.068446789  1.372175919
+##  [51] -0.045324483 -0.155641358 -0.270260818 -0.064325811  0.010050301
+##  [56]  0.729529731 -0.063025499  0.168630849 -0.940867775 -0.295488494
+##  [61] -0.153508777  0.202407695 -1.004512388 -0.542365211  0.053060285
+##  [66]  1.633723258  0.010215734 -0.320866194  0.065515652 -0.468258921
+##  [71]  0.127774433 -1.015663815  0.094826905  0.669101106 -0.129760794
+##  [76]  0.235893758  0.693082144  0.911993914  0.063143476  0.006943691
+##  [81]  0.162926953 -0.097940797 -0.036240530  0.383635298 -0.130192293
+##  [86] -0.089718505 -0.759355548  1.868557229 -0.295187697  1.578343429
+##  [91] -0.538375017  1.048357904  0.403811495 -0.663143987 -0.123332134
+##  [96]  0.071984760  0.057604683 -1.966158753 -1.007192447  2.652605172</code></pre>
 <p>So far so good. All we’ve really done is wrapped the base code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of nairobi_genoa some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these NA values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb322-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
