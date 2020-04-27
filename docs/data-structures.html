@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.10" data-path="proj-doc.html"><a href="proj-doc.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
 <li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
 <li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
+<li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
@@ -386,123 +387,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>A convenient way to create a matrix or an array is to use the <code>matrix()</code> and <code>array()</code> functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (<code>nrow = 4</code>) and fill the matrix row-wise (<code>byrow = TRUE</code>) rather than the default column-wise. When using the <code>array()</code> function we define the dimensions using the <code>dim =</code> argument, in our case 2 rows, 4 columns in 2 different matrices.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb84-1" data-line-number="1">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb84-2" data-line-number="2">my_mat</a>
-<a class="sourceLine" id="cb84-3" data-line-number="3"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb84-4" data-line-number="4"><span class="co">## [1,]    1    2    3    4</span></a>
-<a class="sourceLine" id="cb84-5" data-line-number="5"><span class="co">## [2,]    5    6    7    8</span></a>
-<a class="sourceLine" id="cb84-6" data-line-number="6"><span class="co">## [3,]    9   10   11   12</span></a>
-<a class="sourceLine" id="cb84-7" data-line-number="7"><span class="co">## [4,]   13   14   15   16</span></a>
-<a class="sourceLine" id="cb84-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb84-9" data-line-number="9">my_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb84-10" data-line-number="10">my_array</a>
-<a class="sourceLine" id="cb84-11" data-line-number="11"><span class="co">## , , 1</span></a>
-<a class="sourceLine" id="cb84-12" data-line-number="12"><span class="co">## </span></a>
-<a class="sourceLine" id="cb84-13" data-line-number="13"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb84-14" data-line-number="14"><span class="co">## [1,]    1    3    5    7</span></a>
-<a class="sourceLine" id="cb84-15" data-line-number="15"><span class="co">## [2,]    2    4    6    8</span></a>
-<a class="sourceLine" id="cb84-16" data-line-number="16"><span class="co">## </span></a>
-<a class="sourceLine" id="cb84-17" data-line-number="17"><span class="co">## , , 2</span></a>
-<a class="sourceLine" id="cb84-18" data-line-number="18"><span class="co">## </span></a>
-<a class="sourceLine" id="cb84-19" data-line-number="19"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
-<a class="sourceLine" id="cb84-20" data-line-number="20"><span class="co">## [1,]    9   11   13   15</span></a>
-<a class="sourceLine" id="cb84-21" data-line-number="21"><span class="co">## [2,]   10   12   14   16</span></a></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">my_mat &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">nrow =</span> <span class="dv">4</span>, <span class="dt">byrow =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb86-2" data-line-number="2">my_mat</a>
+<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co">## [1,]    1    2    3    4</span></a>
+<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="co">## [2,]    5    6    7    8</span></a>
+<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="co">## [3,]    9   10   11   12</span></a>
+<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="co">## [4,]   13   14   15   16</span></a>
+<a class="sourceLine" id="cb86-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb86-9" data-line-number="9">my_array &lt;-<span class="st"> </span><span class="kw">array</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">16</span>, <span class="dt">dim =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb86-10" data-line-number="10">my_array</a>
+<a class="sourceLine" id="cb86-11" data-line-number="11"><span class="co">## , , 1</span></a>
+<a class="sourceLine" id="cb86-12" data-line-number="12"><span class="co">## </span></a>
+<a class="sourceLine" id="cb86-13" data-line-number="13"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb86-14" data-line-number="14"><span class="co">## [1,]    1    3    5    7</span></a>
+<a class="sourceLine" id="cb86-15" data-line-number="15"><span class="co">## [2,]    2    4    6    8</span></a>
+<a class="sourceLine" id="cb86-16" data-line-number="16"><span class="co">## </span></a>
+<a class="sourceLine" id="cb86-17" data-line-number="17"><span class="co">## , , 2</span></a>
+<a class="sourceLine" id="cb86-18" data-line-number="18"><span class="co">## </span></a>
+<a class="sourceLine" id="cb86-19" data-line-number="19"><span class="co">##      [,1] [,2] [,3] [,4]</span></a>
+<a class="sourceLine" id="cb86-20" data-line-number="20"><span class="co">## [1,]    9   11   13   15</span></a>
+<a class="sourceLine" id="cb86-21" data-line-number="21"><span class="co">## [2,]   10   12   14   16</span></a></code></pre></div>
 <p>Sometimes it’s also useful to define row and column names for your matrix but this is not a requirement. To do this use the <code>rownames()</code> and <code>colnames()</code> functions.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="kw">rownames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>)</a>
-<a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">colnames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</a>
-<a class="sourceLine" id="cb85-3" data-line-number="3">my_mat</a>
-<a class="sourceLine" id="cb85-4" data-line-number="4"><span class="co">##    a  b  c  d</span></a>
-<a class="sourceLine" id="cb85-5" data-line-number="5"><span class="co">## A  1  2  3  4</span></a>
-<a class="sourceLine" id="cb85-6" data-line-number="6"><span class="co">## B  5  6  7  8</span></a>
-<a class="sourceLine" id="cb85-7" data-line-number="7"><span class="co">## C  9 10 11 12</span></a>
-<a class="sourceLine" id="cb85-8" data-line-number="8"><span class="co">## D 13 14 15 16</span></a></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1"><span class="kw">rownames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>)</a>
+<a class="sourceLine" id="cb87-2" data-line-number="2"><span class="kw">colnames</span>(my_mat) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</a>
+<a class="sourceLine" id="cb87-3" data-line-number="3">my_mat</a>
+<a class="sourceLine" id="cb87-4" data-line-number="4"><span class="co">##    a  b  c  d</span></a>
+<a class="sourceLine" id="cb87-5" data-line-number="5"><span class="co">## A  1  2  3  4</span></a>
+<a class="sourceLine" id="cb87-6" data-line-number="6"><span class="co">## B  5  6  7  8</span></a>
+<a class="sourceLine" id="cb87-7" data-line-number="7"><span class="co">## C  9 10 11 12</span></a>
+<a class="sourceLine" id="cb87-8" data-line-number="8"><span class="co">## D 13 14 15 16</span></a></code></pre></div>
 <p>Once you’ve created your matrices you can do useful stuff with them and as you’d expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function <code>t()</code></p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb86-1" data-line-number="1">my_mat_t &lt;-<span class="st"> </span><span class="kw">t</span>(my_mat)</a>
-<a class="sourceLine" id="cb86-2" data-line-number="2">my_mat_t</a>
-<a class="sourceLine" id="cb86-3" data-line-number="3"><span class="co">##   A B  C  D</span></a>
-<a class="sourceLine" id="cb86-4" data-line-number="4"><span class="co">## a 1 5  9 13</span></a>
-<a class="sourceLine" id="cb86-5" data-line-number="5"><span class="co">## b 2 6 10 14</span></a>
-<a class="sourceLine" id="cb86-6" data-line-number="6"><span class="co">## c 3 7 11 15</span></a>
-<a class="sourceLine" id="cb86-7" data-line-number="7"><span class="co">## d 4 8 12 16</span></a></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">my_mat_t &lt;-<span class="st"> </span><span class="kw">t</span>(my_mat)</a>
+<a class="sourceLine" id="cb88-2" data-line-number="2">my_mat_t</a>
+<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co">##   A B  C  D</span></a>
+<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">## a 1 5  9 13</span></a>
+<a class="sourceLine" id="cb88-5" data-line-number="5"><span class="co">## b 2 6 10 14</span></a>
+<a class="sourceLine" id="cb88-6" data-line-number="6"><span class="co">## c 3 7 11 15</span></a>
+<a class="sourceLine" id="cb88-7" data-line-number="7"><span class="co">## d 4 8 12 16</span></a></code></pre></div>
 <p>To extract the diagonal elements of a matrix and store them as a vector we can use the <code>diag()</code> function</p>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb87-1" data-line-number="1">my_mat_diag &lt;-<span class="st"> </span><span class="kw">diag</span>(my_mat)</a>
-<a class="sourceLine" id="cb87-2" data-line-number="2">my_mat_diag</a>
-<a class="sourceLine" id="cb87-3" data-line-number="3"><span class="co">## [1]  1  6 11 16</span></a></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">my_mat_diag &lt;-<span class="st"> </span><span class="kw">diag</span>(my_mat)</a>
+<a class="sourceLine" id="cb89-2" data-line-number="2">my_mat_diag</a>
+<a class="sourceLine" id="cb89-3" data-line-number="3"><span class="co">## [1]  1  6 11 16</span></a></code></pre></div>
 <p>The usual matrix addition, multiplication etc can be performed. Note the use of the <code>%*%</code> operator to perform matrix multiplication.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb88-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></a>
-<a class="sourceLine" id="cb88-2" data-line-number="2">mat<span class="fl">.1</span>                                     <span class="co"># column-wise by default</span></a>
-<a class="sourceLine" id="cb88-3" data-line-number="3"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb88-4" data-line-number="4"><span class="co">## [1,]    2    1</span></a>
-<a class="sourceLine" id="cb88-5" data-line-number="5"><span class="co">## [2,]    0    1</span></a>
-<a class="sourceLine" id="cb88-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb88-7" data-line-number="7">mat<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb88-8" data-line-number="8">mat<span class="fl">.2</span></a>
-<a class="sourceLine" id="cb88-9" data-line-number="9"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb88-10" data-line-number="10"><span class="co">## [1,]    1    0</span></a>
-<a class="sourceLine" id="cb88-11" data-line-number="11"><span class="co">## [2,]    1    2</span></a>
-<a class="sourceLine" id="cb88-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb88-13" data-line-number="13">mat<span class="fl">.1</span> <span class="op">+</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></a>
-<a class="sourceLine" id="cb88-14" data-line-number="14"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb88-15" data-line-number="15"><span class="co">## [1,]    3    1</span></a>
-<a class="sourceLine" id="cb88-16" data-line-number="16"><span class="co">## [2,]    1    3</span></a>
-<a class="sourceLine" id="cb88-17" data-line-number="17">mat<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># element by element products</span></a>
-<a class="sourceLine" id="cb88-18" data-line-number="18"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb88-19" data-line-number="19"><span class="co">## [1,]    2    0</span></a>
-<a class="sourceLine" id="cb88-20" data-line-number="20"><span class="co">## [2,]    0    2</span></a>
-<a class="sourceLine" id="cb88-21" data-line-number="21">mat<span class="fl">.1</span> <span class="op">%*%</span><span class="st"> </span>mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></a>
-<a class="sourceLine" id="cb88-22" data-line-number="22"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb88-23" data-line-number="23"><span class="co">## [1,]    3    2</span></a>
-<a class="sourceLine" id="cb88-24" data-line-number="24"><span class="co">## [2,]    1    2</span></a></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">mat<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></a>
+<a class="sourceLine" id="cb90-2" data-line-number="2">mat<span class="fl">.1</span>                                     <span class="co"># column-wise by default</span></a>
+<a class="sourceLine" id="cb90-3" data-line-number="3"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb90-4" data-line-number="4"><span class="co">## [1,]    2    1</span></a>
+<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="co">## [2,]    0    1</span></a>
+<a class="sourceLine" id="cb90-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb90-7" data-line-number="7">mat<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="dt">nrow =</span> <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb90-8" data-line-number="8">mat<span class="fl">.2</span></a>
+<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb90-10" data-line-number="10"><span class="co">## [1,]    1    0</span></a>
+<a class="sourceLine" id="cb90-11" data-line-number="11"><span class="co">## [2,]    1    2</span></a>
+<a class="sourceLine" id="cb90-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb90-13" data-line-number="13">mat<span class="fl">.1</span> <span class="op">+</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></a>
+<a class="sourceLine" id="cb90-14" data-line-number="14"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb90-15" data-line-number="15"><span class="co">## [1,]    3    1</span></a>
+<a class="sourceLine" id="cb90-16" data-line-number="16"><span class="co">## [2,]    1    3</span></a>
+<a class="sourceLine" id="cb90-17" data-line-number="17">mat<span class="fl">.1</span> <span class="op">*</span><span class="st"> </span>mat<span class="fl">.2</span>           <span class="co"># element by element products</span></a>
+<a class="sourceLine" id="cb90-18" data-line-number="18"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb90-19" data-line-number="19"><span class="co">## [1,]    2    0</span></a>
+<a class="sourceLine" id="cb90-20" data-line-number="20"><span class="co">## [2,]    0    2</span></a>
+<a class="sourceLine" id="cb90-21" data-line-number="21">mat<span class="fl">.1</span> <span class="op">%*%</span><span class="st"> </span>mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></a>
+<a class="sourceLine" id="cb90-22" data-line-number="22"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb90-23" data-line-number="23"><span class="co">## [1,]    3    2</span></a>
+<a class="sourceLine" id="cb90-24" data-line-number="24"><span class="co">## [2,]    1    2</span></a></code></pre></div>
 </div>
 <div id="lists" class="section level3">
 <h3><span class="header-section-number">3.2.3</span> Lists</h3>
 <p>The next data structure we will quickly take a look at is a list. Whilst vectors and matrices are constrained to contain data of the same type, lists are able to store mixtures of data types. In fact we can even store other data structures such as vectors and arrays within a list or even have a list of a list. This makes for a very flexible data structure which is ideal for storing irregular or non-rectangular data (see <a href="prog-r.html#prog_r">Chapter 6</a> for an example).</p>
 <p>To create a list we can use the <code>list()</code> function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb89-1" data-line-number="1">list_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>),</a>
-<a class="sourceLine" id="cb89-2" data-line-number="2">               <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
-<a class="sourceLine" id="cb89-3" data-line-number="3">               <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb89-4" data-line-number="4">list_<span class="dv">1</span></a>
-<a class="sourceLine" id="cb89-5" data-line-number="5"><span class="co">## [[1]]</span></a>
-<a class="sourceLine" id="cb89-6" data-line-number="6"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
-<a class="sourceLine" id="cb89-7" data-line-number="7"><span class="co">## </span></a>
-<a class="sourceLine" id="cb89-8" data-line-number="8"><span class="co">## [[2]]</span></a>
-<a class="sourceLine" id="cb89-9" data-line-number="9"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb89-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb89-11" data-line-number="11"><span class="co">## [[3]]</span></a>
-<a class="sourceLine" id="cb89-12" data-line-number="12"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb89-13" data-line-number="13"><span class="co">## [1,]    1    4</span></a>
-<a class="sourceLine" id="cb89-14" data-line-number="14"><span class="co">## [2,]    2    5</span></a>
-<a class="sourceLine" id="cb89-15" data-line-number="15"><span class="co">## [3,]    3    6</span></a></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1">list_<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>),</a>
+<a class="sourceLine" id="cb91-2" data-line-number="2">               <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>),</a>
+<a class="sourceLine" id="cb91-3" data-line-number="3">               <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb91-4" data-line-number="4">list_<span class="dv">1</span></a>
+<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co">## [[1]]</span></a>
+<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
+<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co">## </span></a>
+<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co">## [[2]]</span></a>
+<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co">## [[3]]</span></a>
+<a class="sourceLine" id="cb91-12" data-line-number="12"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb91-13" data-line-number="13"><span class="co">## [1,]    1    4</span></a>
+<a class="sourceLine" id="cb91-14" data-line-number="14"><span class="co">## [2,]    2    5</span></a>
+<a class="sourceLine" id="cb91-15" data-line-number="15"><span class="co">## [3,]    3    6</span></a></code></pre></div>
 <p>Elements of the list can be named during the construction of the list</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb90-1" data-line-number="1">list_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">colours =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
-<a class="sourceLine" id="cb90-2" data-line-number="2">               <span class="dt">evaluation =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>), </a>
-<a class="sourceLine" id="cb90-3" data-line-number="3">               <span class="dt">time =</span> <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">3</span>))</a>
-<a class="sourceLine" id="cb90-4" data-line-number="4">list_<span class="dv">2</span></a>
-<a class="sourceLine" id="cb90-5" data-line-number="5"><span class="co">## $colours</span></a>
-<a class="sourceLine" id="cb90-6" data-line-number="6"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
-<a class="sourceLine" id="cb90-7" data-line-number="7"><span class="co">## </span></a>
-<a class="sourceLine" id="cb90-8" data-line-number="8"><span class="co">## $evaluation</span></a>
-<a class="sourceLine" id="cb90-9" data-line-number="9"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb90-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb90-11" data-line-number="11"><span class="co">## $time</span></a>
-<a class="sourceLine" id="cb90-12" data-line-number="12"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb90-13" data-line-number="13"><span class="co">## [1,]    1    4</span></a>
-<a class="sourceLine" id="cb90-14" data-line-number="14"><span class="co">## [2,]    2    5</span></a>
-<a class="sourceLine" id="cb90-15" data-line-number="15"><span class="co">## [3,]    3    6</span></a></code></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">list_<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dt">colours =</span> <span class="kw">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>), </a>
+<a class="sourceLine" id="cb92-2" data-line-number="2">               <span class="dt">evaluation =</span> <span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">TRUE</span>, <span class="ot">FALSE</span>, <span class="ot">FALSE</span>), </a>
+<a class="sourceLine" id="cb92-3" data-line-number="3">               <span class="dt">time =</span> <span class="kw">matrix</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">nrow =</span> <span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb92-4" data-line-number="4">list_<span class="dv">2</span></a>
+<a class="sourceLine" id="cb92-5" data-line-number="5"><span class="co">## $colours</span></a>
+<a class="sourceLine" id="cb92-6" data-line-number="6"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
+<a class="sourceLine" id="cb92-7" data-line-number="7"><span class="co">## </span></a>
+<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="co">## $evaluation</span></a>
+<a class="sourceLine" id="cb92-9" data-line-number="9"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb92-10" data-line-number="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb92-11" data-line-number="11"><span class="co">## $time</span></a>
+<a class="sourceLine" id="cb92-12" data-line-number="12"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb92-13" data-line-number="13"><span class="co">## [1,]    1    4</span></a>
+<a class="sourceLine" id="cb92-14" data-line-number="14"><span class="co">## [2,]    2    5</span></a>
+<a class="sourceLine" id="cb92-15" data-line-number="15"><span class="co">## [3,]    3    6</span></a></code></pre></div>
 <p>or after the list has been created using the <code>names()</code> function</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb91-1" data-line-number="1"><span class="kw">names</span>(list_<span class="dv">1</span>) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;colours&quot;</span>, <span class="st">&quot;evaluation&quot;</span>, <span class="st">&quot;time&quot;</span>)</a>
-<a class="sourceLine" id="cb91-2" data-line-number="2">list_<span class="dv">1</span></a>
-<a class="sourceLine" id="cb91-3" data-line-number="3"><span class="co">## $colours</span></a>
-<a class="sourceLine" id="cb91-4" data-line-number="4"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
-<a class="sourceLine" id="cb91-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb91-6" data-line-number="6"><span class="co">## $evaluation</span></a>
-<a class="sourceLine" id="cb91-7" data-line-number="7"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
-<a class="sourceLine" id="cb91-8" data-line-number="8"><span class="co">## </span></a>
-<a class="sourceLine" id="cb91-9" data-line-number="9"><span class="co">## $time</span></a>
-<a class="sourceLine" id="cb91-10" data-line-number="10"><span class="co">##      [,1] [,2]</span></a>
-<a class="sourceLine" id="cb91-11" data-line-number="11"><span class="co">## [1,]    1    4</span></a>
-<a class="sourceLine" id="cb91-12" data-line-number="12"><span class="co">## [2,]    2    5</span></a>
-<a class="sourceLine" id="cb91-13" data-line-number="13"><span class="co">## [3,]    3    6</span></a></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">names</span>(list_<span class="dv">1</span>) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;colours&quot;</span>, <span class="st">&quot;evaluation&quot;</span>, <span class="st">&quot;time&quot;</span>)</a>
+<a class="sourceLine" id="cb93-2" data-line-number="2">list_<span class="dv">1</span></a>
+<a class="sourceLine" id="cb93-3" data-line-number="3"><span class="co">## $colours</span></a>
+<a class="sourceLine" id="cb93-4" data-line-number="4"><span class="co">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></a>
+<a class="sourceLine" id="cb93-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb93-6" data-line-number="6"><span class="co">## $evaluation</span></a>
+<a class="sourceLine" id="cb93-7" data-line-number="7"><span class="co">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></a>
+<a class="sourceLine" id="cb93-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb93-9" data-line-number="9"><span class="co">## $time</span></a>
+<a class="sourceLine" id="cb93-10" data-line-number="10"><span class="co">##      [,1] [,2]</span></a>
+<a class="sourceLine" id="cb93-11" data-line-number="11"><span class="co">## [1,]    1    4</span></a>
+<a class="sourceLine" id="cb93-12" data-line-number="12"><span class="co">## [2,]    2    5</span></a>
+<a class="sourceLine" id="cb93-13" data-line-number="13"><span class="co">## [3,]    3    6</span></a></code></pre></div>
 </div>
 <div id="df" class="section level3">
 <h3><span class="header-section-number">3.2.4</span> Data frames</h3>
@@ -648,40 +649,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an <code>NA</code> just as we did with our vectors.</p>
 <p>We can construct a data frame from existing data objects such as vectors using the <code>data.frame()</code> function. As an example, let’s create three vectors <code>height</code>, <code>weight</code> and <code>p.names</code> and include all of these vectors in a data frame object called <code>dataf</code>.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb92-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
-<a class="sourceLine" id="cb92-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
-<a class="sourceLine" id="cb92-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
-<a class="sourceLine" id="cb92-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb92-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names)</a>
-<a class="sourceLine" id="cb92-6" data-line-number="6">dataf</a>
-<a class="sourceLine" id="cb92-7" data-line-number="7"><span class="co">##   height weight     names</span></a>
-<a class="sourceLine" id="cb92-8" data-line-number="8"><span class="co">## 1    180     65    Joanna</span></a>
-<a class="sourceLine" id="cb92-9" data-line-number="9"><span class="co">## 2    155     50 Charlotte</span></a>
-<a class="sourceLine" id="cb92-10" data-line-number="10"><span class="co">## 3    160     52     Helen</span></a>
-<a class="sourceLine" id="cb92-11" data-line-number="11"><span class="co">## 4    167     58     Karen</span></a>
-<a class="sourceLine" id="cb92-12" data-line-number="12"><span class="co">## 5    181     70       Amy</span></a></code></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb94-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb94-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb94-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb94-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names)</a>
+<a class="sourceLine" id="cb94-6" data-line-number="6">dataf</a>
+<a class="sourceLine" id="cb94-7" data-line-number="7"><span class="co">##   height weight     names</span></a>
+<a class="sourceLine" id="cb94-8" data-line-number="8"><span class="co">## 1    180     65    Joanna</span></a>
+<a class="sourceLine" id="cb94-9" data-line-number="9"><span class="co">## 2    155     50 Charlotte</span></a>
+<a class="sourceLine" id="cb94-10" data-line-number="10"><span class="co">## 3    160     52     Helen</span></a>
+<a class="sourceLine" id="cb94-11" data-line-number="11"><span class="co">## 4    167     58     Karen</span></a>
+<a class="sourceLine" id="cb94-12" data-line-number="12"><span class="co">## 5    181     70       Amy</span></a></code></pre></div>
 <p>You’ll notice that each of the columns are named with variable name we supplied when we used the <code>data.frame</code> function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the <code>dataf</code> object using the <code>dim()</code> function. We see that there are 5 rows and 3 columns.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb93-1" data-line-number="1"><span class="kw">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></a>
-<a class="sourceLine" id="cb93-2" data-line-number="2"><span class="co">## [1] 5 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></a>
+<a class="sourceLine" id="cb95-2" data-line-number="2"><span class="co">## [1] 5 3</span></a></code></pre></div>
 <p>Another really useful function which we use all the time is <code>str()</code> which will return a compact summary of the structure of the data frame object (or any object for that matter).</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb94-1" data-line-number="1"><span class="kw">str</span>(dataf)   </a>
-<a class="sourceLine" id="cb94-2" data-line-number="2"><span class="co">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></a>
-<a class="sourceLine" id="cb94-3" data-line-number="3"><span class="co">##  $ height: num  180 155 160 167 181</span></a>
-<a class="sourceLine" id="cb94-4" data-line-number="4"><span class="co">##  $ weight: num  65 50 52 58 70</span></a>
-<a class="sourceLine" id="cb94-5" data-line-number="5"><span class="co">##  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb96-1" data-line-number="1"><span class="kw">str</span>(dataf)   </a>
+<a class="sourceLine" id="cb96-2" data-line-number="2"><span class="co">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb96-3" data-line-number="3"><span class="co">##  $ height: num  180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb96-4" data-line-number="4"><span class="co">##  $ weight: num  65 50 52 58 70</span></a>
+<a class="sourceLine" id="cb96-5" data-line-number="5"><span class="co">##  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></a></code></pre></div>
 <p>The <code>str()</code> function gives us the data frame dimensions and also reminds us that <code>dataf</code> is a <code>data.frame</code> type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you haw to comment blocks in RStudio <a href="proj-doc.html#proj_doc">here</a>.</p>
 <p>Also notice that R has automatically decided that our <code>p.names</code> variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn’t such a good idea we can change the default behaviour of the <code>data.frame()</code> function by including the argument <code>stringsAsFactors = FALSE</code>. Now our strings are not automatically converted to factors and remain as characters (<code>chr</code>).</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
-<a class="sourceLine" id="cb95-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
-<a class="sourceLine" id="cb95-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
-<a class="sourceLine" id="cb95-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb95-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names, </a>
-<a class="sourceLine" id="cb95-6" data-line-number="6">                                        <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb95-7" data-line-number="7"><span class="kw">str</span>(dataf)</a>
-<a class="sourceLine" id="cb95-8" data-line-number="8"><span class="co">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></a>
-<a class="sourceLine" id="cb95-9" data-line-number="9"><span class="co">##  $ height: num  180 155 160 167 181</span></a>
-<a class="sourceLine" id="cb95-10" data-line-number="10"><span class="co">##  $ weight: num  65 50 52 58 70</span></a>
-<a class="sourceLine" id="cb95-11" data-line-number="11"><span class="co">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb97-1" data-line-number="1">height &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</a>
+<a class="sourceLine" id="cb97-2" data-line-number="2">weight &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</a>
+<a class="sourceLine" id="cb97-3" data-line-number="3">p.names &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</a>
+<a class="sourceLine" id="cb97-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb97-5" data-line-number="5">dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">height =</span> height, <span class="dt">weight =</span> weight, <span class="dt">names =</span> p.names, </a>
+<a class="sourceLine" id="cb97-6" data-line-number="6">                                        <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</a>
+<a class="sourceLine" id="cb97-7" data-line-number="7"><span class="kw">str</span>(dataf)</a>
+<a class="sourceLine" id="cb97-8" data-line-number="8"><span class="co">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></a>
+<a class="sourceLine" id="cb97-9" data-line-number="9"><span class="co">##  $ height: num  180 155 160 167 181</span></a>
+<a class="sourceLine" id="cb97-10" data-line-number="10"><span class="co">##  $ weight: num  65 50 52 58 70</span></a>
+<a class="sourceLine" id="cb97-11" data-line-number="11"><span class="co">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></a></code></pre></div>
 <p> </p>
 </div>
 </div>

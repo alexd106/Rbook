@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.10" data-path="proj-doc.html"><a href="proj-doc.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
 <li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
 <li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
+<li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
@@ -376,11 +377,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r_objs" class="section level3">
 <h3><span class="header-section-number">2.2.1</span> Creating objects</h3>
 <p>To create an object we simply give the object a name. We can then assign a value to this object using the <em>assignment operator</em> <code>&lt;-</code> (sometimes called the <em>gets operator</em>). The assignment operator is a composite symbol comprised of a ‘less than’ symbol <code>&lt;</code> and a hyphen <code>-</code> .</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a></code></pre></div>
 <p>In the code above, we created an object called <code>my_obj</code> and assigned it a value of the number <code>48</code> using the assignment operator (in our head we always read this as ‘<em>my_obj gets 48</em>’). You can also use <code>=</code> instead of <code>&lt;-</code> to assign values but this is considered bad practice and we would discourage you from using this notation.</p>
 <p>To view the value of the object you simply type the name of the object</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">my_obj</a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="co">## [1] 48</span></a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">my_obj</a>
+<a class="sourceLine" id="cb27-2" data-line-number="2"><span class="co">## [1] 48</span></a></code></pre></div>
 <p>Now that we’ve created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and you can view all the objects in your workspace in RStudio by clicking on the ‘Environment’ tab in the top right hand pane.</p>
 <p> </p>
 <p><img src="images/rs_env.png" width="75%" style="display: block; margin: auto;" /></p>
@@ -390,46 +391,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/rs_env2.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>There are many different types of values that you can assign to an object. For example</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1">my_obj2 &lt;-<span class="st"> &quot;R is cool&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">my_obj2 &lt;-<span class="st"> &quot;R is cool&quot;</span></a></code></pre></div>
 <p>Here we have created an object called <code>my_obj2</code> and assigned it a value of <code>R is cool</code> which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">my_obj2 &lt;-<span class="st"> </span>R is cool</a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">Error<span class="op">:</span><span class="st"> </span>unexpected symbol <span class="cf">in</span> <span class="st">&quot;my_obj2 &lt;- R is&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">my_obj2 &lt;-<span class="st"> </span>R is cool</a>
+<a class="sourceLine" id="cb29-2" data-line-number="2">Error<span class="op">:</span><span class="st"> </span>unexpected symbol <span class="cf">in</span> <span class="st">&quot;my_obj2 &lt;- R is&quot;</span></a></code></pre></div>
 <p>Our workspace now contains both objects we’ve created so far with <code>my_obj2</code> listed as type character.</p>
 <p> </p>
 <p><img src="images/rs_env3.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To change the value of an existing object we simply reassign a new value to it. For example, to change the value of <code>my_obj2</code> from <code>&quot;R is cool&quot;</code> to the number <code>1024</code></p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">my_obj2 &lt;-<span class="st"> </span><span class="dv">1024</span></a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1">my_obj2 &lt;-<span class="st"> </span><span class="dv">1024</span></a></code></pre></div>
 <p>Notice that the Type has changed to numeric and the value has changed to 1024 in the environment</p>
 <p> </p>
 <p><img src="images/rs_env4.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Once we have created a few objects, we can do stuff with our objects. For example, the following code creates a new object <code>my_obj3</code> and assigns it the value of <code>my_obj</code> added to <code>my_obj2</code> which is 1072 (48 + 1024 = 1072).</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1">my_obj3 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>my_obj2</a>
-<a class="sourceLine" id="cb29-2" data-line-number="2">my_obj3</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">my_obj3 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>my_obj2</a>
+<a class="sourceLine" id="cb31-2" data-line-number="2">my_obj3</a></code></pre></div>
 <pre><code>## [1] 1072</code></pre>
 <p>Notice that to display the value of <code>my_obj3</code> we also need to write the object’s name. The above code works because the values of both <code>my_obj</code> and <code>my_obj2</code> are numeric (i.e. a number). If you try to do this with objects with character values (<strong>character class</strong>) you will receive an error</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" data-line-number="1">char_obj &lt;-<span class="st"> &quot;hello&quot;</span></a>
-<a class="sourceLine" id="cb31-2" data-line-number="2">char_obj2 &lt;-<span class="st"> &quot;world!&quot;</span></a>
-<a class="sourceLine" id="cb31-3" data-line-number="3">char_obj3 &lt;-<span class="st"> </span>char_obj <span class="op">+</span><span class="st"> </span>char_obj2</a>
-<a class="sourceLine" id="cb31-4" data-line-number="4">Error <span class="cf">in</span> char_obj<span class="op">+</span>char_obj2<span class="op">:</span>non<span class="op">-</span>numeric argument to binary operator</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">char_obj &lt;-<span class="st"> &quot;hello&quot;</span></a>
+<a class="sourceLine" id="cb33-2" data-line-number="2">char_obj2 &lt;-<span class="st"> &quot;world!&quot;</span></a>
+<a class="sourceLine" id="cb33-3" data-line-number="3">char_obj3 &lt;-<span class="st"> </span>char_obj <span class="op">+</span><span class="st"> </span>char_obj2</a>
+<a class="sourceLine" id="cb33-4" data-line-number="4">Error <span class="cf">in</span> char_obj<span class="op">+</span>char_obj2<span class="op">:</span>non<span class="op">-</span>numeric argument to binary operator</a></code></pre></div>
 <p>The error message is essentially telling you that either one or both of the objects <code>char_obj</code> and <code>char_obj2</code> is not a number and therefore cannot be added together.</p>
 <p>When you first start learning R, dealing with errors and warnings can be frustrating as they’re often difficult to understand (what’s an <a href="https://www.quora.com/What-is-an-%E2%80%9Cargument%E2%80%9D-in-an-R-function"><em>argument</em></a>? what’s a <a href="https://www.statmethods.net/management/operators.html"><em>binary operator</em></a>?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling <a href="https://www.google.com/search?client=firefox-b-d&amp;q=non-numeric+argument+to+binary+operator+error+%2B+r"><em>‘non-numeric argument to binary operator error + r’</em></a> or even <a href="https://www.google.com/search?client=firefox-b-d&amp;q=common+r+error+messages"><em>‘common r error messages’</em></a>.</p>
 <p>Another error message that you’ll get quite a lot when you first start using R is <code>Error: object 'XXX' not found</code>. As an example, take a look at the code below</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a>
-<a class="sourceLine" id="cb32-2" data-line-number="2">my_obj4 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>no_obj</a>
-<a class="sourceLine" id="cb32-3" data-line-number="3">Error<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;no_obj&#39;</span> not found</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">my_obj &lt;-<span class="st"> </span><span class="dv">48</span></a>
+<a class="sourceLine" id="cb34-2" data-line-number="2">my_obj4 &lt;-<span class="st"> </span>my_obj <span class="op">+</span><span class="st"> </span>no_obj</a>
+<a class="sourceLine" id="cb34-3" data-line-number="3">Error<span class="op">:</span><span class="st"> </span>object <span class="st">&#39;no_obj&#39;</span> not found</a></code></pre></div>
 <p>R returns an error message because we haven’t created (defined) the object <code>no_obj</code> yet. Another clue that there’s a problem with this code is that, if you check your environment, you’ll see that object <code>my_obj4</code> has not been created.</p>
 </div>
 <div id="naming-objects" class="section level3">
 <h3><span class="header-section-number">2.2.2</span> Naming objects</h3>
 <p>Naming your objects is one of the most difficult things you will do in R (honestly - we’re serious). Ideally your object names should be kept both short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called <a href="https://en.wikipedia.org/wiki/Snake_case"><em>snake case</em></a>)</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" data-line-number="1">output_summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
-<a class="sourceLine" id="cb33-2" data-line-number="2">output.summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
-<a class="sourceLine" id="cb33-3" data-line-number="3">outputSummary &lt;-<span class="st"> &quot;my analysis&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1">output_summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb35-2" data-line-number="2">output.summary &lt;-<span class="st"> &quot;my analysis&quot;</span></a>
+<a class="sourceLine" id="cb35-3" data-line-number="3">outputSummary &lt;-<span class="st"> &quot;my analysis&quot;</span></a></code></pre></div>
 <p>There are also a few limitations when it come to giving objects names. An object name cannot start with a number or a dot followed by a number (i.e. <code>2my_variable</code> or <code>.2my_variable</code>). You should also avoid using non-alphanumeric characters in your object names (i.e. &amp;, ^, /, ! etc). In addition, make sure you don’t name your objects with reserved words (i.e. <code>TRUE</code>, <code>NA</code>) and it’s never a good idea to give your object the same name as a built-in function. One that crops up more times than we can remember is</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;mydatafile&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>) <span class="co">#data is a</span></a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">                                                <span class="co"># function!</span></a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;mydatafile&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>) <span class="co">#data is a</span></a>
+<a class="sourceLine" id="cb36-2" data-line-number="2">                                                <span class="co"># function!</span></a></code></pre></div>
 </div>
 </div>
             </section>

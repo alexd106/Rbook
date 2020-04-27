@@ -180,6 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.10" data-path="proj-doc.html"><a href="proj-doc.html"><i class="fa fa-check"></i><b>1.10</b> Project documentation</a></li>
 <li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
 <li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
+<li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
@@ -376,9 +377,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="r-help" class="section level3">
 <h3><span class="header-section-number">2.5.1</span> R help</h3>
 <p>To access R’s built-in help facility to get information on any function simply use the <code>help()</code> function. For example, to open the help page our friend the <code>mean()</code> function</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb71-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
 <p>or you can use the equivalent shortcut</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb72-1" data-line-number="1">?mean</a></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">?mean</a></code></pre></div>
 <p>the help page is displayed in the ‘Help’ tab in the Files pane (usually in the bottom right of RStudio)</p>
 <p> </p>
 <p><img src="images/rs_help.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -395,23 +396,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p><strong>Examples:</strong> gives some examples of using the function. These are really helpful, all you need to do is copy and paste them into the console to see what happens. You can also access examples at any time by using the <code>example()</code> function (i.e. <code>example(&quot;mean&quot;)</code>)</p></li>
 </ul>
 <p>The <code>help()</code> function is useful if you know the name of the function. If you’re not sure of the name, but can remember a key word then you can search R’s help system using the <code>help.search()</code> function.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb73-1" data-line-number="1"><span class="kw">help.search</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">help.search</span>(<span class="st">&quot;mean&quot;</span>)</a></code></pre></div>
 <p>or you can use the equivalent shortcut</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb74-1" data-line-number="1">??mean</a></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1">??mean</a></code></pre></div>
 <p>The results of the search will be displayed in RStudio under the ‘Help’ tab as before. The <code>help.search()</code> function searches through the help documentation, code demonstrations and package vignettes and displays the results as clickable links for further exploration.</p>
 <p> </p>
 <p><img src="images/rs_help2.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example, to find all functions with <code>mean</code> in their name</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb75-1" data-line-number="1"><span class="kw">apropos</span>(<span class="st">&quot;mean&quot;</span>)</a>
-<a class="sourceLine" id="cb75-2" data-line-number="2"><span class="co">##  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></a>
-<a class="sourceLine" id="cb75-3" data-line-number="3"><span class="co">##  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></a>
-<a class="sourceLine" id="cb75-4" data-line-number="4"><span class="co">##  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></a>
-<a class="sourceLine" id="cb75-5" data-line-number="5"><span class="co">## [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">apropos</span>(<span class="st">&quot;mean&quot;</span>)</a>
+<a class="sourceLine" id="cb77-2" data-line-number="2"><span class="co">##  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></a>
+<a class="sourceLine" id="cb77-3" data-line-number="3"><span class="co">##  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></a>
+<a class="sourceLine" id="cb77-4" data-line-number="4"><span class="co">##  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></a>
+<a class="sourceLine" id="cb77-5" data-line-number="5"><span class="co">## [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></a></code></pre></div>
 <p>You can then bring up the help file for the relevant function.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb76-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;kmeans&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb78-1" data-line-number="1"><span class="kw">help</span>(<span class="st">&quot;kmeans&quot;</span>)</a></code></pre></div>
 <p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the <a href="https://www.r-project.org/search.html" class="uri">https://www.r-project.org/search.html</a> search engine directly from the Console with the results displayed in your web browser</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb77-1" data-line-number="1"><span class="kw">RSiteSearch</span>(<span class="st">&quot;regression&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb79-1" data-line-number="1"><span class="kw">RSiteSearch</span>(<span class="st">&quot;regression&quot;</span>)</a></code></pre></div>
 </div>
 <div id="rhelp" class="section level3">
 <h3><span class="header-section-number">2.5.2</span> Other sources of help</h3>
