@@ -383,6 +383,8 @@ Hopefully, you're getting the idea that we can create really informative explora
 
 All of the plots we've covered so far in this Chapter are more than suitable for exploring your data. If however, you would like to make them a little prettier (for your thesis, publication or even your own amusement) you'll need to invest some time learning how to customise your plots. The good news is that the base R graphics system allows you to change almost any aspect of your plot. There are however a couple of things to bear in mind. Firstly, although many of the approaches we will introduce in this section will work with most plotting functions, there is no true consistency between functions. What works with the `plot()` function isn't guaranteed to necessarily work with the `boxplot()` function. This can be a little frustrating to begin with but gets easier the more experience you gain. If you crave a little more consistency take a look at [Chapter 5](#graphics_r) where we introduce the excellent `ggplot2` package. Secondly, when you start customising plots you're confronted with a huge number of options and arguments to try and remember. This isn't necessarily a bad thing as this is what makes base R graphics so flexible but it's a lot to take in. Often a quick Google or peek at the relevant help pages will jog your memory. Thirdly, learning how to customise plots in base R isn't just about what code you need to use, it's also about learning the process of building a plot. We will often start with a basic layout of our plot and then add layers of complexity until we achieve the desired results. This requires a little experience (and trial and error), but again becomes easier with practice. Lastly, this section covers the basics of how to customise base R graphics and most (if not all) of these approaches will not work for plots using the `lattice` graphics system.
 
+### Customising with arguments
+
 Let's return to the basic plot we made previously in this [Chapter](#scatterplot). This was a simple scatterplot to examine the relationship between the `shootarea` and `weight` variables in the `flowers` data frame.  
 
 ```{r plot39, echo=TRUE, out.width="75%", fig.align="center"}
@@ -511,6 +513,8 @@ We think our plot now looks pretty good so we'll stop here! There are, however, 
 
 \  
 
+### Building plots
+
 For even more control over how your plot looks we can build our plot up in layers, customising each step as we go along. For example, perhaps we want to create a plot of `shootarea` and `weight` as we did before but this time we want to change the symbol colours of our data points depending on what level of `nitrogen` the plants were exposed to. The general approach is that we use our high level plotting function `plot()` to create the general plot (axes, axes labels etc) but we don't actually plot the data at this point. We then use a low level function `points()` to add the plotting symbols one `nitrogen` level at a time whilst customising the look of the symbols. Let's go thorugh this approach a set at a time. First we'll make the plot but supress plotting the data using the `type = "n"` argument in the `plot()` function. 
 
 ```{r plot49, echo=TRUE, out.width="75%", fig.align="center"}
@@ -540,7 +544,7 @@ points(x = flowers$weight[flowers$nitrogen == "low"],
 
 We can now use the `points()` function again to plot data from the  `medium` level of nitrogen and change the symbol colour to something different. Notice that we do not reuse the `plot()` function here as we are just using the low level function `points()` to add data points to the existing plot.
 
-```{r plot51, echo=TRUE, out.width="75%", fig.align="center"}
+```{r plot51, echo=4, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
 plot(flowers$weight, flowers$shootarea,
        type = "n",
@@ -558,7 +562,7 @@ points(x = flowers$weight[flowers$nitrogen == "medium"],
 
 And add the `high` level of `nitrogen` data to the plot and add our text label to the plot as before.
 
-```{r plot52, echo=TRUE, out.width="75%", fig.align="center"}
+```{r plot52, echo=5:6, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
 plot(flowers$weight, flowers$shootarea,
        type = "n",
@@ -581,7 +585,7 @@ text(x = 28, y = 190, label = "A", cex = 2)
 
 The only thing left to do is add a lengend to the plot to let your reader know what what `nitrogen` level each of the colours corresponds to. We'll use another low level function,`legend()` to do this. The `legend()` function requires us to provide the x and y coordinates to specify the position of the top left of the legend in the plot, a vector of colours, symbol types and labels to use in the legend. The `bty = "n"` argument stops a border being drawn around the legend and the `title =` argument gives the legend a title.
 
-```{r plot53, echo=TRUE, out.width="75%", fig.align="center"}
+```{r plot53, echo=7:11, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
 plot(flowers$weight, flowers$shootarea,
        type = "n",
@@ -599,7 +603,6 @@ points(x = flowers$weight[flowers$nitrogen == "high"],
        y = flowers$shootarea[flowers$nitrogen == "high"],
        pch = 16, col = "deeppink3")
 text(x = 28, y = 190, label = "A", cex = 2)
-
 leg_cols <- c("deepskyblue", "yellowgreen", "deeppink3")
 leg_sym <- c(16, 16, 16)
 leg_lab <- c("low", "medium", "high")
@@ -608,6 +611,36 @@ legend(x = 1, y = 200, col = leg_cols, pch = leg_sym,
         legend = leg_lab, bty = "n", 
         title = "Nitrogen level")
 ```
+
+If you want to see all the code together
+
+```{r plot54, echo=TRUE, out.width="75%", fig.align="center"}
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+plot(flowers$weight, flowers$shootarea,
+       type = "n",
+       xlab = "weight (g)",
+       ylab = expression(paste("shoot area (cm"^"2",")")),
+       xlim = c(0, 30), ylim = c(0, 200), bty = "l",
+       las = 1, cex.axis = 0.8, tcl = -0.2)
+points(x = flowers$weight[flowers$nitrogen == "low"],
+       y = flowers$shootarea[flowers$nitrogen == "low"],
+       pch = 16, col = "deepskyblue")
+points(x = flowers$weight[flowers$nitrogen == "medium"],
+       y = flowers$shootarea[flowers$nitrogen == "medium"],
+       pch = 16, col = "yellowgreen")
+points(x = flowers$weight[flowers$nitrogen == "high"],
+       y = flowers$shootarea[flowers$nitrogen == "high"],
+       pch = 16, col = "deeppink3")
+text(x = 28, y = 190, label = "A", cex = 2)
+leg_cols <- c("deepskyblue", "yellowgreen", "deeppink3")
+leg_sym <- c(16, 16, 16)
+leg_lab <- c("low", "medium", "high")
+
+legend(x = 1, y = 200, col = leg_cols, pch = leg_sym, 
+        legend = leg_lab, bty = "n", 
+        title = "Nitrogen level")
+```
+
 
 The table below highlights some of the low level potting functions you might find useful.
 
