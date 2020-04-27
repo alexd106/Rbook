@@ -91,7 +91,7 @@ Before we go further, let's take a second and talk about what this figure is sho
 
 The different coloured and shaped points represent the three nitrogen concentration levels used in the experiment. These colours are used to distinguish which points correspond to a certain nitrogen concentration. 
 
-Added to the plots we also have four trend lines (produced by linear regressions, see [Chapter 5](#stats_r)). The three coloured solid lines show the relationship between shoot area and weight of the flower. These coloured lines are inturn specific to each "facet" in the grid and change acording to treatment and block. The dashed black line represents the relationship between shoot area and weight while ignoring any nitrogen affect. 
+Added to the plots we also have four trend lines (produced by linear regressions, see [Chapter 6](#stats_r)). The three coloured solid lines show the relationship between shoot area and weight of the flower. These coloured lines are inturn specific to each "facet" in the grid and change acording to treatment and block. The dashed black line represents the relationship between shoot area and weight while ignoring any nitrogen affect. 
 
 The final line, the thin dotted grey line, shows the mean shoot area regardless of the weight of the flowers, the nitrogen concentration, the treatment or the block. 
 
@@ -220,7 +220,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually speicify the method. Instead of a wiggly line, we want a nice simple 'line of best fit' to be drawn using a method called "lm" (short for linear model - see [Chapter 5](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually speicify the method. Instead of a wiggly line, we want a nice simple 'line of best fit' to be drawn using a method called "lm" (short for linear model - see [Chapter 6](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
 
 While we're at it, let's get rid of the confidence interval ribbon around the line. We prefer to do this as we think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the `se =` argument (short for standard error) to `FALSE`.
 
@@ -336,7 +336,7 @@ This facet layout is almost exactly what we want. _Almost_, but not exactly. In 
 
 ---
 
-*Play around*: Try changing the formula to see what happens. Something like `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that `facet_wrap()` will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every unique number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click programme where you'd have to go back through all those clicks to get the same figure produced. Made a mistake? Easy, change it back and rerun the code (see [Chapter 8](#github_r) for version control which takes this to the next level).
+*Play around*: Try changing the formula to see what happens. Something like `~ treat + flowers` or even `~ treat + block + flowers`. The important thing to remember here is that `facet_wrap()` will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every unique number of flowers counted. Be aware of what it is you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it's not like a point and click programme where you'd have to go back through all those clicks to get the same figure produced. Made a mistake? Easy, change it back and rerun the code (see [Chapter 9](#github_r) for version control which takes this to the next level).
 
 ---
 
@@ -642,7 +642,7 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 
 \  
 
-In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, we don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 6](#prog_r) for a bit more on this).
+In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, we don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 7](#prog_r) for a bit more on this).
 
 ```{r theme_classic, message=FALSE, comment=""}
 theme_classic

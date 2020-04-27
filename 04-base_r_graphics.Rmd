@@ -6,7 +6,7 @@ The base R graphics system is the original plotting system that's been around (a
 
 The lattice system is implemented in the `lattice()` package that comes pre-installed with the standard installation of R. However, it won't be loaded by default so you'll first need to use `library(lattice)` to access all the plotting functions. Unlike base R graphics, lattice plots are mostly generated all in one go using a single function so there's no need to use high and low level plotting functions to customise the look of a plot. This can be a real advantage as things like margin sizes and plot spacing are adjusted automatically. Lattice plots also make a few more decisions for you about how the plots will look but this comes with a slight cost as customising lattice plots to get them to look exactly how you want can become quite involved. Where lattice plots really shine is plotting complex multi-dimensional data using panel plots (also called trellis plots). We'll see a couple of examples of these types of plots later on in the Chapter.   
 
-## Getting started
+## Getting started{#baseplot_start}
 
 When you create a plot in RStudio the plot will be displayed in the 'Plots' tab by default which is usually located in the bottom right pane in RStudio. 
 
@@ -28,7 +28,7 @@ knitr::include_graphics(path = "images/bg_plots2.png")
 
 \  
 
-Plots can also be saved in a variety of formats (pdf, png, tiff, jpeg etc) by clicking on the 'Export' button and selecting your desired format. You can also redirect your plots to an external file using R code which we'll cover later in this [Chapter](TODO)
+Plots can also be saved in a variety of formats (pdf, png, tiff, jpeg etc) by clicking on the 'Export' button and selecting your desired format. You can also redirect your plots to an external file using R code which we'll cover later in this [Chapter](#export_plots)
 
 \  
 
@@ -80,7 +80,7 @@ plot(flowers$shootarea ~ flowers$weight)
 
 Both of these two approaches are equivalent so we suggest that you just choose the one you prefer and go with it. 
 
-You can also specify the type of graph you wish to plot using the argument `type =`. You can plot just the points (`type = "p"`, this is the default), just lines (`type = "l"`), both points and lines connected (`type = "b"`), both points and lines with the lines running through the points (`type = "o"`) and empty points joined by lines (`type = "c"`). For example, let's use our skills from [Chapter 2](#funcs) to generate two vectors of numbers (`my_x` and `my_y`) and then plot one against the other using different `type =` values to see what type of plots are produced. Don't worry about the `par(mfrow = c(2, 2))` line of code yet. We're just using this to split the plotting device so we can fit all four plots on the same device to save some space. See [later](TODO) in the Chapter for more details about this. The top left plot is `type = "l"`, the top right `type = "b"`, bottom left `type = "o"` and bottom right is `type = "c"`.  
+You can also specify the type of graph you wish to plot using the argument `type =`. You can plot just the points (`type = "p"`, this is the default), just lines (`type = "l"`), both points and lines connected (`type = "b"`), both points and lines with the lines running through the points (`type = "o"`) and empty points joined by lines (`type = "c"`). For example, let's use our skills from [Chapter 2](#funcs) to generate two vectors of numbers (`my_x` and `my_y`) and then plot one against the other using different `type =` values to see what type of plots are produced. Don't worry about the `par(mfrow = c(2, 2))` line of code yet. We're just using this to split the plotting device so we can fit all four plots on the same device to save some space. See [later](#mult_graphs) in the Chapter for more details about this. The top left plot is `type = "l"`, the top right `type = "b"`, bottom left `type = "o"` and bottom right is `type = "c"`.  
 
 ```{r plot6, echo=TRUE, out.width="75%", fig.align="center"}
 my_x <- 1:10
@@ -461,7 +461,7 @@ points(1:6, rep(2, 6), pch = 20:25, cex = 2, col = "blue", bg = "pink")
 text(1:6, rep(2.3, 6), labels = 20:25, pos = 3)
 ```
 
-The `col =` argument changes the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. To see a list of all the 657 colours available in base R use the `colours()` function (you can also use `colors()`) or perhaps even easier see this [link][colours].
+The `col =` argument changes the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. To see a list of all the 657 preset colours available in base R use the `colours()` function (you can also use `colors()`) or perhaps even easier see this [link][colours]. More colour options are available with other packages (see the excellent `RColorBrewer` package) or you can even 'mix' your own colours using the `colorRamp()` function (see `?colorRamp` for more details).  
 
 The `cex =` argument allow you to change the size of the plotting symbol. This argument works in the same way as some of the other `cex` arguments we have already seen (i.e. `cex.axis`) and requires a numeric value to indicate the increase or decrease in size relative to the default value of 1. 
 
@@ -515,7 +515,7 @@ We think our plot now looks pretty good so we'll stop here! There are, however, 
 
 ### Building plots
 
-For even more control over how your plot looks we can build our plot up in layers, customising each step as we go along. For example, perhaps we want to create a plot of `shootarea` and `weight` as we did before but this time we want to change the symbol colours of our data points depending on what level of `nitrogen` the plants were exposed to. The general approach is that we use our high level plotting function `plot()` to create the general plot (axes, axes labels etc) but we don't actually plot the data at this point. We then use a low level function `points()` to add the plotting symbols one `nitrogen` level at a time whilst customising the look of the symbols. Let's go thorugh this approach a set at a time. First we'll make the plot but supress plotting the data using the `type = "n"` argument in the `plot()` function. 
+For even more control over how your plot looks we can build our plot up in layers, customising each step as we go along. For example, perhaps we want to create a plot of `shootarea` and `weight` as we did before but this time we want to change the symbol colours of our data points depending on what level of `nitrogen` the plants were exposed to. The general approach is that we use our high level plotting function `plot()` to create the general plot (axes, axes labels etc) but we don't actually plot the data at this point. We then use a low level function `points()` to add the plotting symbols one `nitrogen` level at a time whilst customising the look of the symbols. Let's go through this approach a set at a time. First we'll make the plot but suppress plotting the data using the `type = "n"` argument in the `plot()` function. 
 
 ```{r plot49, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
@@ -527,7 +527,7 @@ plot(flowers$weight, flowers$shootarea,
        las = 1, cex.axis = 0.8, tcl = -0.2)
 ```
 
-We can now use the `points()` function in combination with our square bracket `[ ]` skills to only select those data from the `low` level of `nitrogen`. Whilst using the `points()` function we can aslo set the symbol type and the symbol colour using the `pch =` and `col =` arguments.
+We can now use the `points()` function in combination with our square bracket `[ ]` skills to only select those data from the `low` level of `nitrogen`. Whilst using the `points()` function we can also set the symbol type and the symbol colour using the `pch =` and `col =` arguments.
 
 ```{r plot50, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
@@ -583,7 +583,7 @@ text(x = 28, y = 190, label = "A", cex = 2)
 ```
 
 
-The only thing left to do is add a lengend to the plot to let your reader know what what `nitrogen` level each of the colours corresponds to. We'll use another low level function,`legend()` to do this. The `legend()` function requires us to provide the x and y coordinates to specify the position of the top left of the legend in the plot, a vector of colours, symbol types and labels to use in the legend. The `bty = "n"` argument stops a border being drawn around the legend and the `title =` argument gives the legend a title.
+The only thing left to do is add a legend to the plot to let your reader know what what `nitrogen` level each of the colours corresponds to. We'll use another low level function,`legend()` to do this. The `legend()` function requires us to provide the x and y coordinates to specify the position of the top left of the legend in the plot, a vector of colours, symbol types and labels to use in the legend. The `bty = "n"` argument stops a border being drawn around the legend and the `title =` argument gives the legend a title.
 
 ```{r plot53, echo=7:11, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
@@ -646,7 +646,7 @@ The table below highlights some of the low level potting functions you might fin
 
 \  
 
-|    Function    |     Decription                            |     
+|    Function    |     Description                            |     
 |:---------------|:------------------------------------------|
 |`lines()`       |add connected lines to a plot              |
 |`curve()`       |draws a curve corresponding to a function  |
@@ -665,13 +665,96 @@ The table below highlights some of the low level potting functions you might fin
 
 ## Multiple graphs {#mult_graphs}
 
-par(mfrow)
-grid graphics?
+There are a number of different methods for plotting multiple graphs within the same graphics device, some of which you've already met such `pairs()`, `coplot()`, `xyplot()` etc. However these functions rely on plotting multiple graphs in different panels within the same plot. If you want to plot separate plots within the same graphics device you will need a different approach. One of the most common methods is to use the main graphical function `par()` to split the plotting device up into a number of defined sections using the `mfrow =` argument. With this method, you first need to specify the number of rows and columns of plots you would like and then run the code for each plot. For example, to plot two graphs side by side we would use `par(mfrow = c(1, 2))` to split the device into 1 row and two columns.
 
-## Exporting plots
+```{r plot55, echo=TRUE, out.width="75%", fig.align="center"}
+par(mfrow = c(1, 2))
+plot(flowers$weight, flowers$shootarea, xlab = "weight",
+      ylab = "shoot area")
+boxplot(shootarea ~ nitrogen, data = flowers, cex.axis = 0.6)
+```
 
-pdf, jpeg
+Or if we wanted to plot four plots we can split our plotting device into 2 rows and 2 columns.
 
+```{r plot56, echo=TRUE, out.width="75%", fig.align="center"}
+par(mfrow = c(2, 2))
+plot(flowers$weight, flowers$shootarea, xlab = "weight",
+      ylab = "shoot area")
+boxplot(shootarea ~ nitrogen, cex.axis = 0.8, data = flowers)
+hist(flowers$weight, main ="")
+dotchart(flowers$weight)
+```
+
+Once you've finished making your plots don't forget to reset your plotting device back to normal with `par(mfrow = c(1,1))`.
+
+A more flexible approach is to use the `layout()` function. The `layout()` function allows you to split your plotting device up into different sized regions and can be used to build complex figures. Before using the `layout()` function we first need to specify how we are going to split up out plotting device by creating a matrix using the `matrix()` function. Let's create a 2 x 2 matrix.
+
+```{r plot57, echo=TRUE, out.width="75%", fig.align="center"}
+layout_mat <- matrix(c(2, 0, 1, 3), nrow = 2, ncol = 2)
+layout_mat
+```
+
+The matrix above represents splitting the plotting device into 2 rows and 2 columns. The first plot will occupy the lower left panel, the second plot the upper left panels and the third plot the lower right panel. The upper right panel will not contain a plot as we have placed a zero here.
+
+We can now use the `layout()` function to define our layout. As we have two rows and two columns we need to specify the height of each row and the width of each column using the `heights =` and `widths =` arguments. The `respect = TRUE` argument ensures that the units used to define the widths are the same as those to define the heights. We can get a graphical representation of our layout by using the `layout.show()` function. 
+
+```{r plot58, echo=TRUE, out.width="75%", fig.align="center"}
+my_lay <- layout(mat = layout_mat, 
+                 heights = c(1, 3),
+                 widths = c(3, 1), respect =TRUE)
+layout.show(my_lay)
+```
+
+All we need to do now is create our three plots. However, before we do this we also need to change the figure margins for each of the figures using the `par(mar = )` command so all of the plots can fit together in the same plotting device. this will probably take a little bit of experimenting to get the plot looking exactly how you want. For our first figure (bottom left) we will reduce the bottom and left margin a little bit and remove the margins completely from the top and right sides with `par(mar = c(4, 4, 0, 0))`. For our top plot we will remove the margins from the bottom, top and right sides and set the left side to have the same margin as our first figure (`par(mar = c(0, 4, 0, 0))`). For the third plot on the right we will set the bottom side to have the same margin as the first plot so they line up and remove the margins from the other sides with `par(mar = c(4, 0, 0, 0))`.  
+
+```{r plot59, echo=TRUE, out.width="75%", fig.align="center"}
+par(mar = c(4, 4, 0, 0))
+plot(flowers$weight, flowers$shootarea, 
+     xlab = "weight (g)", ylab = "shoot area cm2")
+par(mar = c(0, 4, 0, 0))
+boxplot(flowers$weight, horizontal = TRUE, frame = FALSE,
+        axes =FALSE)
+par(mar = c(4, 0, 0, 0))
+boxplot(flowers$shootarea, frame = FALSE, axes = FALSE)
+```
+
+Notice we've specified that the boxplot at the top should be plotted horizontally with the `horizontal = TRUE` argument. The `frame = FALSE` argument prevents a border being plotted around each boxplot and the `axes = FALSE` argument suppresses the axes and axes labels from being plotted.  
+
+## Exporting plots {#export_plots}
+
+Creating plots in R is all well and good but what if you want to use these plots in your thesis, report or publication? One option is to click on the 'Export' button in the 'Plots' tab in RStudio as we described [previously](#baseplot_start). You can also export your plots from R to an external file by writing some code in your R script. The advantage of this approach is that you have a little more control over the output format and it also allows you to generate (or update) plots automatically whenever you run your script. You can export your plots in many different formats but the most common are; pdf, png, jpeg and tiff. 
+
+By default, R (and therefore RStudio) will direct any plot you create to the plot window. To save your plot to an external file you first need to redirect your plot to a different graphics device. You do this by using one of the many graphics device functions to start a new graphic device. For example, to save a plot in pdf format we will use the `pdf()` function. The first argument in the `pdf()` function is the filepath and filename (with .pdf extension) of the file we want to save. Once we've used the `pdf()` function we can then supply all of the code we used to create our plot including any graphical parameters such as setting the margins and splitting up the plotting device. Once the code has run we need to close the pdf plotting device using the `dev.off()` function. 
+
+```{r plot60, echo=TRUE, eval = FALSE}
+pdf(file = 'output/my_plot.pdf')
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+plot(flowers$weight, flowers$shootarea, 
+       xlab = "weight (g)",
+       ylab = expression(paste("shoot area (cm"^"2",")")),
+       xlim = c(0, 30), ylim = c(0, 200), bty = "l",
+       las = 1, cex.axis = 0.8, tcl = -0.2,
+       pch = 16, col = "dodgerblue1", cex = 0.9)
+text(x = 28, y = 190, label = "A", cex = 2)
+dev.off()
+```
+
+If we wanted to save this plot in png format we simply use the `png()` function in more or less the same way we used the `pdf()` function.
+
+```{r plot61, echo=TRUE, eval = FALSE}
+png('output/my_plot.png')
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+plot(flowers$weight, flowers$shootarea, 
+       xlab = "weight (g)",
+       ylab = expression(paste("shoot area (cm"^"2",")")),
+       xlim = c(0, 30), ylim = c(0, 200), bty = "l",
+       las = 1, cex.axis = 0.8, tcl = -0.2,
+       pch = 16, col = "dodgerblue1", cex = 0.9)
+text(x = 28, y = 190, label = "A", cex = 2)
+dev.off()
+```
+
+Other useful functions are; `jpeg()`, `tiff()` and `bmp()`. Additional arguments to these functions allow you to change the size, resolution and background colour of your saved images. See `?png` for more details.
 
 ```{r links, child="links.md"}
 ```
