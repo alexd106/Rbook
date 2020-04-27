@@ -162,7 +162,7 @@ boxplot(weight ~ nitrogen * treat, data = flowers,
          ylab = "weight (g)", xlab = "nitrogen level")
 ```
 
-This plot looks OK, but some of the group labels are hidden as they're too long to fit on the plot. There are a couple of ways to deal with this. Perhaps the easiest is to reduce the font size of the tick mark labels in the plot so they all fit in using the `cex.axis =` argument. Let's set the font size to be 30% smaller than the default with `cex.axis = 0.7`. We'll show you how to further customise plots later on in the [Chapter](#custom_plot).
+This plot looks OK, but some of the group labels are hidden as they're too long to fit on the plot. There are a couple of ways to deal with this. Perhaps the easiest is to reduce the font size of the tick mark labels in the plot so they all fit in using the `cex.axis =` argument. Let's set the font size to be 30% smaller than the default with `cex.axis = 0.7`. We'll show you how to further customise plots [later](#custom_plot) on in the Chapter.
 
 ```{r plot15, echo=TRUE, out.width="75%", fig.align="center"}
 boxplot(weight ~ nitrogen * treat, data = flowers, 
@@ -210,7 +210,6 @@ Previously in this Chapter we used the `plot()` function to create a scatterplot
 ```{r plot20, echo=TRUE, out.width="75%", fig.align="center", collapse=TRUE}
 pairs(flowers[, c("height", "weight", "leafarea", 
                 "shootarea", "flowers")])
-
 # or we could use the equivalent
 # pairs(flowers[, 4:8])
 ```
@@ -392,7 +391,7 @@ plot(flowers$weight, flowers$shootarea)
 
 Whilst this plot is adequate for data exploration it's not going to cut the mustard if we want to share it with others. At the very least it could do with a better set of axes labels, more informative axes scales, some nicer plotting symbols.   
 
-Let's start with the axis labels. To add labels to the y axis and x axis we use the corresponding `ylab =` and `xlab =` arguments. Both of these arguments need character stings as values.
+Let's start with the axis labels. To add labels to the y axis and x axis we use the corresponding `ylab =` and `xlab =` arguments. Both of these arguments need character strings as values.
 
 ```{r plot40, echo=TRUE, out.width="75%", fig.align="center"}
 plot(flowers$weight, flowers$shootarea, 
@@ -408,7 +407,7 @@ plot(flowers$weight, flowers$shootarea,
        ylab = expression(paste("shoot area (cm"^"2",")")))
 ``` 
 
-But now we have a new problem, the top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()` function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right)` where the arguments `bottom`, `left`, `top`, `right` are the size of the margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers corresponding to the number of lines in each margin. Let's increase the size if the left margin a little bit and decrease the size of the right margin by a smidge.    
+But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()` function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right)` where the arguments `bottom`, `left`, `top` and `right` are the size of the margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers corresponding to the number of lines in each margin. Let's increase the size if the left margin a little bit and decrease the size of the right margin by a smidge.    
 
 ```{r plot42, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9))
@@ -437,7 +436,7 @@ plot(flowers$weight, flowers$shootarea,
        xlim = c(0, 30), ylim = c(0, 200), bty = "l")
 ```
 
-OK, that's looking a lot better already after only a few adjustments. One of the things that we still don't like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value each axis scale by a little bit. We can change this by setting the `xaxs ="i"` and `yaxs ="i"` arguments when we use the `par()` function. While we're about it let's also rotate the y axis tick mark labels so they read horizontal using by setting the `las = 1` argument in the `plot()` function and make them a tad smaller with the `cex.axis =` argument. The `cex.axis =` argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We'll choose `0.8` making our text 20% smaller.       
+OK, that's looking a lot better already after only a few adjustments. One of the things that we still don't like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value of each axis scale by a little bit. We can change this by setting the `xaxs = "i"` and `yaxs = "i"` arguments when we use the `par()` function. While we're about it let's also rotate the y axis tick mark labels so they read horizontally using by setting the `las = 1` argument in the `plot()` function and make them a tad smaller with the `cex.axis =` argument. The `cex.axis =` argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We'll choose `0.8` making our text 20% smaller. We can also make the tick marks just a little shorter by setting `tck = -0.02`. This value needs to be negative as we want the tick marks to be outside the plotting region (see what happens if you set it to `tck = 0.02`).      
 
 ```{r plot45, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
@@ -445,17 +444,73 @@ plot(flowers$weight, flowers$shootarea,
        xlab = "weight (g)",
        ylab = expression(paste("shoot area (cm"^"2",")")),
        xlim = c(0, 30), ylim = c(0, 200), bty = "l",
-       las = 1, cex.axis = 0.8)
+       las = 1, cex.axis = 0.8, tck = -0.02)
 ```
 
+We can also change the type of plotting symbol, the colour of the symbol and the size of the symbol using the `pch =` and `col =` and `cex =` arguments respectively. The `pch =` argument takes an integer value, between 0 and 25 to specify the type of plotting symbol. Symbols 0 to 14 are open symbols, 15 to 20 are filled symbols and 21 to 25 are symbols where you can specify a different fill colour and outside line colour. Here's a summary table displaying the value and corresponding symbol type. 
 
+```{r plot46, echo=FALSE, out.width="75%", fig.align="center"}
+plot(1:10, 1:10, axes = FALSE, type = "n", xlab = "", ylab = "")
+points(1:10, rep(8, 10), pch = 0:9, cex = 2, col = "blue")
+text(1:10, rep(8.3, 10), labels = 0:9, pos = 3)
+points(1:10, rep(5, 10), pch = 10:19, cex = 2, col = "blue")
+text(1:10, rep(5.3, 10), labels = 10:19, pos = 3)
+points(1:6, rep(2, 6), pch = 20:25, cex = 2, col = "blue", bg = "pink")
+text(1:6, rep(2.3, 6), labels = 20:25, pos = 3)
+```
 
+The `col =` argument lets you change the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. To see a list of the 657 colours available in base R use the `colours()` function (you can also use `colors()`) or perhaps even easier see this [link][colours].
 
-table of arguments
+The `cex =` argument allow you to change the size of the plotting symbol. This argument works in the same way as some of the other `cex` arguments we have already seen (i.e. `cex.axis`) and requires a numeric value to indicate the increase or decrease in size relative to the default value of 1. 
 
-example
+Let's change the plotting symbol to a filled circle (16), the colour of the symbol to "dodgerblue1" and decrease the size of the symbol by 10%.
 
-## Multiple graphs
+```{r plot47, echo=TRUE, out.width="75%", fig.align="center"}
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+plot(flowers$weight, flowers$shootarea, 
+       xlab = "weight (g)",
+       ylab = expression(paste("shoot area (cm"^"2",")")),
+       xlim = c(0, 30), ylim = c(0, 200), bty = "l",
+       las = 1, cex.axis = 0.8, tck = -0.02,
+       pch = 16, col = "dodgerblue1", cex = 0.9)
+```
+
+The last thing we'll do is add a text label to the plot so we can identify it. Perhaps this plot will be one of a series of plots we want to include in the same figure (see the section on [plotting multiple graphs](#mult_graphs) for more information) so it would be nice to be able to refer to it in our figure title. To do this we'll use the `text()` function to add a capital 'A' to the top left of the plot. The `text()` function needs an `x =` and a `y =` coordinate to position the text, a `label =` for the text and we can use the `cex =` argument again to change the size of the text.  
+
+```{r plot48, echo=TRUE, out.width="75%", fig.align="center"}
+par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs="i", yaxs="i")
+plot(flowers$weight, flowers$shootarea, 
+       xlab = "weight (g)",
+       ylab = expression(paste("shoot area (cm"^"2",")")),
+       xlim = c(0, 30), ylim = c(0, 200), bty = "l",
+       las = 1, cex.axis = 0.8, tck = -0.02,
+       pch = 16, col = "dodgerblue1", cex = 0.9)
+text(x = 2, y = 190, label = "A", cex = 2)
+```
+
+We think our plot now looks pretty good so we'll stop here! There are, however, a multitude of other arguments which you can play around with to change the look of your plots. The best place to quickly look for more information is the help page associated with the `par()` function (`?par`) or just do a quick Google search. Here's a table of the more commonly used arguments.
+
+\  
+
+|       Argument     |     Description                                 |    
+|:-------------------|:------------------------------------------------|
+|`adj`                 |controls justification of the text  (0 left justified, 0.5 centered, 1 right justified) |                |
+|`bg`                  |specifies the background colour of the plot(i.e. : `bg = "red"`, `bg = "blue"`) |
+|`bty`                 |controls the type of box drawn around the plot, values include: `"o"`, `"l"`, `"7"`, `"c"`, `"u"` , `"]"` (the box looks like the corresponding character); if `bty = "n"` the box is not drawn |
+|`cex`         |controls the size of text and symbols in the plotting area with respect to the default value of 1. Similar commands include: `cex.axis` controls the numbers on the axes, `cex.lab` numbers on the axis labels, `cex.main` the title and `cex.sub` the sub-title |
+|`col`         |controls the colour of symbols; additional argument include: `col.axis`, `col.lab`, `col.main`, `col.sub`|
+|`font`          |an integer controlling the style of text (1: normal, 2: bold, 3: italics, 4: bold italics); other argument include `font.axis`, `font.lab`, `font.main`, `font.sub` |
+|`las`          |an integer which controls the orientation of the axis labels (0: parallel to the axes, 1: horizontal, 2: perpendicular to the axes, 3: vertical)|
+|`lty`           |controls the line style, can be an integer (1: solid, 2: dashed, 3: dotted, 4: dotdash, 5: longdash, 6: twodash)|
+|`lwd`       |a numeric which controls the width of lines. Works as per `cex`|
+|`pch`      |controls the type of symbol, either an integer between 0 and 25, or any single character within quotes `" "` |
+|`ps`         |an integer which controls the size in points of texts and symbols |
+|`pty`    |a character which specifies the type of the plotting region, "s": square, "m": maximal |
+|`tck` |a value which specifies the length of tick-marks on the axes as a fraction of the width or height of the plot; if `tck = 1` a grid is drawn |
+|`tcl`        |a value which specifies the length of tick-marks on the axes as a fraction of the height of a line of text (by default `tcl = -0.5`) | 
+\  
+
+## Multiple graphs {#mult_graphs}
 
 par(mfrow)
 grid graphics?

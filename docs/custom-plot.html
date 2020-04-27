@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="simple-base-r-plots.html"/>
-<link rel="next" href="multiple-graphs.html"/>
+<link rel="next" href="mult-graphs.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -344,7 +344,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.2.7" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#lattice-plots"><i class="fa fa-check"></i><b>10.2.7</b> Lattice plots</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>10.3</b> Customising plots</a></li>
-<li class="chapter" data-level="10.4" data-path="multiple-graphs.html"><a href="multiple-graphs.html"><i class="fa fa-check"></i><b>10.4</b> Multiple graphs</a></li>
+<li class="chapter" data-level="10.4" data-path="mult-graphs.html"><a href="mult-graphs.html"><i class="fa fa-check"></i><b>10.4</b> Multiple graphs</a></li>
 <li class="chapter" data-level="10.5" data-path="exporting-plots.html"><a href="exporting-plots.html"><i class="fa fa-check"></i><b>10.5</b> Exporting plots</a></li>
 </ul></li>
 <li class="divider"></li>
@@ -374,7 +374,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb463-1" data-line-number="1"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot39-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>Whilst this plot is adequate for data exploration it’s not going to cut the mustard if we want to share it with others. At the very least it could do with a better set of axes labels, more informative axes scales, some nicer plotting symbols.</p>
-<p>Let’s start with the axis labels. To add labels to the y axis and x axis we use the corresponding <code>ylab =</code> and <code>xlab =</code> arguments. Both of these arguments need character stings as values.</p>
+<p>Let’s start with the axis labels. To add labels to the y axis and x axis we use the corresponding <code>ylab =</code> and <code>xlab =</code> arguments. Both of these arguments need character strings as values.</p>
 <div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea, </a>
 <a class="sourceLine" id="cb464-2" data-line-number="2">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
 <a class="sourceLine" id="cb464-3" data-line-number="3">       <span class="dt">ylab =</span> <span class="st">&quot;shoot area (cm2)&quot;</span>)</a></code></pre></div>
@@ -384,7 +384,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb465-2" data-line-number="2">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
 <a class="sourceLine" id="cb465-3" data-line-number="3">       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="op">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)))</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot41-1.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>But now we have a new problem, the top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the <code>par()</code> function and the <code>mar =</code> argument before we plot the graph. The <code>par()</code> function is the main function for setting graphical parameters in base R and the <code>mar =</code> argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation <code>par(mar = c(bottom, left, top, right)</code> where the arguments <code>bottom</code>, <code>left</code>, <code>top</code>, <code>right</code> are the size of the margins. By default R sets these margins as <code>mar = c(5.1, 4.1, 4.1, 2.1)</code> with these numbers corresponding to the number of lines in each margin. Let’s increase the size if the left margin a little bit and decrease the size of the right margin by a smidge.</p>
+<p>But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the <code>par()</code> function and the <code>mar =</code> argument before we plot the graph. The <code>par()</code> function is the main function for setting graphical parameters in base R and the <code>mar =</code> argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation <code>par(mar = c(bottom, left, top, right)</code> where the arguments <code>bottom</code>, <code>left</code>, <code>top</code> and <code>right</code> are the size of the margins. By default R sets these margins as <code>mar = c(5.1, 4.1, 4.1, 2.1)</code> with these numbers corresponding to the number of lines in each margin. Let’s increase the size if the left margin a little bit and decrease the size of the right margin by a smidge.</p>
 <div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb466-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>))</a>
 <a class="sourceLine" id="cb466-2" data-line-number="2"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea, </a>
 <a class="sourceLine" id="cb466-3" data-line-number="3">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
@@ -404,16 +404,110 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb468-4" data-line-number="4">       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="op">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</a>
 <a class="sourceLine" id="cb468-5" data-line-number="5">       <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot44-1.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>OK, that’s looking a lot better already after only a few adjustments. One of the things that we still don’t like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value each axis scale by a little bit. We can change this by setting the <code>xaxs =&quot;i&quot;</code> and <code>yaxs =&quot;i&quot;</code> arguments when we use the <code>par()</code> function. While we’re about it let’s also rotate the y axis tick mark labels so they read horizontal using by setting the <code>las = 1</code> argument in the <code>plot()</code> function and make them a tad smaller with the <code>cex.axis =</code> argument. The <code>cex.axis =</code> argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We’ll choose <code>0.8</code> making our text 20% smaller.</p>
+<p>OK, that’s looking a lot better already after only a few adjustments. One of the things that we still don’t like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value of each axis scale by a little bit. We can change this by setting the <code>xaxs = &quot;i&quot;</code> and <code>yaxs = &quot;i&quot;</code> arguments when we use the <code>par()</code> function. While we’re about it let’s also rotate the y axis tick mark labels so they read horizontally using by setting the <code>las = 1</code> argument in the <code>plot()</code> function and make them a tad smaller with the <code>cex.axis =</code> argument. The <code>cex.axis =</code> argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We’ll choose <code>0.8</code> making our text 20% smaller. We can also make the tick marks just a little shorter by setting <code>tck = -0.02</code>. This value needs to be negative as we want the tick marks to be outside the plotting region (see what happens if you set it to <code>tck = 0.02</code>).</p>
 <div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb469-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="dt">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="dt">yaxs=</span><span class="st">&quot;i&quot;</span>)</a>
 <a class="sourceLine" id="cb469-2" data-line-number="2"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea, </a>
 <a class="sourceLine" id="cb469-3" data-line-number="3">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
 <a class="sourceLine" id="cb469-4" data-line-number="4">       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="op">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</a>
 <a class="sourceLine" id="cb469-5" data-line-number="5">       <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>,</a>
-<a class="sourceLine" id="cb469-6" data-line-number="6">       <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb469-6" data-line-number="6">       <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">tck =</span> <span class="fl">-0.02</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot45-1.png" width="75%" style="display: block; margin: auto;" /></p>
-<p>table of arguments</p>
-<p>example</p>
+<p>We can also change the type of plotting symbol, the colour of the symbol and the size of the symbol using the <code>pch =</code> and <code>col =</code> and <code>cex =</code> arguments respectively. The <code>pch =</code> argument takes an integer value, between 0 and 25 to specify the type of plotting symbol. Symbols 0 to 14 are open symbols, 15 to 20 are filled symbols and 21 to 25 are symbols where you can specify a different fill colour and outside line colour. Here’s a summary table displaying the value and corresponding symbol type.</p>
+<p><img src="Rbook_files/figure-html/plot46-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The <code>col =</code> argument lets you change the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. To see a list of the 657 colours available in base R use the <code>colours()</code> function (you can also use <code>colors()</code>) or perhaps even easier see this <a href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf">link</a>.</p>
+<p>The <code>cex =</code> argument allow you to change the size of the plotting symbol. This argument works in the same way as some of the other <code>cex</code> arguments we have already seen (i.e. <code>cex.axis</code>) and requires a numeric value to indicate the increase or decrease in size relative to the default value of 1.</p>
+<p>Let’s change the plotting symbol to a filled circle (16), the colour of the symbol to “dodgerblue1” and decrease the size of the symbol by 10%.</p>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb470-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="dt">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="dt">yaxs=</span><span class="st">&quot;i&quot;</span>)</a>
+<a class="sourceLine" id="cb470-2" data-line-number="2"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea, </a>
+<a class="sourceLine" id="cb470-3" data-line-number="3">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
+<a class="sourceLine" id="cb470-4" data-line-number="4">       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="op">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</a>
+<a class="sourceLine" id="cb470-5" data-line-number="5">       <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>,</a>
+<a class="sourceLine" id="cb470-6" data-line-number="6">       <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">tck =</span> <span class="fl">-0.02</span>,</a>
+<a class="sourceLine" id="cb470-7" data-line-number="7">       <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;dodgerblue1&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.9</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/plot47-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The last thing we’ll do is add a text label to the plot so we can identify it. Perhaps this plot will be one of a series of plots we want to include in the same figure (see the section on <a href="mult-graphs.html#mult_graphs">plotting multiple graphs</a> for more information) so it would be nice to be able to refer to it in our figure title. To do this we’ll use the <code>text()</code> function to add a capital ‘A’ to the top left of the plot. The <code>text()</code> function needs an <code>x =</code> and a <code>y =</code> coordinate to position the text, a <code>label =</code> for the text and we can use the <code>cex =</code> argument again to change the size of the text.</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb471-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mar =</span> <span class="kw">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="dt">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="dt">yaxs=</span><span class="st">&quot;i&quot;</span>)</a>
+<a class="sourceLine" id="cb471-2" data-line-number="2"><span class="kw">plot</span>(flowers<span class="op">$</span>weight, flowers<span class="op">$</span>shootarea, </a>
+<a class="sourceLine" id="cb471-3" data-line-number="3">       <span class="dt">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</a>
+<a class="sourceLine" id="cb471-4" data-line-number="4">       <span class="dt">ylab =</span> <span class="kw">expression</span>(<span class="kw">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="op">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</a>
+<a class="sourceLine" id="cb471-5" data-line-number="5">       <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="dt">bty =</span> <span class="st">&quot;l&quot;</span>,</a>
+<a class="sourceLine" id="cb471-6" data-line-number="6">       <span class="dt">las =</span> <span class="dv">1</span>, <span class="dt">cex.axis =</span> <span class="fl">0.8</span>, <span class="dt">tck =</span> <span class="fl">-0.02</span>,</a>
+<a class="sourceLine" id="cb471-7" data-line-number="7">       <span class="dt">pch =</span> <span class="dv">16</span>, <span class="dt">col =</span> <span class="st">&quot;dodgerblue1&quot;</span>, <span class="dt">cex =</span> <span class="fl">0.9</span>)</a>
+<a class="sourceLine" id="cb471-8" data-line-number="8"><span class="kw">text</span>(<span class="dt">x =</span> <span class="dv">2</span>, <span class="dt">y =</span> <span class="dv">190</span>, <span class="dt">label =</span> <span class="st">&quot;A&quot;</span>, <span class="dt">cex =</span> <span class="dv">2</span>)</a></code></pre></div>
+<p><img src="Rbook_files/figure-html/plot48-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>We think our plot now looks pretty good so we’ll stop here! There are, however, a multitude of other arguments which you can play around with to change the look of your plots. The best place to quickly look for more information is the help page associated with the <code>par()</code> function (<code>?par</code>) or just do a quick Google search. Here’s a table of the more commonly used arguments.</p>
+<p> </p>
+<table>
+<colgroup>
+<col width="28%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Argument</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>adj</code></td>
+<td align="left">controls justification of the text (0 left justified, 0.5 centered, 1 right justified)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>bg</code></td>
+<td align="left">specifies the background colour of the plot(i.e. : <code>bg = &quot;red&quot;</code>, <code>bg = &quot;blue&quot;</code>)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>bty</code></td>
+<td align="left">controls the type of box drawn around the plot, values include: <code>&quot;o&quot;</code>, <code>&quot;l&quot;</code>, <code>&quot;7&quot;</code>, <code>&quot;c&quot;</code>, <code>&quot;u&quot;</code> , <code>&quot;]&quot;</code> (the box looks like the corresponding character); if <code>bty = &quot;n&quot;</code> the box is not drawn</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cex</code></td>
+<td align="left">controls the size of text and symbols in the plotting area with respect to the default value of 1. Similar commands include: <code>cex.axis</code> controls the numbers on the axes, <code>cex.lab</code> numbers on the axis labels, <code>cex.main</code> the title and <code>cex.sub</code> the sub-title</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>col</code></td>
+<td align="left">controls the colour of symbols; additional argument include: <code>col.axis</code>, <code>col.lab</code>, <code>col.main</code>, <code>col.sub</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>font</code></td>
+<td align="left">an integer controlling the style of text (1: normal, 2: bold, 3: italics, 4: bold italics); other argument include <code>font.axis</code>, <code>font.lab</code>, <code>font.main</code>, <code>font.sub</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>las</code></td>
+<td align="left">an integer which controls the orientation of the axis labels (0: parallel to the axes, 1: horizontal, 2: perpendicular to the axes, 3: vertical)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>lty</code></td>
+<td align="left">controls the line style, can be an integer (1: solid, 2: dashed, 3: dotted, 4: dotdash, 5: longdash, 6: twodash)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lwd</code></td>
+<td align="left">a numeric which controls the width of lines. Works as per <code>cex</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>pch</code></td>
+<td align="left">controls the type of symbol, either an integer between 0 and 25, or any single character within quotes <code>&quot; &quot;</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ps</code></td>
+<td align="left">an integer which controls the size in points of texts and symbols</td>
+</tr>
+<tr class="even">
+<td align="left"><code>pty</code></td>
+<td align="left">a character which specifies the type of the plotting region, “s”: square, “m”: maximal</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>tck</code></td>
+<td align="left">a value which specifies the length of tick-marks on the axes as a fraction of the width or height of the plot; if <code>tck = 1</code> a grid is drawn</td>
+</tr>
+<tr class="even">
+<td align="left"><code>tcl</code></td>
+<td align="left">a value which specifies the length of tick-marks on the axes as a fraction of the height of a line of text (by default <code>tcl = -0.5</code>)</td>
+</tr>
+</tbody>
+</table>
+<p> </p>
 </div>
             </section>
 
@@ -421,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="simple-base-r-plots.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="multiple-graphs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="mult-graphs.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

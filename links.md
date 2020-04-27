@@ -152,5 +152,6 @@
 [kernel-dens]: https://en.wikipedia.org/wiki/Kernel_density_estimation
 [dynamite-plot1]: http://biostat.mc.vanderbilt.edu/wiki/pub/Main/TatsukiRcode/Poster3.pdf
 [dynamite-plot2]: https://thenode.biologists.com/leaving-bar-five-steps/research/
+[colours]: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 
 
