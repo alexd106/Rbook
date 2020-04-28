@@ -205,7 +205,7 @@ The base installation of R comes with many useful packages as standard. These pa
 
 ### CRAN packages {#cran_packages}
 
-To install a package from CRAN you can use the `install.packages()` function. For example if you want to install the `remotes` package enter the following code into the Console window of RStudio (note: you will need a working internet connection to do this)
+To install a package from CRAN you can use the `install.packages()`\index{install.packages()} function. For example if you want to install the `remotes`\index{remotes package} package enter the following code into the Console window of RStudio (note: you will need a working internet connection to do this)
 
 ```{r, echo = TRUE, eval=FALSE}
 install.packages('remotes', dependencies = TRUE)
@@ -213,7 +213,7 @@ install.packages('remotes', dependencies = TRUE)
 
 You may be asked to select a CRAN mirror, just select '0-cloud' or a mirror near to your location. The `dependencies = TRUE` argument ensures that additional packages that are required will also be installed.
 
-It's good practice to occasionally update your previously installed packages to get access to new functionality and bug fixes. To update CRAN packages you can use the `update.packages()` function (you will need a working internet connection for this)
+It's good practice to occasionally update your previously installed packages to get access to new functionality and bug fixes. To update CRAN packages you can use the `update.packages()`\index{update.packages()} function (you will need a working internet connection for this)
 
 ```{r, echo = TRUE, eval=FALSE}
 update.packages(ask = FALSE)
@@ -251,7 +251,7 @@ Again, you can use the `ask = FALSE` argument to avoid having to confirm every p
 
 ### GitHub packages
 
-There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the `install_github()` function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
+There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the `install_github()`\index{install\_github()} function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version form GitHub use
 
 ```{r, echo=TRUE, eval=FALSE}
 remotes::install_github('tidyverse/dplyr')
@@ -261,13 +261,13 @@ The safest way (that we know of) to update a package installed from GitHub is to
 
 ### Using packages
 
-Once you have installed a package onto your computer it is not immediately available for you to use. To use a package you first need to load the package by using the `library()` function. For example, to load the `remotes` package you previously installed
+Once you have installed a package onto your computer it is not immediately available for you to use. To use a package you first need to load the package by using the `library()`\index{library()} function. For example, to load the `remotes` package you previously installed
 
 ```{r, echo=TRUE, eval=FALSE}
 library(remotes)
 ```
 
-The `library()` function will also load any additional packages required and may print out additional package information. It is important to realise that every time you start a new R session (or restore a previously saved session) you need to load the packages you will be using. We tend to put all our `library()` statements required for our analysis near the top of our R scripts to make them easily accessible and easy to add to as our code develops. If you try to use a function without first loading the relevant R package you will receive an error message that R could not find the function. For example, if you try to use the `install_gitgub()` function without loading the `remotes` package first you will receive the following error
+The `library()` function will also load any additional packages required and may print out additional package information. It is important to realise that every time you start a new R session (or restore a previously saved session) you need to load the packages you will be using. We tend to put all our `library()` statements required for our analysis near the top of our R scripts to make them easily accessible and easy to add to as our code develops. If you try to use a function without first loading the relevant R package you will receive an error message that R could not find the function. For example, if you try to use the `install_github()` function without loading the `remotes` package first you will receive the following error
 
 ```{r, echo=TRUE, eval=FALSE}
 install_github('tidyverse/dplyr')
@@ -366,7 +366,7 @@ knitr::include_graphics(path = "images/dir_struct.png")
 
 \ 
 
-You can also use the `getwd()` function in the Console which returns the file path of the current working directory.
+You can also use the `getwd()`\index{getwd()} function in the Console which returns the file path of the current working directory.
 
 \  
 
@@ -378,7 +378,7 @@ knitr::include_graphics(path = "images/dir_struct2.png")
 
 In the example above, our working directory is a folder called 'first_project' which is a subfolder of "Teaching' in our 'Alex' folder which in turn is in a 'Documents' folder located in the 'nhy163' folder which itself is in the 'Users' folder. On a Windows based computer our working directory would also include a drive letter (i.e. `C:/Users/nhy163/Documents/Alex/Teaching/first_project`).  
 
-If you weren't using an RStudio Project then you would have to set your working directory using the `setwd()` function at the start of every R script (something we did for many years). 
+If you weren't using an RStudio Project then you would have to set your working directory using the `setwd()`\index{setwd()} function at the start of every R script (something we did for many years). 
 
 ```{r wd, echo=TRUE, eval=FALSE}
 setwd('/Users/nhy163/Documents/Alex/Teaching/first_project')
@@ -405,7 +405,7 @@ dataf <- read.table('raw_data/mydata.txt', header = TRUE, sep = '\t')
 dataf <- read.table('/Users/nhy163/Documents/Alex/Teaching/first_project/raw_data/mydata.txt', header = TRUE, sep = '\t')
 ```
 
-For those of you who want to take the notion of relative file paths a step further, take a look at the `here()` function in the `here` [package][here]. The `here()` function allows you to automagically build file paths for any file relative to the project root directory that are also operating system agnostic (works on a Mac or Windows machine). For example, to import our `mydata.txt` file from the `raw_data` directory just use  
+For those of you who want to take the notion of relative file paths a step further, take a look at the `here()` function in the `here` [package][here]. The `here()`\index{here()} function allows you to automagically build file paths for any file relative to the project root directory that are also operating system agnostic (works on a Mac or Windows machine). For example, to import our `mydata.txt` file from the `raw_data` directory just use  
 
 ```{r rel-fp23, echo=TRUE, eval=FALSE}
 library(here)  # you may need to install the here package first
@@ -456,7 +456,7 @@ knitr::include_graphics(path = "images/dir_struct3.png")
 
 \  
 
-An alternative approach is to use the `dir.create()` function in the R Console
+An alternative approach is to use the `dir.create()`\index{dir.create()} and `list.files()\index{list.files()} functions in the R Console
 
 ```{r dir, echo=TRUE, eval=FALSE}
 # create directory called 'data'
@@ -499,7 +499,7 @@ Whatever file naming convention you decide to use, try to adopt early, stick wit
 
 ## Project documentation {#proj_doc}
 
-A quick note or two about writing R code and creating R scripts. Unless you're doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments `#` or, even better, by mixing executable code with narrative into an [R markdown](#rmarkdown_r) document. It's also good practice to include the output of the `sessionInfo()` function at the end of any script which prints the R version, details of the operating system and also loaded packages. A really good alternative is to use the `session_info()` function from the `xfun` package for a more concise summary of our session environment. 
+A quick note or two about writing R code and creating R scripts. Unless you're doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments `#` or, even better, by mixing executable code with narrative into an [R markdown](#rmarkdown_r) document. It's also good practice to include the output of the `sessionInfo()`\index{sessionInfo()} function at the end of any script which prints the R version, details of the operating system and also loaded packages. A really good alternative is to use the `session_info()`\index{session\_info()} function from the `xfun` package for a more concise summary of our session environment. 
 
 Here's an example of including meta-information at the start of an R script
 

@@ -460,10 +460,18 @@ But what if we want to extract either all of the rows or all of the columns? It 
 flowers[1:8, ]
 ```
 
-or all of the rows and the first 3 columns (scroll down in output panel to see all of the data)
+or all of the rows and the first 3 columns. If you're reading the web version of this book scroll down in output panel to see all of the data. Note, if you're reading the pdf version of the book some of the output has been truncated to save some space.
 
-```{r dw8, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw8, echo=TRUE, eval=FALSE}
 flowers[, 1:3]
+```
+
+```{r dw8-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+flowers[, 1:3]
+```
+
+```{r dw8-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+rbind(head(flowers[, 1:3], n= 10), tail(flowers[, 1:3], n= 10))
 ```
 
 We can even use negative positional indexes to exclude certain rows and columns. As an example, lets extract all of the rows except the first 85 rows and all columns except the 4^th^, 7^th^ and 8^th^ columns. Notice we need to use `-()` when we generate our row positional vectors. If we had just used `-1:85` this would actually generate a regular sequence from -1 to 85 which is not what we want (we can of course use `-1:-85`).
@@ -517,18 +525,38 @@ flowers[flowers$height == 8, ]         # values  equal to 8
 flowers[flowers$height != 8, ]         # values  not equal to 8
 ```
 
-We can also extract rows based on the value of a character string or factor level. Let's extract all rows where the `nitrogen` level is equal to `high` (again we will output all columns). Notice that the double equals `==` sign must be used for a logical test and that the character string must be enclosed in either single or double quotes (i.e. `"high"`).
+We can also extract rows based on the value of a character string or factor level. Let's extract all rows where the `nitrogen` level is equal to `high` (again we will output all columns). Notice that the double equals `==` sign must be used for a logical test and that the character string must be enclosed in either single or double quotes (i.e. `"high"`). 
 
-```{r dw15, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw15, echo=TRUE,eval=FALSE}
 nit_high <- flowers[flowers$nitrogen == "high", ]        
 nit_high
 ```
 
+```{r dw15-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+nit_high <- flowers[flowers$nitrogen == "high", ]        
+nit_high
+```
+
+```{r dw15-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+nit_high <- flowers[flowers$nitrogen == "high", ]        
+rbind(head(nit_high, n = 10), tail(nit_high, n = 10))
+```
+
 Or we can extract all rows where `nitrogen` level is not equal to `medium` (using `!=`) and only return columns 1 to 4. 
 
-```{r dw16, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw16, echo=TRUE, eval=FALSE}
 nit_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]        
 nit_not_medium
+```
+
+```{r dw16-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+nit_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]        
+nit_not_medium
+```
+
+```{r dw16-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+nit_not_medium <- flowers[flowers$nitrogen != "medium", 1:4]        
+rbind(head(nit_not_medium, n = 10), tail(nit_not_medium, n = 10))
 ```
 
 We can increase the complexity of our logical tests by combining them with [Boolean expressions][boolean] just as we did for vector objects. For example, to extract all rows where `height` is greater or equal to `6` AND `nitrogen` is equal to `medium` AND `treat` is equal to `notip` we combine a series of logical expressions with the `&` symbol. 
@@ -563,39 +591,89 @@ tipplants
 
 ### Ordering data frames
 
-Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default (scroll down in the output panel to see the entire ordered data frame).
+Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default. If you're reading this section of the book on the web you can scroll down in the output panels to see the entire ordered data frame. If you're reading the pdf version of the book, note that some of the output from the code chunks has been truncated to save some space.
 
-```{r dw20, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw20, echo=TRUE, eval=FALSE}
 height_ord <- flowers[order(flowers$height), ]        
 height_ord
 ```
 
+```{r dw20-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+height_ord <- flowers[order(flowers$height), ]        
+height_ord
+```
+
+```{r dw20-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+height_ord <- flowers[order(flowers$height), ]        
+head(height_ord, n = 15)
+```
+
 We can also order by descending order of a variable (i.e. `leafarea`) using the `decreasing = TRUE` argument. 
 
-```{r dw21, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw21, echo=TRUE, eval=FALSE}
 leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
 leafarea_ord
 ```
 
-We can even order data frames based on multiple variables. For example, to order the data frame `flowers` in ascending order of both `block` and `height`
+```{r dw21-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
+leafarea_ord
+```
 
-```{r dw22, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw21-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+leafarea_ord <- flowers[order(flowers$leafarea, decreasing = TRUE), ]        
+head(leafarea_ord, n = 15)
+```
+
+We can even order data frames based on multiple variables. For example, to order the data frame `flowers` in ascending order of both `block` and `height`.
+
+```{r dw22, echo=TRUE, eval=FALSE}
 block_height_ord <- flowers[order(flowers$block, flowers$height), ]        
 block_height_ord
 ```
 
+```{r dw22-html, echo=FALSE, collapse=TRUE,  eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+block_height_ord <- flowers[order(flowers$block, flowers$height), ]        
+block_height_ord
+```
+
+```{r dw22-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+block_height_ord <- flowers[order(flowers$block, flowers$height), ]        
+head(block_height_ord, n = 20)
+```
+
 What if we wanted to order `flowers` by ascending order of `block` but descending order of `height`? We can use a simple trick by adding a `-` symbol before the `flowers$height` variable when we use the `order()` function. This will essentially turn all of the `height` values negative which will result in reversing the order. Note, that this trick will only work with numeric variables. 
 
-```{r dw23, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw23, echo=TRUE, eval=FALSE}
 block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]        
 block_revheight_ord
 ```
 
+```{r dw23-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]        
+block_revheight_ord
+```
+
+```{r dw23-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]        
+rbind(head(block_revheight_ord, n = 15), tail(block_revheight_ord, n = 15))
+```
+
 If we wanted to do the same thing with a factor (or character) variable like `nitrogen` we would need to use the function `xtfrm()` for this variable inside our `order()` function.
 
-```{r dw24, echo=TRUE, collapse=TRUE, attr.output='style="max-height: 500px;"'}
+```{r dw24, echo=TRUE, eval=FALSE}
 block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
 block_revheight_ord
+```
+
+```{r dw24-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
+block_revheight_ord
+```
+
+```{r dw24-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
+rbind(head(block_revheight_ord, n = 15), tail(block_revheight_ord, n = 15))
 ```
 
 Notice that the `nitrogen` variable has been reverse ordered alphabetically and `height` has been ordered by increasing values within each level of `nitrogen`. 
@@ -655,24 +733,26 @@ str(df_rcomb)
 
 ### Merging data frames
 
-Instead of just appending either rows or columns to a data frame we can also merge two data frames together. let's say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates and another data frame that contains information on where they are usually found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let's first create both of these data frames (in reality you would probably just import your different datasets).
+Instead of just appending either rows or columns to a data frame we can also merge two data frames together. Let's say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates (called `taxa`) and another data frame that contains information on where they are usually found on the rocky shore (called `zone`). We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let's first create both of these data frames (in reality you would probably just import your different datasets).
 
 ```{r dw28, echo=TRUE, collapse=TRUE}
 taxa <- data.frame(GENUS = c("Patella", "Littorina", "Halichondria", "Semibalanus"),
-           species = c("vulgata", "littoria", "panacea", "balanoides"),
-           family = c("patellidae", "Littorinidae", "Halichondriidae", "Archaeobalanidae"))
+         species = c("vulgata", "littoria", "panacea", "balanoides"),
+         family = c("patellidae", "Littorinidae", "Halichondriidae", "Archaeobalanidae"))
 taxa
 
-zonation <- data.frame(genus = c("Laminaria", "Halichondria", "Xanthoria", "Littorina", "Semibalanus", "Fucus"),
-              species = c("digitata", "panacea", "parietina", "littoria", "balanoides", "serratus"),
-              zone = c( "v_low", "low", "v_high", "low_mid", "high", "low_mid"))
-zonation
+zone <- data.frame(genus = c("Laminaria", "Halichondria", "Xanthoria", "Littorina", 
+                             "Semibalanus", "Fucus"),
+                   species = c("digitata", "panacea", "parietina", "littoria", 
+                               "balanoides", "serratus"),
+                   zone = c( "v_low", "low", "v_high", "low_mid", "high", "low_mid"))
+zone
 ```
 
 Because both of our data frames contains at least one variable in common (`species` in our case) we can simply use the `merge()` function to create a new data frame called `taxa_zone`.
 
 ```{r dw29, echo=TRUE, collapse=TRUE}
-taxa_zone <- merge(x = taxa, y = zonation)
+taxa_zone <- merge(x = taxa, y = zone)
 taxa_zone
 ```
 
@@ -681,21 +761,21 @@ Notice that the merged data frame contains only the rows that have `species` inf
 If we want to include all data from both data frames then we will need to use the `all = TRUE` argument. The missing values will be included as `NA`.
 
 ```{r dw30, echo=TRUE, collapse=TRUE}
-taxa_zone <- merge(x = taxa, y = zonation, all = TRUE)
+taxa_zone <- merge(x = taxa, y = zone, all = TRUE)
 taxa_zone
 ```
 
 If the variable names that you want to base the merge on are different in each data frame (for example `GENUS` and `genus`) you can specify the names in the first data frame (known as `x`) and the second data frame (known as `y`) using the `by.x =` and `by.y =` arguments.
 
 ```{r dw31, echo=TRUE, collapse=TRUE}
-taxa_zone <- merge(x = taxa, y = zonation, by.x = "GENUS", by.y = "genus", all = TRUE)
+taxa_zone <- merge(x = taxa, y = zone, by.x = "GENUS", by.y = "genus", all = TRUE)
 taxa_zone
 ```
 
 Or using multiple variable names. 
 
 ```{r dw31.1, echo=TRUE, collapse=TRUE}
-taxa_zone <- merge(x = taxa, y = zonation, by.x = c("species", "GENUS"), 
+taxa_zone <- merge(x = taxa, y = zone, by.x = c("species", "GENUS"), 
                     by.y = c("species", "genus"), all = TRUE)
 taxa_zone
 ```
@@ -724,9 +804,15 @@ long_data <- read.table(header=TRUE, text='
 
 \  
 
-```{r dw33, echo=FALSE}
+```{r dw33-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 library(kableExtra)
 kable(long_data) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```
+
+```{r dw33-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
+library(kableExtra)
+kable(long_data, "latex", booktabs = TRUE) %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
@@ -746,8 +832,13 @@ wide_data <- read.table(header=TRUE, text='
 
 \  
 
-```{r dw35, echo=FALSE}
+```{r dw35-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 kable(wide_data) %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
+```
+
+```{r dw35-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
+kable(wide_data, "latex", booktabs = TRUE) %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 

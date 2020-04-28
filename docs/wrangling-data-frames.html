@@ -449,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb116-8" data-line-number="8"><span class="co">## 6   tip   medium     1    9.8  10.08     12.2      72.7       9</span></a>
 <a class="sourceLine" id="cb116-9" data-line-number="9"><span class="co">## 7   tip   medium     1    6.9  10.11     13.2      43.1       7</span></a>
 <a class="sourceLine" id="cb116-10" data-line-number="10"><span class="co">## 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></a></code></pre></div>
-<p>or all of the rows and the first 3 columns (scroll down in output panel to see all of the data)</p>
+<p>or all of the rows and the first 3 columns. If you’re reading the web version of this book scroll down in output panel to see all of the data. Note, if you’re reading the pdf version of the book some of the output has been truncated to save some space.</p>
 <div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb117-1" data-line-number="1">flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a></code></pre></div>
 <pre style="max-height: 500px;"><code>##    treat nitrogen block
 ## 1    tip   medium     1
@@ -757,7 +757,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ordering-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.3</span> Ordering data frames</h3>
-<p>Remember when we used the function <code>order()</code> to order one vector based on the order of another vector (way back in <a href="vectors.html#vec_ord">Chapter 2</a>). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame <code>flowers</code> to be ordered in ascending value of <code>height</code> and output all columns by default (scroll down in the output panel to see the entire ordered data frame).</p>
+<p>Remember when we used the function <code>order()</code> to order one vector based on the order of another vector (way back in <a href="vectors.html#vec_ord">Chapter 2</a>). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame <code>flowers</code> to be ordered in ascending value of <code>height</code> and output all columns by default. If you’re reading this section of the book on the web you can scroll down in the output panels to see the entire ordered data frame. If you’re reading the pdf version of the book, note that some of the output from the code chunks has been truncated to save some space.</p>
 <div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>height), ]        </a>
 <a class="sourceLine" id="cb133-2" data-line-number="2">height_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
@@ -957,7 +957,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3    tip   medium     1   11.2  12.76      7.1      66.7      10
 ## 44   tip      low     2    8.8   9.39      7.1      38.9       4
 ## 48   tip      low     2    5.8   8.04      5.8      30.7       7</code></pre>
-<p>We can even order data frames based on multiple variables. For example, to order the data frame <code>flowers</code> in ascending order of both <code>block</code> and <code>height</code></p>
+<p>We can even order data frames based on multiple variables. For example, to order the data frame <code>flowers</code> in ascending order of both <code>block</code> and <code>height</code>.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">block_height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, flowers<span class="op">$</span>height), ]        </a>
 <a class="sourceLine" id="cb137-2" data-line-number="2">block_height_ord</a></code></pre></div>
 <pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
@@ -1345,10 +1345,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="merging-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Merging data frames</h3>
-<p>Instead of just appending either rows or columns to a data frame we can also merge two data frames together. let’s say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates and another data frame that contains information on where they are usually found on the rocky shore. We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
+<p>Instead of just appending either rows or columns to a data frame we can also merge two data frames together. Let’s say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates (called <code>taxa</code>) and another data frame that contains information on where they are usually found on the rocky shore (called <code>zone</code>). We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
 <div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">           <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3">           <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">         <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
+<a class="sourceLine" id="cb148-3" data-line-number="3">         <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
 <a class="sourceLine" id="cb148-4" data-line-number="4">taxa</a>
 <a class="sourceLine" id="cb148-5" data-line-number="5"><span class="co">##          GENUS    species           family</span></a>
 <a class="sourceLine" id="cb148-6" data-line-number="6"><span class="co">## 1      Patella    vulgata       patellidae</span></a>
@@ -1356,19 +1356,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb148-8" data-line-number="8"><span class="co">## 3 Halichondria    panacea  Halichondriidae</span></a>
 <a class="sourceLine" id="cb148-9" data-line-number="9"><span class="co">## 4  Semibalanus balanoides Archaeobalanidae</span></a>
 <a class="sourceLine" id="cb148-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb148-11" data-line-number="11">zonation &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-12" data-line-number="12">              <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-13" data-line-number="13">              <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
-<a class="sourceLine" id="cb148-14" data-line-number="14">zonation</a>
-<a class="sourceLine" id="cb148-15" data-line-number="15"><span class="co">##          genus    species    zone</span></a>
-<a class="sourceLine" id="cb148-16" data-line-number="16"><span class="co">## 1    Laminaria   digitata   v_low</span></a>
-<a class="sourceLine" id="cb148-17" data-line-number="17"><span class="co">## 2 Halichondria    panacea     low</span></a>
-<a class="sourceLine" id="cb148-18" data-line-number="18"><span class="co">## 3    Xanthoria  parietina  v_high</span></a>
-<a class="sourceLine" id="cb148-19" data-line-number="19"><span class="co">## 4    Littorina   littoria low_mid</span></a>
-<a class="sourceLine" id="cb148-20" data-line-number="20"><span class="co">## 5  Semibalanus balanoides    high</span></a>
-<a class="sourceLine" id="cb148-21" data-line-number="21"><span class="co">## 6        Fucus   serratus low_mid</span></a></code></pre></div>
+<a class="sourceLine" id="cb148-11" data-line-number="11">zone &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, </a>
+<a class="sourceLine" id="cb148-12" data-line-number="12">                             <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
+<a class="sourceLine" id="cb148-13" data-line-number="13">                   <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, </a>
+<a class="sourceLine" id="cb148-14" data-line-number="14">                               <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
+<a class="sourceLine" id="cb148-15" data-line-number="15">                   <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
+<a class="sourceLine" id="cb148-16" data-line-number="16">zone</a>
+<a class="sourceLine" id="cb148-17" data-line-number="17"><span class="co">##          genus    species    zone</span></a>
+<a class="sourceLine" id="cb148-18" data-line-number="18"><span class="co">## 1    Laminaria   digitata   v_low</span></a>
+<a class="sourceLine" id="cb148-19" data-line-number="19"><span class="co">## 2 Halichondria    panacea     low</span></a>
+<a class="sourceLine" id="cb148-20" data-line-number="20"><span class="co">## 3    Xanthoria  parietina  v_high</span></a>
+<a class="sourceLine" id="cb148-21" data-line-number="21"><span class="co">## 4    Littorina   littoria low_mid</span></a>
+<a class="sourceLine" id="cb148-22" data-line-number="22"><span class="co">## 5  Semibalanus balanoides    high</span></a>
+<a class="sourceLine" id="cb148-23" data-line-number="23"><span class="co">## 6        Fucus   serratus low_mid</span></a></code></pre></div>
 <p>Because both of our data frames contains at least one variable in common (<code>species</code> in our case) we can simply use the <code>merge()</code> function to create a new data frame called <code>taxa_zone</code>.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation)</a>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone)</a>
 <a class="sourceLine" id="cb149-2" data-line-number="2">taxa_zone</a>
 <a class="sourceLine" id="cb149-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
 <a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
@@ -1376,7 +1378,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">## 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
 <p>Notice that the merged data frame contains only the rows that have <code>species</code> information in <strong>both</strong> data frames. There are also two columns called <code>GENUS</code> and <code>genus</code> because the <code>merge()</code> function treats these as two different variables that originate from the two data frames.</p>
 <p>If we want to include all data from both data frames then we will need to use the <code>all = TRUE</code> argument. The missing values will be included as <code>NA</code>.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb150-2" data-line-number="2">taxa_zone</a>
 <a class="sourceLine" id="cb150-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
 <a class="sourceLine" id="cb150-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
@@ -1387,7 +1389,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb150-9" data-line-number="9"><span class="co">## 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
 <a class="sourceLine" id="cb150-10" data-line-number="10"><span class="co">## 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
 <p>If the variable names that you want to base the merge on are different in each data frame (for example <code>GENUS</code> and <code>genus</code>) you can specify the names in the first data frame (known as <code>x</code>) and the second data frame (known as <code>y</code>) using the <code>by.x =</code> and <code>by.y =</code> arguments.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb151-2" data-line-number="2">taxa_zone</a>
 <a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">##          GENUS  species.x           family  species.y    zone</span></a>
 <a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">## 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
@@ -1398,7 +1400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb151-9" data-line-number="9"><span class="co">## 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
 <a class="sourceLine" id="cb151-10" data-line-number="10"><span class="co">## 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
 <p>Or using multiple variable names.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zonation, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
 <a class="sourceLine" id="cb152-2" data-line-number="2">                    <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb152-3" data-line-number="3">taxa_zone</a>
 <a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">##      species        GENUS           family    zone</span></a>

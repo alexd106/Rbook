@@ -98,7 +98,7 @@ Now, to convert your `.Rmd` file to a HTML document click on the little black tr
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='80%'}
+```{r, echo=FALSE, fig.align='center', out.width='70%'}
 include_graphics("images/knit_rm.png")
 ```
 
@@ -148,7 +148,7 @@ OK, now that you can render an R markdown file in RStudio into both HTML and pdf
 
 \  
 
-```{r, echo=FALSE, fig.align='left', out.width='80%'}
+```{r, echo=FALSE, fig.align='left', out.width='70%'}
 include_graphics("images/rm_components.png")
 ```
 
@@ -626,7 +626,7 @@ iris[1:10,]
 But how ugly is that! You can create slightly nicer looking tables using native markdown syntax (this doesn't need to be in a code chunk). 
 
 \  
-
+```markdown
     |     x      |    y       |
     |:----------:|:----------:|
     |  1         |   5        |   
@@ -634,7 +634,7 @@ But how ugly is that! You can create slightly nicer looking tables using native 
     |  3         |   3        |
     |  4         |   2        |
     |  5         |   1        |
-
+```
 
 \  
 
@@ -663,28 +663,37 @@ kable(iris[1:10,])
 
 \  
 
-```{r, kable-table, echo=FALSE, warning=FALSE}
-
+```{r, kable-table-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 library(knitr)
 kable(iris[1:10,])
+```
 
+```{r, kable-table-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
+library(knitr)
+kable(iris[1:10,], "latex", booktabs = T)
 ```
 
 The `kable()` function offers plenty of options to change the formatting of the table. For example, if we want to round numeric values to one decimal place use the `digits =` argument. To center justify the table contents use `align = 'c'` and to provide custom column headings use the `col.names =` argument. See `?knitr::kable` for more information. 
 
 ````
 `r ''````{r, kable-table2}
-kable(iris[1:10,], digits = 0, align = 'c', col.names = c('sepal length', 'sepal width', 'petal length', 'petal width', 'species'))
+kable(iris[1:10,], digits = 0, align = 'c', 
+       col.names = c('sepal length', 'sepal width', 
+       'petal length', 'petal width', 'species'))
 ```
 ````
 
 \  
 
-```{r, kable-table2, echo=FALSE, warning=FALSE}
+```{r, kable-table2-html, eval=knitr::is_html_output(), echo=FALSE, warning=FALSE}
 library(knitr)
 kable(iris[1:10,], digits=0, align = 'c', col.names = c('sepal length', 'sepal width', 'petal length', 'petal width', 'species'))
 ```
 
+```{r, kable-table2-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
+library(knitr)
+kable(iris[1:10,], "latex", booktabs = T, digits=0, align = 'c', col.names = c('sepal length', 'sepal width', 'petal length', 'petal width', 'species'))
+```
 \  
 
 You can further enhance the look of your `kable` tables using the `kableExtra` package (don't forget to install the package first!). See [here][kableExtra] for more details and a helpful tutorial.
@@ -699,12 +708,16 @@ kable(iris[1:10,]) %>%
 
 \  
 
-```{r, kableExtra-table, echo=FALSE, warning=FALSE}
-
+```{r, kableExtra-table-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 library(kableExtra)
 kable(iris[1:10,]) %>%
   kable_styling(bootstrap_options = "striped", font_size = 10)
+```
 
+```{r, kableExtra-table-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
+library(kableExtra)
+kable(iris[1:10,],"latex", booktabs = T) %>%
+  kable_styling(bootstrap_options = "striped", font_size = 10, position = "center")
 ```
 
 \  
@@ -722,7 +735,8 @@ Morphological characteristics (variable names: `r names(iris)[1:4]`) were measur
 
 which would be rendered as  
 
->Morphological characteristics (variable names: `r names(iris)[1:4]`) were measured from `r nrow(iris)` *iris* plants from `r length(levels(iris$Species))` different species. The mean Sepal length was `r round(mean(iris$Sepal.Length), digits = 2)` mm. 
+>Morphological characteristics (variable names: `r names(iris)[1:4]`) were measured from `r nrow(iris)` *iris* plants from `r length(levels(iris$Species))` different species. The mean Sepal length was 
+`r round(mean(iris$Sepal.Length), digits = 2)` mm. 
 
 The great thing about including inline R code in your text is that these values will automatically be updated if your data changes.
 

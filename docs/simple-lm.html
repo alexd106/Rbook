@@ -447,211 +447,211 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p> </p>
 <p>OK, time for an example. The data file <code>smoking.txt</code> summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable <code>occupational.group</code> specifies the different occupational groups studied, the <code>risk.group</code> variable indicates the relative risk to lung disease for the various occupational groups and <code>smoking</code> is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable <code>mortality</code> is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is <code>mortality</code> and the potential explanatory variables are <code>smoking</code> which is numeric and <code>risk.group</code> which is a three level factor. The first thing to do is import our data file using the <code>read.table()</code> function as usual and assign the data to an object called <code>smoke</code>.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1">smoke &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/smoking.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
-<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="kw">str</span>(smoke)</a>
-<a class="sourceLine" id="cb350-3" data-line-number="3"><span class="co">## &#39;data.frame&#39;:    25 obs. of  4 variables:</span></a>
-<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="co">##  $ occupational.group: Factor w/ 25 levels &quot;Administrators&quot;,..: 9 14 2 11 10 7 8 25 13 21 ...</span></a>
-<a class="sourceLine" id="cb350-5" data-line-number="5"><span class="co">##  $ risk.group        : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 2 1 1 3 1 3 3 3 3 3 ...</span></a>
-<a class="sourceLine" id="cb350-6" data-line-number="6"><span class="co">##  $ smoking           : int  77 137 117 94 116 102 111 93 88 102 ...</span></a>
-<a class="sourceLine" id="cb350-7" data-line-number="7"><span class="co">##  $ mortality         : int  84 116 123 128 155 101 118 113 104 88 ...</span></a></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb346-1" data-line-number="1">smoke &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&#39;data/smoking.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a>
+<a class="sourceLine" id="cb346-2" data-line-number="2"><span class="kw">str</span>(smoke)</a>
+<a class="sourceLine" id="cb346-3" data-line-number="3"><span class="co">## &#39;data.frame&#39;:    25 obs. of  4 variables:</span></a>
+<a class="sourceLine" id="cb346-4" data-line-number="4"><span class="co">##  $ occupational.group: Factor w/ 25 levels &quot;Administrators&quot;,..: 9 14 2 11 10 7 8 25 13 21 ...</span></a>
+<a class="sourceLine" id="cb346-5" data-line-number="5"><span class="co">##  $ risk.group        : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 2 1 1 3 1 3 3 3 3 3 ...</span></a>
+<a class="sourceLine" id="cb346-6" data-line-number="6"><span class="co">##  $ smoking           : int  77 137 117 94 116 102 111 93 88 102 ...</span></a>
+<a class="sourceLine" id="cb346-7" data-line-number="7"><span class="co">##  $ mortality         : int  84 116 123 128 155 101 118 113 104 88 ...</span></a></code></pre></div>
 <p> </p>
 <p>Next, let’s investigate the relationship between the <code>mortality</code> and <code>smoking</code> variables by plotting a scatter plot. We can use either the <code>ggplot2</code> package or base R graphics to do this. We’ll use <code>ggplot2</code> this time.</p>
-<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb351-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
-<a class="sourceLine" id="cb351-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb347-1" data-line-number="1"><span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb347-2" data-line-number="2"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
+<a class="sourceLine" id="cb347-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_point</span>()</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss25-1.png" width="672" /></p>
 <p>The plot does suggest that there is a positive relationship between the smoking index and mortality index.</p>
 <p>To fit a simple linear model to these data we will use the <code>lm()</code> function and include our model formula <code>mortality ~ smoking</code> and assign the results to an object called <code>smoke_lm</code>.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">smoke_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>smoking, <span class="dt">data =</span> smoke)</a></code></pre></div>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb348-1" data-line-number="1">smoke_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>smoking, <span class="dt">data =</span> smoke)</a></code></pre></div>
 <p>Notice that we have not used the <code>$</code> notation to specify the variables in our model formula, instead we’ve used the <code>data = smoke</code> argument. Although the <code>$</code> notation will work (i.e. <code>smoke$mortality ~ smoke$smoking</code>) it will more than likely cause you problems later on and should be avoided. In fact, we would go as far to suggest that if a function has a <code>data =</code> argument you should <strong>always</strong> use it. How do you know if a function has a <code>data =</code> argument? Just look in the associated help file.</p>
 <p>Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a <code>lm</code> class object (which we have called <code>smoke_lm</code>) from which you are able to extract exactly what you want using other functions. If you’re brave, you can examine the structure of the <code>smoke_lm</code> model object using the <code>str()</code> function.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="kw">str</span>(smoke_lm)</a>
-<a class="sourceLine" id="cb353-2" data-line-number="2"><span class="co">## List of 12</span></a>
-<a class="sourceLine" id="cb353-3" data-line-number="3"><span class="co">##  $ coefficients : Named num [1:2] -2.89 1.09</span></a>
-<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-5" data-line-number="5"><span class="co">##  $ residuals    : Named num [1:25] 3.15 -30.11 -1.36 28.66 31.73 ...</span></a>
-<a class="sourceLine" id="cb353-6" data-line-number="6"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
-<a class="sourceLine" id="cb353-7" data-line-number="7"><span class="co">##  $ effects      : Named num [1:25] -545 -91.63 2.72 26.99 35.56 ...</span></a>
-<a class="sourceLine" id="cb353-8" data-line-number="8"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;(Intercept)&quot; &quot;smoking&quot; &quot;&quot; &quot;&quot; ...</span></a>
-<a class="sourceLine" id="cb353-9" data-line-number="9"><span class="co">##  $ rank         : int 2</span></a>
-<a class="sourceLine" id="cb353-10" data-line-number="10"><span class="co">##  $ fitted.values: Named num [1:25] 80.9 146.1 124.4 99.3 123.3 ...</span></a>
-<a class="sourceLine" id="cb353-11" data-line-number="11"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
-<a class="sourceLine" id="cb353-12" data-line-number="12"><span class="co">##  $ assign       : int [1:2] 0 1</span></a>
-<a class="sourceLine" id="cb353-13" data-line-number="13"><span class="co">##  $ qr           :List of 5</span></a>
-<a class="sourceLine" id="cb353-14" data-line-number="14"><span class="co">##   ..$ qr   : num [1:25, 1:2] -5 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 ...</span></a>
-<a class="sourceLine" id="cb353-15" data-line-number="15"><span class="co">##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
-<a class="sourceLine" id="cb353-16" data-line-number="16"><span class="co">##   .. .. ..$ : chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
-<a class="sourceLine" id="cb353-17" data-line-number="17"><span class="co">##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-18" data-line-number="18"><span class="co">##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span></a>
-<a class="sourceLine" id="cb353-19" data-line-number="19"><span class="co">##   ..$ qraux: num [1:2] 1.2 1.46</span></a>
-<a class="sourceLine" id="cb353-20" data-line-number="20"><span class="co">##   ..$ pivot: int [1:2] 1 2</span></a>
-<a class="sourceLine" id="cb353-21" data-line-number="21"><span class="co">##   ..$ tol  : num 1e-07</span></a>
-<a class="sourceLine" id="cb353-22" data-line-number="22"><span class="co">##   ..$ rank : int 2</span></a>
-<a class="sourceLine" id="cb353-23" data-line-number="23"><span class="co">##   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span></a>
-<a class="sourceLine" id="cb353-24" data-line-number="24"><span class="co">##  $ df.residual  : int 23</span></a>
-<a class="sourceLine" id="cb353-25" data-line-number="25"><span class="co">##  $ xlevels      : Named list()</span></a>
-<a class="sourceLine" id="cb353-26" data-line-number="26"><span class="co">##  $ call         : language lm(formula = mortality ~ smoking, data = smoke)</span></a>
-<a class="sourceLine" id="cb353-27" data-line-number="27"><span class="co">##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
-<a class="sourceLine" id="cb353-28" data-line-number="28"><span class="co">##   .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
-<a class="sourceLine" id="cb353-29" data-line-number="29"><span class="co">##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
-<a class="sourceLine" id="cb353-30" data-line-number="30"><span class="co">##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
-<a class="sourceLine" id="cb353-31" data-line-number="31"><span class="co">##   .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-32" data-line-number="32"><span class="co">##   .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-33" data-line-number="33"><span class="co">##   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-34" data-line-number="34"><span class="co">##   .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-35" data-line-number="35"><span class="co">##   .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-36" data-line-number="36"><span class="co">##   .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-37" data-line-number="37"><span class="co">##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
-<a class="sourceLine" id="cb353-38" data-line-number="38"><span class="co">##   .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
-<a class="sourceLine" id="cb353-39" data-line-number="39"><span class="co">##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb353-40" data-line-number="40"><span class="co">##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-41" data-line-number="41"><span class="co">##  $ model        :&#39;data.frame&#39;:   25 obs. of  2 variables:</span></a>
-<a class="sourceLine" id="cb353-42" data-line-number="42"><span class="co">##   ..$ mortality: int [1:25] 84 116 123 128 155 101 118 113 104 88 ...</span></a>
-<a class="sourceLine" id="cb353-43" data-line-number="43"><span class="co">##   ..$ smoking  : int [1:25] 77 137 117 94 116 102 111 93 88 102 ...</span></a>
-<a class="sourceLine" id="cb353-44" data-line-number="44"><span class="co">##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
-<a class="sourceLine" id="cb353-45" data-line-number="45"><span class="co">##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
-<a class="sourceLine" id="cb353-46" data-line-number="46"><span class="co">##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
-<a class="sourceLine" id="cb353-47" data-line-number="47"><span class="co">##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
-<a class="sourceLine" id="cb353-48" data-line-number="48"><span class="co">##   .. .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-49" data-line-number="49"><span class="co">##   .. .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-50" data-line-number="50"><span class="co">##   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-51" data-line-number="51"><span class="co">##   .. .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-52" data-line-number="52"><span class="co">##   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-53" data-line-number="53"><span class="co">##   .. .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
-<a class="sourceLine" id="cb353-54" data-line-number="54"><span class="co">##   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
-<a class="sourceLine" id="cb353-55" data-line-number="55"><span class="co">##   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
-<a class="sourceLine" id="cb353-56" data-line-number="56"><span class="co">##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
-<a class="sourceLine" id="cb353-57" data-line-number="57"><span class="co">##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
-<a class="sourceLine" id="cb353-58" data-line-number="58"><span class="co">##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb349-1" data-line-number="1"><span class="kw">str</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb349-2" data-line-number="2"><span class="co">## List of 12</span></a>
+<a class="sourceLine" id="cb349-3" data-line-number="3"><span class="co">##  $ coefficients : Named num [1:2] -2.89 1.09</span></a>
+<a class="sourceLine" id="cb349-4" data-line-number="4"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-5" data-line-number="5"><span class="co">##  $ residuals    : Named num [1:25] 3.15 -30.11 -1.36 28.66 31.73 ...</span></a>
+<a class="sourceLine" id="cb349-6" data-line-number="6"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb349-7" data-line-number="7"><span class="co">##  $ effects      : Named num [1:25] -545 -91.63 2.72 26.99 35.56 ...</span></a>
+<a class="sourceLine" id="cb349-8" data-line-number="8"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;(Intercept)&quot; &quot;smoking&quot; &quot;&quot; &quot;&quot; ...</span></a>
+<a class="sourceLine" id="cb349-9" data-line-number="9"><span class="co">##  $ rank         : int 2</span></a>
+<a class="sourceLine" id="cb349-10" data-line-number="10"><span class="co">##  $ fitted.values: Named num [1:25] 80.9 146.1 124.4 99.3 123.3 ...</span></a>
+<a class="sourceLine" id="cb349-11" data-line-number="11"><span class="co">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb349-12" data-line-number="12"><span class="co">##  $ assign       : int [1:2] 0 1</span></a>
+<a class="sourceLine" id="cb349-13" data-line-number="13"><span class="co">##  $ qr           :List of 5</span></a>
+<a class="sourceLine" id="cb349-14" data-line-number="14"><span class="co">##   ..$ qr   : num [1:25, 1:2] -5 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 ...</span></a>
+<a class="sourceLine" id="cb349-15" data-line-number="15"><span class="co">##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb349-16" data-line-number="16"><span class="co">##   .. .. ..$ : chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></a>
+<a class="sourceLine" id="cb349-17" data-line-number="17"><span class="co">##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-18" data-line-number="18"><span class="co">##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span></a>
+<a class="sourceLine" id="cb349-19" data-line-number="19"><span class="co">##   ..$ qraux: num [1:2] 1.2 1.46</span></a>
+<a class="sourceLine" id="cb349-20" data-line-number="20"><span class="co">##   ..$ pivot: int [1:2] 1 2</span></a>
+<a class="sourceLine" id="cb349-21" data-line-number="21"><span class="co">##   ..$ tol  : num 1e-07</span></a>
+<a class="sourceLine" id="cb349-22" data-line-number="22"><span class="co">##   ..$ rank : int 2</span></a>
+<a class="sourceLine" id="cb349-23" data-line-number="23"><span class="co">##   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span></a>
+<a class="sourceLine" id="cb349-24" data-line-number="24"><span class="co">##  $ df.residual  : int 23</span></a>
+<a class="sourceLine" id="cb349-25" data-line-number="25"><span class="co">##  $ xlevels      : Named list()</span></a>
+<a class="sourceLine" id="cb349-26" data-line-number="26"><span class="co">##  $ call         : language lm(formula = mortality ~ smoking, data = smoke)</span></a>
+<a class="sourceLine" id="cb349-27" data-line-number="27"><span class="co">##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
+<a class="sourceLine" id="cb349-28" data-line-number="28"><span class="co">##   .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb349-29" data-line-number="29"><span class="co">##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
+<a class="sourceLine" id="cb349-30" data-line-number="30"><span class="co">##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb349-31" data-line-number="31"><span class="co">##   .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-32" data-line-number="32"><span class="co">##   .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-33" data-line-number="33"><span class="co">##   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-34" data-line-number="34"><span class="co">##   .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-35" data-line-number="35"><span class="co">##   .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-36" data-line-number="36"><span class="co">##   .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-37" data-line-number="37"><span class="co">##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
+<a class="sourceLine" id="cb349-38" data-line-number="38"><span class="co">##   .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb349-39" data-line-number="39"><span class="co">##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb349-40" data-line-number="40"><span class="co">##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-41" data-line-number="41"><span class="co">##  $ model        :&#39;data.frame&#39;:   25 obs. of  2 variables:</span></a>
+<a class="sourceLine" id="cb349-42" data-line-number="42"><span class="co">##   ..$ mortality: int [1:25] 84 116 123 128 155 101 118 113 104 88 ...</span></a>
+<a class="sourceLine" id="cb349-43" data-line-number="43"><span class="co">##   ..$ smoking  : int [1:25] 77 137 117 94 116 102 111 93 88 102 ...</span></a>
+<a class="sourceLine" id="cb349-44" data-line-number="44"><span class="co">##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></a>
+<a class="sourceLine" id="cb349-45" data-line-number="45"><span class="co">##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb349-46" data-line-number="46"><span class="co">##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></a>
+<a class="sourceLine" id="cb349-47" data-line-number="47"><span class="co">##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></a>
+<a class="sourceLine" id="cb349-48" data-line-number="48"><span class="co">##   .. .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-49" data-line-number="49"><span class="co">##   .. .. .. .. ..$ : chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-50" data-line-number="50"><span class="co">##   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-51" data-line-number="51"><span class="co">##   .. .. ..- attr(*, &quot;order&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-52" data-line-number="52"><span class="co">##   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-53" data-line-number="53"><span class="co">##   .. .. ..- attr(*, &quot;response&quot;)= int 1</span></a>
+<a class="sourceLine" id="cb349-54" data-line-number="54"><span class="co">##   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></a>
+<a class="sourceLine" id="cb349-55" data-line-number="55"><span class="co">##   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></a>
+<a class="sourceLine" id="cb349-56" data-line-number="56"><span class="co">##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></a>
+<a class="sourceLine" id="cb349-57" data-line-number="57"><span class="co">##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></a>
+<a class="sourceLine" id="cb349-58" data-line-number="58"><span class="co">##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></a></code></pre></div>
 <p>To obtain a summary of our analysis we can use the <code>summary()</code> function on our <code>smoke_lm</code> model object.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">summary</span>(smoke_lm)</a>
-<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb354-3" data-line-number="3"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb354-4" data-line-number="4"><span class="co">## lm(formula = mortality ~ smoking, data = smoke)</span></a>
-<a class="sourceLine" id="cb354-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb354-6" data-line-number="6"><span class="co">## Residuals:</span></a>
-<a class="sourceLine" id="cb354-7" data-line-number="7"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
-<a class="sourceLine" id="cb354-8" data-line-number="8"><span class="co">## -30.107 -17.892   3.145  14.132  31.732 </span></a>
-<a class="sourceLine" id="cb354-9" data-line-number="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb354-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb354-11" data-line-number="11"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb354-12" data-line-number="12"><span class="co">## (Intercept)  -2.8853    23.0337  -0.125    0.901    </span></a>
-<a class="sourceLine" id="cb354-13" data-line-number="13"><span class="co">## smoking       1.0875     0.2209   4.922 5.66e-05 ***</span></a>
-<a class="sourceLine" id="cb354-14" data-line-number="14"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb354-15" data-line-number="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb354-16" data-line-number="16"><span class="co">## </span></a>
-<a class="sourceLine" id="cb354-17" data-line-number="17"><span class="co">## Residual standard error: 18.62 on 23 degrees of freedom</span></a>
-<a class="sourceLine" id="cb354-18" data-line-number="18"><span class="co">## Multiple R-squared:  0.513,  Adjusted R-squared:  0.4918 </span></a>
-<a class="sourceLine" id="cb354-19" data-line-number="19"><span class="co">## F-statistic: 24.23 on 1 and 23 DF,  p-value: 5.658e-05</span></a></code></pre></div>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb350-1" data-line-number="1"><span class="kw">summary</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb350-2" data-line-number="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb350-3" data-line-number="3"><span class="co">## Call:</span></a>
+<a class="sourceLine" id="cb350-4" data-line-number="4"><span class="co">## lm(formula = mortality ~ smoking, data = smoke)</span></a>
+<a class="sourceLine" id="cb350-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb350-6" data-line-number="6"><span class="co">## Residuals:</span></a>
+<a class="sourceLine" id="cb350-7" data-line-number="7"><span class="co">##     Min      1Q  Median      3Q     Max </span></a>
+<a class="sourceLine" id="cb350-8" data-line-number="8"><span class="co">## -30.107 -17.892   3.145  14.132  31.732 </span></a>
+<a class="sourceLine" id="cb350-9" data-line-number="9"><span class="co">## </span></a>
+<a class="sourceLine" id="cb350-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
+<a class="sourceLine" id="cb350-11" data-line-number="11"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb350-12" data-line-number="12"><span class="co">## (Intercept)  -2.8853    23.0337  -0.125    0.901    </span></a>
+<a class="sourceLine" id="cb350-13" data-line-number="13"><span class="co">## smoking       1.0875     0.2209   4.922 5.66e-05 ***</span></a>
+<a class="sourceLine" id="cb350-14" data-line-number="14"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb350-15" data-line-number="15"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb350-16" data-line-number="16"><span class="co">## </span></a>
+<a class="sourceLine" id="cb350-17" data-line-number="17"><span class="co">## Residual standard error: 18.62 on 23 degrees of freedom</span></a>
+<a class="sourceLine" id="cb350-18" data-line-number="18"><span class="co">## Multiple R-squared:  0.513,  Adjusted R-squared:  0.4918 </span></a>
+<a class="sourceLine" id="cb350-19" data-line-number="19"><span class="co">## F-statistic: 24.23 on 1 and 23 DF,  p-value: 5.658e-05</span></a></code></pre></div>
 <p>This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated <em>t</em> statistics and <em>p</em> values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is <code>-2.885</code>! The <em>p</em> value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the <em>p</em> value is large we fail to reject this null hypothesis. The <code>smoking</code> parameter estimate (<code>1.0875</code>) is the estimate of the slope and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The <em>p</em> value associated with the <code>smoking</code> parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our <em>p</em> value is small we reject this null hypothesis and therefore the slope is different from zero (i.e. there is a significant relationship). The summary table also includes other important information such as the coefficient of determination (<em>R<sup>2</sup></em>), adjusted <em>R<sup>2</sup></em> , <em>F</em> statistic, associated degrees of freedom and <em>p</em> value. This information is a condensed form of an ANOVA table which you can see by using the <code>anova()</code> function.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">anova</span>(smoke_lm)</a>
-<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="co">## Analysis of Variance Table</span></a>
-<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb355-4" data-line-number="4"><span class="co">## Response: mortality</span></a>
-<a class="sourceLine" id="cb355-5" data-line-number="5"><span class="co">##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></a>
-<a class="sourceLine" id="cb355-6" data-line-number="6"><span class="co">## smoking    1 8395.7  8395.7  24.228 5.658e-05 ***</span></a>
-<a class="sourceLine" id="cb355-7" data-line-number="7"><span class="co">## Residuals 23 7970.3   346.5                      </span></a>
-<a class="sourceLine" id="cb355-8" data-line-number="8"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb355-9" data-line-number="9"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb351-1" data-line-number="1"><span class="kw">anova</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb351-2" data-line-number="2"><span class="co">## Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb351-3" data-line-number="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb351-4" data-line-number="4"><span class="co">## Response: mortality</span></a>
+<a class="sourceLine" id="cb351-5" data-line-number="5"><span class="co">##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb351-6" data-line-number="6"><span class="co">## smoking    1 8395.7  8395.7  24.228 5.658e-05 ***</span></a>
+<a class="sourceLine" id="cb351-7" data-line-number="7"><span class="co">## Residuals 23 7970.3   346.5                      </span></a>
+<a class="sourceLine" id="cb351-8" data-line-number="8"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb351-9" data-line-number="9"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>Now let’s fit another linear model, but this time we will use the <code>risk.group</code> variable as our explanatory variable. Remember the <code>risk.group</code> variable is a factor and so our linear model will be equivalent to an ANOVA type analysis. We will be testing the null hypothesis that there is no difference in the mean mortality rate between the <code>low</code>, <code>medium</code> and <code>high</code> groups. We fit the model in exactly the same way as before.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1">smoke_risk_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>risk.group, <span class="dt">data =</span> smoke)</a></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb352-1" data-line-number="1">smoke_risk_lm &lt;-<span class="st"> </span><span class="kw">lm</span>(mortality <span class="op">~</span><span class="st"> </span>risk.group, <span class="dt">data =</span> smoke)</a></code></pre></div>
 <p>Again, we can produce an ANOVA table using the <code>anova()</code> function</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1"><span class="kw">anova</span>(smoke_risk_lm)</a>
-<a class="sourceLine" id="cb357-2" data-line-number="2"><span class="co">## Analysis of Variance Table</span></a>
-<a class="sourceLine" id="cb357-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb357-4" data-line-number="4"><span class="co">## Response: mortality</span></a>
-<a class="sourceLine" id="cb357-5" data-line-number="5"><span class="co">##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span></a>
-<a class="sourceLine" id="cb357-6" data-line-number="6"><span class="co">## risk.group  2 11514.4  5757.2  26.107 1.554e-06 ***</span></a>
-<a class="sourceLine" id="cb357-7" data-line-number="7"><span class="co">## Residuals  22  4851.6   220.5                      </span></a>
-<a class="sourceLine" id="cb357-8" data-line-number="8"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb357-9" data-line-number="9"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb353-1" data-line-number="1"><span class="kw">anova</span>(smoke_risk_lm)</a>
+<a class="sourceLine" id="cb353-2" data-line-number="2"><span class="co">## Analysis of Variance Table</span></a>
+<a class="sourceLine" id="cb353-3" data-line-number="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb353-4" data-line-number="4"><span class="co">## Response: mortality</span></a>
+<a class="sourceLine" id="cb353-5" data-line-number="5"><span class="co">##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span></a>
+<a class="sourceLine" id="cb353-6" data-line-number="6"><span class="co">## risk.group  2 11514.4  5757.2  26.107 1.554e-06 ***</span></a>
+<a class="sourceLine" id="cb353-7" data-line-number="7"><span class="co">## Residuals  22  4851.6   220.5                      </span></a>
+<a class="sourceLine" id="cb353-8" data-line-number="8"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb353-9" data-line-number="9"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a></code></pre></div>
 <p>The results presented in the ANOVA table suggest that we can reject the null hypothesis (very small <em>p</em> value) and therefore the mean mortality rate index is different between <code>low</code>, <code>medium</code> and <code>high</code> risk groups.</p>
 <p>As we did with our first linear model we can also produce a summary of the estimated parameters using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="kw">summary</span>(smoke_risk_lm)</a>
-<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb358-4" data-line-number="4"><span class="co">## lm(formula = mortality ~ risk.group, data = smoke)</span></a>
-<a class="sourceLine" id="cb358-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb358-6" data-line-number="6"><span class="co">## Residuals:</span></a>
-<a class="sourceLine" id="cb358-7" data-line-number="7"><span class="co">##    Min     1Q Median     3Q    Max </span></a>
-<a class="sourceLine" id="cb358-8" data-line-number="8"><span class="co">## -26.17 -11.45   4.00   9.00  26.83 </span></a>
-<a class="sourceLine" id="cb358-9" data-line-number="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb358-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb358-11" data-line-number="11"><span class="co">##                  Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb358-12" data-line-number="12"><span class="co">## (Intercept)        135.00       5.25  25.713  &lt; 2e-16 ***</span></a>
-<a class="sourceLine" id="cb358-13" data-line-number="13"><span class="co">## risk.grouplow      -57.83       8.02  -7.211 3.16e-07 ***</span></a>
-<a class="sourceLine" id="cb358-14" data-line-number="14"><span class="co">## risk.groupmedium   -27.55       6.90  -3.992 0.000615 ***</span></a>
-<a class="sourceLine" id="cb358-15" data-line-number="15"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb358-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb358-17" data-line-number="17"><span class="co">## </span></a>
-<a class="sourceLine" id="cb358-18" data-line-number="18"><span class="co">## Residual standard error: 14.85 on 22 degrees of freedom</span></a>
-<a class="sourceLine" id="cb358-19" data-line-number="19"><span class="co">## Multiple R-squared:  0.7036, Adjusted R-squared:  0.6766 </span></a>
-<a class="sourceLine" id="cb358-20" data-line-number="20"><span class="co">## F-statistic: 26.11 on 2 and 22 DF,  p-value: 1.554e-06</span></a></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb354-1" data-line-number="1"><span class="kw">summary</span>(smoke_risk_lm)</a>
+<a class="sourceLine" id="cb354-2" data-line-number="2"><span class="co">## </span></a>
+<a class="sourceLine" id="cb354-3" data-line-number="3"><span class="co">## Call:</span></a>
+<a class="sourceLine" id="cb354-4" data-line-number="4"><span class="co">## lm(formula = mortality ~ risk.group, data = smoke)</span></a>
+<a class="sourceLine" id="cb354-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb354-6" data-line-number="6"><span class="co">## Residuals:</span></a>
+<a class="sourceLine" id="cb354-7" data-line-number="7"><span class="co">##    Min     1Q Median     3Q    Max </span></a>
+<a class="sourceLine" id="cb354-8" data-line-number="8"><span class="co">## -26.17 -11.45   4.00   9.00  26.83 </span></a>
+<a class="sourceLine" id="cb354-9" data-line-number="9"><span class="co">## </span></a>
+<a class="sourceLine" id="cb354-10" data-line-number="10"><span class="co">## Coefficients:</span></a>
+<a class="sourceLine" id="cb354-11" data-line-number="11"><span class="co">##                  Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb354-12" data-line-number="12"><span class="co">## (Intercept)        135.00       5.25  25.713  &lt; 2e-16 ***</span></a>
+<a class="sourceLine" id="cb354-13" data-line-number="13"><span class="co">## risk.grouplow      -57.83       8.02  -7.211 3.16e-07 ***</span></a>
+<a class="sourceLine" id="cb354-14" data-line-number="14"><span class="co">## risk.groupmedium   -27.55       6.90  -3.992 0.000615 ***</span></a>
+<a class="sourceLine" id="cb354-15" data-line-number="15"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb354-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb354-17" data-line-number="17"><span class="co">## </span></a>
+<a class="sourceLine" id="cb354-18" data-line-number="18"><span class="co">## Residual standard error: 14.85 on 22 degrees of freedom</span></a>
+<a class="sourceLine" id="cb354-19" data-line-number="19"><span class="co">## Multiple R-squared:  0.7036, Adjusted R-squared:  0.6766 </span></a>
+<a class="sourceLine" id="cb354-20" data-line-number="20"><span class="co">## F-statistic: 26.11 on 2 and 22 DF,  p-value: 1.554e-06</span></a></code></pre></div>
 <p>In the summary table the Intercept is set to the first level of <code>risk.group</code> (<code>high</code>) as this occurs first alphabetically. Therefore, the estimated mean mortality index for <code>high</code> risk individuals is <code>135</code>. The estimates for <code>risk.grouplow</code> and <code>risk.groupmedium</code> are mean differences from the intercept (<code>high</code> group). So the mortality index for the <code>low</code> group is <code>135 - 57.83 = 77.17</code> and for the <code>medium</code> group is <code>135 - 27.55 = 107.45</code>. The <em>t</em> values and <em>p</em> values in the summary table are associated with testing specific hypotheses. The <em>p</em> value associated with the intercept tests the null hypothesis that the mean mortality index for the <code>high</code> group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small <em>p</em> value. The <em>p</em> value for the <code>risk.grouplow</code> parameter tests the null hypothesis that the mean difference between <code>high</code> and <code>low</code> risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarly, the <em>p</em> value for <code>risk.groupmedium</code> tests the null hypothesis that the mean difference between <code>high</code> and <code>medium</code> groups is equal to zero which we also reject.</p>
 <p>Don’t worry too much if you find the output from the <code>summary()</code> function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated your model is, the more complicated your interpretion will be. And always remember, a model that you can’t interpret is not worth fitting!</p>
 <p>Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let’s go back to the first linear model we fitted (<code>smoke_lm</code>). We can add the fitted line to our previous plot using the <code>ggplot2</code> package and the <code>geom_smooth</code> geom. We can easily include the standard errors by specifying the <code>se = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
-<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb355-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoking, <span class="dt">y =</span> mortality), <span class="dt">data =</span> smoke) <span class="op">+</span></a>
+<a class="sourceLine" id="cb355-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb355-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss33-1.png" width="672" /></p>
 <p>You can also do this with R’s base graphics. Note though that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the <code>predict()</code> function within the range of your data and then add these values to the plot using the <code>lines()</code> function (not shown).</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="kw">plot</span>(smoke<span class="op">$</span>smoking, smoke<span class="op">$</span>mortality, <span class="dt">xlab =</span> <span class="st">&quot;smoking rate&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot; mortality rate&quot;</span>)</a>
-<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="kw">abline</span>(smoke_lm, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb356-1" data-line-number="1"><span class="kw">plot</span>(smoke<span class="op">$</span>smoking, smoke<span class="op">$</span>mortality, <span class="dt">xlab =</span> <span class="st">&quot;smoking rate&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot; mortality rate&quot;</span>)</a>
+<a class="sourceLine" id="cb356-2" data-line-number="2"><span class="kw">abline</span>(smoke_lm, <span class="dt">col =</span> <span class="st">&quot;red&quot;</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss34-1.png" width="672" /></p>
 <p>Before we sit back and relax and admire our model (or go write that high impact paper your supervisor/boss has been harassing you about) our work is not finished. It’s vitally important to check the underlying assumptions of your linear model. Two of the most important assumption are equal variances (homogeneity of variance) and normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the <code>resid()</code> and <code>fitted()</code> functions.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1">smoke_res &lt;-<span class="st"> </span><span class="kw">resid</span>(smoke_lm)</a>
-<a class="sourceLine" id="cb361-2" data-line-number="2">smoke_fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(smoke_lm)</a></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb357-1" data-line-number="1">smoke_res &lt;-<span class="st"> </span><span class="kw">resid</span>(smoke_lm)</a>
+<a class="sourceLine" id="cb357-2" data-line-number="2">smoke_fit &lt;-<span class="st"> </span><span class="kw">fitted</span>(smoke_lm)</a></code></pre></div>
 <p>And then plot them using <code>ggplot</code> or base R graphics.</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoke_fit, <span class="dt">y =</span> smoke_res)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb362-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb358-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">x =</span> smoke_fit, <span class="dt">y =</span> smoke_res)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb358-3" data-line-number="3"><span class="st">    </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="dv">0</span>, <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss36-1.png" width="672" /></p>
 <p>It takes a little practice to interpret these types of graph, but what you are looking for is no pattern or structure in your residuals. What you definitely don’t want to see is the scatter increasing around the zero line (red dashed line) as the fitted values get bigger (this has been described as looking like a trumpet, a wedge of cheese or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
 <p>To check for normality of residuals we can use our old friend the Q-Q plot using the residuals stored in the <code>smoke_res</code> object we created earlier.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">sample =</span> smoke_res)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="st">    </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb363-3" data-line-number="3"><span class="st">    </span><span class="kw">stat_qq_line</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb359-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">mapping =</span> <span class="kw">aes</span>(<span class="dt">sample =</span> smoke_res)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb359-2" data-line-number="2"><span class="st">    </span><span class="kw">stat_qq</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb359-3" data-line-number="3"><span class="st">    </span><span class="kw">stat_qq_line</span>()</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss37-1.png" width="672" /></p>
 <p>Or the same plot with base graphics.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="kw">qqnorm</span>(smoke_res)</a>
-<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">qqline</span>(smoke_res) </a></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1"><span class="kw">qqnorm</span>(smoke_res)</a>
+<a class="sourceLine" id="cb360-2" data-line-number="2"><span class="kw">qqline</span>(smoke_res) </a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss38-1.png" width="672" /></p>
 <p>Alternatively, you can get R to do most of the hard work by using the <code>plot()</code> function on the model object <code>smoke_lm</code>. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the <code>par(mfrow = c(2,2))</code>. This command splits the plotting window into 2 rows and 2 columns.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb365-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb365-2" data-line-number="2"><span class="kw">plot</span>(smoke_lm)</a></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb361-2" data-line-number="2"><span class="kw">plot</span>(smoke_lm)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss39-1.png" width="672" /></p>
 <p>The first two graphs (top left and top right) are the same residual versus fitted and Q-Q plots we produced before. The third graph (bottom left) is the same as the first but plotted on a different scale (the absolute value of the square root of the standardised residuals) and again you are looking for no pattern or structure in the data points. The fourth graph (bottom right) gives you an indication whether any of your observations are having a large influence (Cook’s distance) on your regression coefficient estimates. Levearge identifies observations which have unusually large values in their explanatory variables.</p>
 <p>You can also produce these diagnostic plots using <code>ggplot</code> by installing the package <code>ggfortify</code> and using the <code>autoplot()</code> function.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb366-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
-<a class="sourceLine" id="cb366-2" data-line-number="2"><span class="kw">autoplot</span>(smoke_lm, <span class="dt">which =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">label.size =</span> <span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1"><span class="kw">library</span>(ggfortify)</a>
+<a class="sourceLine" id="cb362-2" data-line-number="2"><span class="kw">autoplot</span>(smoke_lm, <span class="dt">which =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">ncol =</span> <span class="dv">2</span>, <span class="dt">label.size =</span> <span class="dv">3</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss40-1.png" width="672" /></p>
 <p>What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the <code>update()</code> function. Let’s remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called <code>smoke_lm2</code>. Note, we do this to demonstrate the use of the <code>update()</code> function. You should think long and hard about removing any data point(s) and if you do you should <strong>always</strong> report this and justify your reasoning.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb367-1" data-line-number="1">smoke_lm2 &lt;-<span class="st"> </span><span class="kw">update</span>(smoke_lm, <span class="dt">subset =</span> <span class="dv">-2</span>)</a>
-<a class="sourceLine" id="cb367-2" data-line-number="2"><span class="kw">summary</span>(smoke_lm2)</a>
-<a class="sourceLine" id="cb367-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb367-4" data-line-number="4"><span class="co">## Call:</span></a>
-<a class="sourceLine" id="cb367-5" data-line-number="5"><span class="co">## lm(formula = mortality ~ smoking, data = smoke, subset = -2)</span></a>
-<a class="sourceLine" id="cb367-6" data-line-number="6"><span class="co">## </span></a>
-<a class="sourceLine" id="cb367-7" data-line-number="7"><span class="co">## Residuals:</span></a>
-<a class="sourceLine" id="cb367-8" data-line-number="8"><span class="co">##      Min       1Q   Median       3Q      Max </span></a>
-<a class="sourceLine" id="cb367-9" data-line-number="9"><span class="co">## -29.7425 -11.6920  -0.4745  13.6141  28.7587 </span></a>
-<a class="sourceLine" id="cb367-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb367-11" data-line-number="11"><span class="co">## Coefficients:</span></a>
-<a class="sourceLine" id="cb367-12" data-line-number="12"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
-<a class="sourceLine" id="cb367-13" data-line-number="13"><span class="co">## (Intercept) -20.0755    23.5798  -0.851    0.404    </span></a>
-<a class="sourceLine" id="cb367-14" data-line-number="14"><span class="co">## smoking       1.2693     0.2297   5.526 1.49e-05 ***</span></a>
-<a class="sourceLine" id="cb367-15" data-line-number="15"><span class="co">## ---</span></a>
-<a class="sourceLine" id="cb367-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
-<a class="sourceLine" id="cb367-17" data-line-number="17"><span class="co">## </span></a>
-<a class="sourceLine" id="cb367-18" data-line-number="18"><span class="co">## Residual standard error: 17.62 on 22 degrees of freedom</span></a>
-<a class="sourceLine" id="cb367-19" data-line-number="19"><span class="co">## Multiple R-squared:  0.5813, Adjusted R-squared:  0.5622 </span></a>
-<a class="sourceLine" id="cb367-20" data-line-number="20"><span class="co">## F-statistic: 30.54 on 1 and 22 DF,  p-value: 1.488e-05</span></a></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb363-1" data-line-number="1">smoke_lm2 &lt;-<span class="st"> </span><span class="kw">update</span>(smoke_lm, <span class="dt">subset =</span> <span class="dv">-2</span>)</a>
+<a class="sourceLine" id="cb363-2" data-line-number="2"><span class="kw">summary</span>(smoke_lm2)</a>
+<a class="sourceLine" id="cb363-3" data-line-number="3"><span class="co">## </span></a>
+<a class="sourceLine" id="cb363-4" data-line-number="4"><span class="co">## Call:</span></a>
+<a class="sourceLine" id="cb363-5" data-line-number="5"><span class="co">## lm(formula = mortality ~ smoking, data = smoke, subset = -2)</span></a>
+<a class="sourceLine" id="cb363-6" data-line-number="6"><span class="co">## </span></a>
+<a class="sourceLine" id="cb363-7" data-line-number="7"><span class="co">## Residuals:</span></a>
+<a class="sourceLine" id="cb363-8" data-line-number="8"><span class="co">##      Min       1Q   Median       3Q      Max </span></a>
+<a class="sourceLine" id="cb363-9" data-line-number="9"><span class="co">## -29.7425 -11.6920  -0.4745  13.6141  28.7587 </span></a>
+<a class="sourceLine" id="cb363-10" data-line-number="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb363-11" data-line-number="11"><span class="co">## Coefficients:</span></a>
+<a class="sourceLine" id="cb363-12" data-line-number="12"><span class="co">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></a>
+<a class="sourceLine" id="cb363-13" data-line-number="13"><span class="co">## (Intercept) -20.0755    23.5798  -0.851    0.404    </span></a>
+<a class="sourceLine" id="cb363-14" data-line-number="14"><span class="co">## smoking       1.2693     0.2297   5.526 1.49e-05 ***</span></a>
+<a class="sourceLine" id="cb363-15" data-line-number="15"><span class="co">## ---</span></a>
+<a class="sourceLine" id="cb363-16" data-line-number="16"><span class="co">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></a>
+<a class="sourceLine" id="cb363-17" data-line-number="17"><span class="co">## </span></a>
+<a class="sourceLine" id="cb363-18" data-line-number="18"><span class="co">## Residual standard error: 17.62 on 22 degrees of freedom</span></a>
+<a class="sourceLine" id="cb363-19" data-line-number="19"><span class="co">## Multiple R-squared:  0.5813, Adjusted R-squared:  0.5622 </span></a>
+<a class="sourceLine" id="cb363-20" data-line-number="20"><span class="co">## F-statistic: 30.54 on 1 and 22 DF,  p-value: 1.488e-05</span></a></code></pre></div>
 <p>There are numerous other functions which are useful for producing diagnostic plots. For example, <code>rstandard()</code> and <code>rstudent()</code> returns the standardised and studentised residuals. The function <code>dffits()</code> expresses how much an observation influences the associated fitted value and the function <code>dfbetas()</code> gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb368-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
-<a class="sourceLine" id="cb368-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">dffits</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a>
-<a class="sourceLine" id="cb368-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">rstudent</span>(smoke_lm))</a>
-<a class="sourceLine" id="cb368-4" data-line-number="4"><span class="kw">matplot</span>(<span class="kw">dfbetas</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</a>
-<a class="sourceLine" id="cb368-5" data-line-number="5"><span class="kw">lines</span>(<span class="kw">sqrt</span>(<span class="kw">cooks.distance</span>(smoke_lm)), <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1"><span class="kw">par</span>(<span class="dt">mfrow=</span><span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</a>
+<a class="sourceLine" id="cb364-2" data-line-number="2"><span class="kw">plot</span>(<span class="kw">dffits</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</a>
+<a class="sourceLine" id="cb364-3" data-line-number="3"><span class="kw">plot</span>(<span class="kw">rstudent</span>(smoke_lm))</a>
+<a class="sourceLine" id="cb364-4" data-line-number="4"><span class="kw">matplot</span>(<span class="kw">dfbetas</span>(smoke_lm), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>, <span class="dt">col =</span> <span class="st">&quot;black&quot;</span>)</a>
+<a class="sourceLine" id="cb364-5" data-line-number="5"><span class="kw">lines</span>(<span class="kw">sqrt</span>(<span class="kw">cooks.distance</span>(smoke_lm)), <span class="dt">lwd =</span> <span class="dv">2</span>)</a></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss42-1.png" width="672" /></p>
 </div>
             </section>

@@ -46,7 +46,8 @@ library(ggplot2)
 df <- flower
 df$nitrogen2 <- factor(df$nitrogen, levels = c("high", "medium", "low"))
 
-theme_deon <- function(base_size = 15, base_family = "", base_line_size = base_size / 22, base_rect_size = base_size / 22) {
+theme_deon <- function(base_size = 15, base_family = "", base_line_size = base_size / 22, 
+                        base_rect_size = base_size / 22) {
   theme(
     axis.title = element_text(size = 15),
     axis.text.x = element_text(size = 10),
@@ -632,7 +633,7 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
-			 caption = "Regression assumptions are unvalidated") +
+       caption = "Regression assumptions are unvalidated") +
 	# Light theme
 	theme_light()
 
@@ -672,7 +673,8 @@ knitr::include_graphics(path = "images/theme.png")
 ```
 
 ```{r rbook-theme, message=FALSE}
-theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_size/22, base_rect_size = base_size/22) {         
+theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_size/22, 
+                         base_rect_size = base_size/22) {         
   theme( 
     axis.title = element_text(size = 13),                               
     axis.text.x = element_text(size = 10),                              
@@ -751,7 +753,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Notice how we included the function `mean(shootarea)` within the `geom_hline()` function? We could also do that externally to the `ggplot2` code and get the same result.
 
-```{r shootarea-mean, message=FALSE}
+```{r shootarea-mean, message=FALSE, collapse=TRUE}
 mean(flower$shootarea)
 ```
 
@@ -824,10 +826,10 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	# Setting colour and associated labels
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Setting shape and associated labels
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	
 	theme_rbook()
 ```
@@ -860,9 +862,9 @@ rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data =
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 
 rbook_figure
@@ -937,7 +939,7 @@ Fairly often, you may want to limit the range of your axes. Maybe you want to fo
 knitr::include_graphics(path = "images/coords.png")
 ```
 
-```{r axis-limits, out.width = "75%", fig.align = "center", message=FALSE}
+```{r axis-limits, out.width = "75%", fig.align = "center", warning=FALSE, message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
@@ -948,9 +950,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+	     labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+	     labels = c("High", "Medium", "Low")) +
 	theme_rbook() +
 	# New x and y limits
 	xlim(c(10, 15)) +
@@ -978,9 +980,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook() +
 	# Zooming in rather than chopping out
 	coord_cartesian(xlim = c(10, 15),	ylim = c(50, 150))
@@ -1012,9 +1014,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
@@ -1043,7 +1045,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
@@ -1065,7 +1067,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradient
 	scale_colour_gradient(low = "#9F00FF", high = "#FF9F00") +
 	theme_rbook()
@@ -1088,10 +1090,10 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradient2
 	scale_colour_gradient2(midpoint = mean(flower$flowers), 
-												 low = "#9F00FF", mid = "#00FF9F", high = "#FF9F00") +
+       low = "#9F00FF", mid = "#00FF9F", high = "#FF9F00") +
 	theme_rbook()
 ```
 
@@ -1112,10 +1114,10 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Adding scale_colour_gradientn
 	scale_colour_gradientn(colours = c("#1252ED", "#12ED3F", "#EDAD12", "#ED12C0"),
-												 values = c(0, 0.25, 0.5, 0.75, 1)) +
+       values = c(0, 0.25, 0.5, 0.75, 1)) +
 	theme_rbook()
 ```
 
@@ -1145,9 +1147,9 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 			 caption = "Regression assumptions are unvalidated",
 			 size = "Plant\nHeight (cm)") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19,21),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
@@ -1174,9 +1176,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Moving the legend
 	theme(legend.position = "bottom") +
 	theme_rbook()
@@ -1209,9 +1211,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Hiding the legend
 	theme(legend.position = "none") +
 	theme_rbook()
@@ -1239,9 +1241,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
@@ -1268,9 +1270,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Including layer to display text
 	geom_text(x = 22, y = 5, label = "A. Artist", colour = "grey", family = "serif") +
 	theme_rbook()
@@ -1296,9 +1298,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated", tag = "A") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	theme_rbook()
 ```
 
@@ -1325,9 +1327,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Adjusting breaks on x axis
 	scale_x_continuous(breaks = seq(from = 5, to = 25, by = 2.5)) +
 	theme_rbook()
@@ -1352,9 +1354,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 			 caption = "Regression assumptions are unvalidated") +
 	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
-											labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
-										 labels = c("High", "Medium", "Low")) +
+       labels = c("High", "Medium", "Low")) +
 	# Changing the angle of the axis text
 	theme(axis.text.x=element_text(angle = 45, vjust = 0.5)) +
 	theme_rbook()
@@ -1461,7 +1463,7 @@ ggplot(flower) +
 	geom_density(aes(x = flowers, fill = nitrogen), alpha = 0.5) +
 	labs(y = "Density", x = "Number of Flowers", fill = "Nitrogen\nConcentration") +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("#DB24BC", "#BCDB24", "#24BCDB")) +
+        values = c("#DB24BC", "#BCDB24", "#24BCDB")) +
 	theme_rbook()
 ```
 
@@ -1476,7 +1478,7 @@ ggplot(flower) +
 	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20, position = "dodge") +
 	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
 	scale_fill_manual(labels = c("1", "2"),
-										values = c("#8CD926", "#7326D9")) +
+          values = c("#8CD926", "#7326D9")) +
 	theme_rbook()
 ```
 
@@ -1491,7 +1493,7 @@ ggplot(flower) +
 	geom_freqpoly(aes(x = flowers, colour = factor(block)), size = 1, bins = 20) +
 	labs(y = "Count", x = "Number of Flowers", colour = "Greenhouse\nBlock") +
 	scale_colour_manual(labels = c("1", "2"),
-											values = c("#8CD926", "#7326D9")) +
+         values = c("#8CD926", "#7326D9")) +
 	theme_rbook()
 ```
 
@@ -1523,7 +1525,7 @@ ggplot(flower) +
   geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75)) +
   geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, width = 0.1, alpha = 0.5) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("#5f7f5c", "#749770", "#9eb69b")) +
+         values = c("#5f7f5c", "#749770", "#9eb69b")) +
 	labs(y = "Number of Flowers", x = "Nitrogen Concentration") +
 	scale_y_log10() +
 	theme_rbook()
@@ -1539,7 +1541,7 @@ Below is an example of barcharts. It is included here for completeness, but be a
 ggplot(flower) +
   geom_bar(aes(x = factor(block), fill = nitrogen)) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
-										values = c("#2613EC", "#9313EC", "#EC13D9")) +
+         values = c("#2613EC", "#9313EC", "#EC13D9")) +
 	labs(y = "Count", x = "Block") +
 	theme_rbook()
 ```

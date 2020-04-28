@@ -381,11 +381,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><p>You keep on with this cycle until you get to a point when you would like to <strong>push</strong> these changes to GitHub</p></li>
 <li><p>If you’re working with other people on the same project you may also need to <strong>pull</strong> their changes to your local computer</p></li>
 </ol>
-<p><img src="images/workflow_3.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/workflow_3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>OK, let’s go through an example to help clarify this workflow. In RStudio open up the <code>first_repo.Rproj</code> you created previously during Option 1. Either use the <code>File</code> -&gt; <code>Open Project</code> menu or click on the top right project icon and select the appropriate project.</p>
 <p> </p>
-<p><img src="images/first_Rmd0.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/first_Rmd0.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Create an R markdown document inside this project by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>R markdown</code> menu (remember from the R markdown <a href="rmarkdown-r.html#rmarkdown_r">Chapter</a>?).</p>
 <p>Once created, we can delete all the example R markdown code (except the YAML header) as usual and write some interesting R markdown text and include a plot. We’ll use the inbuilt <code>cars</code> dataset to do this. Save this file (cmd + s for Mac or ctrl + s in Windows). Your R markdown document should look something like the following (it doesn’t matter if it’s not exactly the same).</p>
@@ -394,7 +394,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>Take a look at the ‘Git’ tab which should list your new R markdown document (<code>first_doc.Rmd</code> in this example) along with <code>first_repo.Rproj</code>, and <code>.gitignore</code> (you created these files previously when following Option 1).</p>
 <p> </p>
-<p><img src="images/first_Rmd2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/first_Rmd2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Following our workflow, we now need to <strong>stage</strong> these files. To do this tick the boxes under the ‘Staged’ column for all files. Notice that there is a status icon next to the box which gives you an indication of how the files were changed. In our case all of the files are to be added (capital A) as we have just created them.</p>
 <p> </p>
@@ -406,7 +406,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>After clicking on the ‘Commit’ button you will be taken to the ‘Review Changes’ window. You should see the three files you staged from the previous step in the left pane. If you click on the file name <code>first_doc.Rmd</code> you will see the changes you have made to this file highlighted in the bottom pane. Any content that you have added is highlighted in green and deleted content is highlighted in red. As you have only just created this file, all the content is highlighted in green. To commit these files (take a snapshot) first enter a mandatory commit message in the ‘Commit message’ box. This message should be relatively short and informative (to you and your collaborators) and indicate why you made the changes, not what you changed. This makes sense as Git keeps track of <em>what</em> has changed and so it is best not to use commit messages for this purpose. It’s traditional to enter the message ‘First commit’ (or ‘Initial commit’) when you commit files for the first time. Now click on the ‘Commit’ button to commit these changes.</p>
 <p> </p>
-<p><img src="images/first_Rmd4.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/first_Rmd4.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>A summary of the commit you just performed will be shown. Now click on the ‘Close’ button to return to the ‘Review Changes’ window. Note that the staged files have now been removed.</p>
 <p> </p>
@@ -429,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>In RStudio open up the <code>first_repo.Rproj</code> file you created previously (if not already open) then open the <code>first_doc.Rmd</code> file (click on the file name in the <code>Files</code> tab in RStudio).</p>
 <p>Let’s make some changes to this document. Delete the line beginning with ‘My first version controlled …’ and replace it with something more informative (see figure below). We will also change the plotted symbols to red and give the plot axes labels. Lastly, let’s add a summary table of the dataframe using the <code>kable()</code> and <code>summary()</code> functions (you may need to install the <code>knitr</code> package if you haven’t done so previously to use the <code>kable()</code> function) and finally render this document to pdf by changing the YAML option to <code>output: pdf_document</code>.</p>
 <p> </p>
-<p><img src="images/mod1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mod1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Now save these changes and then click the <code>knit</code> button to render to pdf. A new pdf file named <code>first_doc.pdf</code> will be created which you can view by clicking on the file name in the <code>Files</code> tab in RStudio.</p>
 <p>Notice that these two files have been added to the <code>Git</code> tab in RStudio. The status icons indicate that the <code>first_doc.Rmd</code> file has been modified (capital M) and the <code>first_doc.pdf</code> file is currently untracked (question mark).</p>
@@ -442,15 +442,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>Before you commit your changes notice the status of <code>first_doc.pdf</code> has changed from untracked to added (A). You can view the changes you have made to the <code>first_doc.Rmd</code> by clicking on the file name in the top left pane which will provide you with a useful summary of the changes in the bottom pane (technically called diffs). Lines that have been deleted are highlighted in red and lines that have been added are highlighted in green (note that from Git’s point of view, a modification to a line is actually two operations: the removal of the original line followed by the creation of a new line). Once you’re happy, commit these changes by writing a suitable commit message and click on the ‘Commit’ button.</p>
 <p> </p>
-<p><img src="images/mod4.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mod4.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To push the changes to GitHub, click on the ‘Pull’ button first (remember this is good practice even though you are only collaborating with yourself at the moment) and then click on the ‘Push’ button. Go to your online GitHub repository and you will see your new commits, including the <code>first_doc.pdf</code> file you created when you rendered your R markdown document.</p>
 <p> </p>
-<p><img src="images/mod5.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mod5.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To view the changes in <code>first_doc.Rmd</code> click on the file name for this file.</p>
 <p> </p>
-<p><img src="images/mod6.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mod6.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="commit-history" class="section level3">
 <h3><span class="header-section-number">9.6.2</span> Commit history</h3>
@@ -461,19 +461,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the <strong>Date</strong> the commit was made, <strong>Author</strong> of the commit and the commit message (<strong>Subject</strong>). There is also a unique identifier for the commit (<strong>SHA</strong> - Secure Hash Algorithm) and a <strong>Parent</strong> SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details <a href="use-git.html#undo">below</a>). You can also view the contents of each file by clicking on the ‘View file @ SHA key` link (in our case ’View file @ 2b4693d1’).</p>
 <p> </p>
-<p><img src="images/c_history2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/c_history2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can also view your commit history on GitHub website but this will be limited to only those commits you have already pushed to GitHub. To view the commit history navigate to the repository and click on the ‘commits’ link (in our case the link will be labelled ‘3 commits’ as we have made 3 commits).</p>
 <p> </p>
-<p><img src="images/c_history3.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/c_history3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You will see a list of all the commits you have made, along with commit messages, date of commit and the SHA identifier (these are the same SHA identifiers you saw in the RStudio history). You can even browse the repository at a particular point in time by clicking on the <code>&lt;&gt;</code> link. To view the changes in files associated with the commit simply click on the relevant commit link in the list.</p>
 <p> </p>
-<p><img src="images/c_history4.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/c_history4.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Which will display changes using the usual format of green for additions and red for deletions.</p>
 <p> </p>
-<p><img src="images/c_history5.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/c_history5.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="undo" class="section level3">
 <h3><span class="header-section-number">9.6.3</span> Reverting changes</h3>
@@ -482,11 +482,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Changes saved but not staged, committed or pushed</h4>
 <p>If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select ‘Revert …’. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution.</p>
 <p> </p>
-<p><img src="images/revert1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can also undo changes to just part of a file by opening up the ‘Diff’ window (click on the ‘Diff’ button in the Git pane). Select the line you wish to discard by double clicking on the line and then click on the ‘Discard line’ button. In a similar fashion you can discard chunks of code by clicking on the ‘Discard chunk’ button.</p>
 <p> </p>
-<p><img src="images/revert2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert2.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="staged-but-not-committed-and-not-pushed" class="section level4 unnumbered">
 <h4>Staged but not committed and not pushed</h4>
@@ -496,25 +496,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4>Staged and committed but not pushed</h4>
 <p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit` box in the ’Review Changes’ window before committing.</p>
 <p> </p>
-<p><img src="images/revert3.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>If we check out our commit history you can see that our latest commit contains both changes to the file rather than having two separate commits. I use the amend commit approach alot but it’s important to understand that you should <strong>not</strong> do this if you have already pushed your last commit to GitHub as you are effectively rewriting history and all sorts bad things may happen!</p>
 <p> </p>
-<p><img src="images/revert4.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert4.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>If you spot a mistake that has happened multiple commits back or you just want to revert to a previous version of a document you have a number of options.</p>
 <p><strong>Option 1</strong> - (probably the easiest but very unGit - but like, whatever!) is to look in your commit history in RStudio, find the commit that you would like to go back to and click on the ‘View file @’ button to show the file contents.</p>
 <p> </p>
-<p><img src="images/revert5.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert5.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can then copy the contents of the file to the clipboard and paste it into your current file to replace your duff code or text. Alternatively, you can click on the ‘Save As’ button and save the file with a different file name. Once you have saved your new file you can delete your current unwanted file and then carry on working on your new file. Don’t forget to stage and commit this new file.</p>
 <p> </p>
-<p><img src="images/revert6.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert6.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><br />
 </p>
 <p><strong>Option 2</strong> - (Git like) Go to your Git history, find the commit you would like to roll back to and write down (or copy) its SHA identifier.</p>
 <p> </p>
-<p><img src="images/revert7.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert7.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Now go to the Terminal in RStudio and type <code>git checkout &lt;SHA&gt; &lt;filename&gt;</code>. In our case the SHA key is <code>2b4693d1</code> and the filename is <code>first_doc.Rmd</code> so our command would look like this:</p>
 <pre><code>git checkout 2b4693d1 first_doc.Rmd</code></pre>
@@ -529,17 +529,17 @@ git checkout 2b4693d1 .
 <h4>Staged, committed and pushed</h4>
 <p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as I can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
 <p> </p>
-<p><img src="images/revert8.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert8.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can use the <code>revert</code> command as shown below in the Terminal. The <code>--no-commit</code> option is used to prevent us from having to deal with each intermediate commit.</p>
 <pre><code>git revert --no-commit d27e79f1..HEAD</code></pre>
 <p>Your <code>first_doc.Rmd</code> file will now revert back to the same state as it was when you did your ‘First commit’. Notice also that the <code>first_doc.pdf</code> file has been deleted as this wasn’t present when we made our first commit. You can now stage and commit these files with a new commit message and finally push them to GitHub. Notice that if we look at our commit history all of the commits we have made are still present.</p>
 <p> </p>
-<p><img src="images/revert9.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert9.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>and our repo on GitHub also reflects these changes</p>
 <p> </p>
-<p><img src="images/revert10.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/revert10.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="collab" class="section level3">
@@ -552,7 +552,7 @@ git checkout 2b4693d1 .
 <p> </p>
 <p>If you don’t want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
 <p> </p>
-<p><img src="images/tip1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/tip1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This will add the filename to the <code>.gitignore</code> file. If you want to ignore multiple files or a particular type of file you can also include wildcards in the <code>.gitignore</code> file. For example to ignore all <code>png</code> files you can include the expression <code>*.png</code> in your <code>.gitignore</code> file and save.</p>
 <p> </p>
