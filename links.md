@@ -155,7 +155,19 @@
 [colours]: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 [lowess]: https://en.wikipedia.org/wiki/Local_regression
 
+<!--Exercises Links-->
 [exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
 [exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
-
+[exercise2]: https://alexd106.github.io/intro2R/exercise_2.html
+[exercise2-sol]: https://alexd106.github.io/intro2R/exercise_2_solution.html
+[exercise3]: https://alexd106.github.io/intro2R/exercise_3.html
+[exercise3-sol]: https://alexd106.github.io/intro2R/exercise_3_solution.html
+[exercise4]: https://alexd106.github.io/intro2R/exercise_4.html
+[exercise4-sol]: https://alexd106.github.io/intro2R/exercise_4_solution.html
+[exercise5]: https://alexd106.github.io/intro2R/exercise_4.html
+[exercise5-sol]: https://alexd106.github.io/intro2R/exercise_4_ggplot_solution.html
+[exercise6]: https://alexd106.github.io/intro2R/exercise_5.html
+[exercise6-sol]:https://alexd106.github.io/intro2R/exercise_5_solution.html
+[exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
+[exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
 
