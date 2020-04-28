@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 Version control with Git and GitHub | An Introduction to R</title>
-  <meta name="description" content="Chapter 9 Version control with Git and GitHub | An Introduction to R" />
+  <title>A.1 MS Windows | An Introduction to R</title>
+  <meta name="description" content="A.1 MS Windows | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 Version control with Git and GitHub | An Introduction to R" />
+  <meta property="og:title" content="A.1 MS Windows | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="Chapter 9 Version control with Git and GitHub | An Introduction to R" />
+  <meta property="og:description" content="A.1 MS Windows | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 Version control with Git and GitHub | An Introduction to R" />
+  <meta name="twitter:title" content="A.1 MS Windows | An Introduction to R" />
   
-  <meta name="twitter:description" content="Chapter 9 Version control with Git and GitHub | An Introduction to R" />
+  <meta name="twitter:description" content="A.1 MS Windows | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="further-information.html"/>
-<link rel="next" href="what-is-version-control.html"/>
+<link rel="prev" href="install-rm.html"/>
+<link rel="next" href="mac-osx.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -370,19 +370,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="github_r" class="section level1">
-<h1><span class="header-section-number">Chapter 9</span> Version control with Git and GitHub</h1>
-<p>This Chapter will introduce you to the basics of using a version control system to keep track of all your important PhD documents and facilitate collaboration with colleagues and the wider world. The Chapter will focus on using the software ‘Git’ in combination with the web-based hosting service ‘GitHub’. By the end of the Chapter, you will be able to install and configure Git and GitHub on your computer and setup and work with a version controlled project in RStudio. We won’t be covering more advanced topics such as branching, forking and pull requests in much detail but I do give an overview <a href="use-git.html#collab">later</a> on in the Chapter.</p>
-<p>I estimate that this Chapter should take you roughly 1.5 to 2.5 hours to complete in one sitting (to be honest I have no idea really so this is just a guess), but feel free to dip in and out over a longer period if that suits you better.</p>
-<p>Just a few notes of caution. In this Chapter we’ll be using RStudio to interface with Git as it gives you a nice friendly graphical user interface which generally makes life a little bit easier (and who doesn’t want that?). However, one downside to using RStudio with Git is that RStudio only provides pretty basic Git functionality through its menu system. That’s fine for most of what we’ll be doing during this Chapter (although I will introduce a few Git commands as we go along) but if you really want to benefit from using Git’s power you will need to <a href="resources.html#resources">learn</a> some Git commands and syntax. This leads me on to my next point. I’m not going to lie, Git can become a little bewildering and frustrating when you first start using it. This is mostly due to the terminology and liberal use of jargon associated with Git, but there’s no hiding the fact that it’s quite easy to get yourself and your Git repository into a pickle. Therefore, I have tried hard to keep things as straight forward as I can during this Chapter and as a result I do occasionally show you a couple of very ‘un-Git’ ways of doing things (mostly about reverting to previous versions of documents). Don’t get hung up about this, there’s no shame to using these low tech solutions and if it works then it works. Lastly, GitHub was not designed to host very large files and will warn you if you try to add files greater than 50 MB and block you adding files greater than 100 MB. If your project involves using large file sizes there are a <a href="https://help.github.com/en/github/managing-large-files/configuring-git-large-file-storage">few solutions</a> but I find the easiest is to host these files elsewhere (Googledrive, Dropbox etc) and create a link to them in a README file or R markdown document on Github.</p>
+<div id="ms-windows" class="section level2">
+<h2><span class="header-section-number">A.1</span> MS Windows</h2>
+<p>This guide assumes you have already installed <a href="https://www.r-project.org">R</a> and the <a href="https://rstudio.com/">RStudio IDE</a>. RStudio is not required but recommended, because it makes it easier to work with R Markdown. If you don’t have RStudio IDE installed, you will also have to install <a href="http://pandoc.org">Pandoc</a>. If you have RStudio installed there is no need to install Pandoc separately because it’s bundled with RStudio. Next you can install the <code>rmarkdown</code> package in RStudio using the following code:</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb484-1" data-line-number="1"><span class="co"># Install from CRAN</span></a>
+<a class="sourceLine" id="cb484-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="dt">dep =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p>The <code>dep = TRUE</code> argument will also install a bunch of additional R packages on which rmarkdown depends.</p>
+<p>If you want to generate PDF output, you will need to install LaTeX. For R Markdown users who have not installed LaTeX before, we recommend that you install <a href="https://yihui.name/tinytex/">TinyTeX</a>. You can install TinyTex from within RStudio using the following code:</p>
+<div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb485-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</a>
+<a class="sourceLine" id="cb485-2" data-line-number="2">tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()  <span class="co"># install TinyTeX</span></a></code></pre></div>
+<p>TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. The R companion package tinytex can help you automatically install missing LaTeX packages when compiling LaTeX or R Markdown documents to PDF. An alternative option would be to install MiKTeX instead. You can download the latest distribution of [MiKTeX][<a href="https://miktex.org/download">miktex</a>]. Installing MiKTeX is pretty straight forward, but it can sometimes be a pain to get it to play nicely with RStudio. If at all possible we recommend that you use TinyTex.</p>
+<p>With the rmarkdown package, RStudio/Pandoc, and LaTeX, you should be able to compile most R Markdown documents.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="further-information.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="what-is-version-control.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="install-rm.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="mac-osx.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -404,7 +410,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/09-github.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/10-Appendix.Rmd",
 "text": "Edit"
 },
 "history": {

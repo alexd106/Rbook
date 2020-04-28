@@ -4,7 +4,7 @@ author: "Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto & David Lusseau"
 date: "Draft: `r gsub(' 0', ' ', format(Sys.Date(), '%B %d, %Y'))`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
-always_allow_html: true
+#always_allow_html: true
 documentclass: book
 #bibliography: [book.bib, packages.bib]
 #biblio-style: apalike
@@ -20,6 +20,10 @@ description: "An Introduction to R"
 
 ```{r create_chunk_options1, include=FALSE}
 # source('common.R')
+# install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
+lapply(c('vioplot'), function(pkg) {
+  if (system.file(package = pkg) == '') install.packages(pkg)
+})
 ```
 
 ```{r create_chunk_options2, include=FALSE, eval=knitr::is_latex_output()}
