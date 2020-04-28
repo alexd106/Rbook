@@ -20,8 +20,10 @@ description: "An Introduction to R"
 
 ```{r create_chunk_options1, include=FALSE}
 # source('common.R')
-# install the packages needed by this book; you fill out c(), e.g. c('ggplot2', 'dplyr')
-lapply(c('vioplot'), function(pkg) {
+# install the packages needed by this book; 
+pkgs <- c('vioplot', 'reshape2', 'ggplot2', 'patchwork', 'quantreg', 'hexbin', 'GGally', 'ggfortify', 'kableExtra', 
+					'htmltools', 'rmarkdown', 'xfun', 'knitr')
+lapply(pkgs, function(pkg) {
   if (system.file(package = pkg) == '') install.packages(pkg)
 })
 ```
