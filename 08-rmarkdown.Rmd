@@ -68,7 +68,7 @@ Some of the advantages of using R markdown include:
 
 ## Get started with R markdown
 
-To use R markdown you will first need to install the ```rmarkdown``` package in RStudio (or in the R console if you're not using RStudio) and any package dependencies. You can find instructions on how to do this for both Windows and Mac OSX operating systems [here](#install-rm). If you would like to create pdf documents (or MS Word documents) from your R markdown file you will also need to install a version of LaTeX on your computer. If you've not installed LaTeX before, I recommend that you install [TinyTeX][tinytex]. Again, instructions on how to do this can be found [here](#install-rm). 
+To use R markdown you will first need to install the ```rmarkdown``` package\index{rmarkdown package} in RStudio (or in the R console if you're not using RStudio) and any package dependencies. You can find instructions on how to do this for both Windows and Mac OSX operating systems [here](#install-rm). If you would like to create pdf documents (or MS Word documents) from your R markdown file you will also need to install a version of LaTeX on your computer. If you've not installed LaTeX before, I recommend that you install [TinyTeX][tinytex]. Again, instructions on how to do this can be found [here](#install-rm). 
 
 ## Create an R markdown document {#new_rm}
 
@@ -126,7 +126,7 @@ include_graphics("images/html_rendered.png")
 
 Great, you've just rendered your first R markdown document. If you want to knit your `.Rmd` file to a pdf document then all you need to do is choose `knit to PDF` instead of `knit to HTML` when you click on the `knit` icon. This will create a file called `my_first_rmarkdown.pdf` which you can double click to open. Give it a go!
 
-You can also knit an `.Rmd` file using the command line in the console rather than by clicking on the knit icon. To do this, just use the `render()` function from the  `rmarkdown` package as shown below. Again, you can change the output format using the `output_format=` argument as well as many other options.
+You can also knit an `.Rmd` file using the command line in the console rather than by clicking on the knit icon. To do this, just use the `render()`\index{render()} function from the  `rmarkdown` package as shown below. Again, you can change the output format using the `output_format=` argument as well as many other options.
 
 \  
 
@@ -352,7 +352,7 @@ resulting in:
 
 The code above will only work if the image file (`Cute_grey_kitten.jpg`) is in the right place relative to where you saved your `.Rmd` file. In the example above the image file is in a sub directory (folder) called `images` in the directory where we saved our `my_first_rmarkdown.Rmd` file. You can embed images saved in many different file types but perhaps the most common are `.jpg` and `.png`. 
 
-I think a more flexible way of including images in your document is to use the `include_graphics()` function from the `knitr` package as this gives finer control over the alignment and image size (it's also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this I'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
+I think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it's also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this I'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
 
 ````
 `r ''````{r, echo=FALSE, fig.align='center', out.width='50%'}
@@ -394,7 +394,7 @@ You can insert a code chunk by either typing the chunk delimiters ```` ```{r} ``
 
 There are a many things you can do with code chunks: you can produce text output from your analysis, create tables and figures and insert images amongst other things. Within the code chunk you can place rules and arguments between the curly brackets `{}` that give you control over how your code is interpreted and output is rendered. These are known as chunk options. The only mandatory chunk option is the first argument which specifies which language you're using (`r` in our case but [other][engines] languages are supported). Note, all of your chunk options must be written between the curly brackets on one line with no line breaks.  
 
-You can also specify an optional code chunk name (or label)  which can be useful when trying to debug problems and when performing advanced document rendering. In the following block we name the code chunk `summary-stats`, create a dataframe (`dataf`) with two variables `x` and `y` and then use the `summary()` function to display some summary statistics . When we run the code chunk both the R code and the resulting output are displayed in the final document.
+You can also specify an optional code chunk name (or label)  which can be useful when trying to debug problems and when performing advanced document rendering. In the following block we name the code chunk `summary-stats`, create a dataframe (`dataf`) with two variables `x` and `y` and then use the `summary()`\index{summary()} function to display some summary statistics . When we run the code chunk both the R code and the resulting output are displayed in the final document.
 
 ````
 `r ''````{r, summary-stats}
@@ -578,7 +578,7 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
 \  
 
-If you're using a package like [`ggplot2`][ggplot] to create your plots then don't forget you will need to make the package available with the `library()` function in the code chunk (or in a preceding code chunk). 
+If you're using a package like [`ggplot2`][ggplot] to create your plots then don't forget you will need to make the package available with the `library()`\index{library()} function in the code chunk (or in a preceding code chunk). 
 
 ````
 `r ''````{r, simple-ggplot}
@@ -652,7 +652,7 @@ But how ugly is that! You can create slightly nicer looking tables using native 
 
 The `:-------:` lets R markdown know that the line above should be treated as a header and the lines below as the body of the table. Alignment within the table is set by the position of the `:`. To center align use `:------:`, to left align `:------` and right align `------:`. Whilst it can be fun(!) to create tables with raw markup it's only  practical for very small and simple tables.  
 
-The easiest way I know to include tables in an R markdown document is by using the `kable()` function from the `knitr` package (this should have already been installed when you installed the `rmarkdown` package). The `kable()` function can create tables for HTML, PDF and Word outputs.
+The easiest way I know to include tables in an R markdown document is by using the `kable()`\index{kable()} function from the `knitr` package (this should have already been installed when you installed the `rmarkdown` package). The `kable()` function can create tables for HTML, PDF and Word outputs.
 
 To create a table of the first 10 rows of the `iris` dataframe using the `kable()` function simply write your code block as
 
@@ -698,7 +698,7 @@ kable(iris[1:10,], "latex", booktabs = T, digits=0, align = 'c', col.names = c('
 ```
 \  
 
-You can further enhance the look of your `kable` tables using the `kableExtra` package (don't forget to install the package first!). See [here][kableExtra] for more details and a helpful tutorial.
+You can further enhance the look of your `kable` tables using the `kableExtra` package (don't forget to install the package first!). See [here][kableExtra]\index{kableExtra package} for more details and a helpful tutorial.
 
 ````
 `r ''````{r, kableExtra-table}

@@ -8,9 +8,9 @@ In addition to R’s powerful data manipulation and graphics facilities, R inclu
 
 ## One and two sample tests
 
-The two main functions for these types of tests are the `t.test()` and `wilcox.test()` that perform *t* tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.
+The two main functions for these types of tests are the `t.test()`\index{t.test()} and `wilcox.test()`\index{wilcox.test()} that perform *t* tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.
 
-As an example of a one sample *t* test we will use the `trees` dataset which is included with R. To access this in-built dataset we can use the `data()` function. This data set provides measurements of the diameter, height and volume of timber in 31 felled black cherry trees (see `?trees` for more detail).
+As an example of a one sample *t* test we will use the `trees` dataset which is included with R. To access this in-built dataset we can use the `data()`\index{data()} function. This data set provides measurements of the diameter, height and volume of timber in 31 felled black cherry trees (see `?trees` for more detail).
 
 ```{r ss1, echo=TRUE, collapse=TRUE}
 data(trees)
@@ -44,14 +44,14 @@ Don’t worry too much about the warning message, R is just letting you know tha
 
 In our one sample test it's always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. Perhaps the simplest way to assess normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your data are normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.
 
-To construct a Q-Q plot you need to use both the `qqnorm()` and `qqline()` functions. The `lty = 2` argument changes the line to a dashed line.
+To construct a Q-Q plot you need to use both the `qqnorm()`\index{qqnorm()} and `qqline()`\index{qqline()} functions. The `lty = 2` argument changes the line to a dashed line.
 
 ```{r ss5, echo=TRUE, collapse=TRUE}
 qqnorm(trees$Height)
 qqline(trees$Height, lty = 2)
 ```
 
-If you insist on performing a specific test for normality you can use the function `shapiro.test()` which performs a Shapiro – Wilks test of normality.
+If you insist on performing a specific test for normality you can use the function `shapiro.test()`\index{shaprio.test()} which performs a Shapiro – Wilks test of normality.
 
 ```{r ss6, echo=TRUE, collapse=TRUE}
 shapiro.test(trees$Height)
@@ -78,7 +78,7 @@ Notice the use of the formula method (`atmos$moisture ~ atmos$treatment`, which 
 t.test(atmos$moisture ~ atmos$treatment, var.equal = TRUE)
 ```
 
-To test whether the assumption of equal variances is valid you can perform an *F*-test on the ratio of the group variances using the `var.test()` function.
+To test whether the assumption of equal variances is valid you can perform an *F*-test on the ratio of the group variances using the `var.test()`\index{var.test()} function.
 
 ```{r ss10, echo=TRUE, collapse=TRUE}
 var.test(atmos$moisture ~ atmos$treatment)
@@ -111,7 +111,7 @@ The output is almost identical to that of a one-sample *t* test. It is also poss
 wilcox.test(pollution$down, pollution$up, paired = TRUE)
 ```
 
-The function `prop.test()` can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below
+The function `prop.test()`\index{prop.test()} can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below
 
 |                |    before   |     after   |
 |:--------------:|:-----------:|:-----------:|
@@ -130,7 +130,7 @@ prop.test(buy, total)		          # perform the test
 
 There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (*p* = 0.1). Use `?prop.test` to explore additional uses of the binomial proportions test.
 
-We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2 x 2 matrix using the `matrix()` function (note, there are many alternative methods of constructing a table like this).
+We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2 x 2 matrix using the `matrix()`\index{matrix()} function (note, there are many alternative methods of constructing a table like this).
 
 ```{r ss16, echo=TRUE, collapse=TRUE}
 buyers <- matrix(c(45, 35, 71, 32), nrow = 2)
@@ -147,7 +147,7 @@ rownames(buyers) <- c("buy", "notbuy")
 buyers
 ```
 
-You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the `chisq.test()` function. In this example the only argument is our matrix of counts.
+You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the `chisq.test()`\index{chisq.test()} function. In this example the only argument is our matrix of counts.
 
 ```{r ss18, echo=TRUE, collapse=TRUE}
 chisq.test(buyers)
@@ -157,7 +157,7 @@ There is no evidence (*p* = 0.107) to suggest that we should reject the null hyp
 
 ## Correlation
 
-In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be estimated using the `cor()` function. Using the `trees` data set again, we can determine the correlation coefficient of the association between tree `Height` and `Volume`.
+In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be estimated using the `cor()`\index{cor()} function. Using the `trees` data set again, we can determine the correlation coefficient of the association between tree `Height` and `Volume`.
 
 ```{r ss19, echo=TRUE, collapse=TRUE}
 data(trees)
@@ -179,7 +179,7 @@ If you have missing values in the variables you are trying to correlate, `cor()`
 cor(trees, use = "complete.obs")
 ```
 
-The function `cor()` will return the correlation coefficient of two variables, but gives no indication whether the coefficient is significantly different from zero. To do this you need to use the function `cor.test()`.
+The function `cor()` will return the correlation coefficient of two variables, but gives no indication whether the coefficient is significantly different from zero. To do this you need to use the function `cor.test()`\index{cor.test()}.
 
 ```{r ss22, echo=TRUE, collapse=TRUE}
 cor.test(trees$Height, trees$Volume)
@@ -196,7 +196,7 @@ cor.test(trees$Height, trees$Volume, method = "spearman")
 
 Linear models are one of the most widely used models in statistics and data science. They are often thought of as simple models but they're very flexible and able to model a wide variety of experimental and survey designs. Many of the statistical approaches you may have used previously (such as linear regression, *t*-test, ANOVA, ANCOVA etc) can be expressed as a linear model so the good news is that you're probably already familiar with linear models (albeit indirectly). They also form the foundation of more complicated modelling approaches and are relatively easy to extended to incorporate additional complexity. During this section we'll learn how to fit some simple linear models using R and cover some of the more common applications. We won't go into any detail of the underlying linear modelling theory but rather focus on the practicalities of model fitting and R code. 
 
-The main function for fitting linear models in R is the `lm()` function (short for linear model!). The `lm()` function has many arguments but the most important is the first argument which specifies the model you want to fit using *model formula* which typically takes the general form: 
+The main function for fitting linear models in R is the `lm()`\index{lm()} function (short for linear model!). The `lm()` function has many arguments but the most important is the first argument which specifies the model you want to fit using *model formula* which typically takes the general form: 
 
 \  
 
@@ -261,7 +261,7 @@ It's important that you get comfortable with using model formula (and we've only
 
 \  
 
-OK, time for an example. The data file `smoking.txt` summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable `occupational.group` specifies the different occupational groups studied, the `risk.group` variable indicates the relative risk to lung disease for the various occupational groups and `smoking` is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable `mortality` is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is `mortality` and the potential explanatory variables are `smoking` which is numeric and `risk.group` which is a three level factor. The first thing to do is import our data file using the `read.table()` function as usual and assign the data to an object called `smoke`.
+OK, time for an example. The data file `smoking.txt` summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable `occupational.group` specifies the different occupational groups studied, the `risk.group` variable indicates the relative risk to lung disease for the various occupational groups and `smoking` is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable `mortality` is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is `mortality` and the potential explanatory variables are `smoking` which is numeric and `risk.group` which is a three level factor. The first thing to do is import our data file using the `read.table()`\index{read.table()} function as usual and assign the data to an object called `smoke`.
 
 ```{r ss24, echo=TRUE, collapse=TRUE}
 smoke <- read.table('data/smoking.txt', header = TRUE, sep = "\t")
@@ -270,7 +270,7 @@ str(smoke)
 
 \  
 
-Next, let's investigate the relationship between the `mortality` and `smoking` variables by plotting a scatter plot. We can use either the `ggplot2` package or base R graphics to do this. We'll use `ggplot2` this time. 
+Next, let's investigate the relationship between the `mortality` and `smoking` variables by plotting a scatter plot. We can use either the `ggplot2` package or base R graphics to do this. We'll use `ggplot2` this time and our old friend the `ggplot()`\index{ggplot()} function. 
 
 ```{r ss25, echo=TRUE, collapse=TRUE}
 library(ggplot2)
@@ -288,19 +288,19 @@ smoke_lm <- lm(mortality ~ smoking, data = smoke)
 
 Notice that we have not used the `$` notation to specify the variables in our model formula, instead we've used the `data = smoke` argument. Although the `$` notation will work (i.e. `smoke$mortality ~ smoke$smoking`) it will more than likely cause you problems later on and should be avoided. In fact, we would go as far to suggest that if a function has a `data =` argument you should **always** use it. How do you know if a function has a `data =` argument? Just look in the associated help file.
 
-Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a `lm` class object (which we have called `smoke_lm`) from which you are able to extract exactly what you want using other functions. If you're brave, you can examine the structure of the `smoke_lm` model object using the `str()` function. 
+Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a `lm` class object (which we have called `smoke_lm`) from which you are able to extract exactly what you want using other functions. If you're brave, you can examine the structure of the `smoke_lm` model object using the `str()`\index{str()} function. 
 
 ```{r ss27, echo=TRUE, collapse=TRUE}
 str(smoke_lm)
 ```
 
-To obtain a summary of our analysis we can use the `summary()` function on our `smoke_lm` model object.
+To obtain a summary of our analysis we can use the `summary()`\index{summary()} function on our `smoke_lm` model object.
 
 ```{r ss28, echo=TRUE, collapse=TRUE}
 summary(smoke_lm)
 ```
 
-This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated *t* statistics and *p* values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is `-2.885`! The *p* value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the *p* value is large we fail to reject this null hypothesis. The `smoking` parameter estimate (`1.0875`) is the estimate of the slope and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The *p* value associated with the `smoking` parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our *p* value is small we reject this null hypothesis and therefore the slope is different from zero (i.e. there is a significant relationship). The summary table also includes other important information such as the coefficient of determination (*R^2^*), adjusted *R^2^* , *F* statistic, associated degrees of freedom and *p* value. This information is a condensed form of an ANOVA table which you can see by using the `anova()` function. 
+This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated *t* statistics and *p* values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is `-2.885`! The *p* value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the *p* value is large we fail to reject this null hypothesis. The `smoking` parameter estimate (`1.0875`) is the estimate of the slope and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The *p* value associated with the `smoking` parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our *p* value is small we reject this null hypothesis and therefore the slope is different from zero (i.e. there is a significant relationship). The summary table also includes other important information such as the coefficient of determination (*R^2^*), adjusted *R^2^* , *F* statistic, associated degrees of freedom and *p* value. This information is a condensed form of an ANOVA table which you can see by using the `anova()`\index{anova()} function. 
 
 ```{r ss29, echo=TRUE, collapse=TRUE}
 anova(smoke_lm)
@@ -320,7 +320,7 @@ anova(smoke_risk_lm)
 
 The results presented in the ANOVA table suggest that we can reject the null hypothesis (very small *p* value) and therefore the mean mortality rate index is different between `low`, `medium` and `high` risk groups.
 
-As we did with our first linear model we can also produce a summary of the estimated parameters using the `summary()` function.
+As we did with our first linear model we can also produce a summary of the estimated parameters using the `summary()`\index{summary()} function.
 
 ```{r ss32, echo=TRUE, collapse=TRUE}
 summary(smoke_risk_lm)
@@ -338,14 +338,14 @@ ggplot(mapping = aes(x = smoking, y = mortality), data = smoke) +
 	geom_smooth(method = "lm", se = TRUE)
 ```
 
-You can also do this with R's base graphics. Note though that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the `predict()` function  within the range of your data and then add these values to the plot using the `lines()` function (not shown). 
+You can also do this with R's base graphics. Note though that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the `predict()`\index{predict()} function  within the range of your data and then add these values to the plot using the `lines()`\index{lines()} function (not shown). 
 
 ```{r ss34, echo=TRUE, collapse=TRUE}
 plot(smoke$smoking, smoke$mortality, xlab = "smoking rate", ylab = " mortality rate")
 abline(smoke_lm, col = "red")
 ```
 
-Before we sit back and relax and admire our model (or go write that high impact paper your supervisor/boss has been harassing you about) our work is not finished. It's vitally important to check the underlying assumptions of your linear model. Two of the most important assumption are equal variances (homogeneity of variance) and  normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the `resid()` and `fitted()` functions.
+Before we sit back and relax and admire our model (or go write that high impact paper your supervisor/boss has been harassing you about) our work is not finished. It's vitally important to check the underlying assumptions of your linear model. Two of the most important assumption are equal variances (homogeneity of variance) and  normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the `resid()`\index{resid()} and `fitted()`\index{fitted()} functions.
 
 ```{r ss35, echo=TRUE, collapse=TRUE}
 smoke_res <- resid(smoke_lm)
@@ -377,7 +377,7 @@ qqnorm(smoke_res)
 qqline(smoke_res) 
 ```
 
-Alternatively, you can get R to do most of the hard work by using the `plot()` function on the model object `smoke_lm`. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the `par(mfrow = c(2,2))`. This command splits the plotting window into 2 rows and 2 columns.
+Alternatively, you can get R to do most of the hard work by using the `plot()`\index{plot()} function on the model object `smoke_lm`. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the `par(mfrow = c(2,2))`. This command splits the plotting window into 2 rows and 2 columns.
 
 ```{r ss39, echo=TRUE, collapse=TRUE}
 par(mfrow = c(2,2))
@@ -386,21 +386,21 @@ plot(smoke_lm)
 
 The first two graphs (top left and top right) are the same residual versus fitted and Q-Q plots we produced before. The third graph (bottom left) is the same as the first but plotted on a different scale (the absolute value of the square root of the standardised residuals) and again you are looking for no pattern or structure in the data points. The fourth graph (bottom right) gives you an indication whether any of your observations are having a large influence (Cook’s distance) on your regression coefficient estimates. Levearge identifies observations which have unusually large values in their explanatory variables.
 
-You can also produce these diagnostic plots using `ggplot` by installing the package `ggfortify` and using the `autoplot()` function.
+You can also produce these diagnostic plots using `ggplot` by installing the package `ggfortify`\index{ggfortify package} and using the `autoplot()`\index{autoplot()} function.
 
 ```{r ss40, echo=TRUE, collapse=TRUE, message=FALSE, warning=FALSE}
 library(ggfortify)
 autoplot(smoke_lm, which = 1:6, ncol = 2, label.size = 3)
 ```
 
-What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the `update()` function. Let's remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called `smoke_lm2`. Note, we do this to demonstrate the use of the `update()` function. You should think long and hard about removing any data point(s) and if you do you should **always** report this and justify your reasoning. 
+What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the `update()`\index{update()} function. Let's remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called `smoke_lm2`. Note, we do this to demonstrate the use of the `update()` function. You should think long and hard about removing any data point(s) and if you do you should **always** report this and justify your reasoning. 
 
 ```{r ss41, echo=TRUE, collapse=TRUE}
 smoke_lm2 <- update(smoke_lm, subset = -2)
 summary(smoke_lm2)
 ```
 
-There are numerous other functions which are useful for producing diagnostic plots. For example, `rstandard()` and `rstudent()` returns the standardised and studentised residuals. The function `dffits()` expresses how much an observation influences the associated fitted value and the function `dfbetas()` gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.
+There are numerous other functions which are useful for producing diagnostic plots. For example, `rstandard()`\index{rstandard()} and `rstudent()`\index{rstudent()} returns the standardised and studentised residuals. The function `dffits()`\index{dffits()} expresses how much an observation influences the associated fitted value and the function `dfbetas()`\index{dfbetas()} gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.
 
 ```{r ss42, echo=TRUE, collapse=TRUE}
 par(mfrow=c(2,2))
@@ -412,7 +412,7 @@ lines(sqrt(cooks.distance(smoke_lm)), lwd = 2)
 
 ## Other modelling approaches
 
-As with most things R related, a complete description of the variety and flexibility of different statistical analyses you can perform is beyond the scope of this introductory text. Further information can be found in any of the excellent documents referred to in [Chapter 2](#rhelp). A table of some of the more common statistical functions is given below to get you started. 
+As with most things R related, a complete description of the variety and flexibility of different statistical analyses you can perform is beyond the scope of this introductory text. Further information can be found in any of the excellent documents referred to in [Chapter 2](#rhelp). A table of some of the more common statistical functions is given below to get you started. \index{glm()} \index{gam()} \index{lme()} \index{lmer()} \index{gls()} \index{krustkal.test()} \index{friedman.test()}
 
 \  
 

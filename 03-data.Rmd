@@ -22,7 +22,7 @@ R has six basic types of data; numeric, integer, logical, complex and character.
 
 \  
 
-R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they're used although you should bear in mind that R can't actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the type (or class) of any object using the `class()` function.
+R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they're used although you should bear in mind that R can't actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the type (or class) of any object using the `class()`\index{class()} function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 num <- 2.2
@@ -36,7 +36,7 @@ class(logi)
 
 ```
 
-Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`.
+Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`.\index{is.numeric()} \index{is.character()} \index{is.logical()}
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 is.numeric(num)
@@ -49,8 +49,8 @@ is.logical(logi)
 
 ```
 
-It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results.
-
+It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results. \index{as.character()} \index{as.numeric()} \index{as.logical()} \index{as.factor()} \index{as.complex()}
+ 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # coerce numeric to character
 class(num)
@@ -64,7 +64,7 @@ char_num <- as.numeric(char)
 
 ```
 
-Here's a summary table of some of the logical test and coercion functions available to you.
+Here's a summary table of some of the logical test and coercion functions available to you.\index{is.numeric()} \index{is.factor()}
 
 |     Type       |    Logical test       |     Coercing       |
 |:--------------:|:-------------------:|:-----------------:|
@@ -100,7 +100,7 @@ knitr::include_graphics(path = "images/mat_array.png")
 
 \ 
 
-A convenient way to create a matrix or an array is to use the `matrix()` and `array()` functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (`nrow = 4`) and fill the matrix row-wise (`byrow = TRUE`) rather than the default column-wise. When using the `array()` function we define the dimensions using the `dim =` argument, in our case 2 rows, 4 columns in 2 different matrices.   
+A convenient way to create a matrix or an array is to use the `matrix()`\index{martix()} and `array()`\index{array()} functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (`nrow = 4`) and fill the matrix row-wise (`byrow = TRUE`) rather than the default column-wise. When using the `array()` function we define the dimensions using the `dim =` argument, in our case 2 rows, 4 columns in 2 different matrices.   
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat <- matrix(1:16, nrow = 4, byrow = TRUE)
@@ -110,7 +110,7 @@ my_array <- array(1:16, dim = c(2, 4, 2))
 my_array
 ```
 
-Sometimes it's also useful to define row and column names for your matrix but this is not a requirement. To do this use the `rownames()` and `colnames()` functions.
+Sometimes it's also useful to define row and column names for your matrix but this is not a requirement. To do this use the `rownames()`\index{rownames()} and `colnames()`\index{colnames()} functions.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 rownames(my_mat) <- c("A", "B", "C", "D")
@@ -118,14 +118,14 @@ colnames(my_mat) <- c("a", "b", "c", "d")
 my_mat
 ```
 
-Once you've created your matrices you can do useful stuff with them and as you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`
+Once you've created your matrices you can do useful stuff with them and as you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`\index{t()}
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_t <- t(my_mat)
 my_mat_t
 ```
 
-To extract the diagonal elements of a matrix and store them as a vector we can use the `diag()` function
+To extract the diagonal elements of a matrix and store them as a vector we can use the `diag()`\index{diag()} function
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_diag <- diag(my_mat)
@@ -151,7 +151,7 @@ mat.1 %*% mat.2			# matrix multiplication
 
 The next data structure we will quickly take a look at is a list. Whilst vectors and matrices are constrained to contain data of the same type, lists are able to store mixtures of data types. In fact we can even store other data structures such as vectors and arrays within a list or even have a list of a list. This makes for a very flexible data structure which is ideal for storing irregular or non-rectangular data (see [Chapter 6](#prog_r) for an example). 
 
-To create a list we can use the `list()` function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.
+To create a list we can use the `list()`\index{list()} function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 list_1 <- list(c("black", "yellow", "orange"),
@@ -169,7 +169,7 @@ list_2 <- list(colours = c("black", "yellow", "orange"),
 list_2
 ```
 
-or after the list has been created using the `names()` function
+or after the list has been created using the `names()`\index{names()} function
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 names(list_1) <- c("colours", "evaluation", "time")
@@ -200,7 +200,7 @@ knitr::kable(rbind(head(flowers), tail(flowers)), row.names = FALSE, "latex", bo
 
 There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an `NA` just as we did with our vectors. 
 
-We can construct a data frame from existing data objects such as vectors using the `data.frame()` function. As an example, let's create three vectors `height`, `weight` and `p.names` and include all of these vectors in a data frame object called `dataf`.
+We can construct a data frame from existing data objects such as vectors using the `data.frame()`\index{data.frame()} function. As an example, let's create three vectors `height`, `weight` and `p.names` and include all of these vectors in a data frame object called `dataf`.
 
 ```{r dataf, echo=TRUE, collapse=TRUE}
 height <- c(180, 155, 160, 167, 181)
@@ -211,13 +211,13 @@ dataf <- data.frame(height = height, weight = weight, names = p.names)
 dataf
 ```
 
-You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()` function. We see that there are 5 rows and 3 columns.
+You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()`\index{dim()} function. We see that there are 5 rows and 3 columns.
 
 ```{r dataf2, echo=TRUE, collapse=TRUE}
 dim(dataf)   # 5 rows and 3 columns
 ```
 
-Another really useful function which we use all the time is `str()` which will return a compact summary of the structure of the data frame object (or any object for that matter).
+Another really useful function which we use all the time is `str()`\index{str()} which will return a compact summary of the structure of the data frame object (or any object for that matter).
 
 ```{r dataf3, echo=TRUE, collapse=TRUE}
 str(dataf)   
@@ -283,7 +283,7 @@ There are a couple of things to bear in mind when saving files to import into R 
 
 ### Import functions {#import_fnc}
 
-Once you've saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the `read.table()` function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` function to import this file
+Once you've saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the `read.table()`\index{read.table()} function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` function to import this file
 
 ```{r df1, echo=TRUE, collapse=TRUE}
 flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t")
@@ -322,7 +322,7 @@ If we just wanted to see the names of our variables (columns) in the data frame 
 names(flowers)
 ```
 
-R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`, `read.csv2()` and `read.delim()` functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
+R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`\index{read.csv()}, `read.csv2()`\index{read.csv2()} and `read.delim()`\index{read.delim()} functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
 
 ```{r df5, echo=TRUE, eval=FALSE}
 # import .csv file
@@ -368,14 +368,14 @@ We can see an obvious problem, all of our variables have been imported as factor
 
 There are numerous other functions to import data from a variety of sources and formats. Most of these functions are contained in packages that you will need to install before using them. We list a couple of the more useful packages and functions below. 
 
-The `fread()` function from the `read.table` package is great for importing large data files quickly and efficiently (much faster than the `read.table()` function). One of the great things about the `fread()` function is that it will automatically detect many of the arguments you would normally need to specify (like `sep =` etc). One of the things you will need to consider though is that the `fread()` function will return a `data.table` object not a `data.frame` as would be the case with the `read.table()` function. This is usually not a problem as you can pass a `data.table` object to any function that only accepts `data.frame` objects. To learn more about the differences between `data.table` and `data.frame` objects see [here][data-table]. 
+The `fread()`\index{fread} function from the `read.table` package \index{read.table package} is great for importing large data files quickly and efficiently (much faster than the `read.table()` function). One of the great things about the `fread()` function is that it will automatically detect many of the arguments you would normally need to specify (like `sep =` etc). One of the things you will need to consider though is that the `fread()` function will return a `data.table` object not a `data.frame` as would be the case with the `read.table()` function. This is usually not a problem as you can pass a `data.table` object to any function that only accepts `data.frame` objects. To learn more about the differences between `data.table` and `data.frame` objects see [here][data-table]. 
 
 ```{r df8, echo=TRUE, eval=FALSE}
 library(read.table)
 all_data <- fread(file = 'data/flower.txt')
 ```
 
-Various functions from the `readr` package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()` function the `header = TRUE` argument is replaced by `col_names = TRUE`. Also, character class variables are not automatically converted to factors when using `read_table()` and the function returns a 'tibble' class object which is the tidyverse equivalent of a 'data.frame' object (see [here][tibbles] for differences). 
+Various functions from the `readr`\index{readr package} package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()`\index{read\_table()} function the `header = TRUE` argument is replaced by `col_names = TRUE`. Also, character class variables are not automatically converted to factors when using `read_table()` and the function returns a 'tibble' class object which is the tidyverse equivalent of a 'data.frame' object (see [here][tibbles] for differences). \index{read\_csv()} \index{read\_delim()} \index{read\_tsv()}
 
 ```{r df9, echo=TRUE, eval=FALSE}
 library(readr)
@@ -392,7 +392,7 @@ all_data <- read_delim(file = 'data/flower.txt', delim = "\t")
 all_data <- read_tsv(file = 'data/flower.txt')
 ```
 
-If your data file is ginormous, then the `ff` and `bigmemory` packages may be useful as they both contain import functions that are able to store large data in a memory efficient manner. You can find out more about these functions [here][ff] and [here][bigmem].
+If your data file is ginormous, then the `ff`\index{ff package} and `bigmemory`\index{bigmemory package} packages may be useful as they both contain import functions that are able to store large data in a memory efficient manner. You can find out more about these functions [here][ff] and [here][bigmem].
 
 
 ## Wrangling data frames
@@ -412,7 +412,7 @@ To access the data in any of the variables (columns) in our data frame we can us
 flowers$height
 ```
 
-This will return a vector of the `height` data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the `summary()` function.
+This will return a vector of the `height` data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the `summary()`\index{summary()} function.
 
 ```{r dw3, echo=TRUE, collapse=TRUE}
 f_height <- flowers$height
@@ -574,7 +574,7 @@ height2.2_12.3 <- flowers[flowers$height > 12.3 | flowers$height < 2.2, ]
 height2.2_12.3
 ```
 
-An alternative method of selecting parts of a data frame based on a logical expression is to use the `subset()` function instead of the `[ ]`. The advantage of using `subset()` is that you no longer need to use the `$` notation when specifying variables inside the data frame as the first argument to the function is the name of the data frame to be subsetted. The disadvantage is that `subset()` is less flexible than the `[ ]` notation. 
+An alternative method of selecting parts of a data frame based on a logical expression is to use the `subset()`\index{subset()} function instead of the `[ ]`. The advantage of using `subset()` is that you no longer need to use the `$` notation when specifying variables inside the data frame as the first argument to the function is the name of the data frame to be subsetted. The disadvantage is that `subset()` is less flexible than the `[ ]` notation. 
 
 ```{r dw18, echo=TRUE, collapse=TRUE}
 tip_med_2 <- subset(flowers, treat == "tip" & nitrogen == "medium" & block == 2)
@@ -591,7 +591,7 @@ tipplants
 
 ### Ordering data frames
 
-Remember when we used the function `order()` to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default. If you're reading this section of the book on the web you can scroll down in the output panels to see the entire ordered data frame. If you're reading the pdf version of the book, note that some of the output from the code chunks has been truncated to save some space.
+Remember when we used the function `order()`\index{order()} to order one vector based on the order of another vector (way back in [Chapter 2](#vec_ord)). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame `flowers` to be ordered in ascending value of `height` and output all columns by default. If you're reading this section of the book on the web you can scroll down in the output panels to see the entire ordered data frame. If you're reading the pdf version of the book, note that some of the output from the code chunks has been truncated to save some space.
 
 ```{r dw20, echo=TRUE, eval=FALSE}
 height_ord <- flowers[order(flowers$height), ]        
@@ -659,7 +659,7 @@ block_revheight_ord <- flowers[order(flowers$block, -flowers$height), ]
 rbind(head(block_revheight_ord, n = 15), tail(block_revheight_ord, n = 15))
 ```
 
-If we wanted to do the same thing with a factor (or character) variable like `nitrogen` we would need to use the function `xtfrm()` for this variable inside our `order()` function.
+If we wanted to do the same thing with a factor (or character) variable like `nitrogen` we would need to use the function `xtfrm()`\index{xtfrm} for this variable inside our `order()` function.
 
 ```{r dw24, echo=TRUE, eval=FALSE}
 block_revheight_ord <- flowers[order(-xtfrm(flowers$nitrogen), flowers$height), ]        
@@ -680,7 +680,7 @@ Notice that the `nitrogen` variable has been reverse ordered alphabetically and 
 
 ### Adding columns and rows
 
-Sometimes it's useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()` function and to append columns the `cbind()` function. Let's create a couple of test data frames to see this in action using our old friend the `data.frame()` function.
+Sometimes it's useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()`\index{rbind()} function and to append columns the `cbind()`\index{cbind()} function. Let's create a couple of test data frames to see this in action using our old friend the `data.frame()` function.
 
 ```{r dw25, echo=TRUE, collapse=TRUE}
 # rbind for rows
@@ -722,7 +722,7 @@ df_rcomb$height_log10 <- log10(df_rcomb$height)
 df_rcomb
 ```
 
-This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the `id` variable in the `df_rcomb` data frame is numeric type data (use the `str()` or `class()` functions to check for yourself). If we wanted to convert the `id` variable to a factor to use later in our analysis we can create a new variable called `Fid` in our data frame and use the `factor()` function to convert the `id` variable. 
+This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the `id` variable in the `df_rcomb` data frame is numeric type data (use the `str()` or `class()` functions to check for yourself). If we wanted to convert the `id` variable to a factor to use later in our analysis we can create a new variable called `Fid` in our data frame and use the `factor()`\index{factor()} function to convert the `id` variable. 
 
 ```{r dw27, echo=TRUE, collapse=TRUE}
 # convert to a factor 
@@ -749,7 +749,7 @@ zone <- data.frame(genus = c("Laminaria", "Halichondria", "Xanthoria", "Littorin
 zone
 ```
 
-Because both of our data frames contains at least one variable in common (`species` in our case) we can simply use the `merge()` function to create a new data frame called `taxa_zone`.
+Because both of our data frames contains at least one variable in common (`species` in our case) we can simply use the `merge()`\index{merge()} function to create a new data frame called `taxa_zone`.
 
 ```{r dw29, echo=TRUE, collapse=TRUE}
 taxa_zone <- merge(x = taxa, y = zone)
@@ -846,7 +846,7 @@ kable(wide_data, "latex", booktabs = TRUE) %>%
 
 Whilst there's no inherent problem with either of these formats we will sometimes need to convert between the two because some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.
 
-There are many ways to convert between these two formats but we'll use the `melt()` and `dcast()` functions from the `reshape2` package (you will need to install this package first). The `melt()` function is used to convert from wide to long formats. The first argument for the `melt()` function is the data frame we want to melt (in our case `wide_data`). The `id.vars = c("subject", "sex")` argument is a vector of the variables you want to stack, the `measured.vars = c("control", "cond1", "cond2")` argument identifies the columns of the measurements in different conditions, the `variable.name = "condition"` argument specifies what you want to call the stacked column of your different conditions in your output data frame and `value.name = "measurement"` is the name of the column of your stacked measurements in your output data frame.
+There are many ways to convert between these two formats but we'll use the `melt()`\index{melt()} and `dcast()`\index{dcast()} functions from the `reshape2`\index{reshape2 package} package (you will need to install this package first). The `melt()` function is used to convert from wide to long formats. The first argument for the `melt()` function is the data frame we want to melt (in our case `wide_data`). The `id.vars = c("subject", "sex")` argument is a vector of the variables you want to stack, the `measured.vars = c("control", "cond1", "cond2")` argument identifies the columns of the measurements in different conditions, the `variable.name = "condition"` argument specifies what you want to call the stacked column of your different conditions in your output data frame and `value.name = "measurement"` is the name of the column of your stacked measurements in your output data frame.
 
 ```{r dw36, echo=TRUE, collapse=TRUE}
 library(reshape2)
@@ -874,7 +874,7 @@ my_wide_df
 
 Now that we're able to manipulate and extract data from our data frames our next task is to start exploring and getting to know our data. In this section we'll start producing tables of useful summary statistics of the variables in our data frame and in the next two Chapters we'll cover visualising our data with base R graphics and using the `ggplot2` package. 
 
-A really useful starting point is to produce some simple summary statistics of all of the variables in our `flowers` data frame using the `summary()` function.
+A really useful starting point is to produce some simple summary statistics of all of the variables in our `flowers` data frame using the `summary()`\index{summary()} function.
 
 ```{r sum1, echo=TRUE, collapse=TRUE}
 summary(flowers)
@@ -900,7 +900,7 @@ summary(flowers$leafarea)
 # summary(flowers[, 6])
 ```
 
-As you've seen above, the `summary()` function reports the number of observations in each level of our factor variables. Another useful function for generating tables of counts is the `table()` function. The `table()` function can be used to build contingency tables of different combinations of factor levels. For example, to count the number of observations for each level of `nitrogen`
+As you've seen above, the `summary()` function reports the number of observations in each level of our factor variables. Another useful function for generating tables of counts is the `table()`\index{table()} function. The `table()` function can be used to build contingency tables of different combinations of factor levels. For example, to count the number of observations for each level of `nitrogen`
 
 ```{r sum4, echo=TRUE, collapse=TRUE}
 table(flowers$nitrogen)
@@ -912,7 +912,7 @@ We can extend this further by producing a table of counts for each combination o
 table(flowers$nitrogen, flowers$treat)
 ```
 
-A more flexible version of the `table()` function is the `xtabs()` function. The `xtabs()` function uses a formula notation (`~`) to build contingency tables with the cross-classifying variables separated by a `+` symbol on the right hand side of the formula. `xtabs()` also has a useful `data =` argument so you don't have to include the data frame name when specifying each variable. 
+A more flexible version of the `table()` function is the `xtabs()`\index{xtabs()} function. The `xtabs()` function uses a formula notation (`~`) to build contingency tables with the cross-classifying variables separated by a `+` symbol on the right hand side of the formula. `xtabs()` also has a useful `data =` argument so you don't have to include the data frame name when specifying each variable. 
 
 ```{r sum6, echo=TRUE, collapse=TRUE}
 xtabs(~ nitrogen + treat, data = flowers)
@@ -924,38 +924,38 @@ We can even build more complicated contingency tables using more variables. Note
 xtabs(~ nitrogen + treat + block, data = flowers)
 ```
 
-And for a nicer formatted table we can nest the `xtabs()` function inside the `ftable()` function to 'flatten' the table.
+And for a nicer formatted table we can nest the `xtabs()` function inside the `ftable()`\index{ftable()} function to 'flatten' the table.
 
 ```{r sum8, echo=TRUE, collapse=TRUE}
 ftable(xtabs(~ nitrogen + treat + block, data = flowers))
 ```
 
-We can also summarise our data for each level of a factor variable. Let's say we want to calculate the mean value of `height` for each of our `low`, `meadium` and `high` levels of `nitrogen`. To do this we will use the `mean()` function and apply this to the `height` variable for each level of `nitrogen` using the `tapply()` function.
+We can also summarise our data for each level of a factor variable. Let's say we want to calculate the mean value of `height` for each of our `low`, `meadium` and `high` levels of `nitrogen`. To do this we will use the `mean()`\index{mean()} function and apply this to the `height` variable for each level of `nitrogen` using the `tapply()`\index{tapply()} function.
 
 ```{r sum9, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, mean)
 ```
 
-The `tapply()` function is not just restricted to calculating mean values, you can use it to apply many of the functions that come with R or even functions you've written yourself (see [Chapter 7](#prog_r) for more details). For example, we can apply the `sd()` function to calculate the standard deviation for each level of `nitrogen` or even the `summary()` function.
+The `tapply()` function is not just restricted to calculating mean values, you can use it to apply many of the functions that come with R or even functions you've written yourself (see [Chapter 7](#prog_r) for more details). For example, we can apply the `sd()`\index{sd()} function to calculate the standard deviation for each level of `nitrogen` or even the `summary()`\index{summary()} function.
 
 ```{r sum10, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, sd)
 tapply(flowers$height, flowers$nitrogen, summary)
 ```
 
-Note, if the variable you want to summarise contains missing values (`NA`) you will also need to include an argument specifying how you want the function to deal with the `NA` values. We saw an example if this in [Chapter 2](#na_vals) where the `mean()` function returned an `NA` when we had missing data. To include the `na.rm = TRUE` argument we simply add this as another argument when using `tapply()`.
+Note, if the variable you want to summarise contains missing values (`NA`) you will also need to include an argument specifying how you want the function to deal with the `NA` values. We saw an example if this in [Chapter 2](#na_vals) where the `mean()`\index{mean()} function returned an `NA` when we had missing data. To include the `na.rm = TRUE` argument we simply add this as another argument when using `tapply()`.
 
 ```{r sum11, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, flowers$nitrogen, mean, na.rm = TRUE)
 ```
 
-We can also use `tapply()` to apply functions to more than one factor. The only thing to remember is that the factors need to be supplied to the `tapply()` function in the form of a list using the `list()` function. To calculate the mean `height` for each combination of `nitrogen` and `treat` factor levels we can use the `list(flowers$nitrogen, flowers$treat)` notation.
+We can also use `tapply()` to apply functions to more than one factor. The only thing to remember is that the factors need to be supplied to the `tapply()` function in the form of a list using the `list()`\index{list()} function. To calculate the mean `height` for each combination of `nitrogen` and `treat` factor levels we can use the `list(flowers$nitrogen, flowers$treat)` notation.
 
 ```{r sum12, echo=TRUE, collapse=TRUE}
 tapply(flowers$height, list(flowers$nitrogen, flowers$treat), mean)
 ```
 
-And if you get a little fed up with having to write `flowers$` for every variable you can nest the `tapply()` function inside the `with()` function. The `with()` function allows R to evaluate an R expression with respect to a named data object (in this case `flowers`).  
+And if you get a little fed up with having to write `flowers$` for every variable you can nest the `tapply()` function inside the `with()`\index{with()} function. The `with()` function allows R to evaluate an R expression with respect to a named data object (in this case `flowers`).  
 
 ```{r sum13, echo=TRUE, collapse=TRUE}
 with(flowers, tapply(height, list(nitrogen, treat), mean))
@@ -963,7 +963,7 @@ with(flowers, tapply(height, list(nitrogen, treat), mean))
 
 The `with()` function also works with many other functions and can save you alot of typing!
 
-Another really useful function for summarising data is the `aggregate()` function. The `aggregate()` function works in a very similar way to `tapply()` but is a bit more flexible. 
+Another really useful function for summarising data is the `aggregate()`\index{aggregate()} function. The `aggregate()` function works in a very similar way to `tapply()` but is a bit more flexible. 
 
 For example, to calculate the mean of the variables `height`, `weight`, `leafarea` and `shootarea` for each level of `nitrogen`.
 
@@ -1004,7 +1004,7 @@ By now we hope you're getting a feel for how powerful and useful R is for manipu
 
 ### Export functions
 
-The main workhorse function for exporting data frames is the `write.table()` function. As with the `read.table()` function, the `write.table()` function is very flexible with lots of arguments to help customise it's behaviour. As an example, let's take our original `flowers` data frame, do some useful stuff to it and then export these changes to an external file.  
+The main workhorse function for exporting data frames is the `write.table()`\index{write.table()} function. As with the `read.table()` function, the `write.table()` function is very flexible with lots of arguments to help customise it's behaviour. As an example, let's take our original `flowers` data frame, do some useful stuff to it and then export these changes to an external file.  
 
 Let's order the rows in the data frame in ascending order of `height` within each level `nitrogen`. We will also apply a square root transformation on the number of flowers variable (`flowers`) and a log~10~ transformation on the `height` variable and save these as additional columns in our data frame (hopefully this will be somewhat familiar to you!). 
 
@@ -1039,7 +1039,7 @@ write.table(flowers_df2, file = 'data/flowers_04_12.csv', col.names = TRUE,
              row.names = FALSE, sep = ",")
 ```
 
-Or alternatively by using the convenience function `write.csv()`. Notice that we don't need to set the `sep = ","` or `col.names = TRUE` arguments as these are the defaults when using the `read.csv()` function.
+Or alternatively by using the convenience function `write.csv()`\index{write.csv()}. Notice that we don't need to set the `sep = ","` or `col.names = TRUE` arguments as these are the defaults when using the `read.csv()` function.
 
 ```{r export4, echo=TRUE, eval=FALSE}
 write.csv(flowers_df2, file = 'data/flowers_04_12.csv', row.names = FALSE)
@@ -1049,7 +1049,7 @@ write.csv(flowers_df2, file = 'data/flowers_04_12.csv', row.names = FALSE)
 
 As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the `write.table()` function. If you followed the ['Other import functions'](#import_other) section of this Chapter you will already have the required packages installed. 
 
-The `fwrite()` function from the `read.table` package is very efficient at exporting large data objects and is much faster than the `write.table()` function. It's also quite simple to use as it has most of the same arguments as `write.table()`. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.
+The `fwrite()`\index{fwrite()} function from the `read.table` package is very efficient at exporting large data objects and is much faster than the `write.table()` function. It's also quite simple to use as it has most of the same arguments as `write.table()`. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.
 
 ```{r export5, echo=TRUE, eval=FALSE}
 library(read.table)
@@ -1063,7 +1063,7 @@ library(read.table)
 fwrite(flowers_df2, file = 'data/flowers_04_12.csv')
 ```
 
-The `readr` package also comes with two useful functions for quickly writing data to external files: the `write_tsv()` function for writing tab delimited files and the `write_csv()` function for saving comma separated values (csv) files.
+The `readr` package also comes with two useful functions for quickly writing data to external files: the `write_tsv()`\index{write\_tsv()} function for writing tab delimited files and the `write_csv()`\index{write\_csv()} function for saving comma separated values (csv) files.
 
 ```{r export7, echo=TRUE, eval=FALSE}
 library(readr)
@@ -1072,7 +1072,7 @@ write_tsv(flowers_df2, path = 'data/flowers_04_12.txt')
 write_csv(flowers_df2, path = 'data/flowers_04_12.csv')
 ```
 
-You can even save data directly to an Excel spreadsheet using the `write_excel_csv()` function but again we don't recommend this!   
+You can even save data directly to an Excel spreadsheet using the `write_excel_csv()`\index{write\_excel\_csv()} function but again we don't recommend this!   
 
 \  
 

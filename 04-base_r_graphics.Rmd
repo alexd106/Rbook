@@ -42,7 +42,7 @@ There are many functions in R to produce plots ranging from the very basic to th
 
 ### Scatterplots {#scatterplot}
 
-The most common high level function used to produce plots in R is (rather unsurprisingly) the `plot()` function. For example, let's plot the `weight` of petunia plants from our `flowers` data frame which we imported in [Chapter 3](#import_fnc).
+The most common high level function used to produce plots in R is (rather unsurprisingly) the `plot()`\index{plot()} function. For example, let's plot the `weight` of petunia plants from our `flowers` data frame which we imported in [Chapter 3](#import_fnc).
 
 ```{r plot1, echo=TRUE, out.width="75%", fig.align="center"}
 flowers <- read.table(file = 'data/flower.txt', 
@@ -60,7 +60,7 @@ plot(weight)
 Error in plot(weight) : object 'weight' not found
 ```
 
-As many of the base R plotting functions don't have a `data =` argument to specify the data frame name directly we can use the `with()` function in combination with `plot()` as a shortcut.
+As many of the base R plotting functions don't have a `data =` argument to specify the data frame name directly we can use the `with()\index{with()}` function in combination with `plot()` as a shortcut.
 
 ```{r plot3, echo=TRUE, eval=FALSE}
 with(flowers, plot(weight)) 
@@ -97,13 +97,13 @@ Admittedly the plots we've produced so far don't look anything particularly spec
 
 ### Histograms
 
-Frequency histograms are useful when you want to get an idea about the distribution of values in a numeric variable. The `hist()` function takes a numeric vector as its main argument. Let's generate a histogram of the `height` values.
+Frequency histograms are useful when you want to get an idea about the distribution of values in a numeric variable. The `hist()`\index{hist()} function takes a numeric vector as its main argument. Let's generate a histogram of the `height` values.
 
 ```{r plot7, echo=TRUE, out.width="75%", fig.align="center"}
 hist(flowers$height)
 ```
 
-The `hist()` function  automatically creates the breakpoints (or bins) in the histogram using the [Sturges][sturges] formula unless you specify otherwise by using the `break =` argument. For example, let's say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum value of `height` (18 rounded up) in steps of 1 using the `seq()` function. We can then use this sequence with the `breaks =` argument. While we're at it, let's also replace the ugly title for something a little better using the `main =` argument
+The `hist()` function  automatically creates the breakpoints (or bins) in the histogram using the [Sturges][sturges] formula unless you specify otherwise by using the `break =` argument. For example, let's say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum value of `height` (18 rounded up) in steps of 1 using the `seq()`\index{seq()} function. We can then use this sequence with the `breaks =` argument. While we're at it, let's also replace the ugly title for something a little better using the `main =` argument
 
 ```{r plot8, echo=TRUE, out.width="75%", fig.align="center"}
 brk <- seq(0,18,1)
@@ -118,7 +118,7 @@ hist(flowers$height, breaks = brk, main = "petunia height",
       freq = FALSE)
 ```
 
-An alternative to plotting just a straight up histogram is to add a [kernel density][kernel-dens] curve to the plot. You can superimpose a density curve onto the histogram by first using the `density()` function to compute the kernel density estimates and then use the low level function `lines()` to add these estimates onto the plot as a line.
+An alternative to plotting just a straight up histogram is to add a [kernel density][kernel-dens] curve to the plot. You can superimpose a density curve onto the histogram by first using the `density()`\index{density()} function to compute the kernel density estimates and then use the low level function `lines()`\index{lines()} to add these estimates onto the plot as a line.
 
 ```{r plot10, echo=TRUE, out.width="75%", fig.align="center"}
 dens <- density(flowers$height)
@@ -131,7 +131,7 @@ lines(dens)
 
 OK, we'll just come and out and say it, we love boxplots and their close relation the violin plot. Boxplots (or box-and-whisker plots to give them their full name) are very useful when you want to graphically summarise the distribution of a variable, identify potential unusual values and compare distributions between different groups. The reason we love them is their ease of interpretation, transparency and relatively high data-to-ink ratio (i.e. they convey lots of information efficiently). We suggest that you try to use boxplots as much as possible when exploring your data and avoid the temptation to use the more ubiquitous bar plot (even with standard error or 95% confidence intervals bars). The problem with bar plots (aka dynamite plots) is that they hide important information from the reader such as the distribution of the data and assume that the error bars (or confidence intervals) are symmetric around the mean. Of course, it's up to you what you do but if you're tempted to use bar plots just Google 'dynamite plots are evil' or see [here][dynamite-plot1] or [here][dynamite-plot2] for a fuller discussion.
 
-To create a boxplot in R we use the `boxplot()` function. For example, let's create a boxplot of the variable `weight` from our `flowers` data frame. We can also include a y axis label using the `ylab =` argument.  
+To create a boxplot in R we use the `boxplot()`\index{boxplot()} function. For example, let's create a boxplot of the variable `weight` from our `flowers` data frame. We can also include a y axis label using the `ylab =` argument.  
 
 ```{r plot11, echo=TRUE, out.width="75%", fig.align="center"}
 boxplot(flowers$weight, ylab = "weight (g)")
@@ -146,7 +146,7 @@ boxplot(weight ~ nitrogen, data = flowers,
          ylab = "weight (g)", xlab = "nitrogen level")
 ```
 
-The factor levels are plotted in the same order defined by our factor variable `nitrogen` (often alphabetically). To change the order we need to change the order of our levels of the `nitrogen` factor in our data frame using the `factor()` function and then re-plot the graph. Let's plot our boxplot with our factor levels going from `low` to `high`. 
+The factor levels are plotted in the same order defined by our factor variable `nitrogen` (often alphabetically). To change the order we need to change the order of our levels of the `nitrogen` factor in our data frame using the `factor()`\index{factor()} function and then re-plot the graph. Let's plot our boxplot with our factor levels going from `low` to `high`. 
 
 ```{r plot13, echo=TRUE, out.width="75%", fig.align="center"}
 flowers$nitrogen <- factor(flowers$nitrogen, 
@@ -170,7 +170,7 @@ boxplot(weight ~ nitrogen * treat, data = flowers,
          cex.axis = 0.7)
 ```
 
-Violin plots are like a combination of a boxplot and a kernel density plot (you saw an example of a kernel density plot in the histogram section above) all rolled into one figure. We can create a violin plot in R using the `vioplot()` function from the `vioplot` package. You'll need to first install this package using `install.packages('vioplot')` function as usual. The nice thing about the `vioplot()` function is that you use it in pretty much the same way you would use the `boxplot()` function. We'll also use the argument `col = "lightblue"` to change the fill colour to light blue. 
+Violin plots are like a combination of a boxplot and a kernel density plot (you saw an example of a kernel density plot in the histogram section above) all rolled into one figure. We can create a violin plot in R using the `vioplot()`\index{vioplot()} function from the `vioplot`\index{vioplot package} package. You'll need to first install this package using `install.packages('vioplot')` function as usual. The nice thing about the `vioplot()` function is that you use it in pretty much the same way you would use the `boxplot()` function. We'll also use the argument `col = "lightblue"` to change the fill colour to light blue. 
 
 ```{r plot16, echo=TRUE, out.width="75%", fig.align="center", warning=FALSE, message=FALSE}
 library(vioplot)
@@ -183,7 +183,7 @@ In the violin plot above we have our familiar boxplot for each `nitrogen` level 
 
 ### Dot charts {#dotcharts}
 
-Identifying unusual observations (aka outliers) in numeric variables is extremely important as they may influence parameter estimates in your statistical model or indicate an error in your data. A really useful (if undervalued) plot to help identify outliers is the Cleveland dotplot. You can produce a dotplot in R very simply by using the `dotchart()` function. 
+Identifying unusual observations (aka outliers) in numeric variables is extremely important as they may influence parameter estimates in your statistical model or indicate an error in your data. A really useful (if undervalued) plot to help identify outliers is the Cleveland dotplot. You can produce a dotplot in R very simply by using the `dotchart()`\index{dotchart()} function. 
 
 ```{r plot17, echo=TRUE, out.width="75%", fig.align="center"}
 dotchart(flowers$height)
@@ -205,7 +205,7 @@ dotchart(flowers$height, groups = flowers$nitrogen)
 
 ### Pairs plots
 
-Previously in this Chapter we used the `plot()` function to create a scatterplot to explore the relationship between two numeric variables. With datasets that contain many numeric variables, it's often handy to create multiple scatterplots to visualise relationships between all these variables. We could use the `plot()` function to create each of these plot individually, but a much easier way is to use the `pairs()` function. The `pairs()` function creates a multi-panel scatterplot (sometimes called a scatterplot matrix) which plots all combinations of variables. Let's create a multi-panel scatterplot of all of the numeric variables in our `flowers` data frame. Note, you may need to click on the 'Zoom' button in RStudio to display the plot clearly. 
+Previously in this Chapter we used the `plot()` function to create a scatterplot to explore the relationship between two numeric variables. With datasets that contain many numeric variables, it's often handy to create multiple scatterplots to visualise relationships between all these variables. We could use the `plot()` function to create each of these plot individually, but a much easier way is to use the `pairs()`\index{pairs()} function. The `pairs()` function creates a multi-panel scatterplot (sometimes called a scatterplot matrix) which plots all combinations of variables. Let's create a multi-panel scatterplot of all of the numeric variables in our `flowers` data frame. Note, you may need to click on the 'Zoom' button in RStudio to display the plot clearly. 
 
 ```{r plot20, echo=TRUE, out.width="75%", fig.align="center", collapse=TRUE}
 pairs(flowers[, c("height", "weight", "leafarea", 
@@ -224,7 +224,7 @@ pairs(flowers[, c("height", "weight", "leafarea",
                  panel = panel.smooth)
 ```
 
-If you take a look at the help file for the `pairs()` function (`?pairs`) you'll find a few more useful panel functions in the 'Examples' section. To use these functions you'll first need to copy the code and paste it into the Console in RStudio (we go into more detail about defining functions in [Chapter 7](#prog_r)). For example, the `panel.cor()` function calculates the absolute correlation coefficient between two variables and adjusts the size of the displayed coefficient depending on the value (higher coefficient values are bigger). Don't worry if you don't understand this code just yet, for the moment we just need to know how to use it (it might be fun to try and figure it out though!).
+If you take a look at the help file for the `pairs()` function (`?pairs`) you'll find a few more useful panel functions in the 'Examples' section. To use these functions you'll first need to copy the code and paste it into the Console in RStudio (we go into more detail about defining functions in [Chapter 7](#prog_r)). For example, the `panel.cor()`\index{panel.cor()} function calculates the absolute correlation coefficient between two variables and adjusts the size of the displayed coefficient depending on the value (higher coefficient values are bigger). Don't worry if you don't understand this code just yet, for the moment we just need to know how to use it (it might be fun to try and figure it out though!).
 
 ```{r plot22, echo=TRUE}
 panel.cor <- function(x, y, digits = 2, prefix = "", cex.cor, ...)
@@ -248,7 +248,7 @@ pairs(flowers[, c("height", "weight", "leafarea",
                  lower.panel = panel.cor)
 ```
 
-Another useful function in the 'Examples' section is the `panel.hist()` function. This function generates a histogram of each of the variables in the plot. To use it, we must again copy the code and paste it into the Console in RStudio.  
+Another useful function in the 'Examples' section is the `panel.hist()`\index{panel.hist()} function. This function generates a histogram of each of the variables in the plot. To use it, we must again copy the code and paste it into the Console in RStudio.  
 
 ```{r plot24, echo=TRUE, out.width="75%", fig.align="center"}
 panel.hist <- function(x, ...)
@@ -262,7 +262,7 @@ panel.hist <- function(x, ...)
 }
 ```
 
-We can then include it in our `pairs()` function to place the histograms on the diagonal set of panels using the `diag.panel = panel.hist` argument. Let's also apply the `panel.smooth()` function to the plots above the diagonal while we're at it using the `upper.panel = panel.smooth` argument.
+We can then include it in our `pairs()` function to place the histograms on the diagonal set of panels using the `diag.panel = panel.hist` argument. Let's also apply the `panel.smooth()`\index{panel.smooth()} function to the plots above the diagonal while we're at it using the `upper.panel = panel.smooth` argument.
 
 ```{r plot25, echo=TRUE, out.width="75%", fig.align="center"}
 pairs(flowers[, c("height", "weight", "leafarea", 
@@ -274,7 +274,7 @@ pairs(flowers[, c("height", "weight", "leafarea",
 
 ### Coplots
 
-When examining the relationship between two numeric variables, it is often useful to be able to determine whether a third variable is obscuring or changing any relationship. A really handy plot to use in these situations is a conditioning plot (also known as conditional scatterplot plot) which we can create in R by using the `coplot()` function. The `coplot()` function plots two variables but each plot is conditioned (`|`) by a third variable. This third variable can be either numeric or a factor. As an example, let's look at how the relationship between the number of flowers (`flowers` variable) and the `weight` of petunia plants changes dependent on `leafarea`. Note the `coplot()` function has a `data =` argument so no need to use the `$` notation.
+When examining the relationship between two numeric variables, it is often useful to be able to determine whether a third variable is obscuring or changing any relationship. A really handy plot to use in these situations is a conditioning plot (also known as conditional scatterplot plot) which we can create in R by using the `coplot()`\index{coplot()} function. The `coplot()` function plots two variables but each plot is conditioned (`|`) by a third variable. This third variable can be either numeric or a factor. As an example, let's look at how the relationship between the number of flowers (`flowers` variable) and the `weight` of petunia plants changes dependent on `leafarea`. Note the `coplot()` function has a `data =` argument so no need to use the `$` notation.
 
 ```{r plot26, echo=TRUE, out.width="75%", fig.align="center"}
 coplot(flowers ~ weight|leafarea, data = flowers)
@@ -311,20 +311,20 @@ coplot(flowers ~ weight|nitrogen * treat, data = flowers,
 
 ### Lattice plots
 
-Many of the plots we've previously created using base R graphics can also be created using functions from the `lattice` package. For example, we can recreate the frequency histogram of the `height` variable in our `flowers` data frame using the `histogram()` function. All of the plotting functions in the lattice package take the formula notation which is why we need to include `~ height` as our first argument. We also need to specify that we want a frequency histogram by using the argument `type = "count"`. Don't forget to first make the package available using `library(lattice)`.
+Many of the plots we've previously created using base R graphics can also be created using functions from the `lattice`\index{lattice package} package. For example, we can recreate the frequency histogram of the `height` variable in our `flowers` data frame using the `histogram()`\index{histogram()} function. All of the plotting functions in the lattice package take the formula notation which is why we need to include `~ height` as our first argument. We also need to specify that we want a frequency histogram by using the argument `type = "count"`. Don't forget to first make the package available using `library(lattice)`.
 
 ```{r plot31, echo=TRUE, out.width="75%", fig.align="center"}
 library(lattice)
 histogram(~ height, type = "count", data = flowers)
 ```
 
-Or perhaps we would like a boxplot of our `weight` variable for each level of `nitrogen` using the `bwplot()` function.
+Or perhaps we would like a boxplot of our `weight` variable for each level of `nitrogen` using the `bwplot()`\index{bwplot()} function.
 
 ```{r plot32, echo=TRUE, out.width="75%", fig.align="center"}
 bwplot(weight ~ nitrogen, data = flowers)
 ```
 
-A (non-exhaustive) list of lattice functions and their base R equivalents is given in the table below.
+A (non-exhaustive) list of lattice functions and their base R equivalents is given in the table below.\index{xyplot()} \index{splom()} \index{dotplot()}
 
 \  
 
@@ -358,13 +358,13 @@ We can also easily create conditional boxplots using the same logic.
 bwplot(weight ~ nitrogen | block, data = flowers)
 ```
 
-Notice in the plot above that the block names don't seem to be displayed (actually they are, the're just represented as orange vertical bars in the panel name). The reason for this is that our `block` variable is an integer variable (you can check this with `class(flowers$block)`) as the blocks were coded as either a 1 or a 2 in the original dataset that we imported into R. We can change this by creating a new variable in our data frame and use the `factor()` function to convert `block` to a factor (`flowers$Fblock <- factor(flowers$block)`) and then use the `Fblock` variable as the conditioning variable. Or we can just change `block` to be a factor *'on-the-fly'* when we use it in the `bwplot()` function. Note, this doesn't change the `block` variable in the `flowers` data frame, just temporarily when we use the `bwplot()` function. 
+Notice in the plot above that the block names don't seem to be displayed (actually they are, the're just represented as orange vertical bars in the panel name). The reason for this is that our `block` variable is an integer variable (you can check this with `class(flowers$block)`) as the blocks were coded as either a 1 or a 2 in the original dataset that we imported into R. We can change this by creating a new variable in our data frame and use the `factor()`\index{factor()} function to convert `block` to a factor (`flowers$Fblock <- factor(flowers$block)`) and then use the `Fblock` variable as the conditioning variable. Or we can just change `block` to be a factor *'on-the-fly'* when we use it in the `bwplot()` function. Note, this doesn't change the `block` variable in the `flowers` data frame, just temporarily when we use the `bwplot()` function. 
 
 ```{r plot36, echo=TRUE, out.width="75%", fig.align="center"}
 bwplot(weight ~ nitrogen | factor(block), data = flowers)
 ```
 
-We can also include more than one conditioning variable. For example, let's create a scatter plot of `height` against `weight` for each level of `nitrogen` and `treat`. To do this we'll use the lattice `xyplot()` function.
+We can also include more than one conditioning variable. For example, let's create a scatter plot of `height` against `weight` for each level of `nitrogen` and `treat`. To do this we'll use the lattice `xyplot()`\index{xyplot()} function.
 
 ```{r plot37, echo=TRUE, out.width="75%", fig.align="center"}
 xyplot(height ~ weight | nitrogen * treat, data = flowers)
@@ -381,7 +381,7 @@ Hopefully, you're getting the idea that we can create really informative explora
 
 ## Customising plots {#custom_plot}
 
-All of the plots we've created so far in this Chapter are more than suitable for exploring your data. If however, you'd like to make them a little prettier (for your thesis, publication or even your own amusement) you'll need to invest some time learning how to customise your plots. The good news is that the base R graphics system allows you to change almost any aspect of your plot. There are however a couple of things to bear in mind. Firstly, although many of the approaches we introduce in this section will work with most base R plotting functions, there's no true consistency between functions. What works with the `plot()` function isn't guaranteed to necessarily work with the `boxplot()` function. This can be a little frustrating to begin with but gets easier the more experience you gain. If you crave a little more consistency take a look at [Chapter 5](#graphics_r) where we introduce the excellent `ggplot2` package. Secondly, when you start customising plots you're confronted with a huge number of options and arguments to try and remember. This isn't necessarily a bad thing as this is what makes base R graphics so flexible but it's a lot to take in. Often a quick Google or peek at the relevant help pages will jog your memory. Thirdly, learning how to customise plots in base R isn't just about what code you need to use, it's also about learning the process of building a plot. We often start with a basic layout of our plot and then add layers of complexity until we achieve the desired results. This requires a little experience (and trial and error), but again becomes easier with practice. Lastly, this section covers the basics of how to customise base R graphics and most (if not all) of these approaches will not work for plots created with the `lattice` graphics system.
+All of the plots we've created so far in this Chapter are more than suitable for exploring your data. If however, you'd like to make them a little prettier (for your thesis, publication or even your own amusement) you'll need to invest some time learning how to customise your plots. The good news is that the base R graphics system allows you to change almost any aspect of your plot. There are however a couple of things to bear in mind. Firstly, although many of the approaches we introduce in this section will work with most base R plotting functions, there's no true consistency between functions. What works with the `plot()`\index{plot()} function isn't guaranteed to necessarily work with the `boxplot()` function. This can be a little frustrating to begin with but gets easier the more experience you gain. If you crave a little more consistency take a look at [Chapter 5](#graphics_r) where we introduce the excellent `ggplot2` package. Secondly, when you start customising plots you're confronted with a huge number of options and arguments to try and remember. This isn't necessarily a bad thing as this is what makes base R graphics so flexible but it's a lot to take in. Often a quick Google or peek at the relevant help pages will jog your memory. Thirdly, learning how to customise plots in base R isn't just about what code you need to use, it's also about learning the process of building a plot. We often start with a basic layout of our plot and then add layers of complexity until we achieve the desired results. This requires a little experience (and trial and error), but again becomes easier with practice. Lastly, this section covers the basics of how to customise base R graphics and most (if not all) of these approaches will not work for plots created with the `lattice` graphics system.
 
 ### Customising with arguments
 
@@ -401,7 +401,7 @@ plot(flowers$weight, flowers$shootarea,
        ylab = "shoot area (cm2)")
 ```
 
-OK, that looks a little better but the units `(cm2)` looks a little ugly as we should format the `2` as a superscript. To convert to a superscript we need to use a combination of the `expression()` and `paste()` functions. The `expression()` function allows us to format the superscript (and other mathematical expressions - see `?plotmath` for more details) with the `^` symbol and the `paste()` function pastes together the elements `"shoot area (cm"^"2"` and `)` to create our axis label.   
+OK, that looks a little better but the units `(cm2)` looks a little ugly as we should format the `2` as a superscript. To convert to a superscript we need to use a combination of the `expression()`\index{expression()} and `paste()`\index{paste()} functions. The `expression()` function allows us to format the superscript (and other mathematical expressions - see `?plotmath` for more details) with the `^` symbol and the `paste()` function pastes together the elements `"shoot area (cm"^"2"` and `)` to create our axis label.   
 
 ```{r plot41, echo=TRUE, out.width="75%", fig.align="center"}
 plot(flowers$weight, flowers$shootarea, 
@@ -409,7 +409,7 @@ plot(flowers$weight, flowers$shootarea,
        ylab = expression(paste("shoot area (cm"^"2",")")))
 ``` 
 
-But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()` function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right)` where the arguments `bottom`, `left`, `top` and `right` are the size of the corresponding margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers specifying the number of lines in each margin. Let's increase the size of the left margin a little bit and decrease the size of the right margin by a smidge.    
+But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()`\index{par()} function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right)` where the arguments `bottom`, `left`, `top` and `right` are the size of the corresponding margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers specifying the number of lines in each margin. Let's increase the size of the left margin a little bit and decrease the size of the right margin by a smidge.    
 
 ```{r plot42, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9))
@@ -418,7 +418,7 @@ plot(flowers$weight, flowers$shootarea,
        ylab = expression(paste("shoot area (cm"^"2",")")))
 ``` 
 
-That looks better. Now let's increase the range of our axes scales so we have a bit of space above and to the right of the data points. To do this we need to supply a minimum and maximum value using the `c()` function to the `xlim =` and `ylim =` arguments. We'll set the x axis scale to run from 0 to 30 and the range of the y axis scale from 0 to 200.   
+That looks better. Now let's increase the range of our axes scales so we have a bit of space above and to the right of the data points. To do this we need to supply a minimum and maximum value using the `c()`\index{c()} function to the `xlim =` and `ylim =` arguments. We'll set the x axis scale to run from 0 to 30 and the range of the y axis scale from 0 to 200.   
 
 ```{r plot43, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9))
@@ -438,7 +438,7 @@ plot(flowers$weight, flowers$shootarea,
        xlim = c(0, 30), ylim = c(0, 200), bty = "l")
 ```
 
-OK, that's looking a lot better already after only a few adjustments. One of the things that we still don't like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value of the scale by a little bit. We can change this by setting the `xaxs = "i"` and `yaxs = "i"` arguments when we use the `par()` function. While we're about it let's also rotate the y axis tick mark labels so they read horizontally using by setting the `las = 1` argument in the `plot()` function and make them a tad smaller with the `cex.axis =` argument. The `cex.axis =` argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We'll choose `0.8` making our text 20% smaller. We can also make the tick marks just a little shorter by setting `tcl = -0.2`. This value needs to be negative as we want the tick marks to be outside the plotting region (see what happens if you set it to `tcl = 0.2`).      
+OK, that's looking a lot better already after only a few adjustments. One of the things that we still don't like is that by default the x and y axes do not intersect at the origin (0, 0) and both axes extend beyond the maximum value of the scale by a little bit. We can change this by setting the `xaxs = "i"` and `yaxs = "i"` arguments when we use the `par()`\index{par()} function. While we're about it let's also rotate the y axis tick mark labels so they read horizontally using by setting the `las = 1` argument in the `plot()` function and make them a tad smaller with the `cex.axis =` argument. The `cex.axis =` argument requires a number giving the amount by which the text will be magnified (or shrunk) relative to the default value of 1. We'll choose `0.8` making our text 20% smaller. We can also make the tick marks just a little shorter by setting `tcl = -0.2`. This value needs to be negative as we want the tick marks to be outside the plotting region (see what happens if you set it to `tcl = 0.2`).      
 
 ```{r plot45, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs = "i", yaxs = "i")
@@ -461,7 +461,7 @@ points(1:6, rep(2, 6), pch = 20:25, cex = 2, col = "blue", bg = "pink")
 text(1:6, rep(2.3, 6), labels = 20:25, pos = 3)
 ```
 
-The `col =` argument changes the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. For example, `col = "red"` changes the plotting symbol to red. To see a list of all 657 preset colours available in base R use the `colours()` function (you can also use `colors()`) or perhaps even easier see this [link][colours]. More colour options are available with other packages (see the excellent `RColorBrewer` package) or you can even 'mix' your own colours using the `colorRamp()` function (see `?colorRamp` for more details).  
+The `col =` argument changes the colour of the plotting symbols. This argument can either take an integer value to specify the colour or a character string giving the colour name. For example, `col = "red"` changes the plotting symbol to red. To see a list of all 657 preset colours available in base R use the `colours()`\index{colours()} function (you can also use `colors()`\index{colors()}) or perhaps even easier see this [link][colours]. More colour options are available with other packages (see the excellent `RColorBrewer` package\index{RColorBrewer package}) or you can even 'mix' your own colours using the `colorRamp()`\index{colorRamp()} function (see `?colorRamp` for more details).  
 
 The `cex =` argument allow you to change the size of the plotting symbol. This argument works in the same way as the other `cex` arguments we' ve already seen (i.e. `cex.axis`) and requires a numeric value to indicate the proportional increase or decrease in size relative to the default value of 1. 
 
@@ -477,7 +477,7 @@ plot(flowers$weight, flowers$shootarea,
        pch = 16, col = "dodgerblue1", cex = 0.9)
 ```
 
-The last thing we'll do is add a text label to the plot so we can identify it. Perhaps this plot will be one of a series of plots we want to include in the same figure (see the [section](#mult_graphs) on plotting multiple graphs to see how to do this) so it would be nice to be able to refer to it in our figure title. To do this we'll use the `text()` function to add a capital 'A' to the top right of the plot. The `text()` function needs an `x =` and a `y =` coordinate to position the text, a `label =` for the text and we can use the `cex =` argument again to change the size of the text.  
+The last thing we'll do is add a text label to the plot so we can identify it. Perhaps this plot will be one of a series of plots we want to include in the same figure (see the [section](#mult_graphs) on plotting multiple graphs to see how to do this) so it would be nice to be able to refer to it in our figure title. To do this we'll use the `text()`\index{text()} function to add a capital 'A' to the top right of the plot. The `text()` function needs an `x =` and a `y =` coordinate to position the text, a `label =` for the text and we can use the `cex =` argument again to change the size of the text.  
 
 ```{r plot48, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs = "i", yaxs = "i")
@@ -490,7 +490,7 @@ plot(flowers$weight, flowers$shootarea,
 text(x = 28, y = 190, label = "A", cex = 2)
 ```
 
-We think our plot now looks pretty good so we'll stop here! There are, however, a multitude of other arguments which you can play around with to change the look of your plots. The best place to quickly look for more information is the help page associated with the `par()` function (`?par`) or just do a quick Google search. Here's a table of the more commonly used arguments.
+We think our plot now looks pretty good so we'll stop here! There are, however, a multitude of other arguments which you can play around with to change the look of your plots. The best place to quickly look for more information is the help page associated with the `par()`\index{par()} function (`?par`) or just do a quick Google search. Here's a table of the more commonly used arguments.
 
 \  
 
@@ -515,7 +515,7 @@ We think our plot now looks pretty good so we'll stop here! There are, however, 
 
 ### Building plots
 
-For even more control over how your plot looks we can build our plot up in layers, customising each step as we go along. For example, perhaps we want to create a plot of `shootarea` and `weight` as we did before but this time we want to change the symbol colours of our data points depending on what level of `nitrogen` the plants were exposed to. The general approach is to use the high level plotting function `plot()` to create the general plot (axes, axes labels etc) but without the data points by including the `type = "n"` argument. We then use the low level function `points()` to add the plotting symbols for each `nitrogen` level separately choosing a different colour for each set of points. Let's go through this approach a step at a time. First we'll make the plot but suppress plotting the data using the `type = "n"` argument in the `plot()` function. 
+For even more control over how your plot looks we can build our plot up in layers, customising each step as we go along. For example, perhaps we want to create a plot of `shootarea` and `weight` as we did before but this time we want to change the symbol colours of our data points depending on what level of `nitrogen` the plants were exposed to. The general approach is to use the high level plotting function `plot()`\index{plot()} to create the general plot (axes, axes labels etc) but without the data points by including the `type = "n"` argument. We then use the low level function `points()`\index{points()} to add the plotting symbols for each `nitrogen` level separately choosing a different colour for each set of points. Let's go through this approach a step at a time. First we'll make the plot but suppress plotting the data using the `type = "n"` argument in the `plot()` function. 
 
 ```{r plot49, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs = "i", yaxs = "i")
@@ -583,7 +583,7 @@ text(x = 28, y = 190, label = "A", cex = 2)
 ```
 
 
-The only thing left to do is to add a legend to the plot to let your reader know what `nitrogen` level each colour corresponds to. We'll use another low level function,`legend()` to do this. The `legend()` function requires us to provide the x and y coordinates to specify the position of the top left of the legend in the plot, a vector of colours, symbol types and labels to use in the legend. The `bty = "n"` argument stops a border being drawn around the legend and the `title =` argument gives the legend a title.
+The only thing left to do is to add a legend to the plot to let your reader know what `nitrogen` level each colour corresponds to. We'll use another low level function,`legend()`\index{legend()} to do this. The `legend()` function requires us to provide the x and y coordinates to specify the position of the top left of the legend in the plot, a vector of colours, symbol types and labels to use in the legend. The `bty = "n"` argument stops a border being drawn around the legend and the `title =` argument gives the legend a title.
 
 ```{r plot53, echo=7:11, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9), xaxs = "i", yaxs = "i")
@@ -642,7 +642,7 @@ legend(x = 1, y = 200, col = leg_cols, pch = leg_sym,
 ```
 
 
-The table below highlights some of the low level potting functions you might find useful.
+The table below highlights some of the low level potting functions you might find useful.\index{lines()} \index{curve()} \index{arrows()} \index{mtext()} \index{axis()} \index{rect()} \index{abline()} \index{grid()} \index{polygon()}
 
 \  
 
@@ -665,7 +665,7 @@ The table below highlights some of the low level potting functions you might fin
 
 ## Multiple graphs {#mult_graphs}
 
-There are a number of different methods for plotting multiple graphs within the same graphics device, some of which you've already met such as `pairs()`, `coplot()`, `xyplot()` etc. However these functions rely on plotting multiple graphs in different panels within the same plot. If you want to plot separate plots within the same graphics device you'll need a different approach. One of the most common methods is to use the main graphical function `par()` to split the plotting device up into a number of defined sections using the `mfrow =` argument. With this method, you first need to specify the number of rows and columns of plots you would like and then run the code for each plot. For example, to plot two graphs side by side we would use `par(mfrow = c(1, 2))` to split the device into 1 row and two columns.
+There are a number of different methods for plotting multiple graphs within the same graphics device, some of which you've already met such as `pairs()`, `coplot()`, `xyplot()` etc. However these functions rely on plotting multiple graphs in different panels within the same plot. If you want to plot separate plots within the same graphics device you'll need a different approach. One of the most common methods is to use the main graphical function `par()`\index{par(mfrow=)} to split the plotting device up into a number of defined sections using the `mfrow =` argument. With this method, you first need to specify the number of rows and columns of plots you would like and then run the code for each plot. For example, to plot two graphs side by side we would use `par(mfrow = c(1, 2))` to split the device into 1 row and two columns.
 
 ```{r plot55, echo=TRUE, out.width="75%", fig.align="center"}
 par(mfrow = c(1, 2))
@@ -687,7 +687,7 @@ dotchart(flowers$weight)
 
 Once you've finished making your plots don't forget to reset your plotting device back to normal with `par(mfrow = c(1,1))`.
 
-A more flexible approach is to use the `layout()` function. The `layout()` function allows you to split your plotting device up into different sized regions and can be used to build complex figures. Before using the `layout()` function we first need to specify how we're going to split our plotting device by creating a matrix using the `matrix()` function (see [Chapter 2](#mat_array) to remind yourself). Let's create a 2 x 2 matrix.
+A more flexible approach is to use the `layout()`\index{layout()} function. The `layout()` function allows you to split your plotting device up into different sized regions and can be used to build complex figures. Before using the `layout()` function we first need to specify how we're going to split our plotting device by creating a matrix using the `matrix()`\index{matrix()} function (see [Chapter 2](#mat_array) to remind yourself). Let's create a 2 x 2 matrix.
 
 ```{r plot57, echo=TRUE, out.width="75%", fig.align="center"}
 layout_mat <- matrix(c(2, 0, 1, 3), nrow = 2, ncol = 2,
@@ -697,7 +697,7 @@ layout_mat
 
 The matrix above represents splitting the plotting device into 2 rows and 2 columns. The first plot will occupy the lower left panel, the second plot the upper left panels and the third plot the lower right panel. The upper right panel will not contain a plot as we have placed a zero here.
 
-We can now use the `layout()` function to define our layout. As we have two rows and two columns we need to specify the height of each row and the width of each column using the `heights =` and `widths =` arguments. The `respect = TRUE` argument ensures that the units used to define the widths are the same as those to define the heights. We can get a graphical representation of our layout by using the `layout.show()` function. 
+We can now use the `layout()` function to define our layout. As we have two rows and two columns we need to specify the height of each row and the width of each column using the `heights =` and `widths =` arguments. The `respect = TRUE` argument ensures that the units used to define the widths are the same as those to define the heights. We can get a graphical representation of our layout by using the `layout.show()`\index{layout.show()} function. 
 
 ```{r plot58, echo=TRUE, out.width="75%", fig.align="center"}
 my_lay <- layout(mat = layout_mat, 
@@ -728,7 +728,7 @@ Notice we've specified that the boxplot at the top should be plotted horizontall
 
 Creating plots in R is all well and good but what if you want to use these plots in your thesis, report or publication? One option is to click on the 'Export' button in the 'Plots' tab in RStudio as we described [previously](#baseplot_start). You can also export your plots from R to an external file by writing some code in your R script. The advantage of this approach is that you have a little more control over the output format and it also allows you to generate (or update) plots automatically whenever you run your script. You can export your plots in many different formats but the most common are, pdf, png, jpeg and tiff. 
 
-By default, R (and therefore RStudio) will direct any plot you create to the plot window. To save your plot to an external file you first need to redirect your plot to a different graphics device. You do this by using one of the many graphics device functions to start a new graphic device. For example, to save a plot in pdf format we will use the `pdf()` function. The first argument in the `pdf()` function is the filepath and filename of the file we want to save (don't forget to include the .pdf extension). Once we've used the `pdf()` function we can then write all of the code we used to create our plot including any graphical parameters such as setting the margins and splitting up the plotting device. Once the code has run we need to close the pdf plotting device using the `dev.off()` function. 
+By default, R (and therefore RStudio) will direct any plot you create to the plot window. To save your plot to an external file you first need to redirect your plot to a different graphics device. You do this by using one of the many graphics device functions to start a new graphic device. For example, to save a plot in pdf format we will use the `pdf()`\index{pdf()} function. The first argument in the `pdf()` function is the filepath and filename of the file we want to save (don't forget to include the .pdf extension). Once we've used the `pdf()` function we can then write all of the code we used to create our plot including any graphical parameters such as setting the margins and splitting up the plotting device. Once the code has run we need to close the pdf plotting device using the `dev.off()`\index{dev.off()} function. 
 
 ```{r plot60, echo=TRUE, eval = FALSE}
 pdf(file = 'output/my_plot.pdf')
@@ -743,7 +743,7 @@ text(x = 28, y = 190, label = "A", cex = 2)
 dev.off()
 ```
 
-If we want to save this plot in png format we simply use the `png()` function in more or less the same way we used the `pdf()` function.
+If we want to save this plot in png format we simply use the `png()`\index{png()} function in more or less the same way we used the `pdf()` function.
 
 ```{r plot61, echo=TRUE, eval = FALSE}
 png('output/my_plot.png')
@@ -758,7 +758,7 @@ text(x = 28, y = 190, label = "A", cex = 2)
 dev.off()
 ```
 
-Other useful functions are; `jpeg()`, `tiff()` and `bmp()`. Additional arguments to these functions allow you to change the size, resolution and background colour of your saved images. See `?png` for more details.
+Other useful functions are; `jpeg()`\index{jpeg()}, `tiff()`\index{tiff()} and `bmp()`\index{bmp()}. Additional arguments to these functions allow you to change the size, resolution and background colour of your saved images. See `?png` for more details.
 
 ```{r links, child="links.md"}
 ```

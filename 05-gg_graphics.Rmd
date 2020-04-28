@@ -10,7 +10,7 @@ As stated in the Introduction, one of the many reasons for the rise in the popul
 
 In this Chapter, we will focus on creating figures through using a specialised package called `ggplot2`.
 
-Before we get going with making some plots of the `gg` variety, how about a quick history of one of the most commonly used packages in R? `ggplot2` was based on a book called *Grammar of Graphics* by Leland Wilkinson (hence the gg in `ggplot2`), yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
+Before we get going with making some plots of the `gg` variety, how about a quick history of one of the most commonly used packages in R? `ggplot2`\index{ggplot2 package} was based on a book called *Grammar of Graphics* by Leland Wilkinson (hence the gg in `ggplot2`), yours for only [£100 or so][leland]. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
 
 *Grammar of Graphics* tried to move away from the idea that to create a scatterplot, a user should click the `scatterplot` button or use the `scatterplot()` function. Instead, by splitting figures into their various components (e.g. the underlying statistics, the geometric arrangement, the theme, see Fig. 4.1), a user will be able to manipulate each of these components (i.e. layers) and produce a tailor made figure fit for their very specific needs. Contrast this approach with the one used by, for example, Microsoft Excel. The user specifies the data and then clicks the bar chart, scatterplot, line graph etc. button. This inherently locks the user into many choices made by the software developer and not the user. Think of how easily you can spot an Excel scatterplot because other than a couple of pre-set options, there's really not much you can do to change the way the plot displays the data - you are at the mercy of the [insert corporation here] Gods.
 
@@ -100,7 +100,7 @@ For the purposes of this Chapter, we won't worry about the biology here. Do not 
 
 ## The start of the end
 
-The first step in producing a plot with `ggplot()` is the easiest! We just need to install and then load the package. Use the skills you learnt in [Chapter 1](#packages) to install and load the package. Note that although most people refer to the package as `ggplot`, it's proper name is `ggplot2`.
+The first step in producing a plot with `ggplot()`\index{ggplot()} is the easiest! We just need to install and then load the package. Use the skills you learnt in [Chapter 1](#packages) to install and load the package. Note that although most people refer to the package as `ggplot`, it's proper name is `ggplot2`.
 
 ```{r installing-loading-ggplot, eval = FALSE, message=FALSE}
 install.packages("ggplot2")
@@ -126,9 +126,9 @@ flower <- read.table("data/flower.csv", header = TRUE, sep = ",")
 str(flower)
 ```
 
-We know from the "final figure" that we want shootarea on the y axis (response/dependent variable) and weight on the x axis (explanatory/independent variable). To do this in `ggplot2` we need to make use of the `aes()` function and also add a `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. 
+We know from the "final figure" that we want shootarea on the y axis (response/dependent variable) and weight on the x axis (explanatory/independent variable). To do this in `ggplot2` we need to make use of the `aes()`\index{aes()} function and also add a `data =` argument. `aes` is short for aesthetics, and it's the function we use to specify what we want displayed in the figure. 
 
-If we did not include the `aes()` function, then the `x =` and `y =` arguments would produce an error saying that the object was not found. A good rule to keep in mind when using `ggplot2` is that the variables which we want displayed on the figure must be included in `aes()` function via the `mapping =` argument (corresponding to the mapping layer from Fig. 4.1). 
+If we did not include the `aes()`\index{aes()} function, then the `x =` and `y =` arguments would produce an error saying that the object was not found. A good rule to keep in mind when using `ggplot2` is that the variables which we want displayed on the figure must be included in `aes()` function via the `mapping =` argument (corresponding to the mapping layer from Fig. 4.1). 
 
 All features in the figure which alter the displayed information, not based on a variable in our dataset (e.g. increasing the size of points to an arbitrary value), is included outside of the `aes()` function. Don't worry if that doesn't make sense for now, we'll come back to this later.
 
@@ -148,7 +148,7 @@ ggplot(mapping = aes(x = weight, y = shootarea), data = flower)
 
 That's already much better. At least it's no longer a blank grey canvas. We've now told `ggplot2` what we want as our x and y axes as well as where to find that data. But what's missing here is where we tell `ggplot2` *how* to display that data. This is now the time to introduce you to "geoms" or geometry layers. 
 
-Geometries are the way that `ggplot2` displays information. For instance `geom_point()` tells `ggplot2` that you want the information to be displayed as points (making scatterplots possible for example). Given that the "final figure" uses points, this is clearly the appropriate geom to use here.
+Geometries are the way that `ggplot2` displays information. For instance `geom_point()`\index{geom\_point()} tells `ggplot2` that you want the information to be displayed as points (making scatterplots possible for example). Given that the "final figure" uses points, this is clearly the appropriate geom to use here.
 
 Before we can do that, we need to talk about the coding structure used by `ggplot2`. The analogy that we and many others use is to say that making a figure in `ggplot2` is much like painting. What we've did in the above code was to make our "canvas". Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to end a preceding layer with a `+` at the end to tell `ggplot2` that there are additional layers coming.
 
@@ -193,7 +193,7 @@ With just those three fundamentals, you will be able to produce a large variety 
 
 ---
 
-If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that `shootarea` looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is fit for purpose. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()` would be appropriate. Let's try it.
+If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that `shootarea` looks like it's increasing with weight in a linear fashion. So long as this answers the question we were asking from the data, we have a figure that is fit for purpose. Though for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()`\index{geom\_line()} would be appropriate. Let's try it.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align="center"}
 knitr::include_graphics(path = "images/geoms.png")
@@ -207,7 +207,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots in the order they appear in the data (an alternative to `geom_path()`). The geom we actually want to use is called `geom_smooth()`. We can fix that very easily just by changing "line" to "smooth".
+Not quite what we were going for. The problem that we have is that `geom_line()` is actually just playing join-the-dots in the order they appear in the data (an alternative to `geom_path()`\index{geom\_path()}). The geom we actually want to use is called `geom_smooth()`\index{geom\_smooth()}. We can fix that very easily just by changing "line" to "smooth".
 
 ```{r, echo=FALSE, out.width="15%", fig.align='center'}
 knitr::include_graphics(path = "images/geoms_statistics.png")
@@ -239,7 +239,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-We get the straight line that we wanted, though it's still not matching the "final figure". We need to alter `geom_smooth()` so that it draws lines for each level of nitrogen concentration. Getting `ggplot2` to do that is pretty straightforward. We can use the `colour =` argument within `aes()` (remember whatever we include in `aes()` will be something displayed in the figure) to tell `ggplot2` to draw a different coloured lines depending on nitrogen concentration. Keep in mind that we have no variable in our dataset called "nitrogen_colour", so `ggplot2` is taking care of that for us here and assigning a colour to each unique nitrogen level.
+We get the straight line that we wanted, though it's still not matching the "final figure". We need to alter `geom_smooth()` so that it draws lines for each level of nitrogen concentration. Getting `ggplot2` to do that is pretty straightforward. We can use the `colour =` argument within `aes()` (remember whatever we include in `aes()`\index{aes()} will be something displayed in the figure) to tell `ggplot2` to draw a different coloured lines depending on nitrogen concentration. Keep in mind that we have no variable in our dataset called "nitrogen_colour", so `ggplot2` is taking care of that for us here and assigning a colour to each unique nitrogen level.
 
 An aside: `ggplot2` was written with both UK English and American English in mind, so both colour and color spellings work in `ggplot2`.
 
@@ -272,7 +272,7 @@ ggplot() +
 
 \  
 
-Doing so we get exactly the same figure. This ability to move information between the main `ggplot()` call or in specific geoms is surprisingly powerful. It can allow different geoms to display different (albeit similar) information (see more on this later).
+Doing so we get exactly the same figure. This ability to move information between the main `ggplot()`\index{ggplot()} call or in specific geoms is surprisingly powerful. It can allow different geoms to display different (albeit similar) information (see more on this later).
 
 For this worked example, we'll move the same information back to the universal `ggplot()`, but we'll also move `colour = nitrogen` into `ggplot()` so that we can have the points coloured according to nitrogen concentration as well.
 
@@ -299,7 +299,7 @@ Having made our "pure" `ggplot`, the next big obstacle we're going to tackle is 
 
 Each of these panels (technically "multiples") are a great way to help other people understand what's going on in the data. This is especially true with large datasets which can obscure subtle trends simply because so much data is overlaid on top of each other. When we split a single figure into multiples, the same axes are used for all multiples which serve to highlight shifts in the data (data in some multiples may have inherently higher or lower values for instance).
 
-`ggplot2` includes options for determining the layout of plots using the "facets" layer. We'll start off by using `facet_wrap()` to show what this can do. For `facet_wrap()` to work we need to specify a formula for how the facets will be defined (see `?facet_wrap` for more details and also how to define facets without using a formula). In our example we want to use the factor `treat` to determine the layout so our formula would look like `~ treat`. You can read `~ treat` as saying "according to treatment". Let's see how it works:
+`ggplot2` includes options for determining the layout of plots using the "facets" layer. We'll start off by using `facet_wrap()`\index{facet\_wrap()} to show what this can do. For `facet_wrap()` to work we need to specify a formula for how the facets will be defined (see `?facet_wrap` for more details and also how to define facets without using a formula). In our example we want to use the factor `treat` to determine the layout so our formula would look like `~ treat`. You can read `~ treat` as saying "according to treatment". Let's see how it works:
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/facets.png")
@@ -333,7 +333,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-This facet layout is almost exactly what we want. _Almost_, but not exactly. In this case we actually want to be using `facet_grid()`, an alternative to `facet_wrap()`, which should put us back on track to make the "final figure".
+This facet layout is almost exactly what we want. _Almost_, but not exactly. In this case we actually want to be using `facet_grid()`\index{facet\_grid()}, an alternative to `facet_wrap()`, which should put us back on track to make the "final figure".
 
 ---
 
@@ -375,7 +375,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 ### Plotting multiple ggplots
 
-And we're there. Although the styling is not the same as the "final figure" this is showing the same core fundamental information. While we've made multiples of the same figure, what if we wanted to take two completely different figures and plot them together in the same frame? As a demonstration, let's plot the last figure we made and the "final figure" shown at the start of this chapter one on top of the other to see how they compare. To do this we are going to use a package called `patchwork`. First you will need to install and load the `patchwork` package.
+And we're there. Although the styling is not the same as the "final figure" this is showing the same core fundamental information. While we've made multiples of the same figure, what if we wanted to take two completely different figures and plot them together in the same frame? As a demonstration, let's plot the last figure we made and the "final figure" shown at the start of this chapter one on top of the other to see how they compare. To do this we are going to use a package called `patchwork`\index{patchwork package}. First you will need to install and load the `patchwork` package.
 
 ```{r loading-patchwork, eval = FALSE, echo = TRUE, message=FALSE}
 install.packages("patchwork")
@@ -461,7 +461,7 @@ This is only the basics of what the `patchwork` package can do but there are man
 
 While we already have a great figure showing the main aspects of our data, it uses many default layer options. Whilst the default options are fine we may want to change them to get our plot looking exactly how we want it. Maybe we're going to use this figure in a presentation and we want to make sure someone in the very back of the room can easily read the figure. Maybe we want to use our own colour scheme. Maybe we want to change the grey background to a nice bright neon pink. In essence, maybe we want to decide things for ourselves. This next section will go through how to customise the appearance of our figure.
 
-Let's start with the easier stuff, namely changing the size of the plotting symbols using the `size =` argument. Before we do, have a think about where we'd include this argument? Should it be in main call to `ggplot()` or in the `geom_point()` geom? Does size depend on a variable in our dataset and is therefore something we want displayed on the figure (meaning we should include it within `aes()`)? Or is it merely changing the appearance of information?
+Let's start with the easier stuff, namely changing the size of the plotting symbols using the `size =` argument. Before we do, have a think about where we'd include this argument? Should it be in main call to `ggplot()`\index{ggplot()} or in the `geom_point()` geom? Does size depend on a variable in our dataset and is therefore something we want displayed on the figure (meaning we should include it within `aes()`)? Or is it merely changing the appearance of information?
 
 Let's include it in the `geom_point` geom
 \  
@@ -494,7 +494,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-Try including `shape = nitrogen` without also including `aes()` and see what happens.
+Try including `shape = nitrogen` without also including `aes()`\index{aes()} and see what happens.
 
 We're edging our way closer to our "final figure". Another thing we may want to be able to do is change the transparency of the points. While it's not actually that useful here, changing the transparency of points is really valuable when you have lots of data resulting in clusters of points obscuring information. Doing this is easily accomplished using the `alpha =` argument. Again, ask yourself where you think the `alpha =` argument should be included (hint: you should put it in the `geom_point` geom!).
 
@@ -510,7 +510,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-We can also include user defined labels for the x and y axis. There are a couple of ways to do this, but a more familiar way may be to use the same syntax as used in base R figures; using `xlab()` and `ylab()`. We'll specify that these belong to the `ggplot` by using the `+` symbol.
+We can also include user defined labels for the x and y axis. There are a couple of ways to do this, but a more familiar way may be to use the same syntax as used in base R figures; using `xlab()`\index{xlab()} and `ylab()`\index{ylab()}. We'll specify that these belong to the `ggplot` by using the `+` symbol.
 
 \  
 
@@ -526,7 +526,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-Great. Just as we wanted, though getting the "(cm^2)" to show the square as a superscript would be ideal. Here, we're going to accomplish that using a function which is part of base R called `bquote()` which allows for special characters to be shown.
+Great. Just as we wanted, though getting the "(cm^2)" to show the square as a superscript would be ideal. Here, we're going to accomplish that using a function which is part of base R called `bquote()`\index{bquote()} which allows for special characters to be shown.
 
 \  
 
@@ -542,7 +542,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-Let's now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We'll use a new layer called `labs()`, short for labels, which we could have also used for specifying the x and y axes labels (we didn't only for demonstration purposes, but give it a shot). `labs()` is a fairly straightforward function. Have a look at the help file (using `?labs`) to see which arguments are available. We'll be using `caption =` argument for our caption, but notice that there isn't a single simple argument for `legend =`? That's because the legend actually contains multiple pieces of information; such as the colour and shape of the symbols. So instead of `legend =` we'll use `colour =` and `shape =`. Here's how we do it:
+Let's now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We'll use a new layer called `labs()`\index{labs()}, short for labels, which we could have also used for specifying the x and y axes labels (we didn't only for demonstration purposes, but give it a shot). `labs()` is a fairly straightforward function. Have a look at the help file (using `?labs`) to see which arguments are available. We'll be using `caption =` argument for our caption, but notice that there isn't a single simple argument for `legend =`? That's because the legend actually contains multiple pieces of information; such as the colour and shape of the symbols. So instead of `legend =` we'll use `colour =` and `shape =`. Here's how we do it:
 
 \  
 
@@ -586,7 +586,7 @@ We can now move onto some more wholesale-stylistic choices using the themes laye
 
 ### Setting the theme
 
-Themes control the general style of a `ggplot` (things like the background colour, size of text etc.) and comes with a whole bunch of predefined themes. Let's play around with themes using some skills we've already learnt; assigning plots to an object and plotting multiple `ggplots` in a single figure using `patchwork`. We assign themes by creating a new layer with the general notation - `theme_NameOfTheme()`. For example, to use the `theme_classic`, `theme_bw`, `theme_minimal` and `theme_light` themes
+Themes control the general style of a `ggplot` (things like the background colour, size of text etc.) and comes with a whole bunch of predefined themes. Let's play around with themes using some skills we've already learnt; assigning plots to an object and plotting multiple `ggplots` in a single figure using `patchwork`. We assign themes by creating a new layer with the general notation - `theme_NameOfTheme()`. For example, to use the `theme_classic`\index{theme\_classic()}, `theme_bw`\index{theme\_bw()}, `theme_minimal`\index{theme\_minimal()} and `theme_light`\index{theme\_light()} themes
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/theme.png")
@@ -643,7 +643,7 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 
 \  
 
-In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`. There are additional themes available to you, and even more available online. `ggthemes` is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, we don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 7](#prog_r) for a bit more on this).
+In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`\index{theme\_classic()}. There are additional themes available to you, and even more available online. `ggthemes`\index{ggthemes package} is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, we don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 7](#prog_r) for a bit more on this).
 
 ```{r theme_classic, message=FALSE, comment=""}
 theme_classic
@@ -692,7 +692,7 @@ theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_
 
 \  
 
-`theme_rbook()` is now available for us to use just like any other theme. Let's try remaking our figure using our new theme.
+`theme_rbook()`\index{theme\_rbook()} is now available for us to use just like any other theme. Let's try remaking our figure using our new theme.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/theme.png")
@@ -728,7 +728,7 @@ final_figure +
 
 \  
 
-Let's begin the final push by including that dashed horizontal line at the average shoot area, at about 80, on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called `geom_hline()`, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument `linetype =` and also the colour (as we did before). Let's see how it works.
+Let's begin the final push by including that dashed horizontal line at the average shoot area, at about 80, on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called `geom_hline()`\index{geom\_hline()}, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument `linetype =` and also the colour (as we did before). Let's see how it works.
 
 ```{r, echo=FALSE, out.width="15%", fig.align='center'}
 knitr::include_graphics(path = "images/geoms_mapping.png")
@@ -778,7 +778,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get what you want).
 
-Now let's tackle that "overall" nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to include a line of best fit from a linear model. However, we are already using `geom_smooth()`, surely we can't use it again? This may shock and/or surprise you so please ensure you are seated. You _can_ use `geom_smooth()` again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn't the world full of wonderful miracles? ... Anyway, here's the damn code...
+Now let's tackle that "overall" nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to include a line of best fit from a linear model. However, we are already using `geom_smooth()`\index{geom\_smooth()}, surely we can't use it again? This may shock and/or surprise you so please ensure you are seated. You _can_ use `geom_smooth()` again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn't the world full of wonderful miracles? ... Anyway, here's the damn code...
 
 ```{r, echo=FALSE, out.width="15%", fig.align='center'}
 knitr::include_graphics(path = "images/geoms_statistics.png")
@@ -801,11 +801,11 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-That's great! But you should be asking yourself why that worked. Why when we specified the first `geom_smooth()` did it draw 3 lines, whereas the second time we used `geom_smooth()` it just drew a single line? The secret lies in a "conflict" (it isn't actually a conflict but thats what we'll call it) between the colour specified in the main call to `ggplot()` and the colour specified in the second `geom_smooth()`. Notice how in the second we've specifically told `ggplot2` that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen? In "overriding" the universal `ggplot()` with a geom specific argument we're able to get `ggplot2` to plot what we want.
+That's great! But you should be asking yourself why that worked. Why when we specified the first `geom_smooth()` did it draw 3 lines, whereas the second time we used `geom_smooth()` it just drew a single line? The secret lies in a "conflict" (it isn't actually a conflict but thats what we'll call it) between the colour specified in the main call to `ggplot()`\index{ggplot()} and the colour specified in the second `geom_smooth()`. Notice how in the second we've specifically told `ggplot2` that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen? In "overriding" the universal `ggplot()` with a geom specific argument we're able to get `ggplot2` to plot what we want.
 
 The only things left to do are to change the colour and the shape of the points to something of our choosing and include information on the "overall" trend line in the legend. We'll begin with the former; changing colour and shape to something we specifically want. When we first started using `ggplot2` this was the thing which caused me the most difficulty. We think the reason is, that to manually change the colours actually requires an additional layer, where we assumed this would be done in either the main call to `ggplot()` or in a geom.
 
-Instead of doing this within the specific geom, we'll use `scale_colour_manual()` as well as `scale_shape_manual()`. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels to these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function (`c()`) within our `scale_colour_manual` and `scale_shape_manual` functions  (see [Chapter 2](#basics_r) for a reminder on the concatenate function if you've forgotten). 
+Instead of doing this within the specific geom, we'll use `scale_colour_manual()`\index{scale\_colour\_manual()} as well as `scale_shape_manual()`\index{scale\_shape\_manual()}. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels to these (much like what we did with `xlab()` and `ylab()`). Doing so is not too complex but will require nesting a function (`c()`\index{c()}) within our `scale_colour_manual` and `scale_shape_manual` functions  (see [Chapter 2](#basics_r) for a reminder on the concatenate function if you've forgotten). 
 
 Choosing colours can be fiddly. we've found using a colour wheel helps with this step. You can always use Google to find an interactive colour wheel, or use Google's Colour picker. Any decent website should give you a HEX code, something like: #5C1AAE which is a "code" representation of a colour. Alternatively, there are colour names which R and `ggplot2` will also understand (e.g. "firebrick4"). Having chosen our colours using whichever means, let's see how we can do it:
 
@@ -874,7 +874,7 @@ rbook_figure
 
 And we've done it! Our final figure matches the "final figure" exactly. We can then save the final figure to our computer so that we can include it in a poster etc. The code for this is straightforward, but does require an understanding of file paths. Be sure to check [Chapter 1](#work-d) for an explanation if you're unsure. To save `ggplot` figures to an external file we use the function `ggsave`.
 
-This is the point when having assigned the code to the object named `rbook_figure` comes in handy. Doing so allows us to specify which figure to save within `ggsave()`. If we hadn't specified which plot to save, `ggsave()` would instead save the most current figure produced.
+This is the point when having assigned the code to the object named `rbook_figure` comes in handy. Doing so allows us to specify which figure to save within `ggsave()`\index{ggsave()}. If we hadn't specified which plot to save, `ggsave()` would instead save the most current figure produced.
 
 Other important arguments to take note of are: `device =` which tells `ggplot2`  what format we want to save the figure (in this case a pdf) though `ggplot2` is often smart enough to guess this based on the extension we give our file name, so it is often redundant; `units =` which specifies the units used in `width =` and `height =`; `width =` and `height =` which specify the width and height of figure (in this case in mm as per `units =`); `dpi =` which controls the resolution of the saved figure; and `limitsize =` which prevents accidentally saving a massive figure of 1 km x 1 km!
 
@@ -894,11 +894,11 @@ Secondly, don't overcomplicate your figures. With regards to the final figure we
 
 ## Tips and tricks {#tips}
 
-For this section we'll use various versions of the final figure without including the `facet_grid()`. We do so only to allow the changes to be more apparent. With this plot, we'll run through some tips and tricks that we wish we'd learnt when we started using `ggplot2`.
+For this section we'll use various versions of the final figure without including the `facet_grid()`\index{facet\_grid()}. We do so only to allow the changes to be more apparent. With this plot, we'll run through some tips and tricks that we wish we'd learnt when we started using `ggplot2`.
 
 ### Statistics layer
 
-The statistics layer is often ignored in favour of working solely with the geometry layer, as we've done above. The two are largely interchangeable, though the relative rareness of online help and discussions on the statistics layer seems to have relegated it to almost a state of anonymity. There is real value in at least understanding what the statistics layer is doing, even if you don't ever need to make direct use of it. It is perhaps most clear what the statistical layer is doing in the early `geom_smooth()` figure we made. 
+The statistics layer is often ignored in favour of working solely with the geometry layer, as we've done above. The two are largely interchangeable, though the relative rareness of online help and discussions on the statistics layer seems to have relegated it to almost a state of anonymity. There is real value in at least understanding what the statistics layer is doing, even if you don't ever need to make direct use of it. It is perhaps most clear what the statistical layer is doing in the early `geom_smooth()`\index{geom\_smooth()} figure we made. 
 
 \  
 
@@ -933,7 +933,7 @@ While in this example it doesn't make a difference which we use, in other cases 
 
 ### Axis limits and zooms
 
-Fairly often, you may want to limit the range of your axes. Maybe you want to focus a particular part of the data to really tease apart any patterns occuring there. Whatever the reason, it's a useful skill, and with most things code related, there's a couple of ways to do this. we'll show two here; `xlim()` and `ylim()`, and `coord_cartesian()`. Using both of these we'll set the x axis to only show data between 10 and 15 g and the yaxis to only show the area of the shoot between 50 and 150. We'll start with limiting the axes:
+Fairly often, you may want to limit the range of your axes. Maybe you want to focus a particular part of the data to really tease apart any patterns occuring there. Whatever the reason, it's a useful skill, and with most things code related, there's a couple of ways to do this. we'll show two here; `xlim()`\index{xlim()} and `ylim()`\index{ylim()}, and `coord_cartesian()`\index{coord\_cartesian()}. Using both of these we'll set the x axis to only show data between 10 and 15 g and the yaxis to only show the area of the shoot between 50 and 150. We'll start with limiting the axes:
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/coords.png")
@@ -996,7 +996,7 @@ Notice now that the trends are maintained (as the lines are being informed by da
 
 Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
 
-The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()` comes before `geom_col()`, then your points may well end up being hidden. To fix this is especially easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.
+The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()`\index{geom\_point()} comes before `geom_col()`\index{geom\_col()}, then your points may well end up being hidden. To fix this is especially easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.
 
 We'll move both the points and the overall black dashed line down in the code so that they are superimposed over the nitrogen lines:
 
@@ -1026,9 +1026,9 @@ It's not the clearest example, but give it a shot with your own data.
 
 ### Continuous colours
 
-Instead of categorical colours, such as we've used for nitrogen concentration, what if instead we wanted a gradient? To illustrate this, we'll remove the trend lines to highlight the changes we make. We'll also be using the `flowers` variable (i.e. number of flowers) to specify the colour that points should be coloured. We have three options that we'll use here; the default colour scheme, the `scale_colour_gradient()` scheme, and an alternative scheme`scale_colour_gradient2()`. Remember that we'll also need to change our label for the legend.
+Instead of categorical colours, such as we've used for nitrogen concentration, what if instead we wanted a gradient? To illustrate this, we'll remove the trend lines to highlight the changes we make. We'll also be using the `flowers` variable (i.e. number of flowers) to specify the colour that points should be coloured. We have three options that we'll use here; the default colour scheme, the `scale_colour_gradient()`\index{scale\_colour\_gradient()} scheme, and an alternative scheme`scale_colour_gradient2()`\index{scale\_colour\_gradient2()}. Remember that we'll also need to change our label for the legend.
 
-We'll start with the default option. Here we only need to change nitrogen (which is a factor) to flowers (which is continuous) in the `colour =` argument within `aes()`:
+We'll start with the default option. Here we only need to change nitrogen (which is a factor) to flowers (which is continuous) in the `colour =` argument within `aes()`\index{aes()}:
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/scales.png")
@@ -1075,7 +1075,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-Although arguably better, we still struggle to spot the difference when there are between 5 and 12 flowers. Maybe having an additional colour would help those mid values stand out a bit more. The way we can do that here is to set a midpoint where the colours shift from green to blue to pink. Doing so might help us see the variation even more clearly. This is exactly what `scale_colour_gradient2()` allows. `scale_colour_gradient2()` works in much the same way as `scale_colour_gradient()` except that we have two additional arguments to worry about; `midpoint =` where we specify a value for the midpoint, and `mid =` where we state the colour the midpoint should take. We'll set the midpoint using `mean()`.
+Although arguably better, we still struggle to spot the difference when there are between 5 and 12 flowers. Maybe having an additional colour would help those mid values stand out a bit more. The way we can do that here is to set a midpoint where the colours shift from green to blue to pink. Doing so might help us see the variation even more clearly. This is exactly what `scale_colour_gradient2()` allows. `scale_colour_gradient2()` works in much the same way as `scale_colour_gradient()` except that we have two additional arguments to worry about; `midpoint =` where we specify a value for the midpoint, and `mid =` where we state the colour the midpoint should take. We'll set the midpoint using `mean()`\index{mean()}.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/scales.png")
@@ -1099,7 +1099,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-Definitely not our favourite figure. Perhaps if we add __more__ colours, that will help things a bit (probably not but let's do it anyway). We now move onto using `scale_colour_gradientn()`, which diverges slightly. Instead of specifying colours for low, mid, and/or high, here we'll be specifying them using proportions within the `values =` argument. A common mistake with `values =`, within `scale_colour_gradient()`, is to assume (justifiably in our opinion) that we'd specify the actual numbers of flowers as our values. This is wrong. Try doing so and you'll likely see a grey colour bar and grey points. Instead `values =` represent the proportional ranges where we want the colour to occupy. In the code below, we use 0, 0.25, 0.5, 0.75 and 1 as our proportions, corresponding to 4 colours (note that we have one fewer colours than proportions given the colours occupy a range and not a value).
+Definitely not our favourite figure. Perhaps if we add __more__ colours, that will help things a bit (probably not but let's do it anyway). We now move onto using `scale_colour_gradientn()`\index{scale\_colour\_gradientn()}, which diverges slightly. Instead of specifying colours for low, mid, and/or high, here we'll be specifying them using proportions within the `values =` argument. A common mistake with `values =`, within `scale_colour_gradient()`, is to assume (justifiably in our opinion) that we'd specify the actual numbers of flowers as our values. This is wrong. Try doing so and you'll likely see a grey colour bar and grey points. Instead `values =` represent the proportional ranges where we want the colour to occupy. In the code below, we use 0, 0.25, 0.5, 0.75 and 1 as our proportions, corresponding to 4 colours (note that we have one fewer colours than proportions given the colours occupy a range and not a value).
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/scales.png")
@@ -1159,7 +1159,7 @@ Now the sizes reflect the height of the plants, with bigger points representing 
 
 ### Moving the legend
 
-To move the position of the legend requires tweaking the theme, just as we did before with `theme_rbook()`. But for legends we might not want this to be set in stone whenever we use the theme (i.e. coding this into `theme_rbook()`). Instead we can change it on the fly depending on the individual figure. To do so, we can use a `theme()` layer and the argument `legend.position =`, followed swiftly by another layer specifying that we still want to use `theme_rbook()`.
+To move the position of the legend requires tweaking the theme, just as we did before with `theme_rbook()`\index{theme\_rbook()}. But for legends we might not want this to be set in stone whenever we use the theme (i.e. coding this into `theme_rbook()`). Instead we can change it on the fly depending on the individual figure. To do so, we can use a `theme()`\index{theme()} layer and the argument `legend.position =`, followed swiftly by another layer specifying that we still want to use `theme_rbook()`.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/theme.png")
@@ -1251,9 +1251,9 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 ### Writing on a figure
 
-What if we were so utterly proud of our figure that we wanted to sign it (just like a painter signs their works of art)? We can do this using `geom_text()`. If we want to change the font, we need to check which ones are available for us to use. We can check this by runnings `windowsFonts()`. We'll use Times New Roman in this example, which is referred to as `serif`.
+What if we were so utterly proud of our figure that we wanted to sign it (just like a painter signs their works of art)? We can do this using `geom_text()`\index{geom\_text()}. If we want to change the font, we need to check which ones are available for us to use. We can check this by runnings `windowsFonts()`\index{windowsFonts()}. We'll use Times New Roman in this example, which is referred to as `serif`.
 
-Not happy with your font options? Check out the `extrafont` package which expands your fontage.
+Not happy with your font options? Check out the `extrafont` \index{extrafont package}package which expands your fontage.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/geoms.png")
@@ -1282,7 +1282,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 In reality there are more appropriate uses for `geom_text()` but whatever the reason, the mechanics remain the same. We specify what the x and y position are (on the scales of the axes), what we want written (using `label =`), the font (using `family =`). If you want to do more complex tasks with text and labels, check out `ggrepel` which extends the options available to you.
 
-Similarly, if we want to include a tag for the figure, for instance we may want to refer to this figure as A we can do this using an additional argument in `labs()`. Let's see how that works:
+Similarly, if we want to include a tag for the figure, for instance we may want to refer to this figure as A we can do this using an additional argument in `labs()`\index{labs()}. Let's see how that works:
 
 \  
 
@@ -1306,11 +1306,11 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-Doing so we get an "A" at the top left of the figure. If we weren't happy with the position of the "A", we can always use `geom_text()` instead and position it ourselves.
+Doing so we get an "A" at the top left of the figure. If we weren't happy with the position of the "A", we can always use `geom_text()`\index{geom\_text()} instead and position it ourselves.
 
 ### Ticks and tick labels 
 
-What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; `scale_y_discrete()` and `scale_x_discrete()` for discrete data (e.g. factors); and `scale_y_continuous()` and `scale_x_continuous()` for continuous data. Within these layers, the argument we want to use is called `breaks =`, though we need to use this in combination with `seq()` (see [Chapter 2](#funcs) for a reminder on how the `seq()` function works). We'll alter the x axis ticks in this example, with a tick label every 2.5 units.
+What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; `scale_y_discrete()`\index{scale\_y\_discrete()} and `scale_x_discrete()`\index{scale\_x\_discrete()} for discrete data (e.g. factors); and `scale_y_continuous()`\index{scale\_y\_continuous()} and `scale_x_continuous()`\index{scale\_x\_continuous()} for continuous data. Within these layers, the argument we want to use is called `breaks =`, though we need to use this in combination with `seq()`\index{seq()} (see [Chapter 2](#funcs) for a reminder on how the `seq()` function works). We'll alter the x axis ticks in this example, with a tick label every 2.5 units.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/scales.png")
@@ -1337,7 +1337,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 
 \  
 
-Axis tick labels sometimes need to be rotated. If you've ever worked with data from multiple species (with those lovely long latin names) for example, you'll know that it can be a nightmare making figures. The names can end up overlapping to such an extent that your axis tick labels merge into a giant black blob of unreadable abstractionism. In such cases it's best to rotate the text to make it readable. Doing so isn't too much of a pain and we'll be using `theme()` again to set the text angle to 45 degress in addition to a little vertical adjustment so that the text doesn't get too close or run too far away from the axis.
+Axis tick labels sometimes need to be rotated. If you've ever worked with data from multiple species (with those lovely long latin names) for example, you'll know that it can be a nightmare making figures. The names can end up overlapping to such an extent that your axis tick labels merge into a giant black blob of unreadable abstractionism. In such cases it's best to rotate the text to make it readable. Doing so isn't too much of a pain and we'll be using `theme()`\index{theme()} again to set the text angle to 45 degress in addition to a little vertical adjustment so that the text doesn't get too close or run too far away from the axis.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/theme.png")
@@ -1398,7 +1398,7 @@ nested_1
 
 \  
 
-The problem with this figure is that we're using a lot of space to get legends squeezed into the middle. We can solve that by using the `plot_layout()` function and collecting the guides together:
+The problem with this figure is that we're using a lot of space to get legends squeezed into the middle. We can solve that by using the `plot_layout()`\index{plot\_layout()} function and collecting the guides together:
 
 \  
 
@@ -1409,7 +1409,7 @@ nested_1 +
 
 \  
 
-Looks a bit tidier, though in this case say we want to instead remove the legends entirely. Note that to do this we use a new operator, the ampersand (`&`). When we use the `&` operator in `patchwork`, we add `ggplot2` elements to all plots within patchwork. To show how you can use `patchwork` and `ggplot2` together, we'll also add in an additional `geom_path()` to all plots, while simultaneously removing the legends.
+Looks a bit tidier, though in this case say we want to instead remove the legends entirely. Note that to do this we use a new operator, the ampersand (`&`). When we use the `&` operator in `patchwork`, we add `ggplot2` elements to all plots within patchwork. To show how you can use `patchwork` and `ggplot2` together, we'll also add in an additional `geom_path()`\index{geom\_path()} to all plots, while simultaneously removing the legends.
 
 \  
 
@@ -1469,7 +1469,7 @@ ggplot(flower) +
 
 ### Histogram
 
-Next is a histogram (a much more traditional version of a density plot). There are a couple of things to take note of here. The first is that `flower$block` is numeric and not a factor. We can correct that here fairly easily using the `factor()` function to convert it from numeric to factor (though ideally we'd have done this before - see [Chapter 3](#data_r)). The other thing to take note of is that we've specified `bins = 20`. The number of bins control how many times the y-axis is broken up to show the data. Try increasing and decreasing to see the effect. The last is using the `position =` argument and stating that we do not want the bars to be stacked (the default position), instead we want them side-by-side, a.k.a. dodged.
+Next is a histogram (a much more traditional version of a density plot). There are a couple of things to take note of here. The first is that `flower$block` is numeric and not a factor. We can correct that here fairly easily using the `factor()`\index{factor()} function to convert it from numeric to factor (though ideally we'd have done this before - see [Chapter 3](#data_r)). The other thing to take note of is that we've specified `bins = 20`. The number of bins control how many times the y-axis is broken up to show the data. Try increasing and decreasing to see the effect. The last is using the `position =` argument and stating that we do not want the bars to be stacked (the default position), instead we want them side-by-side, a.k.a. dodged.
 
 \  
 
@@ -1499,7 +1499,7 @@ ggplot(flower) +
 
 ### Boxplot
 
-Boxplots are a classic way to show to spread of data, and they're easy to make in `ggplot2`. The dark line in the middle of the box shows the median, the boxes show the 25th and 75th percentiles (which is different from the base R `boxplot()`), and the whiskers show 1.5 times the inter-quartile range (i.e. the distance between between the first and third quartiles). 
+Boxplots are a classic way to show to spread of data, and they're easy to make in `ggplot2`. The dark line in the middle of the box shows the median, the boxes show the 25th and 75th percentiles (which is different from the base R `boxplot()`\index{boxplot()}), and the whiskers show 1.5 times the inter-quartile range (i.e. the distance between between the first and third quartiles). 
 
 \  
 
@@ -1514,9 +1514,9 @@ ggplot(flower) +
 
 Violin plots are an increasingly popular alternative to boxplots. They display much of the same information, as well as showing a version of the density plot above (imagine each violin plot, cut in half vertically and place on it's side, thus showing the overall distribution of the data). In the plot below the figure is slightly more complex than those above and so deserves some explanation.
 
-Within `geom_violin()` we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()` function). In combination with `geom_violin()` we've also included `geom_jitter()`. `geom_jitter()` is similar to `geom_point()` but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
+Within `geom_violin()`\index{geom\_violin()} we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()`\index{c()} function). In combination with `geom_violin()` we've also included `geom_jitter()`\index{geom\_jitter()}. `geom_jitter()` is similar to `geom_point()` but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
 
-Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log_10_ scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we'd actually be much better off not doing so in this particular case.
+Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log_10_ scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`\index{scale\_y\_sqrt()}). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we'd actually be much better off not doing so in this particular case.
 
 \  
 
@@ -1533,7 +1533,7 @@ ggplot(flower) +
 
 ### Barchart
 
-Below is an example of barcharts. It is included here for completeness, but be aware that they are viewed with contention (with good reason). Briefly, barcharts can hide information, or imply there is data where there is none; ultimately misleading the reader. There are almost always better alternatives to use that better demonstrate the data.
+Below is an example of barcharts. It is included here for completeness, but be aware that they are viewed with contention (with good reason). Briefly, barcharts can hide information, or imply there is data where there is none; ultimately misleading the reader. There are almost always better alternatives to use that better demonstrate the data.\index{geom\_bar()}
 
 \  
 
@@ -1552,7 +1552,7 @@ The barchart shows the numbers of observations in each block, with each bar spli
 
 ### Quantile lines
 
-While we can draw a straight line, perhaps we would also like to include the descriptive nature of a boxplot, except using continuous data. We can use quantile lines in such cases. Note that for quantiles to be calculated `ggplot2` requires the installation of the package `quantreg`.
+While we can draw a straight line, perhaps we would also like to include the descriptive nature of a boxplot, except using continuous data. We can use quantile lines in such cases. Note that for quantiles to be calculated `ggplot2` requires the installation of the package `quantreg`.\index{geom\_quantile()}
 
 \  
 
@@ -1568,7 +1568,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 ### Heatmap
 
-Heatmaps are a great tool to visualise spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()` to allow us to see if our data is more (or less) clustered.
+Heatmaps are a great tool to visualise spatial patterns. `ggplot2` can easily handle such data using `geom_bin2d()`\index{geom\_bin2d()} to allow us to see if our data is more (or less) clustered.
 
 \  
 
@@ -1586,7 +1586,7 @@ In this example, lighter blue squares show combinations of leaf area and shoot a
 
 ### Hex map
 
-A similar version to `geom_density2d()` is `geom_hex()`. The only difference between the two is that the squares are replaced with hexagons. Note that `geom_hex()` requires you to first install an additional package called `hexbin`.
+A similar version to `geom_density2d()`\index{geom\_density2d()} is `geom_hex()`\index{geom\_hex()}. The only difference between the two is that the squares are replaced with hexagons. Note that `geom_hex()` requires you to first install an additional package called `hexbin`\index{hexbin package}.
 
 \  
 
@@ -1602,7 +1602,7 @@ ggplot(aes(x = leafarea, y = shootarea), data = flower) +
 
 ### Contour map
 
-Similar to a heatmap we can make a contour map using `geom_density_2d()`. The way to read this figure is much the same way as you'd read a topographical map showing mountains or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you "step" down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in `geom_bin2d()`.
+Similar to a heatmap we can make a contour map using `geom_density_2d()`\index{geom\_density\_2d()}. The way to read this figure is much the same way as you'd read a topographical map showing mountains or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you "step" down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in `geom_bin2d()`.
 
 \  
 
@@ -1636,7 +1636,7 @@ In this case it doesn't look too pretty given that we don't have a wide spread o
 
 The cleveland dotplot is a figure well suited to detect unusual oberservations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. `ggplot2` does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves. 
 
-We do this by first using the function `rownames()`. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using `as.numeric()`. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We'll use the same technique to add horiztonal lines for each row of data to replicate the traditional look of a dotchart.
+We do this by first using the function `rownames()`\index{rownames()}. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using `as.numeric()`\index{as.numeric()}. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We'll use the same technique to add horiztonal lines for each row of data to replicate the traditional look of a dotchart.
 
 \  
 
@@ -1650,7 +1650,7 @@ ggplot(flower) +
 
 ### Pairs plot
 
-For the final figure we will need an additional package, called `GGally`. Within `GGally` is a function called `ggpairs()` which is equivalent to `pairs()` (part of base R). Both functions produce a scatterplot matrix of all variables of interest. Running diagonally down from left to right are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.
+For the final figure we will need an additional package, called `GGally`\index{GGally package}. Within `GGally` is a function called `ggpairs()`\index{ggpairs()} which is equivalent to `pairs()` (part of base R). Both functions produce a scatterplot matrix of all variables of interest. Running diagonally down from left to right are plots showing distributions; either as stacked barcharts or as density plots, in this case coloured according to nitrogen concentration. The bottom plots show the plotted relationships, with variables on the top as the x axis, and the variables on the right plotted as the y axis. For example, the very bottom left plots shows the relationship between number of flowers on the y axis and treatment on the x axis, coloured according to nitrogen concentration. Conversely, the upper plots show either the correlation between variables, when both variables are continuous and the correlation can be calculated, boxplots when the plot is of a factor variable and a continuous variable, or as a stacked barchart when both variables are factors.
 
 Such figures are a fantastic way to quickly show relationships in the dataset. They can of course be used to plot only part of the dataset, for instance using `flowers[ ,1:5]` to plot the first five columns of the dataset.
 
