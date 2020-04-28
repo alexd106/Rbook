@@ -381,6 +381,7 @@ knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE)
 ```</code></pre>
 <p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
 <p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
+<p> </p>
 <p><strong>Problem:</strong></p>
 <p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
 <p><strong>Solution:</strong></p>
@@ -390,10 +391,12 @@ knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=
 suppressPackageStartupMessages(library(ggplot2))
 ```</code></pre>
 <p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
+<p> </p>
 <p><strong>Problem:</strong></p>
 <p>When rendering my R markdown document to pdf my tables and/or figures are split over two pages.</p>
 <p><strong>Solution:</strong></p>
 <p>Add a page break using the LateX <code>\pagebreak</code> notation before your offending table or figure</p>
+<p> </p>
 <p><strong>Problem:</strong></p>
 <p>The code in my rendered document looks ugly!</p>
 <p><strong>Solution:</strong></p>

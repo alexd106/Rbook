@@ -274,12 +274,14 @@ You can add headings and subheadings to your R markdown document by using the `#
 
 results in headings in decreasing size order
 
+```{asis, echo=TRUE, eval=knitr::is_html_output()}
 ># Benthic Biodiversity experiment {.unlisted .unnumbered}
 >## Benthic Biodiversity experiment {.unlisted .unnumbered}
 >### Benthic Biodiversity experiment {.unlisted .unnumbered}
 >#### Benthic Biodiversity experiment {.unlisted .unnumbered}
 >##### Benthic Biodiversity experiment {.unlisted .unnumbered}
 >###### Benthic Biodiversity experiment {.unlisted .unnumbered}
+```
 
 #### Comments {-}
 
@@ -726,14 +728,15 @@ If you want even more control and customisation options for your tables take a l
 
 ### Inline R code
 
-Up till now we've been writing and executing our R code in code chunks. Another great reason to use R markdown is that we can also include our R code directly within our text. This is known as 'inline code'. To include your code in your R markdown text you simply write `` `r knitr::inline_expr("write your r code here")` ``. This can come in really useful when you want to include summary statistics within your text. For example, we could describe the `iris` dataset as follows:  
+Up till now we've been writing and executing our R code in code chunks. Another great reason to use R markdown is that we can also include our R code directly within our text. This is known as 'inline code'. To include your code in your R markdown text you simply write `` `r knitr::inline_expr("write your code here")` ``. This can come in really useful when you want to include summary statistics within your text. For example, we could describe the `iris` dataset as follows:  
 
-```{r, class.source='fold-show', eval=FALSE, highlight=FALSE, tidy=FALSE}
-Morphological characteristics (variable names: `r names(iris)[1:4]`) were measured from 
-`r nrow(iris)`*Iris sp.* plants from `r length(levels(iris$Species))` different species. The mean Sepal length was `r round(mean(iris$Sepal.Length), digits = 2)` mm. 
+```
+Morphological characteristics (variable names:  `r knitr::inline_expr("names(iris)[1:4]")`) were measured from   
+`r knitr::inline_expr("nrow(iris)")` *Iris sp.* plants from  `r knitr::inline_expr("length(levels(iris$Species))")` different  
+species. The mean Sepal length was `r knitr::inline_expr("round(mean(iris$Sepal.Length), digits = 2)")` mm.   
 ```
 
-which would be rendered as  
+which will be rendered as  
 
 >Morphological characteristics (variable names: `r names(iris)[1:4]`) were measured from `r nrow(iris)` *iris* plants from `r length(levels(iris$Species))` different species. The mean Sepal length was 
 `r round(mean(iris$Sepal.Length), digits = 2)` mm. 
@@ -760,6 +763,8 @@ This code chunk won’t be displayed in the final document due to the `include =
 
 `tidy.opts = list(width.cutoff = 60), tidy=TRUE` defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).
 
+\  
+
 **Problem:** 
 
 When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.
@@ -777,6 +782,8 @@ suppressPackageStartupMessages(library(ggplot2))
 
 The `message=FALSE` and `warning=FALSE` arguments suppress messages and warnings. The `suppressPackageStartupMessages(library(ggplot2))` will load the `ggplot2` package but suppress startup messages.
 
+\  
+
 **Problem:**
 
 When rendering my R markdown document to pdf my tables and/or figures are split over two pages.
@@ -784,6 +791,8 @@ When rendering my R markdown document to pdf my tables and/or figures are split 
 **Solution:**
 
 Add a page break using the LateX `\pagebreak` notation before your offending table or figure
+
+\  
 
 **Problem:**
 

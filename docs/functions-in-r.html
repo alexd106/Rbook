@@ -422,26 +422,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>No that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
 <div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
 <a class="sourceLine" id="cb375-2" data-line-number="2">porto_aberdeen_func</a></code></pre></div>
-<pre><code>##   [1]  1.148699032 -0.216466431  1.492651636  2.339415833  0.042670961
-##   [6]  1.922336883 -0.088375620  0.374169893  0.465167866  0.012688991
-##  [11] -1.010976162  1.001122461 -0.187502296 -0.040816297  0.685621229
-##  [16] -0.249218158  0.070128003 -0.545028063  0.299575155  0.293777501
-##  [21] -0.042673888  0.103354626 -0.135632103  0.054994677  0.267192727
-##  [26] -0.162015099  0.811098300 -1.315622850  0.155333844  0.076058694
-##  [31]  0.181175471 -0.060358844 -0.454834845  0.636680935  0.110230923
-##  [36] -0.701196791  0.101918975 -0.001205087 -0.055440252 -0.305988682
-##  [41]  1.576900045 -0.914269931 -0.433294230  0.291405114 -0.085064803
-##  [46]  0.648533891  0.108995153 -0.110123391  0.032738128 -0.336799975
-##  [51] -0.314220989  2.204828322 -1.411762186 -0.024865956 -0.443841200
-##  [56] -0.172114061  0.493764005  0.119552897 -0.254934155 -0.169302095
-##  [61] -0.010663318 -0.078970692 -0.549817043 -1.099098438  0.419694455
-##  [66]  0.134835020  0.252978228 -1.537395107  2.375226327 -0.115445654
-##  [71]  0.159044468 -0.012125881  0.065663407  0.587037037  0.018461600
-##  [76]  0.208006223 -0.375538486  3.567825198 -0.449518756  0.526685173
-##  [81] -2.439924306  0.137536456  0.381011704 -0.317731422  0.371399638
-##  [86] -0.311598093 -0.001709744  0.088604460 -0.411096858  0.615256487
-##  [91] -0.076982402 -0.256654691  2.067345814 -1.985198926  0.390303199
-##  [96] -1.555269745  0.995918160  0.073808811  0.183545787  0.270115127</code></pre>
+<pre><code>##   [1]  0.1095671987  0.1317180004 -0.9216187568  0.0476708938 -0.1580578971
+##   [6]  0.0044367478 -0.4508594679  1.1036103504  0.0415760823  0.3694143732
+##  [11] -2.1847085231  0.0546135589 -0.2592581520 -0.8050730275  0.9541244594
+##  [16]  2.2562841632 -0.2034898571 -0.2169119574  0.3196068736 -0.0027531701
+##  [21] -0.2981921894 -0.0028820472  0.1619774687 -0.0508958431 -4.4617103108
+##  [26] -0.1039769773  1.9904201091 -0.3929357466 -0.2981317302 -0.7087672601
+##  [31] -0.1910820684  0.0007375331  0.0879010227  0.9567601185 -1.9622352581
+##  [36] -0.1015972372 -0.0940795743 -0.0296140122  0.1773346310  0.4607265405
+##  [41]  0.1437849752  2.0580167609 -1.8379372442 -0.6122834605  0.4978641568
+##  [46]  1.1932653996 -1.3039119853 -0.5218143608 -0.5580419465  0.1729216014
+##  [51]  0.1003617990 -0.0001105618 -0.0172138269 -0.0102904296  0.6547352858
+##  [56] -0.0879173958  1.6625841459 -0.1839873700 -0.0963510394 -0.8746776673
+##  [61] -0.7598621152  0.0598433250 -0.1178013232 -0.1080738893  2.3362344797
+##  [66]  0.0417363132 -1.1443571587  0.4903214149  0.0336713061 -3.0063076608
+##  [71] -0.4946922818  0.2527297822  0.2982054448  1.4612931128 -1.1829266427
+##  [76] -1.7788834523 -0.5632026809 -0.5627449598  0.2397186626 -0.0419657790
+##  [81] -0.5715773048  0.0429455062 -1.7031499271  3.2884293663  0.7344882904
+##  [86] -0.0044898882  0.6132042984  0.0574796767 -0.0021590532  0.5601342586
+##  [91] -0.4123415753  0.1527012691 -1.1429635014 -1.5299647963 -0.1860165831
+##  [96]  1.3018057048 -0.0809149657  0.2223722886  0.2524251880 -1.4455328591</code></pre>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written from scratch (and retested) each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. Use <code>?identical</code> if you want to know more about this function.</p>
 <div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb377-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a></code></pre></div>
@@ -450,26 +450,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s use our <code>multiply_columns()</code> function to multiply columns <code>aberdeen</code> and <code>nairobi</code>. Notice now that argument <code>x</code> is given the value <code>city$aberdeen</code>and <code>y</code> the value <code>city$nairobi</code>.</p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
 <a class="sourceLine" id="cb379-2" data-line-number="2">aberdeen_nairobi_func</a></code></pre></div>
-<pre><code>##   [1]           NA           NA           NA           NA           NA
-##   [6]           NA           NA           NA           NA           NA
-##  [11]  0.423814532  0.107617260 -0.049402323  0.722140323  0.628953530
-##  [16]  0.531954419 -0.416282560 -1.611601200  0.055165926  0.470480731
-##  [21]  0.134527191  0.054985187 -0.066239122 -0.547160763 -1.920921070
-##  [26]  0.184997875  0.435769593 -0.282836483  0.045739894  1.315523469
-##  [31]  0.335448029  0.058861369 -0.076411732  0.256214199 -0.359518829
-##  [36]  0.376683386  1.087641533 -0.249395210 -0.283529284  1.602945978
-##  [41]  0.971192524  0.020065655 -0.184047960  3.509169469  0.487264801
-##  [46]  0.062092882  0.083618286  0.469196133 -1.554272888 -0.710161714
-##  [51]  0.855873998 -1.430603894  0.049704456  0.191911611  0.482954903
-##  [56]  0.199918484  0.084055861 -0.052024276 -0.318835356  0.368576871
-##  [61] -0.032820491  0.098119232  0.345356245  1.451394271  0.248055925
-##  [66] -0.670701261 -0.010836323  1.499293199  0.943158002 -0.343298155
-##  [71]  0.056548984 -0.001917058 -0.596069639  1.426754121  0.206539377
-##  [76] -0.084772376  1.145730520  1.099743023  0.128368398  0.674163151
-##  [81]  0.341269933  0.770753008  0.467442137 -2.072581546  0.671578372
-##  [86]  0.595385354 -0.011953950 -0.359815523 -0.142959854 -0.413634506
-##  [91] -0.429964759 -0.321531592  0.501957542  1.689460213 -0.740934828
-##  [96]  0.353140399  0.912006410  0.010457351  0.473549956  0.307166589</code></pre>
+<pre><code>##   [1]            NA            NA            NA            NA            NA
+##   [6]            NA            NA            NA            NA            NA
+##  [11]  5.1268056522  0.0501283336  0.4321941841 -1.5998184834  0.6821936554
+##  [16] -1.0008250301  0.5516246971  0.2048338679 -2.2571488181 -0.0021725396
+##  [21] -1.6494000229 -0.0402297018  0.7367875954 -0.1548663964 -0.4547396284
+##  [26] -0.2163045738  0.7775136345  0.3075356169  0.4301970846  2.3498062447
+##  [31] -0.0935106382  0.5487232028  0.0259395469 -0.7001347336 -1.1720196188
+##  [36]  0.2784985409  0.1782314124 -0.0015748501 -0.1856054942 -0.2732306728
+##  [41] -0.1621418249  0.2202767816 -0.1896612655 -0.1747932021 -0.2820791280
+##  [46]  0.6763597914  0.8814804512  0.7224360407 -0.6020183020  0.7071585341
+##  [51] -0.0523639548 -0.0905477983  0.0125867753 -0.0105593838  0.1098845297
+##  [56] -0.4988949475  4.6890424131  0.1734816305 -0.3641015085  1.8371084622
+##  [61]  2.0793143089  0.0007086879 -0.0102110251 -0.3195103686 -0.8277098773
+##  [66] -0.1248726047  0.0415161428  0.2315966341  0.1808425610 -0.6353209175
+##  [71]  1.6724882621  0.0940238119  0.1507180362  0.3108817567 -0.4335524641
+##  [76] -0.7251157994  0.6845786447  0.6734935493  0.3036511581 -2.7075994244
+##  [81]  0.5098917325 -0.1010487310 -2.2201264554 -0.2521731932  1.9649977265
+##  [86] -0.0094532403  0.2525835742 -0.1474991437  0.0026770405 -0.0865158201
+##  [91]  1.4476442422 -0.1260241689  0.4896837901  4.0813219206 -0.4445365956
+##  [96] -0.0540236884  2.1667834191  0.0989459949  0.2007497934 -0.7602230524</code></pre>
 <p>So far so good. All we’ve really done is wrapped the base code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of nairobi_genoa some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these NA values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>

@@ -1445,10 +1445,11 @@ setosa
 </div>
 <div id="inline-r-code" class="section level3">
 <h3><span class="header-section-number">8.5.6</span> Inline R code</h3>
-<p>Up till now we’ve been writing and executing our R code in code chunks. Another great reason to use R markdown is that we can also include our R code directly within our text. This is known as ‘inline code’. To include your code in your R markdown text you simply write <code>`r write your r code here`</code>. This can come in really useful when you want to include summary statistics within your text. For example, we could describe the <code>iris</code> dataset as follows:</p>
-<pre class="text fold-show"><code>Morphological characteristics (variable names: `r names(iris)[1:4]`) were measured from 
-`r nrow(iris)`*Iris sp.* plants from `r length(levels(iris$Species))` different species. The mean Sepal length was `r round(mean(iris$Sepal.Length), digits = 2)` mm. </code></pre>
-<p>which would be rendered as</p>
+<p>Up till now we’ve been writing and executing our R code in code chunks. Another great reason to use R markdown is that we can also include our R code directly within our text. This is known as ‘inline code’. To include your code in your R markdown text you simply write <code>`r write your code here`</code>. This can come in really useful when you want to include summary statistics within your text. For example, we could describe the <code>iris</code> dataset as follows:</p>
+<pre><code>Morphological characteristics (variable names:  `r names(iris)[1:4]`) were measured from   
+`r nrow(iris)` *Iris sp.* plants from  `r length(levels(iris$Species))` different  
+species. The mean Sepal length was `r round(mean(iris$Sepal.Length), digits = 2)` mm.   </code></pre>
+<p>which will be rendered as</p>
 <blockquote>
 <p>Morphological characteristics (variable names: Sepal.Length, Sepal.Width, Petal.Length, Petal.Width) were measured from 150 <em>iris</em> plants from 3 different species. The mean Sepal length was
 5.84 mm.</p>
