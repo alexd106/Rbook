@@ -181,6 +181,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.11" data-path="r-style-guide.html"><a href="r-style-guide.html"><i class="fa fa-check"></i><b>1.11</b> R style guide</a></li>
 <li class="chapter" data-level="1.12" data-path="backing-up-projects.html"><a href="backing-up-projects.html"><i class="fa fa-check"></i><b>1.12</b> Backing up projects</a></li>
 <li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
+<li class="chapter" data-level="1.14" data-path="exercise.html"><a href="exercise.html"><i class="fa fa-check"></i><b>1.14</b> Exercise</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
@@ -373,22 +374,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="is-it-gonna-be-a-good-day" class="section level2">
 <h2><span class="header-section-number">7.4</span> “Is it gonna be a good day?”</h2>
 <p>The functions that we’ve created so far have been perfectly suited for what we need, though they have been fairly simplistic. Let’s try creating a function that has a little more complexity to it. We’ll make a function to determine if today is going to be a good day or not based on two criteria. The first criteria will depend on the day of the week (Friday or not) and the second will be whether or not your code is working (TRUE or FALSE). To accomplish this, we will be using <code>if</code> and <code>else</code> statements. The complexity will come from <code>if</code> statements immediately following the relevant <code>else</code> statement. We’ll use such conditional statements four times to achieve all combinations of it being a Friday or not, and if your code is working or not.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">good.day &lt;-<span class="st"> </span><span class="cf">function</span>(code.working, day) {</a>
-<a class="sourceLine" id="cb396-2" data-line-number="2">  <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
-<a class="sourceLine" id="cb396-3" data-line-number="3">    <span class="st">&quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></a>
-<a class="sourceLine" id="cb396-4" data-line-number="4">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
-<a class="sourceLine" id="cb396-5" data-line-number="5">    <span class="st">&quot;Oh well, but at least it&#39;s Friday! Pub time!&quot;</span></a>
-<a class="sourceLine" id="cb396-6" data-line-number="6">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
-<a class="sourceLine" id="cb396-7" data-line-number="7">    <span class="st">&quot;So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
-<a class="sourceLine" id="cb396-8" data-line-number="8">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
-<a class="sourceLine" id="cb396-9" data-line-number="9">    <span class="st">&quot;Hello darkness.&quot;</span></a>
-<a class="sourceLine" id="cb396-10" data-line-number="10">  }</a>
-<a class="sourceLine" id="cb396-11" data-line-number="11">}</a>
-<a class="sourceLine" id="cb396-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb396-13" data-line-number="13"><span class="kw">good.day</span>(<span class="dt">code.working =</span> <span class="ot">TRUE</span>, <span class="dt">day =</span> <span class="st">&quot;Friday&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="kw">good.day</span>(<span class="ot">FALSE</span>, <span class="st">&quot;Tuesday&quot;</span>)</a></code></pre></div>
-<pre><code>## [1] &quot;Hello darkness.&quot;</code></pre>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb386-1" data-line-number="1">good.day &lt;-<span class="st"> </span><span class="cf">function</span>(code.working, day) {</a>
+<a class="sourceLine" id="cb386-2" data-line-number="2">  <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb386-3" data-line-number="3">    <span class="st">&quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></a>
+<a class="sourceLine" id="cb386-4" data-line-number="4">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">==</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb386-5" data-line-number="5">    <span class="st">&quot;Oh well, but at least it&#39;s Friday! Pub time!&quot;</span></a>
+<a class="sourceLine" id="cb386-6" data-line-number="6">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb386-7" data-line-number="7">    <span class="st">&quot;So close to a good day... shame it&#39;s not a Friday&quot;</span></a>
+<a class="sourceLine" id="cb386-8" data-line-number="8">  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="op">==</span><span class="st"> </span><span class="ot">FALSE</span> <span class="op">&amp;&amp;</span><span class="st"> </span>day <span class="op">!=</span><span class="st"> &quot;Friday&quot;</span>) {</a>
+<a class="sourceLine" id="cb386-9" data-line-number="9">    <span class="st">&quot;Hello darkness.&quot;</span></a>
+<a class="sourceLine" id="cb386-10" data-line-number="10">  }</a>
+<a class="sourceLine" id="cb386-11" data-line-number="11">}</a>
+<a class="sourceLine" id="cb386-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb386-13" data-line-number="13"><span class="kw">good.day</span>(<span class="dt">code.working =</span> <span class="ot">TRUE</span>, <span class="dt">day =</span> <span class="st">&quot;Friday&quot;</span>)</a>
+<a class="sourceLine" id="cb386-14" data-line-number="14"><span class="co">## [1] &quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></a>
+<a class="sourceLine" id="cb386-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb386-16" data-line-number="16"><span class="kw">good.day</span>(<span class="ot">FALSE</span>, <span class="st">&quot;Tuesday&quot;</span>)</a>
+<a class="sourceLine" id="cb386-17" data-line-number="17"><span class="co">## [1] &quot;Hello darkness.&quot;</span></a></code></pre></div>
 <p>Notice that we never specified what to do if the day was not a Friday? That’s because, for this function, the only thing that matters is whether or not it’s Friday.</p>
 <p>We’ve also been using logical operators whenever we’ve used <code>if</code> statements. Logical operators are the final piece of the logical conditions jigsaw. Below is a table which summarises operators. The first two are logical operators and the final six are relational operators. You can use any of these when you make your own functions (or loops).</p>
 <p> </p>

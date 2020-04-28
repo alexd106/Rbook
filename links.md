@@ -155,4 +155,7 @@
 [colours]: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 [lowess]: https://en.wikipedia.org/wiki/Local_regression
 
+[exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
+[exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
+
 
