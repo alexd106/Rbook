@@ -378,13 +378,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-types" class="section level2">
 <h2><span class="header-section-number">3.1</span> Data types</h2>
 <p>Understanding the different types of data and how R deals with these data is important. The temptation is to glaze over and skip these technical details, but beware, this can come back to bite you somewhere unpleasant if you don’t pay attention. We’ve already seen an <a href="objects-in-r.html#r_objs">example</a> of this when we tried (and failed) to add two character objects together using the <code>+</code> operator.</p>
-<p>R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we’ve only listed five data types here, the final data type is raw which we won’t cover as it’s not useful 99.999% of the time. We also won’t cover complex numbers as we don’t have the <a href="https://www.mathsisfun.com/numbers/complex-numbers.html">imagination</a>!</p>
+<p>R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we’ve only listed five data types here, the final data type is raw which we won’t cover as it’s not useful 99.99% of the time. We also won’t cover complex numbers as we don’t have the <a href="https://www.mathsisfun.com/numbers/complex-numbers.html">imagination</a>!</p>
 <p> </p>
 <ul>
 <li><p><strong>Numeric</strong> data are numbers that contain a decimal. Actually they can also be whole numbers but we’ll gloss over that.</p></li>
 <li><p><strong>Integers</strong> are whole numbers (those numbers without a decimal point).</p></li>
 <li><p><strong>Logical</strong> data take on the value of either <code>TRUE</code> or <code>FALSE</code>. There’s also another special type of logical called <code>NA</code> to represent missing values.</p></li>
-<li><p><strong>Character</strong> data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a <em>factor</em>, which is a character string but with additional attributes (like levels or an order). We’ll cover factors later.</p></li>
+<li><p><strong>Character</strong> data are used to represent string values. You can think of character strings as something like a word (or multiple words). A special type of character string is a <em>factor</em>, which is a string but with additional attributes (like levels or an order). We’ll cover factors later.</p></li>
 </ul>
 <p> </p>
 <p>R is (usually) able to automatically distinguish between different classes of data by their nature and the context in which they’re used although you should bear in mind that R can’t actually read your mind and you may have to explicitly tell R how you want to treat a data type. You can find out the type (or class) of any object using the <code>class()</code> function.</p>
@@ -411,7 +411,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb84-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb84-10" data-line-number="10"><span class="kw">is.logical</span>(logi)</a>
 <a class="sourceLine" id="cb84-11" data-line-number="11"><span class="co">## [1] TRUE</span></a></code></pre></div>
-<p>It can sometimes be useful to be able to change the class of a variable using the <code>as.[className]()</code> family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results.     </p>
+<p>It can sometimes be useful to be able to change the class of a variable using the <code>as.[className]()</code> family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results (se what happens below when we try to convert a character string to a numeric).     </p>
 <div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb85-1" data-line-number="1"><span class="co"># coerce numeric to character</span></a>
 <a class="sourceLine" id="cb85-2" data-line-number="2"><span class="kw">class</span>(num)</a>
 <a class="sourceLine" id="cb85-3" data-line-number="3"><span class="co">## [1] &quot;numeric&quot;</span></a>

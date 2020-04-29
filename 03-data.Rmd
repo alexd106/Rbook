@@ -1,14 +1,14 @@
 # Data in R {#data_r}
 
-Until now, you've created fairly simple data in R and stored it in a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
+Until now, you've created fairly simple data in R and stored it in as a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
 
-In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate and summarise (wrangle) data and finally how to export data from R to an external file.
+In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate (wrangle) and summarise data and finally how to export data from R to an external file.
 
 ## Data types
 
 Understanding the different types of data and how R deals with these data is important. The temptation is to glaze over and skip these technical details, but beware, this can come back to bite you somewhere unpleasant if you don't pay attention. We've already seen an [example](#r_objs) of this when we tried (and failed) to add two character objects together using the `+` operator.
 
-R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we've only listed five data types here, the final data type is raw which we won't cover as it's not useful 99.999% of the time. We also won't cover complex numbers as we don't have the [imagination][complex_num]!
+R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we've only listed five data types here, the final data type is raw which we won't cover as it's not useful 99.99% of the time. We also won't cover complex numbers as we don't have the [imagination][complex_num]!
 
 \  
 
@@ -18,7 +18,7 @@ R has six basic types of data; numeric, integer, logical, complex and character.
 
   - **Logical** data take on the value of either `TRUE` or `FALSE`. There's also another special type of logical called `NA` to represent missing values.
 
-  - **Character** data are used to represent string values. You can think of strings as something like a word or (multiple words). A special type of character string is a *factor*, which is a character string but with additional attributes (like levels or an order). We'll cover factors later. 
+  - **Character** data are used to represent string values. You can think of character strings as something like a word (or multiple words). A special type of character string is a *factor*, which is a string but with additional attributes (like levels or an order). We'll cover factors later. 
 
 \  
 
@@ -33,7 +33,6 @@ class(char)
 
 logi <- TRUE
 class(logi)
-
 ```
 
 Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`.\index{is.numeric()} \index{is.character()} \index{is.logical()}
@@ -46,10 +45,9 @@ is.character(num)
 is.character(char)
 
 is.logical(logi)
-
 ```
 
-It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results. \index{as.character()} \index{as.numeric()} \index{as.logical()} \index{as.factor()} \index{as.complex()}
+It can sometimes be useful to be able to change the class of a variable using the `as.[className]()` family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results (se what happens below when we try to convert a character string to a numeric). \index{as.character()} \index{as.numeric()} \index{as.logical()} \index{as.factor()} \index{as.complex()}
  
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # coerce numeric to character
@@ -61,7 +59,6 @@ class(num_char)
 # coerce character to numeric!
 class(char)
 char_num <- as.numeric(char)
-
 ```
 
 Here's a summary table of some of the logical test and coercion functions available to you.\index{is.numeric()} \index{is.factor()}
@@ -144,7 +141,6 @@ mat.2
 mat.1 + mat.2			# matrix addition
 mat.1 * mat.2			# element by element products
 mat.1 %*% mat.2			# matrix multiplication
-
 ```
 
 ### Lists {#lists}
