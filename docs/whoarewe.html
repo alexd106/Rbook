@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1.10 Project documentation | An Introduction to R</title>
-  <meta name="description" content="1.10 Project documentation | An Introduction to R" />
+  <title>0.4 Who are we? | An Introduction to R</title>
+  <meta name="description" content="0.4 Who are we? | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1.10 Project documentation | An Introduction to R" />
+  <meta property="og:title" content="0.4 Who are we? | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="1.10 Project documentation | An Introduction to R" />
+  <meta property="og:description" content="0.4 Who are we? | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1.10 Project documentation | An Introduction to R" />
+  <meta name="twitter:title" content="0.4 Who are we? | An Introduction to R" />
   
-  <meta name="twitter:description" content="1.10 Project documentation | An Introduction to R" />
+  <meta name="twitter:description" content="0.4 Who are we? | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="file-names.html"/>
-<link rel="next" href="r-style-guide.html"/>
+<link rel="prev" href="why-an-open-book.html"/>
+<link rel="next" href="book-website.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -377,49 +377,99 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="proj_doc" class="section level2">
-<h2><span class="header-section-number">1.10</span> Project documentation</h2>
-<p>A quick note or two about writing R code and creating R scripts. Unless you’re doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, by mixing executable code with narrative into an <a href="rmarkdown-r.html#rmarkdown_r">R markdown</a> document. It’s also good practice to include the output of the <code>sessionInfo()</code> function at the end of any script which prints the R version, details of the operating system and also loaded packages. A really good alternative is to use the <code>session_info()</code> function from the <code>xfun</code> package for a more concise summary of our session environment.</p>
-<p>Here’s an example of including meta-information at the start of an R script</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># Title: Time series analysis of snouters</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="co"># Purpose : This script performs a time series analyses on </span></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co">#           snouter count data.</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="co">#           Data consists of counts of snouter species </span></a>
-<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="co">#           collected from 18 islands in the Hy-yi-yi </span></a>
-<a class="sourceLine" id="cb21-7" data-line-number="7"><span class="co">#           archipelago between 1950 and 1957. </span></a>
-<a class="sourceLine" id="cb21-8" data-line-number="8"><span class="co">#           For details of snouter biology see:</span></a>
-<a class="sourceLine" id="cb21-9" data-line-number="9"><span class="co">#           https://en.wikipedia.org/wiki/Rhinogradentia</span></a>
-<a class="sourceLine" id="cb21-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb21-11" data-line-number="11"><span class="co"># Project number: #007</span></a>
-<a class="sourceLine" id="cb21-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb21-13" data-line-number="13"><span class="co"># DataFile:&#39;/Users/Another/snouter_analysis/snouter_pop.txt&#39;</span></a>
-<a class="sourceLine" id="cb21-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb21-15" data-line-number="15"><span class="co"># Author: A. Nother</span></a>
-<a class="sourceLine" id="cb21-16" data-line-number="16"><span class="co"># Contact details: a.nother@uir.ac.uk</span></a>
-<a class="sourceLine" id="cb21-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb21-18" data-line-number="18"><span class="co"># Date script created: Mon Dec 2 16:06:44 2019 -----------</span></a>
-<a class="sourceLine" id="cb21-19" data-line-number="19"><span class="co"># Date script last modified: Thu Dec 12 16:07:12 2019 ----</span></a>
-<a class="sourceLine" id="cb21-20" data-line-number="20"></a>
-<a class="sourceLine" id="cb21-21" data-line-number="21"><span class="co"># package dependencies</span></a>
-<a class="sourceLine" id="cb21-22" data-line-number="22"><span class="kw">library</span>(PopSnouter)</a>
-<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="kw">library</span>(ggplot2)</a>
-<a class="sourceLine" id="cb21-24" data-line-number="24"></a>
-<a class="sourceLine" id="cb21-25" data-line-number="25"><span class="kw">print</span>(<span class="st">&#39;put your lovely R code here&#39;</span>)</a>
-<a class="sourceLine" id="cb21-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb21-27" data-line-number="27"><span class="co"># good practice to include session information</span></a>
-<a class="sourceLine" id="cb21-28" data-line-number="28"></a>
-<a class="sourceLine" id="cb21-29" data-line-number="29">xfun<span class="op">::</span><span class="kw">session_info</span>()</a></code></pre></div>
-<p>This is just one example and there are no hard and fast rules so feel free to develop a system that works for you. A really useful shortcut in RStudio is to automatically include a time and date stamp in your R script. To do this, write <code>ts</code> where you want to insert your time stamp in your R script and then press the ‘shift + tab’ keys. RStudio will magically convert <code>ts</code> into the current date and time and also automatically comment out this line with a <code>#</code>. Another really useful RStudio shortcut is to comment out multiple lines in your script with a <code>#</code> symbol. To do this, highlight the lines of text you want to comment and then press ‘ctrl + shift + c’. To uncomment the lines just use ‘ctrl + shift + c’ again.</p>
-<p>In addition to including metadata in your R scripts it’s also common practice to create a separate text file to record important information. By convention these text files are named <code>README</code>. We often include a <code>README</code> file in the directory where we keep our raw data. In this file we include details about when data were collected (or downloaded), how data were collected, information about specialised equipment, preservation methods, type and version of any machines used (i.e. sequencing equipment) etc. You can create a README file for your project in RStudio by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>Text File</code> menu.</p>
+<div id="whoarewe" class="section level2">
+<h2><span class="header-section-number">0.4</span> Who are we?</h2>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="images/alex.png" width="90%" style="display: block; margin: auto;" /></p>
+</div><div class="column" style="width:5%;">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div><div class="column" style="width:75%;">
+<p><strong>Alex Douglas</strong> is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years.</p>
+<ul>
+<li>Web:<a href="https://www.abdn.ac.uk/people/a.douglas/" class="uri">https://www.abdn.ac.uk/people/a.douglas/</a></li>
+<li>Twitter:<a href="https://twitter.com/Scedacity" class="uri">https://twitter.com/Scedacity</a></li>
+<li>GitHub:<a href="https://github.com/alexd106" class="uri">https://github.com/alexd106</a></li>
+</ul>
+</div>
+</div>
+<p> </p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="images/Deon.png" width="90%" style="display: block; margin: auto;" /></p>
+</div><div class="column" style="width:5%;">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div><div class="column" style="width:77%;">
+<p><strong>Deon Roos</strong> is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years.</p>
+<ul>
+<li>Web:<a href="https://www.abdn.ac.uk/people/deon.roos" class="uri">https://www.abdn.ac.uk/people/deon.roos</a></li>
+<li>Twitter:<a href="https://twitter.com/DeonRoos88" class="uri">https://twitter.com/DeonRoos88</a></li>
+<li>GitHub:<a href="https://github.com/Deon88" class="uri">https://github.com/Deon88</a></li>
+</ul>
+</div>
+</div>
+<p> </p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="images/ana.png" width="90%" style="display: block; margin: auto;" /></p>
+</div><div class="column" style="width:5%;">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div><div class="column" style="width:75%;">
+<p><strong>Ana Couto</strong> is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years.</p>
+<ul>
+<li>Web:<a href="https://www.abdn.ac.uk/people/r01ac17" class="uri">https://www.abdn.ac.uk/people/r01ac17</a></li>
+<li>Twitter:<a href="https://twitter.com/AnaSofiaCouto" class="uri">https://twitter.com/AnaSofiaCouto</a></li>
+<li>GitHub:<a href="https://github.com/Anofia" class="uri">https://github.com/Anofia</a></li>
+</ul>
+</div>
+</div>
+<p> </p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="images/francesca2.png" width="90%" style="display: block; margin: auto;" /></p>
+</div><div class="column" style="width:5%;">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div><div class="column" style="width:75%;">
+<p><strong>Francesca Mancini</strong> is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.</p>
+<ul>
+<li>Web:<a href="https://FrancescaMancini.github.io" class="uri">https://FrancescaMancini.github.io</a></li>
+<li>Twitter:<a href="https://twitter.com/frances_mancini" class="uri">https://twitter.com/frances_mancini</a></li>
+<li>GitHub:<a href="https://github.com/FrancescaMancini" class="uri">https://github.com/FrancescaMancini</a></li>
+</ul>
+</div>
+</div>
+<p> </p>
+<div class="columns">
+<div class="column" style="width:20%;">
+<p><img src="images/lusseau.png" width="90%" style="display: block; margin: auto;" /></p>
+</div><div class="column" style="width:5%;">
+<p> 
+<!-- an empty Div (with a white space), serving as
+a column separator --></p>
+</div><div class="column" style="width:75%;">
+<p><strong>David Lusseau</strong> is a Professor of Marine Sustainability at the Danish Technical University. He’s been using R for 15 years and teaching it for 12 years.</p>
+<ul>
+<li>Twitter:<a href="https://twitter.com/lusseau" class="uri">https://twitter.com/lusseau</a></li>
+<li>GitHub:<a href="https://github.com/dlusseau" class="uri">https://github.com/dlusseau</a></li>
+</ul>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="file-names.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="r-style-guide.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="why-an-open-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="book-website.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -441,7 +491,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/index.Rmd",
 "text": "Edit"
 },
 "history": {
