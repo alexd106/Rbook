@@ -4,21 +4,21 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>0.4 Who are we? | An Introduction to R</title>
-  <meta name="description" content="0.4 Who are we? | An Introduction to R" />
+  <title>2.3 Using functions in R | An Introduction to R</title>
+  <meta name="description" content="2.3 Using functions in R | An Introduction to R" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="0.4 Who are we? | An Introduction to R" />
+  <meta property="og:title" content="2.3 Using functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
   
   
-  <meta property="og:description" content="0.4 Who are we? | An Introduction to R" />
+  <meta property="og:description" content="2.3 Using functions in R | An Introduction to R" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="0.4 Who are we? | An Introduction to R" />
+  <meta name="twitter:title" content="2.3 Using functions in R | An Introduction to R" />
   
-  <meta name="twitter:description" content="0.4 Who are we? | An Introduction to R" />
+  <meta name="twitter:description" content="2.3 Using functions in R | An Introduction to R" />
   
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="why-an-open-book.html"/>
-<link rel="next" href="book-website.html"/>
+<link rel="prev" href="objects-in-r.html"/>
+<link rel="next" href="vectors.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -145,7 +145,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.1" data-path="the-aim-of-this-book.html"><a href="the-aim-of-this-book.html"><i class="fa fa-check"></i><b>0.1</b> The aim of this book</a></li>
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
-<li class="chapter" data-level="0.4" data-path="who-are-we.html"><a href="who-are-we.html"><i class="fa fa-check"></i><b>0.4</b> Who are we?</a></li>
+<li class="chapter" data-level="0.4" data-path="whoarewe.html"><a href="whoarewe.html"><i class="fa fa-check"></i><b>0.4</b> Who are we?</a></li>
 <li class="chapter" data-level="0.5" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.5</b> Book website</a></li>
 <li class="chapter" data-level="0.6" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.6</b> Some R pointers</a></li>
 </ul></li>
@@ -189,9 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
 <li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#funcs"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
-</ul></li>
+<li class="chapter" data-level="2.3" data-path="using-functions-in-r.html"><a href="using-functions-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Using functions in R</a></li>
 <li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
@@ -377,99 +375,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="who-are-we" class="section level2">
-<h2><span class="header-section-number">0.4</span> Who are we?</h2>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><img src="images/alex.png" width="90%" style="display: block; margin: auto;" /></p>
-</div><div class="column" style="width:5%;">
-<p> 
-<!-- an empty Div (with a white space), serving as
-a column separator --></p>
-</div><div class="column" style="width:75%;">
-<p><strong>Alex Douglas</strong> is a Reader in Biostatistics at the University of Aberdeen and has been teaching (and learning) R for the last 15 years.</p>
-<ul>
-<li>Web:<a href="https://www.abdn.ac.uk/people/a.douglas/" class="uri">https://www.abdn.ac.uk/people/a.douglas/</a></li>
-<li>Twitter:<a href="https://twitter.com/Scedacity" class="uri">https://twitter.com/Scedacity</a></li>
-<li>GitHub:<a href="https://github.com/alexd106" class="uri">https://github.com/alexd106</a></li>
-</ul>
-</div>
-</div>
-<p> </p>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><img src="images/Deon.png" width="90%" style="display: block; margin: auto;" /></p>
-</div><div class="column" style="width:5%;">
-<p> 
-<!-- an empty Div (with a white space), serving as
-a column separator --></p>
-</div><div class="column" style="width:77%;">
-<p><strong>Deon Roos</strong> is a PhD student in applied ecology at the University of Aberdeen researching spatial variation of the temporal kind in population dynamics. He has been using and teaching R for 5 years.</p>
-<ul>
-<li>Web:<a href="https://www.abdn.ac.uk/people/deon.roos" class="uri">https://www.abdn.ac.uk/people/deon.roos</a></li>
-<li>Twitter:<a href="https://twitter.com/DeonRoos88" class="uri">https://twitter.com/DeonRoos88</a></li>
-<li>GitHub:<a href="https://github.com/Deon88" class="uri">https://github.com/Deon88</a></li>
-</ul>
-</div>
-</div>
-<p> </p>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><img src="images/ana.png" width="90%" style="display: block; margin: auto;" /></p>
-</div><div class="column" style="width:5%;">
-<p> 
-<!-- an empty Div (with a white space), serving as
-a column separator --></p>
-</div><div class="column" style="width:75%;">
-<p><strong>Ana Couto</strong> is a PhD student in Ecology at the University of Aberdeen looking at the ecology and physics of tidal stream habitats. She has been using and teaching R for 7 years.</p>
-<ul>
-<li>Web:<a href="https://www.abdn.ac.uk/people/r01ac17" class="uri">https://www.abdn.ac.uk/people/r01ac17</a></li>
-<li>Twitter:<a href="https://twitter.com/AnaSofiaCouto" class="uri">https://twitter.com/AnaSofiaCouto</a></li>
-<li>GitHub:<a href="https://github.com/Anofia" class="uri">https://github.com/Anofia</a></li>
-</ul>
-</div>
-</div>
-<p> </p>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><img src="images/francesca2.png" width="90%" style="display: block; margin: auto;" /></p>
-</div><div class="column" style="width:5%;">
-<p> 
-<!-- an empty Div (with a white space), serving as
-a column separator --></p>
-</div><div class="column" style="width:75%;">
-<p><strong>Francesca Mancini</strong> is an ecological modeller, working with large citizen science datasets and statistical models to derive trends in biodiversity change and investigate its drivers.</p>
-<ul>
-<li>Web:<a href="https://FrancescaMancini.github.io" class="uri">https://FrancescaMancini.github.io</a></li>
-<li>Twitter:<a href="https://twitter.com/frances_mancini" class="uri">https://twitter.com/frances_mancini</a></li>
-<li>GitHub:<a href="https://github.com/FrancescaMancini" class="uri">https://github.com/FrancescaMancini</a></li>
-</ul>
-</div>
-</div>
-<p> </p>
-<div class="columns">
-<div class="column" style="width:20%;">
-<p><img src="images/lusseau.png" width="90%" style="display: block; margin: auto;" /></p>
-</div><div class="column" style="width:5%;">
-<p> 
-<!-- an empty Div (with a white space), serving as
-a column separator --></p>
-</div><div class="column" style="width:75%;">
-<p><strong>David Lusseau</strong> is a Professor of Marine Sustainability at the Danish Technical University. He’s been using R for 15 years and teaching it for 12 years.</p>
-<ul>
-<li>Twitter:<a href="https://twitter.com/lusseau" class="uri">https://twitter.com/lusseau</a></li>
-<li>GitHub:<a href="https://github.com/dlusseau" class="uri">https://github.com/dlusseau</a></li>
-</ul>
-</div>
-</div>
+<div id="using-functions-in-r" class="section level2">
+<h2><span class="header-section-number">2.3</span> Using functions in R</h2>
+<p>Up until now we’ve been creating simple objects by directly assigning a single value to an object. It’s very likely that you’ll soon want to progress to creating more complicated objects as your R experience grows and the complexity of your tasks increase. Happily, R has a multitude of functions to help you do this. You can think of a function as an object which contains a series of instructions to perform a specific task. The base installation of R comes with many functions already defined or you can increase the power of R by installing one of the 10000’s of <a href="packages.html#packages">packages</a> now available. Once you get a bit more experience with using R you may want to define your own functions to perform tasks that are specific to your goals (more about this in <a href="prog-r.html#prog_r">Chapter 7</a>).</p>
+<p>The first function we will learn about is the <code>c()</code> function. The <code>c()</code> function is short for concatenate and we use it to join together a series of values and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data-r.html#data_r">Chapter 3</a>).</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1">my_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>)</a></code></pre></div>
+<p>In the code above we’ve created an object called <code>my_vec</code> and assigned it a value using the function <code>c()</code>. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is <strong>always</strong> followed by a pair of round brackets even if there’s nothing contained between the brackets. Secondly, the argument(s) of a function are placed inside the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this <a href="help.html#help">later</a>) and a quick Google search will also usually help you out.</p>
+<p>To examine the value of our new object we can simply type out the name of the object as we did before</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1">my_vec</a></code></pre></div>
+<pre><code>## [1] 2 3 1 6 4 3 3 7</code></pre>
+<p>Now that we’ve created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the <code>mean()</code>, <code>var()</code>, <code>sd()</code> and <code>length()</code> functions</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></a>
+<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="co">## [1] 3.625</span></a>
+<a class="sourceLine" id="cb40-3" data-line-number="3"><span class="kw">var</span>(my_vec)     <span class="co"># returns the variance of my_vec</span></a>
+<a class="sourceLine" id="cb40-4" data-line-number="4"><span class="co">## [1] 3.982143</span></a>
+<a class="sourceLine" id="cb40-5" data-line-number="5"><span class="kw">sd</span>(my_vec)      <span class="co"># returns the standard deviation of my_vec</span></a>
+<a class="sourceLine" id="cb40-6" data-line-number="6"><span class="co">## [1] 1.995531</span></a>
+<a class="sourceLine" id="cb40-7" data-line-number="7"><span class="kw">length</span>(my_vec)  <span class="co"># returns the number of elements in my_vec</span></a>
+<a class="sourceLine" id="cb40-8" data-line-number="8"><span class="co">## [1] 8</span></a></code></pre></div>
+<p>If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1">vec_mean &lt;-<span class="st"> </span><span class="kw">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></a>
+<a class="sourceLine" id="cb41-2" data-line-number="2">vec_mean</a>
+<a class="sourceLine" id="cb41-3" data-line-number="3"><span class="co">## [1] 3.625</span></a></code></pre></div>
+<p>Sometimes it can be useful to create a vector that contains a regular sequence of values in steps of one. Here we can make use of a shortcut using the <code>:</code> symbol.</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">my_seq &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>     <span class="co"># create regular sequence</span></a>
+<a class="sourceLine" id="cb42-2" data-line-number="2">my_seq</a>
+<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></a>
+<a class="sourceLine" id="cb42-4" data-line-number="4">my_seq2 &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># in decending order</span></a>
+<a class="sourceLine" id="cb42-5" data-line-number="5">my_seq2</a>
+<a class="sourceLine" id="cb42-6" data-line-number="6"><span class="co">##  [1] 10  9  8  7  6  5  4  3  2  1</span></a></code></pre></div>
+<p>Other useful functions for generating vectors of sequences include the <code>seq()</code> and <code>rep()</code> functions. For example, to generate a sequence from 1 to 5 in steps of 0.5</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">my_seq2 &lt;-<span class="st"> </span><span class="kw">seq</span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">5</span>, <span class="dt">by =</span> <span class="fl">0.5</span>)</a>
+<a class="sourceLine" id="cb43-2" data-line-number="2">my_seq2</a>
+<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="co">## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</span></a></code></pre></div>
+<p>Here we’ve used the arguments <code>from =</code> and <code>to =</code> to define the limits of the sequence and the <code>by =</code> argument to specify the increment of the sequence. Play around with other values for these arguments to see their effect.</p>
+<p>The <code>rep()</code> function allows you to replicate (repeat) values a specified number of times. To repeat the value 2, 10 times</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">my_seq3 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">2</span>, <span class="dt">times =</span> <span class="dv">10</span>)   <span class="co"># repeats 2, 10 times</span></a>
+<a class="sourceLine" id="cb44-2" data-line-number="2">my_seq3</a>
+<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="co">##  [1] 2 2 2 2 2 2 2 2 2 2</span></a></code></pre></div>
+<p>You can also repeat non-numeric values</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">my_seq4 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="st">&quot;abc&quot;</span>, <span class="dt">times =</span> <span class="dv">3</span>)    <span class="co"># repeats ‘abc’ 3 times </span></a>
+<a class="sourceLine" id="cb45-2" data-line-number="2">my_seq4</a>
+<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="co">## [1] &quot;abc&quot; &quot;abc&quot; &quot;abc&quot;</span></a></code></pre></div>
+<p>or each element of a series</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">my_seq5 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">times =</span> <span class="dv">3</span>)  <span class="co"># repeats the series 1 to </span></a>
+<a class="sourceLine" id="cb46-2" data-line-number="2">                                <span class="co"># 5, 3 times</span></a>
+<a class="sourceLine" id="cb46-3" data-line-number="3">my_seq5</a>
+<a class="sourceLine" id="cb46-4" data-line-number="4"><span class="co">##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span></a></code></pre></div>
+<p>or elements of a series</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" data-line-number="1">my_seq6 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>, <span class="dt">each =</span> <span class="dv">3</span>)   <span class="co"># repeats each element of the </span></a>
+<a class="sourceLine" id="cb47-2" data-line-number="2">                              <span class="co">#series 3 times</span></a>
+<a class="sourceLine" id="cb47-3" data-line-number="3">my_seq6</a>
+<a class="sourceLine" id="cb47-4" data-line-number="4"><span class="co">##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</span></a></code></pre></div>
+<p>We can also repeat a non-sequential series</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1">my_seq7 &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>), <span class="dt">each =</span> <span class="dv">3</span>) <span class="co"># repeats each </span></a>
+<a class="sourceLine" id="cb48-2" data-line-number="2">                                         <span class="co"># element of the </span></a>
+<a class="sourceLine" id="cb48-3" data-line-number="3">                                         <span class="co"># series 3 times</span></a>
+<a class="sourceLine" id="cb48-4" data-line-number="4">my_seq7</a>
+<a class="sourceLine" id="cb48-5" data-line-number="5"><span class="co">##  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></a></code></pre></div>
+<p>Note in the code above how we’ve used the <code>c()</code> function inside the <code>seq()</code> function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1">in_vec &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>)</a>
+<a class="sourceLine" id="cb49-2" data-line-number="2">my_seq7 &lt;-<span class="st"> </span><span class="kw">rep</span>(in_vec, <span class="dt">each =</span> <span class="dv">3</span>)    <span class="co"># repeats each element of </span></a>
+<a class="sourceLine" id="cb49-3" data-line-number="3">                                  <span class="co"># the series 3 times</span></a>
+<a class="sourceLine" id="cb49-4" data-line-number="4">my_seq7</a>
+<a class="sourceLine" id="cb49-5" data-line-number="5"><span class="co">##  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></a></code></pre></div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="why-an-open-book.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="book-website.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="objects-in-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="vectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -491,7 +468,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/index.Rmd",
+"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
 "text": "Edit"
 },
 "history": {

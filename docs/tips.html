@@ -189,9 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
 <li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="r-functions.html"><a href="r-functions.html"><i class="fa fa-check"></i><b>2.3</b> R functions</a><ul>
-<li class="chapter" data-level="2.3.1" data-path="r-functions.html"><a href="r-functions.html#funcs"><i class="fa fa-check"></i><b>2.3.1</b> Using functions</a></li>
-</ul></li>
+<li class="chapter" data-level="2.3" data-path="using-functions-in-r.html"><a href="using-functions-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Using functions in R</a></li>
 <li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
@@ -688,7 +686,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="ticks-and-tick-labels" class="section level3">
 <h3><span class="header-section-number">5.3.10</span> Ticks and tick labels</h3>
-<p>What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; <code>scale_y_discrete()</code> and <code>scale_x_discrete()</code> for discrete data (e.g. factors); and <code>scale_y_continuous()</code> and <code>scale_x_continuous()</code> for continuous data. Within these layers, the argument we want to use is called <code>breaks =</code>, though we need to use this in combination with <code>seq()</code> (see <a href="r-functions.html#funcs">Chapter 2</a> for a reminder on how the <code>seq()</code> function works). We’ll alter the x axis ticks in this example, with a tick label every 2.5 units.</p>
+<p>What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; <code>scale_y_discrete()</code> and <code>scale_x_discrete()</code> for discrete data (e.g. factors); and <code>scale_y_continuous()</code> and <code>scale_x_continuous()</code> for continuous data. Within these layers, the argument we want to use is called <code>breaks =</code>, though we need to use this in combination with <code>seq()</code> (see <a href="#funcs">Chapter 2</a> for a reminder on how the <code>seq()</code> function works). We’ll alter the x axis ticks in this example, with a tick label every 2.5 units.</p>
 <p><img src="images/scales.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb299-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></a>
 <a class="sourceLine" id="cb299-2" data-line-number="2"><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></a>
