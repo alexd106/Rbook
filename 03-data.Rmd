@@ -211,7 +211,7 @@ dataf <- data.frame(height = height, weight = weight, names = p.names)
 dataf
 ```
 
-You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()`\index{dim()} function. We see that there are 5 rows and 3 columns.
+You'll notice that each of the columns are named with variable name we supplied when we used the `data.frame()` function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the `dataf` object using the `dim()`\index{dim()} function. We see that there are 5 rows and 3 columns.
 
 ```{r dataf2, echo=TRUE, collapse=TRUE}
 dim(dataf)   # 5 rows and 3 columns
@@ -223,9 +223,9 @@ Another really useful function which we use all the time is `str()`\index{str()}
 str(dataf)   
 ```
 
-The `str()` function gives us the data frame dimensions and also reminds us that `dataf` is a `data.frame` type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you haw to comment blocks in RStudio [here](#proj_doc). 
+The `str()` function gives us the data frame dimensions and also reminds us that `dataf` is a `data.frame` type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you how to comment blocks in RStudio [here](#proj_doc). 
 
-Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). 
+Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). Note, from R version 4.0 the default is now `stringsAsFactors = FALSE`.  
 
 ```{r dataf4, echo=TRUE, collapse=TRUE}
 height <- c(180, 155, 160, 167, 181)
@@ -245,7 +245,17 @@ Although creating data frames from existing data structures is extremely useful,
 
 ### Saving files to import
 
-Arguably, the easiest method of creating a data file to import into R is to enter your data into a spreadsheet using either Microsoft Excel or LibreOffice Calc and save the spreadsheet as a tab delimited file. We prefer LibreOffice Calc as it's open source, platform independent and free but MS Excel is OK too (but see [here][excel_gotcha] for some gotchas). For those of you unfamiliar with the tab delimited file format it simply means that data in different columns are separated with a 'tab' character (yes, the same one as on your keyboard) and is usually saved as a file with a '.txt' extension (you might also see `.tsv` which is short for tab separated values).
+The easiest method of creating a data file to import into R is to enter your data into a spreadsheet using either Microsoft Excel or LibreOffice Calc and save the spreadsheet as a tab delimited file. We prefer LibreOffice Calc as it's open source, platform independent and free but MS Excel is OK too (but see [here][excel_gotcha] for some gotchas). Here's the data from the petunia experiment we dicussed previously displayed in LibreOffice. If you want to follow along you can download the data file (*'flower.xls'*) from the companion website [here][flow-data].   
+
+\  
+
+```{r LO-calc0, echo=FALSE, out.width="60%", fig.align="center"}
+knitr::include_graphics(path = "images/libre_off.png")
+```
+
+\  
+
+For those of you unfamiliar with the tab delimited file format it simply means that data in different columns are separated with a 'tab' character (yes, the same one as on your keyboard) and is usually saved as a file with a '.txt' extension (you might also see `.tsv` which is short for tab separated values).
 
 To save a spreadsheet as a tab delimited file in LibreOffice Calc select `File` -> `Save as ...` from the main menu. You will need to specify the location you want to save your file in the 'Save in folder' option and the name of the file in the 'Name' option. In the drop down menu located above the 'Save' button change the default 'All formats' to 'Text CSV (.csv)'.
 
@@ -322,7 +332,7 @@ If we just wanted to see the names of our variables (columns) in the data frame 
 names(flowers)
 ```
 
-R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`\index{read.csv()}, `read.csv2()`\index{read.csv2()} and `read.delim()`\index{read.delim()} functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many European countries). The `read.delim()` function is used to import tab delimited data and also assumes assumes that the first row of the data contains the variable names by default. 
+R has a number of variants of the `read.table()` function that you can use to import a variety of file formats. Actually, these variants just use the `read.table()` function but include different combinations of arguments by default to help import different file types. The most useful of these are the `read.csv()`\index{read.csv()}, `read.csv2()`\index{read.csv2()} and `read.delim()`\index{read.delim()} functions. The `read.csv()` function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets `sep = ","` by default). It also assumes that the first row of the data contains the variable names by default (it sets `header = TRUE` by default). The `read.csv2()` function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many European countries). The `read.delim()` function is used to import tab delimited data and also assumes that the first row of the data contains the variable names by default. 
 
 ```{r df5, echo=TRUE, eval=FALSE}
 # import .csv file
@@ -420,7 +430,7 @@ mean(f_height)
 summary(f_height)
 ```
 
-Or is we don't want to create an additional vector object we can use functions 'on the fly'.
+Or if we don't want to create an additional object we can use functions 'on-the-fly' to only display the value in the console.
 
 ```{r dw3.1, echo=TRUE, collapse=TRUE}
 mean(flowers$height)

@@ -3,6 +3,7 @@
 [github]: https://github.com/
 [github-repo]: https://github.com/alexd106/Rbook
 [github-issue]: https://github.com/alexd106/Rbook/issues
+[flow-data]: https://alexd106.github.io/intro2R/data.html
 
 <!--cran Links-->
 [cran]: https://cloud.r-project.org
