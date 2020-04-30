@@ -221,7 +221,7 @@ str(dataf)
 
 The `str()` function gives us the data frame dimensions and also reminds us that `dataf` is a `data.frame` type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you how to comment blocks in RStudio [here](#proj_doc). 
 
-Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). Note, from R version 4.0 the default is now `stringsAsFactors = FALSE`.  
+Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). Note, from R version 4.0.0 the default is now `stringsAsFactors = FALSE`.  
 
 ```{r dataf4, echo=TRUE, collapse=TRUE}
 height <- c(180, 155, 160, 167, 181)
@@ -312,7 +312,7 @@ str(flowers)
 
 Here we see that `flowers` is a 'data.frame' object which contains 96 rows and 8 variables (columns). Each of the variables are listed along with their data class and the first 10 values. As we mentioned previously in this Chapter, it can be quite convenient to copy and paste this into your R script as a comment block for later reference. 
 
-Notice also that R has decided that your character string variables (`treat` and `nitrogen`) should be treated as factors. If this is not what you want you can prevent this by using the `stringsAsFactors = FALSE` argument when you use the `read.table()` function.
+Notice also that R has decided that your character string variables (`treat` and `nitrogen`) should be treated as factors. If this is not what you want you can prevent this by using the `stringsAsFactors = FALSE` argument when you use the `read.table()` function. Note, from R version 4.0.0 `stringsAsFactors = FALSE` is now the default. 
 
 ```{r df4, echo=TRUE, collapse=TRUE}
 flowers <- read.table(file = 'data/flower.txt', header = TRUE, 
