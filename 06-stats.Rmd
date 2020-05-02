@@ -86,7 +86,7 @@ var.test(atmos$moisture ~ atmos$treatment)
 
 As the *p* value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the *F*-test is sensitive to departures from normality and should not be used with data which is not normal. See the `car` package for alternatives. 
 
-The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method  
+The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method:  
 
 ```{r ss11, echo=TRUE, collapse=TRUE}
 wilcox.test(atmos$moisture ~ atmos$treatment)
@@ -196,7 +196,7 @@ cor.test(trees$Height, trees$Volume, method = "spearman")
 
 Linear models are one of the most widely used models in statistics and data science. They are often thought of as simple models but they're very flexible and able to model a wide variety of experimental and survey designs. Many of the statistical approaches you may have used previously (such as linear regression, *t*-test, ANOVA, ANCOVA etc) can be expressed as a linear model so the good news is that you're probably already familiar with linear models (albeit indirectly). They also form the foundation of more complicated modelling approaches and are relatively easy to extended to incorporate additional complexity. During this section we'll learn how to fit some simple linear models using R and cover some of the more common applications. We won't go into any detail of the underlying linear modelling theory but rather focus on the practicalities of model fitting and R code. 
 
-The main function for fitting linear models in R is the `lm()`\index{lm()} function (short for linear model!). The `lm()` function has many arguments but the most important is the first argument which specifies the model you want to fit using *model formula* which typically takes the general form: 
+The main function for fitting linear models in R is the `lm()`\index{lm()} function (short for linear model!). The `lm()` function has many arguments but the most important is the first argument which specifies the model you want to fit using a *model formula* which typically takes the general form: 
 
 \  
 
@@ -212,7 +212,7 @@ This model formula is simply read as
 
 \  
 
-The response variable is also commonly known as the 'dependent variable' and the explanatory variables known as 'independent variables'. There is also an additional term in our model formula which represents the variation in our response variable **not** explained by our explanatory variables but you don't need to specify this when using the `lm()` function.
+The response variable is also commonly known as the 'dependent variable' and the explanatory variables are sometimes referred to as 'independent variables' (or less frequently as 'predictor variables'). There is also an additional term in our model formula which represents the variation in our response variable **not** explained by our explanatory variables but you don't need to specify this when using the `lm()` function.
 
 As mentioned above, many of the statistical 'tests' you might have previously used can be expressed as a linear model. For example, if we wanted to perform a bivariate linear regression between a response variable (`y`) and a single continuous explanatory variable (`x`) our model formula would simply be
 
