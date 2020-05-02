@@ -32,7 +32,7 @@ The function `t.test()` also has a number of additional arguments which can be u
 t.test(trees$Height, mu = 70, alternative = "greater")
 ```
 
-You can also change the confidence level used for estimating the confidence intervals using the argument `conf.level = 0.99`. In this case 99% confidence intervals would be estimated.
+You can also change the confidence level used for estimating the confidence intervals using the argument `conf.level = 0.99`. If specified in this way, 99% confidence intervals would be estimated.
 
 Although *t* tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the *t* test but using the `wilcox.test()` function.
 
@@ -59,7 +59,7 @@ shapiro.test(trees$Height)
 
 In the example above, the *p* value = 0.4 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed. 
 
-In addition to one-sample tests, both the `t.test()` and `wilcox.test()` functions can be used to test for differences between two samples. A two sample *t* test is used to test the null hypothesis that the two samples come from distributions with the same mean (i.e. the means are not different). For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate alters the moisture content of clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the `atmosphere.txt` data file located in the `data/` directory.
+In addition to one-sample tests, both the `t.test()` and `wilcox.test()` functions can be used to test for differences between two samples. A two sample *t* test is used to test the null hypothesis that the two samples come from distributions with the same mean (i.e. the means are not different). For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate alters the moisture content of clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the `atmosphere.txt` data file located in the `data/` directory on the Rbook github page.
 
 ```{r ss7, echo=TRUE, collapse=TRUE}
 atmos <- read.table('data/atmosphere.txt', header = TRUE)
