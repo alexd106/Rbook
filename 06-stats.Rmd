@@ -18,13 +18,13 @@ str(trees)
 summary(trees)
 ```
 
-If we wanted to test whether mean height of black cherry trees in this sample is equal to 70 ft assuming these data are normally distributed .
+If we wanted to test whether the mean height of black cherry trees in this sample is equal to 70 ft (`mu = 70`), assuming these data are normally distributed, we can use a `t.test()` to do so.
 
 ```{r ss2, echo=TRUE, collapse=TRUE}
 t.test(trees$Height, mu = 70)
 ```
 
-The above summary has a fairly logical layout and includes the name of the test that we have asked for (`One Sample t-test`), which data has been used (`data:  trees$Height`), the *t* statistic, degrees of freedom and associated *p* value (`t = 5.2, df = 30, p-value = 1e-05`). It also states the alternative hypothesis (`alternative hypothesis: true mean is not equal to 70`) which tells us this is a two sided test (not equal to), the 95% confidence interval for the mean (`95 percent confidence interval:73.66 78.34`) and also an estimate of the mean (`sample estimates: mean of x : 76`). In the above example, the *p* value is very small and therefore we would reject the null hypothesis and conclude that the mean height of our sample of black cherry trees is not equal to 70 ft. 
+The above summary has a fairly logical layout and includes the name of the test that we have asked for (`One Sample t-test`), which data has been used (`data:  trees$Height`), the *t* statistic, degrees of freedom and associated *p* value (`t = 5.2, df = 30, p-value = 1e-05`). It also states the alternative hypothesis (`alternative hypothesis: true mean is not equal to 70`) which tells us this is a two sided test (as we have both equal and not equal to), the 95% confidence interval for the mean (`95 percent confidence interval:73.66 78.34`) and also an estimate of the mean (`sample estimates: mean of x : 76`). In the above example, the *p* value is very small and therefore we would reject the null hypothesis and conclude that the mean height of our sample of black cherry trees is not equal to 70 ft. 
 
 The function `t.test()` also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either `alternative = "greater"` or `alternative = "less` arguments which tests whether the sample mean is greater or less than the mean specified.  For example, to test whether our sample mean is greater than 70 ft.
 
