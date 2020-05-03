@@ -356,6 +356,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h3><span class="header-section-number">3.6.1</span> Export functions</h3>
 <p>The main workhorse function for exporting data frames is the <code>write.table()</code> function. As with the <code>read.table()</code> function, the <code>write.table()</code> function is very flexible with lots of arguments to help customise it’s behaviour. As an example, let’s take our original <code>flowers</code> data frame, do some useful stuff to it and then export these changes to an external file.</p>
 <p>Let’s order the rows in the data frame in ascending order of <code>height</code> within each level <code>nitrogen</code>. We will also apply a square root transformation on the number of flowers variable (<code>flowers</code>) and a log<sub>10</sub> transformation on the <code>height</code> variable and save these as additional columns in our data frame (hopefully this will be somewhat familiar to you!).</p>
+<<<<<<< HEAD
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">flowers_df2 &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>height), ]
 flowers_df2<span class="op">$</span>flowers_sqrt &lt;-<span class="st"> </span><span class="kw">sqrt</span>(flowers_df2<span class="op">$</span>flowers)
 flowers_df2<span class="op">$</span>log10_height &lt;-<span class="st"> </span><span class="kw">log10</span>(flowers_df2<span class="op">$</span>height)
@@ -374,20 +375,48 @@ flowers_df2<span class="op">$</span>log10_height &lt;-<span class="st"> </span><
 <p>Now we can export our new data frame <code>flowers_df2</code> using the <code>write.table()</code> function. The first argument is the data frame you want to export (<code>flowers_df2</code> in our example). We then give the filename (with file extension) and the file path in either single or double quotes using the <code>file =</code> argument. In this example we’re exporting the data frame to a file called <code>flowers_04_12.txt</code> in the <code>data</code> directory. The <code>col.names = TRUE</code> argument indicates that the variable names should be written in the first row of the file and the <code>row.names = FALSE</code> argument stops R from including the row names in the first column of the file. Finally, the <code>sep = &quot;\t&quot;</code> argument indicates that a Tab should be used as the delimiter in the exported file.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>,
              <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre></div>
+=======
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1">flowers_df2 &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>height), ]</a>
+<a class="sourceLine" id="cb175-2" data-line-number="2">flowers_df2<span class="op">$</span>flowers_sqrt &lt;-<span class="st"> </span><span class="kw">sqrt</span>(flowers_df2<span class="op">$</span>flowers)</a>
+<a class="sourceLine" id="cb175-3" data-line-number="3">flowers_df2<span class="op">$</span>log10_height &lt;-<span class="st"> </span><span class="kw">log10</span>(flowers_df2<span class="op">$</span>height)</a>
+<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="kw">str</span>(flowers_df2)</a>
+<a class="sourceLine" id="cb175-5" data-line-number="5"><span class="co">## &#39;data.frame&#39;:    96 obs. of  10 variables:</span></a>
+<a class="sourceLine" id="cb175-6" data-line-number="6"><span class="co">##  $ treat       : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 1 1 1 1 1 2 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb175-7" data-line-number="7"><span class="co">##  $ nitrogen    : Factor w/ 3 levels &quot;low&quot;,&quot;medium&quot;,..: 1 1 1 1 1 1 1 1 1 1 ...</span></a>
+<a class="sourceLine" id="cb175-8" data-line-number="8"><span class="co">##  $ block       : int  1 1 1 2 1 2 2 2 1 2 ...</span></a>
+<a class="sourceLine" id="cb175-9" data-line-number="9"><span class="co">##  $ height      : num  1.8 2.2 2.3 2.4 3 3.1 3.2 3.3 3.7 3.7 ...</span></a>
+<a class="sourceLine" id="cb175-10" data-line-number="10"><span class="co">##  $ weight      : num  6.01 9.97 7.28 9.1 9.93 8.74 7.45 8.92 7.03 8.1 ...</span></a>
+<a class="sourceLine" id="cb175-11" data-line-number="11"><span class="co">##  $ leafarea    : num  17.6 9.6 13.8 14.5 12 16.1 14.1 11.6 7.9 10.5 ...</span></a>
+<a class="sourceLine" id="cb175-12" data-line-number="12"><span class="co">##  $ shootarea   : num  46.2 63.1 32.8 78.7 56.6 39.1 38.1 55.2 36.7 60.5 ...</span></a>
+<a class="sourceLine" id="cb175-13" data-line-number="13"><span class="co">##  $ flowers     : int  4 2 6 8 6 3 4 6 5 6 ...</span></a>
+<a class="sourceLine" id="cb175-14" data-line-number="14"><span class="co">##  $ flowers_sqrt: num  2 1.41 2.45 2.83 2.45 ...</span></a>
+<a class="sourceLine" id="cb175-15" data-line-number="15"><span class="co">##  $ log10_height: num  0.255 0.342 0.362 0.38 0.477 ...</span></a></code></pre></div>
+<p>Now we can export our new data frame <code>flowers_df2</code> using the <code>write.table()</code> function. The first argument is the data frame you want to export (<code>flowers_df2</code> in our example). We then give the filename (with file extension) and the file path in either single or double quotes using the <code>file =</code> argument. In this example we’re exporting the data frame to a file called <code>flowers_04_12.txt</code> in the <code>data</code> directory. The <code>col.names = TRUE</code> argument indicates that the variable names should be written in the first row of the file and the <code>row.names = FALSE</code> argument stops R from including the row names in the first column of the file. Finally, the <code>sep = &quot;\t&quot;</code> argument indicates that a Tab should be used as the delimiter in the exported file.</p>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">write.table</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb176-2" data-line-number="2">             <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+>>>>>>> f7a8d54f7e3b3c36fcd235bd4abd74d8a3930e86
 <p>As we saved the file as a tab delimited text file we could open this file in any text editor. Perhaps a more familiar option would be to open the file in Excel. First start Excel and then select <code>File</code> -&gt; <code>Open ..</code> in the main menu and then select our <code>flowers_04_12.txt</code> file to open. Next. choose the ‘Tab’ option to set the delimiter and then click on the ‘Finish’ button.</p>
 <p> </p>
 <p><img src="images/excel_export.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can of course export our files in a variety of other formats. Another popular option is to export files in csv (comma separated values) format. We can do this using the <code>write.table()</code> function by setting the separator argument to <code>sep = &quot;,&quot;</code>.</p>
+<<<<<<< HEAD
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.table</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>,
              <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</code></pre></div>
 <p>Or alternatively by using the convenience function <code>write.csv()</code>. Notice that we don’t need to set the <code>sep = &quot;,&quot;</code> or <code>col.names = TRUE</code> arguments as these are the defaults when using the <code>read.csv()</code> function.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">write.csv</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</code></pre></div>
+=======
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1"><span class="kw">write.table</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">col.names =</span> <span class="ot">TRUE</span>,</a>
+<a class="sourceLine" id="cb177-2" data-line-number="2">             <span class="dt">row.names =</span> <span class="ot">FALSE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</a></code></pre></div>
+<p>Or alternatively by using the convenience function <code>write.csv()</code>. Notice that we don’t need to set the <code>sep = &quot;,&quot;</code> or <code>col.names = TRUE</code> arguments as these are the defaults when using the <code>read.csv()</code> function.</p>
+<div class="sourceCode" id="cb178"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb178-1" data-line-number="1"><span class="kw">write.csv</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+>>>>>>> f7a8d54f7e3b3c36fcd235bd4abd74d8a3930e86
 </div>
 <div id="other-export-functions" class="section level3">
 <h3><span class="header-section-number">3.6.2</span> Other export functions</h3>
 <p>As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the <code>write.table()</code> function. If you followed the <a href="importing-data.html#import_other">‘Other import functions’</a> section of this Chapter you will already have the required packages installed.</p>
 <p>The <code>fwrite()</code> function from the <code>read.table</code> package is very efficient at exporting large data objects and is much faster than the <code>write.table()</code> function. It’s also quite simple to use as it has most of the same arguments as <code>write.table()</code>. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.</p>
+<<<<<<< HEAD
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(read.table)
 <span class="kw">fwrite</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</code></pre></div>
 <p>To export a csv delimited file it’s even easier as we don’t even need to include the <code>sep =</code> argument.</p>
@@ -398,6 +427,18 @@ flowers_df2<span class="op">$</span>log10_height &lt;-<span class="st"> </span><
 <span class="kw">write_tsv</span>(flowers_df2, <span class="dt">path =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>)
 
 <span class="kw">write_csv</span>(flowers_df2, <span class="dt">path =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</code></pre></div>
+=======
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1"><span class="kw">library</span>(read.table)</a>
+<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="kw">fwrite</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</a></code></pre></div>
+<p>To export a csv delimited file it’s even easier as we don’t even need to include the <code>sep =</code> argument.</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb180-1" data-line-number="1"><span class="kw">library</span>(read.table)</a>
+<a class="sourceLine" id="cb180-2" data-line-number="2"><span class="kw">fwrite</span>(flowers_df2, <span class="dt">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</a></code></pre></div>
+<p>The <code>readr</code> package also comes with two useful functions for quickly writing data to external files: the <code>write_tsv()</code> function for writing tab delimited files and the <code>write_csv()</code> function for saving comma separated values (csv) files.</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">library</span>(readr)</a>
+<a class="sourceLine" id="cb181-2" data-line-number="2"><span class="kw">write_tsv</span>(flowers_df2, <span class="dt">path =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>)</a>
+<a class="sourceLine" id="cb181-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb181-4" data-line-number="4"><span class="kw">write_csv</span>(flowers_df2, <span class="dt">path =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</a></code></pre></div>
+>>>>>>> f7a8d54f7e3b3c36fcd235bd4abd74d8a3930e86
 <p>You can even save data directly to an Excel spreadsheet using the <code>write_excel_csv()</code> function but again we don’t recommend this!</p>
 </div>
 </div>

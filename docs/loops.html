@@ -383,109 +383,109 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.5.1</span> For loop</h3>
 <p>The most commonly used loop structure when you want to repeat a task a defined number of times is the <code>for</code> loop.
 The most basic example of a <code>for</code> loop is:</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb390-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb390-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb390-4" data-line-number="4"><span class="co">## [1] 1</span></a>
-<a class="sourceLine" id="cb390-5" data-line-number="5"><span class="co">## [1] 2</span></a>
-<a class="sourceLine" id="cb390-6" data-line-number="6"><span class="co">## [1] 3</span></a>
-<a class="sourceLine" id="cb390-7" data-line-number="7"><span class="co">## [1] 4</span></a>
-<a class="sourceLine" id="cb390-8" data-line-number="8"><span class="co">## [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb392-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb392-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb392-4" data-line-number="4"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb392-5" data-line-number="5"><span class="co">## [1] 2</span></a>
+<a class="sourceLine" id="cb392-6" data-line-number="6"><span class="co">## [1] 3</span></a>
+<a class="sourceLine" id="cb392-7" data-line-number="7"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb392-8" data-line-number="8"><span class="co">## [1] 5</span></a></code></pre></div>
 <p>But what’s the code actually doing? This is a dynamic bit of code were an index <code>i</code> is iteratively replaced by each value in the vector <code>1:5</code>. Let’s break it down. Because the first value in our sequence (<code>1:5</code>) is <code>1</code>, the loop starts by replacing <code>i</code> with <code>1</code> and runs everything between the <code>{ }</code>. Loops conventionally use <code>i</code> as the counter, short for iteration, but you are free to use whatever you like, even your pet’s name, it really does not matter (except when using nested loops, in which case the counters must be called different things, like <code>SenorWhiskers</code> and <code>HerrFlufferkins</code>.</p>
 <p>So, if we were to do the first iteration of the loop manually</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb391-3" data-line-number="3"><span class="co">## [1] 1</span></a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb393-2" data-line-number="2"><span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb393-3" data-line-number="3"><span class="co">## [1] 1</span></a></code></pre></div>
 <p>Once this first iteration is complete, the for loop <em>loops</em> back to the beginning and replaces <code>i</code> with the next value in our <code>1:5</code> sequence (<code>2</code> in this case):</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb392-3" data-line-number="3"><span class="co">## [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb394-2" data-line-number="2"><span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb394-3" data-line-number="3"><span class="co">## [1] 2</span></a></code></pre></div>
 <p>This process is then repeated until the loop reaches the final value in the sequence (<code>5</code> in this example) after which point it stops.</p>
 <p>To reinforce how <code>for</code> loops work and introduce you to a valuable feature of loops, we’ll alter our counter within the loop. This can be used, for example, if we’re using a loop to iterate through a vector but want to select the next row (or any other value). To show this we’ll simply add 1 to the value of our index every time we iterate our loop.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb393-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb393-2" data-line-number="2">  <span class="kw">print</span>(i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb393-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb393-4" data-line-number="4"><span class="co">## [1] 2</span></a>
-<a class="sourceLine" id="cb393-5" data-line-number="5"><span class="co">## [1] 3</span></a>
-<a class="sourceLine" id="cb393-6" data-line-number="6"><span class="co">## [1] 4</span></a>
-<a class="sourceLine" id="cb393-7" data-line-number="7"><span class="co">## [1] 5</span></a>
-<a class="sourceLine" id="cb393-8" data-line-number="8"><span class="co">## [1] 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb395-2" data-line-number="2">  <span class="kw">print</span>(i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb395-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb395-4" data-line-number="4"><span class="co">## [1] 2</span></a>
+<a class="sourceLine" id="cb395-5" data-line-number="5"><span class="co">## [1] 3</span></a>
+<a class="sourceLine" id="cb395-6" data-line-number="6"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb395-7" data-line-number="7"><span class="co">## [1] 5</span></a>
+<a class="sourceLine" id="cb395-8" data-line-number="8"><span class="co">## [1] 6</span></a></code></pre></div>
 <p>As in the previous loop, the first value in our sequence is 1. The loop begins by replacing <code>i</code> with <code>1</code>, but this time we’ve specified that a value of <code>1</code> must be added to <code>i</code> in the expression resulting in a value of <code>1 + 1</code>.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb394-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb394-3" data-line-number="3"><span class="co">## [1] 2</span></a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb396-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb396-3" data-line-number="3"><span class="co">## [1] 2</span></a></code></pre></div>
 <p>As before, once the iteration is complete, the loop moves onto the next value in the sequence and replaces <code>i</code> with the next value (<code>2</code> in this case) so that <code>i + 1</code> becomes <code>2 + 1</code>.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb395-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb395-3" data-line-number="3"><span class="co">## [1] 3</span></a></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb397-2" data-line-number="2">i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb397-3" data-line-number="3"><span class="co">## [1] 3</span></a></code></pre></div>
 <p>And so on. I think you got the idea! In essence this is all a <code>for</code> loop is doing and nothing more.</p>
 <p>Whilst above we have been using simple addition in the body of the loop, you can also combine loops with functions.</p>
 <p>Let’s go back to our data frame <code>city</code>. Previously in the Chapter we created a function to multiply two columns and used it to create our <code>porto_aberdeen</code>, <code>aberdeen_nairobi</code>, and <code>nairobi_genoa</code> objects. We could have used a loop for this. Let’s remind ourselves what our data look like and the code for the <code>multiple_columns()</code> function.</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1"><span class="co"># Recreating our dataset</span></a>
-<a class="sourceLine" id="cb396-2" data-line-number="2">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
-<a class="sourceLine" id="cb396-3" data-line-number="3">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb396-4" data-line-number="4">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
-<a class="sourceLine" id="cb396-5" data-line-number="5">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
-<a class="sourceLine" id="cb396-6" data-line-number="6">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb396-7" data-line-number="7">)</a>
-<a class="sourceLine" id="cb396-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb396-9" data-line-number="9"><span class="co"># Our function</span></a>
-<a class="sourceLine" id="cb396-10" data-line-number="10">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
-<a class="sourceLine" id="cb396-11" data-line-number="11">  temp &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
-<a class="sourceLine" id="cb396-12" data-line-number="12">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp))) {</a>
-<a class="sourceLine" id="cb396-13" data-line-number="13">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
-<a class="sourceLine" id="cb396-14" data-line-number="14">    <span class="kw">return</span>(temp)</a>
-<a class="sourceLine" id="cb396-15" data-line-number="15">  } <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb396-16" data-line-number="16">    <span class="kw">return</span>(temp)</a>
-<a class="sourceLine" id="cb396-17" data-line-number="17">  }</a>
-<a class="sourceLine" id="cb396-18" data-line-number="18">}</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1"><span class="co"># Recreating our dataset</span></a>
+<a class="sourceLine" id="cb398-2" data-line-number="2">city &lt;-<span class="st"> </span><span class="kw">data.frame</span>(</a>
+<a class="sourceLine" id="cb398-3" data-line-number="3">  <span class="dt">porto =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb398-4" data-line-number="4">  <span class="dt">aberdeen =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>),</a>
+<a class="sourceLine" id="cb398-5" data-line-number="5">  <span class="dt">nairobi =</span> <span class="kw">c</span>(<span class="kw">rep</span>(<span class="ot">NA</span>, <span class="dv">10</span>), <span class="kw">rnorm</span>(<span class="dv">90</span>)),</a>
+<a class="sourceLine" id="cb398-6" data-line-number="6">  <span class="dt">genoa =</span> <span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb398-7" data-line-number="7">)</a>
+<a class="sourceLine" id="cb398-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb398-9" data-line-number="9"><span class="co"># Our function</span></a>
+<a class="sourceLine" id="cb398-10" data-line-number="10">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
+<a class="sourceLine" id="cb398-11" data-line-number="11">  temp &lt;-<span class="st"> </span>x <span class="op">*</span><span class="st"> </span>y</a>
+<a class="sourceLine" id="cb398-12" data-line-number="12">  <span class="cf">if</span> (<span class="kw">any</span>(<span class="kw">is.na</span>(temp))) {</a>
+<a class="sourceLine" id="cb398-13" data-line-number="13">    <span class="kw">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</a>
+<a class="sourceLine" id="cb398-14" data-line-number="14">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb398-15" data-line-number="15">  } <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb398-16" data-line-number="16">    <span class="kw">return</span>(temp)</a>
+<a class="sourceLine" id="cb398-17" data-line-number="17">  }</a>
+<a class="sourceLine" id="cb398-18" data-line-number="18">}</a></code></pre></div>
 <p>To use a list to iterate over these columns we need to first create an empty list (remember <a href="data-structures.html#lists">lists</a>?) which we call <code>temp</code> (short for temporary) which will be used to store the output of the <code>for</code> loop.</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
-<a class="sourceLine" id="cb397-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(city) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</a>
-<a class="sourceLine" id="cb397-3" data-line-number="3">  temp[[i]] &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(<span class="dt">x =</span> city[, i], <span class="dt">y =</span> city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>])</a>
-<a class="sourceLine" id="cb397-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb397-5" data-line-number="5"><span class="co">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></a>
-<a class="sourceLine" id="cb397-6" data-line-number="6"><span class="co">## produced NAs</span></a>
-<a class="sourceLine" id="cb397-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb397-8" data-line-number="8"><span class="co">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></a>
-<a class="sourceLine" id="cb397-9" data-line-number="9"><span class="co">## produced NAs</span></a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">temp &lt;-<span class="st"> </span><span class="kw">list</span>()</a>
+<a class="sourceLine" id="cb399-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>(<span class="kw">ncol</span>(city) <span class="op">-</span><span class="st"> </span><span class="dv">1</span>)) {</a>
+<a class="sourceLine" id="cb399-3" data-line-number="3">  temp[[i]] &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(<span class="dt">x =</span> city[, i], <span class="dt">y =</span> city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>])</a>
+<a class="sourceLine" id="cb399-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb399-5" data-line-number="5"><span class="co">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></a>
+<a class="sourceLine" id="cb399-6" data-line-number="6"><span class="co">## produced NAs</span></a>
+<a class="sourceLine" id="cb399-7" data-line-number="7"></a>
+<a class="sourceLine" id="cb399-8" data-line-number="8"><span class="co">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></a>
+<a class="sourceLine" id="cb399-9" data-line-number="9"><span class="co">## produced NAs</span></a></code></pre></div>
 <p>When we specify our <code>for</code> loop notice how we subtracted 1 from <code>ncol(city)</code>. The <code>ncol()</code> function returns the number of columns in our <code>city</code> data frame which is <code>4</code> and so our loop runs from <code>i = 1</code> to <code>i = 4 - 1</code> which is <code>i = 3</code>. We’ll come back to why we need to subtract 1 from this in a minute.</p>
 <p>So in the first iteration of the loop <code>i</code> takes on the value <code>1</code>. The <code>multiply_columns()</code> function multiplies the <code>city[, 1]</code> (<code>porto</code>) and <code>city[, 1 + 1]</code> (<code>aberdeen</code>) columns and stores it in the <code>temp[[1]]</code> which is the first element of the <code>temp</code> list.</p>
 <p>The second iteration of the loop <code>i</code> takes on the value <code>2</code>. The <code>multiply_columns()</code> function multiplies the <code>city[, 2]</code> (<code>aberdeen</code>) and <code>city[, 2 + 1]</code> (<code>nairobi</code>) columns and stores it in the <code>temp[[2]]</code> which is the second element of the <code>temp</code> list.</p>
 <p>The third and final iteration of the loop <code>i</code> takes on the value <code>3</code>. The <code>multiply_columns()</code> function multiplies the <code>city[, 3]</code> (<code>nairobi</code>) and <code>city[, 3 + 1]</code> (<code>genoa</code>) columns and stores it in the <code>temp[[3]]</code> which is the third element of the <code>temp</code> list.</p>
 <p>So can you see why we used <code>ncol(city) - 1</code> when we first set up our loop? As we have four columns in our <code>city</code> data frame if we didn’t use <code>ncol(city) - 1</code> then eventually we’d try to add the 4<sup>th</sup> column with the non-existent 5<sup>th</sup> column.</p>
 <p>Again, it’s a good idea to test that we are getting something sensible from our loop (remember, check, check and check again!). To do this we can use the <code>identical()</code> function to compare the variables we created <code>by hand</code> with each iteration of the loop manually.</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
-<a class="sourceLine" id="cb398-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb398-3" data-line-number="3"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), porto_aberdeen_func)</a>
-<a class="sourceLine" id="cb398-4" data-line-number="4"><span class="co">## [1] TRUE</span></a>
-<a class="sourceLine" id="cb398-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb398-6" data-line-number="6">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
-<a class="sourceLine" id="cb398-7" data-line-number="7"><span class="co">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
-<a class="sourceLine" id="cb398-8" data-line-number="8"><span class="co">## produced NAs</span></a>
-<a class="sourceLine" id="cb398-9" data-line-number="9">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
-<a class="sourceLine" id="cb398-10" data-line-number="10"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), aberdeen_nairobi_func)</a>
-<a class="sourceLine" id="cb398-11" data-line-number="11"><span class="co">## Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced</span></a>
-<a class="sourceLine" id="cb398-12" data-line-number="12"><span class="co">## NAs</span></a>
-<a class="sourceLine" id="cb398-13" data-line-number="13"><span class="co">## [1] TRUE</span></a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>porto, city<span class="op">$</span>aberdeen)</a>
+<a class="sourceLine" id="cb400-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb400-3" data-line-number="3"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), porto_aberdeen_func)</a>
+<a class="sourceLine" id="cb400-4" data-line-number="4"><span class="co">## [1] TRUE</span></a>
+<a class="sourceLine" id="cb400-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb400-6" data-line-number="6">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(city<span class="op">$</span>aberdeen, city<span class="op">$</span>nairobi)</a>
+<a class="sourceLine" id="cb400-7" data-line-number="7"><span class="co">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></a>
+<a class="sourceLine" id="cb400-8" data-line-number="8"><span class="co">## produced NAs</span></a>
+<a class="sourceLine" id="cb400-9" data-line-number="9">i &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb400-10" data-line-number="10"><span class="kw">identical</span>(<span class="kw">multiply_columns</span>(city[, i], city[, i <span class="op">+</span><span class="st"> </span><span class="dv">1</span>]), aberdeen_nairobi_func)</a>
+<a class="sourceLine" id="cb400-11" data-line-number="11"><span class="co">## Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced</span></a>
+<a class="sourceLine" id="cb400-12" data-line-number="12"><span class="co">## NAs</span></a>
+<a class="sourceLine" id="cb400-13" data-line-number="13"><span class="co">## [1] TRUE</span></a></code></pre></div>
 <p>If you can follow the examples above, you’ll be in a good spot to begin writing some of your own for loops. That said there are other types of loops available to you.</p>
 </div>
 <div id="while-loop" class="section level3">
 <h3><span class="header-section-number">7.5.2</span> While loop</h3>
 <p>Another type of loop that you may use (albeit less frequently) is the <code>while</code> loop. The <code>while</code> loop is used when you want to keep looping until a specific logical condition is satisfied (contrast this with the <code>for</code> loop which will always iterate through an entire sequence).</p>
 <p>The basic structure of the while loop is:</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1"><span class="cf">while</span>(logical_condition){ expression }</a></code></pre></div>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1"><span class="cf">while</span>(logical_condition){ expression }</a></code></pre></div>
 <p>A simple example of a while loop is:</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb400-2" data-line-number="2"><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>) {</a>
-<a class="sourceLine" id="cb400-3" data-line-number="3">  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb400-4" data-line-number="4">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb400-5" data-line-number="5">}</a>
-<a class="sourceLine" id="cb400-6" data-line-number="6"><span class="co">## [1] 1</span></a>
-<a class="sourceLine" id="cb400-7" data-line-number="7"><span class="co">## [1] 2</span></a>
-<a class="sourceLine" id="cb400-8" data-line-number="8"><span class="co">## [1] 3</span></a>
-<a class="sourceLine" id="cb400-9" data-line-number="9"><span class="co">## [1] 4</span></a>
-<a class="sourceLine" id="cb400-10" data-line-number="10"><span class="co">## [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb402-2" data-line-number="2"><span class="cf">while</span> (i <span class="op">&lt;=</span><span class="st"> </span><span class="dv">4</span>) {</a>
+<a class="sourceLine" id="cb402-3" data-line-number="3">  i &lt;-<span class="st"> </span>i <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb402-4" data-line-number="4">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb402-5" data-line-number="5">}</a>
+<a class="sourceLine" id="cb402-6" data-line-number="6"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb402-7" data-line-number="7"><span class="co">## [1] 2</span></a>
+<a class="sourceLine" id="cb402-8" data-line-number="8"><span class="co">## [1] 3</span></a>
+<a class="sourceLine" id="cb402-9" data-line-number="9"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb402-10" data-line-number="10"><span class="co">## [1] 5</span></a></code></pre></div>
 <p>Here the loop will only continue to pass values to the main body of the loop (the <code>expression</code> body) when <code>i</code> is less than or equal to 4 (specified using the <code>&lt;=</code> operator in this example). Once <code>i</code> is greater than 4 the loop will stop.</p>
 <p>There is another, very rarely used type of loop; the <code>repeat</code> loop. The <code>repeat</code> loop has no conditional check so can keep iterating indefinitely (meaning a break, or “stop here”, has to be coded into it). It’s worthwhile being aware of it’s existence, but for now we don’t think you need to worry about it; the <code>for</code> and <code>while</code> loops will see you through the vast majority of your looping needs.</p>
 </div>
@@ -508,45 +508,45 @@ The most basic example of a <code>for</code> loop is:</p>
 <h4>lapply</h4>
 <p>Your go to apply function will often be <code>lapply()</code> at least in the beginning. The way that <code>lapply()</code> works, and the reason it is often a good alternative to for loops, is that it will go through each element in a list and perform a task (i.e. run a function). It has the added benefit that it will output the results as a list - something you’d have to otherwise code yourself into a loop.</p>
 <p>An <code>lapply()</code> has the following structure:</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1"><span class="kw">lapply</span>(X, FUN)</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1"><span class="kw">lapply</span>(X, FUN)</a></code></pre></div>
 <p>Here <code>X</code> is the vector which we want to do <em>something</em> to. <code>FUN</code> stands for how much fun this is (just kidding!). It’s also is short for “function”.</p>
 <p>Let’s start with a simple demonstration first. Let’s use the <code>lapply()</code> function create a sequence from 1 to 5 and add 1 to each observation (just like we did when we used a for loop):</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>})</a>
-<a class="sourceLine" id="cb402-2" data-line-number="2"><span class="co">## [[1]]</span></a>
-<a class="sourceLine" id="cb402-3" data-line-number="3"><span class="co">## [1] 1</span></a>
-<a class="sourceLine" id="cb402-4" data-line-number="4"><span class="co">## </span></a>
-<a class="sourceLine" id="cb402-5" data-line-number="5"><span class="co">## [[2]]</span></a>
-<a class="sourceLine" id="cb402-6" data-line-number="6"><span class="co">## [1] 2</span></a>
-<a class="sourceLine" id="cb402-7" data-line-number="7"><span class="co">## </span></a>
-<a class="sourceLine" id="cb402-8" data-line-number="8"><span class="co">## [[3]]</span></a>
-<a class="sourceLine" id="cb402-9" data-line-number="9"><span class="co">## [1] 3</span></a>
-<a class="sourceLine" id="cb402-10" data-line-number="10"><span class="co">## </span></a>
-<a class="sourceLine" id="cb402-11" data-line-number="11"><span class="co">## [[4]]</span></a>
-<a class="sourceLine" id="cb402-12" data-line-number="12"><span class="co">## [1] 4</span></a>
-<a class="sourceLine" id="cb402-13" data-line-number="13"><span class="co">## </span></a>
-<a class="sourceLine" id="cb402-14" data-line-number="14"><span class="co">## [[5]]</span></a>
-<a class="sourceLine" id="cb402-15" data-line-number="15"><span class="co">## [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">lapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>})</a>
+<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="co">## [[1]]</span></a>
+<a class="sourceLine" id="cb404-3" data-line-number="3"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb404-4" data-line-number="4"><span class="co">## </span></a>
+<a class="sourceLine" id="cb404-5" data-line-number="5"><span class="co">## [[2]]</span></a>
+<a class="sourceLine" id="cb404-6" data-line-number="6"><span class="co">## [1] 2</span></a>
+<a class="sourceLine" id="cb404-7" data-line-number="7"><span class="co">## </span></a>
+<a class="sourceLine" id="cb404-8" data-line-number="8"><span class="co">## [[3]]</span></a>
+<a class="sourceLine" id="cb404-9" data-line-number="9"><span class="co">## [1] 3</span></a>
+<a class="sourceLine" id="cb404-10" data-line-number="10"><span class="co">## </span></a>
+<a class="sourceLine" id="cb404-11" data-line-number="11"><span class="co">## [[4]]</span></a>
+<a class="sourceLine" id="cb404-12" data-line-number="12"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb404-13" data-line-number="13"><span class="co">## </span></a>
+<a class="sourceLine" id="cb404-14" data-line-number="14"><span class="co">## [[5]]</span></a>
+<a class="sourceLine" id="cb404-15" data-line-number="15"><span class="co">## [1] 5</span></a></code></pre></div>
 <p>Notice that we need to specify our sequence as <code>0:4</code> to get the output <code>1 ,2 ,3 ,4 , 5</code> as we are adding <code>1</code> to each element of the sequence. See what happens if you use <code>1:5</code> instead.</p>
 <p>Equivalently, we could have defined the function first and then used the function in <code>lapply()</code></p>
-<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb403-1" data-line-number="1">add_fun &lt;-<span class="st"> </span><span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>}</a>
-<a class="sourceLine" id="cb403-2" data-line-number="2"><span class="kw">lapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, add_fun)</a>
-<a class="sourceLine" id="cb403-3" data-line-number="3"><span class="co">## [[1]]</span></a>
-<a class="sourceLine" id="cb403-4" data-line-number="4"><span class="co">## [1] 1</span></a>
-<a class="sourceLine" id="cb403-5" data-line-number="5"><span class="co">## </span></a>
-<a class="sourceLine" id="cb403-6" data-line-number="6"><span class="co">## [[2]]</span></a>
-<a class="sourceLine" id="cb403-7" data-line-number="7"><span class="co">## [1] 2</span></a>
-<a class="sourceLine" id="cb403-8" data-line-number="8"><span class="co">## </span></a>
-<a class="sourceLine" id="cb403-9" data-line-number="9"><span class="co">## [[3]]</span></a>
-<a class="sourceLine" id="cb403-10" data-line-number="10"><span class="co">## [1] 3</span></a>
-<a class="sourceLine" id="cb403-11" data-line-number="11"><span class="co">## </span></a>
-<a class="sourceLine" id="cb403-12" data-line-number="12"><span class="co">## [[4]]</span></a>
-<a class="sourceLine" id="cb403-13" data-line-number="13"><span class="co">## [1] 4</span></a>
-<a class="sourceLine" id="cb403-14" data-line-number="14"><span class="co">## </span></a>
-<a class="sourceLine" id="cb403-15" data-line-number="15"><span class="co">## [[5]]</span></a>
-<a class="sourceLine" id="cb403-16" data-line-number="16"><span class="co">## [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb405-1" data-line-number="1">add_fun &lt;-<span class="st"> </span><span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>}</a>
+<a class="sourceLine" id="cb405-2" data-line-number="2"><span class="kw">lapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, add_fun)</a>
+<a class="sourceLine" id="cb405-3" data-line-number="3"><span class="co">## [[1]]</span></a>
+<a class="sourceLine" id="cb405-4" data-line-number="4"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb405-5" data-line-number="5"><span class="co">## </span></a>
+<a class="sourceLine" id="cb405-6" data-line-number="6"><span class="co">## [[2]]</span></a>
+<a class="sourceLine" id="cb405-7" data-line-number="7"><span class="co">## [1] 2</span></a>
+<a class="sourceLine" id="cb405-8" data-line-number="8"><span class="co">## </span></a>
+<a class="sourceLine" id="cb405-9" data-line-number="9"><span class="co">## [[3]]</span></a>
+<a class="sourceLine" id="cb405-10" data-line-number="10"><span class="co">## [1] 3</span></a>
+<a class="sourceLine" id="cb405-11" data-line-number="11"><span class="co">## </span></a>
+<a class="sourceLine" id="cb405-12" data-line-number="12"><span class="co">## [[4]]</span></a>
+<a class="sourceLine" id="cb405-13" data-line-number="13"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb405-14" data-line-number="14"><span class="co">## </span></a>
+<a class="sourceLine" id="cb405-15" data-line-number="15"><span class="co">## [[5]]</span></a>
+<a class="sourceLine" id="cb405-16" data-line-number="16"><span class="co">## [1] 5</span></a></code></pre></div>
 <p>The <code>sapply()</code> function does the same thing as <code>lapply()</code> but instead of storing the results as a list, it stores them as a vector.</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1"><span class="kw">sapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>})</a>
-<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="co">## [1] 1 2 3 4 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb406-1" data-line-number="1"><span class="kw">sapply</span>(<span class="dv">0</span><span class="op">:</span><span class="dv">4</span>, <span class="cf">function</span>(a) {a <span class="op">+</span><span class="st"> </span><span class="dv">1</span>})</a>
+<a class="sourceLine" id="cb406-2" data-line-number="2"><span class="co">## [1] 1 2 3 4 5</span></a></code></pre></div>
 <p>As you can see, in both cases, we get exactly the same results as when we used the for loop.</p>
 </div>
 </div>

@@ -684,6 +684,29 @@ rbind(head(block_revheight_ord, n = 15), tail(block_revheight_ord, n = 15))
 
 Notice that the `nitrogen` variable has been reverse ordered alphabetically and `height` has been ordered by increasing values within each level of `nitrogen`. 
 
+If we wanted to order the data frame by `nitrogen` but this time order it from `low` -> `medium` -> `high` instead of the default alphabetically (`high`, `low`, `medium`), we need to first change the order of our levels of the `nitrogen` factor in our data frame using the `factor()`\index{factor()} function. Once we've done this we can then use the `order()` function as usual. Note, if you're reading the pdf version of this book, the output has been truncated to save space. 
+
+```{r dw24a, echo=TRUE, eval=FALSE}
+flowers$nitrogen <- factor(flowers$nitrogen, 
+                           levels = c("low", "medium", "high"))    
+nit_ord <- flowers[order(flowers$nitrogen),]
+nit_ord
+```
+
+```{r dw24a-html, echo=FALSE, collapse=TRUE, eval=knitr::is_html_output(), warning=FALSE, attr.output='style="max-height: 500px;"'}
+flowers$nitrogen <- factor(flowers$nitrogen, 
+                           levels = c("low", "medium", "high"))    
+nit_ord <- flowers[order(flowers$nitrogen),]
+nit_ord
+```
+
+```{r dw24a-latex, echo=FALSE, collapse=TRUE, eval=knitr::is_latex_output(), warning=FALSE}
+flowers$nitrogen <- factor(flowers$nitrogen, 
+                           levels = c("low", "medium", "high"))    
+nit_ord <- flowers[order(flowers$nitrogen),]       
+rbind(head(nit_ord, n = 15), tail(nit_ord, n = 15))
+```
+
 ### Adding columns and rows
 
 Sometimes it's useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the `rbind()`\index{rbind()} function and to append columns the `cbind()`\index{cbind()} function. Let's create a couple of test data frames to see this in action using our old friend the `data.frame()` function.
