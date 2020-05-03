@@ -1263,159 +1263,261 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 21   tip     high     1   14.1  19.12     13.1     113.2      13
 ## 32   tip     high     2   17.2  19.20     10.9      89.9      14</code></pre>
 <p>Notice that the <code>nitrogen</code> variable has been reverse ordered alphabetically and <code>height</code> has been ordered by increasing values within each level of <code>nitrogen</code>.</p>
+<p>If we wanted to order the data frame by <code>nitrogen</code> but this time order it from <code>low</code> -&gt; <code>medium</code> -&gt; <code>high</code> instead of the default alphabetically (<code>high</code>, <code>low</code>, <code>medium</code>), we need to first change the order of our levels of the <code>nitrogen</code> factor in our data frame using the <code>factor()</code> function. Once we’ve done this we can then use the <code>order()</code> function as usual. Note, if you’re reading the pdf version of this book, the output has been truncated to save space.</p>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">flowers<span class="op">$</span>nitrogen &lt;-<span class="st"> </span><span class="kw">factor</span>(flowers<span class="op">$</span>nitrogen, </a>
+<a class="sourceLine" id="cb143-2" data-line-number="2">                           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))    </a>
+<a class="sourceLine" id="cb143-3" data-line-number="3">nit_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>nitrogen),]</a>
+<a class="sourceLine" id="cb143-4" data-line-number="4">nit_ord</a></code></pre></div>
+<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+## 33   tip      low     1    8.0   6.88      9.3      16.1       4
+## 34   tip      low     1    8.0  10.23     11.9      88.1       4
+## 35   tip      low     1    6.4   5.97      8.7       7.3       2
+## 36   tip      low     1    7.6  13.05      7.2      47.2       8
+## 37   tip      low     1    9.7   6.49      8.1      18.0       3
+## 38   tip      low     1   12.3  11.27     13.7      28.7       5
+## 39   tip      low     1    9.1   8.96      9.7      23.8       3
+## 40   tip      low     1    8.9  11.48     11.1      39.4       7
+## 41   tip      low     2    7.4  10.89     13.3       9.5       5
+## 42   tip      low     2    3.1   8.74     16.1      39.1       3
+## 43   tip      low     2    7.9   8.89      8.4      34.1       4
+## 44   tip      low     2    8.8   9.39      7.1      38.9       4
+## 45   tip      low     2    8.5   7.16      8.7      29.9       4
+## 46   tip      low     2    5.6   8.10     10.1       5.8       2
+## 47   tip      low     2   11.5   8.72     10.2      28.3       6
+## 48   tip      low     2    5.8   8.04      5.8      30.7       7
+## 81 notip      low     1    3.9   7.17     13.5      52.8       6
+## 82 notip      low     1    2.3   7.28     13.8      32.8       6
+## 83 notip      low     1    5.2   5.79     11.0      67.4       5
+## 84 notip      low     1    2.2   9.97      9.6      63.1       2
+## 85 notip      low     1    4.5   8.60      9.4     113.5       7
+## 86 notip      low     1    1.8   6.01     17.6      46.2       4
+## 87 notip      low     1    3.0   9.93     12.0      56.6       6
+## 88 notip      low     1    3.7   7.03      7.9      36.7       5
+## 89 notip      low     2    2.4   9.10     14.5      78.7       8
+## 90 notip      low     2    5.7   9.05      9.6      63.2       6
+## 91 notip      low     2    3.7   8.10     10.5      60.5       6
+## 92 notip      low     2    3.2   7.45     14.1      38.1       4
+## 93 notip      low     2    3.9   9.19     12.4      52.6       9
+## 94 notip      low     2    3.3   8.92     11.6      55.2       6
+## 95 notip      low     2    5.5   8.44     13.5      77.6       9
+## 96 notip      low     2    4.4  10.60     16.2      63.3       6
+## 1    tip   medium     1    7.5   7.62     11.7      31.9       1
+## 2    tip   medium     1   10.7  12.14     14.1      46.0      10
+## 3    tip   medium     1   11.2  12.76      7.1      66.7      10
+## 4    tip   medium     1   10.4   8.78     11.9      20.3       1
+## 5    tip   medium     1   10.4  13.58     14.5      26.9       4
+## 6    tip   medium     1    9.8  10.08     12.2      72.7       9
+## 7    tip   medium     1    6.9  10.11     13.2      43.1       7
+## 8    tip   medium     1    9.4  10.28     14.0      28.5       6
+## 9    tip   medium     2   10.4  10.48     10.5      57.8       5
+## 10   tip   medium     2   12.3  13.48     16.1      36.9       8
+## 11   tip   medium     2   10.4  13.18     11.1      56.8      12
+## 12   tip   medium     2   11.0  11.56     12.6      31.3       6
+## 13   tip   medium     2    7.1   8.16     29.6       9.7       2
+## 14   tip   medium     2    6.0  11.22     13.0      16.4       3
+## 15   tip   medium     2    9.0  10.20     10.8      90.1       6
+## 16   tip   medium     2    4.5  12.55     13.4      14.4       6
+## 49 notip   medium     1    5.6  11.03     18.6      49.9       8
+## 50 notip   medium     1    5.3   9.29     11.5      82.3       6
+## 51 notip   medium     1    7.5  13.60     13.6     122.2      11
+## 52 notip   medium     1    4.1  12.58     13.9     136.6      11
+## 53 notip   medium     1    3.5  12.93     16.6     109.3       3
+## 54 notip   medium     1    8.5  10.04     12.3     113.6       4
+## 55 notip   medium     1    4.9   6.89      8.2      52.9       3
+## 56 notip   medium     1    2.5  14.85     17.5      77.8      10
+## 57 notip   medium     2    5.4  11.36     17.8     104.6      12
+## 58 notip   medium     2    3.9   9.07      9.6      90.4       7
+## 59 notip   medium     2    5.8  10.18     15.7      88.8       6
+## 60 notip   medium     2    4.5  13.68     14.8     125.5       9
+## 61 notip   medium     2    8.0  11.43     12.6      43.2      14
+## 62 notip   medium     2    1.8  10.47     11.8     120.8       9
+## 63 notip   medium     2    2.2  10.70     15.3      97.1       7
+## 64 notip   medium     2    3.9  12.97     17.0      97.5       5
+## 17   tip     high     1   12.6  18.66     18.6      54.0       9
+## 18   tip     high     1   10.0  18.07     16.9      90.5       3
+## 19   tip     high     1   10.0  13.29     15.8     142.7      12
+## 20   tip     high     1    8.5  14.33     13.2      91.4       5
+## 21   tip     high     1   14.1  19.12     13.1     113.2      13
+## 22   tip     high     1   10.1  15.49     12.6      77.2      12
+## 23   tip     high     1    8.5  17.82     20.5      54.4       3
+## 24   tip     high     1    6.5  17.13     24.1     147.4       6
+## 25   tip     high     2   11.5  23.89     14.3     101.5      12
+## 26   tip     high     2    7.7  14.77     17.2     104.5       4
+## 27   tip     high     2    6.4  13.60     13.6     152.6       7
+## 28   tip     high     2    8.8  16.58     16.7     100.1       9
+## 29   tip     high     2    9.2  13.26     11.3     108.0       9
+## 30   tip     high     2    6.2  17.32     11.6      85.9       5
+## 31   tip     high     2    6.3  14.50     18.3      55.6       8
+## 32   tip     high     2   17.2  19.20     10.9      89.9      14
+## 65 notip     high     1    8.5  22.53     20.8     166.9      16
+## 66 notip     high     1    8.5  17.33     19.8     184.4      12
+## 67 notip     high     1    6.4  11.52     12.1     140.5       7
+## 68 notip     high     1    1.2  18.24     16.6     148.1       7
+## 69 notip     high     1    2.6  16.57     17.1     141.1       3
+## 70 notip     high     1   10.9  17.22     49.2     189.6      17
+## 71 notip     high     1    7.2  15.21     15.9     135.0      14
+## 72 notip     high     1    2.1  19.15     15.6     176.7       6
+## 73 notip     high     2    4.7  13.42     19.8     124.7       5
+## 74 notip     high     2    5.0  16.82     17.3     182.5      15
+## 75 notip     high     2    6.5  14.00     10.1     126.5       7
+## 76 notip     high     2    2.6  18.88     16.4     181.5      14
+## 77 notip     high     2    6.0  13.68     16.2     133.7       2
+## 78 notip     high     2    9.3  18.75     18.4     181.1      16
+## 79 notip     high     2    4.6  14.65     16.7      91.7      11
+## 80 notip     high     2    5.2  17.70     19.1     181.1       8</code></pre>
 </div>
 <div id="adding-columns-and-rows" class="section level3">
 <h3><span class="header-section-number">3.4.4</span> Adding columns and rows</h3>
 <p>Sometimes it’s useful to be able to add extra rows and columns of data to our data frames. There are multiple ways to achieve this (as there always is in R!) depending on your circumstances. To simply append additional rows to an existing data frame we can use the <code>rbind()</code> function and to append columns the <code>cbind()</code> function. Let’s create a couple of test data frames to see this in action using our old friend the <code>data.frame()</code> function.</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1"><span class="co"># rbind for rows</span></a>
-<a class="sourceLine" id="cb143-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb143-3" data-line-number="3">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
-<a class="sourceLine" id="cb143-4" data-line-number="4">df1</a>
-<a class="sourceLine" id="cb143-5" data-line-number="5"><span class="co">##   id height weight</span></a>
-<a class="sourceLine" id="cb143-6" data-line-number="6"><span class="co">## 1  1    120     44</span></a>
-<a class="sourceLine" id="cb143-7" data-line-number="7"><span class="co">## 2  2    150     56</span></a>
-<a class="sourceLine" id="cb143-8" data-line-number="8"><span class="co">## 3  3    132     49</span></a>
-<a class="sourceLine" id="cb143-9" data-line-number="9"><span class="co">## 4  4    122     45</span></a>
-<a class="sourceLine" id="cb143-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb143-11" data-line-number="11">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">119</span>, <span class="dv">110</span>),</a>
-<a class="sourceLine" id="cb143-12" data-line-number="12">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
-<a class="sourceLine" id="cb143-13" data-line-number="13">df2</a>
-<a class="sourceLine" id="cb143-14" data-line-number="14"><span class="co">##   id height weight</span></a>
-<a class="sourceLine" id="cb143-15" data-line-number="15"><span class="co">## 1  5    119     39</span></a>
-<a class="sourceLine" id="cb143-16" data-line-number="16"><span class="co">## 2  6    110     35</span></a>
-<a class="sourceLine" id="cb143-17" data-line-number="17"></a>
-<a class="sourceLine" id="cb143-18" data-line-number="18">df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
-<a class="sourceLine" id="cb143-19" data-line-number="19">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
-<a class="sourceLine" id="cb143-20" data-line-number="20">df3</a>
-<a class="sourceLine" id="cb143-21" data-line-number="21"><span class="co">##   id height weight</span></a>
-<a class="sourceLine" id="cb143-22" data-line-number="22"><span class="co">## 1  1    120     44</span></a>
-<a class="sourceLine" id="cb143-23" data-line-number="23"><span class="co">## 2  2    150     56</span></a>
-<a class="sourceLine" id="cb143-24" data-line-number="24"><span class="co">## 3  3    132     49</span></a>
-<a class="sourceLine" id="cb143-25" data-line-number="25"><span class="co">## 4  4    122     45</span></a>
-<a class="sourceLine" id="cb143-26" data-line-number="26"></a>
-<a class="sourceLine" id="cb143-27" data-line-number="27">df4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;UK&quot;</span>))</a>
-<a class="sourceLine" id="cb143-28" data-line-number="28">df4</a>
-<a class="sourceLine" id="cb143-29" data-line-number="29"><span class="co">##   location</span></a>
-<a class="sourceLine" id="cb143-30" data-line-number="30"><span class="co">## 1       UK</span></a>
-<a class="sourceLine" id="cb143-31" data-line-number="31"><span class="co">## 2       CZ</span></a>
-<a class="sourceLine" id="cb143-32" data-line-number="32"><span class="co">## 3       CZ</span></a>
-<a class="sourceLine" id="cb143-33" data-line-number="33"><span class="co">## 4       UK</span></a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1"><span class="co"># rbind for rows</span></a>
+<a class="sourceLine" id="cb145-2" data-line-number="2">df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
+<a class="sourceLine" id="cb145-3" data-line-number="3">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb145-4" data-line-number="4">df1</a>
+<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="co">##   id height weight</span></a>
+<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="co">## 1  1    120     44</span></a>
+<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="co">## 2  2    150     56</span></a>
+<a class="sourceLine" id="cb145-8" data-line-number="8"><span class="co">## 3  3    132     49</span></a>
+<a class="sourceLine" id="cb145-9" data-line-number="9"><span class="co">## 4  4    122     45</span></a>
+<a class="sourceLine" id="cb145-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb145-11" data-line-number="11">df2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">5</span><span class="op">:</span><span class="dv">6</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">119</span>, <span class="dv">110</span>),</a>
+<a class="sourceLine" id="cb145-12" data-line-number="12">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">39</span>, <span class="dv">35</span>))</a>
+<a class="sourceLine" id="cb145-13" data-line-number="13">df2</a>
+<a class="sourceLine" id="cb145-14" data-line-number="14"><span class="co">##   id height weight</span></a>
+<a class="sourceLine" id="cb145-15" data-line-number="15"><span class="co">## 1  5    119     39</span></a>
+<a class="sourceLine" id="cb145-16" data-line-number="16"><span class="co">## 2  6    110     35</span></a>
+<a class="sourceLine" id="cb145-17" data-line-number="17"></a>
+<a class="sourceLine" id="cb145-18" data-line-number="18">df3 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">id =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>, <span class="dt">height =</span> <span class="kw">c</span>(<span class="dv">120</span>, <span class="dv">150</span>, <span class="dv">132</span>, <span class="dv">122</span>),</a>
+<a class="sourceLine" id="cb145-19" data-line-number="19">                        <span class="dt">weight =</span> <span class="kw">c</span>(<span class="dv">44</span>, <span class="dv">56</span>, <span class="dv">49</span>, <span class="dv">45</span>))</a>
+<a class="sourceLine" id="cb145-20" data-line-number="20">df3</a>
+<a class="sourceLine" id="cb145-21" data-line-number="21"><span class="co">##   id height weight</span></a>
+<a class="sourceLine" id="cb145-22" data-line-number="22"><span class="co">## 1  1    120     44</span></a>
+<a class="sourceLine" id="cb145-23" data-line-number="23"><span class="co">## 2  2    150     56</span></a>
+<a class="sourceLine" id="cb145-24" data-line-number="24"><span class="co">## 3  3    132     49</span></a>
+<a class="sourceLine" id="cb145-25" data-line-number="25"><span class="co">## 4  4    122     45</span></a>
+<a class="sourceLine" id="cb145-26" data-line-number="26"></a>
+<a class="sourceLine" id="cb145-27" data-line-number="27">df4 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">location =</span> <span class="kw">c</span>(<span class="st">&quot;UK&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;CZ&quot;</span>, <span class="st">&quot;UK&quot;</span>))</a>
+<a class="sourceLine" id="cb145-28" data-line-number="28">df4</a>
+<a class="sourceLine" id="cb145-29" data-line-number="29"><span class="co">##   location</span></a>
+<a class="sourceLine" id="cb145-30" data-line-number="30"><span class="co">## 1       UK</span></a>
+<a class="sourceLine" id="cb145-31" data-line-number="31"><span class="co">## 2       CZ</span></a>
+<a class="sourceLine" id="cb145-32" data-line-number="32"><span class="co">## 3       CZ</span></a>
+<a class="sourceLine" id="cb145-33" data-line-number="33"><span class="co">## 4       UK</span></a></code></pre></div>
 <p>We can use the <code>rbind()</code> function to append the rows of data in <code>df2</code> to the rows in <code>df1</code> and assign the new data frame to <code>df_rcomb</code>.</p>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb144-1" data-line-number="1">df_rcomb &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
-<a class="sourceLine" id="cb144-2" data-line-number="2">df_rcomb</a>
-<a class="sourceLine" id="cb144-3" data-line-number="3"><span class="co">##   id height weight</span></a>
-<a class="sourceLine" id="cb144-4" data-line-number="4"><span class="co">## 1  1    120     44</span></a>
-<a class="sourceLine" id="cb144-5" data-line-number="5"><span class="co">## 2  2    150     56</span></a>
-<a class="sourceLine" id="cb144-6" data-line-number="6"><span class="co">## 3  3    132     49</span></a>
-<a class="sourceLine" id="cb144-7" data-line-number="7"><span class="co">## 4  4    122     45</span></a>
-<a class="sourceLine" id="cb144-8" data-line-number="8"><span class="co">## 5  5    119     39</span></a>
-<a class="sourceLine" id="cb144-9" data-line-number="9"><span class="co">## 6  6    110     35</span></a></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">df_rcomb &lt;-<span class="st"> </span><span class="kw">rbind</span>(df1, df2)</a>
+<a class="sourceLine" id="cb146-2" data-line-number="2">df_rcomb</a>
+<a class="sourceLine" id="cb146-3" data-line-number="3"><span class="co">##   id height weight</span></a>
+<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co">## 1  1    120     44</span></a>
+<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co">## 2  2    150     56</span></a>
+<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co">## 3  3    132     49</span></a>
+<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co">## 4  4    122     45</span></a>
+<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="co">## 5  5    119     39</span></a>
+<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="co">## 6  6    110     35</span></a></code></pre></div>
 <p>And <code>cbind</code> to append the column in <code>df4</code> to the <code>df3</code> data frame and assign to df_ccomb`.</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">df_ccomb &lt;-<span class="st"> </span><span class="kw">cbind</span>(df3, df4)</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2">df_ccomb</a>
-<a class="sourceLine" id="cb145-3" data-line-number="3"><span class="co">##   id height weight location</span></a>
-<a class="sourceLine" id="cb145-4" data-line-number="4"><span class="co">## 1  1    120     44       UK</span></a>
-<a class="sourceLine" id="cb145-5" data-line-number="5"><span class="co">## 2  2    150     56       CZ</span></a>
-<a class="sourceLine" id="cb145-6" data-line-number="6"><span class="co">## 3  3    132     49       CZ</span></a>
-<a class="sourceLine" id="cb145-7" data-line-number="7"><span class="co">## 4  4    122     45       UK</span></a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">df_ccomb &lt;-<span class="st"> </span><span class="kw">cbind</span>(df3, df4)</a>
+<a class="sourceLine" id="cb147-2" data-line-number="2">df_ccomb</a>
+<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="co">##   id height weight location</span></a>
+<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co">## 1  1    120     44       UK</span></a>
+<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="co">## 2  2    150     56       CZ</span></a>
+<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="co">## 3  3    132     49       CZ</span></a>
+<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co">## 4  4    122     45       UK</span></a></code></pre></div>
 <p>Another situation when adding a new column to a data frame is useful is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log<sub>10</sub> transformation on the height variable in the <code>df_rcomb</code> data frame we created above. We could just create a separate variable to contains these values but it’s good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let’s call this new variable <code>height_log10</code>.</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1"><span class="co"># log10 transformation</span></a>
-<a class="sourceLine" id="cb146-2" data-line-number="2">df_rcomb<span class="op">$</span>height_log10 &lt;-<span class="st"> </span><span class="kw">log10</span>(df_rcomb<span class="op">$</span>height)</a>
-<a class="sourceLine" id="cb146-3" data-line-number="3">df_rcomb</a>
-<a class="sourceLine" id="cb146-4" data-line-number="4"><span class="co">##   id height weight height_log10</span></a>
-<a class="sourceLine" id="cb146-5" data-line-number="5"><span class="co">## 1  1    120     44     2.079181</span></a>
-<a class="sourceLine" id="cb146-6" data-line-number="6"><span class="co">## 2  2    150     56     2.176091</span></a>
-<a class="sourceLine" id="cb146-7" data-line-number="7"><span class="co">## 3  3    132     49     2.120574</span></a>
-<a class="sourceLine" id="cb146-8" data-line-number="8"><span class="co">## 4  4    122     45     2.086360</span></a>
-<a class="sourceLine" id="cb146-9" data-line-number="9"><span class="co">## 5  5    119     39     2.075547</span></a>
-<a class="sourceLine" id="cb146-10" data-line-number="10"><span class="co">## 6  6    110     35     2.041393</span></a></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1"><span class="co"># log10 transformation</span></a>
+<a class="sourceLine" id="cb148-2" data-line-number="2">df_rcomb<span class="op">$</span>height_log10 &lt;-<span class="st"> </span><span class="kw">log10</span>(df_rcomb<span class="op">$</span>height)</a>
+<a class="sourceLine" id="cb148-3" data-line-number="3">df_rcomb</a>
+<a class="sourceLine" id="cb148-4" data-line-number="4"><span class="co">##   id height weight height_log10</span></a>
+<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="co">## 1  1    120     44     2.079181</span></a>
+<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="co">## 2  2    150     56     2.176091</span></a>
+<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="co">## 3  3    132     49     2.120574</span></a>
+<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="co">## 4  4    122     45     2.086360</span></a>
+<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="co">## 5  5    119     39     2.075547</span></a>
+<a class="sourceLine" id="cb148-10" data-line-number="10"><span class="co">## 6  6    110     35     2.041393</span></a></code></pre></div>
 <p>This situation also crops up when we want to convert an existing variable in a data frame from one data class to another data class. For example, the <code>id</code> variable in the <code>df_rcomb</code> data frame is numeric type data (use the <code>str()</code> or <code>class()</code> functions to check for yourself). If we wanted to convert the <code>id</code> variable to a factor to use later in our analysis we can create a new variable called <code>Fid</code> in our data frame and use the <code>factor()</code> function to convert the <code>id</code> variable.</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1"><span class="co"># convert to a factor </span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2">df_rcomb<span class="op">$</span>Fid &lt;-<span class="st"> </span><span class="kw">factor</span>(df_rcomb<span class="op">$</span>id)</a>
-<a class="sourceLine" id="cb147-3" data-line-number="3">df_rcomb</a>
-<a class="sourceLine" id="cb147-4" data-line-number="4"><span class="co">##   id height weight height_log10 Fid</span></a>
-<a class="sourceLine" id="cb147-5" data-line-number="5"><span class="co">## 1  1    120     44     2.079181   1</span></a>
-<a class="sourceLine" id="cb147-6" data-line-number="6"><span class="co">## 2  2    150     56     2.176091   2</span></a>
-<a class="sourceLine" id="cb147-7" data-line-number="7"><span class="co">## 3  3    132     49     2.120574   3</span></a>
-<a class="sourceLine" id="cb147-8" data-line-number="8"><span class="co">## 4  4    122     45     2.086360   4</span></a>
-<a class="sourceLine" id="cb147-9" data-line-number="9"><span class="co">## 5  5    119     39     2.075547   5</span></a>
-<a class="sourceLine" id="cb147-10" data-line-number="10"><span class="co">## 6  6    110     35     2.041393   6</span></a>
-<a class="sourceLine" id="cb147-11" data-line-number="11"><span class="kw">str</span>(df_rcomb)</a>
-<a class="sourceLine" id="cb147-12" data-line-number="12"><span class="co">## &#39;data.frame&#39;:    6 obs. of  5 variables:</span></a>
-<a class="sourceLine" id="cb147-13" data-line-number="13"><span class="co">##  $ id          : int  1 2 3 4 5 6</span></a>
-<a class="sourceLine" id="cb147-14" data-line-number="14"><span class="co">##  $ height      : num  120 150 132 122 119 110</span></a>
-<a class="sourceLine" id="cb147-15" data-line-number="15"><span class="co">##  $ weight      : num  44 56 49 45 39 35</span></a>
-<a class="sourceLine" id="cb147-16" data-line-number="16"><span class="co">##  $ height_log10: num  2.08 2.18 2.12 2.09 2.08 ...</span></a>
-<a class="sourceLine" id="cb147-17" data-line-number="17"><span class="co">##  $ Fid         : Factor w/ 6 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6</span></a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1"><span class="co"># convert to a factor </span></a>
+<a class="sourceLine" id="cb149-2" data-line-number="2">df_rcomb<span class="op">$</span>Fid &lt;-<span class="st"> </span><span class="kw">factor</span>(df_rcomb<span class="op">$</span>id)</a>
+<a class="sourceLine" id="cb149-3" data-line-number="3">df_rcomb</a>
+<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">##   id height weight height_log10 Fid</span></a>
+<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="co">## 1  1    120     44     2.079181   1</span></a>
+<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">## 2  2    150     56     2.176091   2</span></a>
+<a class="sourceLine" id="cb149-7" data-line-number="7"><span class="co">## 3  3    132     49     2.120574   3</span></a>
+<a class="sourceLine" id="cb149-8" data-line-number="8"><span class="co">## 4  4    122     45     2.086360   4</span></a>
+<a class="sourceLine" id="cb149-9" data-line-number="9"><span class="co">## 5  5    119     39     2.075547   5</span></a>
+<a class="sourceLine" id="cb149-10" data-line-number="10"><span class="co">## 6  6    110     35     2.041393   6</span></a>
+<a class="sourceLine" id="cb149-11" data-line-number="11"><span class="kw">str</span>(df_rcomb)</a>
+<a class="sourceLine" id="cb149-12" data-line-number="12"><span class="co">## &#39;data.frame&#39;:    6 obs. of  5 variables:</span></a>
+<a class="sourceLine" id="cb149-13" data-line-number="13"><span class="co">##  $ id          : int  1 2 3 4 5 6</span></a>
+<a class="sourceLine" id="cb149-14" data-line-number="14"><span class="co">##  $ height      : num  120 150 132 122 119 110</span></a>
+<a class="sourceLine" id="cb149-15" data-line-number="15"><span class="co">##  $ weight      : num  44 56 49 45 39 35</span></a>
+<a class="sourceLine" id="cb149-16" data-line-number="16"><span class="co">##  $ height_log10: num  2.08 2.18 2.12 2.09 2.08 ...</span></a>
+<a class="sourceLine" id="cb149-17" data-line-number="17"><span class="co">##  $ Fid         : Factor w/ 6 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 2 3 4 5 6</span></a></code></pre></div>
 </div>
 <div id="merging-data-frames" class="section level3">
 <h3><span class="header-section-number">3.4.5</span> Merging data frames</h3>
 <p>Instead of just appending either rows or columns to a data frame we can also merge two data frames together. Let’s say we have one data frame that contains taxonomic information on some common UK rocky shore invertebrates (called <code>taxa</code>) and another data frame that contains information on where they are usually found on the rocky shore (called <code>zone</code>). We can merge these two data frames together to produce a single data frame with both taxonomic and location information. Let’s first create both of these data frames (in reality you would probably just import your different datasets).</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">         <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
-<a class="sourceLine" id="cb148-3" data-line-number="3">         <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
-<a class="sourceLine" id="cb148-4" data-line-number="4">taxa</a>
-<a class="sourceLine" id="cb148-5" data-line-number="5"><span class="co">##          GENUS    species           family</span></a>
-<a class="sourceLine" id="cb148-6" data-line-number="6"><span class="co">## 1      Patella    vulgata       patellidae</span></a>
-<a class="sourceLine" id="cb148-7" data-line-number="7"><span class="co">## 2    Littorina   littoria     Littorinidae</span></a>
-<a class="sourceLine" id="cb148-8" data-line-number="8"><span class="co">## 3 Halichondria    panacea  Halichondriidae</span></a>
-<a class="sourceLine" id="cb148-9" data-line-number="9"><span class="co">## 4  Semibalanus balanoides Archaeobalanidae</span></a>
-<a class="sourceLine" id="cb148-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb148-11" data-line-number="11">zone &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, </a>
-<a class="sourceLine" id="cb148-12" data-line-number="12">                             <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-13" data-line-number="13">                   <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, </a>
-<a class="sourceLine" id="cb148-14" data-line-number="14">                               <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
-<a class="sourceLine" id="cb148-15" data-line-number="15">                   <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
-<a class="sourceLine" id="cb148-16" data-line-number="16">zone</a>
-<a class="sourceLine" id="cb148-17" data-line-number="17"><span class="co">##          genus    species    zone</span></a>
-<a class="sourceLine" id="cb148-18" data-line-number="18"><span class="co">## 1    Laminaria   digitata   v_low</span></a>
-<a class="sourceLine" id="cb148-19" data-line-number="19"><span class="co">## 2 Halichondria    panacea     low</span></a>
-<a class="sourceLine" id="cb148-20" data-line-number="20"><span class="co">## 3    Xanthoria  parietina  v_high</span></a>
-<a class="sourceLine" id="cb148-21" data-line-number="21"><span class="co">## 4    Littorina   littoria low_mid</span></a>
-<a class="sourceLine" id="cb148-22" data-line-number="22"><span class="co">## 5  Semibalanus balanoides    high</span></a>
-<a class="sourceLine" id="cb148-23" data-line-number="23"><span class="co">## 6        Fucus   serratus low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">taxa &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">GENUS =</span> <span class="kw">c</span>(<span class="st">&quot;Patella&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Semibalanus&quot;</span>),</a>
+<a class="sourceLine" id="cb150-2" data-line-number="2">         <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;vulgata&quot;</span>, <span class="st">&quot;littoria&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;balanoides&quot;</span>),</a>
+<a class="sourceLine" id="cb150-3" data-line-number="3">         <span class="dt">family =</span> <span class="kw">c</span>(<span class="st">&quot;patellidae&quot;</span>, <span class="st">&quot;Littorinidae&quot;</span>, <span class="st">&quot;Halichondriidae&quot;</span>, <span class="st">&quot;Archaeobalanidae&quot;</span>))</a>
+<a class="sourceLine" id="cb150-4" data-line-number="4">taxa</a>
+<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="co">##          GENUS    species           family</span></a>
+<a class="sourceLine" id="cb150-6" data-line-number="6"><span class="co">## 1      Patella    vulgata       patellidae</span></a>
+<a class="sourceLine" id="cb150-7" data-line-number="7"><span class="co">## 2    Littorina   littoria     Littorinidae</span></a>
+<a class="sourceLine" id="cb150-8" data-line-number="8"><span class="co">## 3 Halichondria    panacea  Halichondriidae</span></a>
+<a class="sourceLine" id="cb150-9" data-line-number="9"><span class="co">## 4  Semibalanus balanoides Archaeobalanidae</span></a>
+<a class="sourceLine" id="cb150-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb150-11" data-line-number="11">zone &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">genus =</span> <span class="kw">c</span>(<span class="st">&quot;Laminaria&quot;</span>, <span class="st">&quot;Halichondria&quot;</span>, <span class="st">&quot;Xanthoria&quot;</span>, <span class="st">&quot;Littorina&quot;</span>, </a>
+<a class="sourceLine" id="cb150-12" data-line-number="12">                             <span class="st">&quot;Semibalanus&quot;</span>, <span class="st">&quot;Fucus&quot;</span>),</a>
+<a class="sourceLine" id="cb150-13" data-line-number="13">                   <span class="dt">species =</span> <span class="kw">c</span>(<span class="st">&quot;digitata&quot;</span>, <span class="st">&quot;panacea&quot;</span>, <span class="st">&quot;parietina&quot;</span>, <span class="st">&quot;littoria&quot;</span>, </a>
+<a class="sourceLine" id="cb150-14" data-line-number="14">                               <span class="st">&quot;balanoides&quot;</span>, <span class="st">&quot;serratus&quot;</span>),</a>
+<a class="sourceLine" id="cb150-15" data-line-number="15">                   <span class="dt">zone =</span> <span class="kw">c</span>( <span class="st">&quot;v_low&quot;</span>, <span class="st">&quot;low&quot;</span>, <span class="st">&quot;v_high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>, <span class="st">&quot;high&quot;</span>, <span class="st">&quot;low_mid&quot;</span>))</a>
+<a class="sourceLine" id="cb150-16" data-line-number="16">zone</a>
+<a class="sourceLine" id="cb150-17" data-line-number="17"><span class="co">##          genus    species    zone</span></a>
+<a class="sourceLine" id="cb150-18" data-line-number="18"><span class="co">## 1    Laminaria   digitata   v_low</span></a>
+<a class="sourceLine" id="cb150-19" data-line-number="19"><span class="co">## 2 Halichondria    panacea     low</span></a>
+<a class="sourceLine" id="cb150-20" data-line-number="20"><span class="co">## 3    Xanthoria  parietina  v_high</span></a>
+<a class="sourceLine" id="cb150-21" data-line-number="21"><span class="co">## 4    Littorina   littoria low_mid</span></a>
+<a class="sourceLine" id="cb150-22" data-line-number="22"><span class="co">## 5  Semibalanus balanoides    high</span></a>
+<a class="sourceLine" id="cb150-23" data-line-number="23"><span class="co">## 6        Fucus   serratus low_mid</span></a></code></pre></div>
 <p>Because both of our data frames contains at least one variable in common (<code>species</code> in our case) we can simply use the <code>merge()</code> function to create a new data frame called <code>taxa_zone</code>.</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone)</a>
-<a class="sourceLine" id="cb149-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
-<a class="sourceLine" id="cb149-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
-<a class="sourceLine" id="cb149-5" data-line-number="5"><span class="co">## 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
-<a class="sourceLine" id="cb149-6" data-line-number="6"><span class="co">## 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone)</a>
+<a class="sourceLine" id="cb151-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb151-5" data-line-number="5"><span class="co">## 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co">## 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a></code></pre></div>
 <p>Notice that the merged data frame contains only the rows that have <code>species</code> information in <strong>both</strong> data frames. There are also two columns called <code>GENUS</code> and <code>genus</code> because the <code>merge()</code> function treats these as two different variables that originate from the two data frames.</p>
 <p>If we want to include all data from both data frames then we will need to use the <code>all = TRUE</code> argument. The missing values will be included as <code>NA</code>.</p>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb150-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb150-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
-<a class="sourceLine" id="cb150-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
-<a class="sourceLine" id="cb150-5" data-line-number="5"><span class="co">## 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
-<a class="sourceLine" id="cb150-6" data-line-number="6"><span class="co">## 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a>
-<a class="sourceLine" id="cb150-7" data-line-number="7"><span class="co">## 4    vulgata      Patella       patellidae         &lt;NA&gt;    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb150-8" data-line-number="8"><span class="co">## 5   digitata         &lt;NA&gt;             &lt;NA&gt;    Laminaria   v_low</span></a>
-<a class="sourceLine" id="cb150-9" data-line-number="9"><span class="co">## 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
-<a class="sourceLine" id="cb150-10" data-line-number="10"><span class="co">## 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb152-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb152-3" data-line-number="3"><span class="co">##      species        GENUS           family        genus    zone</span></a>
+<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae  Semibalanus    high</span></a>
+<a class="sourceLine" id="cb152-5" data-line-number="5"><span class="co">## 2   littoria    Littorina     Littorinidae    Littorina low_mid</span></a>
+<a class="sourceLine" id="cb152-6" data-line-number="6"><span class="co">## 3    panacea Halichondria  Halichondriidae Halichondria     low</span></a>
+<a class="sourceLine" id="cb152-7" data-line-number="7"><span class="co">## 4    vulgata      Patella       patellidae         &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb152-8" data-line-number="8"><span class="co">## 5   digitata         &lt;NA&gt;             &lt;NA&gt;    Laminaria   v_low</span></a>
+<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="co">## 6  parietina         &lt;NA&gt;             &lt;NA&gt;    Xanthoria  v_high</span></a>
+<a class="sourceLine" id="cb152-10" data-line-number="10"><span class="co">## 7   serratus         &lt;NA&gt;             &lt;NA&gt;        Fucus low_mid</span></a></code></pre></div>
 <p>If the variable names that you want to base the merge on are different in each data frame (for example <code>GENUS</code> and <code>genus</code>) you can specify the names in the first data frame (known as <code>x</code>) and the second data frame (known as <code>y</code>) using the <code>by.x =</code> and <code>by.y =</code> arguments.</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">taxa_zone</a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="co">##          GENUS  species.x           family  species.y    zone</span></a>
-<a class="sourceLine" id="cb151-4" data-line-number="4"><span class="co">## 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
-<a class="sourceLine" id="cb151-5" data-line-number="5"><span class="co">## 2    Littorina   littoria     Littorinidae   littoria low_mid</span></a>
-<a class="sourceLine" id="cb151-6" data-line-number="6"><span class="co">## 3      Patella    vulgata       patellidae       &lt;NA&gt;    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb151-7" data-line-number="7"><span class="co">## 4  Semibalanus balanoides Archaeobalanidae balanoides    high</span></a>
-<a class="sourceLine" id="cb151-8" data-line-number="8"><span class="co">## 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
-<a class="sourceLine" id="cb151-9" data-line-number="9"><span class="co">## 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
-<a class="sourceLine" id="cb151-10" data-line-number="10"><span class="co">## 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="st">&quot;GENUS&quot;</span>, <span class="dt">by.y =</span> <span class="st">&quot;genus&quot;</span>, <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb153-2" data-line-number="2">taxa_zone</a>
+<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">##          GENUS  species.x           family  species.y    zone</span></a>
+<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">## 1 Halichondria    panacea  Halichondriidae    panacea     low</span></a>
+<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co">## 2    Littorina   littoria     Littorinidae   littoria low_mid</span></a>
+<a class="sourceLine" id="cb153-6" data-line-number="6"><span class="co">## 3      Patella    vulgata       patellidae       &lt;NA&gt;    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb153-7" data-line-number="7"><span class="co">## 4  Semibalanus balanoides Archaeobalanidae balanoides    high</span></a>
+<a class="sourceLine" id="cb153-8" data-line-number="8"><span class="co">## 5        Fucus       &lt;NA&gt;             &lt;NA&gt;   serratus low_mid</span></a>
+<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="co">## 6    Laminaria       &lt;NA&gt;             &lt;NA&gt;   digitata   v_low</span></a>
+<a class="sourceLine" id="cb153-10" data-line-number="10"><span class="co">## 7    Xanthoria       &lt;NA&gt;             &lt;NA&gt;  parietina  v_high</span></a></code></pre></div>
 <p>Or using multiple variable names.</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
-<a class="sourceLine" id="cb152-2" data-line-number="2">                    <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb152-3" data-line-number="3">taxa_zone</a>
-<a class="sourceLine" id="cb152-4" data-line-number="4"><span class="co">##      species        GENUS           family    zone</span></a>
-<a class="sourceLine" id="cb152-5" data-line-number="5"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae    high</span></a>
-<a class="sourceLine" id="cb152-6" data-line-number="6"><span class="co">## 2   littoria    Littorina     Littorinidae low_mid</span></a>
-<a class="sourceLine" id="cb152-7" data-line-number="7"><span class="co">## 3    panacea Halichondria  Halichondriidae     low</span></a>
-<a class="sourceLine" id="cb152-8" data-line-number="8"><span class="co">## 4    vulgata      Patella       patellidae    &lt;NA&gt;</span></a>
-<a class="sourceLine" id="cb152-9" data-line-number="9"><span class="co">## 5   digitata    Laminaria             &lt;NA&gt;   v_low</span></a>
-<a class="sourceLine" id="cb152-10" data-line-number="10"><span class="co">## 6  parietina    Xanthoria             &lt;NA&gt;  v_high</span></a>
-<a class="sourceLine" id="cb152-11" data-line-number="11"><span class="co">## 7   serratus        Fucus             &lt;NA&gt; low_mid</span></a></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">taxa_zone &lt;-<span class="st"> </span><span class="kw">merge</span>(<span class="dt">x =</span> taxa, <span class="dt">y =</span> zone, <span class="dt">by.x =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;GENUS&quot;</span>), </a>
+<a class="sourceLine" id="cb154-2" data-line-number="2">                    <span class="dt">by.y =</span> <span class="kw">c</span>(<span class="st">&quot;species&quot;</span>, <span class="st">&quot;genus&quot;</span>), <span class="dt">all =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb154-3" data-line-number="3">taxa_zone</a>
+<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="co">##      species        GENUS           family    zone</span></a>
+<a class="sourceLine" id="cb154-5" data-line-number="5"><span class="co">## 1 balanoides  Semibalanus Archaeobalanidae    high</span></a>
+<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="co">## 2   littoria    Littorina     Littorinidae low_mid</span></a>
+<a class="sourceLine" id="cb154-7" data-line-number="7"><span class="co">## 3    panacea Halichondria  Halichondriidae     low</span></a>
+<a class="sourceLine" id="cb154-8" data-line-number="8"><span class="co">## 4    vulgata      Patella       patellidae    &lt;NA&gt;</span></a>
+<a class="sourceLine" id="cb154-9" data-line-number="9"><span class="co">## 5   digitata    Laminaria             &lt;NA&gt;   v_low</span></a>
+<a class="sourceLine" id="cb154-10" data-line-number="10"><span class="co">## 6  parietina    Xanthoria             &lt;NA&gt;  v_high</span></a>
+<a class="sourceLine" id="cb154-11" data-line-number="11"><span class="co">## 7   serratus        Fucus             &lt;NA&gt; low_mid</span></a></code></pre></div>
 </div>
 <div id="reshape" class="section level3">
 <h3><span class="header-section-number">3.4.6</span> Reshaping data frames</h3>
@@ -1706,57 +1808,57 @@ M
 <p> </p>
 <p>Whilst there’s no inherent problem with either of these formats we will sometimes need to convert between the two because some functions will require a specific format for them to work. The most common format (and arguably the most useful) is the long format.</p>
 <p>There are many ways to convert between these two formats but we’ll use the <code>melt()</code> and <code>dcast()</code> functions from the <code>reshape2</code> package (you will need to install this package first). The <code>melt()</code> function is used to convert from wide to long formats. The first argument for the <code>melt()</code> function is the data frame we want to melt (in our case <code>wide_data</code>). The <code>id.vars = c(&quot;subject&quot;, &quot;sex&quot;)</code> argument is a vector of the variables you want to stack, the <code>measured.vars = c(&quot;control&quot;, &quot;cond1&quot;, &quot;cond2&quot;)</code> argument identifies the columns of the measurements in different conditions, the <code>variable.name = &quot;condition&quot;</code> argument specifies what you want to call the stacked column of your different conditions in your output data frame and <code>value.name = &quot;measurement&quot;</code> is the name of the column of your stacked measurements in your output data frame.</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
-<a class="sourceLine" id="cb153-2" data-line-number="2">wide_data    <span class="co"># remind ourselves what the wide format looks like</span></a>
-<a class="sourceLine" id="cb153-3" data-line-number="3"><span class="co">##   subject sex control cond1 cond2</span></a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="co">## 1       A   M    12.9  14.2   8.7</span></a>
-<a class="sourceLine" id="cb153-5" data-line-number="5"><span class="co">## 2       B   F     5.2  12.6  10.1</span></a>
-<a class="sourceLine" id="cb153-6" data-line-number="6"><span class="co">## 3       C   F     8.9  12.1  14.2</span></a>
-<a class="sourceLine" id="cb153-7" data-line-number="7"><span class="co">## 4       D   M    10.5  12.9  11.9</span></a>
-<a class="sourceLine" id="cb153-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb153-9" data-line-number="9"><span class="co"># convert wide to long</span></a>
-<a class="sourceLine" id="cb153-10" data-line-number="10">my_long_df &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="dt">data =</span> wide_data, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;sex&quot;</span>),</a>
-<a class="sourceLine" id="cb153-11" data-line-number="11">                   <span class="dt">measured.vars =</span> <span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;cond1&quot;</span>, <span class="st">&quot;cond2&quot;</span>),</a>
-<a class="sourceLine" id="cb153-12" data-line-number="12">                   <span class="dt">variable.name =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;measurement&quot;</span>)</a>
-<a class="sourceLine" id="cb153-13" data-line-number="13">my_long_df</a>
-<a class="sourceLine" id="cb153-14" data-line-number="14"><span class="co">##    subject sex condition measurement</span></a>
-<a class="sourceLine" id="cb153-15" data-line-number="15"><span class="co">## 1        A   M   control        12.9</span></a>
-<a class="sourceLine" id="cb153-16" data-line-number="16"><span class="co">## 2        B   F   control         5.2</span></a>
-<a class="sourceLine" id="cb153-17" data-line-number="17"><span class="co">## 3        C   F   control         8.9</span></a>
-<a class="sourceLine" id="cb153-18" data-line-number="18"><span class="co">## 4        D   M   control        10.5</span></a>
-<a class="sourceLine" id="cb153-19" data-line-number="19"><span class="co">## 5        A   M     cond1        14.2</span></a>
-<a class="sourceLine" id="cb153-20" data-line-number="20"><span class="co">## 6        B   F     cond1        12.6</span></a>
-<a class="sourceLine" id="cb153-21" data-line-number="21"><span class="co">## 7        C   F     cond1        12.1</span></a>
-<a class="sourceLine" id="cb153-22" data-line-number="22"><span class="co">## 8        D   M     cond1        12.9</span></a>
-<a class="sourceLine" id="cb153-23" data-line-number="23"><span class="co">## 9        A   M     cond2         8.7</span></a>
-<a class="sourceLine" id="cb153-24" data-line-number="24"><span class="co">## 10       B   F     cond2        10.1</span></a>
-<a class="sourceLine" id="cb153-25" data-line-number="25"><span class="co">## 11       C   F     cond2        14.2</span></a>
-<a class="sourceLine" id="cb153-26" data-line-number="26"><span class="co">## 12       D   M     cond2        11.9</span></a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1"><span class="kw">library</span>(reshape2)</a>
+<a class="sourceLine" id="cb155-2" data-line-number="2">wide_data    <span class="co"># remind ourselves what the wide format looks like</span></a>
+<a class="sourceLine" id="cb155-3" data-line-number="3"><span class="co">##   subject sex control cond1 cond2</span></a>
+<a class="sourceLine" id="cb155-4" data-line-number="4"><span class="co">## 1       A   M    12.9  14.2   8.7</span></a>
+<a class="sourceLine" id="cb155-5" data-line-number="5"><span class="co">## 2       B   F     5.2  12.6  10.1</span></a>
+<a class="sourceLine" id="cb155-6" data-line-number="6"><span class="co">## 3       C   F     8.9  12.1  14.2</span></a>
+<a class="sourceLine" id="cb155-7" data-line-number="7"><span class="co">## 4       D   M    10.5  12.9  11.9</span></a>
+<a class="sourceLine" id="cb155-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb155-9" data-line-number="9"><span class="co"># convert wide to long</span></a>
+<a class="sourceLine" id="cb155-10" data-line-number="10">my_long_df &lt;-<span class="st"> </span><span class="kw">melt</span>(<span class="dt">data =</span> wide_data, <span class="dt">id.vars =</span> <span class="kw">c</span>(<span class="st">&quot;subject&quot;</span>, <span class="st">&quot;sex&quot;</span>),</a>
+<a class="sourceLine" id="cb155-11" data-line-number="11">                   <span class="dt">measured.vars =</span> <span class="kw">c</span>(<span class="st">&quot;control&quot;</span>, <span class="st">&quot;cond1&quot;</span>, <span class="st">&quot;cond2&quot;</span>),</a>
+<a class="sourceLine" id="cb155-12" data-line-number="12">                   <span class="dt">variable.name =</span> <span class="st">&quot;condition&quot;</span>, <span class="dt">value.name =</span> <span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb155-13" data-line-number="13">my_long_df</a>
+<a class="sourceLine" id="cb155-14" data-line-number="14"><span class="co">##    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb155-15" data-line-number="15"><span class="co">## 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb155-16" data-line-number="16"><span class="co">## 2        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb155-17" data-line-number="17"><span class="co">## 3        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb155-18" data-line-number="18"><span class="co">## 4        D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb155-19" data-line-number="19"><span class="co">## 5        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb155-20" data-line-number="20"><span class="co">## 6        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb155-21" data-line-number="21"><span class="co">## 7        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb155-22" data-line-number="22"><span class="co">## 8        D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb155-23" data-line-number="23"><span class="co">## 9        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb155-24" data-line-number="24"><span class="co">## 10       B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb155-25" data-line-number="25"><span class="co">## 11       C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb155-26" data-line-number="26"><span class="co">## 12       D   M     cond2        11.9</span></a></code></pre></div>
 <p>The <code>dcast()</code> function is used to convert from a long format data frame to a wide format data frame. The first argument is again is the data frame we want to cast (<code>long_data</code> for this example). The second argument is in formula syntax. The <code>subject + age</code> bit of the formula means that we want to keep these columns separate, and the <code>~ condition</code> part is the column that contains the labels that we want to split into new columns in our new data frame. The <code>value.var = &quot;measurement&quot;</code> argument is the column that contains the measured data.</p>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1">long_data   <span class="co"># remind ourselves what the long format look like</span></a>
-<a class="sourceLine" id="cb154-2" data-line-number="2"><span class="co">##    subject sex condition measurement</span></a>
-<a class="sourceLine" id="cb154-3" data-line-number="3"><span class="co">## 1        A   M   control        12.9</span></a>
-<a class="sourceLine" id="cb154-4" data-line-number="4"><span class="co">## 2        A   M     cond1        14.2</span></a>
-<a class="sourceLine" id="cb154-5" data-line-number="5"><span class="co">## 3        A   M     cond2         8.7</span></a>
-<a class="sourceLine" id="cb154-6" data-line-number="6"><span class="co">## 4        B   F   control         5.2</span></a>
-<a class="sourceLine" id="cb154-7" data-line-number="7"><span class="co">## 5        B   F     cond1        12.6</span></a>
-<a class="sourceLine" id="cb154-8" data-line-number="8"><span class="co">## 6        B   F     cond2        10.1</span></a>
-<a class="sourceLine" id="cb154-9" data-line-number="9"><span class="co">## 7        C   F   control         8.9</span></a>
-<a class="sourceLine" id="cb154-10" data-line-number="10"><span class="co">## 8        C   F     cond1        12.1</span></a>
-<a class="sourceLine" id="cb154-11" data-line-number="11"><span class="co">## 9        C   F     cond2        14.2</span></a>
-<a class="sourceLine" id="cb154-12" data-line-number="12"><span class="co">## 10       D   M   control        10.5</span></a>
-<a class="sourceLine" id="cb154-13" data-line-number="13"><span class="co">## 11       D   M     cond1        12.9</span></a>
-<a class="sourceLine" id="cb154-14" data-line-number="14"><span class="co">## 12       D   M     cond2        11.9</span></a>
-<a class="sourceLine" id="cb154-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb154-16" data-line-number="16"><span class="co"># convert long to wide</span></a>
-<a class="sourceLine" id="cb154-17" data-line-number="17">my_wide_df &lt;-<span class="st"> </span><span class="kw">dcast</span>(<span class="dt">data =</span> long_data, subject <span class="op">+</span><span class="st"> </span>sex <span class="op">~</span><span class="st"> </span>condition, </a>
-<a class="sourceLine" id="cb154-18" data-line-number="18">                    <span class="dt">value.var =</span> <span class="st">&quot;measurement&quot;</span>)</a>
-<a class="sourceLine" id="cb154-19" data-line-number="19">my_wide_df</a>
-<a class="sourceLine" id="cb154-20" data-line-number="20"><span class="co">##   subject sex cond1 cond2 control</span></a>
-<a class="sourceLine" id="cb154-21" data-line-number="21"><span class="co">## 1       A   M  14.2   8.7    12.9</span></a>
-<a class="sourceLine" id="cb154-22" data-line-number="22"><span class="co">## 2       B   F  12.6  10.1     5.2</span></a>
-<a class="sourceLine" id="cb154-23" data-line-number="23"><span class="co">## 3       C   F  12.1  14.2     8.9</span></a>
-<a class="sourceLine" id="cb154-24" data-line-number="24"><span class="co">## 4       D   M  12.9  11.9    10.5</span></a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1">long_data   <span class="co"># remind ourselves what the long format look like</span></a>
+<a class="sourceLine" id="cb156-2" data-line-number="2"><span class="co">##    subject sex condition measurement</span></a>
+<a class="sourceLine" id="cb156-3" data-line-number="3"><span class="co">## 1        A   M   control        12.9</span></a>
+<a class="sourceLine" id="cb156-4" data-line-number="4"><span class="co">## 2        A   M     cond1        14.2</span></a>
+<a class="sourceLine" id="cb156-5" data-line-number="5"><span class="co">## 3        A   M     cond2         8.7</span></a>
+<a class="sourceLine" id="cb156-6" data-line-number="6"><span class="co">## 4        B   F   control         5.2</span></a>
+<a class="sourceLine" id="cb156-7" data-line-number="7"><span class="co">## 5        B   F     cond1        12.6</span></a>
+<a class="sourceLine" id="cb156-8" data-line-number="8"><span class="co">## 6        B   F     cond2        10.1</span></a>
+<a class="sourceLine" id="cb156-9" data-line-number="9"><span class="co">## 7        C   F   control         8.9</span></a>
+<a class="sourceLine" id="cb156-10" data-line-number="10"><span class="co">## 8        C   F     cond1        12.1</span></a>
+<a class="sourceLine" id="cb156-11" data-line-number="11"><span class="co">## 9        C   F     cond2        14.2</span></a>
+<a class="sourceLine" id="cb156-12" data-line-number="12"><span class="co">## 10       D   M   control        10.5</span></a>
+<a class="sourceLine" id="cb156-13" data-line-number="13"><span class="co">## 11       D   M     cond1        12.9</span></a>
+<a class="sourceLine" id="cb156-14" data-line-number="14"><span class="co">## 12       D   M     cond2        11.9</span></a>
+<a class="sourceLine" id="cb156-15" data-line-number="15"></a>
+<a class="sourceLine" id="cb156-16" data-line-number="16"><span class="co"># convert long to wide</span></a>
+<a class="sourceLine" id="cb156-17" data-line-number="17">my_wide_df &lt;-<span class="st"> </span><span class="kw">dcast</span>(<span class="dt">data =</span> long_data, subject <span class="op">+</span><span class="st"> </span>sex <span class="op">~</span><span class="st"> </span>condition, </a>
+<a class="sourceLine" id="cb156-18" data-line-number="18">                    <span class="dt">value.var =</span> <span class="st">&quot;measurement&quot;</span>)</a>
+<a class="sourceLine" id="cb156-19" data-line-number="19">my_wide_df</a>
+<a class="sourceLine" id="cb156-20" data-line-number="20"><span class="co">##   subject sex cond1 cond2 control</span></a>
+<a class="sourceLine" id="cb156-21" data-line-number="21"><span class="co">## 1       A   M  14.2   8.7    12.9</span></a>
+<a class="sourceLine" id="cb156-22" data-line-number="22"><span class="co">## 2       B   F  12.6  10.1     5.2</span></a>
+<a class="sourceLine" id="cb156-23" data-line-number="23"><span class="co">## 3       C   F  12.1  14.2     8.9</span></a>
+<a class="sourceLine" id="cb156-24" data-line-number="24"><span class="co">## 4       D   M  12.9  11.9    10.5</span></a></code></pre></div>
 </div>
 </div>
             </section>
