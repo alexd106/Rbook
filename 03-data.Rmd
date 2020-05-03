@@ -813,62 +813,27 @@ taxa_zone
 
 Reshaping data into different formats is a common task. With rectangular type data (data frames have the same number of rows in each column) there are two main data frame shapes that you will come across: the 'long' format (sometimes called stacked) and the 'wide' format. An example of a long format data frame is given below. We can see that each row is a single observation from an individual subject and each subject can have multiple rows. This results in a single column of our `measurement`. 
 
-```{r dw32, echo=FALSE}
-long_data <- read.table(header=TRUE, text='
- subject sex condition measurement
-       A   M   control        12.9
-       A   M     cond1        14.2
-       A   M     cond2        8.7
-       B   F   control        5.2
-       B   F     cond1        12.6
-       B   F     cond2        10.1
-       C   F   control        8.9
-       C   F     cond1        12.1
-       C   F     cond2        14.2
-       D   M   control        10.5
-       D   M     cond1        12.9
-       D   M     cond2        11.9
-')
-```
-
-\  
-
-```{r dw33-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
-library(kableExtra)
-kable(long_data) %>%
-  kable_styling(bootstrap_options = "striped", full_width = F)
-```
-
-```{r dw33-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
-library(kableExtra)
-kable(long_data, "latex", booktabs = TRUE) %>%
-  kable_styling(bootstrap_options = "striped", full_width = F)
+```{r dw32, echo=TRUE, collapse=TRUE}
+long_data <- data.frame(
+             subject = rep(c("A", "B", "C", "D"), each = 3),
+             sex = rep(c("M", "F", "F", "M"), each =3),
+             condition = rep(c("control", "cond1", "cond2"), times = 4),
+             measurement = c(12.9, 14.2, 8.7, 5.2, 12.6, 10.1, 8.9,
+                             12.1, 14.2, 10.5, 12.9, 11.9))
+long_data
 ```
 
 \  
 
 We can also format the same data in the wide format as shown below. In this format we have multiple observations from each subject in a single row with measurements in different columns (`control`, `cond1` and `cond2`). This is a common format when you have repeated measurements from sampling units.
 
-```{r dw34, echo=FALSE}
-wide_data <- read.table(header=TRUE, text='
- subject sex control cond1 cond2
-       A   M    12.9 14.2  8.7
-       B   F    5.2  12.6  10.1
-       C   F    8.9  12.1  14.2
-       D   M    10.5 12.9  11.9
-')
-```
-
-\  
-
-```{r dw35-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
-kable(wide_data) %>%
-  kable_styling(bootstrap_options = "striped", full_width = F)
-```
-
-```{r dw35-latex, echo=FALSE, eval=knitr::is_latex_output(), warning=FALSE}
-kable(wide_data, "latex", booktabs = TRUE) %>%
-  kable_styling(bootstrap_options = "striped", full_width = F)
+```{r dw34, echo=TRUE, collapse=TRUE}
+wide_data <- data.frame(subject = c("A", "B", "C", "D"),
+               sex = c("M", "F", "F", "M"),
+               control = c(12.9, 5.2, 8.9, 10.5),
+               cond1 = c(14.2, 12.6, 12.1, 12.9),
+               cond2 = c(8.7, 10.1, 14.2, 11.9))
+wide_data
 ```
 
 \  
