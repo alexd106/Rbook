@@ -128,6 +128,7 @@
 [rm-lesson]:https://rmarkdown.rstudio.com/lesson-1.html
 [rm-gallery]: https://rmarkdown.rstudio.com/gallery.html
 [rs-articles]: https://rmarkdown.rstudio.com/articles.html
+[r-rprog]: https://bookdown.org/rdpeng/rprogdatascience/
 
 <!--Misc Links-->
 [r4stats]: http://r4stats.com/articles/popularity/
