@@ -156,6 +156,9 @@
 [dynamite-plot2]: https://thenode.biologists.com/leaving-bar-five-steps/research/
 [colours]: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 [lowess]: https://en.wikipedia.org/wiki/Local_regression
+[show-code]: https://stackoverflow.com/questions/19226816/how-can-i-view-the-source-code-for-a-function
+[francesinha]: https://en.wikipedia.org/wiki/Francesinha
+[scoping]: https://www.r-bloggers.com/dont-run-afoul-of-scoping-rules-in-r/
 
 <!--Exercises Links-->
 [exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
