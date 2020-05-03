@@ -221,7 +221,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually speicify the method. Instead of a wiggly line, we want a nice simple 'line of best fit' to be drawn using a method called "lm" (short for linear model - see [Chapter 6](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
+Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called "LOESS" (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. `ggplot2` will use LOESS as default when you have < 1000 observations, so we'll need to manually specify the method. Instead of a wiggly line, we want a nice simple 'line of best fit' to be drawn using a method called "lm" (short for linear model - see [Chapter 6](#stats_r) for more details). Try looking at the help file, using `?geom_smooth`, to see what other options are available for the `method =` argument. 
 
 While we're at it, let's get rid of the confidence interval ribbon around the line. We prefer to do this as we think it's clearer to the audience that this isn't a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the `se =` argument (short for standard error) to `FALSE`.
 
@@ -430,7 +430,7 @@ An old headache when using `ggplot2` was that it could be difficult to create a 
 
 \  
 
-```{r side-by-side-patchwork, echo=FALSE, out.width = "85%", fig.align = "center", message=FALSE}
+```{r side-by-side-patchwork, echo=TRUE, out.width = "85%", fig.align = "center", message=FALSE}
 rbook_figure / final_figure
 ```
 
