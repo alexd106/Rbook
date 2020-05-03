@@ -196,14 +196,14 @@ knitr::kable(rbind(head(flowers), tail(flowers)), row.names = FALSE, "latex", bo
 
 There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an `NA` just as we did with our vectors. 
 
-We can construct a data frame from existing data objects such as vectors using the `data.frame()`\index{data.frame()} function. As an example, let's create three vectors `height`, `weight` and `p.names` and include all of these vectors in a data frame object called `dataf`.
+We can construct a data frame from existing data objects such as vectors using the `data.frame()`\index{data.frame()} function. As an example, let's create three vectors `p.height`, `p.weight` and `p.names` and include all of these vectors in a data frame object called `dataf`.
 
 ```{r dataf, echo=TRUE, collapse=TRUE}
-height <- c(180, 155, 160, 167, 181)
-weight <- c(65, 50, 52, 58, 70)
+p.height <- c(180, 155, 160, 167, 181)
+p.weight <- c(65, 50, 52, 58, 70)
 p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
 
-dataf <- data.frame(height = height, weight = weight, names = p.names)
+dataf <- data.frame(height = p.height, weight = p.weight, names = p.names)
 dataf
 ```
 
@@ -224,11 +224,11 @@ The `str()` function gives us the data frame dimensions and also reminds us that
 Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). Note, from R version 4.0.0 the default is now `stringsAsFactors = FALSE`.  
 
 ```{r dataf4, echo=TRUE, collapse=TRUE}
-height <- c(180, 155, 160, 167, 181)
-weight <- c(65, 50, 52, 58, 70)
+p.height <- c(180, 155, 160, 167, 181)
+p.weight <- c(65, 50, 52, 58, 70)
 p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
 
-dataf <- data.frame(height = height, weight = weight, names = p.names, 
+dataf <- data.frame(height = p.height, weight = p.weight, names = p.names, 
 										stringsAsFactors = FALSE)
 str(dataf)
 ```
@@ -354,7 +354,7 @@ In file(file, "rt") :
   cannot open file 'flower.txt': No such file or directory
 ```
 
-This error message is telling you that R cannot find the file you are trying to import. It usually rears it's head for one of a couple of reasons (or all of them!). The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Lastly, the file is not where you say it is or you've an used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
+This error message is telling you that R cannot find the file you are trying to import. It usually rears its head for one of a couple of reasons (or all of them!). The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Lastly, the file is not where you say it is or you've used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
 
 Another really common mistake is to forget to include the `header = TRUE` argument when the first row of the data contains variable names. For example, if we omit this argument when we import our `flowers.txt` file everything looks OK at first (no error message at least)
 
@@ -720,7 +720,7 @@ df_ccomb <- cbind(df3, df4)
 df_ccomb
 ```
 
-Another situation when adding a new column to a data frame is useful is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log~10~ transformation on the height variable in the `df_rcomb` data frame we created above. We could just create a separate variable to contains these values but it's good practice to create this variable as new column inside our existing data frame so we keep all of our data together. Let's call this new variable `height_log10`.  
+Another situation when adding a new column to a data frame is useful is when you want to perform some kind of transformation on an existing variable. For example, say we wanted to apply a log~10~ transformation on the height variable in the `df_rcomb` data frame we created above. We could just create a separate variable to contains these values but it's good practice to create this variable as a new column inside our existing data frame so we keep all of our data together. Let's call this new variable `height_log10`.  
 
 ```{r dw26, echo=TRUE, collapse=TRUE}
 # log10 transformation
