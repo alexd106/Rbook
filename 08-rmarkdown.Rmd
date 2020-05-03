@@ -167,7 +167,7 @@ output: html_document
 ---
 ```
 
-In the YAML header above the output format is set to HTML. If you would like to change the output to pdf format then you can change it from `output: html_document` to  `output: pdf_document` (you can also set more than one output format if you like). You can also change the default font and font size for the whole document and even include fancy options such as a table of contents and inline references and a bibliography. If you want to explore the plethora of other options see [here][bookdownr]. Just a note of caution, many of the options you can specify in the YAML header will work with both HTML and pdf formatted documents, but not all. If you need multiple output formats for your R markdown document check whether your YAML options are compatible between these formats. Also, indentation in the YAML header has a meaning to be careful when aligning text. For example, if you want to include a table of contents you would modify the `output:` field in the YAML header as follows
+In the YAML header above the output format is set to HTML. If you would like to change the output to pdf format then you can change it from `output: html_document` to  `output: pdf_document` (you can also set more than one output format if you like). You can also change the default font and font size for the whole document and even include fancy options such as a table of contents and inline references and a bibliography. If you want to explore the plethora of other options see [here][bookdownr]. Just a note of caution, many of the options you can specify in the YAML header will work with both HTML and pdf formatted documents, but not all. If you need multiple output formats for your R markdown document check whether your YAML options are compatible between these formats. Also, indentation in the YAML header has a meaning, so be careful when aligning text. For example, if you want to include a table of contents you would modify the `output:` field in the YAML header as follows
 
 ```yaml
 ---
@@ -352,7 +352,7 @@ resulting in:
 
 The code above will only work if the image file (`Cute_grey_kitten.jpg`) is in the right place relative to where you saved your `.Rmd` file. In the example above the image file is in a sub directory (folder) called `images` in the directory where we saved our `my_first_rmarkdown.Rmd` file. You can embed images saved in many different file types but perhaps the most common are `.jpg` and `.png`. 
 
-I think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it's also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this I'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
+I think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this I'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
 
 ````
 `r ''````{r, echo=FALSE, fig.align='center', out.width='50%'}
@@ -382,7 +382,7 @@ which gives you:
 
 ### Code chunks {#code_chunks}
 
-Now to the heart of the matter. To include R code into your R markdown document you simply place your code into a 'code chunk'. All code chunks start and end with three backticks ```` ``` ````. Note, these are also known as 'grave accents' or 'back quotes and are not the same as an apostrophe! On most keyboards you can [find the backtick][backtick] on the same key as tilde (~).
+Now to the heart of the matter. To include R code into your R markdown document you simply place your code into a 'code chunk'. All code chunks start and end with three backticks ```` ``` ````. Note, these are also known as 'grave accents' or 'back quotes' and are not the same as an apostrophe! On most keyboards you can [find the backtick][backtick] on the same key as tilde (~).
 
 ````
 `r ''````{r}
