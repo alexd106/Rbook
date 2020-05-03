@@ -129,6 +129,7 @@
 [rm-gallery]: https://rmarkdown.rstudio.com/gallery.html
 [rs-articles]: https://rmarkdown.rstudio.com/articles.html
 [r-rprog]: https://bookdown.org/rdpeng/rprogdatascience/
+[r4ds]: https://r4ds.had.co.nz/
 
 <!--Misc Links-->
 [r4stats]: http://r4stats.com/articles/popularity/
