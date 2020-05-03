@@ -330,7 +330,7 @@ In the summary table the Intercept is set to the first level of `risk.group` (`h
 
 Don't worry too much if you find the output from the `summary()` function a little confusing. Its takes a little practice and experience to be able to make sense of all the numbers. Remember though, the more complicated your model is, the more complicated your interpretion will be. And always remember, a model that you can't interpret is not worth fitting!
 
-Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let's go back to the first linear model we fitted (`smoke_lm`). We can add the fitted line to our previous plot using the `ggplot2` package and  the `geom_smooth` geom. We can easily include the standard errors by specifying the `se = TRUE` argument.
+Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let's go back to the first linear model we fitted (`smoke_lm`). We can add the fitted line to our previous plot using the `ggplot2` package and the `geom_smooth` geom. We can easily include the standard errors by specifying the `se = TRUE` argument.
 
 ```{r ss33, echo=TRUE, collapse=TRUE, message=FALSE}
 ggplot(mapping = aes(x = smoking, y = mortality), data = smoke) +
@@ -419,11 +419,11 @@ As with most things R related, a complete description of the variety and flexibi
 |    R function        |       Use                                                              |
 |:---------------------|:-----------------------------------------------------------------------|
 | `glm()`              | Fit a generalised linear model with a specific error structure specified using the `family =` argument (Poisson, binomial, gamma) |
-| `gam()`              | Fit a generalised additive model                                       |
-| `lme()` & `nlme()`   | Fit linear and non-linear mixed effects models. The package `nlme` must be installed |
+| `gam()`              | Fit a generalised additive model. The R package `mgcv` must be loaded  |
+| `lme()` & `nlme()`   | Fit linear and non-linear mixed effects models. The R package `nlme` must be loaded |
 | `lmer()`             | Fit linear and generalised linear and non-linear mixed effects models. |
-|                      | The package `lme4` must be installed                                   |
-| `gls()`              | Fit generalised least squares models. The package `nlme` must be installed |
+|                      | The package `lme4` must be **installed** and loaded                    |
+| `gls()`              | Fit generalised least squares models. The R package `nlme` must be loaded |
 | `kruskal.test()`     | Performs a Kruskal-Wallis rank sum test                                |
 | `friedman.test()`    | Performs a Friedman’s test                                             |
 
