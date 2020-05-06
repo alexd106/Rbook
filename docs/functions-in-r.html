@@ -5,21 +5,21 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Functions in R | An Introduction to R</title>
-  <meta name="description" content="An introduction to R for robust and reproducible research" />
+  <meta name="description" content="A practical introduction to using R for data analysis" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
-  <meta property="og:image" content="https://alexd106.github.io/Rbook/images/Rcover2.png" />
-  <meta property="og:description" content="An introduction to R for robust and reproducible research" />
+  <meta property="og:image" content="https://alexd106.github.io/Rbook/images/Rcover_v2.png" />
+  <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="7.2 Functions in R | An Introduction to R" />
   
-  <meta name="twitter:description" content="An introduction to R for robust and reproducible research" />
-  <meta name="twitter:image" content="https://alexd106.github.io/Rbook/images/Rcover2.png" />
+  <meta name="twitter:description" content="A practical introduction to using R for data analysis" />
+  <meta name="twitter:image" content="https://alexd106.github.io/Rbook/images/Rcover_v2.png" />
 
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
@@ -427,26 +427,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>No that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb379-1" data-line-number="1">porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(<span class="dt">x =</span> city<span class="op">$</span>porto, <span class="dt">y =</span> city<span class="op">$</span>aberdeen)</a>
 <a class="sourceLine" id="cb379-2" data-line-number="2">porto_aberdeen_func</a>
-<a class="sourceLine" id="cb379-3" data-line-number="3"><span class="co">##   [1]  0.1238739997 -0.6171297991  0.2911434476  0.3108084043  0.5119453899</span></a>
-<a class="sourceLine" id="cb379-4" data-line-number="4"><span class="co">##   [6]  2.5160019261  0.0238682103  0.0077366505  0.4765064730 -0.2174115501</span></a>
-<a class="sourceLine" id="cb379-5" data-line-number="5"><span class="co">##  [11] -0.1858747132  3.3545307725  0.0335471202  1.6198146011  0.0038270762</span></a>
-<a class="sourceLine" id="cb379-6" data-line-number="6"><span class="co">##  [16]  0.9885387341  0.0007970141 -0.8821956881 -0.7723050802  0.2983549592</span></a>
-<a class="sourceLine" id="cb379-7" data-line-number="7"><span class="co">##  [21]  0.1210363330  0.0243279434  1.3625119174 -0.0243706580 -0.7614782364</span></a>
-<a class="sourceLine" id="cb379-8" data-line-number="8"><span class="co">##  [26]  0.8104511744 -0.1530355368 -0.1838661472  0.2111455397  0.0049567557</span></a>
-<a class="sourceLine" id="cb379-9" data-line-number="9"><span class="co">##  [31]  0.0977732060 -1.1913371256  1.5091772637  0.0001902808 -0.6702007745</span></a>
-<a class="sourceLine" id="cb379-10" data-line-number="10"><span class="co">##  [36] -0.2945019835 -0.3113719003  0.0767124832 -0.1015597451 -0.3001379950</span></a>
-<a class="sourceLine" id="cb379-11" data-line-number="11"><span class="co">##  [41]  0.8055389758  0.0566646816 -0.1701266769  0.4020523503 -1.6624198339</span></a>
-<a class="sourceLine" id="cb379-12" data-line-number="12"><span class="co">##  [46] -1.7313541937 -0.6970317717  0.2818193409  0.8787081394 -0.2033846646</span></a>
-<a class="sourceLine" id="cb379-13" data-line-number="13"><span class="co">##  [51] -0.5211054042 -0.0755900691 -0.4173983493 -0.2822129166 -0.1864883182</span></a>
-<a class="sourceLine" id="cb379-14" data-line-number="14"><span class="co">##  [56] -0.1009724040  1.0387616294 -0.3080601307  0.8480596518  0.0070275710</span></a>
-<a class="sourceLine" id="cb379-15" data-line-number="15"><span class="co">##  [61]  1.1015018507  2.1305316216 -0.1860728617 -0.7260655922  0.2618115965</span></a>
-<a class="sourceLine" id="cb379-16" data-line-number="16"><span class="co">##  [66] -0.5051272192  1.0571760413 -0.0601441372 -0.3008332032 -0.9397077682</span></a>
-<a class="sourceLine" id="cb379-17" data-line-number="17"><span class="co">##  [71] -0.9596442995 -0.4769061985 -0.0571434351 -2.8912162717 -0.3383643639</span></a>
-<a class="sourceLine" id="cb379-18" data-line-number="18"><span class="co">##  [76]  0.0345772083 -0.2777313430  0.4982411524  0.7780682188 -0.1581201875</span></a>
-<a class="sourceLine" id="cb379-19" data-line-number="19"><span class="co">##  [81]  0.0224206494 -1.7398643502 -0.7055064265  3.6971601322 -0.4926857120</span></a>
-<a class="sourceLine" id="cb379-20" data-line-number="20"><span class="co">##  [86]  0.4178772010 -0.2952093085 -0.3973475155 -0.2775813135  2.8952365771</span></a>
-<a class="sourceLine" id="cb379-21" data-line-number="21"><span class="co">##  [91]  0.0377162780 -0.7028801186  0.1599784481  0.1087177174  0.9771549683</span></a>
-<a class="sourceLine" id="cb379-22" data-line-number="22"><span class="co">##  [96]  0.0291759373 -0.5227341023 -1.0236939418 -0.2635302075 -0.2125814284</span></a></code></pre></div>
+<a class="sourceLine" id="cb379-3" data-line-number="3"><span class="co">##   [1]  2.502964908  0.025268160 -0.223551747  0.050425865  0.425087178</span></a>
+<a class="sourceLine" id="cb379-4" data-line-number="4"><span class="co">##   [6]  0.916819111  0.378157496  0.098301048 -0.022930892  0.185682247</span></a>
+<a class="sourceLine" id="cb379-5" data-line-number="5"><span class="co">##  [11] -0.269843270  0.446853366 -0.938626209 -0.006763561 -0.993909091</span></a>
+<a class="sourceLine" id="cb379-6" data-line-number="6"><span class="co">##  [16] -0.675842106  1.103383054  0.585531432 -0.306255516 -0.487882723</span></a>
+<a class="sourceLine" id="cb379-7" data-line-number="7"><span class="co">##  [21]  0.412105264  0.606341101 -0.016095318  0.076615564 -0.261352504</span></a>
+<a class="sourceLine" id="cb379-8" data-line-number="8"><span class="co">##  [26] -1.744610781  0.017452827 -0.630982675  0.819008136 -1.262808278</span></a>
+<a class="sourceLine" id="cb379-9" data-line-number="9"><span class="co">##  [31]  2.403240105  1.374637042 -0.723599865 -0.179061536  0.251695242</span></a>
+<a class="sourceLine" id="cb379-10" data-line-number="10"><span class="co">##  [36] -2.353846786 -1.631584692  2.482651681 -0.047603682 -0.008386999</span></a>
+<a class="sourceLine" id="cb379-11" data-line-number="11"><span class="co">##  [41]  0.312200463 -2.056474589  0.175580023 -0.563095881  0.115693188</span></a>
+<a class="sourceLine" id="cb379-12" data-line-number="12"><span class="co">##  [46]  0.065109881 -1.313345196  0.254777410  0.054958681  0.092172907</span></a>
+<a class="sourceLine" id="cb379-13" data-line-number="13"><span class="co">##  [51]  0.018765015  0.388356682  0.566516312  0.814094968  0.343651809</span></a>
+<a class="sourceLine" id="cb379-14" data-line-number="14"><span class="co">##  [56]  0.392132213  0.175427009  1.252688831  0.164487123  1.709596286</span></a>
+<a class="sourceLine" id="cb379-15" data-line-number="15"><span class="co">##  [61] -3.611744536  0.934268894 -2.048275048  0.303212583 -0.730521062</span></a>
+<a class="sourceLine" id="cb379-16" data-line-number="16"><span class="co">##  [66] -0.188466338  0.409265055 -0.222486421 -0.558866871  0.349684180</span></a>
+<a class="sourceLine" id="cb379-17" data-line-number="17"><span class="co">##  [71]  0.531249505  0.205699734 -2.098121276  0.395529605  0.211212806</span></a>
+<a class="sourceLine" id="cb379-18" data-line-number="18"><span class="co">##  [76]  0.099532069  0.252821685 -0.273483528 -0.623970590 -0.509106229</span></a>
+<a class="sourceLine" id="cb379-19" data-line-number="19"><span class="co">##  [81]  0.949055348  0.062537054 -0.055559378 -0.016380777  0.241790222</span></a>
+<a class="sourceLine" id="cb379-20" data-line-number="20"><span class="co">##  [86] -0.129930390 -0.213633567 -0.770145225  0.466243337 -0.408077017</span></a>
+<a class="sourceLine" id="cb379-21" data-line-number="21"><span class="co">##  [91]  0.210474076 -0.110204399 -0.022475022 -0.217462803  0.733448591</span></a>
+<a class="sourceLine" id="cb379-22" data-line-number="22"><span class="co">##  [96] -0.041400563  0.807621366  0.060922739 -0.884536673 -0.352220426</span></a></code></pre></div>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written (and retested) from scratch each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. The <code>identical()</code> function tests whether two objects are <em>exactly</em> identical and returns either a <code>TRUE</code> or <code>FALSE</code> value. Use <code>?identical</code> if you want to know more about this function.</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</a>
@@ -455,26 +455,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now let’s use our <code>multiply_columns()</code> function to multiply columns <code>aberdeen</code> and <code>nairobi</code>. Notice now that argument <code>x</code> is given the value <code>city$aberdeen</code>and <code>y</code> the value <code>city$nairobi</code>.</p>
 <div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">aberdeen_nairobi_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(<span class="dt">x =</span> city<span class="op">$</span>aberdeen, <span class="dt">y =</span> city<span class="op">$</span>nairobi)</a>
 <a class="sourceLine" id="cb381-2" data-line-number="2">aberdeen_nairobi_func</a>
-<a class="sourceLine" id="cb381-3" data-line-number="3"><span class="co">##   [1]            NA            NA            NA            NA            NA</span></a>
-<a class="sourceLine" id="cb381-4" data-line-number="4"><span class="co">##   [6]            NA            NA            NA            NA            NA</span></a>
-<a class="sourceLine" id="cb381-5" data-line-number="5"><span class="co">##  [11]  0.4889416763  1.4265875869  0.0404943065 -0.5000558361 -0.4181916387</span></a>
-<a class="sourceLine" id="cb381-6" data-line-number="6"><span class="co">##  [16]  0.5180541848 -0.0007628043 -1.4229424034 -1.0827145008 -0.1951954863</span></a>
-<a class="sourceLine" id="cb381-7" data-line-number="7"><span class="co">##  [21]  0.3391940710 -0.4942216963  1.3494200444 -0.4603166906 -0.3794428347</span></a>
-<a class="sourceLine" id="cb381-8" data-line-number="8"><span class="co">##  [26] -0.3028587399 -0.0008395105  0.0537934999 -0.1464144245  0.1978612138</span></a>
-<a class="sourceLine" id="cb381-9" data-line-number="9"><span class="co">##  [31] -0.1028850879  0.3849092852  1.1191842428  0.0028758761 -0.4750293735</span></a>
-<a class="sourceLine" id="cb381-10" data-line-number="10"><span class="co">##  [36]  0.0946041100 -0.5059010157  0.1976970810 -0.3377070027 -0.6809381182</span></a>
-<a class="sourceLine" id="cb381-11" data-line-number="11"><span class="co">##  [41] -0.5749361840 -0.1438482106  0.0461178387 -0.1879709323 -2.0817297171</span></a>
-<a class="sourceLine" id="cb381-12" data-line-number="12"><span class="co">##  [46]  1.3829485775 -0.0615092072  0.0592930416  0.5196067834  0.0064917518</span></a>
-<a class="sourceLine" id="cb381-13" data-line-number="13"><span class="co">##  [51]  0.2815954949  0.1111413552  0.2205074283  0.3556320505  0.1899286789</span></a>
-<a class="sourceLine" id="cb381-14" data-line-number="14"><span class="co">##  [56]  0.1390041466 -2.2134784424 -1.0238654715 -0.1465275664 -0.3131451503</span></a>
-<a class="sourceLine" id="cb381-15" data-line-number="15"><span class="co">##  [61] -0.4792807576  1.3119136533  0.0506633034  0.5888822258  0.0627760541</span></a>
-<a class="sourceLine" id="cb381-16" data-line-number="16"><span class="co">##  [66]  0.8203456325  0.6227998694 -0.0142645448  1.3853151990 -2.3802597209</span></a>
-<a class="sourceLine" id="cb381-17" data-line-number="17"><span class="co">##  [71]  0.2646394865 -0.6997837983  3.7029773204 -2.5389662924 -0.1867934871</span></a>
-<a class="sourceLine" id="cb381-18" data-line-number="18"><span class="co">##  [76] -0.0594556949 -0.0953623296  1.1212039294  0.3161461621  0.7420852624</span></a>
-<a class="sourceLine" id="cb381-19" data-line-number="19"><span class="co">##  [81] -0.0931236147 -0.1032494826  1.9780912344 -3.0761136287 -0.6601922359</span></a>
-<a class="sourceLine" id="cb381-20" data-line-number="20"><span class="co">##  [86] -0.5355593580 -0.6131521275  0.2433914070 -0.4619286409  1.7797009978</span></a>
-<a class="sourceLine" id="cb381-21" data-line-number="21"><span class="co">##  [91]  0.0186081788  0.2754377192 -1.6983763659 -0.1376395941 -0.6754758141</span></a>
-<a class="sourceLine" id="cb381-22" data-line-number="22"><span class="co">##  [96]  0.0358967874 -0.0331014015 -1.3254589419  0.6139637742  1.0669915584</span></a></code></pre></div>
+<a class="sourceLine" id="cb381-3" data-line-number="3"><span class="co">##   [1]           NA           NA           NA           NA           NA</span></a>
+<a class="sourceLine" id="cb381-4" data-line-number="4"><span class="co">##   [6]           NA           NA           NA           NA           NA</span></a>
+<a class="sourceLine" id="cb381-5" data-line-number="5"><span class="co">##  [11]  0.151754920  0.222159580 -0.514263141  0.038057602  0.776691037</span></a>
+<a class="sourceLine" id="cb381-6" data-line-number="6"><span class="co">##  [16]  0.883999562  0.015357520  0.380961613 -0.259432453  0.479764098</span></a>
+<a class="sourceLine" id="cb381-7" data-line-number="7"><span class="co">##  [21] -0.213144351  0.781668637  0.015519598  0.058145977 -0.292706035</span></a>
+<a class="sourceLine" id="cb381-8" data-line-number="8"><span class="co">##  [26] -0.239527397 -0.063097700  0.020466591  0.453061888  3.100055421</span></a>
+<a class="sourceLine" id="cb381-9" data-line-number="9"><span class="co">##  [31] -1.979981325 -0.323663418 -0.341802074  0.311758980 -0.255024211</span></a>
+<a class="sourceLine" id="cb381-10" data-line-number="10"><span class="co">##  [36] -0.783287635  2.222565075  1.342271234 -1.061814854 -0.515436384</span></a>
+<a class="sourceLine" id="cb381-11" data-line-number="11"><span class="co">##  [41] -0.181029209 -0.103950556  0.014916517 -2.572671401  0.740675021</span></a>
+<a class="sourceLine" id="cb381-12" data-line-number="12"><span class="co">##  [46] -0.130736919  0.352407169  0.764008231  0.147657416 -0.001640969</span></a>
+<a class="sourceLine" id="cb381-13" data-line-number="13"><span class="co">##  [51]  0.508721952 -0.076370217 -0.683542932  2.082367300  0.835139542</span></a>
+<a class="sourceLine" id="cb381-14" data-line-number="14"><span class="co">##  [56] -0.237013349  0.083325414 -0.451985931 -0.112192550 -0.804738364</span></a>
+<a class="sourceLine" id="cb381-15" data-line-number="15"><span class="co">##  [61] -0.926228109  1.095824373 -1.359029253  0.074205645 -0.356799861</span></a>
+<a class="sourceLine" id="cb381-16" data-line-number="16"><span class="co">##  [66]  0.101972869  0.271481238 -0.082744463 -0.210241732 -0.951982196</span></a>
+<a class="sourceLine" id="cb381-17" data-line-number="17"><span class="co">##  [71]  1.127470071  3.378233542  4.417148352  0.411934948 -0.966090887</span></a>
+<a class="sourceLine" id="cb381-18" data-line-number="18"><span class="co">##  [76]  0.255657545 -0.590201070  0.076591014 -0.302119562  0.068858216</span></a>
+<a class="sourceLine" id="cb381-19" data-line-number="19"><span class="co">##  [81] -1.129799786  0.235446353 -0.037333026  0.766615051 -1.142529948</span></a>
+<a class="sourceLine" id="cb381-20" data-line-number="20"><span class="co">##  [86] -0.396078678  0.629839560 -1.052310807 -0.056125350 -0.948876059</span></a>
+<a class="sourceLine" id="cb381-21" data-line-number="21"><span class="co">##  [91]  0.069537521 -0.112334843  0.159959322  0.501597965  0.009498111</span></a>
+<a class="sourceLine" id="cb381-22" data-line-number="22"><span class="co">##  [96] -0.070520249 -0.200915287  0.025738501  0.284395755  0.055671313</span></a></code></pre></div>
 <p>So far so good. All we’ve really done is wrapped the code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of <code>nairobi_genoa</code> some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these <code>NA</code> values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1">multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</a>
