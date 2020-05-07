@@ -111,11 +111,11 @@ knitr::include_graphics(path = "images/rstudio.png")
 
 \  
 
-The large window (aka pane) on the left is the **Console** window. The window on the top right is the **Environment / History / Files** pane and the bottom left window is the **Plots / Help / Viewer** window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the 'Tools' menu then selecting Global Options --> Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to [customise RStudio][rstudio-customise].
+The large window (aka pane) on the left is the **Console** window. The window on the top right is the **Environment / History / Connections** pane and the bottom right window is the **Files / Plots / Packages / Help / Viewer** window. We will discuss each of these panes in turn below. You can customise the location of each pane by clicking on the 'Tools' menu then selecting Global Options --> Pane Layout. You can resize the panes by clicking and dragging the middle of the window borders in the direction you want. There are a plethora of other ways to [customise RStudio][rstudio-customise].
 
 ### Console {#cons}
 
-The Console is the workhorse of R. This is where R evaluates all the code you write and stores all the objects (data for example) that you create. You can type R code directly into the Console at the command line prompt, `>`. For example, if you type `2 + 2` into the Console you should obtain the answer `4` (reassuringly). Don't worry about the `[1]` at the start of the line for now. 
+The Console is the workhorse of R. This is where R evaluates all the code you write. You can type R code directly into the Console at the command line prompt, `>`. For example, if you type `2 + 2` into the Console you should obtain the answer `4` (reassuringly). Don't worry about the `[1]` at the start of the line for now. 
 
 \  
 
@@ -157,19 +157,23 @@ knitr::include_graphics(path = "images/rstudio_run.png")
 
 You should see the result in the Console window. If clicking on the 'Run' button starts to become tiresome you can use the keyboard shortcut 'ctrl + enter' (on Windows and Linux) or 'cmd + enter' (on Mac). You can save your R scripts as a `.R` file by selecting the 'File' menu and clicking on save. Notice that the file name in the tab will turn red to remind you that you have unsaved changes. To open your R script in RStudio select the 'File' menu and then 'Open File...'. Finally, its worth noting that although R scripts are saved with a `.R` extension they are actually just plain text files which can be opened with any text editor. 
 
-### Environment / History / Connections
+### Environment/History/Connections
 
 The Environment / History / Connections window shows you lots of useful information. You can access each component by clicking on the appropriate tab in the pane.
 
 - The 'Environment' tab displays all the objects you have created in the current (global) environment. These objects can be things like data you have imported or functions you have written. Objects can be displayed as a List or in Grid format by selecting your choice from the drop down button on the top right of the window. If you're in the Grid format you can remove objects from the environment by placing a tick in the empty box next to the object name and then click on the broom icon. There's also an 'Import Dataset' button which will import data saved in a variety of file formats. However, we would suggest that you don't use this approach to import your data as it's not reproducible and therefore not robust (see [Chapter 3](#data_r) for more details).        
 
-- The 'History' tab contains a list of all the commands you have entered into the R Console. You can search back through your history for the line of code you have forgotten, send selected code back to the Console or Source window. We usually never use this as we always refer back to our R script.  
+- The 'History' tab contains a list of all the commands you have entered into the R Console. You can search back through your history for the line of code you have forgotten, send selected code back to the Console or Source window. We usually never use this as we always refer back to our R script.
 
-### Files / Plots / Packages / Help / Viewer
+- The 'Connections' tab allows you to connect to various data sources such as external databases.
+
+### Files/Plots/Packages/Help/Viewer
 
 - The 'Files' tab lists all external files and directories in the current working directory on your computer. It works like file explorer (Windows) or Finder (Mac). You can open, copy, rename, move and delete files listed in the window.    
 
 - The 'Plots' tab is where all the plots you create in R are displayed (unless you tell R otherwise). You can 'zoom' into the plots to make them larger using the magnifying glass button, and scroll back through previously created plots using the arrow buttons. There is also the option of exporting plots to an external file using the 'Export' drop down menu. Plots can be exported in various file formats such as jpeg, png, pdf, tiff or copied to the clipboard (although you are probably better off using the appropriate R functions to do this - see [Chapter 4](#graphics_base_r) for more details). 
+
+- The 'Packages' tab lists all of the packages that you have installed on your computer. You can also install new packages and update existing packages by clicking on the 'Install' and 'Update' buttons respectively.
 
 - The 'Help' tab displays the R help documentation for any function. We will go over how to view the help files and how to search for help in [Chapter 2](#basics_r).
 
