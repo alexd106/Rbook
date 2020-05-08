@@ -5,6 +5,22 @@
 [github-issue]: https://github.com/alexd106/Rbook/issues
 [flow-data]: https://alexd106.github.io/intro2R/data.html
 
+<!--Exercises Links-->
+[exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
+[exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
+[exercise2]: https://alexd106.github.io/intro2R/exercise_2.html
+[exercise2-sol]: https://alexd106.github.io/intro2R/exercise_2_solution.html
+[exercise3]: https://alexd106.github.io/intro2R/exercise_3.html
+[exercise3-sol]: https://alexd106.github.io/intro2R/exercise_3_solution.html
+[exercise4]: https://alexd106.github.io/intro2R/exercise_4.html
+[exercise4-sol]: https://alexd106.github.io/intro2R/exercise_4_solution.html
+[exercise5]: https://alexd106.github.io/intro2R/exercise_4.html
+[exercise5-sol]: https://alexd106.github.io/intro2R/exercise_4_ggplot_solution.html
+[exercise6]: https://alexd106.github.io/intro2R/exercise_5.html
+[exercise6-sol]:https://alexd106.github.io/intro2R/exercise_5_solution.html
+[exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
+[exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
+
 <!--cran Links-->
 [cran]: https://cloud.r-project.org
 [cran-windows]: https://cran.r-project.org/bin/windows/
@@ -14,7 +30,6 @@
 [cran-ubuntu]: https://cran.r-project.org/bin/linux/ubuntu
 [cran-packages]: https://cran.r-project.org/web/packages/index.html
 [cran-core]: https://www.r-project.org/contributors.html
-
 [cran-faq]: https://cran.r-project.org/faqs.html
 [cran-R-admin]: http://cran.r-project.org/doc/manuals/R-admin.html
 [cran-add-ons]: https://cran.r-project.org/doc/manuals/R-admin.html#Add_002don-packages
@@ -47,8 +62,9 @@
 [tinn-r]: https://sourceforge.net/projects/tinn-r/
 [atom]: https://atom.io/
 [notepad]: https://notepad-plus-plus.org/
-[textmate]: https://macromates.com/
+[BBedit]: https://www.barebones.com/products/bbedit/
 [macvim]: https://github.com/macvim-dev/macvim
+[sublime]: https://www.sublimetext.com/
 
 <!--Bioconductor Links-->
 [bioconductor]: https://www.bioconductor.org/
@@ -163,19 +179,5 @@
 [francesinha]: https://en.wikipedia.org/wiki/Francesinha
 [scoping]: https://www.r-bloggers.com/dont-run-afoul-of-scoping-rules-in-r/
 
-<!--Exercises Links-->
-[exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
-[exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
-[exercise2]: https://alexd106.github.io/intro2R/exercise_2.html
-[exercise2-sol]: https://alexd106.github.io/intro2R/exercise_2_solution.html
-[exercise3]: https://alexd106.github.io/intro2R/exercise_3.html
-[exercise3-sol]: https://alexd106.github.io/intro2R/exercise_3_solution.html
-[exercise4]: https://alexd106.github.io/intro2R/exercise_4.html
-[exercise4-sol]: https://alexd106.github.io/intro2R/exercise_4_solution.html
-[exercise5]: https://alexd106.github.io/intro2R/exercise_4.html
-[exercise5-sol]: https://alexd106.github.io/intro2R/exercise_4_ggplot_solution.html
-[exercise6]: https://alexd106.github.io/intro2R/exercise_5.html
-[exercise6-sol]:https://alexd106.github.io/intro2R/exercise_5_solution.html
-[exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
-[exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
+
 
