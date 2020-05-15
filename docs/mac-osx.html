@@ -63,9 +63,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +74,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -379,12 +381,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mac-osx" class="section level2">
 <h2><span class="header-section-number">A.2</span> Mac OSX</h2>
 <p>This guide assumes you have already installed [R][R] and the <a href="https://rstudio.com/">RStudio IDE</a>. RStudio is not required but recommended, because it makes it easier to work with R Markdown. If you do not have RStudio IDE installed, you will also have to install <a href="http://pandoc.org">Pandoc</a>. If you have RStudio installed there is no need to install Pandoc separately because its bundled with RStudio. Next you can install the rmarkdown package in RStudio using the following code:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1"><span class="co"># Install from CRAN</span></a>
-<a class="sourceLine" id="cb459-2" data-line-number="2"><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="dt">dep =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="mac-osx.html#cb459-1"></a><span class="co"># Install from CRAN</span></span>
+<span id="cb459-2"><a href="mac-osx.html#cb459-2"></a><span class="kw">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="dt">dep =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The <code>dep = TRUE</code> argument will also install a bunch of additional R packages on which rmarkdown depends.</p>
 <p>If you want to generate PDF output, you will need to install LaTeX. For R Markdown users who have not installed LaTeX before, we recommend that you install <a href="https://yihui.name/tinytex/">TinyTeX</a>. You can install TinyTex from within RStudio using the following code:</p>
-<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb460-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</a>
-<a class="sourceLine" id="cb460-2" data-line-number="2">tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()  <span class="co"># install TinyTeX</span></a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="mac-osx.html#cb460-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb460-2"><a href="mac-osx.html#cb460-2"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. The R companion package tinytex can help you automatically install missing LaTeX packages when compiling LaTeX or R Markdown documents to PDF.</p>
 <p>If for some reason TinyTeX does not work on your Mac computer then you can try to install MacTeX instead. You can download the latest version of <a href="http://www.tug.org/mactex/mactex-download.html">MacTeX</a>. Click on the <em>MacTeX.pkg</em> link to download. Please be aware that the file is quite large, approximately 3 GB, so it may take some time (also make sure you have enough available space on your computer hard disk). When your download is complete, run the downloaded installer. The installation procedure is quite straightforward. You are given a few options, for example you can choose not to install some components. I recommend you stick with the default settings, so having accepted the license agreement, you can basically just keep clicking ‘Continue’ on each screen. On the final screen of the wizard, click Install. It may ask for an administrator password. Enter the password, click ‘Install Software’ and go make a cup of coffee while the installation completes. When the program is done installing, click ‘Close’ to complete the installation.</p>
 <p>With the rmarkdown package, RStudio/Pandoc, and LaTeX, you should be able to compile most R Markdown documents.</p>

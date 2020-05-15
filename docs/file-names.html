@@ -63,9 +63,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +74,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -390,7 +392,7 @@ Figure 1.1: source:<a href="https://xkcd.com/1459/" class="uri">https://xkcd.com
 <p>Although there’s not really a recognised standard approach to naming files (actually <a href="https://en.wikipedia.org/wiki/Filename">there is</a>, just not everyone uses it), there are a couple of things to bear in mind.</p>
 <ul>
 <li><p>First, avoid using spaces in file names by replacing them with underscores or even hyphens. Why does this matter? One reason is that some command line software (especially many bioinformatic tools) won’t recognise a file name with a space and you’ll have to go through all sorts of shenanigans using escape characters to make sure spaces are handled correctly. Even if you don’t think you will ever use command line software you may be doing so indirectly. Take R markdown for example, if you want to render an R markdown document to pdf using the <code>rmarkdown</code> package you will actually be using a command line LaTeX engine under the hood (called <a href="http://pandoc.org">Pandoc</a>). Another good reason not to use spaces in file names is that it makes searching for file names (or parts of file names) using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> in R (or any other language) much more difficult.</p></li>
-<li><p>For the reasons given above, also avoid using special characters (i.e. @£$%^&amp;*():;&lt;&gt;?{}/) in your file names.</p></li>
+<li><p>For the reasons given above, also avoid using special characters (i.e. @£$%^&amp;*():;&lt;&gt;?{}/) in your file names.</p></li>
 <li><p>If you are versioning your files with sequential numbers (i.e. file1, file2, file3 …) and you have more than 9 files you should use 01, 02, 03 .. 10 as this will ensure the files are printed in the correct order (see what happens if you don’t). If you have more than 99 files then use 001, 002, 003… etc.</p></li>
 <li><p>If your file names include dates, use the ISO 8601 format YYYY-MM-DD (or YYYYMMDD) to ensure your files are listed in proper chronological order.</p></li>
 <li><p>Never use the word <em>final</em> in any file name - it never is!</p></li>

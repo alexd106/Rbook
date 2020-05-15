@@ -63,9 +63,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -74,14 +74,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -90,9 +92,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -380,169 +382,169 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">3.5</span> Summarising data frames</h2>
 <p>Now that we’re able to manipulate and extract data from our data frames our next task is to start exploring and getting to know our data. In this section we’ll start producing tables of useful summary statistics of the variables in our data frame and in the next two Chapters we’ll cover visualising our data with base R graphics and using the <code>ggplot2</code> package.</p>
 <p>A really useful starting point is to produce some simple summary statistics of all of the variables in our <code>flowers</code> data frame using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb159-1" data-line-number="1"><span class="kw">summary</span>(flowers)</a>
-<a class="sourceLine" id="cb159-2" data-line-number="2"><span class="co">##    treat      nitrogen      block         height           weight      </span></a>
-<a class="sourceLine" id="cb159-3" data-line-number="3"><span class="co">##  notip:48   low   :32   Min.   :1.0   Min.   : 1.200   Min.   : 5.790  </span></a>
-<a class="sourceLine" id="cb159-4" data-line-number="4"><span class="co">##  tip  :48   medium:32   1st Qu.:1.0   1st Qu.: 4.475   1st Qu.: 9.027  </span></a>
-<a class="sourceLine" id="cb159-5" data-line-number="5"><span class="co">##             high  :32   Median :1.5   Median : 6.450   Median :11.395  </span></a>
-<a class="sourceLine" id="cb159-6" data-line-number="6"><span class="co">##                         Mean   :1.5   Mean   : 6.840   Mean   :12.155  </span></a>
-<a class="sourceLine" id="cb159-7" data-line-number="7"><span class="co">##                         3rd Qu.:2.0   3rd Qu.: 9.025   3rd Qu.:14.537  </span></a>
-<a class="sourceLine" id="cb159-8" data-line-number="8"><span class="co">##                         Max.   :2.0   Max.   :17.200   Max.   :23.890  </span></a>
-<a class="sourceLine" id="cb159-9" data-line-number="9"><span class="co">##     leafarea       shootarea         flowers      </span></a>
-<a class="sourceLine" id="cb159-10" data-line-number="10"><span class="co">##  Min.   : 5.80   Min.   :  5.80   Min.   : 1.000  </span></a>
-<a class="sourceLine" id="cb159-11" data-line-number="11"><span class="co">##  1st Qu.:11.07   1st Qu.: 39.05   1st Qu.: 4.000  </span></a>
-<a class="sourceLine" id="cb159-12" data-line-number="12"><span class="co">##  Median :13.45   Median : 70.05   Median : 6.000  </span></a>
-<a class="sourceLine" id="cb159-13" data-line-number="13"><span class="co">##  Mean   :14.05   Mean   : 79.78   Mean   : 7.062  </span></a>
-<a class="sourceLine" id="cb159-14" data-line-number="14"><span class="co">##  3rd Qu.:16.45   3rd Qu.:113.28   3rd Qu.: 9.000  </span></a>
-<a class="sourceLine" id="cb159-15" data-line-number="15"><span class="co">##  Max.   :49.20   Max.   :189.60   Max.   :17.000</span></a></code></pre></div>
-<p>For numeric variables (i.e. <code>height</code>, <code>weight</code> etc) the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile are presented. For factor variables (i.e. <code>treat</code> and <code>nitrogen</code>) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of <code>NA</code> values is also reported.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="summarising-data-frames.html#cb159-1"></a><span class="kw">summary</span>(flowers)</span>
+<span id="cb159-2"><a href="summarising-data-frames.html#cb159-2"></a><span class="co">##    treat      nitrogen      block         height           weight      </span></span>
+<span id="cb159-3"><a href="summarising-data-frames.html#cb159-3"></a><span class="co">##  notip:48   low   :32   Min.   :1.0   Min.   : 1.200   Min.   : 5.790  </span></span>
+<span id="cb159-4"><a href="summarising-data-frames.html#cb159-4"></a><span class="co">##  tip  :48   medium:32   1st Qu.:1.0   1st Qu.: 4.475   1st Qu.: 9.027  </span></span>
+<span id="cb159-5"><a href="summarising-data-frames.html#cb159-5"></a><span class="co">##             high  :32   Median :1.5   Median : 6.450   Median :11.395  </span></span>
+<span id="cb159-6"><a href="summarising-data-frames.html#cb159-6"></a><span class="co">##                         Mean   :1.5   Mean   : 6.840   Mean   :12.155  </span></span>
+<span id="cb159-7"><a href="summarising-data-frames.html#cb159-7"></a><span class="co">##                         3rd Qu.:2.0   3rd Qu.: 9.025   3rd Qu.:14.537  </span></span>
+<span id="cb159-8"><a href="summarising-data-frames.html#cb159-8"></a><span class="co">##                         Max.   :2.0   Max.   :17.200   Max.   :23.890  </span></span>
+<span id="cb159-9"><a href="summarising-data-frames.html#cb159-9"></a><span class="co">##     leafarea       shootarea         flowers      </span></span>
+<span id="cb159-10"><a href="summarising-data-frames.html#cb159-10"></a><span class="co">##  Min.   : 5.80   Min.   :  5.80   Min.   : 1.000  </span></span>
+<span id="cb159-11"><a href="summarising-data-frames.html#cb159-11"></a><span class="co">##  1st Qu.:11.07   1st Qu.: 39.05   1st Qu.: 4.000  </span></span>
+<span id="cb159-12"><a href="summarising-data-frames.html#cb159-12"></a><span class="co">##  Median :13.45   Median : 70.05   Median : 6.000  </span></span>
+<span id="cb159-13"><a href="summarising-data-frames.html#cb159-13"></a><span class="co">##  Mean   :14.05   Mean   : 79.78   Mean   : 7.062  </span></span>
+<span id="cb159-14"><a href="summarising-data-frames.html#cb159-14"></a><span class="co">##  3rd Qu.:16.45   3rd Qu.:113.28   3rd Qu.: 9.000  </span></span>
+<span id="cb159-15"><a href="summarising-data-frames.html#cb159-15"></a><span class="co">##  Max.   :49.20   Max.   :189.60   Max.   :17.000</span></span></code></pre></div>
+<p>For numeric variables (i.e. <code>height</code>, <code>weight</code> etc) the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile are presented. For factor variables (i.e. <code>treat</code> and <code>nitrogen</code>) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of <code>NA</code> values is also reported.</p>
 <p>If we wanted to summarise a smaller subset of variables in our data frame we can use our indexing skills in combination with the <code>summary()</code> function. For example, to summarise only the <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> variables we can include the appropriate column indexes when using the <code>[ ]</code>. Notice we include all rows by not specifying a row index.</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1"><span class="kw">summary</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>])</a>
-<a class="sourceLine" id="cb160-2" data-line-number="2"><span class="co">##      height           weight          leafarea       shootarea     </span></a>
-<a class="sourceLine" id="cb160-3" data-line-number="3"><span class="co">##  Min.   : 1.200   Min.   : 5.790   Min.   : 5.80   Min.   :  5.80  </span></a>
-<a class="sourceLine" id="cb160-4" data-line-number="4"><span class="co">##  1st Qu.: 4.475   1st Qu.: 9.027   1st Qu.:11.07   1st Qu.: 39.05  </span></a>
-<a class="sourceLine" id="cb160-5" data-line-number="5"><span class="co">##  Median : 6.450   Median :11.395   Median :13.45   Median : 70.05  </span></a>
-<a class="sourceLine" id="cb160-6" data-line-number="6"><span class="co">##  Mean   : 6.840   Mean   :12.155   Mean   :14.05   Mean   : 79.78  </span></a>
-<a class="sourceLine" id="cb160-7" data-line-number="7"><span class="co">##  3rd Qu.: 9.025   3rd Qu.:14.537   3rd Qu.:16.45   3rd Qu.:113.28  </span></a>
-<a class="sourceLine" id="cb160-8" data-line-number="8"><span class="co">##  Max.   :17.200   Max.   :23.890   Max.   :49.20   Max.   :189.60</span></a>
-<a class="sourceLine" id="cb160-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb160-10" data-line-number="10"><span class="co"># or equivalently </span></a>
-<a class="sourceLine" id="cb160-11" data-line-number="11"><span class="co"># summary(flowers[, c(&quot;height&quot;, &quot;weight&quot;, &quot;leafarea&quot;, &quot;shootarea&quot;)])</span></a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="summarising-data-frames.html#cb160-1"></a><span class="kw">summary</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>])</span>
+<span id="cb160-2"><a href="summarising-data-frames.html#cb160-2"></a><span class="co">##      height           weight          leafarea       shootarea     </span></span>
+<span id="cb160-3"><a href="summarising-data-frames.html#cb160-3"></a><span class="co">##  Min.   : 1.200   Min.   : 5.790   Min.   : 5.80   Min.   :  5.80  </span></span>
+<span id="cb160-4"><a href="summarising-data-frames.html#cb160-4"></a><span class="co">##  1st Qu.: 4.475   1st Qu.: 9.027   1st Qu.:11.07   1st Qu.: 39.05  </span></span>
+<span id="cb160-5"><a href="summarising-data-frames.html#cb160-5"></a><span class="co">##  Median : 6.450   Median :11.395   Median :13.45   Median : 70.05  </span></span>
+<span id="cb160-6"><a href="summarising-data-frames.html#cb160-6"></a><span class="co">##  Mean   : 6.840   Mean   :12.155   Mean   :14.05   Mean   : 79.78  </span></span>
+<span id="cb160-7"><a href="summarising-data-frames.html#cb160-7"></a><span class="co">##  3rd Qu.: 9.025   3rd Qu.:14.537   3rd Qu.:16.45   3rd Qu.:113.28  </span></span>
+<span id="cb160-8"><a href="summarising-data-frames.html#cb160-8"></a><span class="co">##  Max.   :17.200   Max.   :23.890   Max.   :49.20   Max.   :189.60</span></span>
+<span id="cb160-9"><a href="summarising-data-frames.html#cb160-9"></a></span>
+<span id="cb160-10"><a href="summarising-data-frames.html#cb160-10"></a><span class="co"># or equivalently </span></span>
+<span id="cb160-11"><a href="summarising-data-frames.html#cb160-11"></a><span class="co"># summary(flowers[, c(&quot;height&quot;, &quot;weight&quot;, &quot;leafarea&quot;, &quot;shootarea&quot;)])</span></span></code></pre></div>
 <p>And to summarise a single variable.</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">summary</span>(flowers<span class="op">$</span>leafarea)</a>
-<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb161-3" data-line-number="3"><span class="co">##    5.80   11.07   13.45   14.05   16.45   49.20</span></a>
-<a class="sourceLine" id="cb161-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb161-5" data-line-number="5"><span class="co"># or equivalently</span></a>
-<a class="sourceLine" id="cb161-6" data-line-number="6"><span class="co"># summary(flowers[, 6])</span></a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="summarising-data-frames.html#cb161-1"></a><span class="kw">summary</span>(flowers<span class="op">$</span>leafarea)</span>
+<span id="cb161-2"><a href="summarising-data-frames.html#cb161-2"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb161-3"><a href="summarising-data-frames.html#cb161-3"></a><span class="co">##    5.80   11.07   13.45   14.05   16.45   49.20</span></span>
+<span id="cb161-4"><a href="summarising-data-frames.html#cb161-4"></a></span>
+<span id="cb161-5"><a href="summarising-data-frames.html#cb161-5"></a><span class="co"># or equivalently</span></span>
+<span id="cb161-6"><a href="summarising-data-frames.html#cb161-6"></a><span class="co"># summary(flowers[, 6])</span></span></code></pre></div>
 <p>As you’ve seen above, the <code>summary()</code> function reports the number of observations in each level of our factor variables. Another useful function for generating tables of counts is the <code>table()</code> function. The <code>table()</code> function can be used to build contingency tables of different combinations of factor levels. For example, to count the number of observations for each level of <code>nitrogen</code></p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb162-1" data-line-number="1"><span class="kw">table</span>(flowers<span class="op">$</span>nitrogen)</a>
-<a class="sourceLine" id="cb162-2" data-line-number="2"><span class="co">## </span></a>
-<a class="sourceLine" id="cb162-3" data-line-number="3"><span class="co">##    low medium   high </span></a>
-<a class="sourceLine" id="cb162-4" data-line-number="4"><span class="co">##     32     32     32</span></a></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="summarising-data-frames.html#cb162-1"></a><span class="kw">table</span>(flowers<span class="op">$</span>nitrogen)</span>
+<span id="cb162-2"><a href="summarising-data-frames.html#cb162-2"></a><span class="co">## </span></span>
+<span id="cb162-3"><a href="summarising-data-frames.html#cb162-3"></a><span class="co">##    low medium   high </span></span>
+<span id="cb162-4"><a href="summarising-data-frames.html#cb162-4"></a><span class="co">##     32     32     32</span></span></code></pre></div>
 <p>We can extend this further by producing a table of counts for each combination of <code>nitrogen</code> and <code>treat</code> factor levels.</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">table</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>treat)</a>
-<a class="sourceLine" id="cb163-2" data-line-number="2"><span class="co">##         </span></a>
-<a class="sourceLine" id="cb163-3" data-line-number="3"><span class="co">##          notip tip</span></a>
-<a class="sourceLine" id="cb163-4" data-line-number="4"><span class="co">##   low       16  16</span></a>
-<a class="sourceLine" id="cb163-5" data-line-number="5"><span class="co">##   medium    16  16</span></a>
-<a class="sourceLine" id="cb163-6" data-line-number="6"><span class="co">##   high      16  16</span></a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="summarising-data-frames.html#cb163-1"></a><span class="kw">table</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>treat)</span>
+<span id="cb163-2"><a href="summarising-data-frames.html#cb163-2"></a><span class="co">##         </span></span>
+<span id="cb163-3"><a href="summarising-data-frames.html#cb163-3"></a><span class="co">##          notip tip</span></span>
+<span id="cb163-4"><a href="summarising-data-frames.html#cb163-4"></a><span class="co">##   low       16  16</span></span>
+<span id="cb163-5"><a href="summarising-data-frames.html#cb163-5"></a><span class="co">##   medium    16  16</span></span>
+<span id="cb163-6"><a href="summarising-data-frames.html#cb163-6"></a><span class="co">##   high      16  16</span></span></code></pre></div>
 <p>A more flexible version of the <code>table()</code> function is the <code>xtabs()</code> function. The <code>xtabs()</code> function uses a formula notation (<code>~</code>) to build contingency tables with the cross-classifying variables separated by a <code>+</code> symbol on the right hand side of the formula. <code>xtabs()</code> also has a useful <code>data =</code> argument so you don’t have to include the data frame name when specifying each variable.</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb164-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">data =</span> flowers)</a>
-<a class="sourceLine" id="cb164-2" data-line-number="2"><span class="co">##         treat</span></a>
-<a class="sourceLine" id="cb164-3" data-line-number="3"><span class="co">## nitrogen notip tip</span></a>
-<a class="sourceLine" id="cb164-4" data-line-number="4"><span class="co">##   low       16  16</span></a>
-<a class="sourceLine" id="cb164-5" data-line-number="5"><span class="co">##   medium    16  16</span></a>
-<a class="sourceLine" id="cb164-6" data-line-number="6"><span class="co">##   high      16  16</span></a></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="summarising-data-frames.html#cb164-1"></a><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">data =</span> flowers)</span>
+<span id="cb164-2"><a href="summarising-data-frames.html#cb164-2"></a><span class="co">##         treat</span></span>
+<span id="cb164-3"><a href="summarising-data-frames.html#cb164-3"></a><span class="co">## nitrogen notip tip</span></span>
+<span id="cb164-4"><a href="summarising-data-frames.html#cb164-4"></a><span class="co">##   low       16  16</span></span>
+<span id="cb164-5"><a href="summarising-data-frames.html#cb164-5"></a><span class="co">##   medium    16  16</span></span>
+<span id="cb164-6"><a href="summarising-data-frames.html#cb164-6"></a><span class="co">##   high      16  16</span></span></code></pre></div>
 <p>We can even build more complicated contingency tables using more variables. Note, in the example below the <code>xtabs()</code> function has quietly coerced our <code>block</code> variable to a factor.</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block, <span class="dt">data =</span> flowers)</a>
-<a class="sourceLine" id="cb165-2" data-line-number="2"><span class="co">## , , block = 1</span></a>
-<a class="sourceLine" id="cb165-3" data-line-number="3"><span class="co">## </span></a>
-<a class="sourceLine" id="cb165-4" data-line-number="4"><span class="co">##         treat</span></a>
-<a class="sourceLine" id="cb165-5" data-line-number="5"><span class="co">## nitrogen notip tip</span></a>
-<a class="sourceLine" id="cb165-6" data-line-number="6"><span class="co">##   low        8   8</span></a>
-<a class="sourceLine" id="cb165-7" data-line-number="7"><span class="co">##   medium     8   8</span></a>
-<a class="sourceLine" id="cb165-8" data-line-number="8"><span class="co">##   high       8   8</span></a>
-<a class="sourceLine" id="cb165-9" data-line-number="9"><span class="co">## </span></a>
-<a class="sourceLine" id="cb165-10" data-line-number="10"><span class="co">## , , block = 2</span></a>
-<a class="sourceLine" id="cb165-11" data-line-number="11"><span class="co">## </span></a>
-<a class="sourceLine" id="cb165-12" data-line-number="12"><span class="co">##         treat</span></a>
-<a class="sourceLine" id="cb165-13" data-line-number="13"><span class="co">## nitrogen notip tip</span></a>
-<a class="sourceLine" id="cb165-14" data-line-number="14"><span class="co">##   low        8   8</span></a>
-<a class="sourceLine" id="cb165-15" data-line-number="15"><span class="co">##   medium     8   8</span></a>
-<a class="sourceLine" id="cb165-16" data-line-number="16"><span class="co">##   high       8   8</span></a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="summarising-data-frames.html#cb165-1"></a><span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block, <span class="dt">data =</span> flowers)</span>
+<span id="cb165-2"><a href="summarising-data-frames.html#cb165-2"></a><span class="co">## , , block = 1</span></span>
+<span id="cb165-3"><a href="summarising-data-frames.html#cb165-3"></a><span class="co">## </span></span>
+<span id="cb165-4"><a href="summarising-data-frames.html#cb165-4"></a><span class="co">##         treat</span></span>
+<span id="cb165-5"><a href="summarising-data-frames.html#cb165-5"></a><span class="co">## nitrogen notip tip</span></span>
+<span id="cb165-6"><a href="summarising-data-frames.html#cb165-6"></a><span class="co">##   low        8   8</span></span>
+<span id="cb165-7"><a href="summarising-data-frames.html#cb165-7"></a><span class="co">##   medium     8   8</span></span>
+<span id="cb165-8"><a href="summarising-data-frames.html#cb165-8"></a><span class="co">##   high       8   8</span></span>
+<span id="cb165-9"><a href="summarising-data-frames.html#cb165-9"></a><span class="co">## </span></span>
+<span id="cb165-10"><a href="summarising-data-frames.html#cb165-10"></a><span class="co">## , , block = 2</span></span>
+<span id="cb165-11"><a href="summarising-data-frames.html#cb165-11"></a><span class="co">## </span></span>
+<span id="cb165-12"><a href="summarising-data-frames.html#cb165-12"></a><span class="co">##         treat</span></span>
+<span id="cb165-13"><a href="summarising-data-frames.html#cb165-13"></a><span class="co">## nitrogen notip tip</span></span>
+<span id="cb165-14"><a href="summarising-data-frames.html#cb165-14"></a><span class="co">##   low        8   8</span></span>
+<span id="cb165-15"><a href="summarising-data-frames.html#cb165-15"></a><span class="co">##   medium     8   8</span></span>
+<span id="cb165-16"><a href="summarising-data-frames.html#cb165-16"></a><span class="co">##   high       8   8</span></span></code></pre></div>
 <p>And for a nicer formatted table we can nest the <code>xtabs()</code> function inside the <code>ftable()</code> function to ‘flatten’ the table.</p>
-<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb166-1" data-line-number="1"><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block, <span class="dt">data =</span> flowers))</a>
-<a class="sourceLine" id="cb166-2" data-line-number="2"><span class="co">##                block 1 2</span></a>
-<a class="sourceLine" id="cb166-3" data-line-number="3"><span class="co">## nitrogen treat          </span></a>
-<a class="sourceLine" id="cb166-4" data-line-number="4"><span class="co">## low      notip       8 8</span></a>
-<a class="sourceLine" id="cb166-5" data-line-number="5"><span class="co">##          tip         8 8</span></a>
-<a class="sourceLine" id="cb166-6" data-line-number="6"><span class="co">## medium   notip       8 8</span></a>
-<a class="sourceLine" id="cb166-7" data-line-number="7"><span class="co">##          tip         8 8</span></a>
-<a class="sourceLine" id="cb166-8" data-line-number="8"><span class="co">## high     notip       8 8</span></a>
-<a class="sourceLine" id="cb166-9" data-line-number="9"><span class="co">##          tip         8 8</span></a></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="summarising-data-frames.html#cb166-1"></a><span class="kw">ftable</span>(<span class="kw">xtabs</span>(<span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block, <span class="dt">data =</span> flowers))</span>
+<span id="cb166-2"><a href="summarising-data-frames.html#cb166-2"></a><span class="co">##                block 1 2</span></span>
+<span id="cb166-3"><a href="summarising-data-frames.html#cb166-3"></a><span class="co">## nitrogen treat          </span></span>
+<span id="cb166-4"><a href="summarising-data-frames.html#cb166-4"></a><span class="co">## low      notip       8 8</span></span>
+<span id="cb166-5"><a href="summarising-data-frames.html#cb166-5"></a><span class="co">##          tip         8 8</span></span>
+<span id="cb166-6"><a href="summarising-data-frames.html#cb166-6"></a><span class="co">## medium   notip       8 8</span></span>
+<span id="cb166-7"><a href="summarising-data-frames.html#cb166-7"></a><span class="co">##          tip         8 8</span></span>
+<span id="cb166-8"><a href="summarising-data-frames.html#cb166-8"></a><span class="co">## high     notip       8 8</span></span>
+<span id="cb166-9"><a href="summarising-data-frames.html#cb166-9"></a><span class="co">##          tip         8 8</span></span></code></pre></div>
 <p>We can also summarise our data for each level of a factor variable. Let’s say we want to calculate the mean value of <code>height</code> for each of our <code>low</code>, <code>meadium</code> and <code>high</code> levels of <code>nitrogen</code>. To do this we will use the <code>mean()</code> function and apply this to the <code>height</code> variable for each level of <code>nitrogen</code> using the <code>tapply()</code> function.</p>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, mean)</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2"><span class="co">##      low   medium     high </span></a>
-<a class="sourceLine" id="cb167-3" data-line-number="3"><span class="co">## 5.853125 7.012500 7.653125</span></a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="summarising-data-frames.html#cb167-1"></a><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, mean)</span>
+<span id="cb167-2"><a href="summarising-data-frames.html#cb167-2"></a><span class="co">##      low   medium     high </span></span>
+<span id="cb167-3"><a href="summarising-data-frames.html#cb167-3"></a><span class="co">## 5.853125 7.012500 7.653125</span></span></code></pre></div>
 <p>The <code>tapply()</code> function is not just restricted to calculating mean values, you can use it to apply many of the functions that come with R or even functions you’ve written yourself (see <a href="prog-r.html#prog_r">Chapter 7</a> for more details). For example, we can apply the <code>sd()</code> function to calculate the standard deviation for each level of <code>nitrogen</code> or even the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb168-1" data-line-number="1"><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, sd)</a>
-<a class="sourceLine" id="cb168-2" data-line-number="2"><span class="co">##      low   medium     high </span></a>
-<a class="sourceLine" id="cb168-3" data-line-number="3"><span class="co">## 2.828425 3.005345 3.483323</span></a>
-<a class="sourceLine" id="cb168-4" data-line-number="4"><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, summary)</a>
-<a class="sourceLine" id="cb168-5" data-line-number="5"><span class="co">## $low</span></a>
-<a class="sourceLine" id="cb168-6" data-line-number="6"><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb168-7" data-line-number="7"><span class="co">##   1.800   3.600   5.550   5.853   8.000  12.300 </span></a>
-<a class="sourceLine" id="cb168-8" data-line-number="8"><span class="co">## </span></a>
-<a class="sourceLine" id="cb168-9" data-line-number="9"><span class="co">## $medium</span></a>
-<a class="sourceLine" id="cb168-10" data-line-number="10"><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb168-11" data-line-number="11"><span class="co">##   1.800   4.500   7.000   7.013   9.950  12.300 </span></a>
-<a class="sourceLine" id="cb168-12" data-line-number="12"><span class="co">## </span></a>
-<a class="sourceLine" id="cb168-13" data-line-number="13"><span class="co">## $high</span></a>
-<a class="sourceLine" id="cb168-14" data-line-number="14"><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></a>
-<a class="sourceLine" id="cb168-15" data-line-number="15"><span class="co">##   1.200   5.800   7.450   7.653   9.475  17.200</span></a></code></pre></div>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="summarising-data-frames.html#cb168-1"></a><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, sd)</span>
+<span id="cb168-2"><a href="summarising-data-frames.html#cb168-2"></a><span class="co">##      low   medium     high </span></span>
+<span id="cb168-3"><a href="summarising-data-frames.html#cb168-3"></a><span class="co">## 2.828425 3.005345 3.483323</span></span>
+<span id="cb168-4"><a href="summarising-data-frames.html#cb168-4"></a><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, summary)</span>
+<span id="cb168-5"><a href="summarising-data-frames.html#cb168-5"></a><span class="co">## $low</span></span>
+<span id="cb168-6"><a href="summarising-data-frames.html#cb168-6"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb168-7"><a href="summarising-data-frames.html#cb168-7"></a><span class="co">##   1.800   3.600   5.550   5.853   8.000  12.300 </span></span>
+<span id="cb168-8"><a href="summarising-data-frames.html#cb168-8"></a><span class="co">## </span></span>
+<span id="cb168-9"><a href="summarising-data-frames.html#cb168-9"></a><span class="co">## $medium</span></span>
+<span id="cb168-10"><a href="summarising-data-frames.html#cb168-10"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb168-11"><a href="summarising-data-frames.html#cb168-11"></a><span class="co">##   1.800   4.500   7.000   7.013   9.950  12.300 </span></span>
+<span id="cb168-12"><a href="summarising-data-frames.html#cb168-12"></a><span class="co">## </span></span>
+<span id="cb168-13"><a href="summarising-data-frames.html#cb168-13"></a><span class="co">## $high</span></span>
+<span id="cb168-14"><a href="summarising-data-frames.html#cb168-14"></a><span class="co">##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. </span></span>
+<span id="cb168-15"><a href="summarising-data-frames.html#cb168-15"></a><span class="co">##   1.200   5.800   7.450   7.653   9.475  17.200</span></span></code></pre></div>
 <p>Note, if the variable you want to summarise contains missing values (<code>NA</code>) you will also need to include an argument specifying how you want the function to deal with the <code>NA</code> values. We saw an example if this in <a href="vectors.html#na_vals">Chapter 2</a> where the <code>mean()</code> function returned an <code>NA</code> when we had missing data. To include the <code>na.rm = TRUE</code> argument we simply add this as another argument when using <code>tapply()</code>.</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb169-2" data-line-number="2"><span class="co">##      low   medium     high </span></a>
-<a class="sourceLine" id="cb169-3" data-line-number="3"><span class="co">## 5.853125 7.012500 7.653125</span></a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="summarising-data-frames.html#cb169-1"></a><span class="kw">tapply</span>(flowers<span class="op">$</span>height, flowers<span class="op">$</span>nitrogen, mean, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb169-2"><a href="summarising-data-frames.html#cb169-2"></a><span class="co">##      low   medium     high </span></span>
+<span id="cb169-3"><a href="summarising-data-frames.html#cb169-3"></a><span class="co">## 5.853125 7.012500 7.653125</span></span></code></pre></div>
 <p>We can also use <code>tapply()</code> to apply functions to more than one factor. The only thing to remember is that the factors need to be supplied to the <code>tapply()</code> function in the form of a list using the <code>list()</code> function. To calculate the mean <code>height</code> for each combination of <code>nitrogen</code> and <code>treat</code> factor levels we can use the <code>list(flowers$nitrogen, flowers$treat)</code> notation.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb170-1" data-line-number="1"><span class="kw">tapply</span>(flowers<span class="op">$</span>height, <span class="kw">list</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>treat), mean)</a>
-<a class="sourceLine" id="cb170-2" data-line-number="2"><span class="co">##          notip    tip</span></a>
-<a class="sourceLine" id="cb170-3" data-line-number="3"><span class="co">## low    3.66875 8.0375</span></a>
-<a class="sourceLine" id="cb170-4" data-line-number="4"><span class="co">## medium 4.83750 9.1875</span></a>
-<a class="sourceLine" id="cb170-5" data-line-number="5"><span class="co">## high   5.70625 9.6000</span></a></code></pre></div>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="summarising-data-frames.html#cb170-1"></a><span class="kw">tapply</span>(flowers<span class="op">$</span>height, <span class="kw">list</span>(flowers<span class="op">$</span>nitrogen, flowers<span class="op">$</span>treat), mean)</span>
+<span id="cb170-2"><a href="summarising-data-frames.html#cb170-2"></a><span class="co">##          notip    tip</span></span>
+<span id="cb170-3"><a href="summarising-data-frames.html#cb170-3"></a><span class="co">## low    3.66875 8.0375</span></span>
+<span id="cb170-4"><a href="summarising-data-frames.html#cb170-4"></a><span class="co">## medium 4.83750 9.1875</span></span>
+<span id="cb170-5"><a href="summarising-data-frames.html#cb170-5"></a><span class="co">## high   5.70625 9.6000</span></span></code></pre></div>
 <p>And if you get a little fed up with having to write <code>flowers$</code> for every variable you can nest the <code>tapply()</code> function inside the <code>with()</code> function. The <code>with()</code> function allows R to evaluate an R expression with respect to a named data object (in this case <code>flowers</code>).</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">with</span>(flowers, <span class="kw">tapply</span>(height, <span class="kw">list</span>(nitrogen, treat), mean))</a>
-<a class="sourceLine" id="cb171-2" data-line-number="2"><span class="co">##          notip    tip</span></a>
-<a class="sourceLine" id="cb171-3" data-line-number="3"><span class="co">## low    3.66875 8.0375</span></a>
-<a class="sourceLine" id="cb171-4" data-line-number="4"><span class="co">## medium 4.83750 9.1875</span></a>
-<a class="sourceLine" id="cb171-5" data-line-number="5"><span class="co">## high   5.70625 9.6000</span></a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="summarising-data-frames.html#cb171-1"></a><span class="kw">with</span>(flowers, <span class="kw">tapply</span>(height, <span class="kw">list</span>(nitrogen, treat), mean))</span>
+<span id="cb171-2"><a href="summarising-data-frames.html#cb171-2"></a><span class="co">##          notip    tip</span></span>
+<span id="cb171-3"><a href="summarising-data-frames.html#cb171-3"></a><span class="co">## low    3.66875 8.0375</span></span>
+<span id="cb171-4"><a href="summarising-data-frames.html#cb171-4"></a><span class="co">## medium 4.83750 9.1875</span></span>
+<span id="cb171-5"><a href="summarising-data-frames.html#cb171-5"></a><span class="co">## high   5.70625 9.6000</span></span></code></pre></div>
 <p>The <code>with()</code> function also works with many other functions and can save you alot of typing!</p>
 <p>Another really useful function for summarising data is the <code>aggregate()</code> function. The <code>aggregate()</code> function works in a very similar way to <code>tapply()</code> but is a bit more flexible.</p>
 <p>For example, to calculate the mean of the variables <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> for each level of <code>nitrogen</code>.</p>
-<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb172-1" data-line-number="1"><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen), <span class="dt">FUN =</span> mean)</a>
-<a class="sourceLine" id="cb172-2" data-line-number="2"><span class="co">##   nitrogen   height    weight leafarea shootarea</span></a>
-<a class="sourceLine" id="cb172-3" data-line-number="3"><span class="co">## 1      low 5.853125  8.652812 11.14375   45.1000</span></a>
-<a class="sourceLine" id="cb172-4" data-line-number="4"><span class="co">## 2   medium 7.012500 11.164062 13.83125   67.5625</span></a>
-<a class="sourceLine" id="cb172-5" data-line-number="5"><span class="co">## 3     high 7.653125 16.646875 17.18125  126.6875</span></a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="summarising-data-frames.html#cb172-1"></a><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen), <span class="dt">FUN =</span> mean)</span>
+<span id="cb172-2"><a href="summarising-data-frames.html#cb172-2"></a><span class="co">##   nitrogen   height    weight leafarea shootarea</span></span>
+<span id="cb172-3"><a href="summarising-data-frames.html#cb172-3"></a><span class="co">## 1      low 5.853125  8.652812 11.14375   45.1000</span></span>
+<span id="cb172-4"><a href="summarising-data-frames.html#cb172-4"></a><span class="co">## 2   medium 7.012500 11.164062 13.83125   67.5625</span></span>
+<span id="cb172-5"><a href="summarising-data-frames.html#cb172-5"></a><span class="co">## 3     high 7.653125 16.646875 17.18125  126.6875</span></span></code></pre></div>
 <p>In the code above we have indexed the columns we want to summarise in the <code>flowers</code> data frame using <code>flowers[, 4:7]</code>. The <code>by =</code> argument specifies a list of factors (<code>list(nitrogen = flowers$nitrogen)</code>) and the <code>FUN =</code> argument names the function to apply (<code>mean</code> in this example).</p>
 <p>Similar to the <code>tapply()</code> function we can include more than one factor to apply a function to. Here we calculate the mean values for each combination of <code>nitrogen</code> and <code>treat</code></p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen,</a>
-<a class="sourceLine" id="cb173-2" data-line-number="2">                                 <span class="dt">treat =</span> flowers<span class="op">$</span>treat), <span class="dt">FUN =</span> mean)</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3"><span class="co">##   nitrogen treat  height    weight leafarea shootarea</span></a>
-<a class="sourceLine" id="cb173-4" data-line-number="4"><span class="co">## 1      low notip 3.66875  8.289375 12.32500  59.89375</span></a>
-<a class="sourceLine" id="cb173-5" data-line-number="5"><span class="co">## 2   medium notip 4.83750 11.316875 14.17500  94.53125</span></a>
-<a class="sourceLine" id="cb173-6" data-line-number="6"><span class="co">## 3     high notip 5.70625 16.604375 18.81875 155.31875</span></a>
-<a class="sourceLine" id="cb173-7" data-line-number="7"><span class="co">## 4      low   tip 8.03750  9.016250  9.96250  30.30625</span></a>
-<a class="sourceLine" id="cb173-8" data-line-number="8"><span class="co">## 5   medium   tip 9.18750 11.011250 13.48750  40.59375</span></a>
-<a class="sourceLine" id="cb173-9" data-line-number="9"><span class="co">## 6     high   tip 9.60000 16.689375 15.54375  98.05625</span></a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="summarising-data-frames.html#cb173-1"></a><span class="kw">aggregate</span>(flowers[, <span class="dv">4</span><span class="op">:</span><span class="dv">7</span>], <span class="dt">by =</span> <span class="kw">list</span>(<span class="dt">nitrogen =</span> flowers<span class="op">$</span>nitrogen,</span>
+<span id="cb173-2"><a href="summarising-data-frames.html#cb173-2"></a>                                 <span class="dt">treat =</span> flowers<span class="op">$</span>treat), <span class="dt">FUN =</span> mean)</span>
+<span id="cb173-3"><a href="summarising-data-frames.html#cb173-3"></a><span class="co">##   nitrogen treat  height    weight leafarea shootarea</span></span>
+<span id="cb173-4"><a href="summarising-data-frames.html#cb173-4"></a><span class="co">## 1      low notip 3.66875  8.289375 12.32500  59.89375</span></span>
+<span id="cb173-5"><a href="summarising-data-frames.html#cb173-5"></a><span class="co">## 2   medium notip 4.83750 11.316875 14.17500  94.53125</span></span>
+<span id="cb173-6"><a href="summarising-data-frames.html#cb173-6"></a><span class="co">## 3     high notip 5.70625 16.604375 18.81875 155.31875</span></span>
+<span id="cb173-7"><a href="summarising-data-frames.html#cb173-7"></a><span class="co">## 4      low   tip 8.03750  9.016250  9.96250  30.30625</span></span>
+<span id="cb173-8"><a href="summarising-data-frames.html#cb173-8"></a><span class="co">## 5   medium   tip 9.18750 11.011250 13.48750  40.59375</span></span>
+<span id="cb173-9"><a href="summarising-data-frames.html#cb173-9"></a><span class="co">## 6     high   tip 9.60000 16.689375 15.54375  98.05625</span></span></code></pre></div>
 <p>We can also use the <code>aggregate()</code> function in a different way by using the formula method (as we did with <code>xtabs()</code>). On the left hand side of the formula (<code>~</code>) we specify the variable we want to apply the mean function on and to the right hand side our factors separated by a <code>+</code> symbol. The formula method also allows you to use the <code>data =</code> argument for convenience.</p>
-<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb174-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">data =</span> flowers)</a>
-<a class="sourceLine" id="cb174-2" data-line-number="2"><span class="co">##   nitrogen treat  height</span></a>
-<a class="sourceLine" id="cb174-3" data-line-number="3"><span class="co">## 1      low notip 3.66875</span></a>
-<a class="sourceLine" id="cb174-4" data-line-number="4"><span class="co">## 2   medium notip 4.83750</span></a>
-<a class="sourceLine" id="cb174-5" data-line-number="5"><span class="co">## 3     high notip 5.70625</span></a>
-<a class="sourceLine" id="cb174-6" data-line-number="6"><span class="co">## 4      low   tip 8.03750</span></a>
-<a class="sourceLine" id="cb174-7" data-line-number="7"><span class="co">## 5   medium   tip 9.18750</span></a>
-<a class="sourceLine" id="cb174-8" data-line-number="8"><span class="co">## 6     high   tip 9.60000</span></a></code></pre></div>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="summarising-data-frames.html#cb174-1"></a><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">data =</span> flowers)</span>
+<span id="cb174-2"><a href="summarising-data-frames.html#cb174-2"></a><span class="co">##   nitrogen treat  height</span></span>
+<span id="cb174-3"><a href="summarising-data-frames.html#cb174-3"></a><span class="co">## 1      low notip 3.66875</span></span>
+<span id="cb174-4"><a href="summarising-data-frames.html#cb174-4"></a><span class="co">## 2   medium notip 4.83750</span></span>
+<span id="cb174-5"><a href="summarising-data-frames.html#cb174-5"></a><span class="co">## 3     high notip 5.70625</span></span>
+<span id="cb174-6"><a href="summarising-data-frames.html#cb174-6"></a><span class="co">## 4      low   tip 8.03750</span></span>
+<span id="cb174-7"><a href="summarising-data-frames.html#cb174-7"></a><span class="co">## 5   medium   tip 9.18750</span></span>
+<span id="cb174-8"><a href="summarising-data-frames.html#cb174-8"></a><span class="co">## 6     high   tip 9.60000</span></span></code></pre></div>
 <p>One advantage of using the formula method is that we can also use the <code>subset =</code> argument to apply the function to subsets of the original data. For example, to calculate the mean <code>height</code> for each combination of the <code>nitrogen</code> and <code>treat</code> levels but only for those plants that have less than 7 <code>flowers</code>.</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> flowers <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span>, <span class="dt">data =</span> flowers)</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2"><span class="co">##   nitrogen treat   height</span></a>
-<a class="sourceLine" id="cb175-3" data-line-number="3"><span class="co">## 1      low notip 3.533333</span></a>
-<a class="sourceLine" id="cb175-4" data-line-number="4"><span class="co">## 2   medium notip 5.316667</span></a>
-<a class="sourceLine" id="cb175-5" data-line-number="5"><span class="co">## 3     high notip 3.850000</span></a>
-<a class="sourceLine" id="cb175-6" data-line-number="6"><span class="co">## 4      low   tip 8.176923</span></a>
-<a class="sourceLine" id="cb175-7" data-line-number="7"><span class="co">## 5   medium   tip 8.570000</span></a>
-<a class="sourceLine" id="cb175-8" data-line-number="8"><span class="co">## 6     high   tip 7.900000</span></a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="summarising-data-frames.html#cb175-1"></a><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> flowers <span class="op">&lt;</span><span class="st"> </span><span class="dv">7</span>, <span class="dt">data =</span> flowers)</span>
+<span id="cb175-2"><a href="summarising-data-frames.html#cb175-2"></a><span class="co">##   nitrogen treat   height</span></span>
+<span id="cb175-3"><a href="summarising-data-frames.html#cb175-3"></a><span class="co">## 1      low notip 3.533333</span></span>
+<span id="cb175-4"><a href="summarising-data-frames.html#cb175-4"></a><span class="co">## 2   medium notip 5.316667</span></span>
+<span id="cb175-5"><a href="summarising-data-frames.html#cb175-5"></a><span class="co">## 3     high notip 3.850000</span></span>
+<span id="cb175-6"><a href="summarising-data-frames.html#cb175-6"></a><span class="co">## 4      low   tip 8.176923</span></span>
+<span id="cb175-7"><a href="summarising-data-frames.html#cb175-7"></a><span class="co">## 5   medium   tip 8.570000</span></span>
+<span id="cb175-8"><a href="summarising-data-frames.html#cb175-8"></a><span class="co">## 6     high   tip 7.900000</span></span></code></pre></div>
 <p>Or for only those plants in <code>block</code> 1.</p>
-<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb176-1" data-line-number="1"><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> block <span class="op">==</span><span class="st"> &quot;1&quot;</span>, <span class="dt">data =</span> flowers)</a>
-<a class="sourceLine" id="cb176-2" data-line-number="2"><span class="co">##   nitrogen treat  height</span></a>
-<a class="sourceLine" id="cb176-3" data-line-number="3"><span class="co">## 1      low notip  3.3250</span></a>
-<a class="sourceLine" id="cb176-4" data-line-number="4"><span class="co">## 2   medium notip  5.2375</span></a>
-<a class="sourceLine" id="cb176-5" data-line-number="5"><span class="co">## 3     high notip  5.9250</span></a>
-<a class="sourceLine" id="cb176-6" data-line-number="6"><span class="co">## 4      low   tip  8.7500</span></a>
-<a class="sourceLine" id="cb176-7" data-line-number="7"><span class="co">## 5   medium   tip  9.5375</span></a>
-<a class="sourceLine" id="cb176-8" data-line-number="8"><span class="co">## 6     high   tip 10.0375</span></a></code></pre></div>
+<div class="sourceCode" id="cb176"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb176-1"><a href="summarising-data-frames.html#cb176-1"></a><span class="kw">aggregate</span>(height <span class="op">~</span><span class="st"> </span>nitrogen <span class="op">+</span><span class="st"> </span>treat, <span class="dt">FUN =</span> mean, <span class="dt">subset =</span> block <span class="op">==</span><span class="st"> &quot;1&quot;</span>, <span class="dt">data =</span> flowers)</span>
+<span id="cb176-2"><a href="summarising-data-frames.html#cb176-2"></a><span class="co">##   nitrogen treat  height</span></span>
+<span id="cb176-3"><a href="summarising-data-frames.html#cb176-3"></a><span class="co">## 1      low notip  3.3250</span></span>
+<span id="cb176-4"><a href="summarising-data-frames.html#cb176-4"></a><span class="co">## 2   medium notip  5.2375</span></span>
+<span id="cb176-5"><a href="summarising-data-frames.html#cb176-5"></a><span class="co">## 3     high notip  5.9250</span></span>
+<span id="cb176-6"><a href="summarising-data-frames.html#cb176-6"></a><span class="co">## 4      low   tip  8.7500</span></span>
+<span id="cb176-7"><a href="summarising-data-frames.html#cb176-7"></a><span class="co">## 5   medium   tip  9.5375</span></span>
+<span id="cb176-8"><a href="summarising-data-frames.html#cb176-8"></a><span class="co">## 6     high   tip 10.0375</span></span></code></pre></div>
 </div>
             </section>
 
