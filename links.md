@@ -5,6 +5,18 @@
 [github-issue]: https://github.com/alexd106/Rbook/issues
 [flow-data]: https://alexd106.github.io/intro2R/data.html
 
+<!--video Links bitly format for OSX preview to work-->
+[install-vid]: https://bit.ly/3cuRqSZ
+[rstudio-vid]: https://bit.ly/3eLcxSW
+[dataw-vid]: https://bit.ly/3eIPkjY
+[func-vid]: https://bit.ly/36QqMD9
+[objs-vid]: https://bit.ly/3eFmtgw
+[vec-vid]: https://bit.ly/3drjsA5
+[vec2-vid]: https://bit.ly/2BrGGZ1
+[pack-vid]: https://bit.ly/3eHsrxl
+[dataf-vid]: https://bit.ly/2MjnyP7
+[import-vid]: https://bit.ly/2UiJwpV
+
 <!--Exercises Links-->
 [exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
 [exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
