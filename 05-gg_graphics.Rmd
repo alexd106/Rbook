@@ -121,7 +121,7 @@ And here we have it. A fully formed, perfect `ggplot`. We may have a small issue
 
 We'll keep using the `flower` dataset that you've used in [Chapter 3](#data_r). Let's have a quick reminder of what the structure of the data looks like.
 
-```{r str-of-flower}
+```{r str-of-flower, collapse=TRUE}
 flower <- read.table("data/flower.csv", header = TRUE, sep = ",")
 str(flower)
 ```
@@ -645,7 +645,7 @@ light <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower
 
 In terms of finding a theme that most closely matches our "final figure", it's probably going to be `theme_classic()`\index{theme\_classic()}. There are additional themes available to you, and even more available online. `ggthemes`\index{ggthemes package} is a package which contains many more themes for you to use. The BBC even have their own `ggplot2` theme called "BBplot" which they use when making their own figures (while good, we don't like it too much for scientific figures). Indeed, you can even make your own theme which is what we'll work on next. To begin with, we'll have a look to see how `theme_classic()` was coded. We can do that easily enough by just writing the function name without the paranetheses (see [Chapter 7](#prog_r) for a bit more on this).
 
-```{r theme_classic, message=FALSE, comment=""}
+```{r theme_classic, message=FALSE, comment="", collapse=TRUE}
 theme_classic
 ```
 
@@ -1036,7 +1036,8 @@ knitr::include_graphics(path = "images/scales.png")
 
 ```{r continuous-colour, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
-	# Deleted geom_smooths for illustrative purposes only (and also removed alpha argument from geom_point)
+	# Deleted geom_smooths for illustrative purposes only 
+  # (and also removed alpha argument from geom_point)
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
@@ -1475,7 +1476,8 @@ Next is a histogram (a much more traditional version of a density plot). There a
 
 ```{r histogram, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
-	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20, position = "dodge") +
+	geom_histogram(aes(x = flowers, fill = factor(block)), colour = "black", bins = 20,
+                 position = "dodge") +
 	labs(y = "Count", x = "Number of Flowers", fill = "Greenhouse\nBlock") +
 	scale_fill_manual(labels = c("1", "2"),
           values = c("#8CD926", "#7326D9")) +
@@ -1522,8 +1524,10 @@ Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is l
 
 ```{r violin-plot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
-  geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), draw_quantiles = c(0.25, 0.5, 0.75)) +
-  geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, width = 0.1, alpha = 0.5) +
+  geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), 
+              draw_quantiles = c(0.25, 0.5, 0.75)) +
+  geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, 
+              width = 0.1, alpha = 0.5) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
          values = c("#5f7f5c", "#749770", "#9eb69b")) +
 	labs(y = "Number of Flowers", x = "Nitrogen Concentration") +
@@ -1642,7 +1646,8 @@ We do this by first using the function `rownames()`\index{rownames()}. This func
 
 ```{r dotpot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) + 
-	geom_hline(aes(yintercept = as.numeric(rownames(flower))), linetype = 2, colour = "lightgrey") +
+	geom_hline(aes(yintercept = as.numeric(rownames(flower))), linetype = 2,
+             colour = "lightgrey") +
   geom_point(aes(x = leafarea, y = as.numeric(rownames(flower)))) +
   labs(y = "Order in Dataset", x = bquote("Area of leaf"~(cm^2))) +
 	theme_rbook()

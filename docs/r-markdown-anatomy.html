@@ -387,32 +387,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="yaml-header" class="section level3">
 <h3><span class="header-section-number">8.5.1</span> YAML header</h3>
 <p>YAML stands for ‘<strong>Y</strong>AML <strong>A</strong>in’t <strong>M</strong>arkup <strong>L</strong>anguage’ (it’s an ‘in’ <a href="https://en.wikipedia.org/wiki/Recursive_acronym">joke</a>!) and this optional component contains the metadata and options for the entire document such as the author name, date, output format, etc. The YAML header is surrounded before and after by a <code>---</code> on its own line. In RStudio a minimal YAML header is automatically created for you when you create a new R markdown document as we did <a href="new-rm.html#new_rm">above</a> but you can change this any time. A simple YAML header may look something like this:</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb410-1"><a href="r-markdown-anatomy.html#cb410-1"></a><span class="pp">---</span></span>
-<span id="cb410-2"><a href="r-markdown-anatomy.html#cb410-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My first R markdown document</span></span>
-<span id="cb410-3"><a href="r-markdown-anatomy.html#cb410-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Jane Doe</span></span>
-<span id="cb410-4"><a href="r-markdown-anatomy.html#cb410-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> March 01, 2020</span></span>
-<span id="cb410-5"><a href="r-markdown-anatomy.html#cb410-5"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
-<span id="cb410-6"><a href="r-markdown-anatomy.html#cb410-6"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb408-1"><a href="r-markdown-anatomy.html#cb408-1"></a><span class="pp">---</span></span>
+<span id="cb408-2"><a href="r-markdown-anatomy.html#cb408-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My first R markdown document</span></span>
+<span id="cb408-3"><a href="r-markdown-anatomy.html#cb408-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Jane Doe</span></span>
+<span id="cb408-4"><a href="r-markdown-anatomy.html#cb408-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> March 01, 2020</span></span>
+<span id="cb408-5"><a href="r-markdown-anatomy.html#cb408-5"></a><span class="fu">output</span><span class="kw">:</span><span class="at"> html_document</span></span>
+<span id="cb408-6"><a href="r-markdown-anatomy.html#cb408-6"></a><span class="pp">---</span></span></code></pre></div>
 <p>In the YAML header above the output format is set to HTML. If you would like to change the output to pdf format then you can change it from <code>output: html_document</code> to <code>output: pdf_document</code> (you can also set more than one output format if you like). You can also change the default font and font size for the whole document and even include fancy options such as a table of contents and inline references and a bibliography. If you want to explore the plethora of other options see <a href="https://bookdown.org/yihui/rmarkdown/html-document.html">here</a>. Just a note of caution, many of the options you can specify in the YAML header will work with both HTML and pdf formatted documents, but not all. If you need multiple output formats for your R markdown document check whether your YAML options are compatible between these formats. Also, indentation in the YAML header has a meaning, so be careful when aligning text. For example, if you want to include a table of contents you would modify the <code>output:</code> field in the YAML header as follows</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb411-1"><a href="r-markdown-anatomy.html#cb411-1"></a><span class="pp">---</span></span>
-<span id="cb411-2"><a href="r-markdown-anatomy.html#cb411-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My first R markdown document</span></span>
-<span id="cb411-3"><a href="r-markdown-anatomy.html#cb411-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Jane Doe</span></span>
-<span id="cb411-4"><a href="r-markdown-anatomy.html#cb411-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> March 01, 2020</span></span>
-<span id="cb411-5"><a href="r-markdown-anatomy.html#cb411-5"></a><span class="fu">output</span><span class="kw">:</span></span>
-<span id="cb411-6"><a href="r-markdown-anatomy.html#cb411-6"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
-<span id="cb411-7"><a href="r-markdown-anatomy.html#cb411-7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
-<span id="cb411-8"><a href="r-markdown-anatomy.html#cb411-8"></a><span class="pp">---</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb409-1"><a href="r-markdown-anatomy.html#cb409-1"></a><span class="pp">---</span></span>
+<span id="cb409-2"><a href="r-markdown-anatomy.html#cb409-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> My first R markdown document</span></span>
+<span id="cb409-3"><a href="r-markdown-anatomy.html#cb409-3"></a><span class="fu">author</span><span class="kw">:</span><span class="at"> Jane Doe</span></span>
+<span id="cb409-4"><a href="r-markdown-anatomy.html#cb409-4"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> March 01, 2020</span></span>
+<span id="cb409-5"><a href="r-markdown-anatomy.html#cb409-5"></a><span class="fu">output</span><span class="kw">:</span></span>
+<span id="cb409-6"><a href="r-markdown-anatomy.html#cb409-6"></a><span class="at">  </span><span class="fu">html_document</span><span class="kw">:</span></span>
+<span id="cb409-7"><a href="r-markdown-anatomy.html#cb409-7"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">yes</span></span>
+<span id="cb409-8"><a href="r-markdown-anatomy.html#cb409-8"></a><span class="pp">---</span></span></code></pre></div>
 </div>
 <div id="formatted-text" class="section level3">
 <h3><span class="header-section-number">8.5.2</span> Formatted text</h3>
 <p>As mentioned above, one of the great things about R markdown is that you don’t need to rely on your word processor to bring your R code, analysis and writing together. R markdown is able to render (almost) all of the text formatting that you are likely to need such as italics, bold, strike-through, super and subscript as well as bulleted and numbered lists, headers and footers, images, links to other documents or web pages and also equations. However, in contrast to your familiar <em>What-You-See-Is-What-You-Get</em> (<a href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a>) word processing software you don’t see the final formatted text in your R markdown document (as you would in MS Word), rather you need to ‘markup’ the formatting in your text ready to be rendered in your output document. At first, this might seem like a right pain in the proverbial but it’s actually very easy to do and also has many <a href="https://dev.to/practicalprogramming/advantages-of-document-markup-languages-vs-wysiwyg-editors-9f6">advantages</a> (do you find yourself spending more time on making your text look pretty in MS Word rather than writing good content?!).</p>
 <p>Here is an example of marking up text formatting in an R markdown document</p>
-<div class="sourceCode" id="cb412"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb412-1"><a href="r-markdown-anatomy.html#cb412-1"></a><span class="fu">#### Benthic Biodiversity experiment</span></span>
-<span id="cb412-2"><a href="r-markdown-anatomy.html#cb412-2"></a>These data were obtained from a mesocosm experiment which aimed to examine the effect </span>
-<span id="cb412-3"><a href="r-markdown-anatomy.html#cb412-3"></a>of benthic polychaete (*Nereis diversicolor*) biomass on sediment nutrient </span>
-<span id="cb412-4"><a href="r-markdown-anatomy.html#cb412-4"></a>(NH~4~, NO~3~ and PO~3~) release. At the start of the experiment 15 replicate mesocosms </span>
-<span id="cb412-5"><a href="r-markdown-anatomy.html#cb412-5"></a>were filled with 20 cm^2^ of **homogenised** marine sediment and assigned to one of five </span>
-<span id="cb412-6"><a href="r-markdown-anatomy.html#cb412-6"></a>polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb410-1"><a href="r-markdown-anatomy.html#cb410-1"></a><span class="fu">#### Benthic Biodiversity experiment</span></span>
+<span id="cb410-2"><a href="r-markdown-anatomy.html#cb410-2"></a>These data were obtained from a mesocosm experiment which aimed to examine the effect </span>
+<span id="cb410-3"><a href="r-markdown-anatomy.html#cb410-3"></a>of benthic polychaete (*Nereis diversicolor*) biomass on sediment nutrient </span>
+<span id="cb410-4"><a href="r-markdown-anatomy.html#cb410-4"></a>(NH~4~, NO~3~ and PO~3~) release. At the start of the experiment 15 replicate mesocosms </span>
+<span id="cb410-5"><a href="r-markdown-anatomy.html#cb410-5"></a>were filled with 20 cm^2^ of **homogenised** marine sediment and assigned to one of five </span>
+<span id="cb410-6"><a href="r-markdown-anatomy.html#cb410-6"></a>polychaete biomass treatments (0, 0.5, 1, 1.5, 2 g per mesocosm).</span></code></pre></div>
 <p>which would look like this in the final rendered document (can you spot the markups?)</p>
 <blockquote>
 <h4 id="benthic-biodiversity-experiment" class="unlisted unnumbered">Benthic Biodiversity experiment</h4>
@@ -466,10 +466,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="white-space-and-line-breaks" class="section level4 unnumbered">
 <h4>White space and line breaks</h4>
 <p>One of the things that can be confusing for new users of R markdown is the use of spaces and carriage returns (the enter key on your keyboard). In R markdown multiple spaces within the text are generally ignored as are carriage returns. For example this R markdown text</p>
-<div class="sourceCode" id="cb413"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb413-1"><a href="r-markdown-anatomy.html#cb413-1"></a>These      data were      obtained from a</span>
-<span id="cb413-2"><a href="r-markdown-anatomy.html#cb413-2"></a>mesocosm experiment which    aimed to examine the</span>
-<span id="cb413-3"><a href="r-markdown-anatomy.html#cb413-3"></a>effect</span>
-<span id="cb413-4"><a href="r-markdown-anatomy.html#cb413-4"></a>of          benthic polychaete (*Nereis diversicolor*) biomass.</span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb411-1"><a href="r-markdown-anatomy.html#cb411-1"></a>These      data were      obtained from a</span>
+<span id="cb411-2"><a href="r-markdown-anatomy.html#cb411-2"></a>mesocosm experiment which    aimed to examine the</span>
+<span id="cb411-3"><a href="r-markdown-anatomy.html#cb411-3"></a>effect</span>
+<span id="cb411-4"><a href="r-markdown-anatomy.html#cb411-4"></a>of          benthic polychaete (*Nereis diversicolor*) biomass.</span></code></pre></div>
 <p>will be rendered as</p>
 <blockquote>
 <p>These data were obtained from a
@@ -496,12 +496,12 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <div id="headings" class="section level4 unnumbered">
 <h4>Headings</h4>
 <p>You can add headings and subheadings to your R markdown document by using the <code>#</code> symbol at the beginning of the line. You can decrease the size of the headings by simply adding more <code>#</code> symbols. For example</p>
-<div class="sourceCode" id="cb415"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb415-1"><a href="r-markdown-anatomy.html#cb415-1"></a><span class="fu"># Benthic Biodiversity experiment</span></span>
-<span id="cb415-2"><a href="r-markdown-anatomy.html#cb415-2"></a><span class="fu">## Benthic Biodiversity experiment</span></span>
-<span id="cb415-3"><a href="r-markdown-anatomy.html#cb415-3"></a><span class="fu">### Benthic Biodiversity experiment</span></span>
-<span id="cb415-4"><a href="r-markdown-anatomy.html#cb415-4"></a><span class="fu">#### Benthic Biodiversity experiment</span></span>
-<span id="cb415-5"><a href="r-markdown-anatomy.html#cb415-5"></a><span class="fu">##### Benthic Biodiversity experiment</span></span>
-<span id="cb415-6"><a href="r-markdown-anatomy.html#cb415-6"></a><span class="fu">###### Benthic Biodiversity experiment</span></span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb413-1"><a href="r-markdown-anatomy.html#cb413-1"></a><span class="fu"># Benthic Biodiversity experiment</span></span>
+<span id="cb413-2"><a href="r-markdown-anatomy.html#cb413-2"></a><span class="fu">## Benthic Biodiversity experiment</span></span>
+<span id="cb413-3"><a href="r-markdown-anatomy.html#cb413-3"></a><span class="fu">### Benthic Biodiversity experiment</span></span>
+<span id="cb413-4"><a href="r-markdown-anatomy.html#cb413-4"></a><span class="fu">#### Benthic Biodiversity experiment</span></span>
+<span id="cb413-5"><a href="r-markdown-anatomy.html#cb413-5"></a><span class="fu">##### Benthic Biodiversity experiment</span></span>
+<span id="cb413-6"><a href="r-markdown-anatomy.html#cb413-6"></a><span class="fu">###### Benthic Biodiversity experiment</span></span></code></pre></div>
 <p>results in headings in decreasing size order</p>
 <blockquote>
 <h1 id="benthic-biodiversity-experiment-1" class="unlisted unnumbered">Benthic Biodiversity experiment</h1>
@@ -515,19 +515,19 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <div id="comments" class="section level4 unnumbered">
 <h4>Comments</h4>
 <p>As you can see above the meaning of the <code>#</code> symbol is different when formatting text in an R markdown document compared to a standard R script (which is used to included a comment - remember?!). You can, however, use a <code>#</code> symbol to comment code inside a <a href="r-markdown-anatomy.html#code_chunks">code chunk</a> as usual (more about this in a bit). If you want to include a comment in your R markdown document outside a code chunk which won’t be included in the final rendered document then enclose your comment between <code>&lt;!--</code> and <code>--&gt;</code>.</p>
-<div class="sourceCode" id="cb416"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb416-1"><a href="r-markdown-anatomy.html#cb416-1"></a>&lt;!--</span>
-<span id="cb416-2"><a href="r-markdown-anatomy.html#cb416-2"></a><span class="co">this is an example of how to format a comment using R markdown.</span></span>
-<span id="cb416-3"><a href="r-markdown-anatomy.html#cb416-3"></a><span class="co">--&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb414"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb414-1"><a href="r-markdown-anatomy.html#cb414-1"></a>&lt;!--</span>
+<span id="cb414-2"><a href="r-markdown-anatomy.html#cb414-2"></a><span class="co">this is an example of how to format a comment using R markdown.</span></span>
+<span id="cb414-3"><a href="r-markdown-anatomy.html#cb414-3"></a><span class="co">--&gt;</span></span></code></pre></div>
 </div>
 <div id="lists-1" class="section level4 unnumbered">
 <h4>Lists</h4>
 <p>If you want to create a bullet point list of text you can format an unordered list with sub items. Notice that the sub-items need to be indented.</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb417-1"><a href="r-markdown-anatomy.html#cb417-1"></a>- <span class="st">item 1</span></span>
-<span id="cb417-2"><a href="r-markdown-anatomy.html#cb417-2"></a><span class="st">- item 2</span></span>
-<span id="cb417-3"><a href="r-markdown-anatomy.html#cb417-3"></a><span class="st">   + sub-item 2</span></span>
-<span id="cb417-4"><a href="r-markdown-anatomy.html#cb417-4"></a><span class="st">   + sub-item 3</span></span>
-<span id="cb417-5"><a href="r-markdown-anatomy.html#cb417-5"></a><span class="st">- item 3</span></span>
-<span id="cb417-6"><a href="r-markdown-anatomy.html#cb417-6"></a><span class="st">- item 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb415"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb415-1"><a href="r-markdown-anatomy.html#cb415-1"></a>- <span class="st">item 1</span></span>
+<span id="cb415-2"><a href="r-markdown-anatomy.html#cb415-2"></a><span class="st">- item 2</span></span>
+<span id="cb415-3"><a href="r-markdown-anatomy.html#cb415-3"></a><span class="st">   + sub-item 2</span></span>
+<span id="cb415-4"><a href="r-markdown-anatomy.html#cb415-4"></a><span class="st">   + sub-item 3</span></span>
+<span id="cb415-5"><a href="r-markdown-anatomy.html#cb415-5"></a><span class="st">- item 3</span></span>
+<span id="cb415-6"><a href="r-markdown-anatomy.html#cb415-6"></a><span class="st">- item 4</span></span></code></pre></div>
 <p> </p>
 <blockquote>
 <ul>
@@ -543,13 +543,13 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 </blockquote>
 <p> </p>
 <p>If you need an ordered list</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb418-1"><a href="r-markdown-anatomy.html#cb418-1"></a></span>
-<span id="cb418-2"><a href="r-markdown-anatomy.html#cb418-2"></a>1. <span class="st">item 1</span></span>
-<span id="cb418-3"><a href="r-markdown-anatomy.html#cb418-3"></a><span class="st">2. item 2</span></span>
-<span id="cb418-4"><a href="r-markdown-anatomy.html#cb418-4"></a><span class="st">     + sub-item 2</span></span>
-<span id="cb418-5"><a href="r-markdown-anatomy.html#cb418-5"></a><span class="st">     + sub-item 3</span></span>
-<span id="cb418-6"><a href="r-markdown-anatomy.html#cb418-6"></a><span class="st">3. item 3</span></span>
-<span id="cb418-7"><a href="r-markdown-anatomy.html#cb418-7"></a><span class="st">4. item 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb416-1"><a href="r-markdown-anatomy.html#cb416-1"></a></span>
+<span id="cb416-2"><a href="r-markdown-anatomy.html#cb416-2"></a>1. <span class="st">item 1</span></span>
+<span id="cb416-3"><a href="r-markdown-anatomy.html#cb416-3"></a><span class="st">2. item 2</span></span>
+<span id="cb416-4"><a href="r-markdown-anatomy.html#cb416-4"></a><span class="st">     + sub-item 2</span></span>
+<span id="cb416-5"><a href="r-markdown-anatomy.html#cb416-5"></a><span class="st">     + sub-item 3</span></span>
+<span id="cb416-6"><a href="r-markdown-anatomy.html#cb416-6"></a><span class="st">3. item 3</span></span>
+<span id="cb416-7"><a href="r-markdown-anatomy.html#cb416-7"></a><span class="st">4. item 4</span></span></code></pre></div>
 <p> </p>
 <blockquote>
 <ol style="list-style-type: decimal">
@@ -567,7 +567,7 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <div id="images" class="section level4 unnumbered">
 <h4>Images</h4>
 <p>Another useful feature is the ability to embed images and links to web pages (or other documents) into your R markdown document. You can include images into your R markdown document in a number of different ways. Perhaps the simplest method is to use</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb419-1"><a href="r-markdown-anatomy.html#cb419-1"></a><span class="al">![Cute grey kitten](images/Cute_grey_kitten.jpg)</span></span></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb417-1"><a href="r-markdown-anatomy.html#cb417-1"></a><span class="al">![Cute grey kitten](images/Cute_grey_kitten.jpg)</span></span></code></pre></div>
 <p>resulting in:</p>
 <div class="figure">
 <img src="images/Cute_grey_kitten.jpg" alt="" />
@@ -585,7 +585,7 @@ include_graphics(&quot;images/Cute_grey_kitten.jpg&quot;)
 <div id="links" class="section level4 unnumbered">
 <h4>Links</h4>
 <p>In addition to images you can also include links to webpages or other links in your document. Use the following syntax to create a clickable link to an existing webpage. The link text goes between the square brackets and the URL for the webpage between the round brackets immediately after.</p>
-<div class="sourceCode" id="cb421"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb421-1"><a href="r-markdown-anatomy.html#cb421-1"></a>You can include a text for your clickable <span class="ot">[link](https://www.worldwildlife.org)</span></span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb419-1"><a href="r-markdown-anatomy.html#cb419-1"></a>You can include a text for your clickable <span class="ot">[link](https://www.worldwildlife.org)</span></span></code></pre></div>
 <p>which gives you:</p>
 <blockquote>
 <p>You can include a text for your clickable <a href="https://www.worldwildlife.org">link</a></p>
@@ -609,11 +609,11 @@ dataf &lt;- data.frame(x = x, y = y)
 summary(dataf)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb424"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb424-1"><a href="r-markdown-anatomy.html#cb424-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb424-2"><a href="r-markdown-anatomy.html#cb424-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb424-3"><a href="r-markdown-anatomy.html#cb424-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb424-4"><a href="r-markdown-anatomy.html#cb424-4"></a></span>
-<span id="cb424-5"><a href="r-markdown-anatomy.html#cb424-5"></a><span class="kw">summary</span>(dataf)</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb422-1"><a href="r-markdown-anatomy.html#cb422-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb422-2"><a href="r-markdown-anatomy.html#cb422-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb422-3"><a href="r-markdown-anatomy.html#cb422-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb422-4"><a href="r-markdown-anatomy.html#cb422-4"></a></span>
+<span id="cb422-5"><a href="r-markdown-anatomy.html#cb422-5"></a><span class="kw">summary</span>(dataf)</span></code></pre></div>
 <pre><code>##        x               y        
 ##  Min.   : 1.00   Min.   : 1.00  
 ##  1st Qu.: 3.25   1st Qu.: 3.25  
@@ -645,10 +645,10 @@ dataf &lt;- data.frame(x = x, y = y)
 summary(dataf)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb429"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb429-1"><a href="r-markdown-anatomy.html#cb429-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb429-2"><a href="r-markdown-anatomy.html#cb429-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb429-3"><a href="r-markdown-anatomy.html#cb429-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb429-4"><a href="r-markdown-anatomy.html#cb429-4"></a><span class="kw">summary</span>(dataf)</span></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb427-1"><a href="r-markdown-anatomy.html#cb427-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb427-2"><a href="r-markdown-anatomy.html#cb427-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb427-3"><a href="r-markdown-anatomy.html#cb427-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb427-4"><a href="r-markdown-anatomy.html#cb427-4"></a><span class="kw">summary</span>(dataf)</span></code></pre></div>
 <p>Sometimes you may want to execute a code chunk without showing any output at all. You can suppress the entire output using the chunk option <code>include=FALSE</code>.</p>
 <pre><code>```{r, summary-stats, include=FALSE}
 x &lt;- 1:10    # create an x variable
@@ -715,10 +715,10 @@ dataf &lt;- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = &quot;x axis&quot;, ylab = &quot;y axis&quot;)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb432-1"><a href="r-markdown-anatomy.html#cb432-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb432-2"><a href="r-markdown-anatomy.html#cb432-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb432-3"><a href="r-markdown-anatomy.html#cb432-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb432-4"><a href="r-markdown-anatomy.html#cb432-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb430-1"><a href="r-markdown-anatomy.html#cb430-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb430-2"><a href="r-markdown-anatomy.html#cb430-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb430-3"><a href="r-markdown-anatomy.html#cb430-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb430-4"><a href="r-markdown-anatomy.html#cb430-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/simple-plot-1.png" width="672" /></p>
 <p>If you want to change the plot dimensions in the final document you can use the <code>fig.width=</code> and <code>fig.height=</code> chunk options (in inches!). You can also change the alignment of the figure using the <code>fig.align=</code> chunk option.</p>
 <pre><code>```{r, simple-plot, fig.width=4, fig.height=3, fig.align=&#39;center&#39;}
@@ -728,10 +728,10 @@ dataf &lt;- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = &quot;x axis&quot;, ylab = &quot;y axis&quot;)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb434-1"><a href="r-markdown-anatomy.html#cb434-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb434-2"><a href="r-markdown-anatomy.html#cb434-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb434-3"><a href="r-markdown-anatomy.html#cb434-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb434-4"><a href="r-markdown-anatomy.html#cb434-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb432-1"><a href="r-markdown-anatomy.html#cb432-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb432-2"><a href="r-markdown-anatomy.html#cb432-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb432-3"><a href="r-markdown-anatomy.html#cb432-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb432-4"><a href="r-markdown-anatomy.html#cb432-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/simple-plot2-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can add a figure caption using the <code>fig.cap=</code> option.</p>
@@ -742,10 +742,10 @@ dataf &lt;- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = &quot;x axis&quot;, ylab = &quot;y axis&quot;)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb436"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb436-1"><a href="r-markdown-anatomy.html#cb436-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb436-2"><a href="r-markdown-anatomy.html#cb436-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb436-3"><a href="r-markdown-anatomy.html#cb436-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb436-4"><a href="r-markdown-anatomy.html#cb436-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb434-1"><a href="r-markdown-anatomy.html#cb434-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb434-2"><a href="r-markdown-anatomy.html#cb434-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb434-3"><a href="r-markdown-anatomy.html#cb434-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb434-4"><a href="r-markdown-anatomy.html#cb434-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
 <div class="figure" style="text-align: center"><span id="fig:simple-plot-cap"></span>
 <img src="Rbook_files/figure-html/simple-plot-cap-1.png" alt="A simple plot" width="672" />
 <p class="caption">
@@ -761,10 +761,10 @@ dataf &lt;- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = &quot;x axis&quot;, ylab = &quot;y axis&quot;)
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb438"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb438-1"><a href="r-markdown-anatomy.html#cb438-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb438-2"><a href="r-markdown-anatomy.html#cb438-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb438-3"><a href="r-markdown-anatomy.html#cb438-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb438-4"><a href="r-markdown-anatomy.html#cb438-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb436-1"><a href="r-markdown-anatomy.html#cb436-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb436-2"><a href="r-markdown-anatomy.html#cb436-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb436-3"><a href="r-markdown-anatomy.html#cb436-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb436-4"><a href="r-markdown-anatomy.html#cb436-4"></a><span class="kw">plot</span>(dataf<span class="op">$</span>x, dataf<span class="op">$</span>y, <span class="dt">xlab =</span> <span class="st">&quot;x axis&quot;</span>, <span class="dt">ylab =</span> <span class="st">&quot;y axis&quot;</span>)</span></code></pre></div>
 <p> </p>
 <p>If you’re using a package like <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> to create your plots then don’t forget you will need to make the package available with the <code>library()</code> function in the code chunk (or in a preceding code chunk).</p>
 <pre><code>```{r, simple-ggplot}
@@ -777,13 +777,13 @@ ggplot(dataf, aes(x = x, y = y)) +
   geom_point()
 ```</code></pre>
 <p> </p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb440-1"><a href="r-markdown-anatomy.html#cb440-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
-<span id="cb440-2"><a href="r-markdown-anatomy.html#cb440-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
-<span id="cb440-3"><a href="r-markdown-anatomy.html#cb440-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
-<span id="cb440-4"><a href="r-markdown-anatomy.html#cb440-4"></a></span>
-<span id="cb440-5"><a href="r-markdown-anatomy.html#cb440-5"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb440-6"><a href="r-markdown-anatomy.html#cb440-6"></a><span class="kw">ggplot</span>(dataf, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
-<span id="cb440-7"><a href="r-markdown-anatomy.html#cb440-7"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb438-1"><a href="r-markdown-anatomy.html#cb438-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>    <span class="co"># create an x variable</span></span>
+<span id="cb438-2"><a href="r-markdown-anatomy.html#cb438-2"></a>y &lt;-<span class="st"> </span><span class="dv">10</span><span class="op">:</span><span class="dv">1</span>    <span class="co"># create a y variable</span></span>
+<span id="cb438-3"><a href="r-markdown-anatomy.html#cb438-3"></a>dataf &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)</span>
+<span id="cb438-4"><a href="r-markdown-anatomy.html#cb438-4"></a></span>
+<span id="cb438-5"><a href="r-markdown-anatomy.html#cb438-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb438-6"><a href="r-markdown-anatomy.html#cb438-6"></a><span class="kw">ggplot</span>(dataf, <span class="kw">aes</span>(<span class="dt">x =</span> x, <span class="dt">y =</span> y)) <span class="op">+</span></span>
+<span id="cb438-7"><a href="r-markdown-anatomy.html#cb438-7"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/simple-ggplot-1.png" width="672" /></p>
 <p> </p>
 <p>Again, there are a large number of chunk options specific to producing plots and figures. See <a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">here</a> for more details.</p>
@@ -808,13 +808,13 @@ iris[1:10,]
 ## 10          4.9         3.1          1.5         0.1  setosa</code></pre>
 <p>But how ugly is that! You can create slightly nicer looking tables using native markdown syntax (this doesn’t need to be in a code chunk).</p>
 <p> </p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb443-1"><a href="r-markdown-anatomy.html#cb443-1"></a><span class="bn">    |     x      |    y       |</span></span>
-<span id="cb443-2"><a href="r-markdown-anatomy.html#cb443-2"></a><span class="bn">    |:----------:|:----------:|</span></span>
-<span id="cb443-3"><a href="r-markdown-anatomy.html#cb443-3"></a><span class="bn">    |  1         |   5        |   </span></span>
-<span id="cb443-4"><a href="r-markdown-anatomy.html#cb443-4"></a><span class="bn">    |  2         |   4        |</span></span>
-<span id="cb443-5"><a href="r-markdown-anatomy.html#cb443-5"></a><span class="bn">    |  3         |   3        |</span></span>
-<span id="cb443-6"><a href="r-markdown-anatomy.html#cb443-6"></a><span class="bn">    |  4         |   2        |</span></span>
-<span id="cb443-7"><a href="r-markdown-anatomy.html#cb443-7"></a><span class="bn">    |  5         |   1        |</span></span></code></pre></div>
+<div class="sourceCode" id="cb441"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb441-1"><a href="r-markdown-anatomy.html#cb441-1"></a><span class="bn">    |     x      |    y       |</span></span>
+<span id="cb441-2"><a href="r-markdown-anatomy.html#cb441-2"></a><span class="bn">    |:----------:|:----------:|</span></span>
+<span id="cb441-3"><a href="r-markdown-anatomy.html#cb441-3"></a><span class="bn">    |  1         |   5        |   </span></span>
+<span id="cb441-4"><a href="r-markdown-anatomy.html#cb441-4"></a><span class="bn">    |  2         |   4        |</span></span>
+<span id="cb441-5"><a href="r-markdown-anatomy.html#cb441-5"></a><span class="bn">    |  3         |   3        |</span></span>
+<span id="cb441-6"><a href="r-markdown-anatomy.html#cb441-6"></a><span class="bn">    |  4         |   2        |</span></span>
+<span id="cb441-7"><a href="r-markdown-anatomy.html#cb441-7"></a><span class="bn">    |  5         |   1        |</span></span></code></pre></div>
 <p> </p>
 <table>
 <thead>
