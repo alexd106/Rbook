@@ -49,7 +49,6 @@
 
 
 
-<link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162377463-3"></script>
@@ -148,9 +147,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
 <li class="chapter" data-level="0.4" data-path="whoarewe.html"><a href="whoarewe.html"><i class="fa fa-check"></i><b>0.4</b> Who are we?</a></li>
-<li class="chapter" data-level="0.5" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.5</b> Book website</a></li>
-<li class="chapter" data-level="0.6" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.6</b> Some R pointers</a></li>
-<li class="chapter" data-level="0.7" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.7</b> Thanks</a></li>
+<li class="chapter" data-level="0.5" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>0.5</b> How to use this book</a></li>
+<li class="chapter" data-level="0.6" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.6</b> Book website</a></li>
+<li class="chapter" data-level="0.7" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.7</b> Some R pointers</a></li>
+<li class="chapter" data-level="0.8" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.8</b> Thanks</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
 <li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
@@ -399,16 +399,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/dir_struct3.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>An alternative approach is to use the <code>dir.create()</code> and `list.files() functions in the R Console</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="dir-struct.html#cb20-1"></a><span class="co"># create directory called &#39;data&#39;</span></span>
-<span id="cb20-2"><a href="dir-struct.html#cb20-2"></a><span class="kw">dir.create</span>(<span class="st">&#39;data&#39;</span>)</span>
-<span id="cb20-3"><a href="dir-struct.html#cb20-3"></a></span>
-<span id="cb20-4"><a href="dir-struct.html#cb20-4"></a><span class="co"># create subdirectory raw_data in the data directory</span></span>
-<span id="cb20-5"><a href="dir-struct.html#cb20-5"></a><span class="kw">dir.create</span>(<span class="st">&#39;data/raw_data&#39;</span>)</span>
-<span id="cb20-6"><a href="dir-struct.html#cb20-6"></a></span>
-<span id="cb20-7"><a href="dir-struct.html#cb20-7"></a><span class="co"># list the files and directories</span></span>
-<span id="cb20-8"><a href="dir-struct.html#cb20-8"></a><span class="kw">list.files</span>(<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">include.dirs =</span> <span class="ot">TRUE</span>)</span>
-<span id="cb20-9"><a href="dir-struct.html#cb20-9"></a></span>
-<span id="cb20-10"><a href="dir-struct.html#cb20-10"></a><span class="co"># [1] &quot;data&quot;  &quot;data/raw_data&quot;   &quot;first_project.Rproj&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="dir-struct.html#cb22-1"></a><span class="co"># create directory called &#39;data&#39;</span></span>
+<span id="cb22-2"><a href="dir-struct.html#cb22-2"></a><span class="kw">dir.create</span>(<span class="st">&#39;data&#39;</span>)</span>
+<span id="cb22-3"><a href="dir-struct.html#cb22-3"></a></span>
+<span id="cb22-4"><a href="dir-struct.html#cb22-4"></a><span class="co"># create subdirectory raw_data in the data directory</span></span>
+<span id="cb22-5"><a href="dir-struct.html#cb22-5"></a><span class="kw">dir.create</span>(<span class="st">&#39;data/raw_data&#39;</span>)</span>
+<span id="cb22-6"><a href="dir-struct.html#cb22-6"></a></span>
+<span id="cb22-7"><a href="dir-struct.html#cb22-7"></a><span class="co"># list the files and directories</span></span>
+<span id="cb22-8"><a href="dir-struct.html#cb22-8"></a><span class="kw">list.files</span>(<span class="dt">recursive =</span> <span class="ot">TRUE</span>, <span class="dt">include.dirs =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb22-9"><a href="dir-struct.html#cb22-9"></a></span>
+<span id="cb22-10"><a href="dir-struct.html#cb22-10"></a><span class="co"># [1] &quot;data&quot;  &quot;data/raw_data&quot;   &quot;first_project.Rproj&quot;</span></span></code></pre></div>
 </div>
             </section>
 

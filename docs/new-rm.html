@@ -49,7 +49,6 @@
 
 
 
-<link href="libs/font-awesome-5.3.1/css/fontawesome-all.min.css" rel="stylesheet" />
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162377463-3"></script>
@@ -148,9 +147,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
 <li class="chapter" data-level="0.4" data-path="whoarewe.html"><a href="whoarewe.html"><i class="fa fa-check"></i><b>0.4</b> Who are we?</a></li>
-<li class="chapter" data-level="0.5" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.5</b> Book website</a></li>
-<li class="chapter" data-level="0.6" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.6</b> Some R pointers</a></li>
-<li class="chapter" data-level="0.7" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.7</b> Thanks</a></li>
+<li class="chapter" data-level="0.5" data-path="how-to-use-this-book.html"><a href="how-to-use-this-book.html"><i class="fa fa-check"></i><b>0.5</b> How to use this book</a></li>
+<li class="chapter" data-level="0.6" data-path="book-website.html"><a href="book-website.html"><i class="fa fa-check"></i><b>0.6</b> Book website</a></li>
+<li class="chapter" data-level="0.7" data-path="some-r-pointers.html"><a href="some-r-pointers.html"><i class="fa fa-check"></i><b>0.7</b> Some R pointers</a></li>
+<li class="chapter" data-level="0.8" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.8</b> Thanks</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
 <li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
@@ -404,15 +404,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb407"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb407-1"><a href="new-rm.html#cb407-1"></a><span class="kw">library</span>(rmarkdown)</span>
-<span id="cb407-2"><a href="new-rm.html#cb407-2"></a></span>
-<span id="cb407-3"><a href="new-rm.html#cb407-3"></a><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb407-4"><a href="new-rm.html#cb407-4"></a></span>
-<span id="cb407-5"><a href="new-rm.html#cb407-5"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
-<span id="cb407-6"><a href="new-rm.html#cb407-6"></a></span>
-<span id="cb407-7"><a href="new-rm.html#cb407-7"></a>rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb407-8"><a href="new-rm.html#cb407-8"></a></span>
-<span id="cb407-9"><a href="new-rm.html#cb407-9"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb409-1"><a href="new-rm.html#cb409-1"></a><span class="kw">library</span>(rmarkdown)</span>
+<span id="cb409-2"><a href="new-rm.html#cb409-2"></a></span>
+<span id="cb409-3"><a href="new-rm.html#cb409-3"></a><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb409-4"><a href="new-rm.html#cb409-4"></a></span>
+<span id="cb409-5"><a href="new-rm.html#cb409-5"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
+<span id="cb409-6"><a href="new-rm.html#cb409-6"></a></span>
+<span id="cb409-7"><a href="new-rm.html#cb409-7"></a>rmarkdown<span class="op">::</span><span class="kw">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="dt">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb409-8"><a href="new-rm.html#cb409-8"></a></span>
+<span id="cb409-9"><a href="new-rm.html#cb409-9"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
 </div>
             </section>
 
