@@ -4,6 +4,8 @@
 [github-repo]: https://github.com/alexd106/Rbook
 [github-issue]: https://github.com/alexd106/Rbook/issues
 [flow-data]: https://alexd106.github.io/intro2R/data.html
+[book]: https://intro2r.com
+[pdf-book]: https://github.com/alexd106/Rbook/raw/master/docs/Rbook.pdf
 
 <!--video Links bitly format for OSX preview to work-->
 [install-vid]: https://bit.ly/3cuRqSZ
