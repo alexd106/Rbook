@@ -7,8 +7,6 @@ suppressPackageStartupMessages(library(knitr))
 
 This chapter will introduce you to creating reproducible reports using R markdown to encourage best (or better) practice to facilitate open science. It will first describe what R markdown is and why you might want to consider using it, describe how to create an R markdown document using RStudio and then how to convert this document to a html or pdf formatted report. During this Chapter you will learn about the different components of an R markdown document, how to format text, graphics and tables within the document and finally how to avoid some of the common difficulties using R markdown.
 
-I estimate that this Chapter should take you roughly 1.5 to 2.5 hours to complete in one sitting, but feel free to dip in and out over a longer period if that suits you better. 
-
 ## What is R markdown?
 
 R markdown is a simple and easy to use plain text language used to combine your R code, results from your data analysis (including plots and tables) and written commentary into a single nicely formatted and reproducible document (like a report, publication, thesis chapter or a web page like this one).  
@@ -68,7 +66,7 @@ Some of the advantages of using R markdown include:
 
 ## Get started with R markdown
 
-To use R markdown you will first need to install the ```rmarkdown``` package\index{rmarkdown package} in RStudio (or in the R console if you're not using RStudio) and any package dependencies. You can find instructions on how to do this for both Windows and Mac OSX operating systems [here](#install-rm). If you would like to create pdf documents (or MS Word documents) from your R markdown file you will also need to install a version of LaTeX on your computer. If you've not installed LaTeX before, I recommend that you install [TinyTeX][tinytex]. Again, instructions on how to do this can be found [here](#install-rm). 
+To use R markdown you will first need to install the ```rmarkdown``` package\index{rmarkdown package} in RStudio (or in the R console if you're not using RStudio) and any package dependencies. You can find instructions on how to do this for both Windows and Mac OSX operating systems [here](#install-rm). If you would like to create pdf documents (or MS Word documents) from your R markdown file you will also need to install a version of LaTeX on your computer. If you've not installed LaTeX before, we recommend that you install [TinyTeX][tinytex]. Again, instructions on how to do this can be found [here](#install-rm). 
 
 ## Create an R markdown document {#new_rm}
 
@@ -217,7 +215,7 @@ Some of the most common R markdown syntax for providing emphasis and formatting 
 
 \  
 
-Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other [reasons][underline]). If you really want to underline text you can use `<span style="text-decoration:underline">underline this text</span>` for HTML output or `$\text{\underline{This sentence underlined using \LaTeX}}$` for pdf output. I just avoid underlining!
+Interestingly there is no underline R markdown syntax by default. We think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other [reasons][underline]). If you really want to underline text you can use `<span style="text-decoration:underline">underline this text</span>` for HTML output or `$\text{\underline{This sentence underlined using \LaTeX}}$` for pdf output. We just avoid underlining!
 
 #### White space and line breaks {-}
 
@@ -352,7 +350,7 @@ resulting in:
 
 The code above will only work if the image file (`Cute_grey_kitten.jpg`) is in the right place relative to where you saved your `.Rmd` file. In the example above the image file is in a sub directory (folder) called `images` in the directory where we saved our `my_first_rmarkdown.Rmd` file. You can embed images saved in many different file types but perhaps the most common are `.jpg` and `.png`. 
 
-I think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this I'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
+We think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this we'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
 
 ````
 `r ''````{r, echo=FALSE, fig.align='center', out.width='50%'}
@@ -416,7 +414,7 @@ dataf <- data.frame(x = x, y = y)
 summary(dataf)
 ```
 
-When using chunk names make sure that you don't have duplicate chunk names in your R markdown document and avoid spaces and full stops as this may cause problems when you come to knit your document (I use a `-` to separate words in my chunk names).
+When using chunk names make sure that you don't have duplicate chunk names in your R markdown document and avoid spaces and full stops as this may cause problems when you come to knit your document (We use a `-` to separate words in our chunk names).
 
 If we wanted to only display the output of our R code (just the summary statistics for example) and not the code itself in our final document we can use the chunk option `echo=FALSE`
 
@@ -653,7 +651,7 @@ But how ugly is that! You can create slightly nicer looking tables using native 
 
 The `:-------:` lets R markdown know that the line above should be treated as a header and the lines below as the body of the table. Alignment within the table is set by the position of the `:`. To center align use `:------:`, to left align `:------` and right align `------:`. Whilst it can be fun(!) to create tables with raw markup it's only  practical for very small and simple tables.  
 
-The easiest way I know to include tables in an R markdown document is by using the `kable()`\index{kable()} function from the `knitr` package (this should have already been installed when you installed the `rmarkdown` package). The `kable()` function can create tables for HTML, PDF and Word outputs.
+The easiest way we know to include tables in an R markdown document is by using the `kable()`\index{kable()} function from the `knitr` package (this should have already been installed when you installed the `rmarkdown` package). The `kable()` function can create tables for HTML, PDF and Word outputs.
 
 To create a table of the first 10 rows of the `iris` dataframe using the `kable()` function simply write your code block as
 

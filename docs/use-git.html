@@ -508,7 +508,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/revert3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>If we check out our commit history you can see that our latest commit contains both changes to the file rather than having two separate commits. I use the amend commit approach alot but it’s important to understand that you should <strong>not</strong> do this if you have already pushed your last commit to GitHub as you are effectively rewriting history and all sorts bad things may happen!</p>
+<p>If we check out our commit history you can see that our latest commit contains both changes to the file rather than having two separate commits. We use the amend commit approach alot but it’s important to understand that you should <strong>not</strong> do this if you have already pushed your last commit to GitHub as you are effectively rewriting history and all sorts bad things may happen!</p>
 <p> </p>
 <p><img src="images/revert4.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -537,7 +537,7 @@ git checkout 2b4693d1 .
 </div>
 <div id="staged-committed-and-pushed" class="section level4 unnumbered">
 <h4>Staged, committed and pushed</h4>
-<p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as I can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
+<p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as we can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
 <p> </p>
 <p><img src="images/revert8.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -558,7 +558,7 @@ git checkout 2b4693d1 .
 </div>
 <div id="git-tips" class="section level3">
 <h3><span class="header-section-number">9.6.5</span> Git tips</h3>
-<p>Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. I generally only push changes to GitHub when I’m happy for my collaborators (or the rest of the world) to see my work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git.</p>
+<p>Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. We generally only push changes to GitHub when we’re happy for our collaborators (or the rest of the world) to see our work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git.</p>
 <p> </p>
 <p>If you don’t want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
 <p> </p>

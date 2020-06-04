@@ -463,7 +463,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p> </p>
-<p>Interestingly there is no underline R markdown syntax by default. I think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other <a href="https://softwareengineering.stackexchange.com/questions/207727/why-there-is-no-markdown-for-underline">reasons</a>). If you really want to underline text you can use <code>&lt;span style="text-decoration:underline"&gt;underline this text&lt;/span&gt;</code> for HTML output or <code>$\text{\underline{This sentence underlined using \LaTeX}}$</code> for pdf output. I just avoid underlining!</p>
+<p>Interestingly there is no underline R markdown syntax by default. We think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other <a href="https://softwareengineering.stackexchange.com/questions/207727/why-there-is-no-markdown-for-underline">reasons</a>). If you really want to underline text you can use <code>&lt;span style="text-decoration:underline"&gt;underline this text&lt;/span&gt;</code> for HTML output or <code>$\text{\underline{This sentence underlined using \LaTeX}}$</code> for pdf output. We just avoid underlining!</p>
 </div>
 <div id="white-space-and-line-breaks" class="section level4 unnumbered">
 <h4>White space and line breaks</h4>
@@ -576,7 +576,7 @@ effect         benthic polychaete (<em>Nereis diversicolor</em>) biomass.</p
 <p class="caption">Cute grey kitten</p>
 </div>
 <p>The code above will only work if the image file (<code>Cute_grey_kitten.jpg</code>) is in the right place relative to where you saved your <code>.Rmd</code> file. In the example above the image file is in a sub directory (folder) called <code>images</code> in the directory where we saved our <code>my_first_rmarkdown.Rmd</code> file. You can embed images saved in many different file types but perhaps the most common are <code>.jpg</code> and <code>.png</code>.</p>
-<p>I think a more flexible way of including images in your document is to use the <code>include_graphics()</code> function from the <code>knitr</code> package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a <a href="r-markdown-anatomy.html#code_chunks">‘code chunk’</a> which we haven’t covered yet. Despite this I’ll leave the code here for later reference. This code center aligns the image and scales it to 50% of it’s original size. See <code>?include_graphics</code> for more options.</p>
+<p>We think a more flexible way of including images in your document is to use the <code>include_graphics()</code> function from the <code>knitr</code> package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a <a href="r-markdown-anatomy.html#code_chunks">‘code chunk’</a> which we haven’t covered yet. Despite this we’ll leave the code here for later reference. This code center aligns the image and scales it to 50% of it’s original size. See <code>?include_graphics</code> for more options.</p>
 <pre><code>```{r, echo=FALSE, fig.align=&#39;center&#39;, out.width=&#39;50%&#39;}
 library(knitr)
 include_graphics(&quot;images/Cute_grey_kitten.jpg&quot;)
@@ -623,7 +623,7 @@ summary(dataf)
 ##  Mean   : 5.50   Mean   : 5.50  
 ##  3rd Qu.: 7.75   3rd Qu.: 7.75  
 ##  Max.   :10.00   Max.   :10.00</code></pre>
-<p>When using chunk names make sure that you don’t have duplicate chunk names in your R markdown document and avoid spaces and full stops as this may cause problems when you come to knit your document (I use a <code>-</code> to separate words in my chunk names).</p>
+<p>When using chunk names make sure that you don’t have duplicate chunk names in your R markdown document and avoid spaces and full stops as this may cause problems when you come to knit your document (We use a <code>-</code> to separate words in our chunk names).</p>
 <p>If we wanted to only display the output of our R code (just the summary statistics for example) and not the code itself in our final document we can use the chunk option <code>echo=FALSE</code></p>
 <pre><code>```{r, summary-stats, echo=FALSE}
 x &lt;- 1:10    # create an x variable
@@ -850,7 +850,7 @@ iris[1:10,]
 </table>
 <p> </p>
 <p>The <code>:-------:</code> lets R markdown know that the line above should be treated as a header and the lines below as the body of the table. Alignment within the table is set by the position of the <code>:</code>. To center align use <code>:------:</code>, to left align <code>:------</code> and right align <code>------:</code>. Whilst it can be fun(!) to create tables with raw markup it’s only practical for very small and simple tables.</p>
-<p>The easiest way I know to include tables in an R markdown document is by using the <code>kable()</code> function from the <code>knitr</code> package (this should have already been installed when you installed the <code>rmarkdown</code> package). The <code>kable()</code> function can create tables for HTML, PDF and Word outputs.</p>
+<p>The easiest way we know to include tables in an R markdown document is by using the <code>kable()</code> function from the <code>knitr</code> package (this should have already been installed when you installed the <code>rmarkdown</code> package). The <code>kable()</code> function can create tables for HTML, PDF and Word outputs.</p>
 <p>To create a table of the first 10 rows of the <code>iris</code> dataframe using the <code>kable()</code> function simply write your code block as</p>
 <pre><code>```{r, kable-table}
 library(knitr)
