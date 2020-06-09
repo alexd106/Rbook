@@ -1,6 +1,8 @@
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{amsthm}
+\usepackage{pdfpages}
+\raggedbottom 
 \makeatletter
 \def\thm@space@setup{%
   \thm@preskip=8pt plus 2pt minus 4pt
@@ -89,4 +91,7 @@
 \newenvironment{rmdwarning}
   {\begin{rmdblock}{warning}}
   {\end{rmdblock}}
+
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}
 

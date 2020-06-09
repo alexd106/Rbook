@@ -411,7 +411,7 @@ knitr::include_graphics(path = "images/dir_struct2.png")
 
 \ 
 
-In the example above, our working directory is a folder called 'first_project' which is a subfolder of "Teaching' in our 'Alex' folder which in turn is in a 'Documents' folder located in the 'nhy163' folder which itself is in the 'Users' folder. On a Windows based computer our working directory would also include a drive letter (i.e. `C:/Users/nhy163/Documents/Alex/Teaching/first_project`).  
+In the example above, the working directory is a folder called 'first_project' which is a subfolder of "Teaching' in the 'Alex' folder which in turn is in a 'Documents' folder located in the 'nhy163' folder which itself is in the 'Users' folder. On a Windows based computer our working directory would also include a drive letter (i.e. `C:/Users/nhy163/Documents/Alex/Teaching/first_project`).  
 
 If you weren't using an RStudio Project then you would have to set your working directory using the `setwd()`\index{setwd()} function at the start of every R script (something we did for many years). 
 
@@ -522,7 +522,7 @@ Although there's not really a recognised standard approach to naming files (actu
 
   - First, avoid using spaces in file names by replacing them with underscores or even hyphens. Why does this matter? One reason is that some command line software (especially many bioinformatic tools) won't recognise a file name with a space and you'll have to go through all sorts of shenanigans using escape characters to make sure spaces are handled correctly. Even if you don't think you will ever use command line software you may be doing so indirectly. Take R markdown for example, if you want to render an R markdown document to pdf using the `rmarkdown` package you will actually be using a command line LaTeX engine under the hood (called [Pandoc][pandoc]). Another good reason not to use spaces in file names is that it makes searching for file names (or parts of file names) using [regular expressions][regex] in R (or any other language) much more difficult.
   
-  - For the reasons given above, also avoid using special characters (i.e. @£$%^&*():;<>?{}/) in your file names.
+  - For the reasons given above, also avoid using special characters (i.e. @£$%^&*(:/) in your file names.
   
   - If you are versioning your files with sequential numbers (i.e. file1, file2, file3 ...) and you have more than 9 files you should use 01, 02, 03 .. 10 as this will ensure the files are printed in the correct order (see what happens if you don't). If you have more than 99 files then use 001, 002, 003... etc.
   

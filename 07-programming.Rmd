@@ -84,7 +84,8 @@ While this approach works, it's easy to make mistakes. In fact, here we've "forg
 In this case, we're using some fairly trivial code where it's maybe hard to make a genuine mistake. But what if we increased the complexity?
 
 ```{r complex, eval = FALSE}
-city$porto * city$aberdeen / city$porto + (city$porto * 10^(city$aberdeen)) - city$aberdeen - (city$porto * sqrt(city$aberdeen + 10))
+city$porto * city$aberdeen / city$porto + (city$porto * 10^(city$aberdeen)) 
+                  - city$aberdeen - (city$porto * sqrt(city$aberdeen + 10))
 ```
 
 Now imagine having to copy and paste this three times, and in each case having to change the `porto` and `aberdeen` variables (especially if we had to do it more than three times).
