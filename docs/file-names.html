@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2020-06-04" />
+<meta name="date" content="2020-06-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -394,7 +394,7 @@ Figure 1.1: source:<a href="https://xkcd.com/1459/" class="uri">https://xkcd.com
 <p>Although there’s not really a recognised standard approach to naming files (actually <a href="https://en.wikipedia.org/wiki/Filename">there is</a>, just not everyone uses it), there are a couple of things to bear in mind.</p>
 <ul>
 <li><p>First, avoid using spaces in file names by replacing them with underscores or even hyphens. Why does this matter? One reason is that some command line software (especially many bioinformatic tools) won’t recognise a file name with a space and you’ll have to go through all sorts of shenanigans using escape characters to make sure spaces are handled correctly. Even if you don’t think you will ever use command line software you may be doing so indirectly. Take R markdown for example, if you want to render an R markdown document to pdf using the <code>rmarkdown</code> package you will actually be using a command line LaTeX engine under the hood (called <a href="http://pandoc.org">Pandoc</a>). Another good reason not to use spaces in file names is that it makes searching for file names (or parts of file names) using <a href="https://en.wikipedia.org/wiki/Regular_expression">regular expressions</a> in R (or any other language) much more difficult.</p></li>
-<li><p>For the reasons given above, also avoid using special characters (i.e. @£$%^&amp;*():;&lt;&gt;?{}/) in your file names.</p></li>
+<li><p>For the reasons given above, also avoid using special characters (i.e. @£$%^&amp;*(:/) in your file names.</p></li>
 <li><p>If you are versioning your files with sequential numbers (i.e. file1, file2, file3 …) and you have more than 9 files you should use 01, 02, 03 .. 10 as this will ensure the files are printed in the correct order (see what happens if you don’t). If you have more than 99 files then use 001, 002, 003… etc.</p></li>
 <li><p>If your file names include dates, use the ISO 8601 format YYYY-MM-DD (or YYYYMMDD) to ensure your files are listed in proper chronological order.</p></li>
 <li><p>Never use the word <em>final</em> in any file name - it never is!</p></li>
