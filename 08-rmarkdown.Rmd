@@ -74,7 +74,7 @@ Right, time to create your first R markdown document. Within RStudio, click on t
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='70%'}
+```{r, echo=FALSE, fig.align='center', out.width='85%'}
 include_graphics("images/new_rm2.png")
 ```
 
@@ -84,7 +84,7 @@ You will notice that when your new R markdown document is created it includes so
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='70%'}
+```{r, echo=FALSE, fig.align='center', out.width='85%'}
 include_graphics("images/new_file_rm.png")
 ```
 
@@ -96,7 +96,7 @@ Now, to convert your `.Rmd` file to a HTML document click on the little black tr
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='70%'}
+```{r, echo=FALSE, fig.align='center', out.width='85%'}
 include_graphics("images/knit_rm.png")
 ```
 
@@ -106,7 +106,7 @@ RStudio will now 'knit' (or render) your `.Rmd` file into a HTML file. Notice th
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='70%'}
+```{r, echo=FALSE, fig.align='center', out.width='85%'}
 include_graphics("images/Rmarkdown_console.png")
 ```
 
@@ -116,7 +116,7 @@ If everything went smoothly a new HTML file will have been created and saved in 
 
 \  
 
-```{r, echo=FALSE, fig.align='center', out.width='70%'}
+```{r, echo=FALSE, fig.align='center', out.width='85%'}
 include_graphics("images/html_rendered.png")
 ```
 
@@ -146,7 +146,7 @@ OK, now that you can render an R markdown file in RStudio into both HTML and pdf
 
 \  
 
-```{r, echo=FALSE, fig.align='left', out.width='70%'}
+```{r, echo=FALSE, fig.align='left', out.width='85%'}
 include_graphics("images/rm_components.png")
 ```
 
@@ -184,7 +184,7 @@ As mentioned above, one of the great things about R markdown is that you don't n
 
 Here is an example of marking up text formatting in an R markdown document 
 
-```markdown
+```md
 #### Benthic Biodiversity experiment
 These data were obtained from a mesocosm experiment which aimed to examine the effect 
 of benthic polychaete (*Nereis diversicolor*) biomass on sediment nutrient 
@@ -221,7 +221,7 @@ Interestingly there is no underline R markdown syntax by default. We think this 
 
 One of the things that can be confusing for new users of R markdown is the use of spaces and carriage returns (the enter key on your keyboard). In R markdown multiple spaces within the text are generally ignored as are carriage returns. For example this R markdown text
 
-```markdown
+```md
 These      data were      obtained from a
 mesocosm experiment which    aimed to examine the
 effect
@@ -244,7 +244,7 @@ This is generally a good thing (no more random multiple spaces in your text). If
 >effect          benthic polychaete (*Nereis diversicolor*) biomass.     
 
 
-If you really want multiple spaces within your text and your output format is HTML then you can use the **N**on **b**reaking **sp**ace HTML tag `&nbsp;`
+If you really want multiple spaces within your text then you can use the **N**on **b**reaking **sp**ace tag `&nbsp;`
 
 ```{r, class.source='fold-show', eval=FALSE, highlight=FALSE, tidy=FALSE}
 These &nbsp; &nbsp; &nbsp; data were &nbsp; &nbsp; &nbsp; &nbsp; obtained from a  
@@ -261,7 +261,7 @@ effect &nbsp; &nbsp; &nbsp; &nbsp; benthic polychaete (*Nereis diversicolor*) bi
 
 You can add headings and subheadings to your R markdown document by using the `#` symbol at the beginning of the line. You can decrease the size of the headings by simply adding more `#` symbols. For example 
 
-```markdown
+```md
 # Benthic Biodiversity experiment
 ## Benthic Biodiversity experiment
 ### Benthic Biodiversity experiment
@@ -285,7 +285,7 @@ results in headings in decreasing size order
 
 As you can see above the meaning of the `#` symbol is different when formatting text in an R markdown document compared to a standard R script (which is used to included a comment - remember?!). You can, however, use a `#` symbol to comment code inside a [code chunk](#code_chunks) as usual (more about this in a bit). If you want to include a comment in your R markdown document outside a code chunk which won't be included in the final rendered document then enclose your comment between `<!--` and `-->`.
 
-```markdown
+```md
 <!--
 this is an example of how to format a comment using R markdown.
 -->
@@ -317,7 +317,7 @@ If you want to create a bullet point list of text you can format an unordered li
 
 If you need an ordered list 
 
-```markdown
+```md
 
 1. item 1
 2. item 2
@@ -352,14 +352,12 @@ The code above will only work if the image file (`Cute_grey_kitten.jpg`) is in t
 
 We think a more flexible way of including images in your document is to use the `include_graphics()`\index{include\_graphics()} function from the `knitr`\index{knitr package} package as this gives finer control over the alignment and image size (it also works more or less the same with both HTML and pdf output formats). However, to do this you will need to include this R code in a ['code chunk'](#code_chunks) which we haven't covered yet. Despite this we'll leave the code here for later reference. This code center aligns the image and scales it to 50% of it's original size. See `?include_graphics` for more options. 
 
-````
+````md
 `r ''````{r, echo=FALSE, fig.align='center', out.width='50%'}
 library(knitr)
 include_graphics("images/Cute_grey_kitten.jpg")
 ```
 ````
-
-\  
 
 ```{r, echo=FALSE, fig.align='center', out.width='50%'}
 include_graphics("images/Cute_grey_kitten.jpg")
@@ -382,7 +380,7 @@ which gives you:
 
 Now to the heart of the matter. To include R code into your R markdown document you simply place your code into a 'code chunk'. All code chunks start and end with three backticks ```` ``` ````. Note, these are also known as 'grave accents' or 'back quotes' and are not the same as an apostrophe! On most keyboards you can [find the backtick][backtick] on the same key as tilde (~).
 
-````
+````md
 `r ''````{r}
 Any valid R code goes here
 ```
@@ -394,7 +392,7 @@ There are a many things you can do with code chunks: you can produce text output
 
 You can also specify an optional code chunk name (or label)  which can be useful when trying to debug problems and when performing advanced document rendering. In the following block we name the code chunk `summary-stats`, create a dataframe (`dataf`) with two variables `x` and `y` and then use the `summary()`\index{summary()} function to display some summary statistics . When we run the code chunk both the R code and the resulting output are displayed in the final document.
 
-````
+````md
 `r ''````{r, summary-stats}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -404,9 +402,7 @@ summary(dataf)
 ```
 ````
 
-\  
-
-```{r, summary-stats, class.source='fold-show'}
+```{r, summary-stats, class.source='fold-show', collapse=TRUE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
 dataf <- data.frame(x = x, y = y)
@@ -418,7 +414,7 @@ When using chunk names make sure that you don't have duplicate chunk names in yo
 
 If we wanted to only display the output of our R code (just the summary statistics for example) and not the code itself in our final document we can use the chunk option `echo=FALSE`
 
-````
+````md
 `r ''````{r, summary-stats, echo=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -426,8 +422,6 @@ dataf <- data.frame(x = x, y = y)
 summary(dataf)
 ```
 ````
-
-\  
 
 ```{r, summary-stats2, echo=FALSE}
 x <- 1:10    # create an x variable
@@ -438,7 +432,7 @@ summary(dataf)
 
 To display the R code but not the output use the `results='hide'` chunk option. 
 
-````
+````md
 `r ''````{r, summary-stats, results='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -446,8 +440,6 @@ dataf <- data.frame(x = x, y = y)
 summary(dataf)
 ```
 ````
-
-\  
 
 ```{r, summary-stats3, results='hide', class.source='fold-show'}
 x <- 1:10    # create an x variable
@@ -458,7 +450,7 @@ summary(dataf)
 
 Sometimes you may want to execute a code chunk without showing any output at all. You can suppress the entire output using the chunk option `include=FALSE`.
 
-````
+````md
 `r ''````{r, summary-stats, include=FALSE}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -466,8 +458,6 @@ dataf <- data.frame(x = x, y = y)
 summary(dataf)
 ```
 ````
-
-\  
 
 ```{r, summary-stats4, include=FALSE, class.source='fold-show'}
 x <- 1:10    # create an x variable
@@ -492,7 +482,7 @@ There are a large number of chunk options documented [here][chunk-opt] with a mo
 
 By default, figures produced by R code will be placed immediately after the code chunk they were generated from. For example:
 
-````
+````md
 `r ''````{r, simple-plot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -500,8 +490,6 @@ dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
 ````
-
-\  
 
 ```{r, simple-plot, class.source='fold-show'}
 x <- 1:10    # create an x variable
@@ -512,7 +500,7 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
 If you want to change the plot dimensions in the final document you can use the `fig.width=` and `fig.height=` chunk options (in inches!). You can also change the alignment of the figure using the `fig.align=` chunk option.
 
-````
+````md
 `r ''````{r, simple-plot, fig.width=4, fig.height=3, fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -520,8 +508,6 @@ dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
 ````
-
-\  
 
 ```{r, simple-plot2, class.source='fold-show', fig.width=4, fig.height=3, fig.align='center'}
 x <- 1:10    # create an x variable
@@ -534,7 +520,7 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
 You can add a figure caption using the `fig.cap=` option. 
 
-````
+````md
 `r ''````{r, simple-plot-cap, fig.cap="A simple plot", fig.align='center'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -542,8 +528,6 @@ dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
 ````
-
-\  
 
 ```{r, simple-plot-cap, class.source='fold-show', fig.cap="A simple plot", fig.align='center'}
 x <- 1:10    # create an x variable
@@ -556,7 +540,7 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
 If you want to suppress the figure in the final document use the `fig.show='hide'` option.
 
-````
+````md
 `r ''````{r, simple-plot, fig.show='hide'}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -564,8 +548,6 @@ dataf <- data.frame(x = x, y = y)
 plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 ```
 ````
-
-\  
 
 ```{r, simple-plot3, class.source='fold-show', fig.show='hide'}
 x <- 1:10    # create an x variable
@@ -578,7 +560,7 @@ plot(dataf$x, dataf$y, xlab = "x axis", ylab = "y axis")
 
 If you're using a package like [`ggplot2`][ggplot] to create your plots then don't forget you will need to make the package available with the `library()`\index{library()} function in the code chunk (or in a preceding code chunk). 
 
-````
+````md
 `r ''````{r, simple-ggplot}
 x <- 1:10    # create an x variable
 y <- 10:1    # create a y variable
@@ -589,8 +571,6 @@ ggplot(dataf, aes(x = x, y = y)) +
   geom_point()
 ```
 ````
-
-\  
 
 ```{r, simple-ggplot, class.source='fold-show'}
 x <- 1:10    # create an x variable
@@ -610,13 +590,11 @@ Again, there are a large number of chunk options specific to producing plots and
 
 R markdown can print the contents of a dataframe as a table (or any other tabular object such as a summary of model output) by including the name of the dataframe in a code chunk. For example, to create a table of the first 10 rows of the inbuilt dataset `iris`
 
-````
+````md
 `r ''````{r, ugly-table}
 iris[1:10,]
 ```
 ````
-
-\  
 
 ```{r, ugly-table, echo=FALSE, warning=FALSE}
 
@@ -655,14 +633,12 @@ The easiest way we know to include tables in an R markdown document is by using 
 
 To create a table of the first 10 rows of the `iris` dataframe using the `kable()` function simply write your code block as
 
-````
+````md
 `r ''````{r, kable-table}
 library(knitr)
 kable(iris[1:10,])
 ```
 ````
-
-\  
 
 ```{r, kable-table-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 library(knitr)
@@ -676,15 +652,13 @@ kable(iris[1:10,], "latex", booktabs = T)
 
 The `kable()` function offers plenty of options to change the formatting of the table. For example, if we want to round numeric values to one decimal place use the `digits =` argument. To center justify the table contents use `align = 'c'` and to provide custom column headings use the `col.names =` argument. See `?knitr::kable` for more information. 
 
-````
+````md
 `r ''````{r, kable-table2}
 kable(iris[1:10,], digits = 0, align = 'c', 
        col.names = c('sepal length', 'sepal width', 
        'petal length', 'petal width', 'species'))
 ```
 ````
-
-\  
 
 ```{r, kable-table2-html, eval=knitr::is_html_output(), echo=FALSE, warning=FALSE}
 library(knitr)
@@ -699,15 +673,13 @@ kable(iris[1:10,], "latex", booktabs = T, digits=0, align = 'c', col.names = c('
 
 You can further enhance the look of your `kable` tables using the `kableExtra` package (don't forget to install the package first!). See [here][kableExtra]\index{kableExtra package} for more details and a helpful tutorial.
 
-````
+````md
 `r ''````{r, kableExtra-table}
 library(kableExtra)
 kable(iris[1:10,]) %>%
     kable_styling(bootstrap_options = "striped", font_size = 10)
 ```
 ````
-
-\  
 
 ```{r, kableExtra-table-html, echo=FALSE, eval=knitr::is_html_output(), warning=FALSE}
 library(kableExtra)
@@ -752,7 +724,7 @@ When rendering my R markdown document to pdf my code runs off the edge of the pa
 
 Add a global_options argument at the start of your .Rmd file in a code chunk:
 
-````
+````md
 `r ''````{r, global_options, include=FALSE}
 knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
 ```
@@ -772,7 +744,7 @@ When I load a package in my R markdown document my rendered output contains all 
 
 You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.
 
-````
+````md
 ```{r, global_options, include=FALSE}`r ''`
 knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) 
 suppressPackageStartupMessages(library(ggplot2))
@@ -801,7 +773,7 @@ The code in my rendered document looks ugly!
 
 Add the argument `tidy=TRUE` to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.
 
-````
+````md
 `r ''````{r, global_options, include=FALSE}
 knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) 
 ```
