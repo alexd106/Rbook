@@ -10,6 +10,7 @@
 <!--video Links bitly format for OSX preview to work-->
 [install-vid]: https://bit.ly/3cuRqSZ
 [rstudio-vid]: https://bit.ly/3eLcxSW
+[rstudio-prog-vid]: https://bit.ly/303pVwG
 [dataw-vid]: https://bit.ly/3eIPkjY
 [func-vid]: https://bit.ly/36QqMD9
 [objs-vid]: https://bit.ly/3eFmtgw
