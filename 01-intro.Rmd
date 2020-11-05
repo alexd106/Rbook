@@ -454,12 +454,14 @@ For those of you who want to take the notion of relative file paths a step furth
 ```{r rel-fp23, echo=TRUE, eval=FALSE}
 library(here)  # you may need to install the here package first
 dataf <- read.table(here("raw_data", "mydata.txt"), 
-                     header = TRUE, sep = '\t')
+                     header = TRUE, sep = '\t',
+                    stringsAsFactors = TRUE)
 
 # or without loading the here package
 
 dataf <- read.table(here::here("raw_data", "mydata.txt"), 
-                      header = TRUE, sep = '\t')
+                      header = TRUE, sep = '\t', 
+                      stringsAsFactors = TRUE)
 ```
 
 ## Directory structure {#dir_struct}

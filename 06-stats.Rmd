@@ -264,7 +264,8 @@ It's important that you get comfortable with using model formula (and we've only
 OK, time for an example. The data file `smoking.txt` summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable `occupational.group` specifies the different occupational groups studied, the `risk.group` variable indicates the relative risk to lung disease for the various occupational groups and `smoking` is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable `mortality` is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is `mortality` and the potential explanatory variables are `smoking` which is numeric and `risk.group` which is a three level factor. The first thing to do is import our data file using the `read.table()`\index{read.table()} function as usual and assign the data to an object called `smoke`. You can find a link to download these data [here][flow-data].
 
 ```{r ss24, echo=TRUE, eval=TRUE, collapse=TRUE}
-smoke <- read.table('data/smoking.txt', header = TRUE, sep = "\t")
+smoke <- read.table('data/smoking.txt', header = TRUE, sep = "\t", 
+										stringsAsFactors = TRUE)
 str(smoke, vec.len = 2)
 # vec.len argument to limited number of ' first elements' to display
 ```

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Importing data | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Importing data | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="data-structures.html"/>
 <link rel="next" href="wrangling-data-frames.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +52,12 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162377463-3"></script>
 <script>
@@ -64,18 +70,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -95,7 +100,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -144,7 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">An Introduction R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="the-aim-of-this-book.html"><a href="the-aim-of-this-book.html"><i class="fa fa-check"></i><b>0.1</b> The aim of this book</a></li>
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
@@ -155,25 +161,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.8" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.8</b> Thanks</a></li>
 <li class="chapter" data-level="0.9" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>0.9</b> License</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
+<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="install-r.html"><a href="install-r.html#windows-users"><i class="fa fa-check"></i><b>1.1.1</b> Windows users</a></li>
 <li class="chapter" data-level="1.1.2" data-path="install-r.html"><a href="install-r.html#mac-users"><i class="fa fa-check"></i><b>1.1.2</b> Mac users</a></li>
 <li class="chapter" data-level="1.1.3" data-path="install-r.html"><a href="install-r.html#linux-users"><i class="fa fa-check"></i><b>1.1.3</b> Linux users</a></li>
 <li class="chapter" data-level="1.1.4" data-path="install-r.html"><a href="install-r.html#testing-r"><i class="fa fa-check"></i><b>1.1.4</b> Testing R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a><ul>
+<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="installing-rstudio.html"><a href="installing-rstudio.html#windows-and-mac-users"><i class="fa fa-check"></i><b>1.2.1</b> Windows and Mac users</a></li>
 <li class="chapter" data-level="1.2.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html#linux-users-1"><i class="fa fa-check"></i><b>1.2.2</b> Linux users</a></li>
 <li class="chapter" data-level="1.2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html#testing-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Testing RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a><ul>
+<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="rstudio-orient.html"><a href="rstudio-orient.html#cons"><i class="fa fa-check"></i><b>1.3.1</b> Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="rstudio-orient.html"><a href="rstudio-orient.html#environmenthistoryconnections"><i class="fa fa-check"></i><b>1.3.2</b> Environment/History/Connections</a></li>
 <li class="chapter" data-level="1.3.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html#filesplotspackageshelpviewer"><i class="fa fa-check"></i><b>1.3.3</b> Files/Plots/Packages/Help/Viewer</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a></li>
-<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="packages.html"><a href="packages.html#cran_packages"><i class="fa fa-check"></i><b>1.5.1</b> CRAN packages</a></li>
 <li class="chapter" data-level="1.5.2" data-path="packages.html"><a href="packages.html#bioconductor-packages"><i class="fa fa-check"></i><b>1.5.2</b> Bioconductor packages</a></li>
 <li class="chapter" data-level="1.5.3" data-path="packages.html"><a href="packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
@@ -189,42 +200,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 <li class="chapter" data-level="1.14" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i><b>1.14</b> Exercise 1</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
-<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a><ul>
+<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
 <li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="using-functions-in-r.html"><a href="using-functions-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Using functions in R</a></li>
-<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
 <li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#vec_ord"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
 <li class="chapter" data-level="2.4.4" data-path="vectors.html"><a href="vectors.html#vectorisation"><i class="fa fa-check"></i><b>2.4.4</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4.5" data-path="vectors.html"><a href="vectors.html#na_vals"><i class="fa fa-check"></i><b>2.4.5</b> Missing data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#rhelp"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 <li class="chapter" data-level="2.7" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i><b>2.7</b> Exercise 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a><ul>
+<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3.1</b> Data types</a></li>
-<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scal_vecs"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#mat_array"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
 <li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>3.2.3</b> Lists</a></li>
 <li class="chapter" data-level="3.2.4" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.4</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
 <li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import_fnc"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
 <li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
 <li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
+<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
 <li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
@@ -233,15 +252,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
-<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
+<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="exporting-data.html"><a href="exporting-data.html#export-functions"><i class="fa fa-check"></i><b>3.6.1</b> Export functions</a></li>
 <li class="chapter" data-level="3.6.2" data-path="exporting-data.html"><a href="exporting-data.html#other-export-functions"><i class="fa fa-check"></i><b>3.6.2</b> Other export functions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i><b>3.7</b> Exercise 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a><ul>
+<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="baseplot-start.html"><a href="baseplot-start.html"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
-<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a><ul>
+<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplots</a></li>
 <li class="chapter" data-level="4.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>4.2.2</b> Histograms</a></li>
 <li class="chapter" data-level="4.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#box-and-violin-plots"><i class="fa fa-check"></i><b>4.2.3</b> Box and violin plots</a></li>
@@ -250,7 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.6" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#coplots"><i class="fa fa-check"></i><b>4.2.6</b> Coplots</a></li>
 <li class="chapter" data-level="4.2.7" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#lattice-plots"><i class="fa fa-check"></i><b>4.2.7</b> Lattice plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a><ul>
+<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="custom-plot.html"><a href="custom-plot.html#customising-with-arguments"><i class="fa fa-check"></i><b>4.3.1</b> Customising with arguments</a></li>
 <li class="chapter" data-level="4.3.2" data-path="custom-plot.html"><a href="custom-plot.html#building-plots"><i class="fa fa-check"></i><b>4.3.2</b> Building plots</a></li>
 </ul></li>
@@ -258,9 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="export-plots.html"><a href="export-plots.html"><i class="fa fa-check"></i><b>4.5</b> Exporting plots</a></li>
 <li class="chapter" data-level="4.6" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i><b>4.6</b> Exercise 4</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a><ul>
+<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>5.1</b> Beginning at the end</a></li>
-<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a><ul>
+<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#the-purest-of-ggplots"><i class="fa fa-check"></i><b>5.2.1</b> The purest of ggplots</a></li>
 <li class="chapter" data-level="5.2.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#wrapping-grids"><i class="fa fa-check"></i><b>5.2.2</b> Wrapping grids</a></li>
 <li class="chapter" data-level="5.2.3" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#plotting-multiple-ggplots"><i class="fa fa-check"></i><b>5.2.3</b> Plotting multiple ggplots</a></li>
@@ -268,7 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#setting-the-theme"><i class="fa fa-check"></i><b>5.2.5</b> Setting the theme</a></li>
 <li class="chapter" data-level="5.2.6" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#prettification"><i class="fa fa-check"></i><b>5.2.6</b> Prettification</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="tips.html"><a href="tips.html#statistics-layer"><i class="fa fa-check"></i><b>5.3.1</b> Statistics layer</a></li>
 <li class="chapter" data-level="5.3.2" data-path="tips.html"><a href="tips.html#axis-limits-and-zooms"><i class="fa fa-check"></i><b>5.3.2</b> Axis limits and zooms</a></li>
 <li class="chapter" data-level="5.3.3" data-path="tips.html"><a href="tips.html#layering-layers"><i class="fa fa-check"></i><b>5.3.3</b> Layering layers</a></li>
@@ -281,7 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.10" data-path="tips.html"><a href="tips.html#ticks-and-tick-labels"><i class="fa fa-check"></i><b>5.3.10</b> Ticks and tick labels</a></li>
 <li class="chapter" data-level="5.3.11" data-path="tips.html"><a href="tips.html#more-advanced-patchwork"><i class="fa fa-check"></i><b>5.3.11</b> More advanced patchwork</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a><ul>
+<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="bestiary.html"><a href="bestiary.html#density-plot"><i class="fa fa-check"></i><b>5.4.1</b> Density plot</a></li>
 <li class="chapter" data-level="5.4.2" data-path="bestiary.html"><a href="bestiary.html#histogram"><i class="fa fa-check"></i><b>5.4.2</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.3" data-path="bestiary.html"><a href="bestiary.html#frequency-polygons"><i class="fa fa-check"></i><b>5.4.3</b> Frequency polygons</a></li>
@@ -297,19 +324,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i><b>5.5</b> Exercise 5</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a><ul>
+<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One and two sample tests</a></li>
 <li class="chapter" data-level="6.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>6.2</b> Correlation</a></li>
 <li class="chapter" data-level="6.3" data-path="simple-lm.html"><a href="simple-lm.html"><i class="fa fa-check"></i><b>6.3</b> Simple linear modelling</a></li>
 <li class="chapter" data-level="6.4" data-path="other-modelling-approaches.html"><a href="other-modelling-approaches.html"><i class="fa fa-check"></i><b>6.4</b> Other modelling approaches</a></li>
 <li class="chapter" data-level="6.5" data-path="exercise-6.html"><a href="exercise-6.html"><i class="fa fa-check"></i><b>6.5</b> Exercise 6</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a><ul>
+<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>7.1</b> Looking behind the curtain</a></li>
 <li class="chapter" data-level="7.2" data-path="functions-in-r.html"><a href="functions-in-r.html"><i class="fa fa-check"></i><b>7.2</b> Functions in R</a></li>
 <li class="chapter" data-level="7.3" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>7.3</b> Conditional statements</a></li>
 <li class="chapter" data-level="7.4" data-path="combining-logical-operators.html"><a href="combining-logical-operators.html"><i class="fa fa-check"></i><b>7.4</b> Combining logical operators</a></li>
-<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a><ul>
+<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="loops.html"><a href="loops.html#for-loop"><i class="fa fa-check"></i><b>7.5.1</b> For loop</a></li>
 <li class="chapter" data-level="7.5.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>7.5.2</b> While loop</a></li>
 <li class="chapter" data-level="7.5.3" data-path="loops.html"><a href="loops.html#when-to-use-a-loop"><i class="fa fa-check"></i><b>7.5.3</b> When to use a loop?</a></li>
@@ -317,12 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="exercise-7.html"><a href="exercise-7.html"><i class="fa fa-check"></i><b>7.6</b> Exercise 7</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a><ul>
+<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>8.1</b> What is R markdown?</a></li>
 <li class="chapter" data-level="8.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>8.2</b> Why use R markdown?</a></li>
 <li class="chapter" data-level="8.3" data-path="get-started-with-r-markdown.html"><a href="get-started-with-r-markdown.html"><i class="fa fa-check"></i><b>8.3</b> Get started with R markdown</a></li>
 <li class="chapter" data-level="8.4" data-path="new-rm.html"><a href="new-rm.html"><i class="fa fa-check"></i><b>8.4</b> Create an R markdown document</a></li>
-<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a><ul>
+<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#yaml-header"><i class="fa fa-check"></i><b>8.5.1</b> YAML header</a></li>
 <li class="chapter" data-level="8.5.2" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#formatted-text"><i class="fa fa-check"></i><b>8.5.2</b> Formatted text</a></li>
 <li class="chapter" data-level="8.5.3" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#code_chunks"><i class="fa fa-check"></i><b>8.5.3</b> Code chunks</a></li>
@@ -333,21 +365,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="tips-tricks.html"><a href="tips-tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
 <li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a><ul>
+<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>9.1</b> What is version control?</a></li>
 <li class="chapter" data-level="9.2" data-path="why-use-version-control.html"><a href="why-use-version-control.html"><i class="fa fa-check"></i><b>9.2</b> Why use version control?</a></li>
 <li class="chapter" data-level="9.3" data-path="what-is-git-and-github.html"><a href="what-is-git-and-github.html"><i class="fa fa-check"></i><b>9.3</b> What is Git and GitHub?</a></li>
-<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a><ul>
+<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="setup-git.html"><a href="setup-git.html#install-git"><i class="fa fa-check"></i><b>9.4.1</b> Install Git</a></li>
 <li class="chapter" data-level="9.4.2" data-path="setup-git.html"><a href="setup-git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup-git.html"><a href="setup-git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup-git.html"><a href="setup-git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a><ul>
+<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt1"><i class="fa fa-check"></i><b>9.5.1</b> Option 1 - GitHub first</a></li>
 <li class="chapter" data-level="9.5.2" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt2"><i class="fa fa-check"></i><b>9.5.2</b> Option 2 - RStudio first</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a><ul>
+<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="use-git.html"><a href="use-git.html#tracking-changes"><i class="fa fa-check"></i><b>9.6.1</b> Tracking changes</a></li>
 <li class="chapter" data-level="9.6.2" data-path="use-git.html"><a href="use-git.html#commit-history"><i class="fa fa-check"></i><b>9.6.2</b> Commit history</a></li>
 <li class="chapter" data-level="9.6.3" data-path="use-git.html"><a href="use-git.html#undo"><i class="fa fa-check"></i><b>9.6.3</b> Reverting changes</a></li>
@@ -357,7 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>9.7</b> Further resources</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a><ul>
+<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
 </ul></li>
@@ -381,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="importing-data" class="section level2">
+<div id="importing-data" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Importing data</h2>
 <p>Although creating data frames from existing data structures is extremely useful, by far the most common approach is to create a data frame by importing data from an external file. To do this, you’ll need to have your data correctly formatted and saved in a file format that R is able to recognise. Fortunately for us, R is able to recognise a wide variety of file formats, although in reality you’ll probably end up only using two or three regularly.</p>
 <p> </p>
@@ -389,8 +426,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="rmdvideo">
 <p>Take a look at this <a href="https://bit.ly/2UiJwpV">video</a> for a quick introduction to importing data in R</p>
 </div>
-
-<div id="saving-files-to-import" class="section level3">
+<div id="saving-files-to-import" class="section level3" number="3.3.1">
 <h3><span class="header-section-number">3.3.1</span> Saving files to import</h3>
 <p>The easiest method of creating a data file to import into R is to enter your data into a spreadsheet using either Microsoft Excel or LibreOffice Calc and save the spreadsheet as a tab delimited file. We prefer LibreOffice Calc as it’s open source, platform independent and free but MS Excel is OK too (but see <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7">here</a> for some gotchas). Here’s the data from the petunia experiment we dicussed previously displayed in LibreOffice. If you want to follow along you can download the data file (<em>‘flower.xls’</em>) from the companion website <a href="https://alexd106.github.io/intro2R/data.html">here</a>.</p>
 <p> </p>
@@ -412,19 +448,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>There are a couple of things to bear in mind when saving files to import into R which will make your life easier in the long run. Keep your column headings (if you have them) short and informative. Also avoid spaces in your column headings by replacing them with an underscore or a dot (i.e. replace <code>shoot height</code> with <code>shoot_height</code> or <code>shoot.height</code>) and avoid using special characters (i.e. <code>leaf area (mm^2)</code>). Remember, if you have missing data in your data frame (empty cells) you should use an <code>NA</code> to represent these missing values. This will keep the data frame tidy.</p>
 </div>
-<div id="import_fnc" class="section level3">
+<div id="import_fnc" class="section level3" number="3.3.2">
 <h3><span class="header-section-number">3.3.2</span> Import functions</h3>
 <p>Once you’ve saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the <code>read.table()</code> function (we discuss some alternatives later in the chapter). The <code>read.table()</code> function is a very flexible function with a shed load of arguments (see <code>?read.table</code>) but it’s quite simple to use. Let’s import a tab delimited file called <code>flower.txt</code> which contains the data we saw previously in this <a href="data-structures.html#df">Chapter</a> and assign it to an object called <code>flowers</code>. The file is located in a <code>data</code> directory which itself is located in our <a href="dir-struct.html#dir_struct">root directory</a>. The first row of the data contains the variable (column) names. To use the <code>read.table()</code> function to import this file</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="importing-data.html#cb100-1"></a>flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>There are a few things to note about the above command. First, the file path and the filename (including the file extension) needs to be enclosed in either single or double quotes (i.e. <code>data/flower.txt</code> bit) as the <code>read.table()</code> function expects this to be a character string. If your working directory is already set to the directory which contains the file, you don’t need to include the entire file path just the filename. In the example above, the file path is separated with a single forward slash <code>/</code>. This will work regardless of the operating system you are using and we recommend you stick with this. However, Windows users may be more familiar with the single backslash notation and if you want to keep using this you will need to include them as double backslashes. Note though that the double backslash notation will <strong>not</strong> work on computers using Mac OSX or Linux operating systems.</p>
 <div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="importing-data.html#cb101-1"></a>flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;C:</span><span class="ch">\\</span><span class="st">Documents</span><span class="ch">\\</span><span class="st">Prog1</span><span class="ch">\\</span><span class="st">data</span><span class="ch">\\</span><span class="st">flower.txt&#39;</span>, </span>
-<span id="cb101-2"><a href="importing-data.html#cb101-2"></a>                      <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb101-2"><a href="importing-data.html#cb101-2"></a>                      <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>The <code>header = TRUE</code> argument specifies that the first row of your data contains the variable names (i.e. <code>nitrogen</code>, <code>block</code> etc). If this is not the case you can specify <code>header = FALSE</code> (actually, this is the default value so you can omit this argument entirely). The <code>sep = "\t"</code> argument tells R that the file delimiter is a tab (<code>\t</code>).</p>
 <p>After importing our data into R it doesn’t appear that R has done much, at least nothing appears in the R Console! To see the contents of the data frame we could just type the name of the object as we have done previously. <strong>BUT</strong> before you do that, think about why you’re doing this. If your data frame is anything other than tiny, all you’re going to do is fill up your Console with data. It’s not like you can easily check whether there are any errors or that your data has been imported correctly. A much better solution is to use our old friend the <code>str()</code> function to return a compact and informative summary of your data frame.</p>
 <div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="importing-data.html#cb102-1"></a><span class="kw">str</span>(flowers) </span>
-<span id="cb102-2"><a href="importing-data.html#cb102-2"></a><span class="co">## &#39;data.frame&#39;:	96 obs. of  8 variables:</span></span>
-<span id="cb102-3"><a href="importing-data.html#cb102-3"></a><span class="co">##  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></span>
-<span id="cb102-4"><a href="importing-data.html#cb102-4"></a><span class="co">##  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></span>
+<span id="cb102-2"><a href="importing-data.html#cb102-2"></a><span class="co">## &#39;data.frame&#39;:    96 obs. of  8 variables:</span></span>
+<span id="cb102-3"><a href="importing-data.html#cb102-3"></a><span class="co">##  $ treat    : chr  &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; ...</span></span>
+<span id="cb102-4"><a href="importing-data.html#cb102-4"></a><span class="co">##  $ nitrogen : chr  &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; ...</span></span>
 <span id="cb102-5"><a href="importing-data.html#cb102-5"></a><span class="co">##  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></span>
 <span id="cb102-6"><a href="importing-data.html#cb102-6"></a><span class="co">##  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></span>
 <span id="cb102-7"><a href="importing-data.html#cb102-7"></a><span class="co">##  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></span>
@@ -436,7 +472,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="importing-data.html#cb103-1"></a>flowers &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, </span>
 <span id="cb103-2"><a href="importing-data.html#cb103-2"></a>                      <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb103-3"><a href="importing-data.html#cb103-3"></a><span class="kw">str</span>(flowers) </span>
-<span id="cb103-4"><a href="importing-data.html#cb103-4"></a><span class="co">## &#39;data.frame&#39;:	96 obs. of  8 variables:</span></span>
+<span id="cb103-4"><a href="importing-data.html#cb103-4"></a><span class="co">## &#39;data.frame&#39;:    96 obs. of  8 variables:</span></span>
 <span id="cb103-5"><a href="importing-data.html#cb103-5"></a><span class="co">##  $ treat    : chr  &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; ...</span></span>
 <span id="cb103-6"><a href="importing-data.html#cb103-6"></a><span class="co">##  $ nitrogen : chr  &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; ...</span></span>
 <span id="cb103-7"><a href="importing-data.html#cb103-7"></a><span class="co">##  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></span>
@@ -461,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb105-8"><a href="importing-data.html#cb105-8"></a>flowers &lt;-<span class="st"> </span><span class="kw">read.delim</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>) </span></code></pre></div>
 <p>You can even import spreadsheet files from MS Excel or other statistics software directly into R but our advice is that this should generally be avoided if possible as it just adds a layer of uncertainty between you and your data. In our opinion it’s almost always better to export your spreadsheets as tab or comma delimited files and then import them into R using the <code>read.table()</code> function. If you’re hell bent on directly importing data from other software you will need to install the <code>foreign</code> package which has functions for importing Minitab, SPSS, Stata and SAS files or the <code>xlsx</code> package to import Excel spreadsheets.</p>
 </div>
-<div id="common-import-frustrations" class="section level3">
+<div id="common-import-frustrations" class="section level3" number="3.3.3">
 <h3><span class="header-section-number">3.3.3</span> Common import frustrations</h3>
 <p>It’s quite common to get a bunch of really frustrating error messages when you first start importing data into R. Perhaps the most common is</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="importing-data.html#cb106-1"></a>Error <span class="cf">in</span> <span class="kw">file</span>(file, <span class="st">&quot;rt&quot;</span>) <span class="op">:</span><span class="st"> </span>cannot open the connection</span>
@@ -473,18 +509,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="importing-data.html#cb107-1"></a>flowers_bad &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="dt">file =</span> <span class="st">&#39;data/flower.txt&#39;</span>, <span class="dt">sep =</span> <span class="st">&quot;</span><span class="ch">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>but when we take a look at our data frame using <code>str()</code></p>
 <div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="importing-data.html#cb108-1"></a><span class="kw">str</span>(flowers_bad)</span>
-<span id="cb108-2"><a href="importing-data.html#cb108-2"></a><span class="co">## &#39;data.frame&#39;:	97 obs. of  8 variables:</span></span>
-<span id="cb108-3"><a href="importing-data.html#cb108-3"></a><span class="co">##  $ V1: Factor w/ 3 levels &quot;notip&quot;,&quot;tip&quot;,..: 3 2 2 2 2 2 2 2 2 2 ...</span></span>
-<span id="cb108-4"><a href="importing-data.html#cb108-4"></a><span class="co">##  $ V2: Factor w/ 4 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;,..: 4 3 3 3 3 3 3 3 3 3 ...</span></span>
-<span id="cb108-5"><a href="importing-data.html#cb108-5"></a><span class="co">##  $ V3: Factor w/ 3 levels &quot;1&quot;,&quot;2&quot;,&quot;block&quot;: 3 1 1 1 1 1 1 1 1 2 ...</span></span>
-<span id="cb108-6"><a href="importing-data.html#cb108-6"></a><span class="co">##  $ V4: Factor w/ 66 levels &quot;1.2&quot;,&quot;1.8&quot;,&quot;10&quot;,..: 66 51 6 9 5 5 65 47 63 5 ...</span></span>
-<span id="cb108-7"><a href="importing-data.html#cb108-7"></a><span class="co">##  $ V5: Factor w/ 94 levels &quot;10.04&quot;,&quot;10.08&quot;,..: 94 74 21 24 82 33 2 3 7 9 ...</span></span>
-<span id="cb108-8"><a href="importing-data.html#cb108-8"></a><span class="co">##  $ V6: Factor w/ 75 levels &quot;10.1&quot;,&quot;10.2&quot;,..: 75 11 31 64 13 33 16 22 30 3 ...</span></span>
-<span id="cb108-9"><a href="importing-data.html#cb108-9"></a><span class="co">##  $ V7: Factor w/ 96 levels &quot;100.1&quot;,&quot;101.5&quot;,..: 96 44 55 74 35 37 77 53 39 69 ...</span></span>
-<span id="cb108-10"><a href="importing-data.html#cb108-10"></a><span class="co">##  $ V8: Factor w/ 18 levels &quot;1&quot;,&quot;10&quot;,&quot;11&quot;,..: 18 1 2 2 1 12 17 15 14 13 ...</span></span></code></pre></div>
+<span id="cb108-2"><a href="importing-data.html#cb108-2"></a><span class="co">## &#39;data.frame&#39;:    97 obs. of  8 variables:</span></span>
+<span id="cb108-3"><a href="importing-data.html#cb108-3"></a><span class="co">##  $ V1: chr  &quot;treat&quot; &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; ...</span></span>
+<span id="cb108-4"><a href="importing-data.html#cb108-4"></a><span class="co">##  $ V2: chr  &quot;nitrogen&quot; &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; ...</span></span>
+<span id="cb108-5"><a href="importing-data.html#cb108-5"></a><span class="co">##  $ V3: chr  &quot;block&quot; &quot;1&quot; &quot;1&quot; &quot;1&quot; ...</span></span>
+<span id="cb108-6"><a href="importing-data.html#cb108-6"></a><span class="co">##  $ V4: chr  &quot;height&quot; &quot;7.5&quot; &quot;10.7&quot; &quot;11.2&quot; ...</span></span>
+<span id="cb108-7"><a href="importing-data.html#cb108-7"></a><span class="co">##  $ V5: chr  &quot;weight&quot; &quot;7.62&quot; &quot;12.14&quot; &quot;12.76&quot; ...</span></span>
+<span id="cb108-8"><a href="importing-data.html#cb108-8"></a><span class="co">##  $ V6: chr  &quot;leafarea&quot; &quot;11.7&quot; &quot;14.1&quot; &quot;7.1&quot; ...</span></span>
+<span id="cb108-9"><a href="importing-data.html#cb108-9"></a><span class="co">##  $ V7: chr  &quot;shootarea&quot; &quot;31.9&quot; &quot;46&quot; &quot;66.7&quot; ...</span></span>
+<span id="cb108-10"><a href="importing-data.html#cb108-10"></a><span class="co">##  $ V8: chr  &quot;flowers&quot; &quot;1&quot; &quot;10&quot; &quot;10&quot; ...</span></span></code></pre></div>
 <p>We can see an obvious problem, all of our variables have been imported as factors and are variables are named <code>V1</code>, <code>V2</code>, <code>V3</code> … <code>V8</code>. The problem happens because we haven’t told the <code>read.table()</code> function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the <a href="data-structures.html#scal_vecs">same type of data</a>). But why are they factors rather than character strings? Well, this is because when we use the <code>read.table()</code> function any variable containing character strings is converted to a factor by default (unless we use the <code>stringsAsFactors =</code> argument as above).</p>
 </div>
-<div id="import_other" class="section level3">
+<div id="import_other" class="section level3" number="3.3.4">
 <h3><span class="header-section-number">3.3.4</span> Other import options</h3>
 <p>There are numerous other functions to import data from a variety of sources and formats. Most of these functions are contained in packages that you will need to install before using them. We list a couple of the more useful packages and functions below.</p>
 <p>The <code>fread()</code> function from the <code>read.table</code> package  is great for importing large data files quickly and efficiently (much faster than the <code>read.table()</code> function). One of the great things about the <code>fread()</code> function is that it will automatically detect many of the arguments you would normally need to specify (like <code>sep =</code> etc). One of the things you will need to consider though is that the <code>fread()</code> function will return a <code>data.table</code> object not a <code>data.frame</code> as would be the case with the <code>read.table()</code> function. This is usually not a problem as you can pass a <code>data.table</code> object to any function that only accepts <code>data.frame</code> objects. To learn more about the differences between <code>data.table</code> and <code>data.frame</code> objects see <a href="http://datatable.r-forge.r-project.org/datatable-intro.pdf">here</a>.</p>

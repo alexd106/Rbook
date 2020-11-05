@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 The start of the end | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 The start of the end | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="beginning-at-the-end.html"/>
 <link rel="next" href="tips.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +52,12 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162377463-3"></script>
 <script>
@@ -64,18 +70,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -95,7 +100,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -144,7 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">An Introduction R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="the-aim-of-this-book.html"><a href="the-aim-of-this-book.html"><i class="fa fa-check"></i><b>0.1</b> The aim of this book</a></li>
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
@@ -155,25 +161,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.8" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.8</b> Thanks</a></li>
 <li class="chapter" data-level="0.9" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>0.9</b> License</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
+<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="install-r.html"><a href="install-r.html#windows-users"><i class="fa fa-check"></i><b>1.1.1</b> Windows users</a></li>
 <li class="chapter" data-level="1.1.2" data-path="install-r.html"><a href="install-r.html#mac-users"><i class="fa fa-check"></i><b>1.1.2</b> Mac users</a></li>
 <li class="chapter" data-level="1.1.3" data-path="install-r.html"><a href="install-r.html#linux-users"><i class="fa fa-check"></i><b>1.1.3</b> Linux users</a></li>
 <li class="chapter" data-level="1.1.4" data-path="install-r.html"><a href="install-r.html#testing-r"><i class="fa fa-check"></i><b>1.1.4</b> Testing R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a><ul>
+<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="installing-rstudio.html"><a href="installing-rstudio.html#windows-and-mac-users"><i class="fa fa-check"></i><b>1.2.1</b> Windows and Mac users</a></li>
 <li class="chapter" data-level="1.2.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html#linux-users-1"><i class="fa fa-check"></i><b>1.2.2</b> Linux users</a></li>
 <li class="chapter" data-level="1.2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html#testing-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Testing RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a><ul>
+<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="rstudio-orient.html"><a href="rstudio-orient.html#cons"><i class="fa fa-check"></i><b>1.3.1</b> Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="rstudio-orient.html"><a href="rstudio-orient.html#environmenthistoryconnections"><i class="fa fa-check"></i><b>1.3.2</b> Environment/History/Connections</a></li>
 <li class="chapter" data-level="1.3.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html#filesplotspackageshelpviewer"><i class="fa fa-check"></i><b>1.3.3</b> Files/Plots/Packages/Help/Viewer</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a></li>
-<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="packages.html"><a href="packages.html#cran_packages"><i class="fa fa-check"></i><b>1.5.1</b> CRAN packages</a></li>
 <li class="chapter" data-level="1.5.2" data-path="packages.html"><a href="packages.html#bioconductor-packages"><i class="fa fa-check"></i><b>1.5.2</b> Bioconductor packages</a></li>
 <li class="chapter" data-level="1.5.3" data-path="packages.html"><a href="packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
@@ -189,42 +200,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 <li class="chapter" data-level="1.14" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i><b>1.14</b> Exercise 1</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
-<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a><ul>
+<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
 <li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="using-functions-in-r.html"><a href="using-functions-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Using functions in R</a></li>
-<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
 <li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#vec_ord"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
 <li class="chapter" data-level="2.4.4" data-path="vectors.html"><a href="vectors.html#vectorisation"><i class="fa fa-check"></i><b>2.4.4</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4.5" data-path="vectors.html"><a href="vectors.html#na_vals"><i class="fa fa-check"></i><b>2.4.5</b> Missing data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#rhelp"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 <li class="chapter" data-level="2.7" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i><b>2.7</b> Exercise 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a><ul>
+<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3.1</b> Data types</a></li>
-<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scal_vecs"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#mat_array"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
 <li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>3.2.3</b> Lists</a></li>
 <li class="chapter" data-level="3.2.4" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.4</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
 <li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import_fnc"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
 <li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
 <li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
+<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
 <li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
@@ -233,15 +252,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
-<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
+<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="exporting-data.html"><a href="exporting-data.html#export-functions"><i class="fa fa-check"></i><b>3.6.1</b> Export functions</a></li>
 <li class="chapter" data-level="3.6.2" data-path="exporting-data.html"><a href="exporting-data.html#other-export-functions"><i class="fa fa-check"></i><b>3.6.2</b> Other export functions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i><b>3.7</b> Exercise 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a><ul>
+<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="baseplot-start.html"><a href="baseplot-start.html"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
-<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a><ul>
+<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplots</a></li>
 <li class="chapter" data-level="4.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>4.2.2</b> Histograms</a></li>
 <li class="chapter" data-level="4.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#box-and-violin-plots"><i class="fa fa-check"></i><b>4.2.3</b> Box and violin plots</a></li>
@@ -250,7 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.6" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#coplots"><i class="fa fa-check"></i><b>4.2.6</b> Coplots</a></li>
 <li class="chapter" data-level="4.2.7" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#lattice-plots"><i class="fa fa-check"></i><b>4.2.7</b> Lattice plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a><ul>
+<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="custom-plot.html"><a href="custom-plot.html#customising-with-arguments"><i class="fa fa-check"></i><b>4.3.1</b> Customising with arguments</a></li>
 <li class="chapter" data-level="4.3.2" data-path="custom-plot.html"><a href="custom-plot.html#building-plots"><i class="fa fa-check"></i><b>4.3.2</b> Building plots</a></li>
 </ul></li>
@@ -258,9 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="export-plots.html"><a href="export-plots.html"><i class="fa fa-check"></i><b>4.5</b> Exporting plots</a></li>
 <li class="chapter" data-level="4.6" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i><b>4.6</b> Exercise 4</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a><ul>
+<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>5.1</b> Beginning at the end</a></li>
-<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a><ul>
+<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#the-purest-of-ggplots"><i class="fa fa-check"></i><b>5.2.1</b> The purest of ggplots</a></li>
 <li class="chapter" data-level="5.2.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#wrapping-grids"><i class="fa fa-check"></i><b>5.2.2</b> Wrapping grids</a></li>
 <li class="chapter" data-level="5.2.3" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#plotting-multiple-ggplots"><i class="fa fa-check"></i><b>5.2.3</b> Plotting multiple ggplots</a></li>
@@ -268,7 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#setting-the-theme"><i class="fa fa-check"></i><b>5.2.5</b> Setting the theme</a></li>
 <li class="chapter" data-level="5.2.6" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#prettification"><i class="fa fa-check"></i><b>5.2.6</b> Prettification</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="tips.html"><a href="tips.html#statistics-layer"><i class="fa fa-check"></i><b>5.3.1</b> Statistics layer</a></li>
 <li class="chapter" data-level="5.3.2" data-path="tips.html"><a href="tips.html#axis-limits-and-zooms"><i class="fa fa-check"></i><b>5.3.2</b> Axis limits and zooms</a></li>
 <li class="chapter" data-level="5.3.3" data-path="tips.html"><a href="tips.html#layering-layers"><i class="fa fa-check"></i><b>5.3.3</b> Layering layers</a></li>
@@ -281,7 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.10" data-path="tips.html"><a href="tips.html#ticks-and-tick-labels"><i class="fa fa-check"></i><b>5.3.10</b> Ticks and tick labels</a></li>
 <li class="chapter" data-level="5.3.11" data-path="tips.html"><a href="tips.html#more-advanced-patchwork"><i class="fa fa-check"></i><b>5.3.11</b> More advanced patchwork</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a><ul>
+<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="bestiary.html"><a href="bestiary.html#density-plot"><i class="fa fa-check"></i><b>5.4.1</b> Density plot</a></li>
 <li class="chapter" data-level="5.4.2" data-path="bestiary.html"><a href="bestiary.html#histogram"><i class="fa fa-check"></i><b>5.4.2</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.3" data-path="bestiary.html"><a href="bestiary.html#frequency-polygons"><i class="fa fa-check"></i><b>5.4.3</b> Frequency polygons</a></li>
@@ -297,19 +324,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i><b>5.5</b> Exercise 5</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a><ul>
+<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One and two sample tests</a></li>
 <li class="chapter" data-level="6.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>6.2</b> Correlation</a></li>
 <li class="chapter" data-level="6.3" data-path="simple-lm.html"><a href="simple-lm.html"><i class="fa fa-check"></i><b>6.3</b> Simple linear modelling</a></li>
 <li class="chapter" data-level="6.4" data-path="other-modelling-approaches.html"><a href="other-modelling-approaches.html"><i class="fa fa-check"></i><b>6.4</b> Other modelling approaches</a></li>
 <li class="chapter" data-level="6.5" data-path="exercise-6.html"><a href="exercise-6.html"><i class="fa fa-check"></i><b>6.5</b> Exercise 6</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a><ul>
+<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>7.1</b> Looking behind the curtain</a></li>
 <li class="chapter" data-level="7.2" data-path="functions-in-r.html"><a href="functions-in-r.html"><i class="fa fa-check"></i><b>7.2</b> Functions in R</a></li>
 <li class="chapter" data-level="7.3" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>7.3</b> Conditional statements</a></li>
 <li class="chapter" data-level="7.4" data-path="combining-logical-operators.html"><a href="combining-logical-operators.html"><i class="fa fa-check"></i><b>7.4</b> Combining logical operators</a></li>
-<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a><ul>
+<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="loops.html"><a href="loops.html#for-loop"><i class="fa fa-check"></i><b>7.5.1</b> For loop</a></li>
 <li class="chapter" data-level="7.5.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>7.5.2</b> While loop</a></li>
 <li class="chapter" data-level="7.5.3" data-path="loops.html"><a href="loops.html#when-to-use-a-loop"><i class="fa fa-check"></i><b>7.5.3</b> When to use a loop?</a></li>
@@ -317,12 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="exercise-7.html"><a href="exercise-7.html"><i class="fa fa-check"></i><b>7.6</b> Exercise 7</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a><ul>
+<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>8.1</b> What is R markdown?</a></li>
 <li class="chapter" data-level="8.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>8.2</b> Why use R markdown?</a></li>
 <li class="chapter" data-level="8.3" data-path="get-started-with-r-markdown.html"><a href="get-started-with-r-markdown.html"><i class="fa fa-check"></i><b>8.3</b> Get started with R markdown</a></li>
 <li class="chapter" data-level="8.4" data-path="new-rm.html"><a href="new-rm.html"><i class="fa fa-check"></i><b>8.4</b> Create an R markdown document</a></li>
-<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a><ul>
+<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#yaml-header"><i class="fa fa-check"></i><b>8.5.1</b> YAML header</a></li>
 <li class="chapter" data-level="8.5.2" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#formatted-text"><i class="fa fa-check"></i><b>8.5.2</b> Formatted text</a></li>
 <li class="chapter" data-level="8.5.3" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#code_chunks"><i class="fa fa-check"></i><b>8.5.3</b> Code chunks</a></li>
@@ -333,21 +365,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="tips-tricks.html"><a href="tips-tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
 <li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a><ul>
+<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>9.1</b> What is version control?</a></li>
 <li class="chapter" data-level="9.2" data-path="why-use-version-control.html"><a href="why-use-version-control.html"><i class="fa fa-check"></i><b>9.2</b> Why use version control?</a></li>
 <li class="chapter" data-level="9.3" data-path="what-is-git-and-github.html"><a href="what-is-git-and-github.html"><i class="fa fa-check"></i><b>9.3</b> What is Git and GitHub?</a></li>
-<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a><ul>
+<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="setup-git.html"><a href="setup-git.html#install-git"><i class="fa fa-check"></i><b>9.4.1</b> Install Git</a></li>
 <li class="chapter" data-level="9.4.2" data-path="setup-git.html"><a href="setup-git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup-git.html"><a href="setup-git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup-git.html"><a href="setup-git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a><ul>
+<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt1"><i class="fa fa-check"></i><b>9.5.1</b> Option 1 - GitHub first</a></li>
 <li class="chapter" data-level="9.5.2" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt2"><i class="fa fa-check"></i><b>9.5.2</b> Option 2 - RStudio first</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a><ul>
+<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="use-git.html"><a href="use-git.html#tracking-changes"><i class="fa fa-check"></i><b>9.6.1</b> Tracking changes</a></li>
 <li class="chapter" data-level="9.6.2" data-path="use-git.html"><a href="use-git.html#commit-history"><i class="fa fa-check"></i><b>9.6.2</b> Commit history</a></li>
 <li class="chapter" data-level="9.6.3" data-path="use-git.html"><a href="use-git.html#undo"><i class="fa fa-check"></i><b>9.6.3</b> Reverting changes</a></li>
@@ -357,7 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>9.7</b> Further resources</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a><ul>
+<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
 </ul></li>
@@ -381,13 +418,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="the-start-of-the-end" class="section level2">
+<div id="the-start-of-the-end" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> The start of the end</h2>
 <p>The first step in producing a plot with <code>ggplot()</code> is the easiest! We just need to install and then load the package. Use the skills you learnt in <a href="packages.html#packages">Chapter 1</a> to install and load the package. Note that although most people refer to the package as <code>ggplot</code>, it’s proper name is <code>ggplot2</code>.</p>
 <div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="the-start-of-the-end.html#cb247-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;ggplot2&quot;</span>)</span>
 <span id="cb247-2"><a href="the-start-of-the-end.html#cb247-2"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <p>With that taken care of, let’s make our first <code>ggplot()</code>!</p>
-<div id="the-purest-of-ggplots" class="section level3">
+<div id="the-purest-of-ggplots" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> The purest of ggplots</h3>
 <p>When we run our ‘in person’ R courses that accompany this book, we often ask our students to name all of the functions they have either learnt during the course, have heard of previously, or have used before (we call it R bingo!). At this point in the course, the students have not yet learnt about <code>ggplot2</code>, but never-the-less one year a student suggested the function <code>ggplot()</code>. When asked what the <code>ggplot()</code> function does, they joked that it obviously makes a <code>ggplot.</code> This makes intuitive sense, so let’s make a <code>ggplot</code> now:</p>
 <div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="the-start-of-the-end.html#cb248-1"></a><span class="kw">ggplot</span>()</span></code></pre></div>
@@ -396,9 +433,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We’ll keep using the <code>flower</code> dataset that you’ve used in <a href="data-r.html#data_r">Chapter 3</a>. Let’s have a quick reminder of what the structure of the data looks like.</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="the-start-of-the-end.html#cb249-1"></a>flower &lt;-<span class="st"> </span><span class="kw">read.table</span>(<span class="st">&quot;data/flower.csv&quot;</span>, <span class="dt">header =</span> <span class="ot">TRUE</span>, <span class="dt">sep =</span> <span class="st">&quot;,&quot;</span>)</span>
 <span id="cb249-2"><a href="the-start-of-the-end.html#cb249-2"></a><span class="kw">str</span>(flower)</span>
-<span id="cb249-3"><a href="the-start-of-the-end.html#cb249-3"></a><span class="co">## &#39;data.frame&#39;:	96 obs. of  8 variables:</span></span>
-<span id="cb249-4"><a href="the-start-of-the-end.html#cb249-4"></a><span class="co">##  $ treat    : Factor w/ 2 levels &quot;notip&quot;,&quot;tip&quot;: 2 2 2 2 2 2 2 2 2 2 ...</span></span>
-<span id="cb249-5"><a href="the-start-of-the-end.html#cb249-5"></a><span class="co">##  $ nitrogen : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 3 3 3 3 3 3 3 3 3 3 ...</span></span>
+<span id="cb249-3"><a href="the-start-of-the-end.html#cb249-3"></a><span class="co">## &#39;data.frame&#39;:    96 obs. of  8 variables:</span></span>
+<span id="cb249-4"><a href="the-start-of-the-end.html#cb249-4"></a><span class="co">##  $ treat    : chr  &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; &quot;tip&quot; ...</span></span>
+<span id="cb249-5"><a href="the-start-of-the-end.html#cb249-5"></a><span class="co">##  $ nitrogen : chr  &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; &quot;medium&quot; ...</span></span>
 <span id="cb249-6"><a href="the-start-of-the-end.html#cb249-6"></a><span class="co">##  $ block    : int  1 1 1 1 1 1 1 1 2 2 ...</span></span>
 <span id="cb249-7"><a href="the-start-of-the-end.html#cb249-7"></a><span class="co">##  $ height   : num  7.5 10.7 11.2 10.4 10.4 9.8 6.9 9.4 10.4 12.3 ...</span></span>
 <span id="cb249-8"><a href="the-start-of-the-end.html#cb249-8"></a><span class="co">##  $ weight   : num  7.62 12.14 12.76 8.78 13.58 ...</span></span>
@@ -420,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Let’s add (<code>+</code>) a new geometry layer now:</p>
 <p><img src="images/geoms.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="the-start-of-the-end.html#cb251-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb251-2"><a href="the-start-of-the-end.html#cb251-2"></a>		<span class="kw">geom_point</span>()     <span class="co"># Adding a geom to display data as point data</span></span></code></pre></div>
+<span id="cb251-2"><a href="the-start-of-the-end.html#cb251-2"></a><span class="st">        </span><span class="kw">geom_point</span>()     <span class="co"># Adding a geom to display data as point data</span></span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ggplot-with-geom_point-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <hr />
@@ -453,14 +490,14 @@ Figure 5.4: Geometry - how we want that data displayed
 <p><img src="images/geoms.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="the-start-of-the-end.html#cb252-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb252-2"><a href="the-start-of-the-end.html#cb252-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb252-3"><a href="the-start-of-the-end.html#cb252-3"></a>	<span class="kw">geom_line</span>()     <span class="co"># Adding geom_line</span></span></code></pre></div>
+<span id="cb252-3"><a href="the-start-of-the-end.html#cb252-3"></a><span class="st">    </span><span class="kw">geom_line</span>()     <span class="co"># Adding geom_line</span></span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_line-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Not quite what we were going for. The problem that we have is that <code>geom_line()</code> is actually just playing join-the-dots in the order they appear in the data (an alternative to <code>geom_path()</code>). The geom we actually want to use is called <code>geom_smooth()</code>. We can fix that very easily just by changing “line” to “smooth”.</p>
 <p><img src="images/geoms_statistics.png" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="the-start-of-the-end.html#cb253-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb253-2"><a href="the-start-of-the-end.html#cb253-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb253-3"><a href="the-start-of-the-end.html#cb253-3"></a>	<span class="kw">geom_smooth</span>()    <span class="co"># Changing to geom_smooth</span></span></code></pre></div>
+<span id="cb253-3"><a href="the-start-of-the-end.html#cb253-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>()    <span class="co"># Changing to geom_smooth</span></span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_smooth-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called “LOESS” (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. <code>ggplot2</code> will use LOESS as default when you have &lt; 1000 observations, so we’ll need to manually specify the method. Instead of a wiggly line, we want a nice simple ‘line of best fit’ to be drawn using a method called “lm” (short for linear model - see <a href="stats-r.html#stats_r">Chapter 6</a> for more details). Try looking at the help file, using <code>?geom_smooth</code>, to see what other options are available for the <code>method =</code> argument.</p>
@@ -469,7 +506,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <p><img src="images/statistics.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="the-start-of-the-end.html#cb254-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb254-2"><a href="the-start-of-the-end.html#cb254-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb254-3"><a href="the-start-of-the-end.html#cb254-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)    <span class="co"># method and se </span></span></code></pre></div>
+<span id="cb254-3"><a href="the-start-of-the-end.html#cb254-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)    <span class="co"># method and se </span></span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_smooth-lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We get the straight line that we wanted, though it’s still not matching the “final figure”. We need to alter <code>geom_smooth()</code> so that it draws lines for each level of nitrogen concentration. Getting <code>ggplot2</code> to do that is pretty straightforward. We can use the <code>colour =</code> argument within <code>aes()</code> (remember whatever we include in <code>aes()</code> will be something displayed in the figure) to tell <code>ggplot2</code> to draw a different coloured lines depending on nitrogen concentration. Keep in mind that we have no variable in our dataset called “nitrogen_colour”, so <code>ggplot2</code> is taking care of that for us here and assigning a colour to each unique nitrogen level.</p>
@@ -484,10 +521,10 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>We’re getting closer, especially since <code>ggplot2</code> has automatically created a legend for us. At this point it’s a good time to talk about where to include information - whether to include it within a geom or in the main call to <code>ggplot()</code>. When we include information such as <code>data =</code> and <code>aes()</code> in <code>ggplot()</code> we are setting those as the default, universal values which all subsequent geoms use. Whereas if we were to include that information within a geom, only that geom would use that specific information. In this case, we can easily move the information around and get exactly the same figure.</p>
 <p><img src="images/data_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="the-start-of-the-end.html#cb256-1"></a><span class="kw">ggplot</span>() <span class="op">+</span></span>
-<span id="cb256-2"><a href="the-start-of-the-end.html#cb256-2"></a>	<span class="co"># Moved aes() and data into geoms</span></span>
-<span id="cb256-3"><a href="the-start-of-the-end.html#cb256-3"></a>  <span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
+<span id="cb256-2"><a href="the-start-of-the-end.html#cb256-2"></a><span class="st">    </span><span class="co"># Moved aes() and data into geoms</span></span>
+<span id="cb256-3"><a href="the-start-of-the-end.html#cb256-3"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb256-4"><a href="the-start-of-the-end.html#cb256-4"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), </span>
-<span id="cb256-5"><a href="the-start-of-the-end.html#cb256-5"></a>  						<span class="dt">data =</span> flower, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<span id="cb256-5"><a href="the-start-of-the-end.html#cb256-5"></a>                        <span class="dt">data =</span> flower, <span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/universal-vrs-geom-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Doing so we get exactly the same figure. This ability to move information between the main <code>ggplot()</code> call or in specific geoms is surprisingly powerful. It can allow different geoms to display different (albeit similar) information (see more on this later).</p>
@@ -502,7 +539,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>This figure is now what we would consider to be the typical <code>ggplot2</code> figure (once you know to look for it, you’ll see it everywhere). We have specified some information, with only a few lines of code, yet we have something that looks quite attractive. While it’s not yet the “final figure” it’s perfectly suited for showing the information we need from the data. You have now created your first “pure” <code>ggplot</code> using only the data, mapping and geom layers (as well as others indirectly).</p>
 <p>Let’s keep going as we’re aiming for something a bit more “sophisticated”.</p>
 </div>
-<div id="wrapping-grids" class="section level3">
+<div id="wrapping-grids" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Wrapping grids</h3>
 <p>Having made our “pure” <code>ggplot</code>, the next big obstacle we’re going to tackle is the grid like layout of the “final figure” where our main figure has been split according to treatment and block, with new trends shown for each combination.</p>
 <p>Each of these panels (technically “multiples”) are a great way to help other people understand what’s going on in the data. This is especially true with large datasets which can obscure subtle trends simply because so much data is overlaid on top of each other. When we split a single figure into multiples, the same axes are used for all multiples which serve to highlight shifts in the data (data in some multiples may have inherently higher or lower values for instance).</p>
@@ -511,8 +548,8 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="the-start-of-the-end.html#cb258-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb258-2"><a href="the-start-of-the-end.html#cb258-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb258-3"><a href="the-start-of-the-end.html#cb258-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb258-4"><a href="the-start-of-the-end.html#cb258-4"></a>	<span class="co"># Splitting the single figure into multiple depending on treatment</span></span>
-<span id="cb258-5"><a href="the-start-of-the-end.html#cb258-5"></a>  <span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
+<span id="cb258-4"><a href="the-start-of-the-end.html#cb258-4"></a><span class="st">    </span><span class="co"># Splitting the single figure into multiple depending on treatment</span></span>
+<span id="cb258-5"><a href="the-start-of-the-end.html#cb258-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/facet_wrap-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s pretty good. Notice how we can see the impact that the tip treatment has on shoot area now (generally lowering shoot area), where in the previous figure this was much more difficult to see?</p>
@@ -521,8 +558,8 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="the-start-of-the-end.html#cb259-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb259-2"><a href="the-start-of-the-end.html#cb259-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb259-3"><a href="the-start-of-the-end.html#cb259-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb259-4"><a href="the-start-of-the-end.html#cb259-4"></a>	<span class="co"># Adding &quot;block&quot; to formula</span></span>
-<span id="cb259-5"><a href="the-start-of-the-end.html#cb259-5"></a>  <span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block)</span></code></pre></div>
+<span id="cb259-4"><a href="the-start-of-the-end.html#cb259-4"></a><span class="st">    </span><span class="co"># Adding &quot;block&quot; to formula</span></span>
+<span id="cb259-5"><a href="the-start-of-the-end.html#cb259-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/facet_wrap-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This facet layout is almost exactly what we want. <em>Almost</em>, but not exactly. In this case we actually want to be using <code>facet_grid()</code>, an alternative to <code>facet_wrap()</code>, which should put us back on track to make the “final figure”.</p>
@@ -535,8 +572,8 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="the-start-of-the-end.html#cb260-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb260-2"><a href="the-start-of-the-end.html#cb260-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb260-3"><a href="the-start-of-the-end.html#cb260-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb260-4"><a href="the-start-of-the-end.html#cb260-4"></a>	<span class="co"># Changing to facet_grid</span></span>
-<span id="cb260-5"><a href="the-start-of-the-end.html#cb260-5"></a>  <span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block)</span></code></pre></div>
+<span id="cb260-4"><a href="the-start-of-the-end.html#cb260-4"></a><span class="st">    </span><span class="co"># Changing to facet_grid</span></span>
+<span id="cb260-5"><a href="the-start-of-the-end.html#cb260-5"></a><span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span><span class="st"> </span>treat <span class="op">+</span><span class="st"> </span>block)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/facet_grid-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s disappointing. It’s pretty much the same as what we had before and is no closer to the “final figure”. To fix this we need to do to rearrange our formula so that we say that it is block in relation to treatment (not in combination with).</p>
@@ -544,11 +581,11 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="the-start-of-the-end.html#cb261-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
 <span id="cb261-2"><a href="the-start-of-the-end.html#cb261-2"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
 <span id="cb261-3"><a href="the-start-of-the-end.html#cb261-3"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb261-4"><a href="the-start-of-the-end.html#cb261-4"></a>	<span class="co"># Rearranging formula, block in relation to treatment</span></span>
-<span id="cb261-5"><a href="the-start-of-the-end.html#cb261-5"></a>  <span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
+<span id="cb261-4"><a href="the-start-of-the-end.html#cb261-4"></a><span class="st">    </span><span class="co"># Rearranging formula, block in relation to treatment</span></span>
+<span id="cb261-5"><a href="the-start-of-the-end.html#cb261-5"></a><span class="st">  </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/facet-grid-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="plotting-multiple-ggplots" class="section level3">
+<div id="plotting-multiple-ggplots" class="section level3" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Plotting multiple ggplots</h3>
 <p>And we’re there. Although the styling is not the same as the “final figure” this is showing the same core fundamental information. While we’ve made multiples of the same figure, what if we wanted to take two completely different figures and plot them together in the same frame? As a demonstration, let’s plot the last figure we made and the “final figure” shown at the start of this chapter one on top of the other to see how they compare. To do this we are going to use a package called <code>patchwork</code>. First you will need to install and load the <code>patchwork</code> package.</p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="the-start-of-the-end.html#cb262-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;patchwork&quot;</span>)</span>
@@ -589,72 +626,72 @@ Figure 5.4: Geometry - how we want that data displayed
 <p> </p>
 <p>This is only the basics of what the <code>patchwork</code> package can do but there are many other uses. We won’t go into them in any great detail here, but later in the <a href="tips.html#tips">tips and tricks</a> section we’ll show you some more cool features.</p>
 </div>
-<div id="make-it-your-own" class="section level3">
+<div id="make-it-your-own" class="section level3" number="5.2.4">
 <h3><span class="header-section-number">5.2.4</span> Make it your own</h3>
 <p>While we already have a great figure showing the main aspects of our data, it uses many default layer options. Whilst the default options are fine we may want to change them to get our plot looking exactly how we want it. Maybe we’re going to use this figure in a presentation and we want to make sure someone in the very back of the room can easily read the figure. Maybe we want to use our own colour scheme. Maybe we want to change the grey background to a nice bright neon pink. In essence, maybe we want to decide things for ourselves. This next section will go through how to customise the appearance of our figure.</p>
 <p>Let’s start with the easier stuff, namely changing the size of the plotting symbols using the <code>size =</code> argument. Before we do, have a think about where we’d include this argument? Should it be in main call to <code>ggplot()</code> or in the <code>geom_point()</code> geom? Does size depend on a variable in our dataset and is therefore something we want displayed on the figure (meaning we should include it within <code>aes()</code>)? Or is it merely changing the appearance of information?</p>
 <p>Let’s include it in the <code>geom_point</code> geom
  </p>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="the-start-of-the-end.html#cb268-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb268-2"><a href="the-start-of-the-end.html#cb268-2"></a>	<span class="co"># Including size argument to change the size of the points</span></span>
-<span id="cb268-3"><a href="the-start-of-the-end.html#cb268-3"></a>	<span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb268-4"><a href="the-start-of-the-end.html#cb268-4"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb268-5"><a href="the-start-of-the-end.html#cb268-5"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
+<span id="cb268-2"><a href="the-start-of-the-end.html#cb268-2"></a><span class="st">    </span><span class="co"># Including size argument to change the size of the points</span></span>
+<span id="cb268-3"><a href="the-start-of-the-end.html#cb268-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb268-4"><a href="the-start-of-the-end.html#cb268-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb268-5"><a href="the-start-of-the-end.html#cb268-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/change-size-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Pretty straight forward, we changed the size from the default of <code>size = 1</code> to a value that we decide for ourselves. What happens if you included size in <code>ggplot()</code> or within the <code>aes()</code> of <code>geom_point()</code>?</p>
 <p>If we wanted to change the shape of the plotting symbols to reflect the different nitrogen concentrations (low, high, medium), how do you think we’d do that? We’d use the <code>shape =</code> argument, but this time we need to include an <code>aes()</code> within <code>geom_point()</code> because we want to include specific information to be displayed on the figure.</p>
 <p><img src="images/scales_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="the-start-of-the-end.html#cb269-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb269-2"><a href="the-start-of-the-end.html#cb269-2"></a>	<span class="co"># Including shape argument to change the shape of the points</span></span>
-<span id="cb269-3"><a href="the-start-of-the-end.html#cb269-3"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
-<span id="cb269-4"><a href="the-start-of-the-end.html#cb269-4"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb269-5"><a href="the-start-of-the-end.html#cb269-5"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
+<span id="cb269-2"><a href="the-start-of-the-end.html#cb269-2"></a><span class="st">    </span><span class="co"># Including shape argument to change the shape of the points</span></span>
+<span id="cb269-3"><a href="the-start-of-the-end.html#cb269-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>) <span class="op">+</span></span>
+<span id="cb269-4"><a href="the-start-of-the-end.html#cb269-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb269-5"><a href="the-start-of-the-end.html#cb269-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/change-shape-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Try including <code>shape = nitrogen</code> without also including <code>aes()</code> and see what happens.</p>
 <p>We’re edging our way closer to our “final figure”. Another thing we may want to be able to do is change the transparency of the points. While it’s not actually that useful here, changing the transparency of points is really valuable when you have lots of data resulting in clusters of points obscuring information. Doing this is easily accomplished using the <code>alpha =</code> argument. Again, ask yourself where you think the <code>alpha =</code> argument should be included (hint: you should put it in the <code>geom_point</code> geom!).</p>
 <p> </p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="the-start-of-the-end.html#cb270-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb270-2"><a href="the-start-of-the-end.html#cb270-2"></a>	<span class="co"># Including alpha argument to change the transparency of the points</span></span>
-<span id="cb270-3"><a href="the-start-of-the-end.html#cb270-3"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb270-4"><a href="the-start-of-the-end.html#cb270-4"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb270-5"><a href="the-start-of-the-end.html#cb270-5"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
+<span id="cb270-2"><a href="the-start-of-the-end.html#cb270-2"></a><span class="st">    </span><span class="co"># Including alpha argument to change the transparency of the points</span></span>
+<span id="cb270-3"><a href="the-start-of-the-end.html#cb270-3"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb270-4"><a href="the-start-of-the-end.html#cb270-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb270-5"><a href="the-start-of-the-end.html#cb270-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/change-alpha-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can also include user defined labels for the x and y axis. There are a couple of ways to do this, but a more familiar way may be to use the same syntax as used in base R figures; using <code>xlab()</code> and <code>ylab()</code>. We’ll specify that these belong to the <code>ggplot</code> by using the <code>+</code> symbol.</p>
 <p> </p>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="the-start-of-the-end.html#cb271-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb271-2"><a href="the-start-of-the-end.html#cb271-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb271-3"><a href="the-start-of-the-end.html#cb271-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb271-4"><a href="the-start-of-the-end.html#cb271-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb271-5"><a href="the-start-of-the-end.html#cb271-5"></a>	<span class="co"># Adding layers for x and y labels</span></span>
-<span id="cb271-6"><a href="the-start-of-the-end.html#cb271-6"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb271-7"><a href="the-start-of-the-end.html#cb271-7"></a>	<span class="kw">ylab</span>(<span class="st">&quot;Area of shoot (cm^2)&quot;</span>)</span></code></pre></div>
+<span id="cb271-2"><a href="the-start-of-the-end.html#cb271-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb271-3"><a href="the-start-of-the-end.html#cb271-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb271-4"><a href="the-start-of-the-end.html#cb271-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb271-5"><a href="the-start-of-the-end.html#cb271-5"></a><span class="st">    </span><span class="co"># Adding layers for x and y labels</span></span>
+<span id="cb271-6"><a href="the-start-of-the-end.html#cb271-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb271-7"><a href="the-start-of-the-end.html#cb271-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="st">&quot;Area of shoot (cm^2)&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/axis-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Great. Just as we wanted, though getting the “(cm^2)” to show the square as a superscript would be ideal. Here, we’re going to accomplish that using a function which is part of base R called <code>bquote()</code> which allows for special characters to be shown.</p>
 <p> </p>
 <div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="the-start-of-the-end.html#cb272-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb272-2"><a href="the-start-of-the-end.html#cb272-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb272-3"><a href="the-start-of-the-end.html#cb272-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb272-4"><a href="the-start-of-the-end.html#cb272-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb272-5"><a href="the-start-of-the-end.html#cb272-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb272-6"><a href="the-start-of-the-end.html#cb272-6"></a>	<span class="co"># Using bquote to get mathematically correct formatting</span></span>
-<span id="cb272-7"><a href="the-start-of-the-end.html#cb272-7"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>)))</span></code></pre></div>
+<span id="cb272-2"><a href="the-start-of-the-end.html#cb272-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb272-3"><a href="the-start-of-the-end.html#cb272-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb272-4"><a href="the-start-of-the-end.html#cb272-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb272-5"><a href="the-start-of-the-end.html#cb272-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb272-6"><a href="the-start-of-the-end.html#cb272-6"></a><span class="st">    </span><span class="co"># Using bquote to get mathematically correct formatting</span></span>
+<span id="cb272-7"><a href="the-start-of-the-end.html#cb272-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>)))</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/bquote-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Let’s now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We’ll use a new layer called <code>labs()</code>, short for labels, which we could have also used for specifying the x and y axes labels (we didn’t only for demonstration purposes, but give it a shot). <code>labs()</code> is a fairly straightforward function. Have a look at the help file (using <code>?labs</code>) to see which arguments are available. We’ll be using <code>caption =</code> argument for our caption, but notice that there isn’t a single simple argument for <code>legend =</code>? That’s because the legend actually contains multiple pieces of information; such as the colour and shape of the symbols. So instead of <code>legend =</code> we’ll use <code>colour =</code> and <code>shape =</code>. Here’s how we do it:</p>
 <p> </p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="the-start-of-the-end.html#cb273-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb273-2"><a href="the-start-of-the-end.html#cb273-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb273-3"><a href="the-start-of-the-end.html#cb273-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb273-4"><a href="the-start-of-the-end.html#cb273-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb273-5"><a href="the-start-of-the-end.html#cb273-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb273-6"><a href="the-start-of-the-end.html#cb273-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb273-7"><a href="the-start-of-the-end.html#cb273-7"></a>	<span class="co"># Adding labels for shape, colour and a caption	</span></span>
-<span id="cb273-8"><a href="the-start-of-the-end.html#cb273-8"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, </span>
-<span id="cb273-9"><a href="the-start-of-the-end.html#cb273-9"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
+<span id="cb273-2"><a href="the-start-of-the-end.html#cb273-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb273-3"><a href="the-start-of-the-end.html#cb273-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb273-4"><a href="the-start-of-the-end.html#cb273-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb273-5"><a href="the-start-of-the-end.html#cb273-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb273-6"><a href="the-start-of-the-end.html#cb273-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb273-7"><a href="the-start-of-the-end.html#cb273-7"></a><span class="st">    </span><span class="co"># Adding labels for shape, colour and a caption </span></span>
+<span id="cb273-8"><a href="the-start-of-the-end.html#cb273-8"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, </span>
+<span id="cb273-9"><a href="the-start-of-the-end.html#cb273-9"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/extra-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <hr />
 <p><em>Play around</em>: Try removing <code>colour =</code> or <code>shape =</code> from <code>labs()</code> to see what happens. The resulting legends are why we need to specify both colour and shape (and call it the same thing).</p>
@@ -662,68 +699,68 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>Now’s a good time to introduce the <code>\n</code>. This is a base R feature that tells R that a string should be continued on a new line. We can use that with “Nitrogen Concentration” so that the legend title becomes more compact.</p>
 <p> </p>
 <div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="the-start-of-the-end.html#cb274-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb274-2"><a href="the-start-of-the-end.html#cb274-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb274-3"><a href="the-start-of-the-end.html#cb274-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb274-4"><a href="the-start-of-the-end.html#cb274-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb274-5"><a href="the-start-of-the-end.html#cb274-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb274-6"><a href="the-start-of-the-end.html#cb274-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb274-7"><a href="the-start-of-the-end.html#cb274-7"></a>	<span class="co"># Including \n to split legend title over two lines	</span></span>
-<span id="cb274-8"><a href="the-start-of-the-end.html#cb274-8"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb274-9"><a href="the-start-of-the-end.html#cb274-9"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
+<span id="cb274-2"><a href="the-start-of-the-end.html#cb274-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb274-3"><a href="the-start-of-the-end.html#cb274-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb274-4"><a href="the-start-of-the-end.html#cb274-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb274-5"><a href="the-start-of-the-end.html#cb274-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb274-6"><a href="the-start-of-the-end.html#cb274-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb274-7"><a href="the-start-of-the-end.html#cb274-7"></a><span class="st">    </span><span class="co"># Including \n to split legend title over two lines </span></span>
+<span id="cb274-8"><a href="the-start-of-the-end.html#cb274-8"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb274-9"><a href="the-start-of-the-end.html#cb274-9"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/compact-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can now move onto some more wholesale-stylistic choices using the themes layer.</p>
 </div>
-<div id="setting-the-theme" class="section level3">
+<div id="setting-the-theme" class="section level3" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Setting the theme</h3>
 <p>Themes control the general style of a <code>ggplot</code> (things like the background colour, size of text etc.) and comes with a whole bunch of predefined themes. Let’s play around with themes using some skills we’ve already learnt; assigning plots to an object and plotting multiple <code>ggplots</code> in a single figure using <code>patchwork</code>. We assign themes by creating a new layer with the general notation - <code>theme_NameOfTheme()</code>. For example, to use the <code>theme_classic</code>, <code>theme_bw</code>, <code>theme_minimal</code> and <code>theme_light</code> themes</p>
 <p><img src="images/theme.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="the-start-of-the-end.html#cb275-1"></a>classic &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb275-2"><a href="the-start-of-the-end.html#cb275-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb275-3"><a href="the-start-of-the-end.html#cb275-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb275-4"><a href="the-start-of-the-end.html#cb275-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb275-5"><a href="the-start-of-the-end.html#cb275-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-6"><a href="the-start-of-the-end.html#cb275-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb275-7"><a href="the-start-of-the-end.html#cb275-7"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb275-8"><a href="the-start-of-the-end.html#cb275-8"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-9"><a href="the-start-of-the-end.html#cb275-9"></a>	<span class="co"># Classic theme</span></span>
-<span id="cb275-10"><a href="the-start-of-the-end.html#cb275-10"></a>	<span class="kw">theme_classic</span>()</span>
+<span id="cb275-2"><a href="the-start-of-the-end.html#cb275-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb275-3"><a href="the-start-of-the-end.html#cb275-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb275-4"><a href="the-start-of-the-end.html#cb275-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb275-5"><a href="the-start-of-the-end.html#cb275-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-6"><a href="the-start-of-the-end.html#cb275-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb275-7"><a href="the-start-of-the-end.html#cb275-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb275-8"><a href="the-start-of-the-end.html#cb275-8"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-9"><a href="the-start-of-the-end.html#cb275-9"></a><span class="st">    </span><span class="co"># Classic theme</span></span>
+<span id="cb275-10"><a href="the-start-of-the-end.html#cb275-10"></a><span class="st">    </span><span class="kw">theme_classic</span>()</span>
 <span id="cb275-11"><a href="the-start-of-the-end.html#cb275-11"></a></span>
 <span id="cb275-12"><a href="the-start-of-the-end.html#cb275-12"></a>bw &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb275-13"><a href="the-start-of-the-end.html#cb275-13"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb275-14"><a href="the-start-of-the-end.html#cb275-14"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb275-15"><a href="the-start-of-the-end.html#cb275-15"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb275-16"><a href="the-start-of-the-end.html#cb275-16"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-17"><a href="the-start-of-the-end.html#cb275-17"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb275-18"><a href="the-start-of-the-end.html#cb275-18"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb275-19"><a href="the-start-of-the-end.html#cb275-19"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-20"><a href="the-start-of-the-end.html#cb275-20"></a>	<span class="co"># Black and white theme</span></span>
-<span id="cb275-21"><a href="the-start-of-the-end.html#cb275-21"></a>	<span class="kw">theme_bw</span>()</span>
+<span id="cb275-13"><a href="the-start-of-the-end.html#cb275-13"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb275-14"><a href="the-start-of-the-end.html#cb275-14"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb275-15"><a href="the-start-of-the-end.html#cb275-15"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb275-16"><a href="the-start-of-the-end.html#cb275-16"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-17"><a href="the-start-of-the-end.html#cb275-17"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb275-18"><a href="the-start-of-the-end.html#cb275-18"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb275-19"><a href="the-start-of-the-end.html#cb275-19"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-20"><a href="the-start-of-the-end.html#cb275-20"></a><span class="st">    </span><span class="co"># Black and white theme</span></span>
+<span id="cb275-21"><a href="the-start-of-the-end.html#cb275-21"></a><span class="st">    </span><span class="kw">theme_bw</span>()</span>
 <span id="cb275-22"><a href="the-start-of-the-end.html#cb275-22"></a></span>
 <span id="cb275-23"><a href="the-start-of-the-end.html#cb275-23"></a>minimal &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb275-24"><a href="the-start-of-the-end.html#cb275-24"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb275-25"><a href="the-start-of-the-end.html#cb275-25"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb275-26"><a href="the-start-of-the-end.html#cb275-26"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb275-27"><a href="the-start-of-the-end.html#cb275-27"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-28"><a href="the-start-of-the-end.html#cb275-28"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb275-29"><a href="the-start-of-the-end.html#cb275-29"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb275-30"><a href="the-start-of-the-end.html#cb275-30"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-31"><a href="the-start-of-the-end.html#cb275-31"></a>	<span class="co"># Minimal theme</span></span>
-<span id="cb275-32"><a href="the-start-of-the-end.html#cb275-32"></a>	<span class="kw">theme_minimal</span>()</span>
+<span id="cb275-24"><a href="the-start-of-the-end.html#cb275-24"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb275-25"><a href="the-start-of-the-end.html#cb275-25"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb275-26"><a href="the-start-of-the-end.html#cb275-26"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb275-27"><a href="the-start-of-the-end.html#cb275-27"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-28"><a href="the-start-of-the-end.html#cb275-28"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb275-29"><a href="the-start-of-the-end.html#cb275-29"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb275-30"><a href="the-start-of-the-end.html#cb275-30"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-31"><a href="the-start-of-the-end.html#cb275-31"></a><span class="st">    </span><span class="co"># Minimal theme</span></span>
+<span id="cb275-32"><a href="the-start-of-the-end.html#cb275-32"></a><span class="st">    </span><span class="kw">theme_minimal</span>()</span>
 <span id="cb275-33"><a href="the-start-of-the-end.html#cb275-33"></a></span>
 <span id="cb275-34"><a href="the-start-of-the-end.html#cb275-34"></a>light &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb275-35"><a href="the-start-of-the-end.html#cb275-35"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb275-36"><a href="the-start-of-the-end.html#cb275-36"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb275-37"><a href="the-start-of-the-end.html#cb275-37"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb275-38"><a href="the-start-of-the-end.html#cb275-38"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-39"><a href="the-start-of-the-end.html#cb275-39"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb275-40"><a href="the-start-of-the-end.html#cb275-40"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb275-35"><a href="the-start-of-the-end.html#cb275-35"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb275-36"><a href="the-start-of-the-end.html#cb275-36"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb275-37"><a href="the-start-of-the-end.html#cb275-37"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb275-38"><a href="the-start-of-the-end.html#cb275-38"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb275-39"><a href="the-start-of-the-end.html#cb275-39"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb275-40"><a href="the-start-of-the-end.html#cb275-40"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
 <span id="cb275-41"><a href="the-start-of-the-end.html#cb275-41"></a>       <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb275-42"><a href="the-start-of-the-end.html#cb275-42"></a>	<span class="co"># Light theme</span></span>
-<span id="cb275-43"><a href="the-start-of-the-end.html#cb275-43"></a>	<span class="kw">theme_light</span>()</span>
+<span id="cb275-42"><a href="the-start-of-the-end.html#cb275-42"></a><span class="st">    </span><span class="co"># Light theme</span></span>
+<span id="cb275-43"><a href="the-start-of-the-end.html#cb275-43"></a><span class="st">    </span><span class="kw">theme_light</span>()</span>
 <span id="cb275-44"><a href="the-start-of-the-end.html#cb275-44"></a></span>
 <span id="cb275-45"><a href="the-start-of-the-end.html#cb275-45"></a>(classic <span class="op">|</span><span class="st"> </span>bw) <span class="op">/</span></span>
-<span id="cb275-46"><a href="the-start-of-the-end.html#cb275-46"></a>	(minimal <span class="op">|</span><span class="st"> </span>light)</span></code></pre></div>
+<span id="cb275-46"><a href="the-start-of-the-end.html#cb275-46"></a><span class="st">    </span>(minimal <span class="op">|</span><span class="st"> </span>light)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/testing-themes-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In terms of finding a theme that most closely matches our “final figure”, it’s probably going to be <code>theme_classic()</code>. There are additional themes available to you, and even more available online. <code>ggthemes</code> is a package which contains many more themes for you to use. The BBC even have their own <code>ggplot2</code> theme called “BBplot” which they use when making their own figures (while good, we don’t like it too much for scientific figures). Indeed, you can even make your own theme which is what we’ll work on next. To begin with, we’ll have a look to see how <code>theme_classic()</code> was coded. We can do that easily enough by just writing the function name without the paranetheses (see <a href="prog-r.html#prog_r">Chapter 7</a> for a bit more on this).</p>
@@ -739,7 +776,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb276-10"><a href="the-start-of-the-end.html#cb276-10"></a>            <span class="dt">strip.background =</span> <span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
 <span id="cb276-11"><a href="the-start-of-the-end.html#cb276-11"></a>                <span class="dt">size =</span> <span class="kw">rel</span>(<span class="dv">2</span>)), <span class="dt">complete =</span> <span class="ot">TRUE</span>)</span>
 <span id="cb276-12"><a href="the-start-of-the-end.html#cb276-12"></a>}</span>
-<span id="cb276-13"><a href="the-start-of-the-end.html#cb276-13"></a><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7f83ffda0c50</span><span class="op">&gt;</span></span>
+<span id="cb276-13"><a href="the-start-of-the-end.html#cb276-13"></a><span class="op">&lt;</span>bytecode<span class="op">:</span><span class="st"> </span><span class="dv">0x7f87dd3530c0</span><span class="op">&gt;</span></span>
 <span id="cb276-14"><a href="the-start-of-the-end.html#cb276-14"></a><span class="er">&lt;</span>environment<span class="op">:</span><span class="st"> </span>namespace<span class="op">:</span>ggplot2<span class="op">&gt;</span></span></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <p> </p>
@@ -769,49 +806,49 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb277-9"><a href="the-start-of-the-end.html#cb277-9"></a>    <span class="dt">axis.line =</span> <span class="kw">element_line</span>(<span class="dt">size =</span> <span class="dv">1</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
 <span id="cb277-10"><a href="the-start-of-the-end.html#cb277-10"></a>    <span class="dt">strip.background =</span><span class="kw">element_rect</span>(<span class="dt">fill =</span> <span class="st">&quot;#cddcdd&quot;</span>),</span>
 <span id="cb277-11"><a href="the-start-of-the-end.html#cb277-11"></a>    <span class="dt">panel.border =</span> <span class="kw">element_rect</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">fill=</span><span class="ot">NA</span>, <span class="dt">size=</span><span class="fl">0.5</span>),</span>
-<span id="cb277-12"><a href="the-start-of-the-end.html#cb277-12"></a>		<span class="dt">strip.text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
-<span id="cb277-13"><a href="the-start-of-the-end.html#cb277-13"></a>		<span class="dt">legend.key=</span><span class="kw">element_blank</span>()</span>
+<span id="cb277-12"><a href="the-start-of-the-end.html#cb277-12"></a>        <span class="dt">strip.text =</span> <span class="kw">element_text</span>(<span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb277-13"><a href="the-start-of-the-end.html#cb277-13"></a>        <span class="dt">legend.key=</span><span class="kw">element_blank</span>()</span>
 <span id="cb277-14"><a href="the-start-of-the-end.html#cb277-14"></a>  )</span>
 <span id="cb277-15"><a href="the-start-of-the-end.html#cb277-15"></a>}</span></code></pre></div>
 <p> </p>
 <p><code>theme_rbook()</code> is now available for us to use just like any other theme. Let’s try remaking our figure using our new theme.</p>
 <p><img src="images/theme.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="the-start-of-the-end.html#cb278-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb278-2"><a href="the-start-of-the-end.html#cb278-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb278-3"><a href="the-start-of-the-end.html#cb278-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb278-4"><a href="the-start-of-the-end.html#cb278-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb278-5"><a href="the-start-of-the-end.html#cb278-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb278-6"><a href="the-start-of-the-end.html#cb278-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb278-7"><a href="the-start-of-the-end.html#cb278-7"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb278-8"><a href="the-start-of-the-end.html#cb278-8"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb278-9"><a href="the-start-of-the-end.html#cb278-9"></a>	<span class="co"># Updated theme to our theme_rbook</span></span>
-<span id="cb278-10"><a href="the-start-of-the-end.html#cb278-10"></a>	<span class="kw">theme_rbook</span>()   <span class="co"># use our new theme</span></span></code></pre></div>
+<span id="cb278-2"><a href="the-start-of-the-end.html#cb278-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb278-3"><a href="the-start-of-the-end.html#cb278-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb278-4"><a href="the-start-of-the-end.html#cb278-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb278-5"><a href="the-start-of-the-end.html#cb278-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb278-6"><a href="the-start-of-the-end.html#cb278-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb278-7"><a href="the-start-of-the-end.html#cb278-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb278-8"><a href="the-start-of-the-end.html#cb278-8"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb278-9"><a href="the-start-of-the-end.html#cb278-9"></a><span class="st">    </span><span class="co"># Updated theme to our theme_rbook</span></span>
+<span id="cb278-10"><a href="the-start-of-the-end.html#cb278-10"></a><span class="st">    </span><span class="kw">theme_rbook</span>()   <span class="co"># use our new theme</span></span></code></pre></div>
 <p><img src="Rbook_files/figure-html/rbook-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 </div>
-<div id="prettification" class="section level3">
+<div id="prettification" class="section level3" number="5.2.6">
 <h3><span class="header-section-number">5.2.6</span> Prettification</h3>
 <p>We’ve pretty much replicated our “final figure”. We just have a few final adjustments to make, and we’ll do so in order of difficulty.</p>
 <p>Let’s remind ourselves of what that “final figure” looked like. Remember, since we’ve previously stored the figure as an object called <code>final_figure</code> we can just type that into the console and pull up the figure.</p>
 <p> </p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="the-start-of-the-end.html#cb279-1"></a>final_figure <span class="op">+</span><span class="st"> </span></span>
-<span id="cb279-2"><a href="the-start-of-the-end.html#cb279-2"></a>	<span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Reminder of the final figure&quot;</span>)</span></code></pre></div>
+<span id="cb279-2"><a href="the-start-of-the-end.html#cb279-2"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">title =</span> <span class="st">&quot;Reminder of the final figure&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/final-figure-reminder-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Let’s begin the final push by including that dashed horizontal line at the average shoot area, at about 80, on our y axis. This represents the overall mean area of a shoot, regardless of weight of flower, nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called <code>geom_hline()</code>, and the most important thing we need to specify is the y intercept value (in this case being our mean area of a shoot). We can also change the type of line using the argument <code>linetype =</code> and also the colour (as we did before). Let’s see how it works.</p>
 <p><img src="images/geoms_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="the-start-of-the-end.html#cb280-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb280-2"><a href="the-start-of-the-end.html#cb280-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb280-3"><a href="the-start-of-the-end.html#cb280-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb280-4"><a href="the-start-of-the-end.html#cb280-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb280-5"><a href="the-start-of-the-end.html#cb280-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb280-6"><a href="the-start-of-the-end.html#cb280-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb280-7"><a href="the-start-of-the-end.html#cb280-7"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb280-8"><a href="the-start-of-the-end.html#cb280-8"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb280-9"><a href="the-start-of-the-end.html#cb280-9"></a>	<span class="co"># Added a horizontal line using geom_hline</span></span>
-<span id="cb280-10"><a href="the-start-of-the-end.html#cb280-10"></a>	<span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(shootarea)), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb280-11"><a href="the-start-of-the-end.html#cb280-11"></a>	</span>
-<span id="cb280-12"><a href="the-start-of-the-end.html#cb280-12"></a>	<span class="kw">theme_rbook</span>()</span></code></pre></div>
+<span id="cb280-2"><a href="the-start-of-the-end.html#cb280-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb280-3"><a href="the-start-of-the-end.html#cb280-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb280-4"><a href="the-start-of-the-end.html#cb280-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb280-5"><a href="the-start-of-the-end.html#cb280-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb280-6"><a href="the-start-of-the-end.html#cb280-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb280-7"><a href="the-start-of-the-end.html#cb280-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb280-8"><a href="the-start-of-the-end.html#cb280-8"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb280-9"><a href="the-start-of-the-end.html#cb280-9"></a><span class="st">    </span><span class="co"># Added a horizontal line using geom_hline</span></span>
+<span id="cb280-10"><a href="the-start-of-the-end.html#cb280-10"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="kw">mean</span>(shootarea)), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb280-11"><a href="the-start-of-the-end.html#cb280-11"></a><span class="st">    </span></span>
+<span id="cb280-12"><a href="the-start-of-the-end.html#cb280-12"></a><span class="st">    </span><span class="kw">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_hline-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Notice how we included the function <code>mean(shootarea)</code> within the <code>geom_hline()</code> function? We could also do that externally to the <code>ggplot2</code> code and get the same result.</p>
@@ -819,34 +856,34 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb281-2"><a href="the-start-of-the-end.html#cb281-2"></a><span class="co">## [1] 79.78333</span></span></code></pre></div>
 <p> </p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="the-start-of-the-end.html#cb282-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb282-2"><a href="the-start-of-the-end.html#cb282-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb282-3"><a href="the-start-of-the-end.html#cb282-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb282-4"><a href="the-start-of-the-end.html#cb282-4"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb282-5"><a href="the-start-of-the-end.html#cb282-5"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-6"><a href="the-start-of-the-end.html#cb282-6"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb282-7"><a href="the-start-of-the-end.html#cb282-7"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb282-8"><a href="the-start-of-the-end.html#cb282-8"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb282-9"><a href="the-start-of-the-end.html#cb282-9"></a>	<span class="co"># Manually entering mean value</span></span>
-<span id="cb282-10"><a href="the-start-of-the-end.html#cb282-10"></a>	<span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb282-11"><a href="the-start-of-the-end.html#cb282-11"></a>	</span>
-<span id="cb282-12"><a href="the-start-of-the-end.html#cb282-12"></a>	<span class="kw">theme_rbook</span>()</span></code></pre></div>
+<span id="cb282-2"><a href="the-start-of-the-end.html#cb282-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb282-3"><a href="the-start-of-the-end.html#cb282-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb282-4"><a href="the-start-of-the-end.html#cb282-4"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb282-5"><a href="the-start-of-the-end.html#cb282-5"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb282-6"><a href="the-start-of-the-end.html#cb282-6"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb282-7"><a href="the-start-of-the-end.html#cb282-7"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb282-8"><a href="the-start-of-the-end.html#cb282-8"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb282-9"><a href="the-start-of-the-end.html#cb282-9"></a><span class="st">    </span><span class="co"># Manually entering mean value</span></span>
+<span id="cb282-10"><a href="the-start-of-the-end.html#cb282-10"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb282-11"><a href="the-start-of-the-end.html#cb282-11"></a><span class="st">    </span></span>
+<span id="cb282-12"><a href="the-start-of-the-end.html#cb282-12"></a><span class="st">    </span><span class="kw">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_hline-alternative-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get what you want).</p>
 <p>Now let’s tackle that “overall” nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to include a line of best fit from a linear model. However, we are already using <code>geom_smooth()</code>, surely we can’t use it again? This may shock and/or surprise you so please ensure you are seated. You <em>can</em> use <code>geom_smooth()</code> again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn’t the world full of wonderful miracles? … Anyway, here’s the damn code…</p>
 <p><img src="images/geoms_statistics.png" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="the-start-of-the-end.html#cb283-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb283-2"><a href="the-start-of-the-end.html#cb283-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb283-3"><a href="the-start-of-the-end.html#cb283-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb283-4"><a href="the-start-of-the-end.html#cb283-4"></a>	<span class="co"># Adding a SECOND geom_smooth :O</span></span>
-<span id="cb283-5"><a href="the-start-of-the-end.html#cb283-5"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-6"><a href="the-start-of-the-end.html#cb283-6"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb283-7"><a href="the-start-of-the-end.html#cb283-7"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-8"><a href="the-start-of-the-end.html#cb283-8"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb283-9"><a href="the-start-of-the-end.html#cb283-9"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb283-10"><a href="the-start-of-the-end.html#cb283-10"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb283-11"><a href="the-start-of-the-end.html#cb283-11"></a>	<span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb283-12"><a href="the-start-of-the-end.html#cb283-12"></a>	<span class="kw">theme_rbook</span>()</span></code></pre></div>
+<span id="cb283-2"><a href="the-start-of-the-end.html#cb283-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb283-3"><a href="the-start-of-the-end.html#cb283-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb283-4"><a href="the-start-of-the-end.html#cb283-4"></a><span class="st">    </span><span class="co"># Adding a SECOND geom_smooth :O</span></span>
+<span id="cb283-5"><a href="the-start-of-the-end.html#cb283-5"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb283-6"><a href="the-start-of-the-end.html#cb283-6"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb283-7"><a href="the-start-of-the-end.html#cb283-7"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb283-8"><a href="the-start-of-the-end.html#cb283-8"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb283-9"><a href="the-start-of-the-end.html#cb283-9"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb283-10"><a href="the-start-of-the-end.html#cb283-10"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb283-11"><a href="the-start-of-the-end.html#cb283-11"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb283-12"><a href="the-start-of-the-end.html#cb283-12"></a><span class="st">    </span><span class="kw">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/geom_smooth2-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s great! But you should be asking yourself why that worked. Why when we specified the first <code>geom_smooth()</code> did it draw 3 lines, whereas the second time we used <code>geom_smooth()</code> it just drew a single line? The secret lies in a “conflict” (it isn’t actually a conflict but thats what we’ll call it) between the colour specified in the main call to <code>ggplot()</code> and the colour specified in the second <code>geom_smooth()</code>. Notice how in the second we’ve specifically told <code>ggplot2</code> that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen? In “overriding” the universal <code>ggplot()</code> with a geom specific argument we’re able to get <code>ggplot2</code> to plot what we want.</p>
@@ -855,23 +892,23 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>Choosing colours can be fiddly. we’ve found using a colour wheel helps with this step. You can always use Google to find an interactive colour wheel, or use Google’s Colour picker. Any decent website should give you a HEX code, something like: #5C1AAE which is a “code” representation of a colour. Alternatively, there are colour names which R and <code>ggplot2</code> will also understand (e.g. “firebrick4”). Having chosen our colours using whichever means, let’s see how we can do it:</p>
 <p><img src="images/scales.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="the-start-of-the-end.html#cb284-1"></a><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb284-2"><a href="the-start-of-the-end.html#cb284-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb284-3"><a href="the-start-of-the-end.html#cb284-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb284-4"><a href="the-start-of-the-end.html#cb284-4"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb284-5"><a href="the-start-of-the-end.html#cb284-5"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb284-6"><a href="the-start-of-the-end.html#cb284-6"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb284-7"><a href="the-start-of-the-end.html#cb284-7"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb284-8"><a href="the-start-of-the-end.html#cb284-8"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb284-9"><a href="the-start-of-the-end.html#cb284-9"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb284-10"><a href="the-start-of-the-end.html#cb284-10"></a>	<span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb284-11"><a href="the-start-of-the-end.html#cb284-11"></a>	<span class="co"># Setting colour and associated labels</span></span>
-<span id="cb284-12"><a href="the-start-of-the-end.html#cb284-12"></a>	<span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#5C1AAE&quot;</span>, <span class="st">&quot;#AE5C1A&quot;</span>, <span class="st">&quot;#1AAE5C&quot;</span>),</span>
+<span id="cb284-2"><a href="the-start-of-the-end.html#cb284-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb284-3"><a href="the-start-of-the-end.html#cb284-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb284-4"><a href="the-start-of-the-end.html#cb284-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb284-5"><a href="the-start-of-the-end.html#cb284-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb284-6"><a href="the-start-of-the-end.html#cb284-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb284-7"><a href="the-start-of-the-end.html#cb284-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb284-8"><a href="the-start-of-the-end.html#cb284-8"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb284-9"><a href="the-start-of-the-end.html#cb284-9"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb284-10"><a href="the-start-of-the-end.html#cb284-10"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb284-11"><a href="the-start-of-the-end.html#cb284-11"></a><span class="st">    </span><span class="co"># Setting colour and associated labels</span></span>
+<span id="cb284-12"><a href="the-start-of-the-end.html#cb284-12"></a><span class="st">    </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#5C1AAE&quot;</span>, <span class="st">&quot;#AE5C1A&quot;</span>, <span class="st">&quot;#1AAE5C&quot;</span>),</span>
 <span id="cb284-13"><a href="the-start-of-the-end.html#cb284-13"></a>       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="op">+</span></span>
-<span id="cb284-14"><a href="the-start-of-the-end.html#cb284-14"></a>	<span class="co"># Setting shape and associated labels</span></span>
-<span id="cb284-15"><a href="the-start-of-the-end.html#cb284-15"></a>	<span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>),</span>
+<span id="cb284-14"><a href="the-start-of-the-end.html#cb284-14"></a><span class="st">    </span><span class="co"># Setting shape and associated labels</span></span>
+<span id="cb284-15"><a href="the-start-of-the-end.html#cb284-15"></a><span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>),</span>
 <span id="cb284-16"><a href="the-start-of-the-end.html#cb284-16"></a>       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="op">+</span></span>
-<span id="cb284-17"><a href="the-start-of-the-end.html#cb284-17"></a>	</span>
-<span id="cb284-18"><a href="the-start-of-the-end.html#cb284-18"></a>	<span class="kw">theme_rbook</span>()</span></code></pre></div>
+<span id="cb284-17"><a href="the-start-of-the-end.html#cb284-17"></a><span class="st">    </span></span>
+<span id="cb284-18"><a href="the-start-of-the-end.html#cb284-18"></a><span class="st">    </span><span class="kw">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/scale-manual-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To make sense of that code (or any code for that matter) try running it piece by piece. For instance in the above code, if we run <code>c("#5C1AAE", "#AE5C1A", "#1AAE5C")</code> we’ll get a list of those strings. That list is then passed on to <code>scale_colour_manual()</code> as the colours we wish to use. Since we only have three nitrogen concentrations, it will use these three colours. Try including an additional colour in the list and see what happens (if you place the new colour at the end of the list, nothing will happen since it will use the first three colours of the list - try adding it to the start of the list). The same is true for <code>scale_shape_manual()</code>.</p>
@@ -881,20 +918,20 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>With that done, we can re-run our above code to get a correct figure and assign it the name “rbook_figure”.</p>
 <p> </p>
 <div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="the-start-of-the-end.html#cb286-1"></a>rbook_figure &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> weight, <span class="dt">y =</span> shootarea, <span class="dt">colour =</span> nitrogen), <span class="dt">data =</span> flower) <span class="op">+</span></span>
-<span id="cb286-2"><a href="the-start-of-the-end.html#cb286-2"></a>	<span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
-<span id="cb286-3"><a href="the-start-of-the-end.html#cb286-3"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
-<span id="cb286-4"><a href="the-start-of-the-end.html#cb286-4"></a>	<span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
-<span id="cb286-5"><a href="the-start-of-the-end.html#cb286-5"></a>	<span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
-<span id="cb286-6"><a href="the-start-of-the-end.html#cb286-6"></a>	<span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
-<span id="cb286-7"><a href="the-start-of-the-end.html#cb286-7"></a>	<span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
-<span id="cb286-8"><a href="the-start-of-the-end.html#cb286-8"></a>	<span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
-<span id="cb286-9"><a href="the-start-of-the-end.html#cb286-9"></a>			 <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
-<span id="cb286-10"><a href="the-start-of-the-end.html#cb286-10"></a>	<span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
-<span id="cb286-11"><a href="the-start-of-the-end.html#cb286-11"></a>	<span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#5C1AAE&quot;</span>, <span class="st">&quot;#AE5C1A&quot;</span>, <span class="st">&quot;#1AAE5C&quot;</span>),</span>
+<span id="cb286-2"><a href="the-start-of-the-end.html#cb286-2"></a><span class="st">    </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">shape =</span> nitrogen), <span class="dt">size =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>) <span class="op">+</span></span>
+<span id="cb286-3"><a href="the-start-of-the-end.html#cb286-3"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span></span>
+<span id="cb286-4"><a href="the-start-of-the-end.html#cb286-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="dt">se =</span> <span class="ot">FALSE</span>, <span class="dt">linetype =</span> <span class="dv">2</span>, <span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="op">+</span></span>
+<span id="cb286-5"><a href="the-start-of-the-end.html#cb286-5"></a><span class="st">    </span><span class="kw">facet_grid</span>(block <span class="op">~</span><span class="st"> </span>treat) <span class="op">+</span></span>
+<span id="cb286-6"><a href="the-start-of-the-end.html#cb286-6"></a><span class="st">    </span><span class="kw">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="op">+</span></span>
+<span id="cb286-7"><a href="the-start-of-the-end.html#cb286-7"></a><span class="st">    </span><span class="kw">ylab</span>(<span class="kw">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="op">~</span>(cm<span class="op">^</span><span class="dv">2</span>))) <span class="op">+</span></span>
+<span id="cb286-8"><a href="the-start-of-the-end.html#cb286-8"></a><span class="st">    </span><span class="kw">labs</span>(<span class="dt">shape =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;Nitrogen</span><span class="ch">\n</span><span class="st">Concentration&quot;</span>, </span>
+<span id="cb286-9"><a href="the-start-of-the-end.html#cb286-9"></a>             <span class="dt">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="op">+</span></span>
+<span id="cb286-10"><a href="the-start-of-the-end.html#cb286-10"></a><span class="st">    </span><span class="kw">geom_hline</span>(<span class="kw">aes</span>(<span class="dt">yintercept =</span> <span class="fl">79.8</span>), <span class="dt">size =</span> <span class="fl">0.5</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">linetype =</span> <span class="dv">3</span>) <span class="op">+</span></span>
+<span id="cb286-11"><a href="the-start-of-the-end.html#cb286-11"></a><span class="st">    </span><span class="kw">scale_colour_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="st">&quot;#5C1AAE&quot;</span>, <span class="st">&quot;#AE5C1A&quot;</span>, <span class="st">&quot;#1AAE5C&quot;</span>),</span>
 <span id="cb286-12"><a href="the-start-of-the-end.html#cb286-12"></a>       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="op">+</span></span>
-<span id="cb286-13"><a href="the-start-of-the-end.html#cb286-13"></a>	<span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>),</span>
+<span id="cb286-13"><a href="the-start-of-the-end.html#cb286-13"></a><span class="st">    </span><span class="kw">scale_shape_manual</span>(<span class="dt">values =</span> <span class="kw">c</span>(<span class="dv">15</span>,<span class="dv">17</span>,<span class="dv">19</span>),</span>
 <span id="cb286-14"><a href="the-start-of-the-end.html#cb286-14"></a>       <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="op">+</span></span>
-<span id="cb286-15"><a href="the-start-of-the-end.html#cb286-15"></a>	<span class="kw">theme_rbook</span>()</span>
+<span id="cb286-15"><a href="the-start-of-the-end.html#cb286-15"></a><span class="st">    </span><span class="kw">theme_rbook</span>()</span>
 <span id="cb286-16"><a href="the-start-of-the-end.html#cb286-16"></a></span>
 <span id="cb286-17"><a href="the-start-of-the-end.html#cb286-17"></a>rbook_figure</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/corrected-factor-level-1.png" width="75%" style="display: block; margin: auto;" /></p>
@@ -903,8 +940,8 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>This is the point when having assigned the code to the object named <code>rbook_figure</code> comes in handy. Doing so allows us to specify which figure to save within <code>ggsave()</code>. If we hadn’t specified which plot to save, <code>ggsave()</code> would instead save the most current figure produced.</p>
 <p>Other important arguments to take note of are: <code>device =</code> which tells <code>ggplot2</code> what format we want to save the figure (in this case a pdf) though <code>ggplot2</code> is often smart enough to guess this based on the extension we give our file name, so it is often redundant; <code>units =</code> which specifies the units used in <code>width =</code> and <code>height =</code>; <code>width =</code> and <code>height =</code> which specify the width and height of figure (in this case in mm as per <code>units =</code>); <code>dpi =</code> which controls the resolution of the saved figure; and <code>limitsize =</code> which prevents accidentally saving a massive figure of 1 km x 1 km!</p>
 <div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="the-start-of-the-end.html#cb287-1"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;areashoot_weight_facet.pdf&quot;</span>, <span class="dt">plot =</span> rbook_figure, <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, </span>
-<span id="cb287-2"><a href="the-start-of-the-end.html#cb287-2"></a>			 <span class="dt">path =</span> <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">A.Nobel</span><span class="ch">\\</span><span class="st">Prize&quot;</span>, <span class="dt">width =</span> <span class="dv">250</span>, <span class="dt">height =</span> <span class="dv">150</span>, <span class="dt">units =</span> <span class="st">&quot;mm&quot;</span>, </span>
-<span id="cb287-3"><a href="the-start-of-the-end.html#cb287-3"></a>			 <span class="dt">dpi =</span> <span class="dv">500</span>, <span class="dt">limitsize =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<span id="cb287-2"><a href="the-start-of-the-end.html#cb287-2"></a>             <span class="dt">path =</span> <span class="st">&quot;C:</span><span class="ch">\\</span><span class="st">Users</span><span class="ch">\\</span><span class="st">A.Nobel</span><span class="ch">\\</span><span class="st">Prize&quot;</span>, <span class="dt">width =</span> <span class="dv">250</span>, <span class="dt">height =</span> <span class="dv">150</span>, <span class="dt">units =</span> <span class="st">&quot;mm&quot;</span>, </span>
+<span id="cb287-3"><a href="the-start-of-the-end.html#cb287-3"></a>             <span class="dt">dpi =</span> <span class="dv">500</span>, <span class="dt">limitsize =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p>This concludes the worked example to reproduce our final figure. While absolutely not an exhaustive list of what you can do with <code>ggplot2</code>, this will hopefully help when you’re making your own from scratch or, perhaps likely when starting, copying <code>ggplots</code> made by other people (in which case hopefully this will help you understand what they’ve done).</p>
 <p>Two sections follow this one. The first is simply a collection of tips and tricks that couldn’t quite make their way into this worked example, and the second section is a collection of different geometries to give you a feel for what’s possible. We would recommend only glancing through each section and coming back to them as and when you need to know how to do <em>that particular thing</em>.</p>
 <p>Hopefully you’ve enjoyed reading through this Chapter, and more importantly, that it’s increased your confidence in making figures. Here are two final parting words. First, as we’ve said before, don’t fall into the trap of thinking your figures are superior to those who don’t use <code>ggplot2</code>. As we’ve mentioned previously, equivalent figures are possible in both base R and <code>ggplot2</code>. The only difference is how you get to those figures.</p>

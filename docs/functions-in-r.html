@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Functions in R | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2020-10-27" />
+<meta name="date" content="2020-11-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="looking-behind-the-curtain.html"/>
 <link rel="next" href="conditional-statements.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,7 +52,12 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162377463-3"></script>
 <script>
@@ -64,18 +70,17 @@
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -95,7 +100,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -144,7 +149,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">An Introduction R</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
 <li class="chapter" data-level="0.1" data-path="the-aim-of-this-book.html"><a href="the-aim-of-this-book.html"><i class="fa fa-check"></i><b>0.1</b> The aim of this book</a></li>
 <li class="chapter" data-level="0.2" data-path="who-is-this-book-for.html"><a href="who-is-this-book-for.html"><i class="fa fa-check"></i><b>0.2</b> Who is this book for?</a></li>
 <li class="chapter" data-level="0.3" data-path="why-an-open-book.html"><a href="why-an-open-book.html"><i class="fa fa-check"></i><b>0.3</b> Why an open book?</a></li>
@@ -155,25 +161,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="0.8" data-path="thanks.html"><a href="thanks.html"><i class="fa fa-check"></i><b>0.8</b> Thanks</a></li>
 <li class="chapter" data-level="0.9" data-path="license.html"><a href="license.html"><i class="fa fa-check"></i><b>0.9</b> License</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a><ul>
-<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a><ul>
+<li class="chapter" data-level="1" data-path="chap1.html"><a href="chap1.html"><i class="fa fa-check"></i><b>1</b> Getting started with R and RStudio</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>1.1</b> Installing R</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="install-r.html"><a href="install-r.html#windows-users"><i class="fa fa-check"></i><b>1.1.1</b> Windows users</a></li>
 <li class="chapter" data-level="1.1.2" data-path="install-r.html"><a href="install-r.html#mac-users"><i class="fa fa-check"></i><b>1.1.2</b> Mac users</a></li>
 <li class="chapter" data-level="1.1.3" data-path="install-r.html"><a href="install-r.html#linux-users"><i class="fa fa-check"></i><b>1.1.3</b> Linux users</a></li>
 <li class="chapter" data-level="1.1.4" data-path="install-r.html"><a href="install-r.html#testing-r"><i class="fa fa-check"></i><b>1.1.4</b> Testing R</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a><ul>
+<li class="chapter" data-level="1.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html"><i class="fa fa-check"></i><b>1.2</b> Installing RStudio</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="installing-rstudio.html"><a href="installing-rstudio.html#windows-and-mac-users"><i class="fa fa-check"></i><b>1.2.1</b> Windows and Mac users</a></li>
 <li class="chapter" data-level="1.2.2" data-path="installing-rstudio.html"><a href="installing-rstudio.html#linux-users-1"><i class="fa fa-check"></i><b>1.2.2</b> Linux users</a></li>
 <li class="chapter" data-level="1.2.3" data-path="installing-rstudio.html"><a href="installing-rstudio.html#testing-rstudio"><i class="fa fa-check"></i><b>1.2.3</b> Testing RStudio</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a><ul>
+<li class="chapter" data-level="1.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html"><i class="fa fa-check"></i><b>1.3</b> RStudio orientation</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="rstudio-orient.html"><a href="rstudio-orient.html#cons"><i class="fa fa-check"></i><b>1.3.1</b> Console</a></li>
 <li class="chapter" data-level="1.3.2" data-path="rstudio-orient.html"><a href="rstudio-orient.html#environmenthistoryconnections"><i class="fa fa-check"></i><b>1.3.2</b> Environment/History/Connections</a></li>
 <li class="chapter" data-level="1.3.3" data-path="rstudio-orient.html"><a href="rstudio-orient.html#filesplotspackageshelpviewer"><i class="fa fa-check"></i><b>1.3.3</b> Files/Plots/Packages/Help/Viewer</a></li>
 </ul></li>
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a></li>
-<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a><ul>
+<li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="packages.html"><a href="packages.html#cran_packages"><i class="fa fa-check"></i><b>1.5.1</b> CRAN packages</a></li>
 <li class="chapter" data-level="1.5.2" data-path="packages.html"><a href="packages.html#bioconductor-packages"><i class="fa fa-check"></i><b>1.5.2</b> Bioconductor packages</a></li>
 <li class="chapter" data-level="1.5.3" data-path="packages.html"><a href="packages.html#github-packages"><i class="fa fa-check"></i><b>1.5.3</b> GitHub packages</a></li>
@@ -189,42 +200,50 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.13" data-path="citing-r.html"><a href="citing-r.html"><i class="fa fa-check"></i><b>1.13</b> Citing R</a></li>
 <li class="chapter" data-level="1.14" data-path="exercise-1.html"><a href="exercise-1.html"><i class="fa fa-check"></i><b>1.14</b> Exercise 1</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a><ul>
+<li class="chapter" data-level="2" data-path="basics-r.html"><a href="basics-r.html"><i class="fa fa-check"></i><b>2</b> Some R basics</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="getting-started.html"><a href="getting-started.html"><i class="fa fa-check"></i><b>2.1</b> Getting started</a></li>
-<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a><ul>
+<li class="chapter" data-level="2.2" data-path="objects-in-r.html"><a href="objects-in-r.html"><i class="fa fa-check"></i><b>2.2</b> Objects in R</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="objects-in-r.html"><a href="objects-in-r.html#r_objs"><i class="fa fa-check"></i><b>2.2.1</b> Creating objects</a></li>
 <li class="chapter" data-level="2.2.2" data-path="objects-in-r.html"><a href="objects-in-r.html#naming-objects"><i class="fa fa-check"></i><b>2.2.2</b> Naming objects</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="using-functions-in-r.html"><a href="using-functions-in-r.html"><i class="fa fa-check"></i><b>2.3</b> Using functions in R</a></li>
-<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a><ul>
+<li class="chapter" data-level="2.4" data-path="vectors.html"><a href="vectors.html"><i class="fa fa-check"></i><b>2.4</b> Working with vectors</a>
+<ul>
 <li class="chapter" data-level="2.4.1" data-path="vectors.html"><a href="vectors.html#extracting-elements"><i class="fa fa-check"></i><b>2.4.1</b> Extracting elements</a></li>
 <li class="chapter" data-level="2.4.2" data-path="vectors.html"><a href="vectors.html#replacing-elements"><i class="fa fa-check"></i><b>2.4.2</b> Replacing elements</a></li>
 <li class="chapter" data-level="2.4.3" data-path="vectors.html"><a href="vectors.html#vec_ord"><i class="fa fa-check"></i><b>2.4.3</b> Ordering elements</a></li>
 <li class="chapter" data-level="2.4.4" data-path="vectors.html"><a href="vectors.html#vectorisation"><i class="fa fa-check"></i><b>2.4.4</b> Vectorisation</a></li>
 <li class="chapter" data-level="2.4.5" data-path="vectors.html"><a href="vectors.html#na_vals"><i class="fa fa-check"></i><b>2.4.5</b> Missing data</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a><ul>
+<li class="chapter" data-level="2.5" data-path="help.html"><a href="help.html"><i class="fa fa-check"></i><b>2.5</b> Getting help</a>
+<ul>
 <li class="chapter" data-level="2.5.1" data-path="help.html"><a href="help.html#r-help"><i class="fa fa-check"></i><b>2.5.1</b> R help</a></li>
 <li class="chapter" data-level="2.5.2" data-path="help.html"><a href="help.html#rhelp"><i class="fa fa-check"></i><b>2.5.2</b> Other sources of help</a></li>
 </ul></li>
 <li class="chapter" data-level="2.6" data-path="saving-stuff-in-r.html"><a href="saving-stuff-in-r.html"><i class="fa fa-check"></i><b>2.6</b> Saving stuff in R</a></li>
 <li class="chapter" data-level="2.7" data-path="exercise-2.html"><a href="exercise-2.html"><i class="fa fa-check"></i><b>2.7</b> Exercise 2</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a><ul>
+<li class="chapter" data-level="3" data-path="data-r.html"><a href="data-r.html"><i class="fa fa-check"></i><b>3</b> Data in R</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="data-types.html"><a href="data-types.html"><i class="fa fa-check"></i><b>3.1</b> Data types</a></li>
-<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a><ul>
+<li class="chapter" data-level="3.2" data-path="data-structures.html"><a href="data-structures.html"><i class="fa fa-check"></i><b>3.2</b> Data structures</a>
+<ul>
 <li class="chapter" data-level="3.2.1" data-path="data-structures.html"><a href="data-structures.html#scal_vecs"><i class="fa fa-check"></i><b>3.2.1</b> Scalars and vectors</a></li>
 <li class="chapter" data-level="3.2.2" data-path="data-structures.html"><a href="data-structures.html#mat_array"><i class="fa fa-check"></i><b>3.2.2</b> Matrices and arrays</a></li>
 <li class="chapter" data-level="3.2.3" data-path="data-structures.html"><a href="data-structures.html#lists"><i class="fa fa-check"></i><b>3.2.3</b> Lists</a></li>
 <li class="chapter" data-level="3.2.4" data-path="data-structures.html"><a href="data-structures.html#df"><i class="fa fa-check"></i><b>3.2.4</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a><ul>
+<li class="chapter" data-level="3.3" data-path="importing-data.html"><a href="importing-data.html"><i class="fa fa-check"></i><b>3.3</b> Importing data</a>
+<ul>
 <li class="chapter" data-level="3.3.1" data-path="importing-data.html"><a href="importing-data.html#saving-files-to-import"><i class="fa fa-check"></i><b>3.3.1</b> Saving files to import</a></li>
 <li class="chapter" data-level="3.3.2" data-path="importing-data.html"><a href="importing-data.html#import_fnc"><i class="fa fa-check"></i><b>3.3.2</b> Import functions</a></li>
 <li class="chapter" data-level="3.3.3" data-path="importing-data.html"><a href="importing-data.html#common-import-frustrations"><i class="fa fa-check"></i><b>3.3.3</b> Common import frustrations</a></li>
 <li class="chapter" data-level="3.3.4" data-path="importing-data.html"><a href="importing-data.html#import_other"><i class="fa fa-check"></i><b>3.3.4</b> Other import options</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a><ul>
+<li class="chapter" data-level="3.4" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html"><i class="fa fa-check"></i><b>3.4</b> Wrangling data frames</a>
+<ul>
 <li class="chapter" data-level="3.4.1" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#positional-indexes"><i class="fa fa-check"></i><b>3.4.1</b> Positional indexes</a></li>
 <li class="chapter" data-level="3.4.2" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#logical-indexes"><i class="fa fa-check"></i><b>3.4.2</b> Logical indexes</a></li>
 <li class="chapter" data-level="3.4.3" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#ordering-data-frames"><i class="fa fa-check"></i><b>3.4.3</b> Ordering data frames</a></li>
@@ -233,15 +252,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.4.6" data-path="wrangling-data-frames.html"><a href="wrangling-data-frames.html#reshape"><i class="fa fa-check"></i><b>3.4.6</b> Reshaping data frames</a></li>
 </ul></li>
 <li class="chapter" data-level="3.5" data-path="summarising-data-frames.html"><a href="summarising-data-frames.html"><i class="fa fa-check"></i><b>3.5</b> Summarising data frames</a></li>
-<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a><ul>
+<li class="chapter" data-level="3.6" data-path="exporting-data.html"><a href="exporting-data.html"><i class="fa fa-check"></i><b>3.6</b> Exporting data</a>
+<ul>
 <li class="chapter" data-level="3.6.1" data-path="exporting-data.html"><a href="exporting-data.html#export-functions"><i class="fa fa-check"></i><b>3.6.1</b> Export functions</a></li>
 <li class="chapter" data-level="3.6.2" data-path="exporting-data.html"><a href="exporting-data.html#other-export-functions"><i class="fa fa-check"></i><b>3.6.2</b> Other export functions</a></li>
 </ul></li>
 <li class="chapter" data-level="3.7" data-path="exercise-3.html"><a href="exercise-3.html"><i class="fa fa-check"></i><b>3.7</b> Exercise 3</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a><ul>
+<li class="chapter" data-level="4" data-path="graphics-base-r.html"><a href="graphics-base-r.html"><i class="fa fa-check"></i><b>4</b> Graphics with base R</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="baseplot-start.html"><a href="baseplot-start.html"><i class="fa fa-check"></i><b>4.1</b> Getting started</a></li>
-<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a><ul>
+<li class="chapter" data-level="4.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html"><i class="fa fa-check"></i><b>4.2</b> Simple base R plots</a>
+<ul>
 <li class="chapter" data-level="4.2.1" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#scatterplot"><i class="fa fa-check"></i><b>4.2.1</b> Scatterplots</a></li>
 <li class="chapter" data-level="4.2.2" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#histograms"><i class="fa fa-check"></i><b>4.2.2</b> Histograms</a></li>
 <li class="chapter" data-level="4.2.3" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#box-and-violin-plots"><i class="fa fa-check"></i><b>4.2.3</b> Box and violin plots</a></li>
@@ -250,7 +272,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.2.6" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#coplots"><i class="fa fa-check"></i><b>4.2.6</b> Coplots</a></li>
 <li class="chapter" data-level="4.2.7" data-path="simple-base-r-plots.html"><a href="simple-base-r-plots.html#lattice-plots"><i class="fa fa-check"></i><b>4.2.7</b> Lattice plots</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a><ul>
+<li class="chapter" data-level="4.3" data-path="custom-plot.html"><a href="custom-plot.html"><i class="fa fa-check"></i><b>4.3</b> Customising plots</a>
+<ul>
 <li class="chapter" data-level="4.3.1" data-path="custom-plot.html"><a href="custom-plot.html#customising-with-arguments"><i class="fa fa-check"></i><b>4.3.1</b> Customising with arguments</a></li>
 <li class="chapter" data-level="4.3.2" data-path="custom-plot.html"><a href="custom-plot.html#building-plots"><i class="fa fa-check"></i><b>4.3.2</b> Building plots</a></li>
 </ul></li>
@@ -258,9 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="export-plots.html"><a href="export-plots.html"><i class="fa fa-check"></i><b>4.5</b> Exporting plots</a></li>
 <li class="chapter" data-level="4.6" data-path="exercise-4.html"><a href="exercise-4.html"><i class="fa fa-check"></i><b>4.6</b> Exercise 4</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a><ul>
+<li class="chapter" data-level="5" data-path="graphics-r.html"><a href="graphics-r.html"><i class="fa fa-check"></i><b>5</b> Graphics with ggplot</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="beginning-at-the-end.html"><a href="beginning-at-the-end.html"><i class="fa fa-check"></i><b>5.1</b> Beginning at the end</a></li>
-<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a><ul>
+<li class="chapter" data-level="5.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html"><i class="fa fa-check"></i><b>5.2</b> The start of the end</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#the-purest-of-ggplots"><i class="fa fa-check"></i><b>5.2.1</b> The purest of ggplots</a></li>
 <li class="chapter" data-level="5.2.2" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#wrapping-grids"><i class="fa fa-check"></i><b>5.2.2</b> Wrapping grids</a></li>
 <li class="chapter" data-level="5.2.3" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#plotting-multiple-ggplots"><i class="fa fa-check"></i><b>5.2.3</b> Plotting multiple ggplots</a></li>
@@ -268,7 +293,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.5" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#setting-the-theme"><i class="fa fa-check"></i><b>5.2.5</b> Setting the theme</a></li>
 <li class="chapter" data-level="5.2.6" data-path="the-start-of-the-end.html"><a href="the-start-of-the-end.html#prettification"><i class="fa fa-check"></i><b>5.2.6</b> Prettification</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a><ul>
+<li class="chapter" data-level="5.3" data-path="tips.html"><a href="tips.html"><i class="fa fa-check"></i><b>5.3</b> Tips and tricks</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="tips.html"><a href="tips.html#statistics-layer"><i class="fa fa-check"></i><b>5.3.1</b> Statistics layer</a></li>
 <li class="chapter" data-level="5.3.2" data-path="tips.html"><a href="tips.html#axis-limits-and-zooms"><i class="fa fa-check"></i><b>5.3.2</b> Axis limits and zooms</a></li>
 <li class="chapter" data-level="5.3.3" data-path="tips.html"><a href="tips.html#layering-layers"><i class="fa fa-check"></i><b>5.3.3</b> Layering layers</a></li>
@@ -281,7 +307,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.3.10" data-path="tips.html"><a href="tips.html#ticks-and-tick-labels"><i class="fa fa-check"></i><b>5.3.10</b> Ticks and tick labels</a></li>
 <li class="chapter" data-level="5.3.11" data-path="tips.html"><a href="tips.html#more-advanced-patchwork"><i class="fa fa-check"></i><b>5.3.11</b> More advanced patchwork</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a><ul>
+<li class="chapter" data-level="5.4" data-path="bestiary.html"><a href="bestiary.html"><i class="fa fa-check"></i><b>5.4</b> A ggplot bestiary</a>
+<ul>
 <li class="chapter" data-level="5.4.1" data-path="bestiary.html"><a href="bestiary.html#density-plot"><i class="fa fa-check"></i><b>5.4.1</b> Density plot</a></li>
 <li class="chapter" data-level="5.4.2" data-path="bestiary.html"><a href="bestiary.html#histogram"><i class="fa fa-check"></i><b>5.4.2</b> Histogram</a></li>
 <li class="chapter" data-level="5.4.3" data-path="bestiary.html"><a href="bestiary.html#frequency-polygons"><i class="fa fa-check"></i><b>5.4.3</b> Frequency polygons</a></li>
@@ -297,19 +324,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="exercise-5.html"><a href="exercise-5.html"><i class="fa fa-check"></i><b>5.5</b> Exercise 5</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a><ul>
+<li class="chapter" data-level="6" data-path="stats-r.html"><a href="stats-r.html"><i class="fa fa-check"></i><b>6</b> Simple Statistics in R</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="one-and-two-sample-tests.html"><a href="one-and-two-sample-tests.html"><i class="fa fa-check"></i><b>6.1</b> One and two sample tests</a></li>
 <li class="chapter" data-level="6.2" data-path="correlation.html"><a href="correlation.html"><i class="fa fa-check"></i><b>6.2</b> Correlation</a></li>
 <li class="chapter" data-level="6.3" data-path="simple-lm.html"><a href="simple-lm.html"><i class="fa fa-check"></i><b>6.3</b> Simple linear modelling</a></li>
 <li class="chapter" data-level="6.4" data-path="other-modelling-approaches.html"><a href="other-modelling-approaches.html"><i class="fa fa-check"></i><b>6.4</b> Other modelling approaches</a></li>
 <li class="chapter" data-level="6.5" data-path="exercise-6.html"><a href="exercise-6.html"><i class="fa fa-check"></i><b>6.5</b> Exercise 6</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a><ul>
+<li class="chapter" data-level="7" data-path="prog-r.html"><a href="prog-r.html"><i class="fa fa-check"></i><b>7</b> Programming in R</a>
+<ul>
 <li class="chapter" data-level="7.1" data-path="looking-behind-the-curtain.html"><a href="looking-behind-the-curtain.html"><i class="fa fa-check"></i><b>7.1</b> Looking behind the curtain</a></li>
 <li class="chapter" data-level="7.2" data-path="functions-in-r.html"><a href="functions-in-r.html"><i class="fa fa-check"></i><b>7.2</b> Functions in R</a></li>
 <li class="chapter" data-level="7.3" data-path="conditional-statements.html"><a href="conditional-statements.html"><i class="fa fa-check"></i><b>7.3</b> Conditional statements</a></li>
 <li class="chapter" data-level="7.4" data-path="combining-logical-operators.html"><a href="combining-logical-operators.html"><i class="fa fa-check"></i><b>7.4</b> Combining logical operators</a></li>
-<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a><ul>
+<li class="chapter" data-level="7.5" data-path="loops.html"><a href="loops.html"><i class="fa fa-check"></i><b>7.5</b> Loops</a>
+<ul>
 <li class="chapter" data-level="7.5.1" data-path="loops.html"><a href="loops.html#for-loop"><i class="fa fa-check"></i><b>7.5.1</b> For loop</a></li>
 <li class="chapter" data-level="7.5.2" data-path="loops.html"><a href="loops.html#while-loop"><i class="fa fa-check"></i><b>7.5.2</b> While loop</a></li>
 <li class="chapter" data-level="7.5.3" data-path="loops.html"><a href="loops.html#when-to-use-a-loop"><i class="fa fa-check"></i><b>7.5.3</b> When to use a loop?</a></li>
@@ -317,12 +347,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="exercise-7.html"><a href="exercise-7.html"><i class="fa fa-check"></i><b>7.6</b> Exercise 7</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a><ul>
+<li class="chapter" data-level="8" data-path="rmarkdown-r.html"><a href="rmarkdown-r.html"><i class="fa fa-check"></i><b>8</b> Reproducible reports with R markdown</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="what-is-r-markdown.html"><a href="what-is-r-markdown.html"><i class="fa fa-check"></i><b>8.1</b> What is R markdown?</a></li>
 <li class="chapter" data-level="8.2" data-path="why-use-r-markdown.html"><a href="why-use-r-markdown.html"><i class="fa fa-check"></i><b>8.2</b> Why use R markdown?</a></li>
 <li class="chapter" data-level="8.3" data-path="get-started-with-r-markdown.html"><a href="get-started-with-r-markdown.html"><i class="fa fa-check"></i><b>8.3</b> Get started with R markdown</a></li>
 <li class="chapter" data-level="8.4" data-path="new-rm.html"><a href="new-rm.html"><i class="fa fa-check"></i><b>8.4</b> Create an R markdown document</a></li>
-<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a><ul>
+<li class="chapter" data-level="8.5" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html"><i class="fa fa-check"></i><b>8.5</b> R markdown anatomy</a>
+<ul>
 <li class="chapter" data-level="8.5.1" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#yaml-header"><i class="fa fa-check"></i><b>8.5.1</b> YAML header</a></li>
 <li class="chapter" data-level="8.5.2" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#formatted-text"><i class="fa fa-check"></i><b>8.5.2</b> Formatted text</a></li>
 <li class="chapter" data-level="8.5.3" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#code_chunks"><i class="fa fa-check"></i><b>8.5.3</b> Code chunks</a></li>
@@ -333,21 +365,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.6" data-path="tips-tricks.html"><a href="tips-tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
 <li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a><ul>
+<li class="chapter" data-level="9" data-path="github-r.html"><a href="github-r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="what-is-version-control.html"><a href="what-is-version-control.html"><i class="fa fa-check"></i><b>9.1</b> What is version control?</a></li>
 <li class="chapter" data-level="9.2" data-path="why-use-version-control.html"><a href="why-use-version-control.html"><i class="fa fa-check"></i><b>9.2</b> Why use version control?</a></li>
 <li class="chapter" data-level="9.3" data-path="what-is-git-and-github.html"><a href="what-is-git-and-github.html"><i class="fa fa-check"></i><b>9.3</b> What is Git and GitHub?</a></li>
-<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a><ul>
+<li class="chapter" data-level="9.4" data-path="setup-git.html"><a href="setup-git.html"><i class="fa fa-check"></i><b>9.4</b> Getting started</a>
+<ul>
 <li class="chapter" data-level="9.4.1" data-path="setup-git.html"><a href="setup-git.html#install-git"><i class="fa fa-check"></i><b>9.4.1</b> Install Git</a></li>
 <li class="chapter" data-level="9.4.2" data-path="setup-git.html"><a href="setup-git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup-git.html"><a href="setup-git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup-git.html"><a href="setup-git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a><ul>
+<li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
+<ul>
 <li class="chapter" data-level="9.5.1" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt1"><i class="fa fa-check"></i><b>9.5.1</b> Option 1 - GitHub first</a></li>
 <li class="chapter" data-level="9.5.2" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html#opt2"><i class="fa fa-check"></i><b>9.5.2</b> Option 2 - RStudio first</a></li>
 </ul></li>
-<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a><ul>
+<li class="chapter" data-level="9.6" data-path="use-git.html"><a href="use-git.html"><i class="fa fa-check"></i><b>9.6</b> Using Git</a>
+<ul>
 <li class="chapter" data-level="9.6.1" data-path="use-git.html"><a href="use-git.html#tracking-changes"><i class="fa fa-check"></i><b>9.6.1</b> Tracking changes</a></li>
 <li class="chapter" data-level="9.6.2" data-path="use-git.html"><a href="use-git.html#commit-history"><i class="fa fa-check"></i><b>9.6.2</b> Commit history</a></li>
 <li class="chapter" data-level="9.6.3" data-path="use-git.html"><a href="use-git.html#undo"><i class="fa fa-check"></i><b>9.6.3</b> Reverting changes</a></li>
@@ -357,7 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.7" data-path="resources.html"><a href="resources.html"><i class="fa fa-check"></i><b>9.7</b> Further resources</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a><ul>
+<li class="chapter" data-level="A" data-path="install-rm.html"><a href="install-rm.html"><i class="fa fa-check"></i><b>A</b> Installing R Markdown</a>
+<ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
 </ul></li>
@@ -381,7 +418,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions-in-r" class="section level2">
+<div id="functions-in-r" class="section level2" number="7.2">
 <h2><span class="header-section-number">7.2</span> Functions in R</h2>
 <p>Functions are your loyal servants, waiting patiently to do your bidding to the best of their ability. They’re made with the utmost care and attention … though sometimes may end up being something of a Frankenstein’s monster - with an extra limb or two and a head put on backwards. But no matter how ugly they may be they’re completely faithful to you.</p>
 <p>They’re also very stupid.</p>
@@ -434,26 +471,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>No that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
 <div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="functions-in-r.html#cb379-1"></a>porto_aberdeen_func &lt;-<span class="st"> </span><span class="kw">multiply_columns</span>(<span class="dt">x =</span> city<span class="op">$</span>porto, <span class="dt">y =</span> city<span class="op">$</span>aberdeen)</span>
 <span id="cb379-2"><a href="functions-in-r.html#cb379-2"></a>porto_aberdeen_func</span>
-<span id="cb379-3"><a href="functions-in-r.html#cb379-3"></a><span class="co">##   [1] -0.117229742  0.454154152 -0.392863927  0.056866929  0.755473015</span></span>
-<span id="cb379-4"><a href="functions-in-r.html#cb379-4"></a><span class="co">##   [6]  0.606507883 -0.007722697 -0.119403430  0.886808197  0.073511784</span></span>
-<span id="cb379-5"><a href="functions-in-r.html#cb379-5"></a><span class="co">##  [11]  0.841244432 -1.183913596 -0.575409837  0.583553843 -0.215866177</span></span>
-<span id="cb379-6"><a href="functions-in-r.html#cb379-6"></a><span class="co">##  [16]  0.936879876 -1.460889436 -0.177734445 -0.597743907  0.037085891</span></span>
-<span id="cb379-7"><a href="functions-in-r.html#cb379-7"></a><span class="co">##  [21] -0.085058962 -0.499432765  0.536226749 -0.586422264  0.191619170</span></span>
-<span id="cb379-8"><a href="functions-in-r.html#cb379-8"></a><span class="co">##  [26] -0.975003801  0.218833201 -0.052992288 -0.289645294  1.477589059</span></span>
-<span id="cb379-9"><a href="functions-in-r.html#cb379-9"></a><span class="co">##  [31]  0.100656459 -0.200300916 -0.234541738  0.121181922 -4.084462136</span></span>
-<span id="cb379-10"><a href="functions-in-r.html#cb379-10"></a><span class="co">##  [36]  0.428149379 -0.113962501  3.877810150 -0.036307537  0.155960823</span></span>
-<span id="cb379-11"><a href="functions-in-r.html#cb379-11"></a><span class="co">##  [41] -0.983202638  0.220181083  0.261977628 -0.403491669  0.505961140</span></span>
-<span id="cb379-12"><a href="functions-in-r.html#cb379-12"></a><span class="co">##  [46]  0.470886072  0.149283584 -1.212850530  0.151569236 -1.374632476</span></span>
-<span id="cb379-13"><a href="functions-in-r.html#cb379-13"></a><span class="co">##  [51] -0.276752645 -2.601683011 -0.204412115  0.773181944 -0.009282412</span></span>
-<span id="cb379-14"><a href="functions-in-r.html#cb379-14"></a><span class="co">##  [56]  1.857694191  0.120024111  1.139521430  0.360737995  0.494005148</span></span>
-<span id="cb379-15"><a href="functions-in-r.html#cb379-15"></a><span class="co">##  [61]  0.512064080  0.200102939  0.038626373  1.300690350  0.660874572</span></span>
-<span id="cb379-16"><a href="functions-in-r.html#cb379-16"></a><span class="co">##  [66] -0.006020080 -0.344087549  0.887998181 -0.364175486  0.161195086</span></span>
-<span id="cb379-17"><a href="functions-in-r.html#cb379-17"></a><span class="co">##  [71]  0.018740804  0.840703112  1.780087643  0.178550556  0.881060541</span></span>
-<span id="cb379-18"><a href="functions-in-r.html#cb379-18"></a><span class="co">##  [76]  1.444725878  0.328651831  0.031473735  0.548534602  0.367051080</span></span>
-<span id="cb379-19"><a href="functions-in-r.html#cb379-19"></a><span class="co">##  [81] -0.026106549  0.588711376 -1.653831073 -0.890661074 -0.012851512</span></span>
-<span id="cb379-20"><a href="functions-in-r.html#cb379-20"></a><span class="co">##  [86] -3.844064642  0.109035201 -1.818936056  0.013727115  0.005488293</span></span>
-<span id="cb379-21"><a href="functions-in-r.html#cb379-21"></a><span class="co">##  [91] -0.854139446  0.165727462 -0.465203848 -0.190256181  0.617706213</span></span>
-<span id="cb379-22"><a href="functions-in-r.html#cb379-22"></a><span class="co">##  [96] -0.020557679 -0.009640312  0.418402861 -2.555762867  0.142982974</span></span></code></pre></div>
+<span id="cb379-3"><a href="functions-in-r.html#cb379-3"></a><span class="co">##   [1]  0.583434289  0.108676029 -0.012944933  0.315371634  0.072003370</span></span>
+<span id="cb379-4"><a href="functions-in-r.html#cb379-4"></a><span class="co">##   [6] -0.062503070  0.234712049  0.790082325 -2.455580171 -0.248752133</span></span>
+<span id="cb379-5"><a href="functions-in-r.html#cb379-5"></a><span class="co">##  [11] -1.219772485 -0.994934503 -0.367978003  0.252271558 -0.213069385</span></span>
+<span id="cb379-6"><a href="functions-in-r.html#cb379-6"></a><span class="co">##  [16]  0.718652597  1.171028355  1.898173861  0.845925267 -0.933678669</span></span>
+<span id="cb379-7"><a href="functions-in-r.html#cb379-7"></a><span class="co">##  [21] -0.103650425 -1.342926843 -0.037615835  0.280013082  0.049324511</span></span>
+<span id="cb379-8"><a href="functions-in-r.html#cb379-8"></a><span class="co">##  [26] -0.129084391 -0.015216045  2.287892740  0.136465364  0.454656317</span></span>
+<span id="cb379-9"><a href="functions-in-r.html#cb379-9"></a><span class="co">##  [31]  1.942906310  0.059209760 -0.883215638  1.217514081 -0.501755618</span></span>
+<span id="cb379-10"><a href="functions-in-r.html#cb379-10"></a><span class="co">##  [36] -0.106792035  0.732853533 -0.028690584  1.396042328  0.006916277</span></span>
+<span id="cb379-11"><a href="functions-in-r.html#cb379-11"></a><span class="co">##  [41]  1.181745543 -3.651816281 -2.502411466  0.030157868  0.248354615</span></span>
+<span id="cb379-12"><a href="functions-in-r.html#cb379-12"></a><span class="co">##  [46] -0.782491268 -0.481919166 -0.794337123 -0.588631981  0.512339077</span></span>
+<span id="cb379-13"><a href="functions-in-r.html#cb379-13"></a><span class="co">##  [51]  0.131228490 -0.294589733 -2.412563075  0.023017223  0.138168758</span></span>
+<span id="cb379-14"><a href="functions-in-r.html#cb379-14"></a><span class="co">##  [56] -0.471048275 -0.599972349  1.054300161 -1.658016545  0.172959097</span></span>
+<span id="cb379-15"><a href="functions-in-r.html#cb379-15"></a><span class="co">##  [61]  2.391330708  0.247555306  0.130436384 -0.083337890 -0.332137296</span></span>
+<span id="cb379-16"><a href="functions-in-r.html#cb379-16"></a><span class="co">##  [66] -0.221814724 -0.283359688  0.061065319 -0.346373523 -0.258585466</span></span>
+<span id="cb379-17"><a href="functions-in-r.html#cb379-17"></a><span class="co">##  [71]  0.448552969  0.027255907 -0.805156350  0.240646962 -0.144339677</span></span>
+<span id="cb379-18"><a href="functions-in-r.html#cb379-18"></a><span class="co">##  [76] -0.196598162  0.174644373  1.490790399  1.641669768  0.028389264</span></span>
+<span id="cb379-19"><a href="functions-in-r.html#cb379-19"></a><span class="co">##  [81] -0.169771603 -0.291132707 -0.532351218 -0.419962055  0.627684469</span></span>
+<span id="cb379-20"><a href="functions-in-r.html#cb379-20"></a><span class="co">##  [86] -5.506788064  3.047689240  0.111640457  1.309547149  0.145313023</span></span>
+<span id="cb379-21"><a href="functions-in-r.html#cb379-21"></a><span class="co">##  [91] -0.558733859  1.732707131  1.761088502  1.208663472  0.025669743</span></span>
+<span id="cb379-22"><a href="functions-in-r.html#cb379-22"></a><span class="co">##  [96]  0.887149599  1.862375450 -0.043501194 -0.326385792 -0.510914354</span></span></code></pre></div>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written (and retested) from scratch each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. The <code>identical()</code> function tests whether two objects are <em>exactly</em> identical and returns either a <code>TRUE</code> or <code>FALSE</code> value. Use <code>?identical</code> if you want to know more about this function.</p>
 <div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="functions-in-r.html#cb380-1"></a><span class="kw">identical</span>(porto_aberdeen, porto_aberdeen_func)</span>
@@ -464,24 +501,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb381-2"><a href="functions-in-r.html#cb381-2"></a>aberdeen_nairobi_func</span>
 <span id="cb381-3"><a href="functions-in-r.html#cb381-3"></a><span class="co">##   [1]           NA           NA           NA           NA           NA</span></span>
 <span id="cb381-4"><a href="functions-in-r.html#cb381-4"></a><span class="co">##   [6]           NA           NA           NA           NA           NA</span></span>
-<span id="cb381-5"><a href="functions-in-r.html#cb381-5"></a><span class="co">##  [11]  0.164271303 -1.676870381 -0.315537928  0.690992690  0.048563752</span></span>
-<span id="cb381-6"><a href="functions-in-r.html#cb381-6"></a><span class="co">##  [16] -0.851761856 -0.872678396  0.335519003 -1.649436321 -0.028133893</span></span>
-<span id="cb381-7"><a href="functions-in-r.html#cb381-7"></a><span class="co">##  [21] -0.045851916  0.290080020 -0.621772071  0.958556528  0.159933712</span></span>
-<span id="cb381-8"><a href="functions-in-r.html#cb381-8"></a><span class="co">##  [26]  2.136952689  0.185793324 -1.043533289 -0.152283176 -1.165555618</span></span>
-<span id="cb381-9"><a href="functions-in-r.html#cb381-9"></a><span class="co">##  [31] -0.026458110  0.083867074 -0.170549595  0.595604626  0.808201216</span></span>
-<span id="cb381-10"><a href="functions-in-r.html#cb381-10"></a><span class="co">##  [36]  0.083960670 -4.094401773  2.255368369 -0.050656407 -0.066727257</span></span>
-<span id="cb381-11"><a href="functions-in-r.html#cb381-11"></a><span class="co">##  [41] -0.479396653  0.174253522  0.309497855 -0.173474560  0.142557549</span></span>
-<span id="cb381-12"><a href="functions-in-r.html#cb381-12"></a><span class="co">##  [46] -0.020541027 -0.530465979  0.404765667  0.019433755 -0.312335615</span></span>
-<span id="cb381-13"><a href="functions-in-r.html#cb381-13"></a><span class="co">##  [51] -0.060284140 -1.728741004  0.115895050 -1.254324078  0.260661147</span></span>
-<span id="cb381-14"><a href="functions-in-r.html#cb381-14"></a><span class="co">##  [56] -0.933045082 -0.277803580 -1.050149679  0.269142255 -0.429210981</span></span>
-<span id="cb381-15"><a href="functions-in-r.html#cb381-15"></a><span class="co">##  [61]  1.418321749  0.199445901 -0.491867985 -0.255988307  0.680110354</span></span>
-<span id="cb381-16"><a href="functions-in-r.html#cb381-16"></a><span class="co">##  [66]  0.029193283  0.745512065 -2.519780724  0.310408814 -0.376656876</span></span>
-<span id="cb381-17"><a href="functions-in-r.html#cb381-17"></a><span class="co">##  [71] -0.485174112  2.774407641 -1.034849997 -0.093058487 -0.942828296</span></span>
-<span id="cb381-18"><a href="functions-in-r.html#cb381-18"></a><span class="co">##  [76]  0.297293122  0.500090525 -0.186624519 -1.634007909 -0.243895238</span></span>
-<span id="cb381-19"><a href="functions-in-r.html#cb381-19"></a><span class="co">##  [81] -0.272439847  0.225689449 -0.122055930  0.066765941  0.045566123</span></span>
-<span id="cb381-20"><a href="functions-in-r.html#cb381-20"></a><span class="co">##  [86] -0.464213679 -0.407516960 -0.272236905 -1.037696753 -0.002662966</span></span>
-<span id="cb381-21"><a href="functions-in-r.html#cb381-21"></a><span class="co">##  [91] -0.484637240  0.047046750 -0.306595264  0.461928972 -0.375814428</span></span>
-<span id="cb381-22"><a href="functions-in-r.html#cb381-22"></a><span class="co">##  [96] -0.255719578  0.005594462  0.077519292 -0.344081555 -0.474619133</span></span></code></pre></div>
+<span id="cb381-5"><a href="functions-in-r.html#cb381-5"></a><span class="co">##  [11]  0.988544888 -0.785026981 -0.725402964 -0.306046342 -0.326213181</span></span>
+<span id="cb381-6"><a href="functions-in-r.html#cb381-6"></a><span class="co">##  [16]  0.724351599 -0.429233620  0.184110535 -0.657051123 -0.180130104</span></span>
+<span id="cb381-7"><a href="functions-in-r.html#cb381-7"></a><span class="co">##  [21] -2.464557083  0.585633199 -0.042540430  0.199601755  1.302658152</span></span>
+<span id="cb381-8"><a href="functions-in-r.html#cb381-8"></a><span class="co">##  [26] -0.106177125 -0.910934473  0.154959767 -0.169787345 -0.594457658</span></span>
+<span id="cb381-9"><a href="functions-in-r.html#cb381-9"></a><span class="co">##  [31]  0.813455634 -0.957495586  0.943553862 -1.658746675  0.359595890</span></span>
+<span id="cb381-10"><a href="functions-in-r.html#cb381-10"></a><span class="co">##  [36]  0.578527950 -0.154561782  0.018310310  0.821933608 -0.070078476</span></span>
+<span id="cb381-11"><a href="functions-in-r.html#cb381-11"></a><span class="co">##  [41] -0.142793845 -4.855110382  1.359197275  0.059083166  0.040490589</span></span>
+<span id="cb381-12"><a href="functions-in-r.html#cb381-12"></a><span class="co">##  [46] -1.846468629 -0.327562759  0.955731522  0.308612589 -0.202647301</span></span>
+<span id="cb381-13"><a href="functions-in-r.html#cb381-13"></a><span class="co">##  [51]  0.982126419 -3.860737762  0.227389996  0.012223920 -0.775970780</span></span>
+<span id="cb381-14"><a href="functions-in-r.html#cb381-14"></a><span class="co">##  [56]  0.592355461  0.474598394  1.142703448  0.002789668  0.112781537</span></span>
+<span id="cb381-15"><a href="functions-in-r.html#cb381-15"></a><span class="co">##  [61] -1.304066560 -0.517855061  1.603393801 -0.241275673 -0.081835519</span></span>
+<span id="cb381-16"><a href="functions-in-r.html#cb381-16"></a><span class="co">##  [66]  0.078423164 -6.462618735  0.028896562 -0.303360922  0.254555035</span></span>
+<span id="cb381-17"><a href="functions-in-r.html#cb381-17"></a><span class="co">##  [71] -0.623956041 -0.028576193  0.860769949  0.238872730  0.162042003</span></span>
+<span id="cb381-18"><a href="functions-in-r.html#cb381-18"></a><span class="co">##  [76]  0.080458224 -0.585272308  0.121841328  0.123501020  0.037715945</span></span>
+<span id="cb381-19"><a href="functions-in-r.html#cb381-19"></a><span class="co">##  [81]  0.178999742 -1.192513996  0.442130685 -1.178418923  0.185845276</span></span>
+<span id="cb381-20"><a href="functions-in-r.html#cb381-20"></a><span class="co">##  [86] -1.804244939  3.554388825 -0.335960664  1.589219328  0.471759344</span></span>
+<span id="cb381-21"><a href="functions-in-r.html#cb381-21"></a><span class="co">##  [91]  2.369540295  0.094663812  1.080451370  1.094058767  0.028346244</span></span>
+<span id="cb381-22"><a href="functions-in-r.html#cb381-22"></a><span class="co">##  [96]  2.139846569  0.290776088 -0.016380681 -0.854812596  2.145827239</span></span></code></pre></div>
 <p>So far so good. All we’ve really done is wrapped the code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of <code>nairobi_genoa</code> some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these <code>NA</code> values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
 <div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="functions-in-r.html#cb382-1"></a>multiply_columns &lt;-<span class="st"> </span><span class="cf">function</span>(x, y) {</span>

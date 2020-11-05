@@ -27,7 +27,7 @@ newest.vers <- checkRversion()
 # install the packages needed by this book; 
 pkgs <- c('vioplot', 'reshape2', 'ggplot2', 'patchwork', 'quantreg', 'hexbin', 'GGally', 'ggfortify', 'kableExtra', 'htmltools', 'rmarkdown', 'xfun', 'knitr', 'rsvg', 'remotes')
 lapply(pkgs, function(pkg) {
-  if (system.file(package = pkg) == '') install.packages(pkg)
+  if (system.file(package = pkg) == '') install.packages(pkg, repos = "https://cloud.r-project.org")
 })
 
 # check icon package installed and install if missing
