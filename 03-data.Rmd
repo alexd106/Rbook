@@ -306,7 +306,8 @@ There are a couple of things to bear in mind when saving files to import into R 
 Once you've saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the `read.table()`\index{read.table()} function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` function to import this file
 
 ```{r df1, echo=TRUE, collapse=TRUE}
-flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t")
+flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t",
+                        stringsAsFactors = TRUE)
 ```
 
 There are a few things to note about the above command. First, the file path and the filename (including the file extension) needs to be enclosed in either single or double quotes (i.e. `data/flower.txt` bit) as the `read.table()` function expects this to be a character string. If your working directory is already set to the directory which contains the file, you don’t need to include the entire file path just the filename. In the example above, the file path is separated with a single forward slash `/`. This will work regardless of the operating system you are using and we recommend you stick with this. However, Windows users may be more familiar with the single backslash notation and if you want to keep using this you will need to include them as double backslashes. Note though that the double backslash notation will **not** work on computers using Mac OSX or Linux operating systems. 
@@ -326,7 +327,7 @@ str(flowers)
 
 Here we see that `flowers` is a 'data.frame' object which contains 96 rows and 8 variables (columns). Each of the variables are listed along with their data class and the first 10 values. As we mentioned previously in this Chapter, it can be quite convenient to copy and paste this into your R script as a comment block for later reference. 
 
-Notice also that R has decided that your character string variables (`treat` and `nitrogen`) should be treated as factors. If this is not what you want you can prevent this by using the `stringsAsFactors = FALSE` argument when you use the `read.table()` function. Note, from R version 4.0.0 `stringsAsFactors = FALSE` is now the default. 
+Notice also that your character string variables (`treat` and `nitrogen`) have been imported as factors because we used the argument `stringsAsFactors = TRUE`. If this is not what you want you can prevent this by using the `stringsAsFactors = FALSE` or from R version 4.0.0 you can just leave out this argument as `stringsAsFactors = FALSE` is the default. 
 
 ```{r df4, echo=TRUE, collapse=TRUE}
 flowers <- read.table(file = 'data/flower.txt', header = TRUE, 
