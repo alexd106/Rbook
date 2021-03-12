@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2021-01-28" />
+<meta name="date" content="2021-03-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -505,7 +505,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb118-10"><a href="wrangling-data-frames.html#cb118-10"></a><span class="co">## 8   tip   medium     1    9.4  10.28     14.0      28.5       6</span></span></code></pre></div>
 <p>or all of the rows and the first 3 columns. If you’re reading the web version of this book scroll down in output panel to see all of the data. Note, if you’re reading the pdf version of the book some of the output has been truncated to save some space.</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="wrangling-data-frames.html#cb119-1"></a>flowers[, <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block
+<pre><code>##    treat nitrogen block
 ## 1    tip   medium     1
 ## 2    tip   medium     1
 ## 3    tip   medium     1
@@ -663,7 +663,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also extract rows based on the value of a character string or factor level. Let’s extract all rows where the <code>nitrogen</code> level is equal to <code>high</code> (again we will output all columns). Notice that the double equals <code>==</code> sign must be used for a logical test and that the character string must be enclosed in either single or double quotes (i.e. <code>"high"</code>).</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="wrangling-data-frames.html#cb127-1"></a>nit_high &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">==</span><span class="st"> &quot;high&quot;</span>, ]        </span>
 <span id="cb127-2"><a href="wrangling-data-frames.html#cb127-2"></a>nit_high</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 17   tip     high     1   12.6  18.66     18.6      54.0       9
 ## 18   tip     high     1   10.0  18.07     16.9      90.5       3
 ## 19   tip     high     1   10.0  13.29     15.8     142.7      12
@@ -699,7 +699,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Or we can extract all rows where <code>nitrogen</code> level is not equal to <code>medium</code> (using <code>!=</code>) and only return columns 1 to 4.</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="wrangling-data-frames.html#cb129-1"></a>nit_not_medium &lt;-<span class="st"> </span>flowers[flowers<span class="op">$</span>nitrogen <span class="op">!=</span><span class="st"> &quot;medium&quot;</span>, <span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]        </span>
 <span id="cb129-2"><a href="wrangling-data-frames.html#cb129-2"></a>nit_not_medium</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height
+<pre><code>##    treat nitrogen block height
 ## 17   tip     high     1   12.6
 ## 18   tip     high     1   10.0
 ## 19   tip     high     1   10.0
@@ -814,7 +814,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Remember when we used the function <code>order()</code> to order one vector based on the order of another vector (way back in <a href="vectors.html#vec_ord">Chapter 2</a>). This comes in very handy if you want to reorder rows in your data frame. For example, if we want all of the rows in the data frame <code>flowers</code> to be ordered in ascending value of <code>height</code> and output all columns by default. If you’re reading this section of the book on the web you can scroll down in the output panels to see the entire ordered data frame. If you’re reading the pdf version of the book, note that some of the output from the code chunks has been truncated to save some space.</p>
 <div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="wrangling-data-frames.html#cb135-1"></a>height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>height), ]        </span>
 <span id="cb135-2"><a href="wrangling-data-frames.html#cb135-2"></a>height_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 68 notip     high     1    1.2  18.24     16.6     148.1       7
 ## 62 notip   medium     2    1.8  10.47     11.8     120.8       9
 ## 86 notip      low     1    1.8   6.01     17.6      46.2       4
@@ -914,7 +914,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can also order by descending order of a variable (i.e. <code>leafarea</code>) using the <code>decreasing = TRUE</code> argument.</p>
 <div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="wrangling-data-frames.html#cb137-1"></a>leafarea_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>leafarea, <span class="dt">decreasing =</span> <span class="ot">TRUE</span>), ]        </span>
 <span id="cb137-2"><a href="wrangling-data-frames.html#cb137-2"></a>leafarea_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 70 notip     high     1   10.9  17.22     49.2     189.6      17
 ## 13   tip   medium     2    7.1   8.16     29.6       9.7       2
 ## 24   tip     high     1    6.5  17.13     24.1     147.4       6
@@ -1014,7 +1014,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can even order data frames based on multiple variables. For example, to order the data frame <code>flowers</code> in ascending order of both <code>block</code> and <code>height</code>.</p>
 <div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="wrangling-data-frames.html#cb139-1"></a>block_height_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, flowers<span class="op">$</span>height), ]        </span>
 <span id="cb139-2"><a href="wrangling-data-frames.html#cb139-2"></a>block_height_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 68 notip     high     1    1.2  18.24     16.6     148.1       7
 ## 86 notip      low     1    1.8   6.01     17.6      46.2       4
 ## 72 notip     high     1    2.1  19.15     15.6     176.7       6
@@ -1114,7 +1114,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>What if we wanted to order <code>flowers</code> by ascending order of <code>block</code> but descending order of <code>height</code>? We can use a simple trick by adding a <code>-</code> symbol before the <code>flowers$height</code> variable when we use the <code>order()</code> function. This will essentially turn all of the <code>height</code> values negative which will result in reversing the order. Note, that this trick will only work with numeric variables.</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="wrangling-data-frames.html#cb141-1"></a>block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>block, <span class="op">-</span>flowers<span class="op">$</span>height), ]        </span>
 <span id="cb141-2"><a href="wrangling-data-frames.html#cb141-2"></a>block_revheight_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 21   tip     high     1   14.1  19.12     13.1     113.2      13
 ## 17   tip     high     1   12.6  18.66     18.6      54.0       9
 ## 38   tip      low     1   12.3  11.27     13.7      28.7       5
@@ -1214,7 +1214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we wanted to do the same thing with a factor (or character) variable like <code>nitrogen</code> we would need to use the function <code>xtfrm()</code> for this variable inside our <code>order()</code> function.</p>
 <div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="wrangling-data-frames.html#cb143-1"></a>block_revheight_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(<span class="op">-</span><span class="kw">xtfrm</span>(flowers<span class="op">$</span>nitrogen), flowers<span class="op">$</span>height), ]        </span>
 <span id="cb143-2"><a href="wrangling-data-frames.html#cb143-2"></a>block_revheight_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 62 notip   medium     2    1.8  10.47     11.8     120.8       9
 ## 63 notip   medium     2    2.2  10.70     15.3      97.1       7
 ## 56 notip   medium     1    2.5  14.85     17.5      77.8      10
@@ -1317,7 +1317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb145-2"><a href="wrangling-data-frames.html#cb145-2"></a>                           <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))    </span>
 <span id="cb145-3"><a href="wrangling-data-frames.html#cb145-3"></a>nit_ord &lt;-<span class="st"> </span>flowers[<span class="kw">order</span>(flowers<span class="op">$</span>nitrogen),]</span>
 <span id="cb145-4"><a href="wrangling-data-frames.html#cb145-4"></a>nit_ord</span></code></pre></div>
-<pre style="max-height: 500px;"><code>##    treat nitrogen block height weight leafarea shootarea flowers
+<pre><code>##    treat nitrogen block height weight leafarea shootarea flowers
 ## 33   tip      low     1    8.0   6.88      9.3      16.1       4
 ## 34   tip      low     1    8.0  10.23     11.9      88.1       4
 ## 35   tip      low     1    6.4   5.97      8.7       7.3       2

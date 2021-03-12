@@ -60,7 +60,7 @@
 [cran-linux]: https://cran.r-project.org/bin/linux/
 [cran-mac]: https://cran.r-project.org/bin/macosx/
 [cran-mac-faq]: https://cran.r-project.org/bin/macosx/RMacOSX-FAQ.html
-[cran-ubuntu]: https://cran.r-project.org/bin/linux/ubuntu
+[cran-ubuntu]: https://cran.r-project.org/bin/linux/ubuntu/fullREADME.html
 [cran-packages]: https://cran.r-project.org/web/packages/index.html
 [cran-core]: https://www.r-project.org/contributors.html
 [cran-faq]: https://cran.r-project.org/faqs.html
