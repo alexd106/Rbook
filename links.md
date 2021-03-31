@@ -92,12 +92,19 @@
 [here]: https://github.com/r-lib/here
 
 <!--Editors-->
-[tinn-r]: https://sourceforge.net/projects/tinn-r/
 [atom]: https://atom.io/
-[notepad]: https://notepad-plus-plus.org/
 [BBedit]: https://www.barebones.com/products/bbedit/
+[emacs]: https://www.gnu.org/software/emacs/
+[ess]: https://ess.r-project.org/
+[gedit]: https://wiki.gnome.org/Apps/Gedit
 [macvim]: https://github.com/macvim-dev/macvim
+[nano]: https://www.nano-editor.org/
+[notepad]: https://notepad-plus-plus.org/
+[rkward]: https://rkward.kde.org/
 [sublime]: https://www.sublimetext.com/
+[tinn-r]: https://sourceforge.net/projects/tinn-r/
+[vim]: https://www.vim.org/
+[nvim-r]: https://github.com/jalvesaq/Nvim-R
 
 <!--Bioconductor Links-->
 [bioconductor]: https://www.bioconductor.org/
