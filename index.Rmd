@@ -24,20 +24,8 @@ cover-image: "images/cover_v3.png"
 ```{r create_chunk_options1, include=FALSE}
 source('utils.R')
 newest.vers <- checkRversion()
-# install the packages needed by this book; 
-pkgs <- c('vioplot', 'reshape2', 'ggplot2', 'patchwork', 'quantreg', 'hexbin', 'GGally', 'ggfortify', 'kableExtra', 'htmltools', 'rmarkdown', 'xfun', 'knitr', 'rsvg', 'remotes')
-lapply(pkgs, function(pkg) {
-  if (system.file(package = pkg) == '') install.packages(pkg, repos = "https://cloud.r-project.org")
-})
-
-# check icon package installed and install if missing
-if (system.file(package = 'icon') == '') remotes::install_github("mitchelloharawild/icon")
-# check if fontawesome fonts downloaded. Download if FALSE
-font_path <- file.path(paste0(getOption("icon.path", default = rappdirs::user_data_dir("rpkg_icon")), '/fontawesome'))
-if (!file.exists(font_path)){
-icon::download_fontawesome(version = "dev")	
-}
 ```
+
 
 ```{r create_chunk_options2, include=FALSE, eval=knitr::is_latex_output()}
 # source('scripts_and_filters/create_chunk_options.R')
@@ -63,7 +51,7 @@ We hope this book will be a useful introduction for anyone who wants to learn ho
 
 ## Why an open book?
 
-We decided to write this book as a freely available open source document for a number of reasons. Firstly, we hope this book will be a living document that naturally evolves over time. If you find any errors in the book or want to make a suggestion on how to improve it, please open an issue on the GitHub [site][github-issue] or even better click on the edit button `r icon::fontawesome('edit', style = 'solid')` in the navigation bar at the top of this page and issue a pull request (only available on the web version of this book). Please note that this book uses a [Contributor Code of Conduct][code-conduct]. By contributing to this book, you agree to abide by its terms. If you feel like contributing to the book, please get in touch, we'd be happy to hear from you. If you want to take a peek at all the code behind the book visit the book GitHub [repo][github-repo]. Secondly, the release of the [bookdown][bookdown] package by Yihui Xie has made it incredibly easy to collaboratively write, update and maintain this book using [RMarkdown][rmarkdown], [RStudio][rstudio] and [GitHub][github]. Without the bookdown package this book wouldn't exist in its current format. Lastly, R is not just software, it's also a wonderful open community with many thousands of contributors all working to make R even easier to learn and use. This is our small contribution.  
+We decided to write this book as a freely available open source document for a number of reasons. Firstly, we hope this book will be a living document that naturally evolves over time. If you find any errors in the book or want to make a suggestion on how to improve it, please open an issue on the GitHub [site][github-issue] or even better click on the edit button `r icons::fontawesome('edit', style = 'solid')` in the navigation bar at the top of this page and issue a pull request (only available on the web version of this book). Please note that this book uses a [Contributor Code of Conduct][code-conduct]. By contributing to this book, you agree to abide by its terms. If you feel like contributing to the book, please get in touch, we'd be happy to hear from you. If you want to take a peek at all the code behind the book visit the book GitHub [repo][github-repo]. Secondly, the release of the [bookdown][bookdown] package by Yihui Xie has made it incredibly easy to collaboratively write, update and maintain this book using [RMarkdown][rmarkdown], [RStudio][rstudio] and [GitHub][github]. Without the bookdown package this book wouldn't exist in its current format. Lastly, R is not just software, it's also a wonderful open community with many thousands of contributors all working to make R even easier to learn and use. This is our small contribution.  
 
 ## Who are we? {#whoarewe}
 
@@ -194,7 +182,7 @@ a column separator -->
 
 ## How to use this book
 
-For the best experience we recommend that you read the web version of this book which you can find [here][book]. The web version includes a navbar at the top of the page where you can toggle the sidebar on and off `r icon::fontawesome('bars', style = 'solid')`, search through the book `r icon::fontawesome('search', style = 'solid')`, change the font, font size and page colour `r icon::fontawesome('font', style = 'solid')` and suggest revisions if you spot a typo or mistake `r icon::fontawesome('edit', style = 'solid')`. You can also download a pdf version of our book by clicking on the pdf icon `r icon::fontawesome('file-pdf', style = 'solid')`. 
+For the best experience we recommend that you read the web version of this book which you can find [here][book]. The web version includes a navbar at the top of the page where you can toggle the sidebar on and off `r icons::fontawesome('bars', style = 'solid')`, search through the book `r icons::fontawesome('search', style = 'solid')`, change the font, font size and page colour `r icons::fontawesome('font', style = 'solid')` and suggest revisions if you spot a typo or mistake `r icons::fontawesome('edit', style = 'solid')`. You can also download a pdf version of our book by clicking on the pdf icon `r icons::fontawesome('file-pdf', style = 'solid')`. 
 
 We use a few typographical conventions throughout this book. 
 
@@ -218,9 +206,9 @@ A series of actions required to access menu commands in RStudio are identified a
 
 Clickable links to sections in the book or to external websites are highlighted in light blue text, i.e. [link][cran].
 
-Links to short 'how-to' videos that accompany this book are indicated by a video `r icon::icon_style(icon::fontawesome(name = 'video', style = 'solid'), fill = "#165788", scale = 1.3)` icon.
+Links to short 'how-to' videos that accompany this book are indicated by a video `r icons::icon_style(icons::fontawesome(name = 'video', style = 'solid'), fill = "#165788", scale = 1.3)` icon.
 
-Links to exercises can be found at the end of each Chapter and are highlighted by a info `r icon::icon_style(icon::fontawesome(name = 'info-circle', style = 'solid'), fill = "#416dde", scale = 1.3)` icon. 
+Links to exercises can be found at the end of each Chapter and are highlighted by a info `r icons::icon_style(icons::fontawesome(name = 'info-circle', style = 'solid'), fill = "#416dde", scale = 1.3)` icon. 
 
 ## Book website
 
