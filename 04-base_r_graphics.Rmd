@@ -107,14 +107,14 @@ hist(flowers$height)
 The `hist()` function  automatically creates the breakpoints (or bins) in the histogram using the [Sturges][sturges] formula unless you specify otherwise by using the `break =` argument. For example, let's say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum value of `height` (18 rounded up) in steps of 1 using the `seq()`\index{seq()} function. We can then use this sequence with the `breaks =` argument. While we're at it, let's also replace the ugly title for something a little better using the `main =` argument
 
 ```{r plot8, echo=TRUE, out.width="75%", fig.align="center"}
-brk <- seq(0,18,1)
+brk <- seq(from = 0, to = 18, by = 1)
 hist(flowers$height, breaks = brk, main = "petunia height")
 ```
 
 You can also display the histogram as a proportion rather than a frequency by using the `freq = FALSE` argument.
 
 ```{r plot9, echo=TRUE, out.width="75%", fig.align="center"}
-brk <- seq(0,18,1)
+brk <- seq(from = 0, to = 18, by = 1)
 hist(flowers$height, breaks = brk, main = "petunia height",
       freq = FALSE)
 ```

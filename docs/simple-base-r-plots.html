@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2021-08-24" />
+<meta name="date" content="2021-10-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -466,11 +466,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="simple-base-r-plots.html#cb192-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot7-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>The <code>hist()</code> function automatically creates the breakpoints (or bins) in the histogram using the <a href="https://en.wikipedia.org/wiki/Histogram">Sturges</a> formula unless you specify otherwise by using the <code>break =</code> argument. For example, let’s say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum value of <code>height</code> (18 rounded up) in steps of 1 using the <code>seq()</code> function. We can then use this sequence with the <code>breaks =</code> argument. While we’re at it, let’s also replace the ugly title for something a little better using the <code>main =</code> argument</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="simple-base-r-plots.html#cb193-1" aria-hidden="true" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">18</span>,<span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="simple-base-r-plots.html#cb193-1" aria-hidden="true" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb193-2"><a href="simple-base-r-plots.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height, <span class="at">breaks =</span> brk, <span class="at">main =</span> <span class="st">&quot;petunia height&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot8-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p>You can also display the histogram as a proportion rather than a frequency by using the <code>freq = FALSE</code> argument.</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="simple-base-r-plots.html#cb194-1" aria-hidden="true" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">0</span>,<span class="dv">18</span>,<span class="dv">1</span>)</span>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="simple-base-r-plots.html#cb194-1" aria-hidden="true" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb194-2"><a href="simple-base-r-plots.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height, <span class="at">breaks =</span> brk, <span class="at">main =</span> <span class="st">&quot;petunia height&quot;</span>,</span>
 <span id="cb194-3"><a href="simple-base-r-plots.html#cb194-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot9-1.png" width="75%" style="display: block; margin: auto;" /></p>
