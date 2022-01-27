@@ -1,6 +1,6 @@
 # Data in R {#data_r}
 
-Until now, you've created fairly simple data in R and stored it in as a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
+Until now, you've created fairly simple data in R and stored it as a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
 
 In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate (wrangle) and summarise data and finally how to export data from R to an external file.
 
@@ -35,7 +35,7 @@ logi <- TRUE
 class(logi)
 ```
 
-Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[typeOfData]()` family of functions will return either a `TRUE` or a `FALSE`.\index{is.numeric()} \index{is.character()} \index{is.logical()}
+Alternatively, you can ask if an object is a specific class using using a logical test. The `is.[classOfData]()` family of functions will return either a `TRUE` or a `FALSE`.\index{is.numeric()} \index{is.character()} \index{is.logical()}
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 is.numeric(num)
@@ -228,7 +228,7 @@ str(dataf)
 
 The `str()` function gives us the data frame dimensions and also reminds us that `dataf` is a `data.frame` type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you how to comment blocks in RStudio [here](#proj_doc). 
 
-Also notice that R has automatically decided that our `p.names` variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = FALSE`. Now our strings are not automatically converted to factors and remain as characters (`chr`). Note, from R version 4.0.0 the default is now `stringsAsFactors = FALSE`.  
+Also notice that R has automatically decided that our `p.names` variable should be a character (`chr`) class variable when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn't such a good idea we can change the default behaviour of the `data.frame()` function by including the argument `stringsAsFactors = TRUE`. Now our strings are automatically converted to factors.
 
 ```{r dataf4, echo=TRUE, collapse=TRUE}
 p.height <- c(180, 155, 160, 167, 181)
@@ -236,7 +236,7 @@ p.weight <- c(65, 50, 52, 58, 70)
 p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
 
 dataf <- data.frame(height = p.height, weight = p.weight, names = p.names, 
-										stringsAsFactors = FALSE)
+										stringsAsFactors = TRUE)
 str(dataf)
 ```
 
@@ -310,7 +310,7 @@ flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t",
                         stringsAsFactors = TRUE)
 ```
 
-There are a few things to note about the above command. First, the file path and the filename (including the file extension) needs to be enclosed in either single or double quotes (i.e. `data/flower.txt` bit) as the `read.table()` function expects this to be a character string. If your working directory is already set to the directory which contains the file, you don’t need to include the entire file path just the filename. In the example above, the file path is separated with a single forward slash `/`. This will work regardless of the operating system you are using and we recommend you stick with this. However, Windows users may be more familiar with the single backslash notation and if you want to keep using this you will need to include them as double backslashes. Note though that the double backslash notation will **not** work on computers using Mac OSX or Linux operating systems. 
+There are a few things to note about the above command. First, the file path and the filename (including the file extension) needs to be enclosed in either single or double quotes (i.e. the `data/flower.txt` bit) as the `read.table()` function expects this to be a character string. If your working directory is already set to the directory which contains the file, you don’t need to include the entire file path just the filename. In the example above, the file path is separated with a single forward slash `/`. This will work regardless of the operating system you are using and we recommend you stick with this. However, Windows users may be more familiar with the single backslash notation and if you want to keep using this you will need to include them as double backslashes. Note though that the double backslash notation will **not** work on computers using Mac OSX or Linux operating systems. 
 
 ```{r df2, echo=TRUE, eval=FALSE}
 flowers <- read.table(file = 'C:\\Documents\\Prog1\\data\\flower.txt', 
@@ -383,7 +383,7 @@ but when we take a look at our data frame using `str()`
 str(flowers_bad)
 ```
 
-We can see an obvious problem, all of our variables have been imported as factors and are variables are named `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)). But why are they factors rather than character strings? Well, this is because when we use the `read.table()` function any variable containing character strings is converted to a factor by default (unless we use the `stringsAsFactors =` argument as above).
+We can see an obvious problem, all of our variables have been imported as factors and are variables are named `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors, R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)).
 
 ### Other import options {#import_other}
 
@@ -396,7 +396,7 @@ library(read.table)
 all_data <- fread(file = 'data/flower.txt')
 ```
 
-Various functions from the `readr`\index{readr package} package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()`\index{read\_table()} function the `header = TRUE` argument is replaced by `col_names = TRUE`. Also, character class variables are not automatically converted to factors when using `read_table()` and the function returns a 'tibble' class object which is the tidyverse equivalent of a 'data.frame' object (see [here][tibbles] for differences). \index{read\_csv()} \index{read\_delim()} \index{read\_tsv()}
+Various functions from the `readr`\index{readr package} package are also very efficient at reading in large data files. The `readr` package is part of the '[tidyverse][tidyverse]' collection of packages and provides many equivalent functions to base R for importing data. The `readr` functions are used in a similar way to the `read.table()` or `read.csv()` functions and many of the arguments are the same (see `?readr::read_table` for more details). There are however some differences. For example, when using the `read_table()`\index{read\_table()} function the `header = TRUE` argument is replaced by `col_names = TRUE` and the function returns a `tibble` class object which is the tidyverse equivalent of a `data.frame` object (see [here][tibbles] for differences). \index{read\_csv()} \index{read\_delim()} \index{read\_tsv()}
 
 ```{r df9, echo=TRUE, eval=FALSE}
 library(readr)

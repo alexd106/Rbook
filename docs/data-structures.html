@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2021-11-18" />
+<meta name="date" content="2022-01-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -728,18 +728,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb98-4"><a href="data-structures.html#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
 <span id="cb98-5"><a href="data-structures.html#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></span></code></pre></div>
 <p>The <code>str()</code> function gives us the data frame dimensions and also reminds us that <code>dataf</code> is a <code>data.frame</code> type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you how to comment blocks in RStudio <a href="proj_doc.html#proj_doc">here</a>.</p>
-<p>Also notice that R has automatically decided that our <code>p.names</code> variable should be a factor when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn’t such a good idea we can change the default behaviour of the <code>data.frame()</code> function by including the argument <code>stringsAsFactors = FALSE</code>. Now our strings are not automatically converted to factors and remain as characters (<code>chr</code>). Note, from R version 4.0.0 the default is now <code>stringsAsFactors = FALSE</code>.</p>
+<p>Also notice that R has automatically decided that our <code>p.names</code> variable should be a character (<code>chr</code>) class variable when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn’t such a good idea we can change the default behaviour of the <code>data.frame()</code> function by including the argument <code>stringsAsFactors = TRUE</code>. Now our strings are automatically converted to factors.</p>
 <div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-structures.html#cb99-1" aria-hidden="true" tabindex="-1"></a>p.height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</span>
 <span id="cb99-2"><a href="data-structures.html#cb99-2" aria-hidden="true" tabindex="-1"></a>p.weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</span>
 <span id="cb99-3"><a href="data-structures.html#cb99-3" aria-hidden="true" tabindex="-1"></a>p.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</span>
 <span id="cb99-4"><a href="data-structures.html#cb99-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb99-5"><a href="data-structures.html#cb99-5" aria-hidden="true" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">height =</span> p.height, <span class="at">weight =</span> p.weight, <span class="at">names =</span> p.names, </span>
-<span id="cb99-6"><a href="data-structures.html#cb99-6" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb99-6"><a href="data-structures.html#cb99-6" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb99-7"><a href="data-structures.html#cb99-7" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(dataf)</span>
 <span id="cb99-8"><a href="data-structures.html#cb99-8" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></span>
 <span id="cb99-9"><a href="data-structures.html#cb99-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ height: num  180 155 160 167 181</span></span>
 <span id="cb99-10"><a href="data-structures.html#cb99-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
-<span id="cb99-11"><a href="data-structures.html#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></span></code></pre></div>
+<span id="cb99-11"><a href="data-structures.html#cb99-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></span></code></pre></div>
 <p> </p>
 </div>
 </div>
