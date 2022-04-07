@@ -212,7 +212,7 @@
 [winograd]: https://en.wikipedia.org/wiki/Winograd_Schema_Challenge
 [sturges]: https://en.wikipedia.org/wiki/Histogram
 [kernel-dens]: https://en.wikipedia.org/wiki/Kernel_density_estimation
-[dynamite-plot1]: http://biostat.mc.vanderbilt.edu/wiki/pub/Main/TatsukiRcode/Poster3.pdf
+[dynamite-plot1]: http://users.stat.umn.edu/~rend0020/Teaching/STAT8801-2015Spring/handouts/24-dynamite.pdf
 [dynamite-plot2]: https://thenode.biologists.com/leaving-bar-five-steps/research/
 [colours]: http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf
 [lowess]: https://en.wikipedia.org/wiki/Local_regression

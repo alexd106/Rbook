@@ -12,7 +12,7 @@ In this Chapter, we will focus on creating figures using a specialised package c
 
 Before we get going with making some plots of the `gg` variety, how about a quick history of one of the most commonly used packages in R? `ggplot2`\index{ggplot2 package} was based on a book called *Grammar of Graphics* by Leland Wilkinson (hence the gg in `ggplot2`), yours for only [£100][leland] or so. But before you spend all that money, see [here][leland-summary] for an interesting summary of Wilkinson's book. 
 
-The *Grammar of Graphics* approach moves away from the idea that to create, for example, a scatterplot, users should click the `scatterplot` button or use the `scatterplot()` function. Instead, by breaking figures down into their various components (e.g. the underlying statistics, the geometric arrangement, the theme, see Fig. 4.1), users will be able to manipulate each of these components (i.e. layers) and produce a tailor-made figure fit for their specific needs. Contrast this approach with the one used by, for example, Microsoft Excel. The user specifies the data and then clicks the scatterplot button. This inherently locks the user into many choices made by the software developer and not the user. Think of how easily you can spot an Excel scatterplot because other than a couple of pre-set options, there's really not much you can do to change the way the plot displays the data - you are at the mercy of the [insert corporation here] Gods.
+The *Grammar of Graphics* approach moves away from the idea that to create, for example, a scatterplot, users should click the `scatterplot` button or use the `scatterplot()` function. Instead, by breaking figures down into their various components (e.g. the underlying statistics, the geometric arrangement, the theme, see Fig. 5.1), users will be able to manipulate each of these components (i.e. layers) and produce a tailor-made figure fit for their specific needs. Contrast this approach with the one used by, for example, Microsoft Excel. The user specifies the data and then clicks the scatterplot button. This inherently locks the user into many choices made by the software developer and not the user. Think of how easily you can spot an Excel scatterplot because other than a couple of pre-set options, there's really not much you can do to change the way the plot displays the data - you are at the mercy of the [insert corporation here] Gods.
 
 \  
 
@@ -88,7 +88,7 @@ final_figure
 
 \  
 
-Before we go further, let's take a second and talk about what this figure is showing. On the y axes of the four plots we have the surface area of flower shoots, and on the x axes we have the weight of the flowers. Each column of plots shows whether the tip of the flower was removed 'notip' or retained 'tip'. Each row of plots identifies which experimental block in the greenhouse the plants were grown in, either 'block 1' or 'block 2'. 
+Before we go further, let's take a second and talk about what this figure is showing. On the y axes of the four plots we have the surface area of flower shoots, and on the x axes we have the weight of the flowers. Each column of plots shows whether the tip of the flower was removed (notip) or retained (tip). Each row of plots identifies which experimental block in the greenhouse the plants were grown in, either 'block 1' or 'block 2'. 
 
 The different coloured and shaped points within each plot represents plants grown at three nitrogen concentrations. These colours are used to distinguish which points correspond to a certain nitrogen concentration. For example, data points coloured green were plants grown in low nitrogen concentrations, brown in medium nitrogen and purple in high concentrations.
 
@@ -947,7 +947,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 
 \  
 
-If you run this yourself you'll see warning messages telling us that n rows contain either missing or non-finite values? That's because we've essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified is "removed" from the data). As a result of doing this our lines have now completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; `coord_cartesian()`.
+If you run this yourself you'll see warning messages telling us that n rows contain either missing or non-finite values. That's because we've essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified is "removed" from the data). As a result of doing this our lines have now completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; `coord_cartesian()`.
 
 `coord_cartesian()` works in much the same way, but instead of chopping out data, it instead zooms in. Doing so means that the entire dataset is maintained (and any trends are maintained).
 
@@ -980,7 +980,7 @@ Notice now that the trends are maintained (as the lines are being informed by da
 
 ### Layering layers
 
-Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
+Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke because the order of our layers was wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
 
 The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()`\index{geom\_point()} comes before `geom_col()`\index{geom\_col()}, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.
 
