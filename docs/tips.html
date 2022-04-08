@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -471,7 +471,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb291-17"><a href="tips.html#cb291-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ylim</span>(<span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">150</span>))</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/axis-limits-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>If you run this yourself you’ll see warning messages telling us that n rows contain either missing or non-finite values? That’s because we’ve essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified is “removed” from the data). As a result of doing this our lines have now completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; <code>coord_cartesian()</code>.</p>
+<p>If you run this yourself you’ll see warning messages telling us that n rows contain either missing or non-finite values. That’s because we’ve essentially chopped out a huge part of our data using this method (everything outside of the ranges that we specified is “removed” from the data). As a result of doing this our lines have now completely changed direction. Notice that for low nitrogen concentration, the line is being drawn using only two points? This may, or may not be a problem depending on the aim we have, but we can use an alternative method; <code>coord_cartesian()</code>.</p>
 <p><code>coord_cartesian()</code> works in much the same way, but instead of chopping out data, it instead zooms in. Doing so means that the entire dataset is maintained (and any trends are maintained).</p>
 <p><img src="images/coords.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="tips.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
@@ -496,7 +496,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="layering-layers" class="section level3" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Layering layers</h3>
-<p>Remember that <code>ggplot2</code> works like painting. Let’s imagine we were one of the great renaissance painters. We’ve just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we’ve finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we’ve painted over the Duke because the order of our layers were wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.</p>
+<p>Remember that <code>ggplot2</code> works like painting. Let’s imagine we were one of the great renaissance painters. We’ve just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we’ve finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we’ve painted over the Duke because the order of our layers was wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.</p>
 <p>The exact same is true in <code>ggplot2</code> (minus the chopping off of heads, though your situation may vary). The layers are read and “painted” in order of their appearance in the code. If <code>geom_point()</code> comes before <code>geom_col()</code>, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.</p>
 <p>We’ll move both the points and the overall black dashed line down in the code so that they are superimposed over the nitrogen lines:</p>
 <p> </p>

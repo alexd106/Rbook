@@ -24,7 +24,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-01-27" />
+<meta name="date" content="2022-04-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -545,7 +545,7 @@ The most basic example of a <code>for</code> loop is:</p>
 <ul>
 <li><p>Some simulations (e.g. the Ricker model can, in part, be built using loops)</p></li>
 <li><p>Recursive relationships (a relationship which depends on the value of the previous relationship [“to understand recursion, you must understand recursion”])</p></li>
-<li><p>More complex problems (e.g., how long since the last badger was seen at site <span class="math inline">\(j\)</span>, given a pine marten was seen at time <span class="math inline">\(t\)</span>, at the same location <span class="math inline">\(j\)</span> as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detection’s)</p></li>
+<li><p>More complex problems (e.g., how long since the last badger was seen at site <span class="math inline">\(j\)</span>, given a pine marten was seen at time <span class="math inline">\(t\)</span>, at the same location <span class="math inline">\(j\)</span> as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detections)</p></li>
 <li><p>While loops (keep jumping until you’ve reached the moon)</p></li>
 </ul>
 </div>
@@ -557,7 +557,7 @@ The most basic example of a <code>for</code> loop is:</p>
 <p>Your go to apply function will often be <code>lapply()</code> at least in the beginning. The way that <code>lapply()</code> works, and the reason it is often a good alternative to for loops, is that it will go through each element in a list and perform a task (i.e. run a function). It has the added benefit that it will output the results as a list - something you’d have to otherwise code yourself into a loop.</p>
 <p>An <code>lapply()</code> has the following structure:</p>
 <div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="loops.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(X, FUN)</span></code></pre></div>
-<p>Here <code>X</code> is the vector which we want to do <em>something</em> to. <code>FUN</code> stands for how much fun this is (just kidding!). It’s also is short for “function”.</p>
+<p>Here <code>X</code> is the vector which we want to do <em>something</em> to. <code>FUN</code> stands for how much fun this is (just kidding!). It’s also short for “function”.</p>
 <p>Let’s start with a simple demonstration first. Let’s use the <code>lapply()</code> function create a sequence from 1 to 5 and add 1 to each observation (just like we did when we used a for loop):</p>
 <div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="loops.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="fu">lapply</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">4</span>, <span class="cf">function</span>(a) {a <span class="sc">+</span> <span class="dv">1</span>})</span>
 <span id="cb406-2"><a href="loops.html#cb406-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [[1]]</span></span>
