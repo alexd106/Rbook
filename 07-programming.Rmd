@@ -116,7 +116,7 @@ multiply_columns <- function(x, y) {
 }
 ```
 
-No that we've defined our function we can use it. Let's use the function to multiple the columns `city$porto` and `city$aberdeen` and assign the result to a new object called `porto_aberdeen_func`
+Now that we've defined our function we can use it. Let's use the function to multiple the columns `city$porto` and `city$aberdeen` and assign the result to a new object called `porto_aberdeen_func`
 
 ```{r first_function2, collapse=TRUE}
 porto_aberdeen_func <- multiply_columns(x = city$porto, y = city$aberdeen)
@@ -245,7 +245,7 @@ Let's quickly try:
 milk(eggs = TRUE)
 ```
 
-And the joke is maintained. Notice in this case we have actually specified that we are fulfilling the `eggs` argument (`eggs = TRUE`)? In some functions, as with ours here, when a function only has a single argument we can be lazy and not name which argument we are fulfilling. In reality, it's generally viewed as better practice to explicitly state which arguments you are fulfilling to avoid potential mistakes.
+And the joke is maintained. Notice in this case we have actually specified that we are fulfilling the `eggs` argument (`eggs = TRUE`). In some functions, as with ours here, when a function only has a single argument we can be lazy and not name which argument we are fulfilling. In reality, it's generally viewed as better practice to explicitly state which arguments you are fulfilling to avoid potential mistakes.
 
 OK, lets go back to the `multiply_columns()` function we created above and explain how we've used conditional statements to warn the user if `NA` values are produced when we multiple any two columns together. 
 
@@ -469,7 +469,7 @@ In general loops are implemented inefficiently in R and should be avoided when b
 
  - Recursive relationships (a relationship which depends on the value of the previous relationship ["to understand recursion, you must understand recursion"])
 
- - More complex problems (e.g., how long since the last badger was seen at site $j$, given a pine marten was seen at time $t$, at the same location $j$ as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detection's)
+ - More complex problems (e.g., how long since the last badger was seen at site $j$, given a pine marten was seen at time $t$, at the same location $j$ as the badger, where the pine marten was detected in a specific 6 hour period, but exclude badgers seen 30 minutes before the pine marten arrival, repeated for all pine marten detections)
 
  - While loops (keep jumping until you've reached the moon)
 
@@ -488,7 +488,7 @@ An `lapply()` has the following structure:
 lapply(X, FUN)
 ```
 
-Here `X` is the vector which we want to do *something* to. `FUN` stands for how much fun this is (just kidding!). It's also is short for "function".
+Here `X` is the vector which we want to do *something* to. `FUN` stands for how much fun this is (just kidding!). It's also short for "function".
 
 Let's start with a simple demonstration first. Let's use the `lapply()` function create a sequence from 1 to 5 and add 1 to each observation (just like we did when we used a for loop):
 
