@@ -272,7 +272,7 @@ my_seq7 <- rep(c(3, 1, 10, 7), each = 3) # repeats each
 my_seq7
 ```
 
-Note in the code above how we've used the `c()` function inside the `seq()` function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.
+Note in the code above how we've used the `c()` function inside the `rep()` function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 in_vec <- c(3, 1, 10, 7)
@@ -431,14 +431,14 @@ height_ord <- order(height)
 height_ord
 ```
 
-OK, what's going on here? The first value, `2`, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element `5` which is 181. Now that we have a vector of the position of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
+OK, what's going on here? The first value, `2`, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element `5` which is 181. Now that we have a vector of the positional indices of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 names_ord <- p.names[height_ord]
 names_ord
 ```
 
-You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in [Chapter 3](#data_r).
+You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By using the 'order()' on one column, a vector of positional indices is created of the values of the column in ascending order  This vector can be used on the second column, as the index of elements which will return a vector of values based on the first column.
 
 ### Vectorisation
 
