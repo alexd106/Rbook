@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.5 Setting up a project in RStudio | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.5 Setting up a project in RStudio | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="setup_git.html"/>
 <link rel="next" href="use_git.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,11 +422,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setting-up-a-project-in-rstudio" class="section level2" number="9.5">
-<h2><span class="header-section-number">9.5</span> Setting up a project in RStudio</h2>
+<div id="setting-up-a-project-in-rstudio" class="section level2 hasAnchor" number="9.5">
+<h2><span class="header-section-number">9.5</span> Setting up a project in RStudio<a href="setting-up-a-project-in-rstudio.html#setting-up-a-project-in-rstudio" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that you’re all set up, let’s create your first version controlled RStudio project. There are a couple of different approaches you can use to do this. You can either setup a remote GitHub repository first then connect an RStudio project to this repository (we’ll call this Option 1). Another option is to setup a local repository first and then link a remote GitHub repository to this repository (Option 2). You can also connect an existing project to a GitHub repository but we won’t cover this here. We suggest that if you’re completely new to Git and GitHub then use Option 1 as this approach sets up your local Git repository nicely and you can <strong>push</strong> and <strong>pull</strong> immediately. Option 2 requires a little more work and therefore there are more opportunities to go wrong. We will cover both of these options below.</p>
-<div id="opt1" class="section level3" number="9.5.1">
-<h3><span class="header-section-number">9.5.1</span> Option 1 - GitHub first</h3>
+<div id="opt1" class="section level3 hasAnchor" number="9.5.1">
+<h3><span class="header-section-number">9.5.1</span> Option 1 - GitHub first<a href="setting-up-a-project-in-rstudio.html#opt1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To use the GitHub first approach you will first need to create a <strong>repository (repo)</strong> on GitHub. Go to your <a href="https://github.com/">GitHub page</a> and sign in if necessary. Click on the ‘Repositories’ tab at the top and then on the green ‘New’ button on the right</p>
 <p> </p>
 <p><img src="images/new_repo.png" width="60%" style="display: block; margin: auto;" /></p>
@@ -452,8 +451,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/proj_setup3.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="opt2" class="section level3" number="9.5.2">
-<h3><span class="header-section-number">9.5.2</span> Option 2 - RStudio first</h3>
+<div id="opt2" class="section level3 hasAnchor" number="9.5.2">
+<h3><span class="header-section-number">9.5.2</span> Option 2 - RStudio first<a href="setting-up-a-project-in-rstudio.html#opt2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>An alternative approach is to create a local RStudio project first and then link to a remote Github repository. As we mentioned before, this option is more involved than Option 1 so feel free to skip this now and come back later to it if you’re interested. This option is also useful if you just want to create a local RStudio project linked to a local Git repository (i.e. no GitHub involved). If you want to do this then just follow the instructions below omitting the GitHub bit.</p>
 <p> </p>
 <p>In RStudio click on the <code>File</code> -&gt; <code>New Project</code> menu and select the <code>New Directory</code> option.</p>
@@ -529,7 +528,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -560,7 +558,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

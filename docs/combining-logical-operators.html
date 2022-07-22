@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.4 Combining logical operators | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.4 Combining logical operators | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="conditional-statements.html"/>
 <link rel="next" href="loops.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,26 +422,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="combining-logical-operators" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> Combining logical operators</h2>
+<div id="combining-logical-operators" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> Combining logical operators<a href="combining-logical-operators.html#combining-logical-operators" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The functions that we’ve created so far have been perfectly suited for what we need, though they have been fairly simplistic. Let’s try creating a function that has a little more complexity to it. We’ll make a function to determine if today is going to be a good day or not based on two criteria. The first criteria will depend on the day of the week (Friday or not) and the second will be whether or not your code is working (TRUE or FALSE). To accomplish this, we’ll be using <code>if</code> and <code>else</code> statements. The complexity will come from <code>if</code> statements immediately following the relevant <code>else</code> statement. We’ll use such conditional statements four times to achieve all combinations of it being a Friday or not, and if your code is working or not.</p>
-<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="combining-logical-operators.html#cb393-1" aria-hidden="true" tabindex="-1"></a>good.day <span class="ot">&lt;-</span> <span class="cf">function</span>(code.working, day) {</span>
-<span id="cb393-2"><a href="combining-logical-operators.html#cb393-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">==</span> <span class="st">&quot;Friday&quot;</span>) {</span>
-<span id="cb393-3"><a href="combining-logical-operators.html#cb393-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></span>
-<span id="cb393-4"><a href="combining-logical-operators.html#cb393-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">==</span> <span class="st">&quot;Friday&quot;</span>) {</span>
-<span id="cb393-5"><a href="combining-logical-operators.html#cb393-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Oh well, but at least it&#39;s Friday! Pub time!&quot;</span></span>
-<span id="cb393-6"><a href="combining-logical-operators.html#cb393-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">!=</span> <span class="st">&quot;Friday&quot;</span>) {</span>
-<span id="cb393-7"><a href="combining-logical-operators.html#cb393-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;So close to a good day... shame it&#39;s not a Friday&quot;</span></span>
-<span id="cb393-8"><a href="combining-logical-operators.html#cb393-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">!=</span> <span class="st">&quot;Friday&quot;</span>) {</span>
-<span id="cb393-9"><a href="combining-logical-operators.html#cb393-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Hello darkness.&quot;</span></span>
-<span id="cb393-10"><a href="combining-logical-operators.html#cb393-10" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb393-11"><a href="combining-logical-operators.html#cb393-11" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb393-12"><a href="combining-logical-operators.html#cb393-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-13"><a href="combining-logical-operators.html#cb393-13" aria-hidden="true" tabindex="-1"></a><span class="fu">good.day</span>(<span class="at">code.working =</span> <span class="cn">TRUE</span>, <span class="at">day =</span> <span class="st">&quot;Friday&quot;</span>)</span>
-<span id="cb393-14"><a href="combining-logical-operators.html#cb393-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></span>
-<span id="cb393-15"><a href="combining-logical-operators.html#cb393-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb393-16"><a href="combining-logical-operators.html#cb393-16" aria-hidden="true" tabindex="-1"></a><span class="fu">good.day</span>(<span class="cn">FALSE</span>, <span class="st">&quot;Tuesday&quot;</span>)</span>
-<span id="cb393-17"><a href="combining-logical-operators.html#cb393-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Hello darkness.&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="combining-logical-operators.html#cb395-1" aria-hidden="true" tabindex="-1"></a>good.day <span class="ot">&lt;-</span> <span class="cf">function</span>(code.working, day) {</span>
+<span id="cb395-2"><a href="combining-logical-operators.html#cb395-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">==</span> <span class="st">&quot;Friday&quot;</span>) {</span>
+<span id="cb395-3"><a href="combining-logical-operators.html#cb395-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></span>
+<span id="cb395-4"><a href="combining-logical-operators.html#cb395-4" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">==</span> <span class="st">&quot;Friday&quot;</span>) {</span>
+<span id="cb395-5"><a href="combining-logical-operators.html#cb395-5" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Oh well, but at least it&#39;s Friday! Pub time!&quot;</span></span>
+<span id="cb395-6"><a href="combining-logical-operators.html#cb395-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">!=</span> <span class="st">&quot;Friday&quot;</span>) {</span>
+<span id="cb395-7"><a href="combining-logical-operators.html#cb395-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;So close to a good day... shame it&#39;s not a Friday&quot;</span></span>
+<span id="cb395-8"><a href="combining-logical-operators.html#cb395-8" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (code.working <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;&amp;</span> day <span class="sc">!=</span> <span class="st">&quot;Friday&quot;</span>) {</span>
+<span id="cb395-9"><a href="combining-logical-operators.html#cb395-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">&quot;Hello darkness.&quot;</span></span>
+<span id="cb395-10"><a href="combining-logical-operators.html#cb395-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb395-11"><a href="combining-logical-operators.html#cb395-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb395-12"><a href="combining-logical-operators.html#cb395-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb395-13"><a href="combining-logical-operators.html#cb395-13" aria-hidden="true" tabindex="-1"></a><span class="fu">good.day</span>(<span class="at">code.working =</span> <span class="cn">TRUE</span>, <span class="at">day =</span> <span class="st">&quot;Friday&quot;</span>)</span>
+<span id="cb395-14"><a href="combining-logical-operators.html#cb395-14" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;BEST. DAY. EVER. Stop while you are ahead and go to the pub!&quot;</span></span>
+<span id="cb395-15"><a href="combining-logical-operators.html#cb395-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb395-16"><a href="combining-logical-operators.html#cb395-16" aria-hidden="true" tabindex="-1"></a><span class="fu">good.day</span>(<span class="cn">FALSE</span>, <span class="st">&quot;Tuesday&quot;</span>)</span>
+<span id="cb395-17"><a href="combining-logical-operators.html#cb395-17" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Hello darkness.&quot;</span></span></code></pre></div>
 <p>Notice that we never specified what to do if the day was not a Friday? That’s because, for this function, the only thing that matters is whether or not it’s Friday.</p>
 <p>We’ve also been using logical operators whenever we’ve used <code>if</code> statements. Logical operators are the final piece of the logical conditions jigsaw. Below is a table which summarises operators. The first two are logical operators and the final six are relational operators. You can use any of these when you make your own functions (or loops).</p>
 <p> </p>
@@ -524,7 +523,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -555,7 +553,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

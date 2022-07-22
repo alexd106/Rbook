@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.2 Functions in R | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.2 Functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="looking-behind-the-curtain.html"/>
 <link rel="next" href="conditional-statements.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="functions-in-r" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> Functions in R</h2>
+<div id="functions-in-r" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> Functions in R<a href="functions-in-r.html#functions-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Functions are your loyal servants, waiting patiently to do your bidding to the best of their ability. They’re made with the utmost care and attention … though sometimes may end up being something of a Frankenstein’s monster - with an extra limb or two and a head put on backwards. But no matter how ugly they may be they’re completely faithful to you.</p>
 <p>They’re also very stupid.</p>
 <p>If we asked you to go to the supermarket to get us some ingredients to make <em>Francesinha</em>, even if you don’t know what the heck that is, you’d be able to guess and bring at least <em>something</em> back. Or you could decide to make something else. Or you could ask a celebrity chef for help. Or you could pull out your phone and search online for what <a href="https://en.wikipedia.org/wiki/Francesinha"><em>Francesinha</em></a> is. The point is, even if we didn’t give you enough information to do the task, you’re intelligent enough to, at the very least, try to find a work around.</p>
@@ -432,114 +431,114 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Remember two things: the intelligence of code comes from the coder, not the computer and functions need exact instructions to work.</p>
 <p>To prevent functions from being <em>too</em> stupid you must provide the information the function needs in order for it to function. As with the <em>Francesinha</em> example, if we’d supplied a recipe list to the function, it would have managed just fine. We call this “fulfilling an argument”. The vast majority of functions require the user to fulfill at least one argument.</p>
 <p>This can be illustrated in the pseudocode below. When we make a function we can specify what arguments the user must fulfill (e.g. <code>argument1</code> and <code>argument2</code>), as well as what to do once it has this information (<code>expression</code>):</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="functions-in-r.html#cb371-1" aria-hidden="true" tabindex="-1"></a>nameOfFunction <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2, ...) {expression}</span></code></pre></div>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="functions-in-r.html#cb373-1" aria-hidden="true" tabindex="-1"></a>nameOfFunction <span class="ot">&lt;-</span> <span class="cf">function</span>(argument1, argument2, ...) {expression}</span></code></pre></div>
 <p>The first thing to note is that we’ve used the function <code>function()</code> to create a new function called <code>nameOfFunction</code>. To walk through the above code; we’re creating a function called <code>nameOfFunction</code>. Within the round brackets we specify what information (i.e. arguments) the function requires to run (as many or as few as needed). These arguments are then passed to the expression part of the function. The expression can be any valid R command or set of R commands and is usually contained between a pair of braces <code>{ }</code> (if a function is only one line long you can omit the braces). Once you run the above code, you can then use your new function by typing:</p>
-<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="functions-in-r.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nameOfFunction</span>(argument1, argument2)</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="functions-in-r.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nameOfFunction</span>(argument1, argument2)</span></code></pre></div>
 <p>Confused? Let’s work through an example to help clear things up.</p>
 <p>First we are going to create a data frame called <code>city</code>, where columns <code>porto</code>, <code>aberdeen</code>, <code>nairobi</code>, and <code>genoa</code> are filled with 100 random values drawn from a bag (using the <code>rnorm()</code> function to draw random values from a Normal distribution with mean 0 and standard deviation of 1). We also include a “problem”, for us to solve later, by including 10 <code>NA</code> values within the <code>nairobi</code> column (using <code>rep(NA, 10)</code>).</p>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="functions-in-r.html#cb373-1" aria-hidden="true" tabindex="-1"></a>city <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb373-2"><a href="functions-in-r.html#cb373-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">porto =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb373-3"><a href="functions-in-r.html#cb373-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">aberdeen =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
-<span id="cb373-4"><a href="functions-in-r.html#cb373-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nairobi =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">90</span>)),</span>
-<span id="cb373-5"><a href="functions-in-r.html#cb373-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">genoa =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
-<span id="cb373-6"><a href="functions-in-r.html#cb373-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="functions-in-r.html#cb375-1" aria-hidden="true" tabindex="-1"></a>city <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb375-2"><a href="functions-in-r.html#cb375-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">porto =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb375-3"><a href="functions-in-r.html#cb375-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">aberdeen =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>),</span>
+<span id="cb375-4"><a href="functions-in-r.html#cb375-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">nairobi =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="cn">NA</span>, <span class="dv">10</span>), <span class="fu">rnorm</span>(<span class="dv">90</span>)),</span>
+<span id="cb375-5"><a href="functions-in-r.html#cb375-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">genoa =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb375-6"><a href="functions-in-r.html#cb375-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>Let’s say that you want to multiply the values in the variables <code>Porto</code> and <code>Aberdeen</code> and create a new object called <code>porto_aberdeen</code>. We can do this “by hand” using:</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="functions-in-r.html#cb374-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="functions-in-r.html#cb376-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span></code></pre></div>
 <p>We’ve now created an object called <code>porto_aberdeen</code> by multiplying the vectors <code>city$porto</code> and <code>city$aberdeen</code>. Simple. If this was all we needed to do, we can stop here. R works with vectors, so doing these kinds of operations in R is actually much simpler than other programming languages, where this type of code might require loops (we say that R is a vectorised language). Something to keep in mind for later is that doing these kinds of operations with loops can be much slower compared to vectorisation.</p>
 <p>But what if we want to repeat this multiplication many times? Let’s say we wanted to multiply columns <code>porto</code> and <code>aberdeen</code>, <code>aberdeen</code> and <code>genoa</code>, and <code>nairobi</code> and <code>genoa</code>. In this case we could copy and paste the code, replacing the relevant information.</p>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="functions-in-r.html#cb375-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span>
-<span id="cb375-2"><a href="functions-in-r.html#cb375-2" aria-hidden="true" tabindex="-1"></a>aberdeen_genoa <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span>
-<span id="cb375-3"><a href="functions-in-r.html#cb375-3" aria-hidden="true" tabindex="-1"></a>nairobi_genoa <span class="ot">&lt;-</span> city<span class="sc">$</span>nairobi <span class="sc">*</span> city<span class="sc">$</span>genoa</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="functions-in-r.html#cb377-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span>
+<span id="cb377-2"><a href="functions-in-r.html#cb377-2" aria-hidden="true" tabindex="-1"></a>aberdeen_genoa <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen <span class="sc">*</span> city<span class="sc">$</span>aberdeen</span>
+<span id="cb377-3"><a href="functions-in-r.html#cb377-3" aria-hidden="true" tabindex="-1"></a>nairobi_genoa <span class="ot">&lt;-</span> city<span class="sc">$</span>nairobi <span class="sc">*</span> city<span class="sc">$</span>genoa</span></code></pre></div>
 <p>While this approach works, it’s easy to make mistakes. In fact, here we’ve “forgotten” to change <code>aberdeen</code> to <code>genoa</code> in the second line of code when copying and pasting. This is where writing a function comes in handy. If we were to write this as a function, there is only one source of potential error (within the function itself) instead of many copy-pasted lines of code (which we also cut down on by using a function).</p>
 <p>In this case, we’re using some fairly trivial code where it’s maybe hard to make a genuine mistake. But what if we increased the complexity?</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="functions-in-r.html#cb376-1" aria-hidden="true" tabindex="-1"></a>city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen <span class="sc">/</span> city<span class="sc">$</span>porto <span class="sc">+</span> (city<span class="sc">$</span>porto <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span>(city<span class="sc">$</span>aberdeen)) </span>
-<span id="cb376-2"><a href="functions-in-r.html#cb376-2" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">-</span> city<span class="sc">$</span>aberdeen <span class="sc">-</span> (city<span class="sc">$</span>porto <span class="sc">*</span> <span class="fu">sqrt</span>(city<span class="sc">$</span>aberdeen <span class="sc">+</span> <span class="dv">10</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="functions-in-r.html#cb378-1" aria-hidden="true" tabindex="-1"></a>city<span class="sc">$</span>porto <span class="sc">*</span> city<span class="sc">$</span>aberdeen <span class="sc">/</span> city<span class="sc">$</span>porto <span class="sc">+</span> (city<span class="sc">$</span>porto <span class="sc">*</span> <span class="dv">10</span><span class="sc">^</span>(city<span class="sc">$</span>aberdeen)) </span>
+<span id="cb378-2"><a href="functions-in-r.html#cb378-2" aria-hidden="true" tabindex="-1"></a>                  <span class="sc">-</span> city<span class="sc">$</span>aberdeen <span class="sc">-</span> (city<span class="sc">$</span>porto <span class="sc">*</span> <span class="fu">sqrt</span>(city<span class="sc">$</span>aberdeen <span class="sc">+</span> <span class="dv">10</span>))</span></code></pre></div>
 <p>Now imagine having to copy and paste this three times, and in each case having to change the <code>porto</code> and <code>aberdeen</code> variables (especially if we had to do it more than three times).</p>
 <p>What we could do instead is generalise our code for <code>x</code> and <code>y</code> columns instead of naming specific cities. If we did this, we could recycle the <code>x * y</code> code. Whenever we wanted to multiple columns together, we assign a city to either <code>x</code> or <code>y</code>. We’ll assign the multiplication to the objects <code>porto_aberdeen</code> and <code>aberdeen_nairobi</code> so we can come back to them later.</p>
-<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="functions-in-r.html#cb377-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign x and y values</span></span>
-<span id="cb377-2"><a href="functions-in-r.html#cb377-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> city<span class="sc">$</span>porto</span>
-<span id="cb377-3"><a href="functions-in-r.html#cb377-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen</span>
-<span id="cb377-4"><a href="functions-in-r.html#cb377-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb377-5"><a href="functions-in-r.html#cb377-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use multiplication code</span></span>
-<span id="cb377-6"><a href="functions-in-r.html#cb377-6" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
-<span id="cb377-7"><a href="functions-in-r.html#cb377-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb377-8"><a href="functions-in-r.html#cb377-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign new x and y values</span></span>
-<span id="cb377-9"><a href="functions-in-r.html#cb377-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen</span>
-<span id="cb377-10"><a href="functions-in-r.html#cb377-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> city<span class="sc">$</span>nairobi</span>
-<span id="cb377-11"><a href="functions-in-r.html#cb377-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb377-12"><a href="functions-in-r.html#cb377-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Reuse multiplication code</span></span>
-<span id="cb377-13"><a href="functions-in-r.html#cb377-13" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span></code></pre></div>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="functions-in-r.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign x and y values</span></span>
+<span id="cb379-2"><a href="functions-in-r.html#cb379-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> city<span class="sc">$</span>porto</span>
+<span id="cb379-3"><a href="functions-in-r.html#cb379-3" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen</span>
+<span id="cb379-4"><a href="functions-in-r.html#cb379-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-5"><a href="functions-in-r.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Use multiplication code</span></span>
+<span id="cb379-6"><a href="functions-in-r.html#cb379-6" aria-hidden="true" tabindex="-1"></a>porto_aberdeen <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
+<span id="cb379-7"><a href="functions-in-r.html#cb379-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-8"><a href="functions-in-r.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Assign new x and y values</span></span>
+<span id="cb379-9"><a href="functions-in-r.html#cb379-9" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> city<span class="sc">$</span>aberdeen</span>
+<span id="cb379-10"><a href="functions-in-r.html#cb379-10" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> city<span class="sc">$</span>nairobi</span>
+<span id="cb379-11"><a href="functions-in-r.html#cb379-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb379-12"><a href="functions-in-r.html#cb379-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Reuse multiplication code</span></span>
+<span id="cb379-13"><a href="functions-in-r.html#cb379-13" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span></code></pre></div>
 <p>This is essentially what a function does. OK down to business, let’s call our new function <code>multiply_columns()</code> and define it with two arguments, <code>x</code> and <code>y</code>. In the function code we simply return the value of <code>x * y</code> using the <code>return()</code> function. Using the <code>return()</code> function is not strictly necessary in this example as R will automatically return the value of the last line of code in our function. We include it here to make this explicit.</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="functions-in-r.html#cb378-1" aria-hidden="true" tabindex="-1"></a>multiply_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb378-2"><a href="functions-in-r.html#cb378-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> y)</span>
-<span id="cb378-3"><a href="functions-in-r.html#cb378-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="functions-in-r.html#cb380-1" aria-hidden="true" tabindex="-1"></a>multiply_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb380-2"><a href="functions-in-r.html#cb380-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(x <span class="sc">*</span> y)</span>
+<span id="cb380-3"><a href="functions-in-r.html#cb380-3" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 <p>Now that we’ve defined our function we can use it. Let’s use the function to multiple the columns <code>city$porto</code> and <code>city$aberdeen</code> and assign the result to a new object called <code>porto_aberdeen_func</code></p>
-<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="functions-in-r.html#cb379-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(<span class="at">x =</span> city<span class="sc">$</span>porto, <span class="at">y =</span> city<span class="sc">$</span>aberdeen)</span>
-<span id="cb379-2"><a href="functions-in-r.html#cb379-2" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func</span>
-<span id="cb379-3"><a href="functions-in-r.html#cb379-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1] -0.0271039316  1.0692418756  0.1762020961  0.7937515487  1.0208804826</span></span>
-<span id="cb379-4"><a href="functions-in-r.html#cb379-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   [6] -0.1257392568 -0.5904998447 -0.6480868055 -0.0274838361 -0.6296992886</span></span>
-<span id="cb379-5"><a href="functions-in-r.html#cb379-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [11]  0.3781015182  0.0348194856 -1.3435729288 -1.0783738409 -0.0237624367</span></span>
-<span id="cb379-6"><a href="functions-in-r.html#cb379-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [16]  0.0527715217 -0.1435110407  4.4834464648  0.2356918049  0.0030945069</span></span>
-<span id="cb379-7"><a href="functions-in-r.html#cb379-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [21] -0.0023356499  0.7077730725  0.3052200742 -0.0680644547 -0.4195448827</span></span>
-<span id="cb379-8"><a href="functions-in-r.html#cb379-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [26] -0.2786903212  0.4456127898  0.4802403063 -0.2346611849  0.8170724893</span></span>
-<span id="cb379-9"><a href="functions-in-r.html#cb379-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31]  0.8430070315 -1.1578375634 -1.2803795393 -0.0159546309  0.1404844793</span></span>
-<span id="cb379-10"><a href="functions-in-r.html#cb379-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [36]  1.9952104996  0.3063214651  0.7633821426  0.8121843166  0.4283116728</span></span>
-<span id="cb379-11"><a href="functions-in-r.html#cb379-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [41] -0.0627910549  0.2616546966 -0.3158219109  0.9029151637  0.2619514692</span></span>
-<span id="cb379-12"><a href="functions-in-r.html#cb379-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [46] -1.1236775724  0.1899409494 -0.7696898154  0.4144129251 -0.0109217101</span></span>
-<span id="cb379-13"><a href="functions-in-r.html#cb379-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [51]  0.2522957642  0.0851303844  0.9608189020 -0.0486039966  1.5124598219</span></span>
-<span id="cb379-14"><a href="functions-in-r.html#cb379-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [56]  0.6268615810  2.2292299786  0.0530220418  0.2494649599 -3.5915440466</span></span>
-<span id="cb379-15"><a href="functions-in-r.html#cb379-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61]  0.5608799460 -0.1020097005 -0.1639504515 -0.8040225122 -0.0951381418</span></span>
-<span id="cb379-16"><a href="functions-in-r.html#cb379-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [66]  1.2262305004 -0.3511010312  2.5312335278 -0.0956430565 -0.1914346562</span></span>
-<span id="cb379-17"><a href="functions-in-r.html#cb379-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [71] -0.0758249437 -0.2059592699  0.0006485403  1.3621396110 -2.6583144119</span></span>
-<span id="cb379-18"><a href="functions-in-r.html#cb379-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [76]  0.4047093754 -0.3830241076 -0.1628856179 -0.0539802293 -1.6259176021</span></span>
-<span id="cb379-19"><a href="functions-in-r.html#cb379-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [81] -0.1303760101  0.4858483360  0.0466225663 -0.8421676461 -0.2730569024</span></span>
-<span id="cb379-20"><a href="functions-in-r.html#cb379-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  [86] -0.0316633569  0.2893377493  0.7854002787  0.2841647313  1.8096234368</span></span>
-<span id="cb379-21"><a href="functions-in-r.html#cb379-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91]  0.1660530951 -1.4908517852 -1.1383464366 -0.8633621366 -0.1413209293</span></span>
-<span id="cb379-22"><a href="functions-in-r.html#cb379-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [96] -0.0007861139 -0.6621738809 -0.5557318527  0.2023141906 -0.1747606812</span></span></code></pre></div>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="functions-in-r.html#cb381-1" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(<span class="at">x =</span> city<span class="sc">$</span>porto, <span class="at">y =</span> city<span class="sc">$</span>aberdeen)</span>
+<span id="cb381-2"><a href="functions-in-r.html#cb381-2" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func</span>
+<span id="cb381-3"><a href="functions-in-r.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1] -1.407663111  0.036833366 -0.082999782  0.965580852 -0.790320426</span></span>
+<span id="cb381-4"><a href="functions-in-r.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   [6] -1.969629726 -0.163642852 -0.584774288  1.068658076 -1.340191087</span></span>
+<span id="cb381-5"><a href="functions-in-r.html#cb381-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [11]  1.434442585 -0.083620346  0.232634880  0.558422567  0.032759387</span></span>
+<span id="cb381-6"><a href="functions-in-r.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [16] -1.725388983  2.470519426 -0.029451956 -0.252150890 -0.309217138</span></span>
+<span id="cb381-7"><a href="functions-in-r.html#cb381-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [21] -0.268702433 -0.380126679 -0.167186514  0.077751540 -0.435152140</span></span>
+<span id="cb381-8"><a href="functions-in-r.html#cb381-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [26] -1.868990894  1.138998413 -1.132503619 -0.036951582 -0.353305669</span></span>
+<span id="cb381-9"><a href="functions-in-r.html#cb381-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31] -0.230731754  2.341834504 -0.690493297  1.735788193 -0.008629917</span></span>
+<span id="cb381-10"><a href="functions-in-r.html#cb381-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [36] -0.036888465 -0.042689908 -0.086603404  0.218908377 -0.002461450</span></span>
+<span id="cb381-11"><a href="functions-in-r.html#cb381-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [41] -1.052449750 -0.516401859 -0.161950950 -0.028678104  1.557664858</span></span>
+<span id="cb381-12"><a href="functions-in-r.html#cb381-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [46]  1.566201278 -0.477933312  1.237741639  0.742000966  0.060523485</span></span>
+<span id="cb381-13"><a href="functions-in-r.html#cb381-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [51] -0.200531640  0.011333092  0.781841731  2.390823406  0.188944924</span></span>
+<span id="cb381-14"><a href="functions-in-r.html#cb381-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [56]  0.679711309  1.576539533 -0.754265103 -0.086301656  0.374221673</span></span>
+<span id="cb381-15"><a href="functions-in-r.html#cb381-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61] -0.034812938  0.179421167  0.182053137 -0.584505735  0.297185591</span></span>
+<span id="cb381-16"><a href="functions-in-r.html#cb381-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [66] -0.464566421 -0.159128810  1.324635850  0.139242055 -0.024081761</span></span>
+<span id="cb381-17"><a href="functions-in-r.html#cb381-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [71] -0.070698259  0.641735410 -0.079093721 -0.778613800  0.812786784</span></span>
+<span id="cb381-18"><a href="functions-in-r.html#cb381-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [76]  0.022593284 -0.680342637 -0.678375933 -0.986469154  0.691230052</span></span>
+<span id="cb381-19"><a href="functions-in-r.html#cb381-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [81]  0.097619894 -0.260601599  0.200454914 -0.520991229  0.428207201</span></span>
+<span id="cb381-20"><a href="functions-in-r.html#cb381-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  [86]  0.067085779  2.997903140  1.208974420 -0.043293017  0.583233394</span></span>
+<span id="cb381-21"><a href="functions-in-r.html#cb381-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91]  0.102415314 -0.116525275 -0.534524149 -0.778070575  0.142039119</span></span>
+<span id="cb381-22"><a href="functions-in-r.html#cb381-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [96]  1.106030629  0.687910884 -0.950043626 -0.384019769 -0.716494301</span></span></code></pre></div>
 <p>If we’re only interested in multiplying <code>city$porto</code> and <code>city$aberdeen</code>, it would be overkill to create a function to do something once. However, the benefit of creating a function is that we now have that function added to our environment which we can use as often as we like. We also have the code to create the function, meaning we can use it in completely new projects, reducing the amount of code that has to be written (and retested) from scratch each time. As a rule of thumb, you should consider writing a function whenever you’ve copied and pasted a block of code more than twice.</p>
 <p>To satisfy ourselves that the function has worked properly, we can compare the <code>porto_aberdeen</code> variable with our new variable <code>porto_aberdeen_func</code> using the <code>identical()</code> function. The <code>identical()</code> function tests whether two objects are <em>exactly</em> identical and returns either a <code>TRUE</code> or <code>FALSE</code> value. Use <code>?identical</code> if you want to know more about this function.</p>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="functions-in-r.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(porto_aberdeen, porto_aberdeen_func)</span>
-<span id="cb380-2"><a href="functions-in-r.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="functions-in-r.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="fu">identical</span>(porto_aberdeen, porto_aberdeen_func)</span>
+<span id="cb382-2"><a href="functions-in-r.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
 <p>And we confirm that the function has produced the same result as when we do the calculation manually. We recommend getting into a habit of checking that the function you’ve created works the way you think it has.</p>
 <p>Now let’s use our <code>multiply_columns()</code> function to multiply columns <code>aberdeen</code> and <code>nairobi</code>. Notice now that argument <code>x</code> is given the value <code>city$aberdeen</code>and <code>y</code> the value <code>city$nairobi</code>.</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="functions-in-r.html#cb381-1" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(<span class="at">x =</span> city<span class="sc">$</span>aberdeen, <span class="at">y =</span> city<span class="sc">$</span>nairobi)</span>
-<span id="cb381-2"><a href="functions-in-r.html#cb381-2" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func</span>
-<span id="cb381-3"><a href="functions-in-r.html#cb381-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1]            NA            NA            NA            NA            NA</span></span>
-<span id="cb381-4"><a href="functions-in-r.html#cb381-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   [6]            NA            NA            NA            NA            NA</span></span>
-<span id="cb381-5"><a href="functions-in-r.html#cb381-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [11] -1.1871192303 -0.8877761747 -1.2987897740  0.3358729601  0.0191441363</span></span>
-<span id="cb381-6"><a href="functions-in-r.html#cb381-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [16]  0.1867590874  0.0841788941  2.1881540286  0.0427197790  0.0187634981</span></span>
-<span id="cb381-7"><a href="functions-in-r.html#cb381-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [21]  0.7611082942 -0.2163211265  0.6603208295  0.0690987118  0.0491533604</span></span>
-<span id="cb381-8"><a href="functions-in-r.html#cb381-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [26]  0.0350283408  2.7881563533 -0.2831893468 -0.1001305790 -1.3531957344</span></span>
-<span id="cb381-9"><a href="functions-in-r.html#cb381-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31]  0.4745164442 -0.2573811660 -0.8214070508  0.0443658613 -0.0484335401</span></span>
-<span id="cb381-10"><a href="functions-in-r.html#cb381-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [36] -0.4793795096  0.9141716101  0.0479559069 -2.1298719803 -0.5856134272</span></span>
-<span id="cb381-11"><a href="functions-in-r.html#cb381-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [41]  0.4565041819 -0.0828120345 -0.0603730805  3.4843859698  0.2080225008</span></span>
-<span id="cb381-12"><a href="functions-in-r.html#cb381-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [46] -1.3144339815  0.2831277513 -0.1155033552  0.0362156979 -0.0111560118</span></span>
-<span id="cb381-13"><a href="functions-in-r.html#cb381-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [51] -0.0480357804  0.0189548272  0.0095209113  0.3208286318 -0.2126242537</span></span>
-<span id="cb381-14"><a href="functions-in-r.html#cb381-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [56]  0.9018136680  1.8397342568 -0.3158329607 -0.1033678699 -2.3905893772</span></span>
-<span id="cb381-15"><a href="functions-in-r.html#cb381-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61] -0.6679153908  0.6005114368 -0.0100145618  0.1718435972 -0.3776361816</span></span>
-<span id="cb381-16"><a href="functions-in-r.html#cb381-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [66]  2.7454492743 -0.2885325218  2.4078948992  0.0419732046  0.5828370454</span></span>
-<span id="cb381-17"><a href="functions-in-r.html#cb381-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [71]  0.4751695285  0.3313240070  0.0002403841  0.0410286026  2.1540067783</span></span>
-<span id="cb381-18"><a href="functions-in-r.html#cb381-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [76] -1.1135974893  0.1527596040 -0.1670683001  0.0735099614  1.4263903933</span></span>
-<span id="cb381-19"><a href="functions-in-r.html#cb381-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [81]  0.4557225720 -0.3508408878 -0.0622774226  1.4600739327  0.1887772708</span></span>
-<span id="cb381-20"><a href="functions-in-r.html#cb381-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  [86] -0.3606982097 -0.9802907156 -0.7665682857  0.2159499402 -0.8219568023</span></span>
-<span id="cb381-21"><a href="functions-in-r.html#cb381-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91] -0.5509429040 -0.7940638817  0.1911092113 -0.4818474873  0.0905993520</span></span>
-<span id="cb381-22"><a href="functions-in-r.html#cb381-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [96] -0.0072619272  1.3147008193 -1.0193971417 -1.0435686122 -0.4173035014</span></span></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="functions-in-r.html#cb383-1" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(<span class="at">x =</span> city<span class="sc">$</span>aberdeen, <span class="at">y =</span> city<span class="sc">$</span>nairobi)</span>
+<span id="cb383-2"><a href="functions-in-r.html#cb383-2" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func</span>
+<span id="cb383-3"><a href="functions-in-r.html#cb383-3" aria-hidden="true" tabindex="-1"></a><span class="do">##   [1]           NA           NA           NA           NA           NA</span></span>
+<span id="cb383-4"><a href="functions-in-r.html#cb383-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   [6]           NA           NA           NA           NA           NA</span></span>
+<span id="cb383-5"><a href="functions-in-r.html#cb383-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  [11] -0.807328422  0.049626100  0.100577913 -0.975489828  0.023444876</span></span>
+<span id="cb383-6"><a href="functions-in-r.html#cb383-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  [16] -1.714908260  1.333628044  0.375068152 -0.263439666 -1.424153228</span></span>
+<span id="cb383-7"><a href="functions-in-r.html#cb383-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  [21]  0.083704015  1.625133199  0.653277041 -0.058526641  0.636340098</span></span>
+<span id="cb383-8"><a href="functions-in-r.html#cb383-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  [26]  0.055699165  0.315494845  1.714341434 -0.033100228 -0.263191084</span></span>
+<span id="cb383-9"><a href="functions-in-r.html#cb383-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  [31] -0.284391804  0.784211992  0.028205606 -0.368207904 -0.003435519</span></span>
+<span id="cb383-10"><a href="functions-in-r.html#cb383-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  [36]  0.176122821 -0.264192276 -0.321976522 -2.210740856  0.334700964</span></span>
+<span id="cb383-11"><a href="functions-in-r.html#cb383-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  [41]  0.817313583 -0.675556767 -0.128606322 -0.143397606  0.693763046</span></span>
+<span id="cb383-12"><a href="functions-in-r.html#cb383-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  [46] -0.922983010 -0.620630466  1.097689021  0.802153050 -0.115165277</span></span>
+<span id="cb383-13"><a href="functions-in-r.html#cb383-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  [51] -0.823824786 -0.361829440  0.120490856 -2.432565000  0.523792706</span></span>
+<span id="cb383-14"><a href="functions-in-r.html#cb383-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  [56]  0.088572616  0.308827336 -0.475176925 -0.142908463 -1.063534273</span></span>
+<span id="cb383-15"><a href="functions-in-r.html#cb383-15" aria-hidden="true" tabindex="-1"></a><span class="do">##  [61] -0.097562398  0.332963681 -0.112677060  3.109419537 -0.164447320</span></span>
+<span id="cb383-16"><a href="functions-in-r.html#cb383-16" aria-hidden="true" tabindex="-1"></a><span class="do">##  [66]  0.052100343  1.681021162  0.552925590 -0.205675544  0.090366053</span></span>
+<span id="cb383-17"><a href="functions-in-r.html#cb383-17" aria-hidden="true" tabindex="-1"></a><span class="do">##  [71]  0.743189484 -0.277927902 -0.248246792  1.043914246  2.451450399</span></span>
+<span id="cb383-18"><a href="functions-in-r.html#cb383-18" aria-hidden="true" tabindex="-1"></a><span class="do">##  [76]  0.120688141  0.563933313  0.383711829  0.217242859 -0.006095566</span></span>
+<span id="cb383-19"><a href="functions-in-r.html#cb383-19" aria-hidden="true" tabindex="-1"></a><span class="do">##  [81]  0.549580650 -0.689185111 -0.020111798 -0.415490466  0.145771787</span></span>
+<span id="cb383-20"><a href="functions-in-r.html#cb383-20" aria-hidden="true" tabindex="-1"></a><span class="do">##  [86] -0.174721294 -1.651985966 -0.845640226  0.669278728  1.231326268</span></span>
+<span id="cb383-21"><a href="functions-in-r.html#cb383-21" aria-hidden="true" tabindex="-1"></a><span class="do">##  [91] -0.004057028  0.934714493 -0.539464265  0.661362635 -0.447169171</span></span>
+<span id="cb383-22"><a href="functions-in-r.html#cb383-22" aria-hidden="true" tabindex="-1"></a><span class="do">##  [96] -0.926748120 -0.218460932  0.341493799  0.349041186 -0.885713239</span></span></code></pre></div>
 <p>So far so good. All we’ve really done is wrapped the code <code>x * y</code> into a function, where we ask the user to specify what their <code>x</code> and <code>y</code> variables are.</p>
 <p>Now let’s add a little complexity. If you look at the output of <code>nairobi_genoa</code> some of the calculations have produced <code>NA</code> values. This is because of those <code>NA</code> values we included in <code>nairobi</code> when we created the <code>city</code> data frame. Despite these <code>NA</code> values, the function appeared to have worked but it gave us no indication that there might be a problem. In such cases we may prefer if it had warned us that something was wrong. How can we get the function to let us know when <code>NA</code> values are produced? Here’s one way.</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="functions-in-r.html#cb382-1" aria-hidden="true" tabindex="-1"></a>multiply_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
-<span id="cb382-2"><a href="functions-in-r.html#cb382-2" aria-hidden="true" tabindex="-1"></a>  temp_var <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
-<span id="cb382-3"><a href="functions-in-r.html#cb382-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(temp_var))) {</span>
-<span id="cb382-4"><a href="functions-in-r.html#cb382-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</span>
-<span id="cb382-5"><a href="functions-in-r.html#cb382-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(temp_var)</span>
-<span id="cb382-6"><a href="functions-in-r.html#cb382-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
-<span id="cb382-7"><a href="functions-in-r.html#cb382-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(temp_var)</span>
-<span id="cb382-8"><a href="functions-in-r.html#cb382-8" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb382-9"><a href="functions-in-r.html#cb382-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb382-10"><a href="functions-in-r.html#cb382-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb382-11"><a href="functions-in-r.html#cb382-11" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(city<span class="sc">$</span>aberdeen, city<span class="sc">$</span>nairobi)</span>
-<span id="cb382-12"><a href="functions-in-r.html#cb382-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></span>
-<span id="cb382-13"><a href="functions-in-r.html#cb382-13" aria-hidden="true" tabindex="-1"></a><span class="do">## produced NAs</span></span>
-<span id="cb382-14"><a href="functions-in-r.html#cb382-14" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(city<span class="sc">$</span>porto, city<span class="sc">$</span>aberdeen)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="functions-in-r.html#cb384-1" aria-hidden="true" tabindex="-1"></a>multiply_columns <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb384-2"><a href="functions-in-r.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  temp_var <span class="ot">&lt;-</span> x <span class="sc">*</span> y</span>
+<span id="cb384-3"><a href="functions-in-r.html#cb384-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">any</span>(<span class="fu">is.na</span>(temp_var))) {</span>
+<span id="cb384-4"><a href="functions-in-r.html#cb384-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">&quot;The function has produced NAs&quot;</span>)</span>
+<span id="cb384-5"><a href="functions-in-r.html#cb384-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(temp_var)</span>
+<span id="cb384-6"><a href="functions-in-r.html#cb384-6" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb384-7"><a href="functions-in-r.html#cb384-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(temp_var)</span>
+<span id="cb384-8"><a href="functions-in-r.html#cb384-8" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb384-9"><a href="functions-in-r.html#cb384-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb384-10"><a href="functions-in-r.html#cb384-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb384-11"><a href="functions-in-r.html#cb384-11" aria-hidden="true" tabindex="-1"></a>aberdeen_nairobi_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(city<span class="sc">$</span>aberdeen, city<span class="sc">$</span>nairobi)</span>
+<span id="cb384-12"><a href="functions-in-r.html#cb384-12" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></span>
+<span id="cb384-13"><a href="functions-in-r.html#cb384-13" aria-hidden="true" tabindex="-1"></a><span class="do">## produced NAs</span></span>
+<span id="cb384-14"><a href="functions-in-r.html#cb384-14" aria-hidden="true" tabindex="-1"></a>porto_aberdeen_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(city<span class="sc">$</span>porto, city<span class="sc">$</span>aberdeen)</span></code></pre></div>
 <p>The core of our function is still the same. We still have <code>x * y</code>, but we’ve now got an extra six lines of code. Namely, we’ve included some conditional statements, <code>if</code> and <code>else</code>, to test whether any <code>NA</code>s have been produced and if they have we display a warning message to the user. The next section of this Chapter will explain how these work and how to use them.</p>
 </div>
             </section>
@@ -552,7 +551,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -583,7 +581,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

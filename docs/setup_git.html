@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.4 Getting started | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.4 Getting started | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="what-is-git-and-github.html"/>
 <link rel="next" href="setting-up-a-project-in-rstudio.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,11 +422,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="setup_git" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Getting started</h2>
+<div id="setup_git" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Getting started<a href="setup_git.html#setup_git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This Chapter assumes that you have already installed the latest versions of R and RStudio. If you haven’t done this yet you can find instructions <a href="install_r.html#install_r">here</a>.</p>
-<div id="install-git" class="section level3" number="9.4.1">
-<h3><span class="header-section-number">9.4.1</span> Install Git</h3>
+<div id="install-git" class="section level3 hasAnchor" number="9.4.1">
+<h3><span class="header-section-number">9.4.1</span> Install Git<a href="setup_git.html#install-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To get started, you first need to install Git. If you’re lucky you may already have Git installed (especially if you have a Mac or Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing <code>git --version</code> (the space after the <code>git</code> command is important). If you see something that looks like <code>git version 2.25.0</code> (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like <code>git: command not found</code>) this means you don’t have Git installed (yet!).</p>
 <p> </p>
 <p><img src="images/git_version.png" width="60%" style="display: block; margin: auto;" /></p>
@@ -441,8 +440,8 @@ sudo apt install git</code></pre>
 <p>You will need administrative privileges to do this. For other versions of Linux see <a href="https://git-scm.com/download/linux">here</a> for further installation instructions.</p>
 <p>Whatever version of Git you’re installing, once the installation has finished verify that the installation process has been successful by running the command <code>git --version</code> in the Terminal tab in RStudio (as described above). On some installations of Git (yes we’re looking at you MS Windows) this may still produce an error as you will also need to setup RStudio so it can find the Git executable (described <a href="setup_git.html#rs_config">below</a>).</p>
 </div>
-<div id="configure-git" class="section level3" number="9.4.2">
-<h3><span class="header-section-number">9.4.2</span> Configure Git</h3>
+<div id="configure-git" class="section level3 hasAnchor" number="9.4.2">
+<h3><span class="header-section-number">9.4.2</span> Configure Git<a href="setup_git.html#configure-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After installing Git, you need to configure it so you can use it. Click on the Terminal tab in the Console window again and type the following:</p>
 <pre><code>git config --global user.email &#39;you@youremail.com&#39;
 
@@ -452,14 +451,14 @@ git config --global user.name &#39;Your Name&#39;</code></pre>
 <pre><code>git config --global --list</code></pre>
 <p>You should see both your <code>user.name</code> and <code>user.email</code> configured.</p>
 </div>
-<div id="rs_config" class="section level3" number="9.4.3">
-<h3><span class="header-section-number">9.4.3</span> Configure RStudio</h3>
+<div id="rs_config" class="section level3 hasAnchor" number="9.4.3">
+<h3><span class="header-section-number">9.4.3</span> Configure RStudio<a href="setup_git.html#rs_config" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As you can see above, Git can be used from the command line, but it also integrates well with RStudio, providing a friendly graphical user interface. If you want to use RStudio’s Git integration (we recommend you do - at least at the start), you need to check that the path to the Git executable is specified correctly. In RStudio, go to the menu <code>Tools</code> -&gt; <code>Global Options</code> -&gt; <code>Git/SVN</code> and make sure that ‘Enable version control interface for RStudio projects’ is ticked and that the ‘Git executable:’ path is correct for your installation. If it’s not correct hit the <code>Browse...</code> button and navigate to where you installed git and click on the executable file. You will need to restart RStudio after doing this.</p>
 <p> </p>
 <p><img src="images/git_path.png" width="60%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="register-a-github-account" class="section level3" number="9.4.4">
-<h3><span class="header-section-number">9.4.4</span> Register a GitHub account</h3>
+<div id="register-a-github-account" class="section level3 hasAnchor" number="9.4.4">
+<h3><span class="header-section-number">9.4.4</span> Register a GitHub account<a href="setup_git.html#register-a-github-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you will need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like <a href="https://about.gitlab.com/">GitLab</a>, <a href="https://bitbucket.org/product">Bitbucket</a> and <a href="https://savannah.gnu.org/">Savannah</a>). You can sign up for a free account on GitHub <a href="https://github.com/join?source=header-home">here</a>. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/applying-for-an-educator-or-researcher-discount">educator or researcher account</a> later on which gives you some useful <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/about-github-education-for-educators-and-researchers">benefits</a> (don’t worry about this now though). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your future employer!</p>
 <p>Next click on the ‘Select a plan’ (you may have to solve a simple puzzle first to verify you’re human) and choose the ‘Free Plan’ option. Github will send an email to the email address you supplied for you to verify.</p>
 <p>Once you’ve completed all those steps you should have both Git and GitHub setup up ready for you to use (Finally!).</p>
@@ -475,7 +474,6 @@ git config --global user.name &#39;Your Name&#39;</code></pre>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -506,7 +504,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

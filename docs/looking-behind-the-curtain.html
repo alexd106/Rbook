@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>7.1 Looking behind the curtain | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="7.1 Looking behind the curtain | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="prog_r.html"/>
 <link rel="next" href="functions-in-r.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,24 +422,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="looking-behind-the-curtain" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> Looking behind the curtain</h2>
+<div id="looking-behind-the-curtain" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> Looking behind the curtain<a href="looking-behind-the-curtain.html#looking-behind-the-curtain" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A good way to start learning to program in R is to see what others have done. We can start by briefly peeking behind the curtain. In <a href="graphics_r.html#graphics_r">Chapter 5</a> we made use of the <code>theme_classic()</code> function when customising our <code>ggplot</code> figures. With many functions in R, if you want to have a quick glance at the machinery behind the scenes, we can simply write the function name but without the <code>()</code>. This is the same trick we used in <a href="graphics_r.html#graphics_r">Chapter 5</a> to alter the <code>theme_classic()</code> style of <code>ggplot2</code> to make <code>theme_rbook()</code>.</p>
 <p>Note that to view the source code of base R packages (those that come with R) requires some additional steps which we won’t cover here (see this <a href="https://stackoverflow.com/questions/19226816/how-can-i-view-the-source-code-for-a-function">link</a> if you’re interested), but for most other packages that you install yourself, generally entering the function name without <code>()</code> will show the source code of the function.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="looking-behind-the-curtain.html#cb370-1" aria-hidden="true" tabindex="-1"></a>theme_classic</span>
-<span id="cb370-2"><a href="looking-behind-the-curtain.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="do">## function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></span>
-<span id="cb370-3"><a href="looking-behind-the-curtain.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="do">##     base_rect_size = base_size/22) </span></span>
-<span id="cb370-4"><a href="looking-behind-the-curtain.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="do">## {</span></span>
-<span id="cb370-5"><a href="looking-behind-the-curtain.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     theme_bw(base_size = base_size, base_family = base_family, </span></span>
-<span id="cb370-6"><a href="looking-behind-the-curtain.html#cb370-6" aria-hidden="true" tabindex="-1"></a><span class="do">##         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></span>
-<span id="cb370-7"><a href="looking-behind-the-curtain.html#cb370-7" aria-hidden="true" tabindex="-1"></a><span class="do">##         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></span>
-<span id="cb370-8"><a href="looking-behind-the-curtain.html#cb370-8" aria-hidden="true" tabindex="-1"></a><span class="do">##             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></span>
-<span id="cb370-9"><a href="looking-behind-the-curtain.html#cb370-9" aria-hidden="true" tabindex="-1"></a><span class="do">##                 size = rel(1)), legend.key = element_blank(), </span></span>
-<span id="cb370-10"><a href="looking-behind-the-curtain.html#cb370-10" aria-hidden="true" tabindex="-1"></a><span class="do">##             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></span>
-<span id="cb370-11"><a href="looking-behind-the-curtain.html#cb370-11" aria-hidden="true" tabindex="-1"></a><span class="do">##                 size = rel(2)), complete = TRUE)</span></span>
-<span id="cb370-12"><a href="looking-behind-the-curtain.html#cb370-12" aria-hidden="true" tabindex="-1"></a><span class="do">## }</span></span>
-<span id="cb370-13"><a href="looking-behind-the-curtain.html#cb370-13" aria-hidden="true" tabindex="-1"></a><span class="do">## &lt;bytecode: 0x7febb6c9daa0&gt;</span></span>
-<span id="cb370-14"><a href="looking-behind-the-curtain.html#cb370-14" aria-hidden="true" tabindex="-1"></a><span class="do">## &lt;environment: namespace:ggplot2&gt;</span></span></code></pre></div>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="looking-behind-the-curtain.html#cb372-1" aria-hidden="true" tabindex="-1"></a>theme_classic</span>
+<span id="cb372-2"><a href="looking-behind-the-curtain.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="do">## function (base_size = 11, base_family = &quot;&quot;, base_line_size = base_size/22, </span></span>
+<span id="cb372-3"><a href="looking-behind-the-curtain.html#cb372-3" aria-hidden="true" tabindex="-1"></a><span class="do">##     base_rect_size = base_size/22) </span></span>
+<span id="cb372-4"><a href="looking-behind-the-curtain.html#cb372-4" aria-hidden="true" tabindex="-1"></a><span class="do">## {</span></span>
+<span id="cb372-5"><a href="looking-behind-the-curtain.html#cb372-5" aria-hidden="true" tabindex="-1"></a><span class="do">##     theme_bw(base_size = base_size, base_family = base_family, </span></span>
+<span id="cb372-6"><a href="looking-behind-the-curtain.html#cb372-6" aria-hidden="true" tabindex="-1"></a><span class="do">##         base_line_size = base_line_size, base_rect_size = base_rect_size) %+replace% </span></span>
+<span id="cb372-7"><a href="looking-behind-the-curtain.html#cb372-7" aria-hidden="true" tabindex="-1"></a><span class="do">##         theme(panel.border = element_blank(), panel.grid.major = element_blank(), </span></span>
+<span id="cb372-8"><a href="looking-behind-the-curtain.html#cb372-8" aria-hidden="true" tabindex="-1"></a><span class="do">##             panel.grid.minor = element_blank(), axis.line = element_line(colour = &quot;black&quot;, </span></span>
+<span id="cb372-9"><a href="looking-behind-the-curtain.html#cb372-9" aria-hidden="true" tabindex="-1"></a><span class="do">##                 size = rel(1)), legend.key = element_blank(), </span></span>
+<span id="cb372-10"><a href="looking-behind-the-curtain.html#cb372-10" aria-hidden="true" tabindex="-1"></a><span class="do">##             strip.background = element_rect(fill = &quot;white&quot;, colour = &quot;black&quot;, </span></span>
+<span id="cb372-11"><a href="looking-behind-the-curtain.html#cb372-11" aria-hidden="true" tabindex="-1"></a><span class="do">##                 size = rel(2)), complete = TRUE)</span></span>
+<span id="cb372-12"><a href="looking-behind-the-curtain.html#cb372-12" aria-hidden="true" tabindex="-1"></a><span class="do">## }</span></span>
+<span id="cb372-13"><a href="looking-behind-the-curtain.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="do">## &lt;bytecode: 0x7fb4ad3006d8&gt;</span></span>
+<span id="cb372-14"><a href="looking-behind-the-curtain.html#cb372-14" aria-hidden="true" tabindex="-1"></a><span class="do">## &lt;environment: namespace:ggplot2&gt;</span></span></code></pre></div>
 <p>What we see above is the underlying code for this particular function. As we did in <a href="graphics_r.html#graphics_r">Chapter 5</a>, we could copy and paste this into our own script and make any changes we deemed necessary. This approach isn’t limited to <code>ggplot2</code> functions and can be used for other functions as well, although tread carefully and test the changes you’ve made.</p>
 <p>Don’t worry overly if most of the code contained in functions doesn’t make sense immediately. This will be especially true if you are new to R, in which case it seems incredibly intimidating. To help with that, we’ll begin by making our own functions in R in the next section.</p>
 </div>
@@ -454,7 +453,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -485,7 +483,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

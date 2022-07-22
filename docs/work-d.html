@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.7 Working directories | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.7 Working directories | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="rsprojs.html"/>
 <link rel="next" href="dir_struct.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="work-d" class="section level2" number="1.7">
-<h2><span class="header-section-number">1.7</span> Working directories</h2>
+<div id="work-d" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> Working directories<a href="work-d.html#work-d" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the <code>~</code> symbol above is shorthand for <code>/Users/nhy163/</code> on a Mac computer (the same on Linux computers).</p>
 <p> </p>
 <p><img src="images/dir_struct.png" width="80%" style="display: block; margin: auto;" /></p>
@@ -433,7 +432,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/dir_struct2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>In the example above, the working directory is a folder called ‘first_project’ which is a subfolder of "Teaching’ in the ‘Alex’ folder which in turn is in a ‘Documents’ folder located in the ‘nhy163’ folder which itself is in the ‘Users’ folder. On a Windows based computer our working directory would also include a drive letter (i.e. <code>C:/Users/nhy163/Documents/Alex/Teaching/first_project</code>).</p>
+<p>In the example above, the working directory is a folder called ‘first_project’ which is a subfolder of “Teaching’ in the ‘Alex’ folder which in turn is in a ‘Documents’ folder located in the ‘nhy163’ folder which itself is in the ‘Users’ folder. On a Windows based computer our working directory would also include a drive letter (i.e. <code>C:/Users/nhy163/Documents/Alex/Teaching/first_project</code>).</p>
 <p>If you weren’t using an RStudio Project then you would have to set your working directory using the <code>setwd()</code> function at the start of every R script (something we did for many years).</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="work-d.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&#39;/Users/nhy163/Documents/Alex/Teaching/first_project&#39;</span>)</span></code></pre></div>
 <p>However, the problem with <code>setwd()</code> is that it uses an <em>absolute</em> file path which is specific to the computer you are working on. If you want to send your script to someone else (or if you’re working on a different computer) this absolute file path is not going to work on your friend/colleagues computer as their directory configuration will be different (you are unlikely to have a directory structure <code>/Users/nhy163/Documents/Alex/Teaching/</code> on your computer). This results in a project that is not self-contained and not easily portable. RStudio solves this problem by allowing you to use <em>relative</em> file paths which are relative to the <em>Root</em> project directory. The Root project directory is just the directory that contains the <code>.Rproj</code> file (<code>first_project.Rproj</code> in our case). If you want to share your analysis with someone else, all you need to do is copy the entire project directory and send to your to your collaborator. They would then just need to open the project file and any R scripts that contain references to relative file paths will just work. For example, let’s say that you’ve created a subdirectory called <code>raw_data</code> in your Root project directory that contains a tab delimited datafile called <code>mydata.txt</code> (we will cover directory structures <a href="dir_struct.html#dir_struct">below</a>). To import this datafile in an RStudio project using the <code>read.table()</code> function (don’t worry about this now, we will cover this in much more detail in <a href="data_r.html#data_r">Chapter 3</a>) all you need to include in your R script is</p>
@@ -471,7 +470,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -502,7 +500,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

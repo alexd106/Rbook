@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.1 Data types | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.1 Data types | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data_r.html"/>
 <link rel="next" href="data-structures.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-types" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span> Data types</h2>
+<div id="data-types" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Data types<a href="data-types.html#data-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Understanding the different types of data and how R deals with these data is important. The temptation is to glaze over and skip these technical details, but beware, this can come back to bite you somewhere unpleasant if you don’t pay attention. We’ve already seen an <a href="objects-in-r.html#r_objs">example</a> of this when we tried (and failed) to add two character objects together using the <code>+</code> operator.</p>
 <p>R has six basic types of data; numeric, integer, logical, complex and character. The keen eyed among you will notice we’ve only listed five data types here, the final data type is raw which we won’t cover as it’s not useful 99.99% of the time. We also won’t cover complex numbers as we don’t have the <a href="https://www.mathsisfun.com/numbers/complex-numbers.html">imagination</a>!</p>
 <p> </p>
@@ -447,7 +446,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb85-9"><a href="data-types.html#cb85-9" aria-hidden="true" tabindex="-1"></a>logi <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
 <span id="cb85-10"><a href="data-types.html#cb85-10" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(logi)</span>
 <span id="cb85-11"><a href="data-types.html#cb85-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;logical&quot;</span></span></code></pre></div>
-<p>Alternatively, you can ask if an object is a specific class using using a logical test. The <code>is.[classOfData]()</code> family of functions will return either a <code>TRUE</code> or a <code>FALSE</code>.  </p>
+<p>Alternatively, you can ask if an object is a specific class using using a logical test. The <code>is.[classOfData]()</code> family of functions will return either a <code>TRUE</code> or a <code>FALSE</code>. </p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="data-types.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.numeric</span>(num)</span>
 <span id="cb86-2"><a href="data-types.html#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span>
 <span id="cb86-3"><a href="data-types.html#cb86-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -459,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb86-9"><a href="data-types.html#cb86-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb86-10"><a href="data-types.html#cb86-10" aria-hidden="true" tabindex="-1"></a><span class="fu">is.logical</span>(logi)</span>
 <span id="cb86-11"><a href="data-types.html#cb86-11" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
-<p>It can sometimes be useful to be able to change the class of a variable using the <code>as.[className]()</code> family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results (see what happens below when we try to convert a character string to a numeric).     </p>
+<p>It can sometimes be useful to be able to change the class of a variable using the <code>as.[className]()</code> family of coercion functions, although you need to be careful when doing this as you might receive some unexpected results (see what happens below when we try to convert a character string to a numeric). </p>
 <div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="data-types.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># coerce numeric to character</span></span>
 <span id="cb87-2"><a href="data-types.html#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(num)</span>
 <span id="cb87-3"><a href="data-types.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;numeric&quot;</span></span>
@@ -522,7 +521,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -553,7 +551,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.4 Working with vectors | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.4 Working with vectors | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="using-functions-in-r.html"/>
 <link rel="next" href="help.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,19 +422,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="vectors" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Working with vectors</h2>
+<div id="vectors" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Working with vectors<a href="vectors.html#vectors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Manipulating, summarising and sorting data using R is an important skill to master but one which many people find a little confusing at first. We’ll go through a few simple examples here using vectors to illustrate some important concepts but will build on this in much more detail in <a href="data_r.html#data_r">Chapter 3</a> where we will look at more complicated (and useful) data structures.</p>
 <p> </p>
 
 <div class="rmdvideo">
 <p>Take a look at this <a href="https://bit.ly/2BrGGZ1">video</a> for a quick introduction to working with vectors in R using positional and logical indexes</p>
 </div>
-<div id="extracting-elements" class="section level3" number="2.4.1">
-<h3><span class="header-section-number">2.4.1</span> Extracting elements</h3>
+<div id="extracting-elements" class="section level3 hasAnchor" number="2.4.1">
+<h3><span class="header-section-number">2.4.1</span> Extracting elements<a href="vectors.html#extracting-elements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To extract (also known as indexing or subscripting) one or more values (more generally known as elements) from a vector we use the square bracket <code>[ ]</code> notation. The general approach is to name the object you wish to extract from, then a set of square brackets with an index of the element you wish to extract contained within the square brackets. This index can be a position or the result of a logical test.</p>
-<div id="positional-index" class="section level4 unnumbered">
-<h4>Positional index</h4>
+<div id="positional-index" class="section level4 unnumbered hasAnchor">
+<h4>Positional index<a href="vectors.html#positional-index" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>To extract elements based on their position we simply write the position inside the <code>[ ]</code>. For example, to extract the 3rd value of <code>my_vec</code></p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="vectors.html#cb52-1" aria-hidden="true" tabindex="-1"></a>my_vec        <span class="co"># remind ourselves what my_vec looks like</span></span>
 <span id="cb52-2"><a href="vectors.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2 3 1 6 4 3 3 7</span></span>
@@ -454,8 +453,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="vectors.html#cb54-1" aria-hidden="true" tabindex="-1"></a>my_vec[<span class="dv">3</span><span class="sc">:</span><span class="dv">8</span>]</span>
 <span id="cb54-2"><a href="vectors.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1 6 4 3 3 7</span></span></code></pre></div>
 </div>
-<div id="logical-index" class="section level4 unnumbered">
-<h4>Logical index</h4>
+<div id="logical-index" class="section level4 unnumbered hasAnchor">
+<h4>Logical index<a href="vectors.html#logical-index" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Another really useful way to extract data from a vector is to use a logical expression as an index. For example, to extract all elements with a value greater than 4 in the vector <code>my_vec</code></p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="vectors.html#cb55-1" aria-hidden="true" tabindex="-1"></a>my_vec[my_vec <span class="sc">&gt;</span> <span class="dv">4</span>]</span>
 <span id="cb55-2"><a href="vectors.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 6 7</span></span></code></pre></div>
@@ -487,8 +486,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb60-3"><a href="vectors.html#cb60-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2 1 7</span></span></code></pre></div>
 </div>
 </div>
-<div id="replacing-elements" class="section level3" number="2.4.2">
-<h3><span class="header-section-number">2.4.2</span> Replacing elements</h3>
+<div id="replacing-elements" class="section level3 hasAnchor" number="2.4.2">
+<h3><span class="header-section-number">2.4.2</span> Replacing elements<a href="vectors.html#replacing-elements" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We can change the values of some elements in a vector using our <code>[ ]</code> notation in combination with the assignment operator <code>&lt;-</code>. For example, to replace the 4<sup>th</sup> value of our <code>my_vec</code> object from <code>6</code> to <code>500</code></p>
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="vectors.html#cb61-1" aria-hidden="true" tabindex="-1"></a>my_vec[<span class="dv">4</span>] <span class="ot">&lt;-</span> <span class="dv">500</span></span>
 <span id="cb61-2"><a href="vectors.html#cb61-2" aria-hidden="true" tabindex="-1"></a>my_vec</span>
@@ -504,8 +503,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb62-8"><a href="vectors.html#cb62-8" aria-hidden="true" tabindex="-1"></a>my_vec</span>
 <span id="cb62-9"><a href="vectors.html#cb62-9" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 1000 1000 1000  500 1000  100  100    7</span></span></code></pre></div>
 </div>
-<div id="vec_ord" class="section level3" number="2.4.3">
-<h3><span class="header-section-number">2.4.3</span> Ordering elements</h3>
+<div id="vec_ord" class="section level3 hasAnchor" number="2.4.3">
+<h3><span class="header-section-number">2.4.3</span> Ordering elements<a href="vectors.html#vec_ord" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest value we can use the <code>sort()</code> function</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="vectors.html#cb63-1" aria-hidden="true" tabindex="-1"></a>vec_sort <span class="ot">&lt;-</span> <span class="fu">sort</span>(my_vec)</span>
 <span id="cb63-2"><a href="vectors.html#cb63-2" aria-hidden="true" tabindex="-1"></a>vec_sort</span>
@@ -530,14 +529,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="vectors.html#cb67-1" aria-hidden="true" tabindex="-1"></a>height_ord <span class="ot">&lt;-</span> <span class="fu">order</span>(height)</span>
 <span id="cb67-2"><a href="vectors.html#cb67-2" aria-hidden="true" tabindex="-1"></a>height_ord</span>
 <span id="cb67-3"><a href="vectors.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] 2 3 4 1 5</span></span></code></pre></div>
-<p>OK, what’s going on here? The first value, <code>2</code>, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element <code>5</code> which is 181. Now that we have a vector of the position of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
+<p>OK, what’s going on here? The first value, <code>2</code>, (remember ignore <code>[1]</code>) should be read as ‘the smallest value of <code>height</code> is the second element of the <code>height</code> vector’. If we check this by looking at the <code>height</code> vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in <code>height</code> is the 3<sup>rd</sup> element of <code>height</code>, which when we check is 160 and so on. The largest value of <code>height</code> is element <code>5</code> which is 181. Now that we have a vector of the positional indices of heights in ascending order (<code>height_ord</code>), we can extract these values from our <code>p.names</code> vector in this order</p>
 <div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="vectors.html#cb68-1" aria-hidden="true" tabindex="-1"></a>names_ord <span class="ot">&lt;-</span> p.names[height_ord]</span>
 <span id="cb68-2"><a href="vectors.html#cb68-2" aria-hidden="true" tabindex="-1"></a>names_ord</span>
 <span id="cb68-3"><a href="vectors.html#cb68-3" aria-hidden="true" tabindex="-1"></a><span class="do">## [1] &quot;Charlotte&quot; &quot;Helen&quot;     &quot;Karen&quot;     &quot;Joanna&quot;    &quot;Amy&quot;</span></span></code></pre></div>
-<p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By ordering one column and then ordering the other column based on the value of the first column you will keep the correct association of values. More on this in <a href="data_r.html#data_r">Chapter 3</a>.</p>
+<p>You’re probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use <code>sort()</code> to sort each column separately, the values of each column will become uncoupled from each other. By using the ‘order()’ on one column, a vector of positional indices is created of the values of the column in ascending order This vector can be used on the second column, as the index of elements which will return a vector of values based on the first column.</p>
 </div>
-<div id="vectorisation" class="section level3" number="2.4.4">
-<h3><span class="header-section-number">2.4.4</span> Vectorisation</h3>
+<div id="vectorisation" class="section level3 hasAnchor" number="2.4.4">
+<h3><span class="header-section-number">2.4.4</span> Vectorisation<a href="vectors.html#vectorisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the great things about R functions is that most of them are vectorised. This means that the function will operate on all elements of a vector without needing to apply the function on each element separately. For example, to multiple each element of a vector by 5 we can simply use</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="vectors.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector</span></span>
 <span id="cb69-2"><a href="vectors.html#cb69-2" aria-hidden="true" tabindex="-1"></a>my_vec2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">7</span>, <span class="dv">1</span>, <span class="dv">9</span>, <span class="dv">20</span>)</span>
@@ -564,8 +563,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb71-5"><a href="vectors.html#cb71-5" aria-hidden="true" tabindex="-1"></a>my_vec2 <span class="sc">+</span> my_vec4</span>
 <span id="cb71-6"><a href="vectors.html#cb71-6" aria-hidden="true" tabindex="-1"></a><span class="do">## [1]  4  7  8  3 10 22</span></span></code></pre></div>
 </div>
-<div id="na_vals" class="section level3" number="2.4.5">
-<h3><span class="header-section-number">2.4.5</span> Missing data</h3>
+<div id="na_vals" class="section level3 hasAnchor" number="2.4.5">
+<h3><span class="header-section-number">2.4.5</span> Missing data<a href="vectors.html#na_vals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In R, missing data is usually represented by an <code>NA</code> symbol meaning ‘Not Available’. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let’s say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days</p>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="vectors.html#cb72-1" aria-hidden="true" tabindex="-1"></a>temp  <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">7.2</span>, <span class="cn">NA</span>, <span class="fl">7.1</span>, <span class="fl">6.9</span>, <span class="fl">6.5</span>, <span class="fl">5.8</span>, <span class="fl">5.8</span>, <span class="fl">5.5</span>, <span class="cn">NA</span>, <span class="fl">5.5</span>)</span>
 <span id="cb72-2"><a href="vectors.html#cb72-2" aria-hidden="true" tabindex="-1"></a>temp</span>
@@ -595,7 +594,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -626,7 +624,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

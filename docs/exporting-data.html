@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.6 Exporting data | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.6 Exporting data | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="summarising-data-frames.html"/>
 <link rel="next" href="exercise-3.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,11 +422,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="exporting-data" class="section level2" number="3.6">
-<h2><span class="header-section-number">3.6</span> Exporting data</h2>
+<div id="exporting-data" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Exporting data<a href="exporting-data.html#exporting-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>By now we hope you’re getting a feel for how powerful and useful R is for manipulating and summarising data (and we’ve only really scratched the surface). One of the great benefits of doing all your data wrangling in R is that you have a permanent record of all the things you’ve done to your data. Gone are the days of making undocumented changes in Excel or Calc! By treating your data as ‘read only’ and documenting all of your decisions in R you will have made great strides towards making your analysis more reproducible and transparent to others. It’s important to realise, however, that any changes you’ve made to your data frame in R will not change the original data file you imported into R (and that’s a good thing). Happily it’s straightforward to export data frames to external files in a wide variety of formats.</p>
-<div id="export-functions" class="section level3" number="3.6.1">
-<h3><span class="header-section-number">3.6.1</span> Export functions</h3>
+<div id="export-functions" class="section level3 hasAnchor" number="3.6.1">
+<h3><span class="header-section-number">3.6.1</span> Export functions<a href="exporting-data.html#export-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The main workhorse function for exporting data frames is the <code>write.table()</code> function. As with the <code>read.table()</code> function, the <code>write.table()</code> function is very flexible with lots of arguments to help customise it’s behaviour. As an example, let’s take our original <code>flowers</code> data frame, do some useful stuff to it and then export these changes to an external file.</p>
 <p>Let’s order the rows in the data frame in ascending order of <code>height</code> within each level <code>nitrogen</code>. We will also apply a square root transformation on the number of flowers variable (<code>flowers</code>) and a log<sub>10</sub> transformation on the <code>height</code> variable and save these as additional columns in our data frame (hopefully this will be somewhat familiar to you!).</p>
 <div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="exporting-data.html#cb179-1" aria-hidden="true" tabindex="-1"></a>flowers_df2 <span class="ot">&lt;-</span> flowers[<span class="fu">order</span>(flowers<span class="sc">$</span>nitrogen, flowers<span class="sc">$</span>height), ]</span>
@@ -458,8 +457,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Or alternatively by using the convenience function <code>write.csv()</code>. Notice that we don’t need to set the <code>sep = ","</code> or <code>col.names = TRUE</code> arguments as these are the defaults when using the <code>read.csv()</code> function.</p>
 <div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="exporting-data.html#cb182-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(flowers_df2, <span class="at">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 </div>
-<div id="other-export-functions" class="section level3" number="3.6.2">
-<h3><span class="header-section-number">3.6.2</span> Other export functions</h3>
+<div id="other-export-functions" class="section level3 hasAnchor" number="3.6.2">
+<h3><span class="header-section-number">3.6.2</span> Other export functions<a href="exporting-data.html#other-export-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the <code>write.table()</code> function. If you followed the <a href="importing-data.html#import_other">‘Other import functions’</a> section of this Chapter you will already have the required packages installed.</p>
 <p>The <code>fwrite()</code> function from the <code>read.table</code> package is very efficient at exporting large data objects and is much faster than the <code>write.table()</code> function. It’s also quite simple to use as it has most of the same arguments as <code>write.table()</code>. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.</p>
 <div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="exporting-data.html#cb183-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(read.table)</span>
@@ -485,7 +484,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -516,7 +514,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

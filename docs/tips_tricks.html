@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.6 Some tips and tricks | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.6 Some tips and tricks | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="r-markdown-anatomy.html"/>
 <link rel="next" href="further-information.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,15 +422,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="tips_tricks" class="section level2" number="8.6">
-<h2><span class="header-section-number">8.6</span> Some tips and tricks</h2>
+<div id="tips_tricks" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Some tips and tricks<a href="tips_tricks.html#tips_tricks" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>Problem :</strong></p>
 <p>When rendering my R markdown document to pdf my code runs off the edge of the page.</p>
 <p><strong>Solution:</strong></p>
 <p>Add a global_options argument at the start of your .Rmd file in a code chunk:</p>
-<div class="sourceCode" id="cb447"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb447-1"><a href="tips_tricks.html#cb447-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb447-2"><a href="tips_tricks.html#cb447-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb447-3"><a href="tips_tricks.html#cb447-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb449-2"><a href="tips_tricks.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb449-3"><a href="tips_tricks.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
 <p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
 <p> </p>
@@ -439,10 +438,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
 <p><strong>Solution:</strong></p>
 <p>You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb448-1"><a href="tips_tricks.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb448-2"><a href="tips_tricks.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
-<span id="cb448-3"><a href="tips_tricks.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
-<span id="cb448-4"><a href="tips_tricks.html#cb448-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb450-1"><a href="tips_tricks.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb450-2"><a href="tips_tricks.html#cb450-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
+<span id="cb450-3"><a href="tips_tricks.html#cb450-3" aria-hidden="true" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
+<span id="cb450-4"><a href="tips_tricks.html#cb450-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
 <p> </p>
 <p><strong>Problem:</strong></p>
@@ -454,9 +453,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The code in my rendered document looks ugly!</p>
 <p><strong>Solution:</strong></p>
 <p>Add the argument <code>tidy=TRUE</code> to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb449-2"><a href="tips_tricks.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb449-3"><a href="tips_tricks.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb451-1"><a href="tips_tricks.html#cb451-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb451-2"><a href="tips_tricks.html#cb451-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb451-3"><a href="tips_tricks.html#cb451-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
             </section>
 
@@ -468,7 +467,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -499,7 +497,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

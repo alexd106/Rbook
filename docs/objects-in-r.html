@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.2 Objects in R | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.2 Objects in R | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="getting-started.html"/>
 <link rel="next" href="using-functions-in-r.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,11 +422,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="objects-in-r" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Objects in R</h2>
+<div id="objects-in-r" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Objects in R<a href="objects-in-r.html#objects-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>At the heart of almost everything you will do (or ever likely to do) in R is the concept that everything in R is an <a href="https://journal.r-project.org/archive/2009-1/RJournal_2009-1_Chambers.pdf">object</a>. These objects can be almost anything, from a single number or character string (like a word) to highly complex structures like the output of a plot, a summary of your statistical analysis or a set of R commands that perform a specific task. Understanding how you create objects and assign values to objects is key to understanding R.</p>
-<div id="r_objs" class="section level3" number="2.2.1">
-<h3><span class="header-section-number">2.2.1</span> Creating objects</h3>
+<div id="r_objs" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Creating objects<a href="objects-in-r.html#r_objs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 <div class="rmdvideo">
 <p>See this <a href="https://bit.ly/3eFmtgw">video</a> for an introduction to creating and managing objects in R</p>
@@ -479,8 +478,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb36-3"><a href="objects-in-r.html#cb36-3" aria-hidden="true" tabindex="-1"></a>Error<span class="sc">:</span> object <span class="st">&#39;no_obj&#39;</span> not found</span></code></pre></div>
 <p>R returns an error message because we haven’t created (defined) the object <code>no_obj</code> yet. Another clue that there’s a problem with this code is that, if you check your environment, you’ll see that object <code>my_obj4</code> has not been created.</p>
 </div>
-<div id="naming-objects" class="section level3" number="2.2.2">
-<h3><span class="header-section-number">2.2.2</span> Naming objects</h3>
+<div id="naming-objects" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Naming objects<a href="objects-in-r.html#naming-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Naming your objects is one of the most difficult things you will do in R (honestly - we’re serious). Ideally your object names should be kept both short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called <a href="https://en.wikipedia.org/wiki/Snake_case"><em>snake case</em></a>)</p>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="objects-in-r.html#cb37-1" aria-hidden="true" tabindex="-1"></a>output_summary <span class="ot">&lt;-</span> <span class="st">&quot;my analysis&quot;</span></span>
 <span id="cb37-2"><a href="objects-in-r.html#cb37-2" aria-hidden="true" tabindex="-1"></a>output.summary <span class="ot">&lt;-</span> <span class="st">&quot;my analysis&quot;</span></span>
@@ -500,7 +499,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -531,7 +529,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

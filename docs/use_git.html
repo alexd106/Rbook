@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Using Git | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Using Git | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="setting-up-a-project-in-rstudio.html"/>
 <link rel="next" href="resources.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,8 +422,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="use_git" class="section level2" number="9.6">
-<h2><span class="header-section-number">9.6</span> Using Git</h2>
+<div id="use_git" class="section level2 hasAnchor" number="9.6">
+<h2><span class="header-section-number">9.6</span> Using Git<a href="use_git.html#use_git" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that we have our project and repositories (both local and remote) set up, it’s finally time to learn how to use Git in RStudio!</p>
 <p>Typically, when using Git your workflow will go something like this:</p>
 <ol style="list-style-type: decimal">
@@ -476,8 +475,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>To see the contents of the file click on the <code>first_doc.Rmd</code> file name.</p>
 <p> </p>
 <p><img src="images/first_Rmd8.png" width="60%" style="display: block; margin: auto;" /></p>
-<div id="tracking-changes" class="section level3" number="9.6.1">
-<h3><span class="header-section-number">9.6.1</span> Tracking changes</h3>
+<div id="tracking-changes" class="section level3 hasAnchor" number="9.6.1">
+<h3><span class="header-section-number">9.6.1</span> Tracking changes<a href="use_git.html#tracking-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let’s make some further changes to your R markdown file and follow the workflow once again but this time we ’ll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.</p>
 <p>In RStudio open up the <code>first_repo.Rproj</code> file you created previously (if not already open) then open the <code>first_doc.Rmd</code> file (click on the file name in the <code>Files</code> tab in RStudio).</p>
 <p>Let’s make some changes to this document. Delete the line beginning with ‘My first version controlled …’ and replace it with something more informative (see figure below). We will also change the plotted symbols to red and give the plot axes labels. Lastly, let’s add a summary table of the dataframe using the <code>kable()</code> and <code>summary()</code> functions (you may need to install the <code>knitr</code> package if you haven’t done so previously to use the <code>kable()</code> function) and finally render this document to pdf by changing the YAML option to <code>output: pdf_document</code>.</p>
@@ -505,8 +504,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/mod6.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="commit-history" class="section level3" number="9.6.2">
-<h3><span class="header-section-number">9.6.2</span> Commit history</h3>
+<div id="commit-history" class="section level3 hasAnchor" number="9.6.2">
+<h3><span class="header-section-number">9.6.2</span> Commit history<a href="use_git.html#commit-history" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One of the great things about Git and GitHub is that you can view the history of all the commits you have made along with the associated commit messages. You can do this locally using RStudio (or the Git command line) or if you have pushed your commits to GitHub you can check them out on the GitHub website.</p>
 <p>To view your commit history in RStudio click on the ‘History’ button (the one that looks like a clock) in the Git pane to bring up the history view in the ‘Review Changes’ window. You can also click on the ‘Commit’ or ‘Diff’ buttons which takes you to the same window (you just need to additionally click on the ‘History’ button in the ‘Review Changes’ window).</p>
 <p> </p>
@@ -528,11 +527,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/c_history5.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="undo" class="section level3" number="9.6.3">
-<h3><span class="header-section-number">9.6.3</span> Reverting changes</h3>
+<div id="undo" class="section level3 hasAnchor" number="9.6.3">
+<h3><span class="header-section-number">9.6.3</span> Reverting changes<a href="use_git.html#undo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>One the great things about using Git is that you are able to revert to previous versions of files if you’ve made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We’ll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).</p>
-<div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4 unnumbered">
-<h4>Changes saved but not staged, committed or pushed</h4>
+<div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4 unnumbered hasAnchor">
+<h4>Changes saved but not staged, committed or pushed<a href="use_git.html#changes-saved-but-not-staged-committed-or-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select ‘Revert …’. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution.</p>
 <p> </p>
 <p><img src="images/revert1.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -541,12 +540,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/revert2.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="staged-but-not-committed-and-not-pushed" class="section level4 unnumbered">
-<h4>Staged but not committed and not pushed</h4>
+<div id="staged-but-not-committed-and-not-pushed" class="section level4 unnumbered hasAnchor">
+<h4>Staged but not committed and not pushed<a href="use_git.html#staged-but-not-committed-and-not-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you have staged your files, but not committed them then simply unstage them by clicking on the ‘Staged’ check box in the Git pane (or in the ‘Review Changes’ window) to remove the tick. You can then revert all or parts of the file as described in the section above.</p>
 </div>
-<div id="staged-and-committed-but-not-pushed" class="section level4 unnumbered">
-<h4>Staged and committed but not pushed</h4>
+<div id="staged-and-committed-but-not-pushed" class="section level4 unnumbered hasAnchor">
+<h4>Staged and committed but not pushed<a href="use_git.html#staged-and-committed-but-not-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit` box in the ’Review Changes’ window before committing.</p>
 <p> </p>
 <p><img src="images/revert3.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -578,8 +577,8 @@ git checkout 2b4693d1 .
 </code></pre>
 <p>Note that this will delete all files that you have created since you made this commit so be careful!</p>
 </div>
-<div id="staged-committed-and-pushed" class="section level4 unnumbered">
-<h4>Staged, committed and pushed</h4>
+<div id="staged-committed-and-pushed" class="section level4 unnumbered hasAnchor">
+<h4>Staged, committed and pushed<a href="use_git.html#staged-committed-and-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as we can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
 <p> </p>
 <p><img src="images/revert8.png" width="70%" style="display: block; margin: auto;" /></p>
@@ -595,12 +594,12 @@ git checkout 2b4693d1 .
 <p><img src="images/revert10.png" width="70%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
-<div id="collab" class="section level3" number="9.6.4">
-<h3><span class="header-section-number">9.6.4</span> Collaborate with Git</h3>
+<div id="collab" class="section level3 hasAnchor" number="9.6.4">
+<h3><span class="header-section-number">9.6.4</span> Collaborate with Git<a href="use_git.html#collab" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>GitHub is a great tool for collaboration, it can seem scary and complicated at first, but it is worth investing some time to learn how it works. What makes GitHub so good for collaboration is that it is a <em>distributed system</em>, which means that every collaborator works on their own copy of the project and changes are then merged together in the remote repository. There are two main ways you can set up a collaborative project on GitHub. One is the workflow we went through above, where everybody connects their local repository to the same remote one; this system works well with small projects where different people mainly work on different aspects of the project but can quickly become unwieldy if many people are collaborating and are working on the same files (merge misery!). The second approach consists of every collaborator creating a copy (or <strong>fork</strong>) of the main repository, which becomes their remote repository. Every collaborator then needs to send a request (a <strong>pull request</strong>) to the owner of the main repository to incorporate any changes into the main repository and this includes a review process before the changes are integrated. More detail of these topics can be found in the <a href="resources.html#resources">Further resources</a> section.</p>
 </div>
-<div id="git-tips" class="section level3" number="9.6.5">
-<h3><span class="header-section-number">9.6.5</span> Git tips</h3>
+<div id="git-tips" class="section level3 hasAnchor" number="9.6.5">
+<h3><span class="header-section-number">9.6.5</span> Git tips<a href="use_git.html#git-tips" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. We generally only push changes to GitHub when we’re happy for our collaborators (or the rest of the world) to see our work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git.</p>
 <p> </p>
 <p>If you don’t want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
@@ -622,7 +621,6 @@ git checkout 2b4693d1 .
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -653,7 +651,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

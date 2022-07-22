@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.5 R packages | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.5 R packages | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="alternatives-to-rstudio.html"/>
 <link rel="next" href="rsprojs.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,11 +422,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="packages" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> R packages</h2>
+<div id="packages" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> R packages<a href="packages.html#packages" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The base installation of R comes with many useful packages as standard. These packages will contain many of the functions you will use on a daily basis. However, as you start using R for more diverse projects (and as your own use of R evolves) you will find that there comes a time when you will need to extend R’s capabilities. Happily, many thousands of R users have developed useful code and shared this code as installable packages. You can think of a package as a collection of functions, data and help files collated into a well defined standard structure which you can download and install in R. These packages can be downloaded from a variety of sources but the most popular are <a href="https://cran.r-project.org/web/packages/index.html">CRAN</a>, <a href="https://www.bioconductor.org/">Bioconductor</a> and <a href="https://github.com/">GitHub</a>. Currently, CRAN hosts over 15000 packages and is the official repository for user contributed R packages. Bioconductor provides open source software oriented towards bioinformatics and hosts over 1800 R packages. GitHub is a website that hosts git repositories for all sorts of software and projects (not just R). Often, cutting edge development versions of R packages are hosted on GitHub so if you need all the new bells and whistles then this may be an option. However, a potential downside of using the development version of an R package is that it might not be as stable as the version hosted on CRAN (it’s in development!) and updating packages won’t be automatic.</p>
-<div id="cran_packages" class="section level3" number="1.5.1">
-<h3><span class="header-section-number">1.5.1</span> CRAN packages</h3>
+<div id="cran_packages" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> CRAN packages<a href="packages.html#cran_packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 <div class="rmdvideo">
 <p>See this <a href="https://bit.ly/3eHsrxl">video</a> for step-by-step instruction on how to install, use and update packages from CRAN</p>
@@ -440,8 +439,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="packages.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>The <code>ask = FALSE</code> argument avoids having to confirm every package download which can be a pain if you have many packages installed.</p>
 </div>
-<div id="bioconductor-packages" class="section level3" number="1.5.2">
-<h3><span class="header-section-number">1.5.2</span> Bioconductor packages</h3>
+<div id="bioconductor-packages" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> Bioconductor packages<a href="packages.html#bioconductor-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>To install packages from Bioconductor the process is a <a href="https://cran.r-project.org/web/packages/BiocManager/vignettes/BiocManager.html">little different</a>. You first need to install the <code>BiocManager</code> package. You only need to do this once unless you subsequently reinstall or upgrade R</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="packages.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;BiocManager&#39;</span>, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>Once the BiocManager package has been installed you can either install all of the ‘core’ Bioconductor packages with</p>
@@ -452,14 +451,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="packages.html#cb13-1" aria-hidden="true" tabindex="-1"></a>BiocManager<span class="sc">::</span><span class="fu">install</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Again, you can use the <code>ask = FALSE</code> argument to avoid having to confirm every package download.</p>
 </div>
-<div id="github-packages" class="section level3" number="1.5.3">
-<h3><span class="header-section-number">1.5.3</span> GitHub packages</h3>
+<div id="github-packages" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> GitHub packages<a href="packages.html#github-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the <code>install_github()</code> function from the <code>remotes</code> package (you installed this package <a href="packages.html#cran_packages">previously</a>). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of <code>dplyr</code> from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name ‘dplyr’ (just Google ‘github dplyr’). To install this version from GitHub use</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="packages.html#cb14-1" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&#39;tidyverse/dplyr&#39;</span>)</span></code></pre></div>
 <p>The safest way (that we know of) to update a package installed from GitHub is to just reinstall it using the above command.</p>
 </div>
-<div id="using-packages" class="section level3" number="1.5.4">
-<h3><span class="header-section-number">1.5.4</span> Using packages</h3>
+<div id="using-packages" class="section level3 hasAnchor" number="1.5.4">
+<h3><span class="header-section-number">1.5.4</span> Using packages<a href="packages.html#using-packages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Once you have installed a package onto your computer it is not immediately available for you to use. To use a package you first need to load the package by using the <code>library()</code> function. For example, to load the <code>remotes</code> package you previously installed</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="packages.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(remotes)</span></code></pre></div>
 <p>The <code>library()</code> function will also load any additional packages required and may print out additional package information. It is important to realise that every time you start a new R session (or restore a previously saved session) you need to load the packages you will be using. We tend to put all our <code>library()</code> statements required for our analysis near the top of our R scripts to make them easily accessible and easy to add to as our code develops. If you try to use a function without first loading the relevant R package you will receive an error message that R could not find the function. For example, if you try to use the <code>install_github()</code> function without loading the <code>remotes</code> package first you will receive the following error</p>
@@ -482,7 +481,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -513,7 +511,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {

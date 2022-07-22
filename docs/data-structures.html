@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Data structures | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Data structures | An Introduction to R" />
   <meta property="og:type" content="book" />
-  <meta property="og:url" content="https://alexd106.github.io/Rbook/" />
   <meta property="og:image" content="https://alexd106.github.io/Rbook//images/cover_v3.png" />
   <meta property="og:description" content="A practical introduction to using R for data analysis" />
   <meta name="github-repo" content="alexd106/Rbook" />
@@ -24,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-04-08" />
+<meta name="date" content="2022-07-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data-types.html"/>
 <link rel="next" href="importing-data.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,9 +49,9 @@
 
 
 
-
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 <link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
@@ -423,17 +422,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-structures" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Data structures</h2>
+<div id="data-structures" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Data structures<a href="data-structures.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Now that you’ve been introduced to some of the most important classes of data in R, let’s have a look at some of main structures that we have for storing these data.</p>
-<div id="scal_vecs" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Scalars and vectors</h3>
+<div id="scal_vecs" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Scalars and vectors<a href="data-structures.html#scal_vecs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Perhaps the simplest type of data structure is the vector. You’ve already been introduced to vectors in <a href="#funcs">Chapter 2</a> although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include <code>NA</code> (remember this is special type of logical) to denote missing data in vectors with other data types.</p>
 <p> </p>
 <p><img src="images/scal_vec.png" width="40%" style="display: block; margin: auto;" /></p>
 </div>
-<div id="mat_array" class="section level3" number="3.2.2">
-<h3><span class="header-section-number">3.2.2</span> Matrices and arrays</h3>
+<div id="mat_array" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Matrices and arrays<a href="data-structures.html#mat_array" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are just multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.</p>
 <p> </p>
 <p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
@@ -507,8 +506,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb92-23"><a href="data-structures.html#cb92-23" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]    3    2</span></span>
 <span id="cb92-24"><a href="data-structures.html#cb92-24" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]    1    2</span></span></code></pre></div>
 </div>
-<div id="lists" class="section level3" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> Lists</h3>
+<div id="lists" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> Lists<a href="data-structures.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The next data structure we will quickly take a look at is a list. Whilst vectors and matrices are constrained to contain data of the same type, lists are able to store mixtures of data types. In fact we can even store other data structures such as vectors and arrays within a list or even have a list of a list. This makes for a very flexible data structure which is ideal for storing irregular or non-rectangular data (see <a href="prog_r.html#prog_r">Chapter 7</a> for an example).</p>
 <p>To create a list we can use the <code>list()</code> function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-structures.html#cb93-1" aria-hidden="true" tabindex="-1"></a>list_1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
@@ -557,8 +556,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-12"><a href="data-structures.html#cb95-12" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
 <span id="cb95-13"><a href="data-structures.html#cb95-13" aria-hidden="true" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
 </div>
-<div id="df" class="section level3" number="3.2.4">
-<h3><span class="header-section-number">3.2.4</span> Data frames</h3>
+<div id="df" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> Data frames<a href="data-structures.html#df" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 
 <div class="rmdvideo">
 <p>Take a look at this <a href="https://bit.ly/2MjnyP7">video</a> for a quick introduction to data frame objects in R</p>
@@ -753,7 +752,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -784,7 +782,7 @@ gitbook.start({
 },
 "download": [["Rbook.pdf", "Download PDF version"]],
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
