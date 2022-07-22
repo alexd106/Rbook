@@ -5,6 +5,8 @@ Rendered book : https://intro2r.com
 To build this book you will need to install the following packages into R or Rstudio (just use the `install.packages()` function):
 `vioplot`, `reshape2`, `ggplot2`, `patchwork`, `quantreg`, `hexbin`, `GGally`, `ggfortify`, `kableExtra`, `htmltools`, `rmarkdown`, `bookdown`, `xfun`, `knitr`, `rsvg`, `remotes`, `formatR`, `here`.
 
+`install.packages(c('vioplot', 'reshape2', 'ggplot2', 'patchwork', 'quantreg', 'hexbin', 'GGally', 'ggfortify', 'kableExtra', 'htmltools', 'rmarkdown', 'bookdown', 'xfun', 'knitr', 'rsvg', 'remotes', 'formatR', 'here'))`
+
 You will also need to install the `icons` package from GitHub and also the download the fontawesome icons using:
 
 `remotes::install_github("mitchelloharawild/icons")`
