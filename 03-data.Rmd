@@ -369,7 +369,7 @@ In file(file, "rt") :
   cannot open file 'flower.txt': No such file or directory
 ```
 
-This error message is telling you that R cannot find the file you are trying to import. It usually rears its head for one of a couple of reasons (or all of them!). The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Lastly, the file is not where you say it is or you've used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes along way to avoiding these types of errors.
+This error message is telling you that R cannot find the file you are trying to import. It usually rears its head for one of a couple of reasons (or all of them!). The first is that you've made a mistake in the spelling of either the filename or file path. Another common mistake is that you have forgotten to include the file extension in the filename (i.e. `.txt`). Lastly, the file is not where you say it is or you've used an incorrect file path. Using RStudio [Projects](#rsprojs) and having a logical [directory structure](#dir_struct) goes a long way to avoiding these types of errors.
 
 Another really common mistake is to forget to include the `header = TRUE` argument when the first row of the data contains variable names. For example, if we omit this argument when we import our `flowers.txt` file everything looks OK at first (no error message at least)
 
@@ -383,7 +383,7 @@ but when we take a look at our data frame using `str()`
 str(flowers_bad)
 ```
 
-We can see an obvious problem, all of our variables have been imported as factors and are variables are named `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors, R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)).
+We can see an obvious problem, all of our variables have been imported as factors and our variables are named `V1`, `V2`, `V3` ... `V8`. The problem happens because we haven't told the `read.table()` function that the first row contains the variable names and so it treats them as data. As soon as we have a single character string in any of our data vectors, R treats the vectors as character type data (remember all elements in a vector must contain the [same type of data](#scal_vecs)).
 
 ### Other import options {#import_other}
 
