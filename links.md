@@ -16,11 +16,11 @@
 [objs-vid]: https://bit.ly/3eFmtgw
 [vec-vid]: https://bit.ly/3drjsA5
 [vec2-vid]: https://bit.ly/2BrGGZ1
-[pack-vid]: https://bit.ly/3eHsrxl
+[pack-vid]: https://bit.ly/3eHsrxl 
 [dataf-vid]: https://bit.ly/2MjnyP7
 [import-vid]: https://bit.ly/2UiJwpV
 
-<!--Exercises Links BI5009
+<!--Exercises Links BI5009 -->
 [exercise1]: https://alexd106.github.io/BI5009/exercise_1.html
 [exercise1-sol]: https://alexd106.github.io/BI5009/exercise_1_solution.html
 [exercise2]: https://alexd106.github.io/BI5009/exercise_2.html
@@ -36,9 +36,9 @@
 [exercise6-sol]:https://alexd106.github.io/intro2R/exercise_5_solution.html
 [exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
 [exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
--->
 
-<!--Exercises Links intro2R-->
+
+<!--Exercises Links intro2R
 [exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
 [exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
 [exercise2]: https://alexd106.github.io/intro2R/exercise_2.html
@@ -53,6 +53,7 @@
 [exercise6-sol]:https://alexd106.github.io/intro2R/exercise_5_solution.html
 [exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
 [exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
+-->
 
 <!--cran Links-->
 [cran]: https://cloud.r-project.org
