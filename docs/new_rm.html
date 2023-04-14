@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 Create an R markdown document | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 Create an R markdown document | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2023-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -105,7 +105,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -118,7 +118,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -448,15 +448,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb409-1"><a href="new_rm.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
-<span id="cb409-2"><a href="new_rm.html#cb409-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-3"><a href="new_rm.html#cb409-3" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb409-4"><a href="new_rm.html#cb409-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-5"><a href="new_rm.html#cb409-5" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
-<span id="cb409-6"><a href="new_rm.html#cb409-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-7"><a href="new_rm.html#cb409-7" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb409-8"><a href="new_rm.html#cb409-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-9"><a href="new_rm.html#cb409-9" aria-hidden="true" tabindex="-1"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb410-1"><a href="new_rm.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb410-2"><a href="new_rm.html#cb410-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb410-3"><a href="new_rm.html#cb410-3" aria-hidden="true" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb410-4"><a href="new_rm.html#cb410-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb410-5"><a href="new_rm.html#cb410-5" aria-hidden="true" tabindex="-1"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
+<span id="cb410-6"><a href="new_rm.html#cb410-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb410-7"><a href="new_rm.html#cb410-7" aria-hidden="true" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb410-8"><a href="new_rm.html#cb410-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb410-9"><a href="new_rm.html#cb410-9" aria-hidden="true" tabindex="-1"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
 </div>
             </section>
 
@@ -515,7 +515,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>A.2 Mac OSX | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="A.2 Mac OSX | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2023-04-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -105,7 +105,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -118,7 +118,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -425,28 +425,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="mac-osx" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">A.2</span> Mac OSX<a href="mac-osx.html#mac-osx" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This guide assumes you have already installed [R][R] and the <a href="https://rstudio.com/">RStudio IDE</a>. RStudio is not required but recommended, because it makes it easier to work with R Markdown. If you do not have RStudio IDE installed, you will also have to install <a href="http://pandoc.org">Pandoc</a>. If you have RStudio installed there is no need to install Pandoc separately because its bundled with RStudio. Next you can install the rmarkdown package in RStudio using the following code:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="mac-osx.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
-<span id="cb458-2"><a href="mac-osx.html#cb458-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="mac-osx.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
+<span id="cb459-2"><a href="mac-osx.html#cb459-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The <code>dep = TRUE</code> argument will also install a bunch of additional R packages on which rmarkdown depends.</p>
 <p>If you want to generate PDF output, you will need to install LaTeX. For R Markdown users who have not installed LaTeX before, we recommend that you install <a href="https://yihui.name/tinytex/">TinyTeX</a>. You can install TinyTex from within RStudio using the following code:</p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="mac-osx.html#cb459-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb459-2"><a href="mac-osx.html#cb459-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="mac-osx.html#cb460-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb460-2"><a href="mac-osx.html#cb460-2" aria-hidden="true" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. The R companion package tinytex can help you automatically install missing LaTeX packages when compiling LaTeX or R Markdown documents to PDF.</p>
 <p>If for some reason TinyTeX does not work on your Mac computer then you can try to install MacTeX instead. You can download the latest version of <a href="http://www.tug.org/mactex/mactex-download.html">MacTeX</a>. Click on the <em>MacTeX.pkg</em> link to download. Please be aware that the file is quite large, approximately 3 GB, so it may take some time (also make sure you have enough available space on your computer hard disk). When your download is complete, run the downloaded installer. The installation procedure is quite straightforward. You are given a few options, for example you can choose not to install some components. I recommend you stick with the default settings, so having accepted the license agreement, you can basically just keep clicking ‘Continue’ on each screen. On the final screen of the wizard, click Install. It may ask for an administrator password. Enter the password, click ‘Install Software’ and go make a cup of coffee while the installation completes. When the program is done installing, click ‘Close’ to complete the installation.</p>
 <p>With the rmarkdown package, RStudio/Pandoc, and LaTeX, you should be able to compile most R Markdown documents.</p>
 <p> </p>
 <!--course website Links-->
 <!--video Links bitly format for OSX preview to work-->
-<!--Exercises Links BI5009 -->
-<!--Exercises Links intro2R
-[exercise1]: https://alexd106.github.io/intro2R/exercise_1.html
-[exercise1-sol]: https://alexd106.github.io/intro2R/exercise_1_solution.html
-[exercise2]: https://alexd106.github.io/intro2R/exercise_2.html
-[exercise2-sol]: https://alexd106.github.io/intro2R/exercise_2_solution.html
-[exercise3]: https://alexd106.github.io/intro2R/exercise_3.html
-[exercise3-sol]: https://alexd106.github.io/intro2R/exercise_3_solution.html
-[exercise4]: https://alexd106.github.io/intro2R/exercise_4.html
-[exercise4-sol]: https://alexd106.github.io/intro2R/exercise_4_solution.html
+<!--Exercises Links BI5009
+[exercise1]: https://alexd106.github.io/BI5009/exercise_1.html
+[exercise1-sol]: https://alexd106.github.io/BI5009/exercise_1_solution.html
+[exercise2]: https://alexd106.github.io/BI5009/exercise_2.html
+[exercise2-sol]: https://alexd106.github.io/BI5009/exercise_2_solution.html
+[exercise3]: https://alexd106.github.io/BI5009/exercise_3.html
+[exercise3]: https://alexd106.github.io/BI5009/exercise_3.html
+[exercise3-sol]: https://alexd106.github.io/BI5009/exercise_3_solution.html
+[exercise4]: https://alexd106.github.io/BI5009/exercise_4.html
+[exercise4-sol]: https://alexd106.github.io/BI5009/exercise_4_solution.html
 [exercise5]: https://alexd106.github.io/intro2R/exercise_4.html
 [exercise5-sol]: https://alexd106.github.io/intro2R/exercise_4_ggplot_solution.html
 [exercise6]: https://alexd106.github.io/intro2R/exercise_5.html
@@ -454,6 +454,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 [exercise7]: https://alexd106.github.io/intro2R/exercise_6.html
 [exercise7-sol]: https://alexd106.github.io/intro2R/exercise_6_solution.html
 -->
+<!--Exercises Links intro2R-->
 <!--cran Links-->
 <!--RStudio-->
 <!--style guides-->
@@ -527,7 +528,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
