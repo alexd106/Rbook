@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-04-14" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -428,9 +428,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When rendering my R markdown document to pdf my code runs off the edge of the page.</p>
 <p><strong>Solution:</strong></p>
 <p>Add a global_options argument at the start of your .Rmd file in a code chunk:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb448-1"><a href="tips_tricks.html#cb448-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb448-2"><a href="tips_tricks.html#cb448-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb448-3"><a href="tips_tricks.html#cb448-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb448-1"><a href="tips_tricks.html#cb448-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb448-2"><a href="tips_tricks.html#cb448-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb448-3"><a href="tips_tricks.html#cb448-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
 <p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
 <p> </p>
@@ -438,10 +438,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
 <p><strong>Solution:</strong></p>
 <p>You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb449-2"><a href="tips_tricks.html#cb449-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
-<span id="cb449-3"><a href="tips_tricks.html#cb449-3" aria-hidden="true" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
-<span id="cb449-4"><a href="tips_tricks.html#cb449-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb449-2"><a href="tips_tricks.html#cb449-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
+<span id="cb449-3"><a href="tips_tricks.html#cb449-3" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
+<span id="cb449-4"><a href="tips_tricks.html#cb449-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
 <p> </p>
 <p><strong>Problem:</strong></p>
@@ -453,9 +453,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The code in my rendered document looks ugly!</p>
 <p><strong>Solution:</strong></p>
 <p>Add the argument <code>tidy=TRUE</code> to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb450-1"><a href="tips_tricks.html#cb450-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb450-2"><a href="tips_tricks.html#cb450-2" aria-hidden="true" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb450-3"><a href="tips_tricks.html#cb450-3" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb450-1"><a href="tips_tricks.html#cb450-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb450-2"><a href="tips_tricks.html#cb450-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb450-3"><a href="tips_tricks.html#cb450-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
             </section>
 

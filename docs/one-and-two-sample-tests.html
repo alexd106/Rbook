@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-04-14" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -426,159 +426,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.1</span> One and two sample tests<a href="one-and-two-sample-tests.html#one-and-two-sample-tests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The two main functions for these types of tests are the <code>t.test()</code> and <code>wilcox.test()</code> that perform <em>t</em> tests and Wilcoxon’s signed rank test respectively. Both of these tests can be applied to one and two sample analyses as well as paired data.</p>
 <p>As an example of a one sample <em>t</em> test we will use the <code>trees</code> dataset which is included with R. To access this in-built dataset we can use the <code>data()</code> function. This data set provides measurements of the diameter, height and volume of timber in 31 felled black cherry trees (see <code>?trees</code> for more detail).</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="one-and-two-sample-tests.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
-<span id="cb324-2"><a href="one-and-two-sample-tests.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(trees)</span>
-<span id="cb324-3"><a href="one-and-two-sample-tests.html#cb324-3" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    31 obs. of  3 variables:</span></span>
-<span id="cb324-4"><a href="one-and-two-sample-tests.html#cb324-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></span>
-<span id="cb324-5"><a href="one-and-two-sample-tests.html#cb324-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></span>
-<span id="cb324-6"><a href="one-and-two-sample-tests.html#cb324-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></span>
-<span id="cb324-7"><a href="one-and-two-sample-tests.html#cb324-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(trees)</span>
-<span id="cb324-8"><a href="one-and-two-sample-tests.html#cb324-8" aria-hidden="true" tabindex="-1"></a><span class="do">##      Girth           Height       Volume     </span></span>
-<span id="cb324-9"><a href="one-and-two-sample-tests.html#cb324-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  Min.   : 8.30   Min.   :63   Min.   :10.20  </span></span>
-<span id="cb324-10"><a href="one-and-two-sample-tests.html#cb324-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  1st Qu.:11.05   1st Qu.:72   1st Qu.:19.40  </span></span>
-<span id="cb324-11"><a href="one-and-two-sample-tests.html#cb324-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  Median :12.90   Median :76   Median :24.20  </span></span>
-<span id="cb324-12"><a href="one-and-two-sample-tests.html#cb324-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  Mean   :13.25   Mean   :76   Mean   :30.17  </span></span>
-<span id="cb324-13"><a href="one-and-two-sample-tests.html#cb324-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  3rd Qu.:15.25   3rd Qu.:80   3rd Qu.:37.30  </span></span>
-<span id="cb324-14"><a href="one-and-two-sample-tests.html#cb324-14" aria-hidden="true" tabindex="-1"></a><span class="do">##  Max.   :20.60   Max.   :87   Max.   :77.00</span></span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="one-and-two-sample-tests.html#cb324-1" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
+<span id="cb324-2"><a href="one-and-two-sample-tests.html#cb324-2" tabindex="-1"></a><span class="fu">str</span>(trees)</span>
+<span id="cb324-3"><a href="one-and-two-sample-tests.html#cb324-3" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    31 obs. of  3 variables:</span></span>
+<span id="cb324-4"><a href="one-and-two-sample-tests.html#cb324-4" tabindex="-1"></a><span class="do">##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></span>
+<span id="cb324-5"><a href="one-and-two-sample-tests.html#cb324-5" tabindex="-1"></a><span class="do">##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></span>
+<span id="cb324-6"><a href="one-and-two-sample-tests.html#cb324-6" tabindex="-1"></a><span class="do">##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></span>
+<span id="cb324-7"><a href="one-and-two-sample-tests.html#cb324-7" tabindex="-1"></a><span class="fu">summary</span>(trees)</span>
+<span id="cb324-8"><a href="one-and-two-sample-tests.html#cb324-8" tabindex="-1"></a><span class="do">##      Girth           Height       Volume     </span></span>
+<span id="cb324-9"><a href="one-and-two-sample-tests.html#cb324-9" tabindex="-1"></a><span class="do">##  Min.   : 8.30   Min.   :63   Min.   :10.20  </span></span>
+<span id="cb324-10"><a href="one-and-two-sample-tests.html#cb324-10" tabindex="-1"></a><span class="do">##  1st Qu.:11.05   1st Qu.:72   1st Qu.:19.40  </span></span>
+<span id="cb324-11"><a href="one-and-two-sample-tests.html#cb324-11" tabindex="-1"></a><span class="do">##  Median :12.90   Median :76   Median :24.20  </span></span>
+<span id="cb324-12"><a href="one-and-two-sample-tests.html#cb324-12" tabindex="-1"></a><span class="do">##  Mean   :13.25   Mean   :76   Mean   :30.17  </span></span>
+<span id="cb324-13"><a href="one-and-two-sample-tests.html#cb324-13" tabindex="-1"></a><span class="do">##  3rd Qu.:15.25   3rd Qu.:80   3rd Qu.:37.30  </span></span>
+<span id="cb324-14"><a href="one-and-two-sample-tests.html#cb324-14" tabindex="-1"></a><span class="do">##  Max.   :20.60   Max.   :87   Max.   :77.00</span></span></code></pre></div>
 <p>If we wanted to test whether the mean height of black cherry trees in this sample is equal to 70 ft (<code>mu = 70</code>), assuming these data are normally distributed, we can use a <code>t.test()</code> to do so.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="one-and-two-sample-tests.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>)</span>
-<span id="cb325-2"><a href="one-and-two-sample-tests.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb325-3"><a href="one-and-two-sample-tests.html#cb325-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  One Sample t-test</span></span>
-<span id="cb325-4"><a href="one-and-two-sample-tests.html#cb325-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb325-5"><a href="one-and-two-sample-tests.html#cb325-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
-<span id="cb325-6"><a href="one-and-two-sample-tests.html#cb325-6" aria-hidden="true" tabindex="-1"></a><span class="do">## t = 5.2429, df = 30, p-value = 1.173e-05</span></span>
-<span id="cb325-7"><a href="one-and-two-sample-tests.html#cb325-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean is not equal to 70</span></span>
-<span id="cb325-8"><a href="one-and-two-sample-tests.html#cb325-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb325-9"><a href="one-and-two-sample-tests.html#cb325-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  73.6628 78.3372</span></span>
-<span id="cb325-10"><a href="one-and-two-sample-tests.html#cb325-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb325-11"><a href="one-and-two-sample-tests.html#cb325-11" aria-hidden="true" tabindex="-1"></a><span class="do">## mean of x </span></span>
-<span id="cb325-12"><a href="one-and-two-sample-tests.html#cb325-12" aria-hidden="true" tabindex="-1"></a><span class="do">##        76</span></span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="one-and-two-sample-tests.html#cb325-1" tabindex="-1"></a><span class="fu">t.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>)</span>
+<span id="cb325-2"><a href="one-and-two-sample-tests.html#cb325-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb325-3"><a href="one-and-two-sample-tests.html#cb325-3" tabindex="-1"></a><span class="do">##  One Sample t-test</span></span>
+<span id="cb325-4"><a href="one-and-two-sample-tests.html#cb325-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb325-5"><a href="one-and-two-sample-tests.html#cb325-5" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
+<span id="cb325-6"><a href="one-and-two-sample-tests.html#cb325-6" tabindex="-1"></a><span class="do">## t = 5.2429, df = 30, p-value = 1.173e-05</span></span>
+<span id="cb325-7"><a href="one-and-two-sample-tests.html#cb325-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean is not equal to 70</span></span>
+<span id="cb325-8"><a href="one-and-two-sample-tests.html#cb325-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb325-9"><a href="one-and-two-sample-tests.html#cb325-9" tabindex="-1"></a><span class="do">##  73.6628 78.3372</span></span>
+<span id="cb325-10"><a href="one-and-two-sample-tests.html#cb325-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb325-11"><a href="one-and-two-sample-tests.html#cb325-11" tabindex="-1"></a><span class="do">## mean of x </span></span>
+<span id="cb325-12"><a href="one-and-two-sample-tests.html#cb325-12" tabindex="-1"></a><span class="do">##        76</span></span></code></pre></div>
 <p>The above summary has a fairly logical layout and includes the name of the test that we have asked for (<code>One Sample t-test</code>), which data has been used (<code>data:  trees$Height</code>), the <em>t</em> statistic, degrees of freedom and associated <em>p</em> value (<code>t = 5.2, df = 30, p-value = 1e-05</code>). It also states the alternative hypothesis (<code>alternative hypothesis: true mean is not equal to 70</code>) which tells us this is a two sided test (as we have both equal and not equal to), the 95% confidence interval for the mean (<code>95 percent confidence interval:73.66 78.34</code>) and also an estimate of the mean (<code>sample estimates: mean of x : 76</code>). In the above example, the <em>p</em> value is very small and therefore we would reject the null hypothesis and conclude that the mean height of our sample of black cherry trees is not equal to 70 ft.</p>
 <p>The function <code>t.test()</code> also has a number of additional arguments which can be used for one-sample tests. You can specify that a one sided test is required by using either <code>alternative = "greater"</code> or <code>alternative = "less</code> arguments which tests whether the sample mean is greater or less than the mean specified. For example, to test whether our sample mean is greater than 70 ft.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="one-and-two-sample-tests.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
-<span id="cb326-2"><a href="one-and-two-sample-tests.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb326-3"><a href="one-and-two-sample-tests.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  One Sample t-test</span></span>
-<span id="cb326-4"><a href="one-and-two-sample-tests.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb326-5"><a href="one-and-two-sample-tests.html#cb326-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
-<span id="cb326-6"><a href="one-and-two-sample-tests.html#cb326-6" aria-hidden="true" tabindex="-1"></a><span class="do">## t = 5.2429, df = 30, p-value = 5.866e-06</span></span>
-<span id="cb326-7"><a href="one-and-two-sample-tests.html#cb326-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean is greater than 70</span></span>
-<span id="cb326-8"><a href="one-and-two-sample-tests.html#cb326-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb326-9"><a href="one-and-two-sample-tests.html#cb326-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  74.05764      Inf</span></span>
-<span id="cb326-10"><a href="one-and-two-sample-tests.html#cb326-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb326-11"><a href="one-and-two-sample-tests.html#cb326-11" aria-hidden="true" tabindex="-1"></a><span class="do">## mean of x </span></span>
-<span id="cb326-12"><a href="one-and-two-sample-tests.html#cb326-12" aria-hidden="true" tabindex="-1"></a><span class="do">##        76</span></span></code></pre></div>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="one-and-two-sample-tests.html#cb326-1" tabindex="-1"></a><span class="fu">t.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span>
+<span id="cb326-2"><a href="one-and-two-sample-tests.html#cb326-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb326-3"><a href="one-and-two-sample-tests.html#cb326-3" tabindex="-1"></a><span class="do">##  One Sample t-test</span></span>
+<span id="cb326-4"><a href="one-and-two-sample-tests.html#cb326-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb326-5"><a href="one-and-two-sample-tests.html#cb326-5" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
+<span id="cb326-6"><a href="one-and-two-sample-tests.html#cb326-6" tabindex="-1"></a><span class="do">## t = 5.2429, df = 30, p-value = 5.866e-06</span></span>
+<span id="cb326-7"><a href="one-and-two-sample-tests.html#cb326-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean is greater than 70</span></span>
+<span id="cb326-8"><a href="one-and-two-sample-tests.html#cb326-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb326-9"><a href="one-and-two-sample-tests.html#cb326-9" tabindex="-1"></a><span class="do">##  74.05764      Inf</span></span>
+<span id="cb326-10"><a href="one-and-two-sample-tests.html#cb326-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb326-11"><a href="one-and-two-sample-tests.html#cb326-11" tabindex="-1"></a><span class="do">## mean of x </span></span>
+<span id="cb326-12"><a href="one-and-two-sample-tests.html#cb326-12" tabindex="-1"></a><span class="do">##        76</span></span></code></pre></div>
 <p>You can also change the confidence level used for estimating the confidence intervals using the argument <code>conf.level = 0.99</code>. If specified in this way, 99% confidence intervals would be estimated.</p>
 <p>Although <em>t</em> tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the <em>t</em> test but using the <code>wilcox.test()</code> function.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="one-and-two-sample-tests.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>)</span>
-<span id="cb327-2"><a href="one-and-two-sample-tests.html#cb327-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
-<span id="cb327-3"><a href="one-and-two-sample-tests.html#cb327-3" aria-hidden="true" tabindex="-1"></a><span class="do">## p-value with ties</span></span>
-<span id="cb327-4"><a href="one-and-two-sample-tests.html#cb327-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
-<span id="cb327-5"><a href="one-and-two-sample-tests.html#cb327-5" aria-hidden="true" tabindex="-1"></a><span class="do">## p-value with zeroes</span></span>
-<span id="cb327-6"><a href="one-and-two-sample-tests.html#cb327-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb327-7"><a href="one-and-two-sample-tests.html#cb327-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
-<span id="cb327-8"><a href="one-and-two-sample-tests.html#cb327-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb327-9"><a href="one-and-two-sample-tests.html#cb327-9" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
-<span id="cb327-10"><a href="one-and-two-sample-tests.html#cb327-10" aria-hidden="true" tabindex="-1"></a><span class="do">## V = 419.5, p-value = 0.0001229</span></span>
-<span id="cb327-11"><a href="one-and-two-sample-tests.html#cb327-11" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true location is not equal to 70</span></span></code></pre></div>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="one-and-two-sample-tests.html#cb327-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>)</span>
+<span id="cb327-2"><a href="one-and-two-sample-tests.html#cb327-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
+<span id="cb327-3"><a href="one-and-two-sample-tests.html#cb327-3" tabindex="-1"></a><span class="do">## p-value with ties</span></span>
+<span id="cb327-4"><a href="one-and-two-sample-tests.html#cb327-4" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
+<span id="cb327-5"><a href="one-and-two-sample-tests.html#cb327-5" tabindex="-1"></a><span class="do">## p-value with zeroes</span></span>
+<span id="cb327-6"><a href="one-and-two-sample-tests.html#cb327-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb327-7"><a href="one-and-two-sample-tests.html#cb327-7" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb327-8"><a href="one-and-two-sample-tests.html#cb327-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb327-9"><a href="one-and-two-sample-tests.html#cb327-9" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
+<span id="cb327-10"><a href="one-and-two-sample-tests.html#cb327-10" tabindex="-1"></a><span class="do">## V = 419.5, p-value = 0.0001229</span></span>
+<span id="cb327-11"><a href="one-and-two-sample-tests.html#cb327-11" tabindex="-1"></a><span class="do">## alternative hypothesis: true location is not equal to 70</span></span></code></pre></div>
 <p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact <em>p</em> value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = "greater"</code> and <code>alternative = "less"</code>.</p>
 <p>In our one sample test it’s always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. Perhaps the simplest way to assess normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your data are normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
 <p>To construct a Q-Q plot you need to use both the <code>qqnorm()</code> and <code>qqline()</code> functions. The <code>lty = 2</code> argument changes the line to a dashed line.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="one-and-two-sample-tests.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(trees<span class="sc">$</span>Height)</span>
-<span id="cb328-2"><a href="one-and-two-sample-tests.html#cb328-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(trees<span class="sc">$</span>Height, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="one-and-two-sample-tests.html#cb328-1" tabindex="-1"></a><span class="fu">qqnorm</span>(trees<span class="sc">$</span>Height)</span>
+<span id="cb328-2"><a href="one-and-two-sample-tests.html#cb328-2" tabindex="-1"></a><span class="fu">qqline</span>(trees<span class="sc">$</span>Height, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss5-1.png" width="672" /></p>
 <p>If you insist on performing a specific test for normality you can use the function <code>shapiro.test()</code> which performs a Shapiro – Wilks test of normality.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="one-and-two-sample-tests.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(trees<span class="sc">$</span>Height)</span>
-<span id="cb329-2"><a href="one-and-two-sample-tests.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb329-3"><a href="one-and-two-sample-tests.html#cb329-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
-<span id="cb329-4"><a href="one-and-two-sample-tests.html#cb329-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb329-5"><a href="one-and-two-sample-tests.html#cb329-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
-<span id="cb329-6"><a href="one-and-two-sample-tests.html#cb329-6" aria-hidden="true" tabindex="-1"></a><span class="do">## W = 0.96545, p-value = 0.4034</span></span></code></pre></div>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="one-and-two-sample-tests.html#cb329-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(trees<span class="sc">$</span>Height)</span>
+<span id="cb329-2"><a href="one-and-two-sample-tests.html#cb329-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb329-3"><a href="one-and-two-sample-tests.html#cb329-3" tabindex="-1"></a><span class="do">##  Shapiro-Wilk normality test</span></span>
+<span id="cb329-4"><a href="one-and-two-sample-tests.html#cb329-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb329-5"><a href="one-and-two-sample-tests.html#cb329-5" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
+<span id="cb329-6"><a href="one-and-two-sample-tests.html#cb329-6" tabindex="-1"></a><span class="do">## W = 0.96545, p-value = 0.4034</span></span></code></pre></div>
 <p>In the example above, the <em>p</em> value = 0.4 which suggests that there is no evidence to reject the null hypothesis and we can therefore assume these data are normally distributed.</p>
 <p>In addition to one-sample tests, both the <code>t.test()</code> and <code>wilcox.test()</code> functions can be used to test for differences between two samples. A two sample <em>t</em> test is used to test the null hypothesis that the two samples come from distributions with the same mean (i.e. the means are not different). For example, a study was conducted to test whether ‘seeding’ clouds with dimethylsulphate alters the moisture content of clouds. Ten random clouds were ‘seeded’ with a further ten ‘unseeded’. The dataset can be found in the <code>atmosphere.txt</code> data file located in the <code>data/</code> directory on the Rbook github page.</p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="one-and-two-sample-tests.html#cb330-1" aria-hidden="true" tabindex="-1"></a>atmos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb330-2"><a href="one-and-two-sample-tests.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(atmos)</span>
-<span id="cb330-3"><a href="one-and-two-sample-tests.html#cb330-3" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    20 obs. of  2 variables:</span></span>
-<span id="cb330-4"><a href="one-and-two-sample-tests.html#cb330-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ moisture : num  301 302 299 316 307 ...</span></span>
-<span id="cb330-5"><a href="one-and-two-sample-tests.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ treatment: chr  &quot;seeded&quot; &quot;seeded&quot; &quot;seeded&quot; &quot;seeded&quot; ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="one-and-two-sample-tests.html#cb330-1" tabindex="-1"></a>atmos <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/atmosphere.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb330-2"><a href="one-and-two-sample-tests.html#cb330-2" tabindex="-1"></a><span class="fu">str</span>(atmos)</span>
+<span id="cb330-3"><a href="one-and-two-sample-tests.html#cb330-3" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    20 obs. of  2 variables:</span></span>
+<span id="cb330-4"><a href="one-and-two-sample-tests.html#cb330-4" tabindex="-1"></a><span class="do">##  $ moisture : num  301 302 299 316 307 ...</span></span>
+<span id="cb330-5"><a href="one-and-two-sample-tests.html#cb330-5" tabindex="-1"></a><span class="do">##  $ treatment: chr  &quot;seeded&quot; &quot;seeded&quot; &quot;seeded&quot; &quot;seeded&quot; ...</span></span></code></pre></div>
 <p>As with our previous data frame (<code>flowers</code>), these data are in the long format. The column <code>moisture</code> contains the moisture content measured in each cloud and the column <code>treatment</code> identifies whether the cloud was <code>seeded</code> or <code>unseeded</code>. To perform a two-sample <em>t</em> test</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="one-and-two-sample-tests.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
-<span id="cb331-2"><a href="one-and-two-sample-tests.html#cb331-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb331-3"><a href="one-and-two-sample-tests.html#cb331-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
-<span id="cb331-4"><a href="one-and-two-sample-tests.html#cb331-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb331-5"><a href="one-and-two-sample-tests.html#cb331-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
-<span id="cb331-6"><a href="one-and-two-sample-tests.html#cb331-6" aria-hidden="true" tabindex="-1"></a><span class="do">## t = 2.5404, df = 16.807, p-value = 0.02125</span></span>
-<span id="cb331-7"><a href="one-and-two-sample-tests.html#cb331-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group seeded and group unseeded is not equal to 0</span></span>
-<span id="cb331-8"><a href="one-and-two-sample-tests.html#cb331-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb331-9"><a href="one-and-two-sample-tests.html#cb331-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   1.446433 15.693567</span></span>
-<span id="cb331-10"><a href="one-and-two-sample-tests.html#cb331-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb331-11"><a href="one-and-two-sample-tests.html#cb331-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean in group seeded mean in group unseeded </span></span>
-<span id="cb331-12"><a href="one-and-two-sample-tests.html#cb331-12" aria-hidden="true" tabindex="-1"></a><span class="do">##                 303.63                 295.06</span></span></code></pre></div>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="one-and-two-sample-tests.html#cb331-1" tabindex="-1"></a><span class="fu">t.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
+<span id="cb331-2"><a href="one-and-two-sample-tests.html#cb331-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb331-3"><a href="one-and-two-sample-tests.html#cb331-3" tabindex="-1"></a><span class="do">##  Welch Two Sample t-test</span></span>
+<span id="cb331-4"><a href="one-and-two-sample-tests.html#cb331-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb331-5"><a href="one-and-two-sample-tests.html#cb331-5" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
+<span id="cb331-6"><a href="one-and-two-sample-tests.html#cb331-6" tabindex="-1"></a><span class="do">## t = 2.5404, df = 16.807, p-value = 0.02125</span></span>
+<span id="cb331-7"><a href="one-and-two-sample-tests.html#cb331-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group seeded and group unseeded is not equal to 0</span></span>
+<span id="cb331-8"><a href="one-and-two-sample-tests.html#cb331-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb331-9"><a href="one-and-two-sample-tests.html#cb331-9" tabindex="-1"></a><span class="do">##   1.446433 15.693567</span></span>
+<span id="cb331-10"><a href="one-and-two-sample-tests.html#cb331-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb331-11"><a href="one-and-two-sample-tests.html#cb331-11" tabindex="-1"></a><span class="do">##   mean in group seeded mean in group unseeded </span></span>
+<span id="cb331-12"><a href="one-and-two-sample-tests.html#cb331-12" tabindex="-1"></a><span class="do">##                 303.63                 295.06</span></span></code></pre></div>
 <p>Notice the use of the formula method (<code>atmos$moisture ~ atmos$treatment</code>, which can be read as ‘the moisture described by treatment’) to specify the test. You can also use other methods depending on the format of the data frame. Use <code>?t.test</code> for further details. The details of the output are similar to the one-sample <em>t</em> test. The Welch’s variant of the <em>t</em> test is used by default and does not assume that the variances of the two samples are equal. If you are sure the variances in the two samples are the same, you can specify this using the <code>var.equal = TRUE</code> argument</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="one-and-two-sample-tests.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb332-2"><a href="one-and-two-sample-tests.html#cb332-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb332-3"><a href="one-and-two-sample-tests.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Two Sample t-test</span></span>
-<span id="cb332-4"><a href="one-and-two-sample-tests.html#cb332-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb332-5"><a href="one-and-two-sample-tests.html#cb332-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
-<span id="cb332-6"><a href="one-and-two-sample-tests.html#cb332-6" aria-hidden="true" tabindex="-1"></a><span class="do">## t = 2.5404, df = 18, p-value = 0.02051</span></span>
-<span id="cb332-7"><a href="one-and-two-sample-tests.html#cb332-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group seeded and group unseeded is not equal to 0</span></span>
-<span id="cb332-8"><a href="one-and-two-sample-tests.html#cb332-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb332-9"><a href="one-and-two-sample-tests.html#cb332-9" aria-hidden="true" tabindex="-1"></a><span class="do">##   1.482679 15.657321</span></span>
-<span id="cb332-10"><a href="one-and-two-sample-tests.html#cb332-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb332-11"><a href="one-and-two-sample-tests.html#cb332-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   mean in group seeded mean in group unseeded </span></span>
-<span id="cb332-12"><a href="one-and-two-sample-tests.html#cb332-12" aria-hidden="true" tabindex="-1"></a><span class="do">##                 303.63                 295.06</span></span></code></pre></div>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="one-and-two-sample-tests.html#cb332-1" tabindex="-1"></a><span class="fu">t.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb332-2"><a href="one-and-two-sample-tests.html#cb332-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb332-3"><a href="one-and-two-sample-tests.html#cb332-3" tabindex="-1"></a><span class="do">##  Two Sample t-test</span></span>
+<span id="cb332-4"><a href="one-and-two-sample-tests.html#cb332-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb332-5"><a href="one-and-two-sample-tests.html#cb332-5" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
+<span id="cb332-6"><a href="one-and-two-sample-tests.html#cb332-6" tabindex="-1"></a><span class="do">## t = 2.5404, df = 18, p-value = 0.02051</span></span>
+<span id="cb332-7"><a href="one-and-two-sample-tests.html#cb332-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true difference in means between group seeded and group unseeded is not equal to 0</span></span>
+<span id="cb332-8"><a href="one-and-two-sample-tests.html#cb332-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb332-9"><a href="one-and-two-sample-tests.html#cb332-9" tabindex="-1"></a><span class="do">##   1.482679 15.657321</span></span>
+<span id="cb332-10"><a href="one-and-two-sample-tests.html#cb332-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb332-11"><a href="one-and-two-sample-tests.html#cb332-11" tabindex="-1"></a><span class="do">##   mean in group seeded mean in group unseeded </span></span>
+<span id="cb332-12"><a href="one-and-two-sample-tests.html#cb332-12" tabindex="-1"></a><span class="do">##                 303.63                 295.06</span></span></code></pre></div>
 <p>To test whether the assumption of equal variances is valid you can perform an <em>F</em>-test on the ratio of the group variances using the <code>var.test()</code> function.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="one-and-two-sample-tests.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
-<span id="cb333-2"><a href="one-and-two-sample-tests.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb333-3"><a href="one-and-two-sample-tests.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  F test to compare two variances</span></span>
-<span id="cb333-4"><a href="one-and-two-sample-tests.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb333-5"><a href="one-and-two-sample-tests.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
-<span id="cb333-6"><a href="one-and-two-sample-tests.html#cb333-6" aria-hidden="true" tabindex="-1"></a><span class="do">## F = 0.57919, num df = 9, denom df = 9, p-value = 0.4283</span></span>
-<span id="cb333-7"><a href="one-and-two-sample-tests.html#cb333-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true ratio of variances is not equal to 1</span></span>
-<span id="cb333-8"><a href="one-and-two-sample-tests.html#cb333-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb333-9"><a href="one-and-two-sample-tests.html#cb333-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  0.1438623 2.3318107</span></span>
-<span id="cb333-10"><a href="one-and-two-sample-tests.html#cb333-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb333-11"><a href="one-and-two-sample-tests.html#cb333-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ratio of variances </span></span>
-<span id="cb333-12"><a href="one-and-two-sample-tests.html#cb333-12" aria-hidden="true" tabindex="-1"></a><span class="do">##          0.5791888</span></span></code></pre></div>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="one-and-two-sample-tests.html#cb333-1" tabindex="-1"></a><span class="fu">var.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
+<span id="cb333-2"><a href="one-and-two-sample-tests.html#cb333-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb333-3"><a href="one-and-two-sample-tests.html#cb333-3" tabindex="-1"></a><span class="do">##  F test to compare two variances</span></span>
+<span id="cb333-4"><a href="one-and-two-sample-tests.html#cb333-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb333-5"><a href="one-and-two-sample-tests.html#cb333-5" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
+<span id="cb333-6"><a href="one-and-two-sample-tests.html#cb333-6" tabindex="-1"></a><span class="do">## F = 0.57919, num df = 9, denom df = 9, p-value = 0.4283</span></span>
+<span id="cb333-7"><a href="one-and-two-sample-tests.html#cb333-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true ratio of variances is not equal to 1</span></span>
+<span id="cb333-8"><a href="one-and-two-sample-tests.html#cb333-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb333-9"><a href="one-and-two-sample-tests.html#cb333-9" tabindex="-1"></a><span class="do">##  0.1438623 2.3318107</span></span>
+<span id="cb333-10"><a href="one-and-two-sample-tests.html#cb333-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb333-11"><a href="one-and-two-sample-tests.html#cb333-11" tabindex="-1"></a><span class="do">## ratio of variances </span></span>
+<span id="cb333-12"><a href="one-and-two-sample-tests.html#cb333-12" tabindex="-1"></a><span class="do">##          0.5791888</span></span></code></pre></div>
 <p>As the <em>p</em> value is greater than 0.05, there is no evidence to suggest that the variances are unequal. Note however, that the <em>F</em>-test is sensitive to departures from normality and should not be used with data which is not normal. See the <code>car</code> package for alternatives.</p>
 <p>The non-parametric two-sample Wilcoxon test (also known as a Mann-Whitney U test) can be performed using the same formula method:</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="one-and-two-sample-tests.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
-<span id="cb334-2"><a href="one-and-two-sample-tests.html#cb334-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb334-3"><a href="one-and-two-sample-tests.html#cb334-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Wilcoxon rank sum exact test</span></span>
-<span id="cb334-4"><a href="one-and-two-sample-tests.html#cb334-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb334-5"><a href="one-and-two-sample-tests.html#cb334-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
-<span id="cb334-6"><a href="one-and-two-sample-tests.html#cb334-6" aria-hidden="true" tabindex="-1"></a><span class="do">## W = 79, p-value = 0.02881</span></span>
-<span id="cb334-7"><a href="one-and-two-sample-tests.html#cb334-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="one-and-two-sample-tests.html#cb334-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(atmos<span class="sc">$</span>moisture <span class="sc">~</span> atmos<span class="sc">$</span>treatment)</span>
+<span id="cb334-2"><a href="one-and-two-sample-tests.html#cb334-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb334-3"><a href="one-and-two-sample-tests.html#cb334-3" tabindex="-1"></a><span class="do">##  Wilcoxon rank sum exact test</span></span>
+<span id="cb334-4"><a href="one-and-two-sample-tests.html#cb334-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb334-5"><a href="one-and-two-sample-tests.html#cb334-5" tabindex="-1"></a><span class="do">## data:  atmos$moisture by atmos$treatment</span></span>
+<span id="cb334-6"><a href="one-and-two-sample-tests.html#cb334-6" tabindex="-1"></a><span class="do">## W = 79, p-value = 0.02881</span></span>
+<span id="cb334-7"><a href="one-and-two-sample-tests.html#cb334-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
 <p>You can also use the <code>t.test()</code> and <code>wilcox.test()</code> functions to test paired data. Paired data are where there are two measurements on the same experimental unit (individual, site etc) and essentially tests for whether the mean difference between the paired observations is equal to zero. For example, the <code>pollution</code> dataset gives the biodiversity score of aquatic invertebrates collected using kick samples in 17 different rivers. These data are paired because two samples were taken on each river, one upstream of a paper mill and one downstream.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="one-and-two-sample-tests.html#cb335-1" aria-hidden="true" tabindex="-1"></a>pollution <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/pollution.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb335-2"><a href="one-and-two-sample-tests.html#cb335-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(pollution)</span>
-<span id="cb335-3"><a href="one-and-two-sample-tests.html#cb335-3" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    16 obs. of  2 variables:</span></span>
-<span id="cb335-4"><a href="one-and-two-sample-tests.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></span>
-<span id="cb335-5"><a href="one-and-two-sample-tests.html#cb335-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="one-and-two-sample-tests.html#cb335-1" tabindex="-1"></a>pollution <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/pollution.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb335-2"><a href="one-and-two-sample-tests.html#cb335-2" tabindex="-1"></a><span class="fu">str</span>(pollution)</span>
+<span id="cb335-3"><a href="one-and-two-sample-tests.html#cb335-3" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    16 obs. of  2 variables:</span></span>
+<span id="cb335-4"><a href="one-and-two-sample-tests.html#cb335-4" tabindex="-1"></a><span class="do">##  $ down: int  20 15 10 5 20 15 10 5 20 15 ...</span></span>
+<span id="cb335-5"><a href="one-and-two-sample-tests.html#cb335-5" tabindex="-1"></a><span class="do">##  $ up  : int  23 16 10 4 22 15 12 7 21 16 ...</span></span></code></pre></div>
 <p>Note, in this case these data are in the wide format with upstream and downstream values in separate columns (see <a href="wrangling-data-frames.html#reshape">Chapter 3</a> on how to convert to long format if you want). To conduct a paired <em>t</em> test use the <code>paired = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="one-and-two-sample-tests.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(pollution<span class="sc">$</span>down, pollution<span class="sc">$</span>up, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb336-2"><a href="one-and-two-sample-tests.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb336-3"><a href="one-and-two-sample-tests.html#cb336-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Paired t-test</span></span>
-<span id="cb336-4"><a href="one-and-two-sample-tests.html#cb336-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb336-5"><a href="one-and-two-sample-tests.html#cb336-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
-<span id="cb336-6"><a href="one-and-two-sample-tests.html#cb336-6" aria-hidden="true" tabindex="-1"></a><span class="do">## t = -3.0502, df = 15, p-value = 0.0081</span></span>
-<span id="cb336-7"><a href="one-and-two-sample-tests.html#cb336-7" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean difference is not equal to 0</span></span>
-<span id="cb336-8"><a href="one-and-two-sample-tests.html#cb336-8" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb336-9"><a href="one-and-two-sample-tests.html#cb336-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  -1.4864388 -0.2635612</span></span>
-<span id="cb336-10"><a href="one-and-two-sample-tests.html#cb336-10" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb336-11"><a href="one-and-two-sample-tests.html#cb336-11" aria-hidden="true" tabindex="-1"></a><span class="do">## mean difference </span></span>
-<span id="cb336-12"><a href="one-and-two-sample-tests.html#cb336-12" aria-hidden="true" tabindex="-1"></a><span class="do">##          -0.875</span></span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="one-and-two-sample-tests.html#cb336-1" tabindex="-1"></a><span class="fu">t.test</span>(pollution<span class="sc">$</span>down, pollution<span class="sc">$</span>up, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb336-2"><a href="one-and-two-sample-tests.html#cb336-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb336-3"><a href="one-and-two-sample-tests.html#cb336-3" tabindex="-1"></a><span class="do">##  Paired t-test</span></span>
+<span id="cb336-4"><a href="one-and-two-sample-tests.html#cb336-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb336-5"><a href="one-and-two-sample-tests.html#cb336-5" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
+<span id="cb336-6"><a href="one-and-two-sample-tests.html#cb336-6" tabindex="-1"></a><span class="do">## t = -3.0502, df = 15, p-value = 0.0081</span></span>
+<span id="cb336-7"><a href="one-and-two-sample-tests.html#cb336-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true mean difference is not equal to 0</span></span>
+<span id="cb336-8"><a href="one-and-two-sample-tests.html#cb336-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb336-9"><a href="one-and-two-sample-tests.html#cb336-9" tabindex="-1"></a><span class="do">##  -1.4864388 -0.2635612</span></span>
+<span id="cb336-10"><a href="one-and-two-sample-tests.html#cb336-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb336-11"><a href="one-and-two-sample-tests.html#cb336-11" tabindex="-1"></a><span class="do">## mean difference </span></span>
+<span id="cb336-12"><a href="one-and-two-sample-tests.html#cb336-12" tabindex="-1"></a><span class="do">##          -0.875</span></span></code></pre></div>
 <p>The output is almost identical to that of a one-sample <em>t</em> test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="one-and-two-sample-tests.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(pollution<span class="sc">$</span>down, pollution<span class="sc">$</span>up, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb337-2"><a href="one-and-two-sample-tests.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
-<span id="cb337-3"><a href="one-and-two-sample-tests.html#cb337-3" aria-hidden="true" tabindex="-1"></a><span class="do">## cannot compute exact p-value with ties</span></span>
-<span id="cb337-4"><a href="one-and-two-sample-tests.html#cb337-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
-<span id="cb337-5"><a href="one-and-two-sample-tests.html#cb337-5" aria-hidden="true" tabindex="-1"></a><span class="do">## cannot compute exact p-value with zeroes</span></span>
-<span id="cb337-6"><a href="one-and-two-sample-tests.html#cb337-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb337-7"><a href="one-and-two-sample-tests.html#cb337-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
-<span id="cb337-8"><a href="one-and-two-sample-tests.html#cb337-8" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb337-9"><a href="one-and-two-sample-tests.html#cb337-9" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
-<span id="cb337-10"><a href="one-and-two-sample-tests.html#cb337-10" aria-hidden="true" tabindex="-1"></a><span class="do">## V = 8, p-value = 0.01406</span></span>
-<span id="cb337-11"><a href="one-and-two-sample-tests.html#cb337-11" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="one-and-two-sample-tests.html#cb337-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(pollution<span class="sc">$</span>down, pollution<span class="sc">$</span>up, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb337-2"><a href="one-and-two-sample-tests.html#cb337-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
+<span id="cb337-3"><a href="one-and-two-sample-tests.html#cb337-3" tabindex="-1"></a><span class="do">## cannot compute exact p-value with ties</span></span>
+<span id="cb337-4"><a href="one-and-two-sample-tests.html#cb337-4" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
+<span id="cb337-5"><a href="one-and-two-sample-tests.html#cb337-5" tabindex="-1"></a><span class="do">## cannot compute exact p-value with zeroes</span></span>
+<span id="cb337-6"><a href="one-and-two-sample-tests.html#cb337-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb337-7"><a href="one-and-two-sample-tests.html#cb337-7" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb337-8"><a href="one-and-two-sample-tests.html#cb337-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb337-9"><a href="one-and-two-sample-tests.html#cb337-9" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
+<span id="cb337-10"><a href="one-and-two-sample-tests.html#cb337-10" tabindex="-1"></a><span class="do">## V = 8, p-value = 0.01406</span></span>
+<span id="cb337-11"><a href="one-and-two-sample-tests.html#cb337-11" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
 <p>The function <code>prop.test()</code> can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below</p>
 <table>
 <thead>
@@ -603,42 +603,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p>From the table above we can conclude that 56% of cat owners would buy the cat food before the campaign compared to 69% after. But, has the advertising campaign been a success?</p>
 <p>The <code>prop.test()</code> function has two main arguments which are given as two vectors. The first vector contains the number of positive outcomes and the second vector the total numbers for each group. So to perform the test we first need to define these vectors</p>
-<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="one-and-two-sample-tests.html#cb338-1" aria-hidden="true" tabindex="-1"></a>buy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">71</span>)                     <span class="co"># creates a vector of positive outcomes</span></span>
-<span id="cb338-2"><a href="one-and-two-sample-tests.html#cb338-2" aria-hidden="true" tabindex="-1"></a>total <span class="ot">&lt;-</span><span class="fu">c</span>((<span class="dv">45</span> <span class="sc">+</span> <span class="dv">35</span>), (<span class="dv">71</span> <span class="sc">+</span> <span class="dv">32</span>))   <span class="co"># creates a vector of total numbers</span></span>
-<span id="cb338-3"><a href="one-and-two-sample-tests.html#cb338-3" aria-hidden="true" tabindex="-1"></a><span class="fu">prop.test</span>(buy, total)                 <span class="co"># perform the test</span></span>
-<span id="cb338-4"><a href="one-and-two-sample-tests.html#cb338-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb338-5"><a href="one-and-two-sample-tests.html#cb338-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  2-sample test for equality of proportions with continuity correction</span></span>
-<span id="cb338-6"><a href="one-and-two-sample-tests.html#cb338-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb338-7"><a href="one-and-two-sample-tests.html#cb338-7" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  buy out of total</span></span>
-<span id="cb338-8"><a href="one-and-two-sample-tests.html#cb338-8" aria-hidden="true" tabindex="-1"></a><span class="do">## X-squared = 2.598, df = 1, p-value = 0.107</span></span>
-<span id="cb338-9"><a href="one-and-two-sample-tests.html#cb338-9" aria-hidden="true" tabindex="-1"></a><span class="do">## alternative hypothesis: two.sided</span></span>
-<span id="cb338-10"><a href="one-and-two-sample-tests.html#cb338-10" aria-hidden="true" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb338-11"><a href="one-and-two-sample-tests.html#cb338-11" aria-hidden="true" tabindex="-1"></a><span class="do">##  -0.27865200  0.02501122</span></span>
-<span id="cb338-12"><a href="one-and-two-sample-tests.html#cb338-12" aria-hidden="true" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb338-13"><a href="one-and-two-sample-tests.html#cb338-13" aria-hidden="true" tabindex="-1"></a><span class="do">##    prop 1    prop 2 </span></span>
-<span id="cb338-14"><a href="one-and-two-sample-tests.html#cb338-14" aria-hidden="true" tabindex="-1"></a><span class="do">## 0.5625000 0.6893204</span></span></code></pre></div>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="one-and-two-sample-tests.html#cb338-1" tabindex="-1"></a>buy <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">45</span>,<span class="dv">71</span>)                     <span class="co"># creates a vector of positive outcomes</span></span>
+<span id="cb338-2"><a href="one-and-two-sample-tests.html#cb338-2" tabindex="-1"></a>total <span class="ot">&lt;-</span><span class="fu">c</span>((<span class="dv">45</span> <span class="sc">+</span> <span class="dv">35</span>), (<span class="dv">71</span> <span class="sc">+</span> <span class="dv">32</span>))   <span class="co"># creates a vector of total numbers</span></span>
+<span id="cb338-3"><a href="one-and-two-sample-tests.html#cb338-3" tabindex="-1"></a><span class="fu">prop.test</span>(buy, total)                 <span class="co"># perform the test</span></span>
+<span id="cb338-4"><a href="one-and-two-sample-tests.html#cb338-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb338-5"><a href="one-and-two-sample-tests.html#cb338-5" tabindex="-1"></a><span class="do">##  2-sample test for equality of proportions with continuity correction</span></span>
+<span id="cb338-6"><a href="one-and-two-sample-tests.html#cb338-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb338-7"><a href="one-and-two-sample-tests.html#cb338-7" tabindex="-1"></a><span class="do">## data:  buy out of total</span></span>
+<span id="cb338-8"><a href="one-and-two-sample-tests.html#cb338-8" tabindex="-1"></a><span class="do">## X-squared = 2.598, df = 1, p-value = 0.107</span></span>
+<span id="cb338-9"><a href="one-and-two-sample-tests.html#cb338-9" tabindex="-1"></a><span class="do">## alternative hypothesis: two.sided</span></span>
+<span id="cb338-10"><a href="one-and-two-sample-tests.html#cb338-10" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb338-11"><a href="one-and-two-sample-tests.html#cb338-11" tabindex="-1"></a><span class="do">##  -0.27865200  0.02501122</span></span>
+<span id="cb338-12"><a href="one-and-two-sample-tests.html#cb338-12" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb338-13"><a href="one-and-two-sample-tests.html#cb338-13" tabindex="-1"></a><span class="do">##    prop 1    prop 2 </span></span>
+<span id="cb338-14"><a href="one-and-two-sample-tests.html#cb338-14" tabindex="-1"></a><span class="do">## 0.5625000 0.6893204</span></span></code></pre></div>
 <p>There is no evidence to support that the advertising campaign has changed cat owners opinions of the cat food (<em>p</em> = 0.1). Use <code>?prop.test</code> to explore additional uses of the binomial proportions test.</p>
 <p>We could also analyse the count data in the above example as a Chi-square contingency table. The simplest method is to convert the tabulated table into a 2 x 2 matrix using the <code>matrix()</code> function (note, there are many alternative methods of constructing a table like this).</p>
-<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="one-and-two-sample-tests.html#cb339-1" aria-hidden="true" tabindex="-1"></a>buyers <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb339-2"><a href="one-and-two-sample-tests.html#cb339-2" aria-hidden="true" tabindex="-1"></a>buyers</span>
-<span id="cb339-3"><a href="one-and-two-sample-tests.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb339-4"><a href="one-and-two-sample-tests.html#cb339-4" aria-hidden="true" tabindex="-1"></a><span class="do">## [1,]   45   71</span></span>
-<span id="cb339-5"><a href="one-and-two-sample-tests.html#cb339-5" aria-hidden="true" tabindex="-1"></a><span class="do">## [2,]   35   32</span></span></code></pre></div>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="one-and-two-sample-tests.html#cb339-1" tabindex="-1"></a>buyers <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">45</span>, <span class="dv">35</span>, <span class="dv">71</span>, <span class="dv">32</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb339-2"><a href="one-and-two-sample-tests.html#cb339-2" tabindex="-1"></a>buyers</span>
+<span id="cb339-3"><a href="one-and-two-sample-tests.html#cb339-3" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb339-4"><a href="one-and-two-sample-tests.html#cb339-4" tabindex="-1"></a><span class="do">## [1,]   45   71</span></span>
+<span id="cb339-5"><a href="one-and-two-sample-tests.html#cb339-5" tabindex="-1"></a><span class="do">## [2,]   35   32</span></span></code></pre></div>
 <p>Notice that you enter the data column wise into the matrix and then specify the number of rows using <code>nrow =</code>.</p>
 <p>We can also change the row names and column names from the defaults to make it look more like a table (you don’t really need to do this to perform a Chi-square test)</p>
-<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="one-and-two-sample-tests.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(buyers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>)</span>
-<span id="cb340-2"><a href="one-and-two-sample-tests.html#cb340-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(buyers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;buy&quot;</span>, <span class="st">&quot;notbuy&quot;</span>)</span>
-<span id="cb340-3"><a href="one-and-two-sample-tests.html#cb340-3" aria-hidden="true" tabindex="-1"></a>buyers</span>
-<span id="cb340-4"><a href="one-and-two-sample-tests.html#cb340-4" aria-hidden="true" tabindex="-1"></a><span class="do">##        before after</span></span>
-<span id="cb340-5"><a href="one-and-two-sample-tests.html#cb340-5" aria-hidden="true" tabindex="-1"></a><span class="do">## buy        45    71</span></span>
-<span id="cb340-6"><a href="one-and-two-sample-tests.html#cb340-6" aria-hidden="true" tabindex="-1"></a><span class="do">## notbuy     35    32</span></span></code></pre></div>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="one-and-two-sample-tests.html#cb340-1" tabindex="-1"></a><span class="fu">colnames</span>(buyers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;before&quot;</span>, <span class="st">&quot;after&quot;</span>)</span>
+<span id="cb340-2"><a href="one-and-two-sample-tests.html#cb340-2" tabindex="-1"></a><span class="fu">rownames</span>(buyers) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;buy&quot;</span>, <span class="st">&quot;notbuy&quot;</span>)</span>
+<span id="cb340-3"><a href="one-and-two-sample-tests.html#cb340-3" tabindex="-1"></a>buyers</span>
+<span id="cb340-4"><a href="one-and-two-sample-tests.html#cb340-4" tabindex="-1"></a><span class="do">##        before after</span></span>
+<span id="cb340-5"><a href="one-and-two-sample-tests.html#cb340-5" tabindex="-1"></a><span class="do">## buy        45    71</span></span>
+<span id="cb340-6"><a href="one-and-two-sample-tests.html#cb340-6" tabindex="-1"></a><span class="do">## notbuy     35    32</span></span></code></pre></div>
 <p>You can then perform a Chi-square test to test whether the number of cat owners buying the cat food is independent of the advertising campaign using the <code>chisq.test()</code> function. In this example the only argument is our matrix of counts.</p>
-<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="one-and-two-sample-tests.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="fu">chisq.test</span>(buyers)</span>
-<span id="cb341-2"><a href="one-and-two-sample-tests.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb341-3"><a href="one-and-two-sample-tests.html#cb341-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction</span></span>
-<span id="cb341-4"><a href="one-and-two-sample-tests.html#cb341-4" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb341-5"><a href="one-and-two-sample-tests.html#cb341-5" aria-hidden="true" tabindex="-1"></a><span class="do">## data:  buyers</span></span>
-<span id="cb341-6"><a href="one-and-two-sample-tests.html#cb341-6" aria-hidden="true" tabindex="-1"></a><span class="do">## X-squared = 2.598, df = 1, p-value = 0.107</span></span></code></pre></div>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="one-and-two-sample-tests.html#cb341-1" tabindex="-1"></a><span class="fu">chisq.test</span>(buyers)</span>
+<span id="cb341-2"><a href="one-and-two-sample-tests.html#cb341-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb341-3"><a href="one-and-two-sample-tests.html#cb341-3" tabindex="-1"></a><span class="do">##  Pearson&#39;s Chi-squared test with Yates&#39; continuity correction</span></span>
+<span id="cb341-4"><a href="one-and-two-sample-tests.html#cb341-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb341-5"><a href="one-and-two-sample-tests.html#cb341-5" tabindex="-1"></a><span class="do">## data:  buyers</span></span>
+<span id="cb341-6"><a href="one-and-two-sample-tests.html#cb341-6" tabindex="-1"></a><span class="do">## X-squared = 2.598, df = 1, p-value = 0.107</span></span></code></pre></div>
 <p>There is no evidence (<em>p</em> = 0.107) to suggest that we should reject the null hypothesis that the number of cat owners buying the cat food is independent of the advertising campaign. You may have spotted that for a 2x2 table, this test is exactly equivalent to the <code>prop.test()</code>. You can also use the <code>chisq.test()</code> function on raw (untabulated) data and to test for goodness of fit (see <code>?chisq.test</code> for more details).</p>
 </div>
             </section>

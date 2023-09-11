@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-04-14" />
+<meta name="date" content="2023-09-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -499,213 +499,213 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 <p> </p>
 <p>OK, time for an example. The data file <code>smoking.txt</code> summarises the results of a study investigating the possible relationship between mortality rate and smoking across 25 occupational groups in the UK. The variable <code>occupational.group</code> specifies the different occupational groups studied, the <code>risk.group</code> variable indicates the relative risk to lung disease for the various occupational groups and <code>smoking</code> is an index of the average number of cigarettes smoked each day (relative to the number smoked across all occupations). The variable <code>mortality</code> is an index of the death rate from lung cancer in each group (relative to the death rate across all occupational groups). In this data set, the response variable is <code>mortality</code> and the potential explanatory variables are <code>smoking</code> which is numeric and <code>risk.group</code> which is a three level factor. The first thing to do is import our data file using the <code>read.table()</code> function as usual and assign the data to an object called <code>smoke</code>. You can find a link to download these data <a href="https://alexd106.github.io/intro2R/data.html">here</a>.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="simple_lm.html#cb352-1" aria-hidden="true" tabindex="-1"></a>smoke <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/smoking.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, </span>
-<span id="cb352-2"><a href="simple_lm.html#cb352-2" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb352-3"><a href="simple_lm.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(smoke, <span class="at">vec.len =</span> <span class="dv">2</span>)</span>
-<span id="cb352-4"><a href="simple_lm.html#cb352-4" aria-hidden="true" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    25 obs. of  4 variables:</span></span>
-<span id="cb352-5"><a href="simple_lm.html#cb352-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ occupational.group: Factor w/ 25 levels &quot;Administrators&quot;,..: 9 14 2 11 10 ...</span></span>
-<span id="cb352-6"><a href="simple_lm.html#cb352-6" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ risk.group        : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 2 1 1 3 1 ...</span></span>
-<span id="cb352-7"><a href="simple_lm.html#cb352-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ smoking           : int  77 137 117 94 116 ...</span></span>
-<span id="cb352-8"><a href="simple_lm.html#cb352-8" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ mortality         : int  84 116 123 128 155 ...</span></span>
-<span id="cb352-9"><a href="simple_lm.html#cb352-9" aria-hidden="true" tabindex="-1"></a><span class="co"># vec.len argument to limited number of &#39; first elements&#39; to display</span></span></code></pre></div>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="simple_lm.html#cb352-1" tabindex="-1"></a>smoke <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&#39;data/smoking.txt&#39;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, </span>
+<span id="cb352-2"><a href="simple_lm.html#cb352-2" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb352-3"><a href="simple_lm.html#cb352-3" tabindex="-1"></a><span class="fu">str</span>(smoke, <span class="at">vec.len =</span> <span class="dv">2</span>)</span>
+<span id="cb352-4"><a href="simple_lm.html#cb352-4" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    25 obs. of  4 variables:</span></span>
+<span id="cb352-5"><a href="simple_lm.html#cb352-5" tabindex="-1"></a><span class="do">##  $ occupational.group: Factor w/ 25 levels &quot;Administrators&quot;,..: 9 14 2 11 10 ...</span></span>
+<span id="cb352-6"><a href="simple_lm.html#cb352-6" tabindex="-1"></a><span class="do">##  $ risk.group        : Factor w/ 3 levels &quot;high&quot;,&quot;low&quot;,&quot;medium&quot;: 2 1 1 3 1 ...</span></span>
+<span id="cb352-7"><a href="simple_lm.html#cb352-7" tabindex="-1"></a><span class="do">##  $ smoking           : int  77 137 117 94 116 ...</span></span>
+<span id="cb352-8"><a href="simple_lm.html#cb352-8" tabindex="-1"></a><span class="do">##  $ mortality         : int  84 116 123 128 155 ...</span></span>
+<span id="cb352-9"><a href="simple_lm.html#cb352-9" tabindex="-1"></a><span class="co"># vec.len argument to limited number of &#39; first elements&#39; to display</span></span></code></pre></div>
 <p> </p>
 <p>Next, let’s investigate the relationship between the <code>mortality</code> and <code>smoking</code> variables by plotting a scatter plot. We can use either the <code>ggplot2</code> package or base R graphics to do this. We’ll use <code>ggplot2</code> this time and our old friend the <code>ggplot()</code> function.</p>
-<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="simple_lm.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb353-2"><a href="simple_lm.html#cb353-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoking, <span class="at">y =</span> mortality), <span class="at">data =</span> smoke) <span class="sc">+</span></span>
-<span id="cb353-3"><a href="simple_lm.html#cb353-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="simple_lm.html#cb353-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb353-2"><a href="simple_lm.html#cb353-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoking, <span class="at">y =</span> mortality), <span class="at">data =</span> smoke) <span class="sc">+</span></span>
+<span id="cb353-3"><a href="simple_lm.html#cb353-3" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss25-1.png" width="672" /></p>
 <p>The plot does suggest that there is a positive relationship between the smoking index and mortality index.</p>
 <p>To fit a simple linear model to these data we will use the <code>lm()</code> function and include our model formula <code>mortality ~ smoking</code> and assign the results to an object called <code>smoke_lm</code>.</p>
-<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="simple_lm.html#cb354-1" aria-hidden="true" tabindex="-1"></a>smoke_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality <span class="sc">~</span> smoking, <span class="at">data =</span> smoke)</span></code></pre></div>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="simple_lm.html#cb354-1" tabindex="-1"></a>smoke_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality <span class="sc">~</span> smoking, <span class="at">data =</span> smoke)</span></code></pre></div>
 <p>Notice that we have not used the <code>$</code> notation to specify the variables in our model formula, instead we’ve used the <code>data = smoke</code> argument. Although the <code>$</code> notation will work (i.e. <code>smoke$mortality ~ smoke$smoking</code>) it will more than likely cause you problems later on and should be avoided. In fact, we would go as far to suggest that if any function has a <code>data =</code> argument you should <strong>always</strong> use it. How do you know if a function has a <code>data =</code> argument? Just look in the associated help file.</p>
 <p>Perhaps somewhat confusingly (at least at first) it appears that nothing much has happened, you don’t automatically get the voluminous output that you normally get with other statistical packages. In fact, what R does, is store the output of the analysis in what is known as a <code>lm</code> class object (which we have called <code>smoke_lm</code>) from which you are able to extract exactly what you want using other functions. If you’re brave, you can examine the structure of the <code>smoke_lm</code> model object using the <code>str()</code> function.</p>
-<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="simple_lm.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(smoke_lm)</span>
-<span id="cb355-2"><a href="simple_lm.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="do">## List of 12</span></span>
-<span id="cb355-3"><a href="simple_lm.html#cb355-3" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ coefficients : Named num [1:2] -2.89 1.09</span></span>
-<span id="cb355-4"><a href="simple_lm.html#cb355-4" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-5"><a href="simple_lm.html#cb355-5" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ residuals    : Named num [1:25] 3.15 -30.11 -1.36 28.66 31.73 ...</span></span>
-<span id="cb355-6"><a href="simple_lm.html#cb355-6" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
-<span id="cb355-7"><a href="simple_lm.html#cb355-7" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ effects      : Named num [1:25] -545 -91.63 2.72 26.99 35.56 ...</span></span>
-<span id="cb355-8"><a href="simple_lm.html#cb355-8" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;(Intercept)&quot; &quot;smoking&quot; &quot;&quot; &quot;&quot; ...</span></span>
-<span id="cb355-9"><a href="simple_lm.html#cb355-9" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ rank         : int 2</span></span>
-<span id="cb355-10"><a href="simple_lm.html#cb355-10" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ fitted.values: Named num [1:25] 80.9 146.1 124.4 99.3 123.3 ...</span></span>
-<span id="cb355-11"><a href="simple_lm.html#cb355-11" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
-<span id="cb355-12"><a href="simple_lm.html#cb355-12" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ assign       : int [1:2] 0 1</span></span>
-<span id="cb355-13"><a href="simple_lm.html#cb355-13" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ qr           :List of 5</span></span>
-<span id="cb355-14"><a href="simple_lm.html#cb355-14" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ qr   : num [1:25, 1:2] -5 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 ...</span></span>
-<span id="cb355-15"><a href="simple_lm.html#cb355-15" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
-<span id="cb355-16"><a href="simple_lm.html#cb355-16" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..$ : chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
-<span id="cb355-17"><a href="simple_lm.html#cb355-17" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-18"><a href="simple_lm.html#cb355-18" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span></span>
-<span id="cb355-19"><a href="simple_lm.html#cb355-19" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ qraux: num [1:2] 1.2 1.46</span></span>
-<span id="cb355-20"><a href="simple_lm.html#cb355-20" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ pivot: int [1:2] 1 2</span></span>
-<span id="cb355-21"><a href="simple_lm.html#cb355-21" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ tol  : num 1e-07</span></span>
-<span id="cb355-22"><a href="simple_lm.html#cb355-22" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ rank : int 2</span></span>
-<span id="cb355-23"><a href="simple_lm.html#cb355-23" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span></span>
-<span id="cb355-24"><a href="simple_lm.html#cb355-24" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ df.residual  : int 23</span></span>
-<span id="cb355-25"><a href="simple_lm.html#cb355-25" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ xlevels      : Named list()</span></span>
-<span id="cb355-26"><a href="simple_lm.html#cb355-26" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ call         : language lm(formula = mortality ~ smoking, data = smoke)</span></span>
-<span id="cb355-27"><a href="simple_lm.html#cb355-27" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></span>
-<span id="cb355-28"><a href="simple_lm.html#cb355-28" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></span>
-<span id="cb355-29"><a href="simple_lm.html#cb355-29" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></span>
-<span id="cb355-30"><a href="simple_lm.html#cb355-30" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
-<span id="cb355-31"><a href="simple_lm.html#cb355-31" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-32"><a href="simple_lm.html#cb355-32" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..$ : chr &quot;smoking&quot;</span></span>
-<span id="cb355-33"><a href="simple_lm.html#cb355-33" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></span>
-<span id="cb355-34"><a href="simple_lm.html#cb355-34" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;order&quot;)= int 1</span></span>
-<span id="cb355-35"><a href="simple_lm.html#cb355-35" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;intercept&quot;)= int 1</span></span>
-<span id="cb355-36"><a href="simple_lm.html#cb355-36" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;response&quot;)= int 1</span></span>
-<span id="cb355-37"><a href="simple_lm.html#cb355-37" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></span>
-<span id="cb355-38"><a href="simple_lm.html#cb355-38" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></span>
-<span id="cb355-39"><a href="simple_lm.html#cb355-39" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></span>
-<span id="cb355-40"><a href="simple_lm.html#cb355-40" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-41"><a href="simple_lm.html#cb355-41" aria-hidden="true" tabindex="-1"></a><span class="do">##  $ model        :&#39;data.frame&#39;:   25 obs. of  2 variables:</span></span>
-<span id="cb355-42"><a href="simple_lm.html#cb355-42" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ mortality: int [1:25] 84 116 123 128 155 101 118 113 104 88 ...</span></span>
-<span id="cb355-43"><a href="simple_lm.html#cb355-43" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..$ smoking  : int [1:25] 77 137 117 94 116 102 111 93 88 102 ...</span></span>
-<span id="cb355-44"><a href="simple_lm.html#cb355-44" aria-hidden="true" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></span>
-<span id="cb355-45"><a href="simple_lm.html#cb355-45" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></span>
-<span id="cb355-46"><a href="simple_lm.html#cb355-46" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></span>
-<span id="cb355-47"><a href="simple_lm.html#cb355-47" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
-<span id="cb355-48"><a href="simple_lm.html#cb355-48" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-49"><a href="simple_lm.html#cb355-49" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ : chr &quot;smoking&quot;</span></span>
-<span id="cb355-50"><a href="simple_lm.html#cb355-50" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></span>
-<span id="cb355-51"><a href="simple_lm.html#cb355-51" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;order&quot;)= int 1</span></span>
-<span id="cb355-52"><a href="simple_lm.html#cb355-52" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span></span>
-<span id="cb355-53"><a href="simple_lm.html#cb355-53" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;response&quot;)= int 1</span></span>
-<span id="cb355-54"><a href="simple_lm.html#cb355-54" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></span>
-<span id="cb355-55"><a href="simple_lm.html#cb355-55" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></span>
-<span id="cb355-56"><a href="simple_lm.html#cb355-56" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></span>
-<span id="cb355-57"><a href="simple_lm.html#cb355-57" aria-hidden="true" tabindex="-1"></a><span class="do">##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
-<span id="cb355-58"><a href="simple_lm.html#cb355-58" aria-hidden="true" tabindex="-1"></a><span class="do">##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="simple_lm.html#cb355-1" tabindex="-1"></a><span class="fu">str</span>(smoke_lm)</span>
+<span id="cb355-2"><a href="simple_lm.html#cb355-2" tabindex="-1"></a><span class="do">## List of 12</span></span>
+<span id="cb355-3"><a href="simple_lm.html#cb355-3" tabindex="-1"></a><span class="do">##  $ coefficients : Named num [1:2] -2.89 1.09</span></span>
+<span id="cb355-4"><a href="simple_lm.html#cb355-4" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-5"><a href="simple_lm.html#cb355-5" tabindex="-1"></a><span class="do">##  $ residuals    : Named num [1:25] 3.15 -30.11 -1.36 28.66 31.73 ...</span></span>
+<span id="cb355-6"><a href="simple_lm.html#cb355-6" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
+<span id="cb355-7"><a href="simple_lm.html#cb355-7" tabindex="-1"></a><span class="do">##  $ effects      : Named num [1:25] -545 -91.63 2.72 26.99 35.56 ...</span></span>
+<span id="cb355-8"><a href="simple_lm.html#cb355-8" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;(Intercept)&quot; &quot;smoking&quot; &quot;&quot; &quot;&quot; ...</span></span>
+<span id="cb355-9"><a href="simple_lm.html#cb355-9" tabindex="-1"></a><span class="do">##  $ rank         : int 2</span></span>
+<span id="cb355-10"><a href="simple_lm.html#cb355-10" tabindex="-1"></a><span class="do">##  $ fitted.values: Named num [1:25] 80.9 146.1 124.4 99.3 123.3 ...</span></span>
+<span id="cb355-11"><a href="simple_lm.html#cb355-11" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;names&quot;)= chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
+<span id="cb355-12"><a href="simple_lm.html#cb355-12" tabindex="-1"></a><span class="do">##  $ assign       : int [1:2] 0 1</span></span>
+<span id="cb355-13"><a href="simple_lm.html#cb355-13" tabindex="-1"></a><span class="do">##  $ qr           :List of 5</span></span>
+<span id="cb355-14"><a href="simple_lm.html#cb355-14" tabindex="-1"></a><span class="do">##   ..$ qr   : num [1:25, 1:2] -5 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 0.2 ...</span></span>
+<span id="cb355-15"><a href="simple_lm.html#cb355-15" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb355-16"><a href="simple_lm.html#cb355-16" tabindex="-1"></a><span class="do">##   .. .. ..$ : chr [1:25] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</span></span>
+<span id="cb355-17"><a href="simple_lm.html#cb355-17" tabindex="-1"></a><span class="do">##   .. .. ..$ : chr [1:2] &quot;(Intercept)&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-18"><a href="simple_lm.html#cb355-18" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;assign&quot;)= int [1:2] 0 1</span></span>
+<span id="cb355-19"><a href="simple_lm.html#cb355-19" tabindex="-1"></a><span class="do">##   ..$ qraux: num [1:2] 1.2 1.46</span></span>
+<span id="cb355-20"><a href="simple_lm.html#cb355-20" tabindex="-1"></a><span class="do">##   ..$ pivot: int [1:2] 1 2</span></span>
+<span id="cb355-21"><a href="simple_lm.html#cb355-21" tabindex="-1"></a><span class="do">##   ..$ tol  : num 1e-07</span></span>
+<span id="cb355-22"><a href="simple_lm.html#cb355-22" tabindex="-1"></a><span class="do">##   ..$ rank : int 2</span></span>
+<span id="cb355-23"><a href="simple_lm.html#cb355-23" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;class&quot;)= chr &quot;qr&quot;</span></span>
+<span id="cb355-24"><a href="simple_lm.html#cb355-24" tabindex="-1"></a><span class="do">##  $ df.residual  : int 23</span></span>
+<span id="cb355-25"><a href="simple_lm.html#cb355-25" tabindex="-1"></a><span class="do">##  $ xlevels      : Named list()</span></span>
+<span id="cb355-26"><a href="simple_lm.html#cb355-26" tabindex="-1"></a><span class="do">##  $ call         : language lm(formula = mortality ~ smoking, data = smoke)</span></span>
+<span id="cb355-27"><a href="simple_lm.html#cb355-27" tabindex="-1"></a><span class="do">##  $ terms        :Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></span>
+<span id="cb355-28"><a href="simple_lm.html#cb355-28" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></span>
+<span id="cb355-29"><a href="simple_lm.html#cb355-29" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></span>
+<span id="cb355-30"><a href="simple_lm.html#cb355-30" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb355-31"><a href="simple_lm.html#cb355-31" tabindex="-1"></a><span class="do">##   .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-32"><a href="simple_lm.html#cb355-32" tabindex="-1"></a><span class="do">##   .. .. .. ..$ : chr &quot;smoking&quot;</span></span>
+<span id="cb355-33"><a href="simple_lm.html#cb355-33" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></span>
+<span id="cb355-34"><a href="simple_lm.html#cb355-34" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;order&quot;)= int 1</span></span>
+<span id="cb355-35"><a href="simple_lm.html#cb355-35" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;intercept&quot;)= int 1</span></span>
+<span id="cb355-36"><a href="simple_lm.html#cb355-36" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;response&quot;)= int 1</span></span>
+<span id="cb355-37"><a href="simple_lm.html#cb355-37" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></span>
+<span id="cb355-38"><a href="simple_lm.html#cb355-38" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></span>
+<span id="cb355-39"><a href="simple_lm.html#cb355-39" tabindex="-1"></a><span class="do">##   .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></span>
+<span id="cb355-40"><a href="simple_lm.html#cb355-40" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-41"><a href="simple_lm.html#cb355-41" tabindex="-1"></a><span class="do">##  $ model        :&#39;data.frame&#39;:   25 obs. of  2 variables:</span></span>
+<span id="cb355-42"><a href="simple_lm.html#cb355-42" tabindex="-1"></a><span class="do">##   ..$ mortality: int [1:25] 84 116 123 128 155 101 118 113 104 88 ...</span></span>
+<span id="cb355-43"><a href="simple_lm.html#cb355-43" tabindex="-1"></a><span class="do">##   ..$ smoking  : int [1:25] 77 137 117 94 116 102 111 93 88 102 ...</span></span>
+<span id="cb355-44"><a href="simple_lm.html#cb355-44" tabindex="-1"></a><span class="do">##   ..- attr(*, &quot;terms&quot;)=Classes &#39;terms&#39;, &#39;formula&#39;  language mortality ~ smoking</span></span>
+<span id="cb355-45"><a href="simple_lm.html#cb355-45" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;variables&quot;)= language list(mortality, smoking)</span></span>
+<span id="cb355-46"><a href="simple_lm.html#cb355-46" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;factors&quot;)= int [1:2, 1] 0 1</span></span>
+<span id="cb355-47"><a href="simple_lm.html#cb355-47" tabindex="-1"></a><span class="do">##   .. .. .. ..- attr(*, &quot;dimnames&quot;)=List of 2</span></span>
+<span id="cb355-48"><a href="simple_lm.html#cb355-48" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ : chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-49"><a href="simple_lm.html#cb355-49" tabindex="-1"></a><span class="do">##   .. .. .. .. ..$ : chr &quot;smoking&quot;</span></span>
+<span id="cb355-50"><a href="simple_lm.html#cb355-50" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;term.labels&quot;)= chr &quot;smoking&quot;</span></span>
+<span id="cb355-51"><a href="simple_lm.html#cb355-51" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;order&quot;)= int 1</span></span>
+<span id="cb355-52"><a href="simple_lm.html#cb355-52" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;intercept&quot;)= int 1</span></span>
+<span id="cb355-53"><a href="simple_lm.html#cb355-53" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;response&quot;)= int 1</span></span>
+<span id="cb355-54"><a href="simple_lm.html#cb355-54" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; </span></span>
+<span id="cb355-55"><a href="simple_lm.html#cb355-55" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;predvars&quot;)= language list(mortality, smoking)</span></span>
+<span id="cb355-56"><a href="simple_lm.html#cb355-56" tabindex="-1"></a><span class="do">##   .. .. ..- attr(*, &quot;dataClasses&quot;)= Named chr [1:2] &quot;numeric&quot; &quot;numeric&quot;</span></span>
+<span id="cb355-57"><a href="simple_lm.html#cb355-57" tabindex="-1"></a><span class="do">##   .. .. .. ..- attr(*, &quot;names&quot;)= chr [1:2] &quot;mortality&quot; &quot;smoking&quot;</span></span>
+<span id="cb355-58"><a href="simple_lm.html#cb355-58" tabindex="-1"></a><span class="do">##  - attr(*, &quot;class&quot;)= chr &quot;lm&quot;</span></span></code></pre></div>
 <p>To obtain a summary of our analysis we can use the <code>summary()</code> function on our <code>smoke_lm</code> model object.</p>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="simple_lm.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(smoke_lm)</span>
-<span id="cb356-2"><a href="simple_lm.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb356-3"><a href="simple_lm.html#cb356-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb356-4"><a href="simple_lm.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ smoking, data = smoke)</span></span>
-<span id="cb356-5"><a href="simple_lm.html#cb356-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb356-6"><a href="simple_lm.html#cb356-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb356-7"><a href="simple_lm.html#cb356-7" aria-hidden="true" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
-<span id="cb356-8"><a href="simple_lm.html#cb356-8" aria-hidden="true" tabindex="-1"></a><span class="do">## -30.107 -17.892   3.145  14.132  31.732 </span></span>
-<span id="cb356-9"><a href="simple_lm.html#cb356-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb356-10"><a href="simple_lm.html#cb356-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb356-11"><a href="simple_lm.html#cb356-11" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb356-12"><a href="simple_lm.html#cb356-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)  -2.8853    23.0337  -0.125    0.901    </span></span>
-<span id="cb356-13"><a href="simple_lm.html#cb356-13" aria-hidden="true" tabindex="-1"></a><span class="do">## smoking       1.0875     0.2209   4.922 5.66e-05 ***</span></span>
-<span id="cb356-14"><a href="simple_lm.html#cb356-14" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb356-15"><a href="simple_lm.html#cb356-15" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb356-16"><a href="simple_lm.html#cb356-16" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb356-17"><a href="simple_lm.html#cb356-17" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 18.62 on 23 degrees of freedom</span></span>
-<span id="cb356-18"><a href="simple_lm.html#cb356-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.513,  Adjusted R-squared:  0.4918 </span></span>
-<span id="cb356-19"><a href="simple_lm.html#cb356-19" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 24.23 on 1 and 23 DF,  p-value: 5.658e-05</span></span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="simple_lm.html#cb356-1" tabindex="-1"></a><span class="fu">summary</span>(smoke_lm)</span>
+<span id="cb356-2"><a href="simple_lm.html#cb356-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb356-3"><a href="simple_lm.html#cb356-3" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb356-4"><a href="simple_lm.html#cb356-4" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ smoking, data = smoke)</span></span>
+<span id="cb356-5"><a href="simple_lm.html#cb356-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb356-6"><a href="simple_lm.html#cb356-6" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb356-7"><a href="simple_lm.html#cb356-7" tabindex="-1"></a><span class="do">##     Min      1Q  Median      3Q     Max </span></span>
+<span id="cb356-8"><a href="simple_lm.html#cb356-8" tabindex="-1"></a><span class="do">## -30.107 -17.892   3.145  14.132  31.732 </span></span>
+<span id="cb356-9"><a href="simple_lm.html#cb356-9" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb356-10"><a href="simple_lm.html#cb356-10" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb356-11"><a href="simple_lm.html#cb356-11" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb356-12"><a href="simple_lm.html#cb356-12" tabindex="-1"></a><span class="do">## (Intercept)  -2.8853    23.0337  -0.125    0.901    </span></span>
+<span id="cb356-13"><a href="simple_lm.html#cb356-13" tabindex="-1"></a><span class="do">## smoking       1.0875     0.2209   4.922 5.66e-05 ***</span></span>
+<span id="cb356-14"><a href="simple_lm.html#cb356-14" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb356-15"><a href="simple_lm.html#cb356-15" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb356-16"><a href="simple_lm.html#cb356-16" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb356-17"><a href="simple_lm.html#cb356-17" tabindex="-1"></a><span class="do">## Residual standard error: 18.62 on 23 degrees of freedom</span></span>
+<span id="cb356-18"><a href="simple_lm.html#cb356-18" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.513,  Adjusted R-squared:  0.4918 </span></span>
+<span id="cb356-19"><a href="simple_lm.html#cb356-19" tabindex="-1"></a><span class="do">## F-statistic: 24.23 on 1 and 23 DF,  p-value: 5.658e-05</span></span></code></pre></div>
 <p>This shows you everything you need to know about the parameter estimates (intercept and slope), their standard errors and associated <em>t</em> statistics and <em>p</em> values. The estimate for the Intercept suggests that when the relative smoking index is 0 the relative mortality rate is <code>-2.885</code>! The <em>p</em> value associated with the intercept tests the null hypothesis that the intercept is equal to zero. As the <em>p</em> value is large we fail to reject this null hypothesis. The <code>smoking</code> parameter estimate (<code>1.0875</code>) is the estimate of the slope and suggests that for every unit increase in the average number of cigarettes smoked each day the mortality risk index increases by 1.0875. The <em>p</em> value associated with the <code>smoking</code> parameter tests whether the slope of this relationship is equal to zero (i.e. no relationship). As our <em>p</em> value is small we reject this null hypothesis and therefore the slope is different from zero and therefore there is a significant relationship. The summary table also includes other important information such as the coefficient of determination (<em>R<sup>2</sup></em>), adjusted <em>R<sup>2</sup></em> , <em>F</em> statistic, associated degrees of freedom and <em>p</em> value. This information is a condensed form of an ANOVA table which you can see by using the <code>anova()</code> function.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="simple_lm.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(smoke_lm)</span>
-<span id="cb357-2"><a href="simple_lm.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
-<span id="cb357-3"><a href="simple_lm.html#cb357-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb357-4"><a href="simple_lm.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Response: mortality</span></span>
-<span id="cb357-5"><a href="simple_lm.html#cb357-5" aria-hidden="true" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
-<span id="cb357-6"><a href="simple_lm.html#cb357-6" aria-hidden="true" tabindex="-1"></a><span class="do">## smoking    1 8395.7  8395.7  24.228 5.658e-05 ***</span></span>
-<span id="cb357-7"><a href="simple_lm.html#cb357-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals 23 7970.3   346.5                      </span></span>
-<span id="cb357-8"><a href="simple_lm.html#cb357-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb357-9"><a href="simple_lm.html#cb357-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="simple_lm.html#cb357-1" tabindex="-1"></a><span class="fu">anova</span>(smoke_lm)</span>
+<span id="cb357-2"><a href="simple_lm.html#cb357-2" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
+<span id="cb357-3"><a href="simple_lm.html#cb357-3" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb357-4"><a href="simple_lm.html#cb357-4" tabindex="-1"></a><span class="do">## Response: mortality</span></span>
+<span id="cb357-5"><a href="simple_lm.html#cb357-5" tabindex="-1"></a><span class="do">##           Df Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
+<span id="cb357-6"><a href="simple_lm.html#cb357-6" tabindex="-1"></a><span class="do">## smoking    1 8395.7  8395.7  24.228 5.658e-05 ***</span></span>
+<span id="cb357-7"><a href="simple_lm.html#cb357-7" tabindex="-1"></a><span class="do">## Residuals 23 7970.3   346.5                      </span></span>
+<span id="cb357-8"><a href="simple_lm.html#cb357-8" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb357-9"><a href="simple_lm.html#cb357-9" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>Now let’s fit another linear model, but this time we will use the <code>risk.group</code> variable as our explanatory variable. Remember the <code>risk.group</code> variable is a factor and so our linear model will be equivalent to an ANOVA type analysis. We will be testing the null hypothesis that there is no difference in the mean mortality rate between the <code>low</code>, <code>medium</code> and <code>high</code> groups. We fit the model in exactly the same way as before.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="simple_lm.html#cb358-1" aria-hidden="true" tabindex="-1"></a>smoke_risk_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality <span class="sc">~</span> risk.group, <span class="at">data =</span> smoke)</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="simple_lm.html#cb358-1" tabindex="-1"></a>smoke_risk_lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(mortality <span class="sc">~</span> risk.group, <span class="at">data =</span> smoke)</span></code></pre></div>
 <p>Again, we can produce an ANOVA table using the <code>anova()</code> function</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="simple_lm.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(smoke_risk_lm)</span>
-<span id="cb359-2"><a href="simple_lm.html#cb359-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
-<span id="cb359-3"><a href="simple_lm.html#cb359-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb359-4"><a href="simple_lm.html#cb359-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Response: mortality</span></span>
-<span id="cb359-5"><a href="simple_lm.html#cb359-5" aria-hidden="true" tabindex="-1"></a><span class="do">##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
-<span id="cb359-6"><a href="simple_lm.html#cb359-6" aria-hidden="true" tabindex="-1"></a><span class="do">## risk.group  2 11514.4  5757.2  26.107 1.554e-06 ***</span></span>
-<span id="cb359-7"><a href="simple_lm.html#cb359-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals  22  4851.6   220.5                      </span></span>
-<span id="cb359-8"><a href="simple_lm.html#cb359-8" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb359-9"><a href="simple_lm.html#cb359-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="simple_lm.html#cb359-1" tabindex="-1"></a><span class="fu">anova</span>(smoke_risk_lm)</span>
+<span id="cb359-2"><a href="simple_lm.html#cb359-2" tabindex="-1"></a><span class="do">## Analysis of Variance Table</span></span>
+<span id="cb359-3"><a href="simple_lm.html#cb359-3" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb359-4"><a href="simple_lm.html#cb359-4" tabindex="-1"></a><span class="do">## Response: mortality</span></span>
+<span id="cb359-5"><a href="simple_lm.html#cb359-5" tabindex="-1"></a><span class="do">##            Df  Sum Sq Mean Sq F value    Pr(&gt;F)    </span></span>
+<span id="cb359-6"><a href="simple_lm.html#cb359-6" tabindex="-1"></a><span class="do">## risk.group  2 11514.4  5757.2  26.107 1.554e-06 ***</span></span>
+<span id="cb359-7"><a href="simple_lm.html#cb359-7" tabindex="-1"></a><span class="do">## Residuals  22  4851.6   220.5                      </span></span>
+<span id="cb359-8"><a href="simple_lm.html#cb359-8" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb359-9"><a href="simple_lm.html#cb359-9" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span></code></pre></div>
 <p>The results presented in the ANOVA table suggest that we can reject the null hypothesis (very small <em>p</em> value) and therefore the mean mortality rate index is different between <code>low</code>, <code>medium</code> and <code>high</code> risk groups.</p>
 <p>As we did with our first linear model we can also produce a summary of the estimated parameters using the <code>summary()</code> function.</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="simple_lm.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(smoke_risk_lm)</span>
-<span id="cb360-2"><a href="simple_lm.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb360-3"><a href="simple_lm.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb360-4"><a href="simple_lm.html#cb360-4" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ risk.group, data = smoke)</span></span>
-<span id="cb360-5"><a href="simple_lm.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb360-6"><a href="simple_lm.html#cb360-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb360-7"><a href="simple_lm.html#cb360-7" aria-hidden="true" tabindex="-1"></a><span class="do">##    Min     1Q Median     3Q    Max </span></span>
-<span id="cb360-8"><a href="simple_lm.html#cb360-8" aria-hidden="true" tabindex="-1"></a><span class="do">## -26.17 -11.45   4.00   9.00  26.83 </span></span>
-<span id="cb360-9"><a href="simple_lm.html#cb360-9" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb360-10"><a href="simple_lm.html#cb360-10" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb360-11"><a href="simple_lm.html#cb360-11" aria-hidden="true" tabindex="-1"></a><span class="do">##                  Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb360-12"><a href="simple_lm.html#cb360-12" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept)        135.00       5.25  25.713  &lt; 2e-16 ***</span></span>
-<span id="cb360-13"><a href="simple_lm.html#cb360-13" aria-hidden="true" tabindex="-1"></a><span class="do">## risk.grouplow      -57.83       8.02  -7.211 3.16e-07 ***</span></span>
-<span id="cb360-14"><a href="simple_lm.html#cb360-14" aria-hidden="true" tabindex="-1"></a><span class="do">## risk.groupmedium   -27.55       6.90  -3.992 0.000615 ***</span></span>
-<span id="cb360-15"><a href="simple_lm.html#cb360-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb360-16"><a href="simple_lm.html#cb360-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb360-17"><a href="simple_lm.html#cb360-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb360-18"><a href="simple_lm.html#cb360-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 14.85 on 22 degrees of freedom</span></span>
-<span id="cb360-19"><a href="simple_lm.html#cb360-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.7036, Adjusted R-squared:  0.6766 </span></span>
-<span id="cb360-20"><a href="simple_lm.html#cb360-20" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 26.11 on 2 and 22 DF,  p-value: 1.554e-06</span></span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="simple_lm.html#cb360-1" tabindex="-1"></a><span class="fu">summary</span>(smoke_risk_lm)</span>
+<span id="cb360-2"><a href="simple_lm.html#cb360-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb360-3"><a href="simple_lm.html#cb360-3" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb360-4"><a href="simple_lm.html#cb360-4" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ risk.group, data = smoke)</span></span>
+<span id="cb360-5"><a href="simple_lm.html#cb360-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb360-6"><a href="simple_lm.html#cb360-6" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb360-7"><a href="simple_lm.html#cb360-7" tabindex="-1"></a><span class="do">##    Min     1Q Median     3Q    Max </span></span>
+<span id="cb360-8"><a href="simple_lm.html#cb360-8" tabindex="-1"></a><span class="do">## -26.17 -11.45   4.00   9.00  26.83 </span></span>
+<span id="cb360-9"><a href="simple_lm.html#cb360-9" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb360-10"><a href="simple_lm.html#cb360-10" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb360-11"><a href="simple_lm.html#cb360-11" tabindex="-1"></a><span class="do">##                  Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb360-12"><a href="simple_lm.html#cb360-12" tabindex="-1"></a><span class="do">## (Intercept)        135.00       5.25  25.713  &lt; 2e-16 ***</span></span>
+<span id="cb360-13"><a href="simple_lm.html#cb360-13" tabindex="-1"></a><span class="do">## risk.grouplow      -57.83       8.02  -7.211 3.16e-07 ***</span></span>
+<span id="cb360-14"><a href="simple_lm.html#cb360-14" tabindex="-1"></a><span class="do">## risk.groupmedium   -27.55       6.90  -3.992 0.000615 ***</span></span>
+<span id="cb360-15"><a href="simple_lm.html#cb360-15" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb360-16"><a href="simple_lm.html#cb360-16" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb360-17"><a href="simple_lm.html#cb360-17" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb360-18"><a href="simple_lm.html#cb360-18" tabindex="-1"></a><span class="do">## Residual standard error: 14.85 on 22 degrees of freedom</span></span>
+<span id="cb360-19"><a href="simple_lm.html#cb360-19" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.7036, Adjusted R-squared:  0.6766 </span></span>
+<span id="cb360-20"><a href="simple_lm.html#cb360-20" tabindex="-1"></a><span class="do">## F-statistic: 26.11 on 2 and 22 DF,  p-value: 1.554e-06</span></span></code></pre></div>
 <p>In the summary table the Intercept is set to the first level of <code>risk.group</code> (<code>high</code>) as this occurs first alphabetically. Therefore, the estimated mean mortality index for <code>high</code> risk individuals is <code>135</code>. The estimates for <code>risk.grouplow</code> and <code>risk.groupmedium</code> are mean differences from the intercept (<code>high</code> group). So the mortality index for the <code>low</code> group is <code>135 - 57.83 = 77.17</code> and for the <code>medium</code> group is <code>135 - 27.55 = 107.45</code>. The <em>t</em> values and <em>p</em> values in the summary table are associated with testing specific hypotheses. The <em>p</em> value associated with the intercept tests the null hypothesis that the mean mortality index for the <code>high</code> group is equal to zero. To be honest this is not a particularly meaningful hypothesis to test but we can reject it anyway as we have a very small <em>p</em> value. The <em>p</em> value for the <code>risk.grouplow</code> parameter tests the null hypothesis that the mean difference between <code>high</code> and <code>low</code> risk groups is equal to zero (i.e. there is no difference). Again we reject this null hypothesis and conclude that the means are different between these two groups. Similarly, the <em>p</em> value for <code>risk.groupmedium</code> tests the null hypothesis that the mean difference between <code>high</code> and <code>medium</code> groups is equal to zero which we also reject.</p>
 <p>Don’t worry too much if you find the output from the <code>summary()</code> function a little confusing. Its takes a bit of practice and experience to be able to make sense of all the numbers. Remember though, the more complicated your model is, the more complicated your interpretion will be. And always remember, a model that you can’t interpret is not worth fitting (most of the time!).</p>
 <p>Another approach to interpreting your model output is to plot a graph of your data and then add the fitted model to this plot. Let’s go back to the first linear model we fitted (<code>smoke_lm</code>). We can add the fitted line to our previous plot using the <code>ggplot2</code> package and the <code>geom_smooth</code> geom. We can easily include the standard errors by specifying the <code>se = TRUE</code> argument.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="simple_lm.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoking, <span class="at">y =</span> mortality), <span class="at">data =</span> smoke) <span class="sc">+</span></span>
-<span id="cb361-2"><a href="simple_lm.html#cb361-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb361-3"><a href="simple_lm.html#cb361-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="simple_lm.html#cb361-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoking, <span class="at">y =</span> mortality), <span class="at">data =</span> smoke) <span class="sc">+</span></span>
+<span id="cb361-2"><a href="simple_lm.html#cb361-2" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb361-3"><a href="simple_lm.html#cb361-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss33-1.png" width="672" /></p>
 <p>You can also do this with R’s base graphics. Note though that the fitted line extends beyond the data which is not great practice. If you want to prevent this you can generate predicted values from the model using the <code>predict()</code> function within the range of your data and then add these values to the plot using the <code>lines()</code> function (not shown).</p>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="simple_lm.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(smoke<span class="sc">$</span>smoking, smoke<span class="sc">$</span>mortality, <span class="at">xlab =</span> <span class="st">&quot;smoking rate&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot; mortality rate&quot;</span>)</span>
-<span id="cb362-2"><a href="simple_lm.html#cb362-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(smoke_lm, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="simple_lm.html#cb362-1" tabindex="-1"></a><span class="fu">plot</span>(smoke<span class="sc">$</span>smoking, smoke<span class="sc">$</span>mortality, <span class="at">xlab =</span> <span class="st">&quot;smoking rate&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot; mortality rate&quot;</span>)</span>
+<span id="cb362-2"><a href="simple_lm.html#cb362-2" tabindex="-1"></a><span class="fu">abline</span>(smoke_lm, <span class="at">col =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss34-1.png" width="672" /></p>
 <p>Before we sit back and relax and admire our model (or go write that high impact paper your supervisor/boss has been harassing you about) our work is not finished. It’s vitally important to check the underlying assumptions of your linear model. Two of the most important assumption are equal variances (homogeneity of variance) and normality of residuals. To check for equal variances we can construct a graph of residuals versus fitted values. We can do this by first extracting the residuals and fitted values from our model object using the <code>resid()</code> and <code>fitted()</code> functions.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="simple_lm.html#cb363-1" aria-hidden="true" tabindex="-1"></a>smoke_res <span class="ot">&lt;-</span> <span class="fu">resid</span>(smoke_lm)</span>
-<span id="cb363-2"><a href="simple_lm.html#cb363-2" aria-hidden="true" tabindex="-1"></a>smoke_fit <span class="ot">&lt;-</span> <span class="fu">fitted</span>(smoke_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="simple_lm.html#cb363-1" tabindex="-1"></a>smoke_res <span class="ot">&lt;-</span> <span class="fu">resid</span>(smoke_lm)</span>
+<span id="cb363-2"><a href="simple_lm.html#cb363-2" tabindex="-1"></a>smoke_fit <span class="ot">&lt;-</span> <span class="fu">fitted</span>(smoke_lm)</span></code></pre></div>
 <p>And then plot them using <code>ggplot</code> or base R graphics.</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="simple_lm.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoke_fit, <span class="at">y =</span> smoke_res)) <span class="sc">+</span></span>
-<span id="cb364-2"><a href="simple_lm.html#cb364-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb364-3"><a href="simple_lm.html#cb364-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="simple_lm.html#cb364-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> smoke_fit, <span class="at">y =</span> smoke_res)) <span class="sc">+</span></span>
+<span id="cb364-2"><a href="simple_lm.html#cb364-2" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb364-3"><a href="simple_lm.html#cb364-3" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">linetype =</span> <span class="st">&quot;dashed&quot;</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss36-1.png" width="672" /></p>
 <p>It takes a little practice to interpret these types of graph, but what you are looking for is no pattern or structure in your residuals. What you definitely don’t want to see is the scatter increasing around the zero line (red dashed line) as the fitted values get bigger (this has been described as looking like a trumpet, a wedge of cheese or even a slice of pizza) which would indicate unequal variances (heteroscedacity).</p>
 <p>To check for normality of residuals we can use our old friend the Q-Q plot using the residuals stored in the <code>smoke_res</code> object we created earlier.</p>
-<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="simple_lm.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> smoke_res)) <span class="sc">+</span></span>
-<span id="cb365-2"><a href="simple_lm.html#cb365-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
-<span id="cb365-3"><a href="simple_lm.html#cb365-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stat_qq_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="simple_lm.html#cb365-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">sample =</span> smoke_res)) <span class="sc">+</span></span>
+<span id="cb365-2"><a href="simple_lm.html#cb365-2" tabindex="-1"></a>    <span class="fu">stat_qq</span>() <span class="sc">+</span> </span>
+<span id="cb365-3"><a href="simple_lm.html#cb365-3" tabindex="-1"></a>    <span class="fu">stat_qq_line</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss37-1.png" width="672" /></p>
 <p>Or the same plot with base graphics.</p>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="simple_lm.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qqnorm</span>(smoke_res)</span>
-<span id="cb366-2"><a href="simple_lm.html#cb366-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qqline</span>(smoke_res) </span></code></pre></div>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="simple_lm.html#cb366-1" tabindex="-1"></a><span class="fu">qqnorm</span>(smoke_res)</span>
+<span id="cb366-2"><a href="simple_lm.html#cb366-2" tabindex="-1"></a><span class="fu">qqline</span>(smoke_res) </span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss38-1.png" width="672" /></p>
 <p>Alternatively, you can get R to do most of the hard work by using the <code>plot()</code> function on the model object <code>smoke_lm</code>. Before we do this we should tell R that we want to plot four graphs in the same plotting window in RStudio using the <code>par(mfrow = c(2,2))</code>. This command splits the plotting window into 2 rows and 2 columns.</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="simple_lm.html#cb367-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb367-2"><a href="simple_lm.html#cb367-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(smoke_lm)</span></code></pre></div>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="simple_lm.html#cb367-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb367-2"><a href="simple_lm.html#cb367-2" tabindex="-1"></a><span class="fu">plot</span>(smoke_lm)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss39-1.png" width="672" /></p>
 <p>The first two graphs (top left and top right) are the same residual versus fitted and Q-Q plots we produced before. The third graph (bottom left) is the same as the first but plotted on a different scale (the absolute value of the square root of the standardised residuals) and again you are looking for no pattern or structure in the data points. The fourth graph (bottom right) gives you an indication whether any of your observations are having a large influence (Cook’s distance) on your regression coefficient estimates. Levearge identifies observations which have unusually large values in their explanatory variables.</p>
 <p>You can also produce these diagnostic plots using <code>ggplot</code> by installing the package <code>ggfortify</code> and using the <code>autoplot()</code> function.</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="simple_lm.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
-<span id="cb368-2"><a href="simple_lm.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="fu">autoplot</span>(smoke_lm, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">label.size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="simple_lm.html#cb368-1" tabindex="-1"></a><span class="fu">library</span>(ggfortify)</span>
+<span id="cb368-2"><a href="simple_lm.html#cb368-2" tabindex="-1"></a><span class="fu">autoplot</span>(smoke_lm, <span class="at">which =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">ncol =</span> <span class="dv">2</span>, <span class="at">label.size =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss40-1.png" width="672" /></p>
 <p>What you do about influential data points or data points with high leverage is up to you. If you would like to examine the effect of removing one of these points on the parameter estimates you can use the <code>update()</code> function. Let’s remove data point 2 (miners, mortality = 116 and smoking = 137) and store the results in a new object called <code>smoke_lm2</code>. Note, we do this to demonstrate the use of the <code>update()</code> function. You should think long and hard about removing any data point(s) and if you do you should <strong>always</strong> report this and justify your reasoning.</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="simple_lm.html#cb369-1" aria-hidden="true" tabindex="-1"></a>smoke_lm2 <span class="ot">&lt;-</span> <span class="fu">update</span>(smoke_lm, <span class="at">subset =</span> <span class="sc">-</span><span class="dv">2</span>)</span>
-<span id="cb369-2"><a href="simple_lm.html#cb369-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(smoke_lm2)</span>
-<span id="cb369-3"><a href="simple_lm.html#cb369-3" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb369-4"><a href="simple_lm.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="do">## Call:</span></span>
-<span id="cb369-5"><a href="simple_lm.html#cb369-5" aria-hidden="true" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ smoking, data = smoke, subset = -2)</span></span>
-<span id="cb369-6"><a href="simple_lm.html#cb369-6" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb369-7"><a href="simple_lm.html#cb369-7" aria-hidden="true" tabindex="-1"></a><span class="do">## Residuals:</span></span>
-<span id="cb369-8"><a href="simple_lm.html#cb369-8" aria-hidden="true" tabindex="-1"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
-<span id="cb369-9"><a href="simple_lm.html#cb369-9" aria-hidden="true" tabindex="-1"></a><span class="do">## -29.7425 -11.6920  -0.4745  13.6141  28.7587 </span></span>
-<span id="cb369-10"><a href="simple_lm.html#cb369-10" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb369-11"><a href="simple_lm.html#cb369-11" aria-hidden="true" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
-<span id="cb369-12"><a href="simple_lm.html#cb369-12" aria-hidden="true" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
-<span id="cb369-13"><a href="simple_lm.html#cb369-13" aria-hidden="true" tabindex="-1"></a><span class="do">## (Intercept) -20.0755    23.5798  -0.851    0.404    </span></span>
-<span id="cb369-14"><a href="simple_lm.html#cb369-14" aria-hidden="true" tabindex="-1"></a><span class="do">## smoking       1.2693     0.2297   5.526 1.49e-05 ***</span></span>
-<span id="cb369-15"><a href="simple_lm.html#cb369-15" aria-hidden="true" tabindex="-1"></a><span class="do">## ---</span></span>
-<span id="cb369-16"><a href="simple_lm.html#cb369-16" aria-hidden="true" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
-<span id="cb369-17"><a href="simple_lm.html#cb369-17" aria-hidden="true" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb369-18"><a href="simple_lm.html#cb369-18" aria-hidden="true" tabindex="-1"></a><span class="do">## Residual standard error: 17.62 on 22 degrees of freedom</span></span>
-<span id="cb369-19"><a href="simple_lm.html#cb369-19" aria-hidden="true" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.5813, Adjusted R-squared:  0.5622 </span></span>
-<span id="cb369-20"><a href="simple_lm.html#cb369-20" aria-hidden="true" tabindex="-1"></a><span class="do">## F-statistic: 30.54 on 1 and 22 DF,  p-value: 1.488e-05</span></span></code></pre></div>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="simple_lm.html#cb369-1" tabindex="-1"></a>smoke_lm2 <span class="ot">&lt;-</span> <span class="fu">update</span>(smoke_lm, <span class="at">subset =</span> <span class="sc">-</span><span class="dv">2</span>)</span>
+<span id="cb369-2"><a href="simple_lm.html#cb369-2" tabindex="-1"></a><span class="fu">summary</span>(smoke_lm2)</span>
+<span id="cb369-3"><a href="simple_lm.html#cb369-3" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb369-4"><a href="simple_lm.html#cb369-4" tabindex="-1"></a><span class="do">## Call:</span></span>
+<span id="cb369-5"><a href="simple_lm.html#cb369-5" tabindex="-1"></a><span class="do">## lm(formula = mortality ~ smoking, data = smoke, subset = -2)</span></span>
+<span id="cb369-6"><a href="simple_lm.html#cb369-6" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb369-7"><a href="simple_lm.html#cb369-7" tabindex="-1"></a><span class="do">## Residuals:</span></span>
+<span id="cb369-8"><a href="simple_lm.html#cb369-8" tabindex="-1"></a><span class="do">##      Min       1Q   Median       3Q      Max </span></span>
+<span id="cb369-9"><a href="simple_lm.html#cb369-9" tabindex="-1"></a><span class="do">## -29.7425 -11.6920  -0.4745  13.6141  28.7587 </span></span>
+<span id="cb369-10"><a href="simple_lm.html#cb369-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb369-11"><a href="simple_lm.html#cb369-11" tabindex="-1"></a><span class="do">## Coefficients:</span></span>
+<span id="cb369-12"><a href="simple_lm.html#cb369-12" tabindex="-1"></a><span class="do">##             Estimate Std. Error t value Pr(&gt;|t|)    </span></span>
+<span id="cb369-13"><a href="simple_lm.html#cb369-13" tabindex="-1"></a><span class="do">## (Intercept) -20.0755    23.5798  -0.851    0.404    </span></span>
+<span id="cb369-14"><a href="simple_lm.html#cb369-14" tabindex="-1"></a><span class="do">## smoking       1.2693     0.2297   5.526 1.49e-05 ***</span></span>
+<span id="cb369-15"><a href="simple_lm.html#cb369-15" tabindex="-1"></a><span class="do">## ---</span></span>
+<span id="cb369-16"><a href="simple_lm.html#cb369-16" tabindex="-1"></a><span class="do">## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</span></span>
+<span id="cb369-17"><a href="simple_lm.html#cb369-17" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb369-18"><a href="simple_lm.html#cb369-18" tabindex="-1"></a><span class="do">## Residual standard error: 17.62 on 22 degrees of freedom</span></span>
+<span id="cb369-19"><a href="simple_lm.html#cb369-19" tabindex="-1"></a><span class="do">## Multiple R-squared:  0.5813, Adjusted R-squared:  0.5622 </span></span>
+<span id="cb369-20"><a href="simple_lm.html#cb369-20" tabindex="-1"></a><span class="do">## F-statistic: 30.54 on 1 and 22 DF,  p-value: 1.488e-05</span></span></code></pre></div>
 <p>There are numerous other functions which are useful for producing diagnostic plots. For example, <code>rstandard()</code> and <code>rstudent()</code> returns the standardised and studentised residuals. The function <code>dffits()</code> expresses how much an observation influences the associated fitted value and the function <code>dfbetas()</code> gives the change in the estimated parameters if an observation is excluded, relative to its standard error (intercept is the solid line and slope is the dashed line in the example below). The solid bold line in the same graph represents the Cook’s distance. Examples of how to use these functions are given below.</p>
-<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="simple_lm.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb370-2"><a href="simple_lm.html#cb370-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dffits</span>(smoke_lm), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
-<span id="cb370-3"><a href="simple_lm.html#cb370-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstudent</span>(smoke_lm))</span>
-<span id="cb370-4"><a href="simple_lm.html#cb370-4" aria-hidden="true" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">dfbetas</span>(smoke_lm), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
-<span id="cb370-5"><a href="simple_lm.html#cb370-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">sqrt</span>(<span class="fu">cooks.distance</span>(smoke_lm)), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="simple_lm.html#cb370-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb370-2"><a href="simple_lm.html#cb370-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">dffits</span>(smoke_lm), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span>
+<span id="cb370-3"><a href="simple_lm.html#cb370-3" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">rstudent</span>(smoke_lm))</span>
+<span id="cb370-4"><a href="simple_lm.html#cb370-4" tabindex="-1"></a><span class="fu">matplot</span>(<span class="fu">dfbetas</span>(smoke_lm), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>, <span class="at">col =</span> <span class="st">&quot;black&quot;</span>)</span>
+<span id="cb370-5"><a href="simple_lm.html#cb370-5" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">sqrt</span>(<span class="fu">cooks.distance</span>(smoke_lm)), <span class="at">lwd =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/ss42-1.png" width="672" /></p>
 </div>
             </section>
