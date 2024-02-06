@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.4 A ggplot bestiary | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.4 A ggplot bestiary | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-09-11" />
+<meta name="date" content="2024-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,6 +132,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -477,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.4.5</span> Violin plots<a href="bestiary.html#violin-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Violin plots are an increasingly popular alternative to boxplots. They display much of the same information, as well as showing a version of the density plot above (imagine each violin plot, cut in half vertically and place on it’s side, thus showing the overall distribution of the data). In the plot below the figure is slightly more complex than those above and so deserves some explanation.</p>
 <p>Within <code>geom_violin()</code> we’ve included <code>draw_quantiles =</code> where we’ve specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the <code>c()</code> function). In combination with <code>geom_violin()</code> we’ve also included <code>geom_jitter()</code>. <code>geom_jitter()</code> is similar to <code>geom_point()</code> but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within <code>geom_jitter()</code> we’ve also set <code>height = 0</code>, and <code>width = 0.1</code> which specifies how much to jitter the points in a given dimension (here essentially telling <code>ggplot2</code> not to jitter by height, and only to jitter width by a small amount).</p>
-<p>Finally, we’re also using this plot to show <code>scale_y_log10</code>. Hopefully this is largely self-explanatory (it converts the y-axis to the log_10_ scale). There are additional scaling options for axis (for instance <code>scale_y_sqrt()</code>). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we’d actually be much better off not doing so in this particular case.</p>
+<p>Finally, we’re also using this plot to show <code>scale_y_log10</code>. Hopefully this is largely self-explanatory (it converts the y-axis to the <span class="math inline">\(\text{log}_{10}\)</span> scale). There are additional scaling options for axis (for instance <code>scale_y_sqrt()</code>). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we’d actually be much better off not doing so in this particular case.</p>
 <p> </p>
 <div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="bestiary.html#cb314-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span></span>
 <span id="cb314-2"><a href="bestiary.html#cb314-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">y =</span> flowers, <span class="at">x =</span> nitrogen, <span class="at">fill =</span> nitrogen), </span>
@@ -565,15 +569,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## Warning: `stat(level)` was deprecated in ggplot2 3.4.0.
 ## ℹ Please use `after_stat(level)` instead.
 ## This warning is displayed once every 8 hours.
-## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+## Call `lifecycle::last_lifecycle_warnings()` to see where this
+## warning was generated.</code></pre>
 <p><img src="Rbook_files/figure-html/stat-contour-1.png" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In this case it doesn’t look too pretty given that we don’t have a wide spread of data leading to partly formed polygons.</p>
 </div>
 <div id="cleveland-dotplot" class="section level3 hasAnchor" number="5.4.11">
 <h3><span class="header-section-number">5.4.11</span> Cleveland dotplot<a href="bestiary.html#cleveland-dotplot" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The cleveland dotplot is a figure well suited to detect unusual oberservations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. <code>ggplot2</code> does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves.</p>
-<p>We do this by first using the function <code>rownames()</code>. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using <code>as.numeric()</code>. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We’ll use the same technique to add horiztonal lines for each row of data to replicate the traditional look of a dotchart.</p>
+<p>The cleveland dotplot is a figure well suited to detect unusual observations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. <code>ggplot2</code> does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves.</p>
+<p>We do this by first using the function <code>rownames()</code>. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using <code>as.numeric()</code>. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We’ll use the same technique to add horizontal lines for each row of data to replicate the traditional look of a dotchart.</p>
 <p> </p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="bestiary.html#cb322-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span> </span>
 <span id="cb322-2"><a href="bestiary.html#cb322-2" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(flower))), <span class="at">linetype =</span> <span class="dv">2</span>,</span>

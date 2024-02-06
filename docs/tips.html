@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.3 Tips and tricks | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.3 Tips and tricks | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-09-11" />
+<meta name="date" content="2024-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,6 +132,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -496,7 +500,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="layering-layers" class="section level3 hasAnchor" number="5.3.3">
 <h3><span class="header-section-number">5.3.3</span> Layering layers<a href="tips.html#layering-layers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Remember that <code>ggplot2</code> works like painting. Let’s imagine we were one of the great renaissance painters. We’ve just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we’ve finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we’ve painted over the Duke because the order of our layers was wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.</p>
-<p>The exact same is true in <code>ggplot2</code> (minus the chopping off of heads, though your situation may vary). The layers are read and “painted” in order of their appearance in the code. If <code>geom_point()</code> comes before <code>geom_col()</code>, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.</p>
+<p>The exact same is true in <code>ggplot2</code> (minus the chopping off of heads, though your situation may vary). The layers are read and “painted” in order of their appearance in the code. If <code>geom_point()</code> comes before <code>geom_col()</code>, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using RStudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.</p>
 <p>We’ll move both the points and the overall black dashed line down in the code so that they are superimposed over the nitrogen lines:</p>
 <p> </p>
 <div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="tips.html#cb293-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>

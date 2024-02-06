@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 The start of the end | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 The start of the end | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2023-09-11" />
+<meta name="date" content="2024-02-06" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -132,6 +132,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -488,7 +492,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <p> </p>
 <p>Given that ‘data’ only requires us to specify the dataset we want to use, it is trivially easy to complete. ‘Mapping’ only requires you to specify what variables in the data to use, often just the x- and y-axes (specified using <code>aes()</code>). Lastly, ‘geometry’ is where we choose how we want the data to be visualised.</p>
 <p>With just these three fundamentals, you will be able to produce a large variety of plots (see later in this Chapter for a <a href="bestiary.html#bestiary">bestiary</a> of plots).</p>
-<p>If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we’ve produced, we can see that <code>shootarea</code> looks like it’s increasing with <code>weight</code> in a linear fashion. So long as this answers the question we were asking from these data, we have a figure that is fit for purpose. However, for showing to other people we might want something a bit more developed. If we glance back to our “final figure” we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that <code>geom_line()</code> would be appropriate. Let’s try it.</p>
+<p>If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we’ve produced, we can see that <code>shootarea</code> looks like it’s increasing with <code>weight</code> in a linear fashion. So long as this answers the question we were asking from these data, we have a figure that is fit for purpose. However, for showing to other people we might want something a bit more developed. If we glance back to our “final figure” we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms <a href="https://ggplot2.tidyverse.org/reference/">here</a>, you might think that <code>geom_line()</code> would be appropriate. Let’s try it.</p>
 <p><img src="images/geoms.png" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="the-start-of-the-end.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb252-2"><a href="the-start-of-the-end.html#cb252-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
@@ -614,8 +618,8 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="the-start-of-the-end.html#cb266-1" tabindex="-1"></a>rbook_figure <span class="sc">/</span> final_figure</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/side-by-side-patchwork-1.png" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p><em>Play around</em>: Try to create a side-by-side version of the above figure (hint: try the other operators).</p>
-<p>We can take this one step further and assign nested <code>patchwork</code> figures to an object and use this in turn to create labels for individuals figures.</p>
+<p><em>Play around</em>: Try to create a side-by-side version of the above figure (hint: try the other operators [<code>+</code>, <code>/</code>, <code>|</code>]).</p>
+<p>We can take this one step further and assign nested <code>patchwork</code> figures to an object and use this in turn to create labels for individual figures.</p>
 <p> </p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="the-start-of-the-end.html#cb267-1" tabindex="-1"></a>nested_compare <span class="ot">&lt;-</span> rbook_figure <span class="sc">/</span> final_figure</span>
 <span id="cb267-2"><a href="the-start-of-the-end.html#cb267-2" tabindex="-1"></a></span>
@@ -773,7 +777,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb276-10"><a href="the-start-of-the-end.html#cb276-10" tabindex="-1"></a>            <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
 <span id="cb276-11"><a href="the-start-of-the-end.html#cb276-11" tabindex="-1"></a>                <span class="at">linewidth =</span> <span class="fu">rel</span>(<span class="dv">2</span>)), <span class="at">complete =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb276-12"><a href="the-start-of-the-end.html#cb276-12" tabindex="-1"></a>}</span>
-<span id="cb276-13"><a href="the-start-of-the-end.html#cb276-13" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x7f8631ef8ef0</span><span class="sc">&gt;</span></span>
+<span id="cb276-13"><a href="the-start-of-the-end.html#cb276-13" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x7f8939f1bd18</span><span class="sc">&gt;</span></span>
 <span id="cb276-14"><a href="the-start-of-the-end.html#cb276-14" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>ggplot2<span class="sc">&gt;</span></span></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <p> </p>
