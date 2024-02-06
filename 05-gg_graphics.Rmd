@@ -188,7 +188,7 @@ Given that 'data' only requires us to specify the dataset we want to use, it is 
 
 With just these three fundamentals, you will be able to produce a large variety of plots (see later in this Chapter for a [bestiary](#bestiary) of plots).
 
-If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that `shootarea` looks like it's increasing with `weight` in a linear fashion. So long as this answers the question we were asking from these data, we have a figure that is fit for purpose. However, for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geoms], you might think that `geom_line()`\index{geom\_line()} would be appropriate. Let's try it.
+If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we've produced, we can see that `shootarea` looks like it's increasing with `weight` in a linear fashion. So long as this answers the question we were asking from these data, we have a figure that is fit for purpose. However, for showing to other people we might want something a bit more developed. If we glance back to our "final figure" we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms [here][geom], you might think that `geom_line()`\index{geom\_line()} would be appropriate. Let's try it.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align="center"}
 knitr::include_graphics(path = "images/geoms.png")
@@ -429,9 +429,9 @@ rbook_figure / final_figure
 
 \  
 
-*Play around*: Try to create a side-by-side version of the above figure (hint: try the other operators).
+*Play around*: Try to create a side-by-side version of the above figure (hint: try the other operators [`+`, `/`, `|`]).
 
-We can take this one step further and assign nested `patchwork` figures to an object and use this in turn to create labels for individuals figures.
+We can take this one step further and assign nested `patchwork` figures to an object and use this in turn to create labels for individual figures.
 
 \  
 
@@ -982,7 +982,7 @@ Notice now that the trends are maintained (as the lines are being informed by da
 
 Remember that `ggplot2` works like painting. Let's imagine we were one of the great renaissance painters. We've just finished the focal point of our painting, the half naked Duke of Toulouse looking moody or something. Now that we've finished painting the honourable Duke, we proceed to paint the background, a beautiful landscape showing the Pyrenees mountains in the distance. Unfortunately, in doing so we've painted over the Duke because the order of our layers was wrong. We get our heads chopped off, but learn a valuable lesson in the process: the order of layers matter.
 
-The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()`\index{geom\_point()} comes before `geom_col()`\index{geom\_col()}, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using Rstudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.
+The exact same is true in `ggplot2` (minus the chopping off of heads, though your situation may vary). The layers are read and "painted" in order of their appearance in the code. If `geom_point()`\index{geom\_point()} comes before `geom_col()`\index{geom\_col()}, then your points may well end up being hidden. To fix this is easy, we simply need to move the layers up or down in the code. A useful tip for those using RStudio, is that you can move lines of code especially easily. Simply click on a line of code, hold down Alt and then press either the up or down arrows, and the entire line will move up or down as well. For multiple lines of code, simply highlight all those lines you want to move and press Alt + Up/Down arrow.
 
 We'll move both the points and the overall black dashed line down in the code so that they are superimposed over the nitrogen lines:
 
@@ -1500,7 +1500,7 @@ Violin plots are an increasingly popular alternative to boxplots. They display m
 
 Within `geom_violin()`\index{geom\_violin()} we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()`\index{c()} function). In combination with `geom_violin()` we've also included `geom_jitter()`\index{geom\_jitter()}. `geom_jitter()` is similar to `geom_point()` but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
 
-Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the log_10_ scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`\index{scale\_y\_sqrt()}). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we'd actually be much better off not doing so in this particular case.
+Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the $\text{log}_{10}$ scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`\index{scale\_y\_sqrt()}). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we'd actually be much better off not doing so in this particular case.
 
 \  
 
@@ -1620,9 +1620,9 @@ In this case it doesn't look too pretty given that we don't have a wide spread o
 
 ### Cleveland dotplot
 
-The cleveland dotplot is a figure well suited to detect unusual oberservations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. `ggplot2` does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves. 
+The cleveland dotplot is a figure well suited to detect unusual observations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. `ggplot2` does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves. 
 
-We do this by first using the function `rownames()`\index{rownames()}. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using `as.numeric()`\index{as.numeric()}. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We'll use the same technique to add horiztonal lines for each row of data to replicate the traditional look of a dotchart.
+We do this by first using the function `rownames()`\index{rownames()}. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using `as.numeric()`\index{as.numeric()}. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We'll use the same technique to add horizontal lines for each row of data to replicate the traditional look of a dotchart.
 
 \  
 
