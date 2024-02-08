@@ -1,6 +1,6 @@
 # Getting started with R and RStudio {#chap1}
 
-Although R is not new, its popularity has increased rapidly over the last 10 years or so (see [here][r4stats] for some interesting data). It was originally created and developed by Ross Ihaka and Robert Gentleman during the 1990's with the first stable version released in 2000. Nowadays R is maintained by the [R Development Core Team][cran-core]. So, why has R become so popular and why should you learn how to use it? Some reasons include: 
+Although R is not new, its popularity has increased rapidly over the last 10 years or so (see [here][r4stats] for some interesting data). It was originally created and developed by **R**oss Ihaka and **R**obert Gentleman during the 1990's with the first stable version released in 2000. Nowadays R is maintained by the [R Development Core Team][cran-core]. So, why has R become so popular and why should you learn how to use it? Some reasons include: 
 
 - R is open source and freely available. 
 - R is available for Windows, Mac and Linux operating systems.
@@ -46,7 +46,7 @@ which will install base R and also the development version of base R (you only n
 If you receive an error after running the code above you may need to add a 'source.list' entry to your etc/apt/sources.list file. To do this open the /etc/apt/sources.list file in your favourite text editor (gedit, vim, nano etc) and add the following line (you will need root permission to do this):
 
 ```{block }
-deb https://cloud.r-project.org/bin/linux/ubuntu disco-cran35/
+    deb https://cloud.r-project.org/bin/linux/ubuntu disco-cran35/
 ```
 
 This is the source.list for the latest version of Ubuntu (19.04 Disco Dingoat the time of writing). If you're using an earlier version of Ubuntu then replace the source.list entry to the one which corresponds to the version of Ubuntu you are using (see [here][cran-ubuntu] for an up to date list). Once you have done this then re-run the apt commands above and you should be good to go.
@@ -65,7 +65,7 @@ A plot of the numbers 1 to 10 on both the x and y axes should appear. If you see
 
 ## Installing RStudio
 
-Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular **I**ntegrated **D**evelopment **E**nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R Console, a script editor and other useful functionality (like R markdown and Git Hub integration). You can find more information about [RStudio here][rstudio]. 
+Whilst its eminently possible to just use the base installation of R (many people do), we will be using a popular **I**ntegrated **D**evelopment **E**nvironment (IDE) called RStudio. RStudio can be thought of as an add-on to R which provides a more user-friendly interface, incorporating the R Console, a script editor and other useful functionality (like R markdown and GitHub integration). You can find more information about [RStudio here][rstudio]. 
 
 RStudio is freely available for Windows, Mac and Linux operating systems and can be downloaded from the [RStudio site][rstudio-download]. You should select the 'RStudio Desktop' version. Note: you must install R before you install RStudio (see [previous section](#install_r) for details).
 
@@ -215,7 +215,7 @@ A light yet efficient way to write your R scripts using advanced text editors su
 - [Notepad++][notepad] (Windows)
 - [Sublime Text][sublime] (all operating systems)
 
-### Integrated developement environements
+### Integrated development environments
 These environments are more powerful than simple text editors, and are similar to RStudio:
 
 - [Emacs][emacs] and its extension [Emacs Speaks Statistics][ess] (all operating systems)
@@ -244,7 +244,7 @@ install.packages('remotes', dependencies = TRUE)
 
 You may be asked to select a CRAN mirror, just select '0-cloud' or a mirror near to your location. The `dependencies = TRUE` argument ensures that additional packages that are required will also be installed.
 
-It's good practice to occasionally update your previously installed packages to get access to new functionality and bug fixes. To update CRAN packages you can use the `update.packages()`\index{update.packages()} function (you will need a working internet connection for this)
+It's good practice to occasionally update your previously installed packages to get access to new functionality and bug fixes. To update CRAN packages you can use the `update.packages()`\index{update.packages()} function (you will need a working internet connection for this).
 
 ```{r, echo = TRUE, eval=FALSE}
 update.packages(ask = FALSE)
@@ -254,7 +254,7 @@ The `ask = FALSE` argument avoids having to confirm every package download which
 
 ### Bioconductor packages
 
-To install packages from Bioconductor the process is a [little different][bioc-install]. You first need to install the `BiocManager` package. You only need to do this once unless you subsequently reinstall or upgrade R
+To install packages from Bioconductor the process is a [little different][bioc-install]. You first need to install the `BiocManager` package. You only need to do this once unless you subsequently reinstall or upgrade R.
 
 ```{r, echo=TRUE, eval=FALSE}
 install.packages('BiocManager', dependencies = TRUE)
@@ -266,13 +266,13 @@ Once the BiocManager package has been installed you can either install all of th
 BiocManager::install()
 ```
 
-or install specific packages such as the 'GenomicRanges' and 'edgeR' packages
+or install specific packages such as the 'GenomicRanges' and 'edgeR' packages.
 
 ```{r, echo=TRUE, eval=FALSE}
 BiocManager::install(c("GenomicRanges", "edgeR"))
 ```
 
-To update Bioconductor packages just use the `BiocManager::install()` function again
+To update Bioconductor packages just use the `BiocManager::install()` function again.
 
 ```{r, echo=TRUE, eval=FALSE}
 BiocManager::install(ask = FALSE)
@@ -282,7 +282,7 @@ Again, you can use the `ask = FALSE` argument to avoid having to confirm every p
 
 ### GitHub packages
 
-There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the `install_github()`\index{install\_github()} function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version from GitHub use
+There are multiple options for installing packages hosted on GitHub. Perhaps the most efficient method is to use the `install_github()`\index{install\_github()} function from the `remotes` package (you installed this package [previously](#cran_packages)). Before you use the function you will need to know the GitHub username of the repository owner and also the name of the repository. For example, the development version of `dplyr` from Hadley Wickham is hosted on the tidyverse GitHub account and has the repository name 'dplyr' (just Google 'github dplyr'). To install this version from GitHub, use
 
 ```{r, echo=TRUE, eval=FALSE}
 remotes::install_github('tidyverse/dplyr')
@@ -292,13 +292,13 @@ The safest way (that we know of) to update a package installed from GitHub is to
 
 ### Using packages
 
-Once you have installed a package onto your computer it is not immediately available for you to use. To use a package you first need to load the package by using the `library()`\index{library()} function. For example, to load the `remotes` package you previously installed
+Once you have installed a package onto your computer it is not immediately available for you to use. To use a package you first need to load the package by using the `library()`\index{library()} function. For example, to load the `remotes` package you previously installed.
 
 ```{r, echo=TRUE, eval=FALSE}
 library(remotes)
 ```
 
-The `library()` function will also load any additional packages required and may print out additional package information. It is important to realise that every time you start a new R session (or restore a previously saved session) you need to load the packages you will be using. We tend to put all our `library()` statements required for our analysis near the top of our R scripts to make them easily accessible and easy to add to as our code develops. If you try to use a function without first loading the relevant R package you will receive an error message that R could not find the function. For example, if you try to use the `install_github()` function without loading the `remotes` package first you will receive the following error
+The `library()` function will also load any additional packages required and may print out additional package information. It is important to realise that every time you start a new R session (or restore a previously saved session) you need to load the packages you will be using. We tend to put all our `library()` statements required for our analysis near the top of our R scripts to make them easily accessible and easy to add to as our code develops. If you try to use a function without first loading the relevant R package you will receive an error message that R could not find the function. For example, if you try to use the `install_github()` function without loading the `remotes` package first you will receive the following error.
 
 ```{r, echo=TRUE, eval=FALSE}
 install_github('tidyverse/dplyr')
@@ -307,7 +307,7 @@ install_github('tidyverse/dplyr')
 #  could not find function "install_github"
 ```
 
-Sometimes it can be useful to use a function without first using the `library()` function. If, for example, you will only be using one or two functions in your script and don't want to load all of the other functions in a package then you can access the function directly by specifying the package name followed by two colons and then the function name 
+Sometimes it can be useful to use a function without first using the `library()` function. If, for example, you will only be using one or two functions in your script and don't want to load all of the other functions in a package then you can access the function directly by specifying the package name followed by two colons and then the function name.
 
 ```{r, echo=TRUE, eval=FALSE}
 remotes::install_github('tidyverse/dplyr')
@@ -498,7 +498,7 @@ knitr::include_graphics(path = "images/dir_struct3.png")
 
 \  
 
-An alternative approach is to use the `dir.create()`\index{dir.create()} and `list.files()`\index{list.files()} functions in the R Console
+An alternative approach is to use the `dir.create()`\index{dir.create()} and `list.files()`\index{list.files()} functions in the R Console.
 
 ```{r dir, echo=TRUE, eval=FALSE}
 # create directory called 'data'
@@ -543,7 +543,7 @@ Whatever file naming convention you decide to use, try to adopt early, stick wit
 
 A quick note or two about writing R code and creating R scripts. Unless you're doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments `#` or, even better, by mixing executable code with narrative into an [R markdown](#rmarkdown_r) document. It's also good practice to include the output of the `sessionInfo()`\index{sessionInfo()} function at the end of any script which prints the R version, details of the operating system and also loaded packages. A really good alternative is to use the `session_info()`\index{session\_info()} function from the `xfun` package for a more concise summary of our session environment. 
 
-Here's an example of including meta-information at the start of an R script
+Here's an example of including meta-information at the start of an R script.
 
 ```{r, echo=TRUE, eval=FALSE}
 # Title: Time series analysis of snouters
@@ -583,7 +583,7 @@ In addition to including metadata in your R scripts it's also common practice to
 
 ## R style guide
 
-How you write your code is more or less up to you although your goal should be to make it as easy to read as possible (for you and others). Whilst there are no rules (and no code police), we encourage you to get into the habit of writing readable R code by adopting a particular style. We suggest that you follow Google's [R style guide][style-google] whenever possible. This style guide will help you decide where to use spaces, how to indent code and how to use square `[ ]` and curly `{ }` brackets amongst other things. If all that sounds like too much hard work you can install the `styler` package which includes an RStudio add-in to allow you to automatically restyle selected code (or entire files and projects) with the click of your mouse. You can find more information about the `styler` package including how to install [here][styler]. Once installed, you can highlight the code you want to restyle, click on the 'Addins' button at the top of RStudio and select the 'Style Selection' option. Here is an example of poorly formatted R code
+How you write your code is more or less up to you although your goal should be to make it as easy to read as possible (for you and others). Whilst there are no rules (and no code police), we encourage you to get into the habit of writing readable R code by adopting a particular style. We suggest that you follow Google's [R style guide][style-google] whenever possible. This style guide will help you decide where to use spaces, how to indent code and how to use square `[ ]` and curly `{ }` brackets amongst other things. If all that sounds like too much hard work you can install the `styler` package which includes an RStudio add-in to allow you to automatically restyle selected code (or entire files and projects) with the click of your mouse. You can find more information about the `styler` package including how to install [here][styler]. Once installed, you can highlight the code you want to restyle, click on the 'Addins' button at the top of RStudio and select the 'Style Selection' option. Here is an example of poorly formatted R code.
 
 \  
 
