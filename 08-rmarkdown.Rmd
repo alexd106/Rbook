@@ -92,7 +92,7 @@ include_graphics("images/new_file_rm.png")
 
 Once you've created your R markdown document it's good practice to save this file somewhere convenient. You can do this by selecting `File` -> `Save` from RStudio menu (or use the keyboard shortcut ctrl + s on Windows or cmd + s on a Mac) and enter an appropriate file name (maybe call it `my_first_rmarkdown`). Notice the file extension of your new R markdown file is `.Rmd`.  
 
-Now, to convert your `.Rmd` file to a HTML document click on the little black triangle next to the `Knit` icon at the top of the source window and select `knit to HTML`  
+Now, to convert your `.Rmd` file to a HTML document click on the little black triangle next to the `Knit` icon at the top of the source window and select `knit to HTML`.  
 
 \  
 
@@ -142,7 +142,7 @@ rmarkdown::render('my_first_rmarkdown.Rmd', output_format = 'html_document')
 
 ## R markdown anatomy
 
-OK, now that you can render an R markdown file in RStudio into both HTML and pdf formats let's take a closer look at the different components of a typical R markdown document. Normally each R markdown document is composed of 3 main components, 1) a YAML header, 2) formatted text and 3) one or more code chunks.
+OK, now that you can render an R markdown file in RStudio into both HTML and pdf formats let's take a closer look at the different components of a typical R markdown document. Normally each R markdown document is composed of 3 main components: 1) a YAML header, 2) formatted text and 3) one or more code chunks.
 
 \  
 
@@ -216,6 +216,36 @@ Some of the most common R markdown syntax for providing emphasis and formatting 
 \  
 
 Interestingly there is no underline R markdown syntax by default. We think this is because bold and italics are used to emphasise content (a semantic meaning) whereas an underline is considered a stylistic element (there may well be other [reasons][underline]). If you really want to underline text you can use `<span style="text-decoration:underline">underline this text</span>` for HTML output or `$\text{\underline{This sentence underlined using \LaTeX}}$` for pdf output. We just avoid underlining!
+
+#### Text Colour
+
+As you guess, changing text colour in R Markdown is possible. There are many codes to do it.
+<li>If your output is an HTML file, you can wrap your text in the <span> tag and set colour with CSS. For example: `<span style="color: red;">The quick brown fox jumps over the lazy dog</span>`.</li>
+<li>If your output is a PDF file, you can use that chunk (don't show the code in your R Markdown, just run it) to write a custom R function for use in later parts of your R markdown document:</li>
+
+```{r echo=TRUE}
+colorize <- function(x, color) {
+  if (knitr::is_latex_output()) {
+    sprintf("\\textcolor{%s}{%s}", color, x)
+  } else if (knitr::is_html_output()) {
+    sprintf("<span style='color: %s;'>%s</span>", color,
+      x)
+  } else x
+}
+```
+
+You can then use the code in an inline R expression `` `r
+colorize("The quick brown fox jumps over the lazy dog", "blue")` `` in the output, which will create <span style="color: blue;">The quick brown fox jumps over the lazy dog</span>.
+
+Don’t be afraid! There is one more solution. Those codes seem to work very well in both output formats, PDF and HTML:
+`Roses are $\color{red}{\text{red}}$, violets are $\color{blue}{\text{blue}}$, some poems rhyme, this one doesn’t.`
+<p>Output:
+Roses are $\color{red}{\text{red}}$, violets are $\color{blue}{\text{blue}}$, some poems rhyme, this one doesn’t. Notice: These codes may change the font as well as the colour of the text.</p>
+
+As mentioned before, you can colour your text with HEX codes.
+`Roses are $\color{#8B0B0B}{\text{red}}$, violets are $\color{#000F64 }{\text{blue}}$, some poems rhyme, this one doesn’t.`
+<p>Output:
+Roses are $\color{#8B0B0B}{\text{red}}$, violets are $\color{#000F64 }{\text{blue}}$, some poems rhyme, this one doesn’t.</p>
 
 #### White space and line breaks {-}
 
@@ -761,7 +791,7 @@ When rendering my R markdown document to pdf my tables and/or figures are split 
 
 **Solution:**
 
-Add a page break using the LateX `\pagebreak` notation before your offending table or figure
+Add a page break using the LateX `\pagebreak` notation before your offending table or figure.
 
 \  
 
@@ -783,9 +813,9 @@ knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE)
 
 Although we've covered more than enough to get you quite far using R markdown, as with most things R related, we've really only had time to scratch the surface. Happily, there's a wealth of information available to you should you need to expand your knowledge and experience. A good place to start is the excellent free book written by the creator of R markdown *Yihui Xie* which you can find [here][bookdownr].
 
-Another useful and concise R markdown reference guide can be found [here][rmd-ref]
+Another useful and concise R markdown reference guide can be found [here][rmd-ref].
 
-A quick and easy RStudio R markdown [cheatsheet][rmd-cheat]
+A quick and easy RStudio R markdown [cheatsheet][rmd-cheat].
 
 ```{r links, child="links.md"}
 ```
