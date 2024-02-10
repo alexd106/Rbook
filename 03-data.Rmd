@@ -115,14 +115,14 @@ colnames(my_mat) <- c("a", "b", "c", "d")
 my_mat
 ```
 
-Once you've created your matrices you can do useful stuff with them and as you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`\index{t()}
+Once you've created your matrices you can do useful stuff with them and as you'd expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function `t()`\index{t()}.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_t <- t(my_mat)
 my_mat_t
 ```
 
-To extract the diagonal elements of a matrix and store them as a vector we can use the `diag()`\index{diag()} function
+To extract the diagonal elements of a matrix and store them as a vector we can use the `diag()`\index{diag()} function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_mat_diag <- diag(my_mat)
@@ -165,7 +165,7 @@ list_2 <- list(colours = c("black", "yellow", "orange"),
 list_2
 ```
 
-or after the list has been created using the `names()`\index{names()} function
+or after the list has been created using the `names()`\index{names()} function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 names(list_1) <- c("colours", "evaluation", "time")
@@ -303,7 +303,7 @@ There are a couple of things to bear in mind when saving files to import into R 
 
 ### Import functions {#import_fnc}
 
-Once you've saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the `read.table()`\index{read.table()} function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` function to import this file
+Once you've saved your data file in a suitable format we can now read this file into R. The workhorse function for importing data into R is the `read.table()`\index{read.table()} function (we discuss some alternatives later in the chapter). The `read.table()` function is a very flexible function with a shed load of arguments (see `?read.table`) but it's quite simple to use. Let's import a tab delimited file called `flower.txt` which contains the data we saw previously in this [Chapter](#df) and assign it to an object called `flowers`. The file is located in a `data` directory which itself is located in our [root directory](#dir_struct). The first row of the data contains the variable (column) names. To use the `read.table()` function to import this file.
 
 ```{r df1, echo=TRUE, collapse=TRUE}
 flowers <- read.table(file = 'data/flower.txt', header = TRUE, sep = "\t",
@@ -461,7 +461,7 @@ Just as we did with [vectors](#vectors), we also can access data in data frames 
 
 ### Positional indexes
 
-To use positional indexes we simple have to write the position of the rows and columns we want to extract inside the `[ ]`. For example, if for some reason we wanted to extract the first value (1^st^ row ) of the `height` variable (4^th^ column)
+To use positional indexes we simple have to write the position of the rows and columns we want to extract inside the `[ ]`. For example, if for some reason we wanted to extract the first value (1^st^ row ) of the `height` variable (4^th^ column).
 
 ```{r dw4, echo=TRUE, collapse=TRUE}
 flowers[1, 4]
@@ -476,7 +476,7 @@ We can also extract values from multiple rows or columns by specifying these ind
 flowers[1:10, 1:4]
 ```
 
-Or for non sequential rows and columns then we can supply vectors of positions using the `c()` function. To extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns
+Or for non sequential rows and columns then we can supply vectors of positions using the `c()` function. To extract the 1^st^, 5^th^, 12^th^, 30^th^ rows from the 1^st^, 3^rd^, 6^th^ and 8^th^ columns.
 
 ```{r dw6, echo=TRUE, collapse=TRUE}
 flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
@@ -543,7 +543,7 @@ flowers$height > 12
 
 So our row index is a vector containing either `TRUE` or `FALSE` values and only those rows that are `TRUE` are selected.
 
-Other commonly used operators are shown below
+Other commonly used operators are shown below.
 
 ```{r dw14, echo=TRUE, eval=FALSE}
 flowers[flowers$height >= 6, ]        # values greater or equal to 6
@@ -760,7 +760,7 @@ df_rcomb <- rbind(df1, df2)
 df_rcomb
 ```
 
-And `cbind` to append the column in `df4` to the `df3` data frame and assign to df_ccomb`.
+And `cbind` to append the column in `df4` to the `df3` data frame and assign to `df_ccomb`.
 
 ```{r dw25.2, echo=TRUE, collapse=TRUE}
 df_ccomb <- cbind(df3, df4)
