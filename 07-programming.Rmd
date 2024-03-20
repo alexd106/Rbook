@@ -116,7 +116,7 @@ multiply_columns <- function(x, y) {
 }
 ```
 
-Now that we've defined our function we can use it. Let's use the function to multiple the columns `city$porto` and `city$aberdeen` and assign the result to a new object called `porto_aberdeen_func`
+Now that we've defined our function we can use it. Let's use the function to multiple the columns `city$porto` and `city$aberdeen` and assign the result to a new object called `porto_aberdeen_func`.
 
 ```{r first_function2, collapse=TRUE}
 porto_aberdeen_func <- multiply_columns(x = city$porto, y = city$aberdeen)
@@ -133,7 +133,7 @@ identical(porto_aberdeen, porto_aberdeen_func)
 
 And we confirm that the function has produced the same result as when we do the calculation manually. We recommend getting into a habit of checking that the function you've created works the way you think it has.
 
-Now let's use our `multiply_columns()` function to multiply columns `aberdeen` and `nairobi`. Notice now that argument `x` is given the value `city$aberdeen`and `y` the value `city$nairobi`.
+Now let's use our `multiply_columns()` function to multiply columns `aberdeen` and `nairobi`. Notice now that argument `x` is given the value `city$aberdeen` and `y` the value `city$nairobi`.
 
 ```{r calc_w_na, eval = T, collapse=TRUE}
 aberdeen_nairobi_func <- multiply_columns(x = city$aberdeen, y = city$nairobi)
@@ -185,7 +185,7 @@ The programmer returned with 6 cartons of milk.
 
 When the partner sees this, and exclaims *'Why the heck did you buy six cartons of milk?'*
 
-The programmer replied *'They had eggs'*
+The programmer replied *'They had eggs'*.
 
 ---
 
@@ -263,13 +263,13 @@ multiply_columns <- function(x, y) {
 
 In this new version of the function we still use `x * y` as before but this time we've assigned the values from this calculation to a temporary vector called `temp_var` so we can use it in our conditional statements. Note, this `temp_var` variable is *local* to our function and will not exist outside of the function due something called [R's scoping rules][scoping]. We then use an `if` statement to determine whether our `temp_var` variable contains any `NA` values. The way this works is that we first use the `is.na()`\index{is.na()} function to test whether each value in our `temp_var` variable is an `NA`. The `is.na()` function returns `TRUE` if the value is an `NA` and `FALSE` if the value isn't an `NA`. We then nest the `is.na(temp_var)` function inside the function `any()`\index{any()} to test whether **any** of the values returned by `is.na(temp_var)` are `TRUE`. If at least one value is `TRUE` the `any()` function will return a `TRUE`. So, if there are any `NA` values in our `temp_var` variable the condition for the `if()` function will be `TRUE` whereas if there are no `NA` values present then the condition will be `FALSE`. If the condition is `TRUE` the `warning()`\index{warning()} function generates a warning message for the user and then returns the `temp_var` variable. If the condition is `FALSE` the code below the `else` statement is executed which just returns the `temp_var` variable. 
 
-So if we run our modified `multiple_columns()` function on the columns `city$Aberdeen` and `city$nairobi` (which contains `NA`s) we will receive an warning message.
+So if we run our modified `multiple_columns()` function on the columns `city$aberdeen` and `city$nairobi` (which contains `NA`s) we will receive an warning message.
 
 ```{r , collapse=TRUE}
 aberdeen_nairobi_func <- multiply_columns(city$aberdeen, city$nairobi)
 ```
 
-Whereas if we multiple two columns that don't contain `NA` values we don't receive a warning message
+Whereas if we multiple two columns that don't contain `NA` values we don't receive a warning message.
 
 ```{r, collapse=TRUE}
 porto_aberdeen_func <- multiply_columns(city$porto, city$aberdeen)
@@ -498,7 +498,7 @@ lapply(0:4, function(a) {a + 1})
 
 Notice that we need to specify our sequence as `0:4` to get the output `1 ,2 ,3 ,4 , 5` as we are adding `1` to each element of the sequence. See what happens if you use `1:5` instead.
 
-Equivalently, we could have defined the function first and then used the function in `lapply()`
+Equivalently, we could have defined the function first and then used the function in `lapply()`.
 
 ```{r, collapse=TRUE}
 add_fun <- function(a) {a + 1}
