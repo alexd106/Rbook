@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.6 Some tips and tricks | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.6 Some tips and tricks | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -432,9 +432,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When rendering my R markdown document to pdf my code runs off the edge of the page.</p>
 <p><strong>Solution:</strong></p>
 <p>Add a global_options argument at the start of your .Rmd file in a code chunk:</p>
-<div class="sourceCode" id="cb448"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb448-1"><a href="tips_tricks.html#cb448-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb448-2"><a href="tips_tricks.html#cb448-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb448-3"><a href="tips_tricks.html#cb448-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb449-2"><a href="tips_tricks.html#cb449-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb449-3"><a href="tips_tricks.html#cb449-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>This code chunk won’t be displayed in the final document due to the <code>include = FALSE</code> argument and you should place the code chunk immediately after the YAML header to affect everything below that.</p>
 <p><code>tidy.opts = list(width.cutoff = 60), tidy=TRUE</code> defines the margin cutoff point and wraps text to the next line. Play around with this value to get it right (60-80 should be OK for most documents).</p>
 <p> </p>
@@ -442,24 +442,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>When I load a package in my R markdown document my rendered output contains all of the startup messages and/or warnings.</p>
 <p><strong>Solution:</strong></p>
 <p>You can load all of your packages at the start of your R markdown document in a code chunk along with setting your global options.</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb449-1"><a href="tips_tricks.html#cb449-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb449-2"><a href="tips_tricks.html#cb449-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
-<span id="cb449-3"><a href="tips_tricks.html#cb449-3" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
-<span id="cb449-4"><a href="tips_tricks.html#cb449-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb450-1"><a href="tips_tricks.html#cb450-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb450-2"><a href="tips_tricks.html#cb450-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, warning=FALSE, tidy.opts=list(width.cutoff=60)) </span></span>
+<span id="cb450-3"><a href="tips_tricks.html#cb450-3" tabindex="-1"></a><span class="in">suppressPackageStartupMessages(library(ggplot2))</span></span>
+<span id="cb450-4"><a href="tips_tricks.html#cb450-4" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 <p>The <code>message=FALSE</code> and <code>warning=FALSE</code> arguments suppress messages and warnings. The <code>suppressPackageStartupMessages(library(ggplot2))</code> will load the <code>ggplot2</code> package but suppress startup messages.</p>
 <p> </p>
 <p><strong>Problem:</strong></p>
 <p>When rendering my R markdown document to pdf my tables and/or figures are split over two pages.</p>
 <p><strong>Solution:</strong></p>
-<p>Add a page break using the LateX <code>\pagebreak</code> notation before your offending table or figure</p>
+<p>Add a page break using the LateX <code>\pagebreak</code> notation before your offending table or figure.</p>
 <p> </p>
 <p><strong>Problem:</strong></p>
 <p>The code in my rendered document looks ugly!</p>
 <p><strong>Solution:</strong></p>
 <p>Add the argument <code>tidy=TRUE</code> to your global arguments. Sometimes, however, this can cause problems especially with correct code indentation.</p>
-<div class="sourceCode" id="cb450"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb450-1"><a href="tips_tricks.html#cb450-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
-<span id="cb450-2"><a href="tips_tricks.html#cb450-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
-<span id="cb450-3"><a href="tips_tricks.html#cb450-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb451-1"><a href="tips_tricks.html#cb451-1" tabindex="-1"></a><span class="in">```{r, global_options, include=FALSE}</span></span>
+<span id="cb451-2"><a href="tips_tricks.html#cb451-2" tabindex="-1"></a><span class="in">knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE) </span></span>
+<span id="cb451-3"><a href="tips_tricks.html#cb451-3" tabindex="-1"></a><span class="in">```</span></span></code></pre></div>
 </div>
             </section>
 

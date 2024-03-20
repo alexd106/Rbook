@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.5 Exporting plots | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.5 Exporting plots | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -430,18 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.5</span> Exporting plots<a href="export_plots.html#export_plots" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Creating plots in R is all well and good but what if you want to use these plots in your thesis, report or publication? One option is to click on the ‘Export’ button in the ‘Plots’ tab in RStudio as we described <a href="baseplot_start.html#baseplot_start">previously</a>. You can also export your plots from R to an external file by writing some code in your R script. The advantage of this approach is that you have a little more control over the output format and it also allows you to generate (or update) plots automatically whenever you run your script. You can export your plots in many different formats but the most common are, pdf, png, jpeg and tiff.</p>
 <p>By default, R (and therefore RStudio) will direct any plot you create to the plot window. To save your plot to an external file you first need to redirect your plot to a different graphics device. You do this by using one of the many graphics device functions to start a new graphic device. For example, to save a plot in pdf format we will use the <code>pdf()</code> function. The first argument in the <code>pdf()</code> function is the filepath and filename of the file we want to save (don’t forget to include the .pdf extension). Once we’ve used the <code>pdf()</code> function we can then write all of the code we used to create our plot including any graphical parameters such as setting the margins and splitting up the plotting device. Once the code has run we need to close the pdf plotting device using the <code>dev.off()</code> function.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="export_plots.html#cb245-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&#39;output/my_plot.pdf&#39;</span>)</span>
-<span id="cb245-2"><a href="export_plots.html#cb245-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="at">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="at">yaxs=</span><span class="st">&quot;i&quot;</span>)</span>
-<span id="cb245-3"><a href="export_plots.html#cb245-3" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, </span>
-<span id="cb245-4"><a href="export_plots.html#cb245-4" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</span>
-<span id="cb245-5"><a href="export_plots.html#cb245-5" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="sc">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</span>
-<span id="cb245-6"><a href="export_plots.html#cb245-6" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="at">bty =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb245-7"><a href="export_plots.html#cb245-7" tabindex="-1"></a>       <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">tcl =</span> <span class="sc">-</span><span class="fl">0.2</span>,</span>
-<span id="cb245-8"><a href="export_plots.html#cb245-8" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue1&quot;</span>, <span class="at">cex =</span> <span class="fl">0.9</span>)</span>
-<span id="cb245-9"><a href="export_plots.html#cb245-9" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">28</span>, <span class="at">y =</span> <span class="dv">190</span>, <span class="at">label =</span> <span class="st">&quot;A&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
-<span id="cb245-10"><a href="export_plots.html#cb245-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
-<p>If we want to save this plot in png format we simply use the <code>png()</code> function in more or less the same way we used the <code>pdf()</code> function.</p>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="export_plots.html#cb246-1" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&#39;output/my_plot.png&#39;</span>)</span>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="export_plots.html#cb246-1" tabindex="-1"></a><span class="fu">pdf</span>(<span class="at">file =</span> <span class="st">&#39;output/my_plot.pdf&#39;</span>)</span>
 <span id="cb246-2"><a href="export_plots.html#cb246-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="at">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="at">yaxs=</span><span class="st">&quot;i&quot;</span>)</span>
 <span id="cb246-3"><a href="export_plots.html#cb246-3" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, </span>
 <span id="cb246-4"><a href="export_plots.html#cb246-4" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</span>
@@ -451,6 +440,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb246-8"><a href="export_plots.html#cb246-8" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue1&quot;</span>, <span class="at">cex =</span> <span class="fl">0.9</span>)</span>
 <span id="cb246-9"><a href="export_plots.html#cb246-9" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">28</span>, <span class="at">y =</span> <span class="dv">190</span>, <span class="at">label =</span> <span class="st">&quot;A&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
 <span id="cb246-10"><a href="export_plots.html#cb246-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
+<p>If we want to save this plot in png format we simply use the <code>png()</code> function in more or less the same way we used the <code>pdf()</code> function.</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="export_plots.html#cb247-1" tabindex="-1"></a><span class="fu">png</span>(<span class="st">&#39;output/my_plot.png&#39;</span>)</span>
+<span id="cb247-2"><a href="export_plots.html#cb247-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="fl">4.1</span>, <span class="fl">4.4</span>, <span class="fl">4.1</span>, <span class="fl">1.9</span>), <span class="at">xaxs=</span><span class="st">&quot;i&quot;</span>, <span class="at">yaxs=</span><span class="st">&quot;i&quot;</span>)</span>
+<span id="cb247-3"><a href="export_plots.html#cb247-3" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, </span>
+<span id="cb247-4"><a href="export_plots.html#cb247-4" tabindex="-1"></a>       <span class="at">xlab =</span> <span class="st">&quot;weight (g)&quot;</span>,</span>
+<span id="cb247-5"><a href="export_plots.html#cb247-5" tabindex="-1"></a>       <span class="at">ylab =</span> <span class="fu">expression</span>(<span class="fu">paste</span>(<span class="st">&quot;shoot area (cm&quot;</span><span class="sc">^</span><span class="st">&quot;2&quot;</span>,<span class="st">&quot;)&quot;</span>)),</span>
+<span id="cb247-6"><a href="export_plots.html#cb247-6" tabindex="-1"></a>       <span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">30</span>), <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">200</span>), <span class="at">bty =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb247-7"><a href="export_plots.html#cb247-7" tabindex="-1"></a>       <span class="at">las =</span> <span class="dv">1</span>, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">tcl =</span> <span class="sc">-</span><span class="fl">0.2</span>,</span>
+<span id="cb247-8"><a href="export_plots.html#cb247-8" tabindex="-1"></a>       <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">col =</span> <span class="st">&quot;dodgerblue1&quot;</span>, <span class="at">cex =</span> <span class="fl">0.9</span>)</span>
+<span id="cb247-9"><a href="export_plots.html#cb247-9" tabindex="-1"></a><span class="fu">text</span>(<span class="at">x =</span> <span class="dv">28</span>, <span class="at">y =</span> <span class="dv">190</span>, <span class="at">label =</span> <span class="st">&quot;A&quot;</span>, <span class="at">cex =</span> <span class="dv">2</span>)</span>
+<span id="cb247-10"><a href="export_plots.html#cb247-10" tabindex="-1"></a><span class="fu">dev.off</span>()</span></code></pre></div>
 <p>Other useful functions are; <code>jpeg()</code>, <code>tiff()</code> and <code>bmp()</code>. Additional arguments to these functions allow you to change the size, resolution and background colour of your saved images. See <code>?png</code> for more details.</p>
 </div>
             </section>

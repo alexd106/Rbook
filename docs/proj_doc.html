@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.10 Project documentation | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.10 Project documentation | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -429,36 +429,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="proj_doc" class="section level2 hasAnchor" number="1.10">
 <h2><span class="header-section-number">1.10</span> Project documentation<a href="proj_doc.html#proj_doc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>A quick note or two about writing R code and creating R scripts. Unless you’re doing something really quick and dirty we suggest that you always write your R code as an R script. R scripts are what make R so useful. Not only do you have a complete record of your analysis, from data manipulation, visualisation and statistical analysis, you can also share this code (and data) with friends, colleagues and importantly when you submit and publish your research to a journal. With this in mind, make sure you include in your R script all the information required to make your work reproducible (author names, dates, sampling design etc). This information could be included as a series of comments <code>#</code> or, even better, by mixing executable code with narrative into an <a href="rmarkdown_r.html#rmarkdown_r">R markdown</a> document. It’s also good practice to include the output of the <code>sessionInfo()</code> function at the end of any script which prints the R version, details of the operating system and also loaded packages. A really good alternative is to use the <code>session_info()</code> function from the <code>xfun</code> package for a more concise summary of our session environment.</p>
-<p>Here’s an example of including meta-information at the start of an R script</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="proj_doc.html#cb23-1" tabindex="-1"></a><span class="co"># Title: Time series analysis of snouters</span></span>
-<span id="cb23-2"><a href="proj_doc.html#cb23-2" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="proj_doc.html#cb23-3" tabindex="-1"></a><span class="co"># Purpose : This script performs a time series analyses on </span></span>
-<span id="cb23-4"><a href="proj_doc.html#cb23-4" tabindex="-1"></a><span class="co">#           snouter count data.</span></span>
-<span id="cb23-5"><a href="proj_doc.html#cb23-5" tabindex="-1"></a><span class="co">#           Data consists of counts of snouter species </span></span>
-<span id="cb23-6"><a href="proj_doc.html#cb23-6" tabindex="-1"></a><span class="co">#           collected from 18 islands in the Hy-yi-yi </span></span>
-<span id="cb23-7"><a href="proj_doc.html#cb23-7" tabindex="-1"></a><span class="co">#           archipelago between 1950 and 1957. </span></span>
-<span id="cb23-8"><a href="proj_doc.html#cb23-8" tabindex="-1"></a><span class="co">#           For details of snouter biology see:</span></span>
-<span id="cb23-9"><a href="proj_doc.html#cb23-9" tabindex="-1"></a><span class="co">#           https://en.wikipedia.org/wiki/Rhinogradentia</span></span>
-<span id="cb23-10"><a href="proj_doc.html#cb23-10" tabindex="-1"></a></span>
-<span id="cb23-11"><a href="proj_doc.html#cb23-11" tabindex="-1"></a><span class="co"># Project number: #007</span></span>
-<span id="cb23-12"><a href="proj_doc.html#cb23-12" tabindex="-1"></a></span>
-<span id="cb23-13"><a href="proj_doc.html#cb23-13" tabindex="-1"></a><span class="co"># DataFile:&#39;data/snouter_pop.txt&#39;</span></span>
-<span id="cb23-14"><a href="proj_doc.html#cb23-14" tabindex="-1"></a></span>
-<span id="cb23-15"><a href="proj_doc.html#cb23-15" tabindex="-1"></a><span class="co"># Author: A. Nother</span></span>
-<span id="cb23-16"><a href="proj_doc.html#cb23-16" tabindex="-1"></a><span class="co"># Contact details: a.nother@uir.ac.uk</span></span>
-<span id="cb23-17"><a href="proj_doc.html#cb23-17" tabindex="-1"></a></span>
-<span id="cb23-18"><a href="proj_doc.html#cb23-18" tabindex="-1"></a><span class="co"># Date script created: Mon Dec 2 16:06:44 2019 -----------</span></span>
-<span id="cb23-19"><a href="proj_doc.html#cb23-19" tabindex="-1"></a><span class="co"># Date script last modified: Thu Dec 12 16:07:12 2019 ----</span></span>
-<span id="cb23-20"><a href="proj_doc.html#cb23-20" tabindex="-1"></a></span>
-<span id="cb23-21"><a href="proj_doc.html#cb23-21" tabindex="-1"></a><span class="co"># package dependencies</span></span>
-<span id="cb23-22"><a href="proj_doc.html#cb23-22" tabindex="-1"></a><span class="fu">library</span>(PopSnouter)</span>
-<span id="cb23-23"><a href="proj_doc.html#cb23-23" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb23-24"><a href="proj_doc.html#cb23-24" tabindex="-1"></a></span>
-<span id="cb23-25"><a href="proj_doc.html#cb23-25" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;put your lovely R code here&#39;</span>)</span>
-<span id="cb23-26"><a href="proj_doc.html#cb23-26" tabindex="-1"></a></span>
-<span id="cb23-27"><a href="proj_doc.html#cb23-27" tabindex="-1"></a><span class="co"># good practice to include session information</span></span>
-<span id="cb23-28"><a href="proj_doc.html#cb23-28" tabindex="-1"></a></span>
-<span id="cb23-29"><a href="proj_doc.html#cb23-29" tabindex="-1"></a>xfun<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
+<p>Here’s an example of including meta-information at the start of an R script.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="proj_doc.html#cb24-1" tabindex="-1"></a><span class="co"># Title: Time series analysis of snouters</span></span>
+<span id="cb24-2"><a href="proj_doc.html#cb24-2" tabindex="-1"></a></span>
+<span id="cb24-3"><a href="proj_doc.html#cb24-3" tabindex="-1"></a><span class="co"># Purpose : This script performs a time series analyses on </span></span>
+<span id="cb24-4"><a href="proj_doc.html#cb24-4" tabindex="-1"></a><span class="co">#           snouter count data.</span></span>
+<span id="cb24-5"><a href="proj_doc.html#cb24-5" tabindex="-1"></a><span class="co">#           Data consists of counts of snouter species </span></span>
+<span id="cb24-6"><a href="proj_doc.html#cb24-6" tabindex="-1"></a><span class="co">#           collected from 18 islands in the Hy-yi-yi </span></span>
+<span id="cb24-7"><a href="proj_doc.html#cb24-7" tabindex="-1"></a><span class="co">#           archipelago between 1950 and 1957. </span></span>
+<span id="cb24-8"><a href="proj_doc.html#cb24-8" tabindex="-1"></a><span class="co">#           For details of snouter biology see:</span></span>
+<span id="cb24-9"><a href="proj_doc.html#cb24-9" tabindex="-1"></a><span class="co">#           https://en.wikipedia.org/wiki/Rhinogradentia</span></span>
+<span id="cb24-10"><a href="proj_doc.html#cb24-10" tabindex="-1"></a></span>
+<span id="cb24-11"><a href="proj_doc.html#cb24-11" tabindex="-1"></a><span class="co"># Project number: #007</span></span>
+<span id="cb24-12"><a href="proj_doc.html#cb24-12" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="proj_doc.html#cb24-13" tabindex="-1"></a><span class="co"># DataFile:&#39;data/snouter_pop.txt&#39;</span></span>
+<span id="cb24-14"><a href="proj_doc.html#cb24-14" tabindex="-1"></a></span>
+<span id="cb24-15"><a href="proj_doc.html#cb24-15" tabindex="-1"></a><span class="co"># Author: A. Nother</span></span>
+<span id="cb24-16"><a href="proj_doc.html#cb24-16" tabindex="-1"></a><span class="co"># Contact details: a.nother@uir.ac.uk</span></span>
+<span id="cb24-17"><a href="proj_doc.html#cb24-17" tabindex="-1"></a></span>
+<span id="cb24-18"><a href="proj_doc.html#cb24-18" tabindex="-1"></a><span class="co"># Date script created: Mon Dec 2 16:06:44 2019 -----------</span></span>
+<span id="cb24-19"><a href="proj_doc.html#cb24-19" tabindex="-1"></a><span class="co"># Date script last modified: Thu Dec 12 16:07:12 2019 ----</span></span>
+<span id="cb24-20"><a href="proj_doc.html#cb24-20" tabindex="-1"></a></span>
+<span id="cb24-21"><a href="proj_doc.html#cb24-21" tabindex="-1"></a><span class="co"># package dependencies</span></span>
+<span id="cb24-22"><a href="proj_doc.html#cb24-22" tabindex="-1"></a><span class="fu">library</span>(PopSnouter)</span>
+<span id="cb24-23"><a href="proj_doc.html#cb24-23" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-24"><a href="proj_doc.html#cb24-24" tabindex="-1"></a></span>
+<span id="cb24-25"><a href="proj_doc.html#cb24-25" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&#39;put your lovely R code here&#39;</span>)</span>
+<span id="cb24-26"><a href="proj_doc.html#cb24-26" tabindex="-1"></a></span>
+<span id="cb24-27"><a href="proj_doc.html#cb24-27" tabindex="-1"></a><span class="co"># good practice to include session information</span></span>
+<span id="cb24-28"><a href="proj_doc.html#cb24-28" tabindex="-1"></a></span>
+<span id="cb24-29"><a href="proj_doc.html#cb24-29" tabindex="-1"></a>xfun<span class="sc">::</span><span class="fu">session_info</span>()</span></code></pre></div>
 <p>This is just one example and there are no hard and fast rules so feel free to develop a system that works for you. A really useful shortcut in RStudio is to automatically include a time and date stamp in your R script. To do this, write <code>ts</code> where you want to insert your time stamp in your R script and then press the ‘shift + tab’ keys. RStudio will magically convert <code>ts</code> into the current date and time and also automatically comment out this line with a <code>#</code>. Another really useful RStudio shortcut is to comment out multiple lines in your script with a <code>#</code> symbol. To do this, highlight the lines of text you want to comment and then press ‘ctrl + shift + c’ (or ‘cmd + shift + c’ on a mac). To uncomment the lines just use ‘ctrl + shift + c’ again.</p>
 <p>In addition to including metadata in your R scripts it’s also common practice to create a separate text file to record important information. By convention these text files are named <code>README</code>. We often include a <code>README</code> file in the directory where we keep our raw data. In this file we include details about when data were collected (or downloaded), how data were collected, information about specialised equipment, preservation methods, type and version of any machines used (i.e. sequencing equipment) etc. You can create a README file for your project in RStudio by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>Text File</code> menu.</p>
 </div>

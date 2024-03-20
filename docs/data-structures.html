@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Data structures | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Data structures | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -442,123 +442,123 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>A convenient way to create a matrix or an array is to use the <code>matrix()</code> and <code>array()</code> functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (<code>nrow = 4</code>) and fill the matrix row-wise (<code>byrow = TRUE</code>) rather than the default column-wise. When using the <code>array()</code> function we define the dimensions using the <code>dim =</code> argument, in our case 2 rows, 4 columns in 2 different matrices.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="data-structures.html#cb88-1" tabindex="-1"></a>my_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb88-2"><a href="data-structures.html#cb88-2" tabindex="-1"></a>my_mat</span>
-<span id="cb88-3"><a href="data-structures.html#cb88-3" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb88-4"><a href="data-structures.html#cb88-4" tabindex="-1"></a><span class="do">## [1,]    1    2    3    4</span></span>
-<span id="cb88-5"><a href="data-structures.html#cb88-5" tabindex="-1"></a><span class="do">## [2,]    5    6    7    8</span></span>
-<span id="cb88-6"><a href="data-structures.html#cb88-6" tabindex="-1"></a><span class="do">## [3,]    9   10   11   12</span></span>
-<span id="cb88-7"><a href="data-structures.html#cb88-7" tabindex="-1"></a><span class="do">## [4,]   13   14   15   16</span></span>
-<span id="cb88-8"><a href="data-structures.html#cb88-8" tabindex="-1"></a></span>
-<span id="cb88-9"><a href="data-structures.html#cb88-9" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
-<span id="cb88-10"><a href="data-structures.html#cb88-10" tabindex="-1"></a>my_array</span>
-<span id="cb88-11"><a href="data-structures.html#cb88-11" tabindex="-1"></a><span class="do">## , , 1</span></span>
-<span id="cb88-12"><a href="data-structures.html#cb88-12" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb88-13"><a href="data-structures.html#cb88-13" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb88-14"><a href="data-structures.html#cb88-14" tabindex="-1"></a><span class="do">## [1,]    1    3    5    7</span></span>
-<span id="cb88-15"><a href="data-structures.html#cb88-15" tabindex="-1"></a><span class="do">## [2,]    2    4    6    8</span></span>
-<span id="cb88-16"><a href="data-structures.html#cb88-16" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb88-17"><a href="data-structures.html#cb88-17" tabindex="-1"></a><span class="do">## , , 2</span></span>
-<span id="cb88-18"><a href="data-structures.html#cb88-18" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb88-19"><a href="data-structures.html#cb88-19" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
-<span id="cb88-20"><a href="data-structures.html#cb88-20" tabindex="-1"></a><span class="do">## [1,]    9   11   13   15</span></span>
-<span id="cb88-21"><a href="data-structures.html#cb88-21" tabindex="-1"></a><span class="do">## [2,]   10   12   14   16</span></span></code></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-structures.html#cb89-1" tabindex="-1"></a>my_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb89-2"><a href="data-structures.html#cb89-2" tabindex="-1"></a>my_mat</span>
+<span id="cb89-3"><a href="data-structures.html#cb89-3" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb89-4"><a href="data-structures.html#cb89-4" tabindex="-1"></a><span class="do">## [1,]    1    2    3    4</span></span>
+<span id="cb89-5"><a href="data-structures.html#cb89-5" tabindex="-1"></a><span class="do">## [2,]    5    6    7    8</span></span>
+<span id="cb89-6"><a href="data-structures.html#cb89-6" tabindex="-1"></a><span class="do">## [3,]    9   10   11   12</span></span>
+<span id="cb89-7"><a href="data-structures.html#cb89-7" tabindex="-1"></a><span class="do">## [4,]   13   14   15   16</span></span>
+<span id="cb89-8"><a href="data-structures.html#cb89-8" tabindex="-1"></a></span>
+<span id="cb89-9"><a href="data-structures.html#cb89-9" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">4</span>, <span class="dv">2</span>))</span>
+<span id="cb89-10"><a href="data-structures.html#cb89-10" tabindex="-1"></a>my_array</span>
+<span id="cb89-11"><a href="data-structures.html#cb89-11" tabindex="-1"></a><span class="do">## , , 1</span></span>
+<span id="cb89-12"><a href="data-structures.html#cb89-12" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb89-13"><a href="data-structures.html#cb89-13" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb89-14"><a href="data-structures.html#cb89-14" tabindex="-1"></a><span class="do">## [1,]    1    3    5    7</span></span>
+<span id="cb89-15"><a href="data-structures.html#cb89-15" tabindex="-1"></a><span class="do">## [2,]    2    4    6    8</span></span>
+<span id="cb89-16"><a href="data-structures.html#cb89-16" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb89-17"><a href="data-structures.html#cb89-17" tabindex="-1"></a><span class="do">## , , 2</span></span>
+<span id="cb89-18"><a href="data-structures.html#cb89-18" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb89-19"><a href="data-structures.html#cb89-19" tabindex="-1"></a><span class="do">##      [,1] [,2] [,3] [,4]</span></span>
+<span id="cb89-20"><a href="data-structures.html#cb89-20" tabindex="-1"></a><span class="do">## [1,]    9   11   13   15</span></span>
+<span id="cb89-21"><a href="data-structures.html#cb89-21" tabindex="-1"></a><span class="do">## [2,]   10   12   14   16</span></span></code></pre></div>
 <p>Sometimes it’s also useful to define row and column names for your matrix but this is not a requirement. To do this use the <code>rownames()</code> and <code>colnames()</code> functions.</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-structures.html#cb89-1" tabindex="-1"></a><span class="fu">rownames</span>(my_mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>)</span>
-<span id="cb89-2"><a href="data-structures.html#cb89-2" tabindex="-1"></a><span class="fu">colnames</span>(my_mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
-<span id="cb89-3"><a href="data-structures.html#cb89-3" tabindex="-1"></a>my_mat</span>
-<span id="cb89-4"><a href="data-structures.html#cb89-4" tabindex="-1"></a><span class="do">##    a  b  c  d</span></span>
-<span id="cb89-5"><a href="data-structures.html#cb89-5" tabindex="-1"></a><span class="do">## A  1  2  3  4</span></span>
-<span id="cb89-6"><a href="data-structures.html#cb89-6" tabindex="-1"></a><span class="do">## B  5  6  7  8</span></span>
-<span id="cb89-7"><a href="data-structures.html#cb89-7" tabindex="-1"></a><span class="do">## C  9 10 11 12</span></span>
-<span id="cb89-8"><a href="data-structures.html#cb89-8" tabindex="-1"></a><span class="do">## D 13 14 15 16</span></span></code></pre></div>
-<p>Once you’ve created your matrices you can do useful stuff with them and as you’d expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function <code>t()</code></p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-structures.html#cb90-1" tabindex="-1"></a>my_mat_t <span class="ot">&lt;-</span> <span class="fu">t</span>(my_mat)</span>
-<span id="cb90-2"><a href="data-structures.html#cb90-2" tabindex="-1"></a>my_mat_t</span>
-<span id="cb90-3"><a href="data-structures.html#cb90-3" tabindex="-1"></a><span class="do">##   A B  C  D</span></span>
-<span id="cb90-4"><a href="data-structures.html#cb90-4" tabindex="-1"></a><span class="do">## a 1 5  9 13</span></span>
-<span id="cb90-5"><a href="data-structures.html#cb90-5" tabindex="-1"></a><span class="do">## b 2 6 10 14</span></span>
-<span id="cb90-6"><a href="data-structures.html#cb90-6" tabindex="-1"></a><span class="do">## c 3 7 11 15</span></span>
-<span id="cb90-7"><a href="data-structures.html#cb90-7" tabindex="-1"></a><span class="do">## d 4 8 12 16</span></span></code></pre></div>
-<p>To extract the diagonal elements of a matrix and store them as a vector we can use the <code>diag()</code> function</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-structures.html#cb91-1" tabindex="-1"></a>my_mat_diag <span class="ot">&lt;-</span> <span class="fu">diag</span>(my_mat)</span>
-<span id="cb91-2"><a href="data-structures.html#cb91-2" tabindex="-1"></a>my_mat_diag</span>
-<span id="cb91-3"><a href="data-structures.html#cb91-3" tabindex="-1"></a><span class="do">## [1]  1  6 11 16</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="data-structures.html#cb90-1" tabindex="-1"></a><span class="fu">rownames</span>(my_mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;A&quot;</span>, <span class="st">&quot;B&quot;</span>, <span class="st">&quot;C&quot;</span>, <span class="st">&quot;D&quot;</span>)</span>
+<span id="cb90-2"><a href="data-structures.html#cb90-2" tabindex="-1"></a><span class="fu">colnames</span>(my_mat) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="st">&quot;c&quot;</span>, <span class="st">&quot;d&quot;</span>)</span>
+<span id="cb90-3"><a href="data-structures.html#cb90-3" tabindex="-1"></a>my_mat</span>
+<span id="cb90-4"><a href="data-structures.html#cb90-4" tabindex="-1"></a><span class="do">##    a  b  c  d</span></span>
+<span id="cb90-5"><a href="data-structures.html#cb90-5" tabindex="-1"></a><span class="do">## A  1  2  3  4</span></span>
+<span id="cb90-6"><a href="data-structures.html#cb90-6" tabindex="-1"></a><span class="do">## B  5  6  7  8</span></span>
+<span id="cb90-7"><a href="data-structures.html#cb90-7" tabindex="-1"></a><span class="do">## C  9 10 11 12</span></span>
+<span id="cb90-8"><a href="data-structures.html#cb90-8" tabindex="-1"></a><span class="do">## D 13 14 15 16</span></span></code></pre></div>
+<p>Once you’ve created your matrices you can do useful stuff with them and as you’d expect, R has numerous built in functions to perform matrix operations. Some of the most common are given below. For example, to transpose a matrix we use the transposition function <code>t()</code>.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="data-structures.html#cb91-1" tabindex="-1"></a>my_mat_t <span class="ot">&lt;-</span> <span class="fu">t</span>(my_mat)</span>
+<span id="cb91-2"><a href="data-structures.html#cb91-2" tabindex="-1"></a>my_mat_t</span>
+<span id="cb91-3"><a href="data-structures.html#cb91-3" tabindex="-1"></a><span class="do">##   A B  C  D</span></span>
+<span id="cb91-4"><a href="data-structures.html#cb91-4" tabindex="-1"></a><span class="do">## a 1 5  9 13</span></span>
+<span id="cb91-5"><a href="data-structures.html#cb91-5" tabindex="-1"></a><span class="do">## b 2 6 10 14</span></span>
+<span id="cb91-6"><a href="data-structures.html#cb91-6" tabindex="-1"></a><span class="do">## c 3 7 11 15</span></span>
+<span id="cb91-7"><a href="data-structures.html#cb91-7" tabindex="-1"></a><span class="do">## d 4 8 12 16</span></span></code></pre></div>
+<p>To extract the diagonal elements of a matrix and store them as a vector we can use the <code>diag()</code> function.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-structures.html#cb92-1" tabindex="-1"></a>my_mat_diag <span class="ot">&lt;-</span> <span class="fu">diag</span>(my_mat)</span>
+<span id="cb92-2"><a href="data-structures.html#cb92-2" tabindex="-1"></a>my_mat_diag</span>
+<span id="cb92-3"><a href="data-structures.html#cb92-3" tabindex="-1"></a><span class="do">## [1]  1  6 11 16</span></span></code></pre></div>
 <p>The usual matrix addition, multiplication etc can be performed. Note the use of the <code>%*%</code> operator to perform matrix multiplication.</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="data-structures.html#cb92-1" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></span>
-<span id="cb92-2"><a href="data-structures.html#cb92-2" tabindex="-1"></a>mat<span class="fl">.1</span>                                     <span class="co"># column-wise by default</span></span>
-<span id="cb92-3"><a href="data-structures.html#cb92-3" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb92-4"><a href="data-structures.html#cb92-4" tabindex="-1"></a><span class="do">## [1,]    2    1</span></span>
-<span id="cb92-5"><a href="data-structures.html#cb92-5" tabindex="-1"></a><span class="do">## [2,]    0    1</span></span>
-<span id="cb92-6"><a href="data-structures.html#cb92-6" tabindex="-1"></a></span>
-<span id="cb92-7"><a href="data-structures.html#cb92-7" tabindex="-1"></a>mat<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
-<span id="cb92-8"><a href="data-structures.html#cb92-8" tabindex="-1"></a>mat<span class="fl">.2</span></span>
-<span id="cb92-9"><a href="data-structures.html#cb92-9" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb92-10"><a href="data-structures.html#cb92-10" tabindex="-1"></a><span class="do">## [1,]    1    0</span></span>
-<span id="cb92-11"><a href="data-structures.html#cb92-11" tabindex="-1"></a><span class="do">## [2,]    1    2</span></span>
-<span id="cb92-12"><a href="data-structures.html#cb92-12" tabindex="-1"></a></span>
-<span id="cb92-13"><a href="data-structures.html#cb92-13" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">+</span> mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></span>
-<span id="cb92-14"><a href="data-structures.html#cb92-14" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb92-15"><a href="data-structures.html#cb92-15" tabindex="-1"></a><span class="do">## [1,]    3    1</span></span>
-<span id="cb92-16"><a href="data-structures.html#cb92-16" tabindex="-1"></a><span class="do">## [2,]    1    3</span></span>
-<span id="cb92-17"><a href="data-structures.html#cb92-17" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">*</span> mat<span class="fl">.2</span>           <span class="co"># element by element products</span></span>
-<span id="cb92-18"><a href="data-structures.html#cb92-18" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb92-19"><a href="data-structures.html#cb92-19" tabindex="-1"></a><span class="do">## [1,]    2    0</span></span>
-<span id="cb92-20"><a href="data-structures.html#cb92-20" tabindex="-1"></a><span class="do">## [2,]    0    2</span></span>
-<span id="cb92-21"><a href="data-structures.html#cb92-21" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">%*%</span> mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></span>
-<span id="cb92-22"><a href="data-structures.html#cb92-22" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb92-23"><a href="data-structures.html#cb92-23" tabindex="-1"></a><span class="do">## [1,]    3    2</span></span>
-<span id="cb92-24"><a href="data-structures.html#cb92-24" tabindex="-1"></a><span class="do">## [2,]    1    2</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-structures.html#cb93-1" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>), <span class="at">nrow =</span> <span class="dv">2</span>)    <span class="co"># notice that the matrix has been filled </span></span>
+<span id="cb93-2"><a href="data-structures.html#cb93-2" tabindex="-1"></a>mat<span class="fl">.1</span>                                     <span class="co"># column-wise by default</span></span>
+<span id="cb93-3"><a href="data-structures.html#cb93-3" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb93-4"><a href="data-structures.html#cb93-4" tabindex="-1"></a><span class="do">## [1,]    2    1</span></span>
+<span id="cb93-5"><a href="data-structures.html#cb93-5" tabindex="-1"></a><span class="do">## [2,]    0    1</span></span>
+<span id="cb93-6"><a href="data-structures.html#cb93-6" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="data-structures.html#cb93-7" tabindex="-1"></a>mat<span class="fl">.2</span> <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>), <span class="at">nrow =</span> <span class="dv">2</span>)</span>
+<span id="cb93-8"><a href="data-structures.html#cb93-8" tabindex="-1"></a>mat<span class="fl">.2</span></span>
+<span id="cb93-9"><a href="data-structures.html#cb93-9" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb93-10"><a href="data-structures.html#cb93-10" tabindex="-1"></a><span class="do">## [1,]    1    0</span></span>
+<span id="cb93-11"><a href="data-structures.html#cb93-11" tabindex="-1"></a><span class="do">## [2,]    1    2</span></span>
+<span id="cb93-12"><a href="data-structures.html#cb93-12" tabindex="-1"></a></span>
+<span id="cb93-13"><a href="data-structures.html#cb93-13" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">+</span> mat<span class="fl">.2</span>           <span class="co"># matrix addition</span></span>
+<span id="cb93-14"><a href="data-structures.html#cb93-14" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb93-15"><a href="data-structures.html#cb93-15" tabindex="-1"></a><span class="do">## [1,]    3    1</span></span>
+<span id="cb93-16"><a href="data-structures.html#cb93-16" tabindex="-1"></a><span class="do">## [2,]    1    3</span></span>
+<span id="cb93-17"><a href="data-structures.html#cb93-17" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">*</span> mat<span class="fl">.2</span>           <span class="co"># element by element products</span></span>
+<span id="cb93-18"><a href="data-structures.html#cb93-18" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb93-19"><a href="data-structures.html#cb93-19" tabindex="-1"></a><span class="do">## [1,]    2    0</span></span>
+<span id="cb93-20"><a href="data-structures.html#cb93-20" tabindex="-1"></a><span class="do">## [2,]    0    2</span></span>
+<span id="cb93-21"><a href="data-structures.html#cb93-21" tabindex="-1"></a>mat<span class="fl">.1</span> <span class="sc">%*%</span> mat<span class="fl">.2</span>         <span class="co"># matrix multiplication</span></span>
+<span id="cb93-22"><a href="data-structures.html#cb93-22" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb93-23"><a href="data-structures.html#cb93-23" tabindex="-1"></a><span class="do">## [1,]    3    2</span></span>
+<span id="cb93-24"><a href="data-structures.html#cb93-24" tabindex="-1"></a><span class="do">## [2,]    1    2</span></span></code></pre></div>
 </div>
 <div id="lists" class="section level3 hasAnchor" number="3.2.3">
 <h3><span class="header-section-number">3.2.3</span> Lists<a href="data-structures.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The next data structure we will quickly take a look at is a list. Whilst vectors and matrices are constrained to contain data of the same type, lists are able to store mixtures of data types. In fact we can even store other data structures such as vectors and arrays within a list or even have a list of a list. This makes for a very flexible data structure which is ideal for storing irregular or non-rectangular data (see <a href="prog_r.html#prog_r">Chapter 7</a> for an example).</p>
 <p>To create a list we can use the <code>list()</code> function. Note how each of the three list elements are of different classes (character, logical, and numeric) and are of different lengths.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="data-structures.html#cb93-1" tabindex="-1"></a>list_1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
-<span id="cb93-2"><a href="data-structures.html#cb93-2" tabindex="-1"></a>               <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
-<span id="cb93-3"><a href="data-structures.html#cb93-3" tabindex="-1"></a>               <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>))</span>
-<span id="cb93-4"><a href="data-structures.html#cb93-4" tabindex="-1"></a>list_1</span>
-<span id="cb93-5"><a href="data-structures.html#cb93-5" tabindex="-1"></a><span class="do">## [[1]]</span></span>
-<span id="cb93-6"><a href="data-structures.html#cb93-6" tabindex="-1"></a><span class="do">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></span>
-<span id="cb93-7"><a href="data-structures.html#cb93-7" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-8"><a href="data-structures.html#cb93-8" tabindex="-1"></a><span class="do">## [[2]]</span></span>
-<span id="cb93-9"><a href="data-structures.html#cb93-9" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb93-10"><a href="data-structures.html#cb93-10" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb93-11"><a href="data-structures.html#cb93-11" tabindex="-1"></a><span class="do">## [[3]]</span></span>
-<span id="cb93-12"><a href="data-structures.html#cb93-12" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb93-13"><a href="data-structures.html#cb93-13" tabindex="-1"></a><span class="do">## [1,]    1    4</span></span>
-<span id="cb93-14"><a href="data-structures.html#cb93-14" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
-<span id="cb93-15"><a href="data-structures.html#cb93-15" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
-<p>Elements of the list can be named during the construction of the list</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-structures.html#cb94-1" tabindex="-1"></a>list_2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>), </span>
-<span id="cb94-2"><a href="data-structures.html#cb94-2" tabindex="-1"></a>               <span class="at">evaluation =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>), </span>
-<span id="cb94-3"><a href="data-structures.html#cb94-3" tabindex="-1"></a>               <span class="at">time =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>))</span>
-<span id="cb94-4"><a href="data-structures.html#cb94-4" tabindex="-1"></a>list_2</span>
-<span id="cb94-5"><a href="data-structures.html#cb94-5" tabindex="-1"></a><span class="do">## $colours</span></span>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="data-structures.html#cb94-1" tabindex="-1"></a>list_1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>),</span>
+<span id="cb94-2"><a href="data-structures.html#cb94-2" tabindex="-1"></a>               <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>),</span>
+<span id="cb94-3"><a href="data-structures.html#cb94-3" tabindex="-1"></a>               <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>))</span>
+<span id="cb94-4"><a href="data-structures.html#cb94-4" tabindex="-1"></a>list_1</span>
+<span id="cb94-5"><a href="data-structures.html#cb94-5" tabindex="-1"></a><span class="do">## [[1]]</span></span>
 <span id="cb94-6"><a href="data-structures.html#cb94-6" tabindex="-1"></a><span class="do">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></span>
 <span id="cb94-7"><a href="data-structures.html#cb94-7" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb94-8"><a href="data-structures.html#cb94-8" tabindex="-1"></a><span class="do">## $evaluation</span></span>
+<span id="cb94-8"><a href="data-structures.html#cb94-8" tabindex="-1"></a><span class="do">## [[2]]</span></span>
 <span id="cb94-9"><a href="data-structures.html#cb94-9" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></span>
 <span id="cb94-10"><a href="data-structures.html#cb94-10" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb94-11"><a href="data-structures.html#cb94-11" tabindex="-1"></a><span class="do">## $time</span></span>
+<span id="cb94-11"><a href="data-structures.html#cb94-11" tabindex="-1"></a><span class="do">## [[3]]</span></span>
 <span id="cb94-12"><a href="data-structures.html#cb94-12" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
 <span id="cb94-13"><a href="data-structures.html#cb94-13" tabindex="-1"></a><span class="do">## [1,]    1    4</span></span>
 <span id="cb94-14"><a href="data-structures.html#cb94-14" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
 <span id="cb94-15"><a href="data-structures.html#cb94-15" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
-<p>or after the list has been created using the <code>names()</code> function</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-structures.html#cb95-1" tabindex="-1"></a><span class="fu">names</span>(list_1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;colours&quot;</span>, <span class="st">&quot;evaluation&quot;</span>, <span class="st">&quot;time&quot;</span>)</span>
-<span id="cb95-2"><a href="data-structures.html#cb95-2" tabindex="-1"></a>list_1</span>
-<span id="cb95-3"><a href="data-structures.html#cb95-3" tabindex="-1"></a><span class="do">## $colours</span></span>
-<span id="cb95-4"><a href="data-structures.html#cb95-4" tabindex="-1"></a><span class="do">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></span>
-<span id="cb95-5"><a href="data-structures.html#cb95-5" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb95-6"><a href="data-structures.html#cb95-6" tabindex="-1"></a><span class="do">## $evaluation</span></span>
-<span id="cb95-7"><a href="data-structures.html#cb95-7" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb95-8"><a href="data-structures.html#cb95-8" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb95-9"><a href="data-structures.html#cb95-9" tabindex="-1"></a><span class="do">## $time</span></span>
-<span id="cb95-10"><a href="data-structures.html#cb95-10" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
-<span id="cb95-11"><a href="data-structures.html#cb95-11" tabindex="-1"></a><span class="do">## [1,]    1    4</span></span>
-<span id="cb95-12"><a href="data-structures.html#cb95-12" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
-<span id="cb95-13"><a href="data-structures.html#cb95-13" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
+<p>Elements of the list can be named during the construction of the list</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="data-structures.html#cb95-1" tabindex="-1"></a>list_2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">colours =</span> <span class="fu">c</span>(<span class="st">&quot;black&quot;</span>, <span class="st">&quot;yellow&quot;</span>, <span class="st">&quot;orange&quot;</span>), </span>
+<span id="cb95-2"><a href="data-structures.html#cb95-2" tabindex="-1"></a>               <span class="at">evaluation =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>), </span>
+<span id="cb95-3"><a href="data-structures.html#cb95-3" tabindex="-1"></a>               <span class="at">time =</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>, <span class="at">nrow =</span> <span class="dv">3</span>))</span>
+<span id="cb95-4"><a href="data-structures.html#cb95-4" tabindex="-1"></a>list_2</span>
+<span id="cb95-5"><a href="data-structures.html#cb95-5" tabindex="-1"></a><span class="do">## $colours</span></span>
+<span id="cb95-6"><a href="data-structures.html#cb95-6" tabindex="-1"></a><span class="do">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></span>
+<span id="cb95-7"><a href="data-structures.html#cb95-7" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb95-8"><a href="data-structures.html#cb95-8" tabindex="-1"></a><span class="do">## $evaluation</span></span>
+<span id="cb95-9"><a href="data-structures.html#cb95-9" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb95-10"><a href="data-structures.html#cb95-10" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb95-11"><a href="data-structures.html#cb95-11" tabindex="-1"></a><span class="do">## $time</span></span>
+<span id="cb95-12"><a href="data-structures.html#cb95-12" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb95-13"><a href="data-structures.html#cb95-13" tabindex="-1"></a><span class="do">## [1,]    1    4</span></span>
+<span id="cb95-14"><a href="data-structures.html#cb95-14" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
+<span id="cb95-15"><a href="data-structures.html#cb95-15" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
+<p>or after the list has been created using the <code>names()</code> function.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-structures.html#cb96-1" tabindex="-1"></a><span class="fu">names</span>(list_1) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;colours&quot;</span>, <span class="st">&quot;evaluation&quot;</span>, <span class="st">&quot;time&quot;</span>)</span>
+<span id="cb96-2"><a href="data-structures.html#cb96-2" tabindex="-1"></a>list_1</span>
+<span id="cb96-3"><a href="data-structures.html#cb96-3" tabindex="-1"></a><span class="do">## $colours</span></span>
+<span id="cb96-4"><a href="data-structures.html#cb96-4" tabindex="-1"></a><span class="do">## [1] &quot;black&quot;  &quot;yellow&quot; &quot;orange&quot;</span></span>
+<span id="cb96-5"><a href="data-structures.html#cb96-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb96-6"><a href="data-structures.html#cb96-6" tabindex="-1"></a><span class="do">## $evaluation</span></span>
+<span id="cb96-7"><a href="data-structures.html#cb96-7" tabindex="-1"></a><span class="do">## [1]  TRUE  TRUE FALSE  TRUE FALSE FALSE</span></span>
+<span id="cb96-8"><a href="data-structures.html#cb96-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb96-9"><a href="data-structures.html#cb96-9" tabindex="-1"></a><span class="do">## $time</span></span>
+<span id="cb96-10"><a href="data-structures.html#cb96-10" tabindex="-1"></a><span class="do">##      [,1] [,2]</span></span>
+<span id="cb96-11"><a href="data-structures.html#cb96-11" tabindex="-1"></a><span class="do">## [1,]    1    4</span></span>
+<span id="cb96-12"><a href="data-structures.html#cb96-12" tabindex="-1"></a><span class="do">## [2,]    2    5</span></span>
+<span id="cb96-13"><a href="data-structures.html#cb96-13" tabindex="-1"></a><span class="do">## [3,]    3    6</span></span></code></pre></div>
 </div>
 <div id="df" class="section level3 hasAnchor" number="3.2.4">
 <h3><span class="header-section-number">3.2.4</span> Data frames<a href="data-structures.html#df" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -709,40 +709,40 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>There are a couple of important things to bear in mind about data frames. These types of objects are known as rectangular data (or tidy data) as each column must have the same number of observations. Also, any missing data should be recorded as an <code>NA</code> just as we did with our vectors.</p>
 <p>We can construct a data frame from existing data objects such as vectors using the <code>data.frame()</code> function. As an example, let’s create three vectors <code>p.height</code>, <code>p.weight</code> and <code>p.names</code> and include all of these vectors in a data frame object called <code>dataf</code>.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="data-structures.html#cb96-1" tabindex="-1"></a>p.height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</span>
-<span id="cb96-2"><a href="data-structures.html#cb96-2" tabindex="-1"></a>p.weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</span>
-<span id="cb96-3"><a href="data-structures.html#cb96-3" tabindex="-1"></a>p.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</span>
-<span id="cb96-4"><a href="data-structures.html#cb96-4" tabindex="-1"></a></span>
-<span id="cb96-5"><a href="data-structures.html#cb96-5" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">height =</span> p.height, <span class="at">weight =</span> p.weight, <span class="at">names =</span> p.names)</span>
-<span id="cb96-6"><a href="data-structures.html#cb96-6" tabindex="-1"></a>dataf</span>
-<span id="cb96-7"><a href="data-structures.html#cb96-7" tabindex="-1"></a><span class="do">##   height weight     names</span></span>
-<span id="cb96-8"><a href="data-structures.html#cb96-8" tabindex="-1"></a><span class="do">## 1    180     65    Joanna</span></span>
-<span id="cb96-9"><a href="data-structures.html#cb96-9" tabindex="-1"></a><span class="do">## 2    155     50 Charlotte</span></span>
-<span id="cb96-10"><a href="data-structures.html#cb96-10" tabindex="-1"></a><span class="do">## 3    160     52     Helen</span></span>
-<span id="cb96-11"><a href="data-structures.html#cb96-11" tabindex="-1"></a><span class="do">## 4    167     58     Karen</span></span>
-<span id="cb96-12"><a href="data-structures.html#cb96-12" tabindex="-1"></a><span class="do">## 5    181     70       Amy</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-structures.html#cb97-1" tabindex="-1"></a>p.height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</span>
+<span id="cb97-2"><a href="data-structures.html#cb97-2" tabindex="-1"></a>p.weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</span>
+<span id="cb97-3"><a href="data-structures.html#cb97-3" tabindex="-1"></a>p.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb97-4"><a href="data-structures.html#cb97-4" tabindex="-1"></a></span>
+<span id="cb97-5"><a href="data-structures.html#cb97-5" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">height =</span> p.height, <span class="at">weight =</span> p.weight, <span class="at">names =</span> p.names)</span>
+<span id="cb97-6"><a href="data-structures.html#cb97-6" tabindex="-1"></a>dataf</span>
+<span id="cb97-7"><a href="data-structures.html#cb97-7" tabindex="-1"></a><span class="do">##   height weight     names</span></span>
+<span id="cb97-8"><a href="data-structures.html#cb97-8" tabindex="-1"></a><span class="do">## 1    180     65    Joanna</span></span>
+<span id="cb97-9"><a href="data-structures.html#cb97-9" tabindex="-1"></a><span class="do">## 2    155     50 Charlotte</span></span>
+<span id="cb97-10"><a href="data-structures.html#cb97-10" tabindex="-1"></a><span class="do">## 3    160     52     Helen</span></span>
+<span id="cb97-11"><a href="data-structures.html#cb97-11" tabindex="-1"></a><span class="do">## 4    167     58     Karen</span></span>
+<span id="cb97-12"><a href="data-structures.html#cb97-12" tabindex="-1"></a><span class="do">## 5    181     70       Amy</span></span></code></pre></div>
 <p>You’ll notice that each of the columns are named with variable name we supplied when we used the <code>data.frame()</code> function. It also looks like the first column of the data frame is a series of numbers from one to five. Actually, this is not really a column but the name of each row. We can check this out by getting R to return the dimensions of the <code>dataf</code> object using the <code>dim()</code> function. We see that there are 5 rows and 3 columns.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="data-structures.html#cb97-1" tabindex="-1"></a><span class="fu">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></span>
-<span id="cb97-2"><a href="data-structures.html#cb97-2" tabindex="-1"></a><span class="do">## [1] 5 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-structures.html#cb98-1" tabindex="-1"></a><span class="fu">dim</span>(dataf)   <span class="co"># 5 rows and 3 columns</span></span>
+<span id="cb98-2"><a href="data-structures.html#cb98-2" tabindex="-1"></a><span class="do">## [1] 5 3</span></span></code></pre></div>
 <p>Another really useful function which we use all the time is <code>str()</code> which will return a compact summary of the structure of the data frame object (or any object for that matter).</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="data-structures.html#cb98-1" tabindex="-1"></a><span class="fu">str</span>(dataf)   </span>
-<span id="cb98-2"><a href="data-structures.html#cb98-2" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></span>
-<span id="cb98-3"><a href="data-structures.html#cb98-3" tabindex="-1"></a><span class="do">##  $ height: num  180 155 160 167 181</span></span>
-<span id="cb98-4"><a href="data-structures.html#cb98-4" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
-<span id="cb98-5"><a href="data-structures.html#cb98-5" tabindex="-1"></a><span class="do">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-structures.html#cb99-1" tabindex="-1"></a><span class="fu">str</span>(dataf)   </span>
+<span id="cb99-2"><a href="data-structures.html#cb99-2" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></span>
+<span id="cb99-3"><a href="data-structures.html#cb99-3" tabindex="-1"></a><span class="do">##  $ height: num  180 155 160 167 181</span></span>
+<span id="cb99-4"><a href="data-structures.html#cb99-4" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
+<span id="cb99-5"><a href="data-structures.html#cb99-5" tabindex="-1"></a><span class="do">##  $ names : chr  &quot;Joanna&quot; &quot;Charlotte&quot; &quot;Helen&quot; &quot;Karen&quot; ...</span></span></code></pre></div>
 <p>The <code>str()</code> function gives us the data frame dimensions and also reminds us that <code>dataf</code> is a <code>data.frame</code> type object. It also lists all of the variables (columns) contained in the data frame, tells us what type of data the variables contain and prints out the first five values. We often copy this summary and place it in our R scripts with comments at the beginning of each line so we can easily refer back to it whilst writing our code. We showed you how to comment blocks in RStudio <a href="proj_doc.html#proj_doc">here</a>.</p>
 <p>Also notice that R has automatically decided that our <code>p.names</code> variable should be a character (<code>chr</code>) class variable when we first created the data frame. Whether this is a good idea or not will depend on how you want to use this variable in later analysis. If we decide that this wasn’t such a good idea we can change the default behaviour of the <code>data.frame()</code> function by including the argument <code>stringsAsFactors = TRUE</code>. Now our strings are automatically converted to factors.</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="data-structures.html#cb99-1" tabindex="-1"></a>p.height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</span>
-<span id="cb99-2"><a href="data-structures.html#cb99-2" tabindex="-1"></a>p.weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</span>
-<span id="cb99-3"><a href="data-structures.html#cb99-3" tabindex="-1"></a>p.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</span>
-<span id="cb99-4"><a href="data-structures.html#cb99-4" tabindex="-1"></a></span>
-<span id="cb99-5"><a href="data-structures.html#cb99-5" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">height =</span> p.height, <span class="at">weight =</span> p.weight, <span class="at">names =</span> p.names, </span>
-<span id="cb99-6"><a href="data-structures.html#cb99-6" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb99-7"><a href="data-structures.html#cb99-7" tabindex="-1"></a><span class="fu">str</span>(dataf)</span>
-<span id="cb99-8"><a href="data-structures.html#cb99-8" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></span>
-<span id="cb99-9"><a href="data-structures.html#cb99-9" tabindex="-1"></a><span class="do">##  $ height: num  180 155 160 167 181</span></span>
-<span id="cb99-10"><a href="data-structures.html#cb99-10" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
-<span id="cb99-11"><a href="data-structures.html#cb99-11" tabindex="-1"></a><span class="do">##  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="data-structures.html#cb100-1" tabindex="-1"></a>p.height <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">180</span>, <span class="dv">155</span>, <span class="dv">160</span>, <span class="dv">167</span>, <span class="dv">181</span>)</span>
+<span id="cb100-2"><a href="data-structures.html#cb100-2" tabindex="-1"></a>p.weight <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">65</span>, <span class="dv">50</span>, <span class="dv">52</span>, <span class="dv">58</span>, <span class="dv">70</span>)</span>
+<span id="cb100-3"><a href="data-structures.html#cb100-3" tabindex="-1"></a>p.names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Joanna&quot;</span>, <span class="st">&quot;Charlotte&quot;</span>, <span class="st">&quot;Helen&quot;</span>, <span class="st">&quot;Karen&quot;</span>, <span class="st">&quot;Amy&quot;</span>)</span>
+<span id="cb100-4"><a href="data-structures.html#cb100-4" tabindex="-1"></a></span>
+<span id="cb100-5"><a href="data-structures.html#cb100-5" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">height =</span> p.height, <span class="at">weight =</span> p.weight, <span class="at">names =</span> p.names, </span>
+<span id="cb100-6"><a href="data-structures.html#cb100-6" tabindex="-1"></a>                                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb100-7"><a href="data-structures.html#cb100-7" tabindex="-1"></a><span class="fu">str</span>(dataf)</span>
+<span id="cb100-8"><a href="data-structures.html#cb100-8" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    5 obs. of  3 variables:</span></span>
+<span id="cb100-9"><a href="data-structures.html#cb100-9" tabindex="-1"></a><span class="do">##  $ height: num  180 155 160 167 181</span></span>
+<span id="cb100-10"><a href="data-structures.html#cb100-10" tabindex="-1"></a><span class="do">##  $ weight: num  65 50 52 58 70</span></span>
+<span id="cb100-11"><a href="data-structures.html#cb100-11" tabindex="-1"></a><span class="do">##  $ names : Factor w/ 5 levels &quot;Amy&quot;,&quot;Charlotte&quot;,..: 4 2 3 5 1</span></span></code></pre></div>
 <p> </p>
 </div>
 </div>

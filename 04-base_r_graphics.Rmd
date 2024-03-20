@@ -61,7 +61,7 @@ plot(weight)
 Error in plot(weight) : object 'weight' not found
 ```
 
-As many of the base R plotting functions don't have a `data =` argument to specify the data frame name directly we can use the `with()\index{with()}` function in combination with `plot()` as a shortcut.
+As many of the base R plotting functions don't have a `data =`\index{with()} argument to specify the data frame name directly we can use the `with()\index{with()}` function in combination with `plot()` as a shortcut.
 
 ```{r plot3, echo=TRUE, eval=FALSE}
 with(flowers, plot(weight)) 
@@ -93,6 +93,8 @@ plot(my_x, my_y, type = "b")
 plot(my_x, my_y, type = "o")
 plot(my_x, my_y, type = "c")
 ```
+
+*Play around:* Try to create four more plots by using `type = 'p'`, `type = 'h'`, `type = 's'`, and `type = 'n'` arguments in `plot()` function.
 
 Admittedly the plots we've produced so far don't look anything particularly special. However, the `plot()` function is incredibly versatile and can generate a large range of plots which you can customise to your own taste. We'll cover how to customise plots [later](#custom_plot) in the Chapter. As a quick aside, the `plot()` function is also what's known as a generic function which means it can change its default behaviour depending on the type of object used as an argument. You will see an example of this in [Chapter 6](#simple_lm) where we use the `plot()` function to generate diagnostic plots of residuals from a linear model object (bet you can't wait!).
 
@@ -340,7 +342,7 @@ A (non-exhaustive) list of lattice functions and their base R equivalents is giv
 
 \  
 
-Where lattice plots really come into their own is when we want to plot graphs in multiple panels. For example, let's plot a histogram of our `height` variable again but this time create a separate histogram for each `nitrogen` level. We do this by including the `|` (pipe) symbol which we read as *'height conditional on nitrogen level'*. Also notice that the the axis scales are the same for each of the panels to aid comparison which is the default for lattice plots.
+Where lattice plots really come into their own is when we want to plot graphs in multiple panels. For example, let's plot a histogram of our `height` variable again but this time create a separate histogram for each `nitrogen` level. We do this by including the `|` (pipe) symbol which we read as *'height conditional on nitrogen level'*. Also notice that the axis scales are the same for each of the panels to aid comparison which is the default for lattice plots.
 
 ```{r plot33, echo=TRUE, out.width="75%", fig.align="center"}
 histogram(~ height | nitrogen, type = "count", data = flowers)
@@ -410,7 +412,7 @@ plot(flowers$weight, flowers$shootarea,
        ylab = expression(paste("shoot area (cm"^"2",")")))
 ``` 
 
-But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()`\index{par()} function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right)` where the arguments `bottom`, `left`, `top` and `right` are the size of the corresponding margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers specifying the number of lines in each margin. Let's increase the size of the left margin a little bit and decrease the size of the right margin by a smidge.    
+But now we have a new problem, the very top of the y axis label gets cut off. To remedy this we need to adjust the plot margins using the `par()`\index{par()} function and the `mar =` argument before we plot the graph. The `par()` function is the main function for setting graphical parameters in base R and the `mar =` argument sets the size of the margins that surround the plot. You can adjust the size of the margins using the notation `par(mar = c(bottom, left, top, right))` where the arguments `bottom`, `left`, `top` and `right` are the size of the corresponding margins. By default R sets these margins as `mar = c(5.1, 4.1, 4.1, 2.1)` with these numbers specifying the number of lines in each margin. Let's increase the size of the left margin a little bit and decrease the size of the right margin by a smidge.    
 
 ```{r plot42, echo=TRUE, out.width="75%", fig.align="center"}
 par(mar = c(4.1, 4.4, 4.1, 1.9))
@@ -498,7 +500,7 @@ We think our plot now looks pretty good so we'll stop here! There are, however, 
 |       Argument     |     Description                                 |    
 |:-------------------|:------------------------------------------------|
 |`adj`                 |controls justification of the text  (0 left justified, 0.5 centered, 1 right justified) |                |
-|`bg`                  |specifies the background colour of the plot(i.e. : `bg = "red"`, `bg = "blue"`) |
+|`bg`                  |specifies the background colour of the plot (i.e. : `bg = "red"`, `bg = "blue"`) |
 |`bty`                 |controls the type of box drawn around the plot, values include: `"o"`, `"l"`, `"7"`, `"c"`, `"u"` , `"]"` (the box looks like the corresponding character); if `bty = "n"` the box is not drawn |
 |`cex`         |controls the size of text and symbols in the plotting area with respect to the default value of 1. Similar commands include: `cex.axis` controls the numbers on the axes, `cex.lab` numbers on the axis labels, `cex.main` the title and `cex.sub` the sub-title |
 |`col`         |controls the colour of symbols; additional argument include: `col.axis`, `col.lab`, `col.main`, `col.sub`|
@@ -686,7 +688,7 @@ hist(flowers$weight, main ="")
 dotchart(flowers$weight)
 ```
 
-Once you've finished making your plots don't forget to reset your plotting device back to normal with `par(mfrow = c(1,1))`.
+Once you've finished making your plots don't forget to reset your plotting device back to normal with `par(mfrow = c(1, 1))`.
 
 A more flexible approach is to use the `layout()`\index{layout()} function. The `layout()` function allows you to split your plotting device up into different sized regions and can be used to build complex figures. Before using the `layout()` function we first need to specify how we're going to split our plotting device by creating a matrix using the `matrix()`\index{matrix()} function (see [Chapter 2](#mat_array) to remind yourself). Let's create a 2 x 2 matrix.
 

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>8.4 Create an R markdown document | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="8.4 Create an R markdown document | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -437,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/new_file_rm.png" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Once you’ve created your R markdown document it’s good practice to save this file somewhere convenient. You can do this by selecting <code>File</code> -&gt; <code>Save</code> from RStudio menu (or use the keyboard shortcut ctrl + s on Windows or cmd + s on a Mac) and enter an appropriate file name (maybe call it <code>my_first_rmarkdown</code>). Notice the file extension of your new R markdown file is <code>.Rmd</code>.</p>
-<p>Now, to convert your <code>.Rmd</code> file to a HTML document click on the little black triangle next to the <code>Knit</code> icon at the top of the source window and select <code>knit to HTML</code></p>
+<p>Now, to convert your <code>.Rmd</code> file to a HTML document click on the little black triangle next to the <code>Knit</code> icon at the top of the source window and select <code>knit to HTML</code>.</p>
 <p> </p>
 <p><img src="images/knit_rm.png" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -452,15 +452,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Great, you’ve just rendered your first R markdown document. If you want to knit your <code>.Rmd</code> file to a pdf document then all you need to do is choose <code>knit to PDF</code> instead of <code>knit to HTML</code> when you click on the <code>knit</code> icon. This will create a file called <code>my_first_rmarkdown.pdf</code> which you can double click to open. Give it a go!</p>
 <p>You can also knit an <code>.Rmd</code> file using the command line in the console rather than by clicking on the knit icon. To do this, just use the <code>render()</code> function from the <code>rmarkdown</code> package as shown below. Again, you can change the output format using the <code>output_format=</code> argument as well as many other options.</p>
 <p> </p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb410-1"><a href="new_rm.html#cb410-1" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
-<span id="cb410-2"><a href="new_rm.html#cb410-2" tabindex="-1"></a></span>
-<span id="cb410-3"><a href="new_rm.html#cb410-3" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb410-4"><a href="new_rm.html#cb410-4" tabindex="-1"></a></span>
-<span id="cb410-5"><a href="new_rm.html#cb410-5" tabindex="-1"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
-<span id="cb410-6"><a href="new_rm.html#cb410-6" tabindex="-1"></a></span>
-<span id="cb410-7"><a href="new_rm.html#cb410-7" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
-<span id="cb410-8"><a href="new_rm.html#cb410-8" tabindex="-1"></a></span>
-<span id="cb410-9"><a href="new_rm.html#cb410-9" tabindex="-1"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
+<div class="sourceCode" id="cb411"><pre class="sourceCode r fold-show"><code class="sourceCode r"><span id="cb411-1"><a href="new_rm.html#cb411-1" tabindex="-1"></a><span class="fu">library</span>(rmarkdown)</span>
+<span id="cb411-2"><a href="new_rm.html#cb411-2" tabindex="-1"></a></span>
+<span id="cb411-3"><a href="new_rm.html#cb411-3" tabindex="-1"></a><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb411-4"><a href="new_rm.html#cb411-4" tabindex="-1"></a></span>
+<span id="cb411-5"><a href="new_rm.html#cb411-5" tabindex="-1"></a><span class="co"># alternatively if you don&#39;t want to load the rmarkdown package</span></span>
+<span id="cb411-6"><a href="new_rm.html#cb411-6" tabindex="-1"></a></span>
+<span id="cb411-7"><a href="new_rm.html#cb411-7" tabindex="-1"></a>rmarkdown<span class="sc">::</span><span class="fu">render</span>(<span class="st">&#39;my_first_rmarkdown.Rmd&#39;</span>, <span class="at">output_format =</span> <span class="st">&#39;html_document&#39;</span>)</span>
+<span id="cb411-8"><a href="new_rm.html#cb411-8" tabindex="-1"></a></span>
+<span id="cb411-9"><a href="new_rm.html#cb411-9" tabindex="-1"></a><span class="co"># see ?render for more options</span></span></code></pre></div>
 </div>
             </section>
 

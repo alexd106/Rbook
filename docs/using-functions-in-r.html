@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.3 Using functions in R | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.3 Using functions in R | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -436,66 +436,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p> </p>
 <p>The first function we will learn about is the <code>c()</code> function. The <code>c()</code> function is short for concatenate and we use it to join together a series of values and store them in a data structure called a <a href="https://www.datamentor.io/r-programming/vector/"><strong>vector</strong></a> (more on vectors in <a href="data_r.html#data_r">Chapter 3</a>).</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="using-functions-in-r.html#cb39-1" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="using-functions-in-r.html#cb40-1" tabindex="-1"></a>my_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">6</span>, <span class="dv">4</span>, <span class="dv">3</span>, <span class="dv">3</span>, <span class="dv">7</span>)</span></code></pre></div>
 <p>In the code above we’ve created an object called <code>my_vec</code> and assigned it a value using the function <code>c()</code>. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is <strong>always</strong> followed by a pair of round brackets even if there’s nothing contained between the brackets. Secondly, the argument(s) of a function are placed inside the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this <a href="help.html#help">later</a>) and a quick Google search will also usually help you out.</p>
-<p>To examine the value of our new object we can simply type out the name of the object as we did before</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="using-functions-in-r.html#cb40-1" tabindex="-1"></a>my_vec</span></code></pre></div>
+<p>To examine the value of our new object we can simply type out the name of the object as we did before.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="using-functions-in-r.html#cb41-1" tabindex="-1"></a>my_vec</span></code></pre></div>
 <pre><code>## [1] 2 3 1 6 4 3 3 7</code></pre>
-<p>Now that we’ve created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the <code>mean()</code>, <code>var()</code>, <code>sd()</code> and <code>length()</code> functions</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="using-functions-in-r.html#cb42-1" tabindex="-1"></a><span class="fu">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></span>
-<span id="cb42-2"><a href="using-functions-in-r.html#cb42-2" tabindex="-1"></a><span class="do">## [1] 3.625</span></span>
-<span id="cb42-3"><a href="using-functions-in-r.html#cb42-3" tabindex="-1"></a><span class="fu">var</span>(my_vec)     <span class="co"># returns the variance of my_vec</span></span>
-<span id="cb42-4"><a href="using-functions-in-r.html#cb42-4" tabindex="-1"></a><span class="do">## [1] 3.982143</span></span>
-<span id="cb42-5"><a href="using-functions-in-r.html#cb42-5" tabindex="-1"></a><span class="fu">sd</span>(my_vec)      <span class="co"># returns the standard deviation of my_vec</span></span>
-<span id="cb42-6"><a href="using-functions-in-r.html#cb42-6" tabindex="-1"></a><span class="do">## [1] 1.995531</span></span>
-<span id="cb42-7"><a href="using-functions-in-r.html#cb42-7" tabindex="-1"></a><span class="fu">length</span>(my_vec)  <span class="co"># returns the number of elements in my_vec</span></span>
-<span id="cb42-8"><a href="using-functions-in-r.html#cb42-8" tabindex="-1"></a><span class="do">## [1] 8</span></span></code></pre></div>
-<p>If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="using-functions-in-r.html#cb43-1" tabindex="-1"></a>vec_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></span>
-<span id="cb43-2"><a href="using-functions-in-r.html#cb43-2" tabindex="-1"></a>vec_mean</span>
-<span id="cb43-3"><a href="using-functions-in-r.html#cb43-3" tabindex="-1"></a><span class="do">## [1] 3.625</span></span></code></pre></div>
+<p>Now that we’ve created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the <code>mean()</code>, <code>var()</code>, <code>sd()</code> and <code>length()</code> functions.</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="using-functions-in-r.html#cb43-1" tabindex="-1"></a><span class="fu">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></span>
+<span id="cb43-2"><a href="using-functions-in-r.html#cb43-2" tabindex="-1"></a><span class="do">## [1] 3.625</span></span>
+<span id="cb43-3"><a href="using-functions-in-r.html#cb43-3" tabindex="-1"></a><span class="fu">var</span>(my_vec)     <span class="co"># returns the variance of my_vec</span></span>
+<span id="cb43-4"><a href="using-functions-in-r.html#cb43-4" tabindex="-1"></a><span class="do">## [1] 3.982143</span></span>
+<span id="cb43-5"><a href="using-functions-in-r.html#cb43-5" tabindex="-1"></a><span class="fu">sd</span>(my_vec)      <span class="co"># returns the standard deviation of my_vec</span></span>
+<span id="cb43-6"><a href="using-functions-in-r.html#cb43-6" tabindex="-1"></a><span class="do">## [1] 1.995531</span></span>
+<span id="cb43-7"><a href="using-functions-in-r.html#cb43-7" tabindex="-1"></a><span class="fu">length</span>(my_vec)  <span class="co"># returns the number of elements in my_vec</span></span>
+<span id="cb43-8"><a href="using-functions-in-r.html#cb43-8" tabindex="-1"></a><span class="do">## [1] 8</span></span></code></pre></div>
+<p>If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object.</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="using-functions-in-r.html#cb44-1" tabindex="-1"></a>vec_mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(my_vec)    <span class="co"># returns the mean of my_vec</span></span>
+<span id="cb44-2"><a href="using-functions-in-r.html#cb44-2" tabindex="-1"></a>vec_mean</span>
+<span id="cb44-3"><a href="using-functions-in-r.html#cb44-3" tabindex="-1"></a><span class="do">## [1] 3.625</span></span></code></pre></div>
 <p>Sometimes it can be useful to create a vector that contains a regular sequence of values in steps of one. Here we can make use of a shortcut using the <code>:</code> symbol.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="using-functions-in-r.html#cb44-1" tabindex="-1"></a>my_seq <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>     <span class="co"># create regular sequence</span></span>
-<span id="cb44-2"><a href="using-functions-in-r.html#cb44-2" tabindex="-1"></a>my_seq</span>
-<span id="cb44-3"><a href="using-functions-in-r.html#cb44-3" tabindex="-1"></a><span class="do">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span>
-<span id="cb44-4"><a href="using-functions-in-r.html#cb44-4" tabindex="-1"></a>my_seq2 <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>    <span class="co"># in decending order</span></span>
-<span id="cb44-5"><a href="using-functions-in-r.html#cb44-5" tabindex="-1"></a>my_seq2</span>
-<span id="cb44-6"><a href="using-functions-in-r.html#cb44-6" tabindex="-1"></a><span class="do">##  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
-<p>Other useful functions for generating vectors of sequences include the <code>seq()</code> and <code>rep()</code> functions. For example, to generate a sequence from 1 to 5 in steps of 0.5</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="using-functions-in-r.html#cb45-1" tabindex="-1"></a>my_seq2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
-<span id="cb45-2"><a href="using-functions-in-r.html#cb45-2" tabindex="-1"></a>my_seq2</span>
-<span id="cb45-3"><a href="using-functions-in-r.html#cb45-3" tabindex="-1"></a><span class="do">## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</span></span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="using-functions-in-r.html#cb45-1" tabindex="-1"></a>my_seq <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>     <span class="co"># create regular sequence</span></span>
+<span id="cb45-2"><a href="using-functions-in-r.html#cb45-2" tabindex="-1"></a>my_seq</span>
+<span id="cb45-3"><a href="using-functions-in-r.html#cb45-3" tabindex="-1"></a><span class="do">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span>
+<span id="cb45-4"><a href="using-functions-in-r.html#cb45-4" tabindex="-1"></a>my_seq2 <span class="ot">&lt;-</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">1</span>    <span class="co"># in decending order</span></span>
+<span id="cb45-5"><a href="using-functions-in-r.html#cb45-5" tabindex="-1"></a>my_seq2</span>
+<span id="cb45-6"><a href="using-functions-in-r.html#cb45-6" tabindex="-1"></a><span class="do">##  [1] 10  9  8  7  6  5  4  3  2  1</span></span></code></pre></div>
+<p>Other useful functions for generating vectors of sequences include the <code>seq()</code> and <code>rep()</code> functions. For example, to generate a sequence from 1 to 5 in steps of 0.5.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="using-functions-in-r.html#cb46-1" tabindex="-1"></a>my_seq2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">5</span>, <span class="at">by =</span> <span class="fl">0.5</span>)</span>
+<span id="cb46-2"><a href="using-functions-in-r.html#cb46-2" tabindex="-1"></a>my_seq2</span>
+<span id="cb46-3"><a href="using-functions-in-r.html#cb46-3" tabindex="-1"></a><span class="do">## [1] 1.0 1.5 2.0 2.5 3.0 3.5 4.0 4.5 5.0</span></span></code></pre></div>
 <p>Here we’ve used the arguments <code>from =</code> and <code>to =</code> to define the limits of the sequence and the <code>by =</code> argument to specify the increment of the sequence. Play around with other values for these arguments to see their effect.</p>
 <p>The <code>rep()</code> function allows you to replicate (repeat) values a specified number of times. To repeat the value 2, 10 times</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="using-functions-in-r.html#cb46-1" tabindex="-1"></a>my_seq3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="at">times =</span> <span class="dv">10</span>)   <span class="co"># repeats 2, 10 times</span></span>
-<span id="cb46-2"><a href="using-functions-in-r.html#cb46-2" tabindex="-1"></a>my_seq3</span>
-<span id="cb46-3"><a href="using-functions-in-r.html#cb46-3" tabindex="-1"></a><span class="do">##  [1] 2 2 2 2 2 2 2 2 2 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="using-functions-in-r.html#cb47-1" tabindex="-1"></a>my_seq3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">2</span>, <span class="at">times =</span> <span class="dv">10</span>)   <span class="co"># repeats 2, 10 times</span></span>
+<span id="cb47-2"><a href="using-functions-in-r.html#cb47-2" tabindex="-1"></a>my_seq3</span>
+<span id="cb47-3"><a href="using-functions-in-r.html#cb47-3" tabindex="-1"></a><span class="do">##  [1] 2 2 2 2 2 2 2 2 2 2</span></span></code></pre></div>
 <p>You can also repeat non-numeric values</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="using-functions-in-r.html#cb47-1" tabindex="-1"></a>my_seq4 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;abc&quot;</span>, <span class="at">times =</span> <span class="dv">3</span>)    <span class="co"># repeats ‘abc’ 3 times </span></span>
-<span id="cb47-2"><a href="using-functions-in-r.html#cb47-2" tabindex="-1"></a>my_seq4</span>
-<span id="cb47-3"><a href="using-functions-in-r.html#cb47-3" tabindex="-1"></a><span class="do">## [1] &quot;abc&quot; &quot;abc&quot; &quot;abc&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="using-functions-in-r.html#cb48-1" tabindex="-1"></a>my_seq4 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">&quot;abc&quot;</span>, <span class="at">times =</span> <span class="dv">3</span>)    <span class="co"># repeats ‘abc’ 3 times </span></span>
+<span id="cb48-2"><a href="using-functions-in-r.html#cb48-2" tabindex="-1"></a>my_seq4</span>
+<span id="cb48-3"><a href="using-functions-in-r.html#cb48-3" tabindex="-1"></a><span class="do">## [1] &quot;abc&quot; &quot;abc&quot; &quot;abc&quot;</span></span></code></pre></div>
 <p>or each element of a series</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="using-functions-in-r.html#cb48-1" tabindex="-1"></a>my_seq5 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">3</span>)  <span class="co"># repeats the series 1 to </span></span>
-<span id="cb48-2"><a href="using-functions-in-r.html#cb48-2" tabindex="-1"></a>                                <span class="co"># 5, 3 times</span></span>
-<span id="cb48-3"><a href="using-functions-in-r.html#cb48-3" tabindex="-1"></a>my_seq5</span>
-<span id="cb48-4"><a href="using-functions-in-r.html#cb48-4" tabindex="-1"></a><span class="do">##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span></span></code></pre></div>
-<p>or elements of a series</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="using-functions-in-r.html#cb49-1" tabindex="-1"></a>my_seq6 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">3</span>)   <span class="co"># repeats each element of the </span></span>
-<span id="cb49-2"><a href="using-functions-in-r.html#cb49-2" tabindex="-1"></a>                              <span class="co">#series 3 times</span></span>
-<span id="cb49-3"><a href="using-functions-in-r.html#cb49-3" tabindex="-1"></a>my_seq6</span>
-<span id="cb49-4"><a href="using-functions-in-r.html#cb49-4" tabindex="-1"></a><span class="do">##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</span></span></code></pre></div>
-<p>We can also repeat a non-sequential series</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="using-functions-in-r.html#cb50-1" tabindex="-1"></a>my_seq7 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>), <span class="at">each =</span> <span class="dv">3</span>) <span class="co"># repeats each </span></span>
-<span id="cb50-2"><a href="using-functions-in-r.html#cb50-2" tabindex="-1"></a>                                         <span class="co"># element of the </span></span>
-<span id="cb50-3"><a href="using-functions-in-r.html#cb50-3" tabindex="-1"></a>                                         <span class="co"># series 3 times</span></span>
-<span id="cb50-4"><a href="using-functions-in-r.html#cb50-4" tabindex="-1"></a>my_seq7</span>
-<span id="cb50-5"><a href="using-functions-in-r.html#cb50-5" tabindex="-1"></a><span class="do">##  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></span></code></pre></div>
-<p>Note in the code above how we’ve used the <code>c()</code> function inside the <code>rep()</code> function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="using-functions-in-r.html#cb51-1" tabindex="-1"></a>in_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>)</span>
-<span id="cb51-2"><a href="using-functions-in-r.html#cb51-2" tabindex="-1"></a>my_seq7 <span class="ot">&lt;-</span> <span class="fu">rep</span>(in_vec, <span class="at">each =</span> <span class="dv">3</span>)    <span class="co"># repeats each element of </span></span>
-<span id="cb51-3"><a href="using-functions-in-r.html#cb51-3" tabindex="-1"></a>                                  <span class="co"># the series 3 times</span></span>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="using-functions-in-r.html#cb49-1" tabindex="-1"></a>my_seq5 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">3</span>)  <span class="co"># repeats the series 1 to </span></span>
+<span id="cb49-2"><a href="using-functions-in-r.html#cb49-2" tabindex="-1"></a>                                <span class="co"># 5, 3 times</span></span>
+<span id="cb49-3"><a href="using-functions-in-r.html#cb49-3" tabindex="-1"></a>my_seq5</span>
+<span id="cb49-4"><a href="using-functions-in-r.html#cb49-4" tabindex="-1"></a><span class="do">##  [1] 1 2 3 4 5 1 2 3 4 5 1 2 3 4 5</span></span></code></pre></div>
+<p>or elements of a series.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="using-functions-in-r.html#cb50-1" tabindex="-1"></a>my_seq6 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">each =</span> <span class="dv">3</span>)   <span class="co"># repeats each element of the </span></span>
+<span id="cb50-2"><a href="using-functions-in-r.html#cb50-2" tabindex="-1"></a>                              <span class="co">#series 3 times</span></span>
+<span id="cb50-3"><a href="using-functions-in-r.html#cb50-3" tabindex="-1"></a>my_seq6</span>
+<span id="cb50-4"><a href="using-functions-in-r.html#cb50-4" tabindex="-1"></a><span class="do">##  [1] 1 1 1 2 2 2 3 3 3 4 4 4 5 5 5</span></span></code></pre></div>
+<p>We can also repeat a non-sequential series.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="using-functions-in-r.html#cb51-1" tabindex="-1"></a>my_seq7 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>), <span class="at">each =</span> <span class="dv">3</span>) <span class="co"># repeats each </span></span>
+<span id="cb51-2"><a href="using-functions-in-r.html#cb51-2" tabindex="-1"></a>                                         <span class="co"># element of the </span></span>
+<span id="cb51-3"><a href="using-functions-in-r.html#cb51-3" tabindex="-1"></a>                                         <span class="co"># series 3 times</span></span>
 <span id="cb51-4"><a href="using-functions-in-r.html#cb51-4" tabindex="-1"></a>my_seq7</span>
 <span id="cb51-5"><a href="using-functions-in-r.html#cb51-5" tabindex="-1"></a><span class="do">##  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></span></code></pre></div>
+<p>Note in the code above how we’ve used the <code>c()</code> function inside the <code>rep()</code> function. Nesting functions allows us to build quite complex commands within a single line of code and is a very common practice when using R. However, care needs to be taken as too many nested functions can make your code quite difficult for others to understand (or yourself some time in the future!). We could rewrite the code above to explicitly separate the two different steps to generate our vector. Either approach will give the same result, you just need to use your own judgement as to which is more readable.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="using-functions-in-r.html#cb52-1" tabindex="-1"></a>in_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">7</span>)</span>
+<span id="cb52-2"><a href="using-functions-in-r.html#cb52-2" tabindex="-1"></a>my_seq7 <span class="ot">&lt;-</span> <span class="fu">rep</span>(in_vec, <span class="at">each =</span> <span class="dv">3</span>)    <span class="co"># repeats each element of </span></span>
+<span id="cb52-3"><a href="using-functions-in-r.html#cb52-3" tabindex="-1"></a>                                  <span class="co"># the series 3 times</span></span>
+<span id="cb52-4"><a href="using-functions-in-r.html#cb52-4" tabindex="-1"></a>my_seq7</span>
+<span id="cb52-5"><a href="using-functions-in-r.html#cb52-5" tabindex="-1"></a><span class="do">##  [1]  3  3  3  1  1  1 10 10 10  7  7  7</span></span></code></pre></div>
 </div>
             </section>
 

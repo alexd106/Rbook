@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.1 Getting started | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.1 Getting started | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -430,21 +430,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.1</span> Getting started<a href="getting-started.html#getting-started" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In <a href="chap1.html#chap1">Chapter 1</a> we learned about the <a href="rstudio_orient.html#cons">R Console</a> and creating scripts and <a href="rsprojs.html#rsprojs">Projects</a> in RStudio. We also saw how you write your R code in a script and then source this code into the console to get it to run (if you’ve forgotten how to do this, pop back to the <a href="rstudio_orient.html#cons">console</a> section to refresh your memory). Writing your code in a script means that you’ll always have a permanent record of everything you’ve done (provided you save your script) and also allows you to make loads of comments to remind your future self what you’ve done. So, while you’re working through this Chapter we suggest that you create a new script (or RStudio <a href="rsprojs.html#rsprojs">Project</a>) to write your code as you follow along.</p>
 <p>As we saw in the previous <a href="chap1.html#chap1">Chapter</a>, at a basic level we can use R much as you would use a calculator. We can type an arithmetic expression into our script, then source it into the console and receive a result. For example, if we type the expression <code>2 + 2</code> and then source this line of code we get the answer <code>4</code> (reassuringly!)</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="getting-started.html#cb26-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb26-2"><a href="getting-started.html#cb26-2" tabindex="-1"></a><span class="do">## [1] 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="getting-started.html#cb27-1" tabindex="-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb27-2"><a href="getting-started.html#cb27-2" tabindex="-1"></a><span class="do">## [1] 4</span></span></code></pre></div>
 <p>The <code>[1]</code> in front of the result tells you that the observation number at the beginning of the line is the first observation. This is not much help in this example, but can be quite useful when printing results with multiple lines (we’ll see an example below). The other obvious arithmetic operators are <code>-</code>, <code>*</code>, <code>/</code> for subtraction, multiplication and division respectively. R follows the usual mathematical convention of <a href="https://en.wikipedia.org/wiki/Order_of_operations">order of operations</a>. For example, the expression <code>2 + 3 * 4</code> is interpreted to have the value <code>2 + (3 * 4) = 14</code>, not <code>(2 + 3) * 4 = 20</code>. There are a huge range of mathematical functions in R, some of the most useful include; <code>log()</code>, <code>log10()</code>, <code>exp()</code>, <code>sqrt()</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="getting-started.html#cb27-1" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1</span>)              <span class="co"># logarithm to base e</span></span>
-<span id="cb27-2"><a href="getting-started.html#cb27-2" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb27-3"><a href="getting-started.html#cb27-3" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">1</span>)            <span class="co"># logarithm to base 10</span></span>
-<span id="cb27-4"><a href="getting-started.html#cb27-4" tabindex="-1"></a><span class="do">## [1] 0</span></span>
-<span id="cb27-5"><a href="getting-started.html#cb27-5" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)              <span class="co"># natural antilog</span></span>
-<span id="cb27-6"><a href="getting-started.html#cb27-6" tabindex="-1"></a><span class="do">## [1] 2.718282</span></span>
-<span id="cb27-7"><a href="getting-started.html#cb27-7" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span>)             <span class="co"># square root</span></span>
-<span id="cb27-8"><a href="getting-started.html#cb27-8" tabindex="-1"></a><span class="do">## [1] 2</span></span>
-<span id="cb27-9"><a href="getting-started.html#cb27-9" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>                   <span class="co"># 4 to the power of 2</span></span>
-<span id="cb27-10"><a href="getting-started.html#cb27-10" tabindex="-1"></a><span class="do">## [1] 16</span></span>
-<span id="cb27-11"><a href="getting-started.html#cb27-11" tabindex="-1"></a>pi                    <span class="co"># not a function but useful</span></span>
-<span id="cb27-12"><a href="getting-started.html#cb27-12" tabindex="-1"></a><span class="do">## [1] 3.141593</span></span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="getting-started.html#cb28-1" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1</span>)              <span class="co"># logarithm to base e</span></span>
+<span id="cb28-2"><a href="getting-started.html#cb28-2" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb28-3"><a href="getting-started.html#cb28-3" tabindex="-1"></a><span class="fu">log10</span>(<span class="dv">1</span>)            <span class="co"># logarithm to base 10</span></span>
+<span id="cb28-4"><a href="getting-started.html#cb28-4" tabindex="-1"></a><span class="do">## [1] 0</span></span>
+<span id="cb28-5"><a href="getting-started.html#cb28-5" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">1</span>)              <span class="co"># natural antilog</span></span>
+<span id="cb28-6"><a href="getting-started.html#cb28-6" tabindex="-1"></a><span class="do">## [1] 2.718282</span></span>
+<span id="cb28-7"><a href="getting-started.html#cb28-7" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">4</span>)             <span class="co"># square root</span></span>
+<span id="cb28-8"><a href="getting-started.html#cb28-8" tabindex="-1"></a><span class="do">## [1] 2</span></span>
+<span id="cb28-9"><a href="getting-started.html#cb28-9" tabindex="-1"></a><span class="dv">4</span><span class="sc">^</span><span class="dv">2</span>                   <span class="co"># 4 to the power of 2</span></span>
+<span id="cb28-10"><a href="getting-started.html#cb28-10" tabindex="-1"></a><span class="do">## [1] 16</span></span>
+<span id="cb28-11"><a href="getting-started.html#cb28-11" tabindex="-1"></a>pi                    <span class="co"># not a function but useful</span></span>
+<span id="cb28-12"><a href="getting-started.html#cb28-12" tabindex="-1"></a><span class="do">## [1] 3.141593</span></span></code></pre></div>
 <p>It’s important to realise that when you run code as we’ve done above, the result of the code (or <strong>value</strong>) is only displayed in the console. Whilst this can sometimes be useful it is usually much more practical to store the value(s) in a object.</p>
 </div>
             </section>

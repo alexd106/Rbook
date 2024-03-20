@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>9.6 Using Git | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.37 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
 
   <meta property="og:title" content="9.6 Using Git | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-02-06" />
+<meta name="date" content="2024-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -189,7 +189,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.4" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html"><i class="fa fa-check"></i><b>1.4</b> Alternatives to RStudio</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#advanced-text-editors"><i class="fa fa-check"></i><b>1.4.1</b> Advanced text editors</a></li>
-<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-developement-environements"><i class="fa fa-check"></i><b>1.4.2</b> Integrated developement environements</a></li>
+<li class="chapter" data-level="1.4.2" data-path="alternatives-to-rstudio.html"><a href="alternatives-to-rstudio.html#integrated-development-environments"><i class="fa fa-check"></i><b>1.4.2</b> Integrated development environments</a></li>
 </ul></li>
 <li class="chapter" data-level="1.5" data-path="packages.html"><a href="packages.html"><i class="fa fa-check"></i><b>1.5</b> R packages</a>
 <ul>
@@ -481,7 +481,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/first_Rmd8.png" width="60%" style="display: block; margin: auto;" /></p>
 <div id="tracking-changes" class="section level3 hasAnchor" number="9.6.1">
 <h3><span class="header-section-number">9.6.1</span> Tracking changes<a href="use_git.html#tracking-changes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let’s make some further changes to your R markdown file and follow the workflow once again but this time we ’ll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.</p>
+<p>After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let’s make some further changes to your R markdown file and follow the workflow once again but this time we’ll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.</p>
 <p>In RStudio open up the <code>first_repo.Rproj</code> file you created previously (if not already open) then open the <code>first_doc.Rmd</code> file (click on the file name in the <code>Files</code> tab in RStudio).</p>
 <p>Let’s make some changes to this document. Delete the line beginning with ‘My first version controlled …’ and replace it with something more informative (see figure below). We will also change the plotted symbols to red and give the plot axes labels. Lastly, let’s add a summary table of the dataframe using the <code>kable()</code> and <code>summary()</code> functions (you may need to install the <code>knitr</code> package if you haven’t done so previously to use the <code>kable()</code> function) and finally render this document to pdf by changing the YAML option to <code>output: pdf_document</code>.</p>
 <p> </p>
@@ -492,7 +492,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/mod2.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>To stage these files tick the ‘Staged’ box for each file and click on the ‘Commit’ button to take you to the ‘Review Changes’ window</p>
+<p>To stage these files tick the ‘Staged’ box for each file and click on the ‘Commit’ button to take you to the ‘Review Changes’ window.</p>
 <p> </p>
 <p><img src="images/mod3.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -515,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/c_history.png" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the <strong>Date</strong> the commit was made, <strong>Author</strong> of the commit and the commit message (<strong>Subject</strong>). There is also a unique identifier for the commit (<strong>SHA</strong> - Secure Hash Algorithm) and a <strong>Parent</strong> SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details <a href="use_git.html#undo">below</a>). You can also view the contents of each file by clicking on the ‘View file @ SHA key` link (in our case ’View file @ 2b4693d1’).</p>
+<p>The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the <strong>Date</strong> the commit was made, <strong>Author</strong> of the commit and the commit message (<strong>Subject</strong>). There is also a unique identifier for the commit (<strong>SHA</strong> - Secure Hash Algorithm) and a <strong>Parent</strong> SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details <a href="use_git.html#undo">below</a>). You can also view the contents of each file by clicking on the ‘View file @ SHA key’ link (in our case ‘View file @ 2b4693d1’).</p>
 <p> </p>
 <p><img src="images/c_history2.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -550,7 +550,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="staged-and-committed-but-not-pushed" class="section level4 unnumbered hasAnchor">
 <h4>Staged and committed but not pushed<a href="use_git.html#staged-and-committed-but-not-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit` box in the ’Review Changes’ window before committing.</p>
+<p>If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the ‘Amend previous commit’ box in the ‘Review Changes’ window before committing.</p>
 <p> </p>
 <p><img src="images/revert3.png" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
