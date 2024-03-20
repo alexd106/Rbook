@@ -60,7 +60,7 @@ my_obj <- 48
 
 In the code above, we created an object called `my_obj` and assigned it a value of the number `48` using the assignment operator (in our head we always read this as '*my_obj gets 48*'). You can also use `=` instead of `<-` to assign values but this is considered bad practice and we would discourage you from using this notation. 
 
-To view the value of the object you simply type the name of the object
+To view the value of the object you simply type the name of the object.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_obj
@@ -92,7 +92,7 @@ There are many different types of values that you can assign to an object. For e
 my_obj2 <- "R is cool"
 ```
 
-Here we have created an object called `my_obj2` and assigned it a value of `R is cool` which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message
+Here we have created an object called `my_obj2` and assigned it a value of `R is cool` which is a character string. Notice that we have enclosed the string in quotes. If you forget to use the quotes you will receive an error message.
 
 ```{r, echo=TRUE, eval=FALSE}
 my_obj2 <- R is cool
@@ -109,13 +109,13 @@ knitr::include_graphics(path = "images/rs_env3.png")
 
 \  
 
-To change the value of an existing object we simply reassign a new value to it. For example, to change the value of `my_obj2` from `"R is cool"` to the number `1024`
+To change the value of an existing object we simply reassign a new value to it. For example, to change the value of `my_obj2` from `"R is cool"` to the number `1024`.
 
 ```{r, echo=TRUE, eval=TRUE}
 my_obj2 <- 1024
 ```
 
-Notice that the Type has changed to numeric and the value has changed to 1024 in the environment
+Notice that the Type has changed to numeric and the value has changed to 1024 in the environment.
 
 \  
 
@@ -132,7 +132,7 @@ my_obj3 <- my_obj + my_obj2
 my_obj3
 ```
 
-Notice that to display the value of `my_obj3` we also need to write the object's name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (**character class**) you will receive an error
+Notice that to display the value of `my_obj3` we also need to write the object's name. The above code works because the values of both `my_obj` and `my_obj2` are numeric (i.e. a number). If you try to do this with objects with character values (**character class**) you will receive an error.
 
 ```{r, echo=TRUE, eval=FALSE}
 char_obj <- "hello"
@@ -145,7 +145,7 @@ The error message is essentially telling you that either one or both of the obje
 
 When you first start learning R, dealing with errors and warnings can be frustrating as they're often difficult to understand (what's an [*argument*][r_arg]? what's a [*binary operator*][bin_op]?). One way to find out more information about a particular error is to Google a generalised version of the error message. For the above error try Googling [*'non-numeric argument to binary operator error + r'*][non_num_err] or even [*'common r error messages'*][com_err]. 
 
-Another error message that you'll get quite a lot when you first start using R is `Error: object 'XXX' not found`. As an example, take a look at the code below
+Another error message that you'll get quite a lot when you first start using R is `Error: object 'XXX' not found`. As an example, take a look at the code below.
 
 ```{r, echo=TRUE, eval=FALSE}
 my_obj <- 48
@@ -157,7 +157,7 @@ R returns an error message because we haven't created (defined) the object `no_o
 
 ### Naming objects
 
-Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept both short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called [*snake case*][snake])
+Naming your objects is one of the most difficult things you will do in R (honestly - we're serious). Ideally your object names should be kept both short and informative which is not always easy. If you need to create objects with multiple words in their name then use either an underscore or a dot between words or capitalise the different words. We prefer the underscore format (called [*snake case*][snake]).
 
 ```{r, echo=TRUE, eval=FALSE}
 output_summary <- "my analysis"
@@ -193,13 +193,13 @@ my_vec <- c(2, 3, 1, 6, 4, 3, 3, 7)
 
 In the code above we've created an object called `my_vec` and assigned it a value using the function `c()`. There are a couple of really important points to note here. Firstly, when you use a function in R, the function name is **always** followed by a pair of round brackets even if there's nothing contained between the brackets. Secondly, the argument(s) of a function are placed inside the round brackets and are separated by commas. You can think of an argument as way of customising the use or behaviour of a function. In the example above, the arguments are the numbers we want to concatenate. Finally, one of the tricky things when you first start using R is to know which function to use for a particular task and how to use it. Thankfully each function will always have a help document associated with it which will explain how to use the function (more on this [later](#help)) and a quick Google search will also usually help you out. 
 
-To examine the value of our new object we can simply type out the name of the object as we did before
+To examine the value of our new object we can simply type out the name of the object as we did before.
 
 ```{r, echo=TRUE, eval=TRUE}
 my_vec
 ```
 
-Now that we've created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`\index{mean()}, `var()`\index{var()}, `sd()`\index{sd()} and `length()`\index{length()} functions
+Now that we've created a vector we can use other functions to do useful stuff with this object. For example, we can calculate the mean, variance, standard deviation and number of elements in our vector by using the `mean()`\index{mean()}, `var()`\index{var()}, `sd()`\index{sd()} and `length()`\index{length()} functions.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean(my_vec)    # returns the mean of my_vec
@@ -208,7 +208,7 @@ sd(my_vec)      # returns the standard deviation of my_vec
 length(my_vec)  # returns the number of elements in my_vec
 ```
 
-If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object
+If we wanted to use any of these values later on in our analysis we can just assign the resulting value to another object.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 vec_mean <- mean(my_vec)    # returns the mean of my_vec
@@ -224,7 +224,7 @@ my_seq2 <- 10:1    # in decending order
 my_seq2
 ```
 
-Other useful functions for generating vectors of sequences include the `seq()`\index{seq()} and `rep()`\index{rep()} functions. For example, to generate a sequence from 1 to 5 in steps of 0.5
+Other useful functions for generating vectors of sequences include the `seq()`\index{seq()} and `rep()`\index{rep()} functions. For example, to generate a sequence from 1 to 5 in steps of 0.5.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_seq2 <- seq(from = 1, to = 5, by = 0.5)
@@ -255,7 +255,7 @@ my_seq5 <- rep(1:5, times = 3)	# repeats the series 1 to
 my_seq5
 ```
 
-or elements of a series
+or elements of a series.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_seq6 <- rep(1:5, each = 3)	# repeats each element of the 
@@ -263,7 +263,7 @@ my_seq6 <- rep(1:5, each = 3)	# repeats each element of the
 my_seq6
 ```
 
-We can also repeat a non-sequential series
+We can also repeat a non-sequential series.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_seq7 <- rep(c(3, 1, 10, 7), each = 3) # repeats each 
@@ -318,7 +318,7 @@ We can also extract more than one value by using the `c()` function inside the s
 my_vec[c(1, 5, 6, 8)]
 ```
 
-Or we can extract a range of values using the `:` notation. To extract the values from the 3^rd^ to the 8^th^ elements
+Or we can extract a range of values using the `:` notation. To extract the values from the 3^rd^ to the 8^th^ elements.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 my_vec[3:8]
@@ -363,7 +363,7 @@ val26 <- my_vec[my_vec < 6 & my_vec > 2]
 val26
 ```
 
-or extract values in `my_vec` that are greater than 6 OR less than 3
+or extract values in `my_vec` that are greater than 6 OR less than 3.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 val63 <- my_vec[my_vec > 6 | my_vec < 3]
@@ -379,7 +379,7 @@ my_vec[4] <- 500
 my_vec
 ```
 
-We can also replace more than one value or even replace values based on a logical expression 
+We can also replace more than one value or even replace values based on a logical expression. 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 # replace the 6th and 7th element with 100
@@ -393,7 +393,7 @@ my_vec
 
 ### Ordering elements {#vec_ord}
 
-In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest value we can use the `sort()`\index{sort} function
+In addition to extracting particular elements from a vector we can also order the values contained in a vector. To sort the values from lowest to highest value we can use the `sort()`\index{sort} function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 vec_sort <- sort(my_vec)
@@ -414,7 +414,7 @@ vec_sort3 <- rev(sort(my_vec))
 vec_sort3
 ```
 
-Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the `order()`\index{order()} function in combination with `[ ]`. To demonstrate this let's create a vector called `height` containing the height of 5 different people and another vector called `p.names` containing the names of these people (so Joanna is 180 cm, Charlotte is 155 cm etc)  
+Whilst sorting a single vector is fun, perhaps a more useful task would be to sort one vector according to the values of another vector. To do this we should use the `order()`\index{order()} function in combination with `[ ]`. To demonstrate this let's create a vector called `height` containing the height of 5 different people and another vector called `p.names` containing the names of these people (so Joanna is 180 cm, Charlotte is 155 cm etc).  
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 height <- c(180, 155, 160, 167, 181)
@@ -424,21 +424,21 @@ p.names <- c("Joanna", "Charlotte", "Helen", "Karen", "Amy")
 p.names
 ```
 
-Our goal is to order the people in `p.names` in ascending order of their `height`. The first thing we'll do is use the `order()` function with the `height` variable to create a vector called `height_ord`
+Our goal is to order the people in `p.names` in ascending order of their `height`. The first thing we'll do is use the `order()` function with the `height` variable to create a vector called `height_ord`.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 height_ord <- order(height)
 height_ord
 ```
 
-OK, what's going on here? The first value, `2`, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element `5` which is 181. Now that we have a vector of the positional indices of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order
+OK, what's going on here? The first value, `2`, (remember ignore `[1]`) should be read as ‘the smallest value of `height` is the second element of the `height` vector’. If we check this by looking at the `height` vector above, you can see that element 2 has a value of 155, which is the smallest value. The second smallest value in `height` is the 3^rd^ element of `height`, which when we check is 160 and so on. The largest value of `height` is element `5` which is 181. Now that we have a vector of the positional indices of heights in ascending order (`height_ord`), we can extract these values from our `p.names` vector in this order.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 names_ord <- p.names[height_ord]
 names_ord
 ```
 
-You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By using the 'order()' on one column, a vector of positional indices is created of the values of the column in ascending order  This vector can be used on the second column, as the index of elements which will return a vector of values based on the first column.
+You're probably thinking ‘what’s the use of this?’ Well, imagine you have a dataset which contains two columns of data and you want to sort each column. If you just use `sort()` to sort each column separately, the values of each column will become uncoupled from each other. By using the `order()` on one column, a vector of positional indices is created of the values of the column in ascending order. This vector can be used on the second column, as the index of elements which will return a vector of values based on the first column.
 
 ### Vectorisation
 
@@ -477,14 +477,14 @@ my_vec2 + my_vec4
 
 ### Missing data {#na_vals}
 
-In R, missing data is usually represented by an `NA` symbol meaning 'Not Available'. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days
+In R, missing data is usually represented by an `NA` symbol meaning 'Not Available'. Data may be missing for a whole bunch of reasons, maybe your machine broke down, maybe you broke down, maybe the weather was too bad to collect data on a particular day etc etc. Missing data can be a pain in the proverbial both from an R perspective and also a statistical perspective. From an R perspective missing data can be problematic as different functions deal with missing data in different ways. For example, let's say we collected air temperature readings over 10 days, but our thermometer broke on day 2 and again on day 9 so we have no data for those days.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 temp  <- c(7.2, NA, 7.1, 6.9, 6.5, 5.8, 5.8, 5.5, NA, 5.5)
 temp
 ```
 
-We now want to calculate the mean temperature over these days using the `mean()` function
+We now want to calculate the mean temperature over these days using the `mean()` function.
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean_temp <- mean(temp)
@@ -495,7 +495,7 @@ Flippin heck, what's happened here? Why does the `mean()` function return an `NA
 
 > na.rm - a logical value indicating whether NA values should be stripped before the computation proceeds.
 
-If we change this argument to `na.rm = TRUE` when we use the `mean()` function this will allow us to ignore the `NA` values when calculating the mean 
+If we change this argument to `na.rm = TRUE` when we use the `mean()` function this will allow us to ignore the `NA` values when calculating the mean. 
 
 ```{r, echo=TRUE, eval=TRUE, collapse=TRUE}
 mean_temp <- mean(temp, na.rm = TRUE)
@@ -516,13 +516,13 @@ To access R’s built-in help facility to get information on any function simply
 help("mean")
 ```
 
-or you can use the equivalent shortcut 
+or you can use the equivalent shortcut. 
 
 ```{r, echo=TRUE, eval=FALSE}
 ?mean
 ```
 
-the help page is displayed in the 'Help' tab in the Files pane (usually in the bottom right of RStudio) 
+After you run the code, the help page is displayed in the 'Help' tab in the Files pane (usually in the bottom right of RStudio). 
 
 \  
 
@@ -557,7 +557,7 @@ The `help()` function is useful if you know the name of the function. If you're 
 help.search("mean")
 ```
 
-or you can use the equivalent shortcut 
+Or you can use the equivalent shortcut. 
 
 ```{r, echo=TRUE, eval=FALSE}
 ??mean
@@ -585,7 +585,7 @@ You can then bring up the help file for the relevant function.
 help("kmeans")
 ```
 
-An extremely useful function is `RSiteSearch()`\index{RSiteSearch()} which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the https://www.r-project.org/search.html search engine directly from the Console with the results displayed in your web browser 
+An extremely useful function is `RSiteSearch()`\index{RSiteSearch()} which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the https://www.r-project.org/search.html search engine directly from the Console with the results displayed in your web browser. 
 
 ```{r, echo=TRUE, eval=FALSE}
 RSiteSearch("regression")
@@ -601,7 +601,7 @@ There really has never been a better time to start learning R. There are a pleth
 - [The R Journal][r-journal]: Journal of the R project for statistical computing
 - [Swirl][swirl]: An R package that teaches you R from within R
 - [RStudio's printable cheatsheets][rstudio-cheat]
-- [Rseek][rseek] A custom Google search for R-related sites
+- [Rseek][rseek]: A custom Google search for R-related sites
 
 **Getting help**
 
@@ -643,13 +643,13 @@ There are, however, some occasions when saving objects you've created in R is us
 save(nameOfObject, file = "name_of_file.RData")
 ```
 
-or if you want to save all of the objects in your workspace into a single `.RData` file use the `save.image()`\index{save.image()} function 
+or if you want to save all of the objects in your workspace into a single `.RData` file use the `save.image()`\index{save.image()} function. 
 
 ```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
 save.image(file = "name_of_file.RData")
 ```
 
-To load your `.RData` file back into RStudio use the `load()`\index{load()} function 
+To load your `.RData` file back into RStudio use the `load()`\index{load()} function. 
 
 ```{r, echo=TRUE, eval=FALSE, collapse=TRUE}
 load(file = "name_of_file.RData")
