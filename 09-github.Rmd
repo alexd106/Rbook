@@ -6,7 +6,7 @@ Just a few notes of caution. In this Chapter we'll be using RStudio to interface
 
 ## What is version control?
 
-A [Version Control System][version_con] (VCS)  keeps a record of all the changes you make to your files that make up a particular project and allows you to revert to previous versions of files if you need to. To put it another way, if you muck things up or accidentally lose important files you can easily roll back to a previous stage in your project to sort things out. Version control was originally designed for collaborative software development, but it's equally useful for scientific research and collaborations (although admittedly a lot of the terms, jargon and functionality are focused on the software development side). There are many different version control systems currently available, but we' we'll focus on using *Git*, because it's free and open source and it integrates nicely with RStudio. This means that its can easily become part of your usual workflow with minimal additional overhead.  
+A [Version Control System][version_con] (VCS)  keeps a record of all the changes you make to your files that make up a particular project and allows you to revert to previous versions of files if you need to. To put it another way, if you muck things up or accidentally lose important files you can easily roll back to a previous stage in your project to sort things out. Version control was originally designed for collaborative software development, but it's equally useful for scientific research and collaborations (although admittedly a lot of the terms, jargon and functionality are focused on the software development side). There are many different version control systems currently available, but we'll focus on using *Git*, because it's free and open source and it integrates nicely with RStudio. This means that its can easily become part of your usual workflow with minimal additional overhead.  
 
 ## Why use version control?
 
@@ -30,7 +30,7 @@ knitr::include_graphics(path = "images/final_doc.png")
 
 \  
 
-Version control automatically takes care of keeping a record of all the versions of a particular file and allows you to revert back to previous versions if you need to. Version control also helps you (especially the future you) keep track of all your files in a single place and it helps others (especially collaborators) review, contribute to and reuse your work through the GitHub website. Lastly, your files are always available from anywhere and on any computer, all you need is an internet connection.
+Version control automatically takes care of keeping a record of all the versions of a particular file and allows you to revert back to previous versions if you need to. Version control also helps you (especially the future you) keep track of all your files in a single place and it helps others (especially collaborators) review, contribute to and reuse your work through the GitHub [website](https://github.com/). Lastly, your files are always available from anywhere and on any computer, all you need is an internet connection.
 
 ## What is Git and GitHub?
 
@@ -210,7 +210,7 @@ knitr::include_graphics(path = "images/proj_setup_RS.png")
 
 \ 
 
-In the New Project window specify a `Directory name` (choose `second_repo` for this Chapter) and select where you would like to create this directory on you computer (click the `Browse` button). Make sure the `Create a git repository` option is ticked 
+In the New Project window specify a `Directory name` (choose `second_repo` for this Chapter) and select where you would like to create this directory on you computer (click the `Browse` button). Make sure the `Create a git repository` option is ticked. 
 
 \  
 
@@ -232,7 +232,7 @@ knitr::include_graphics(path = "images/new_proj_RS3.png")
 
 OK, before we go on to create a repository on GitHub we need to do one more thing - we need to place our `second_repo.Rproj` and `.gitignore`files under version control. Unfortunately we haven't covered this in detail yet so just follow the next few instructions (blindly!) and we'll revisit them in the [Using Git](#use_git) section of this Chapter.  
 
-To get our two files under version control click on the 'Git' tab which is usually in the top tight pane in RStudio
+To get our two files under version control click on the 'Git' tab which is usually in the top tight pane in RStudio.
 
 \  
 
@@ -462,7 +462,7 @@ knitr::include_graphics(path = "images/first_Rmd8.png")
 
 ### Tracking changes 
 
-After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let's make some further changes to your R markdown file and follow the workflow once again but this time we 'll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.  
+After following the steps outlined above, you will have successfully modified an RStudio project by creating a new R markdown document, staged and then committed these changes and finally pushed the changes to your GitHub repository. Now let's make some further changes to your R markdown file and follow the workflow once again but this time we'll take a look at how to identify changes made to files, examine the commit history and how to restore to a previous version of the document.  
 
 In RStudio open up the `first_repo.Rproj` file you created previously (if not already open) then open the `first_doc.Rmd` file (click on the file name in the `Files` tab in RStudio).  
 
@@ -488,7 +488,7 @@ knitr::include_graphics(path = "images/mod2.png")
 
 \  
 
-To stage these files tick the 'Staged' box for each file and click on the 'Commit' button to take you to the 'Review Changes' window
+To stage these files tick the 'Staged' box for each file and click on the 'Commit' button to take you to the 'Review Changes' window.
 
 \  
 
@@ -540,7 +540,7 @@ knitr::include_graphics(path = "images/c_history.png")
 
 \  
 
-The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the **Date** the commit was made, **Author** of the commit and the commit message (**Subject**). There is also a unique identifier for the commit (**SHA** - Secure Hash Algorithm) and a **Parent** SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details [below](#undo)). You can also view the contents of each file by clicking on the 'View file @ SHA key` link (in our case 'View file @ 2b4693d1').  
+The history window is split into two parts. The top pane lists every commit you have made in this repository (with associated commit messages) starting with the most recent one at the top and oldest at the bottom. You can click on each of these commits and the bottom pane shows you the changes you have made along with a summary of the **Date** the commit was made, **Author** of the commit and the commit message (**Subject**). There is also a unique identifier for the commit (**SHA** - Secure Hash Algorithm) and a **Parent** SHA which identifies the previous commit. These SHA identifiers are really important as you can use them to view and revert to previous versions of files (details [below](#undo)). You can also view the contents of each file by clicking on the 'View file @ SHA key' link (in our case 'View file @ 2b4693d1').  
 
 \  
 
@@ -608,7 +608,7 @@ If you have staged your files, but not committed them then simply unstage them b
 
 #### Staged and committed but not pushed {-}
 
-If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the 'Amend previous commit` box in the 'Review Changes' window before committing.   
+If you have made a mistake or have forgotten to include a file in your last commit which you have not yet pushed to GitHub, you can just fix your mistake, save your changes, and then amend your previous commit. You can do this by staging your file and then tick the 'Amend previous commit' box in the 'Review Changes' window before committing.   
 
 \  
 
