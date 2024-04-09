@@ -389,10 +389,10 @@ We can see an obvious problem, all of our variables have been imported as factor
 
 There are numerous other functions to import data from a variety of sources and formats. Most of these functions are contained in packages that you will need to install before using them. We list a couple of the more useful packages and functions below. 
 
-The `fread()`\index{fread} function from the `read.table` package \index{read.table package} is great for importing large data files quickly and efficiently (much faster than the `read.table()` function). One of the great things about the `fread()` function is that it will automatically detect many of the arguments you would normally need to specify (like `sep =` etc). One of the things you will need to consider though is that the `fread()` function will return a `data.table` object not a `data.frame` as would be the case with the `read.table()` function. This is usually not a problem as you can pass a `data.table` object to any function that only accepts `data.frame` objects. To learn more about the differences between `data.table` and `data.frame` objects see [here][data-table]. 
+The `fread()`\index{fread} function from the `data.table` package \index{read.table package} is great for importing large data files quickly and efficiently (much faster than the `read.table()` function). One of the great things about the `fread()` function is that it will automatically detect many of the arguments you would normally need to specify (like `sep =` etc). One thing you might need to consider is that the `fread()` function will return a `data.table` object by default not a `data.frame` as would be the case with the `read.table()` function. This is usually not a problem and you can change this default behaviour by using the argument `data.table = FALSE` when you use `fread()` if you prefer a `data.frame` object. To learn more about the differences between `data.table` and `data.frame` objects see [here][data-table]. 
 
 ```{r df8, echo=TRUE, eval=FALSE}
-library(read.table)
+library(data.table)
 all_data <- fread(file = 'data/flower.txt')
 ```
 
@@ -1067,17 +1067,17 @@ write.csv(flowers_df2, file = 'data/flowers_04_12.csv', row.names = FALSE)
 
 As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the `write.table()` function. If you followed the ['Other import functions'](#import_other) section of this Chapter you will already have the required packages installed. 
 
-The `fwrite()`\index{fwrite()} function from the `read.table` package is very efficient at exporting large data objects and is much faster than the `write.table()` function. It's also quite simple to use as it has most of the same arguments as `write.table()`. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.
+The `fwrite()`\index{fwrite()} function from the `data.table` package is very efficient at exporting large data objects and is much faster than the `write.table()` function. It's also quite simple to use as it has most of the same arguments as `write.table()`. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.
 
 ```{r export5, echo=TRUE, eval=FALSE}
-library(read.table)
+library(data.table)
 fwrite(flowers_df2, file = 'data/flowers_04_12.txt', sep = "\t")
 ```
 
 To export a csv delimited file it's even easier as we don't even need to include the `sep =` argument.
 
 ```{r export6, echo=TRUE, eval=FALSE}
-library(read.table)
+library(data.table)
 fwrite(flowers_df2, file = 'data/flowers_04_12.csv')
 ```
 

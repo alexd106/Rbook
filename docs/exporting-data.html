@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-03-27" />
+<meta name="date" content="2024-04-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -464,11 +464,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="other-export-functions" class="section level3 hasAnchor" number="3.6.2">
 <h3><span class="header-section-number">3.6.2</span> Other export functions<a href="exporting-data.html#other-export-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>As with importing data files into R, there are also many alternative functions for exporting data to external files beyond the <code>write.table()</code> function. If you followed the <a href="importing-data.html#import_other">‘Other import functions’</a> section of this Chapter you will already have the required packages installed.</p>
-<p>The <code>fwrite()</code> function from the <code>read.table</code> package is very efficient at exporting large data objects and is much faster than the <code>write.table()</code> function. It’s also quite simple to use as it has most of the same arguments as <code>write.table()</code>. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.</p>
-<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="exporting-data.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(read.table)</span>
+<p>The <code>fwrite()</code> function from the <code>data.table</code> package is very efficient at exporting large data objects and is much faster than the <code>write.table()</code> function. It’s also quite simple to use as it has most of the same arguments as <code>write.table()</code>. To export a tab delimited text file we just need to specify the data frame name, the output file name and file path and the separator between columns.</p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb184-1"><a href="exporting-data.html#cb184-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb184-2"><a href="exporting-data.html#cb184-2" tabindex="-1"></a><span class="fu">fwrite</span>(flowers_df2, <span class="at">file =</span> <span class="st">&#39;data/flowers_04_12.txt&#39;</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>To export a csv delimited file it’s even easier as we don’t even need to include the <code>sep =</code> argument.</p>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="exporting-data.html#cb185-1" tabindex="-1"></a><span class="fu">library</span>(read.table)</span>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="exporting-data.html#cb185-1" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
 <span id="cb185-2"><a href="exporting-data.html#cb185-2" tabindex="-1"></a><span class="fu">fwrite</span>(flowers_df2, <span class="at">file =</span> <span class="st">&#39;data/flowers_04_12.csv&#39;</span>)</span></code></pre></div>
 <p>The <code>readr</code> package also comes with two useful functions for quickly writing data to external files: the <code>write_tsv()</code> function for writing tab delimited files and the <code>write_csv()</code> function for saving comma separated values (csv) files.</p>
 <div class="sourceCode" id="cb186"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb186-1"><a href="exporting-data.html#cb186-1" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
