@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.2 Simple base R plots | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.2 Simple base R plots | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -437,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb187-3"><a href="simple-base-r-plots.html#cb187-3" tabindex="-1"></a>                        <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb187-4"><a href="simple-base-r-plots.html#cb187-4" tabindex="-1"></a></span>
 <span id="cb187-5"><a href="simple-base-r-plots.html#cb187-5" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot1-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot1-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>R has plotted the values of <code>weight</code> (on the y axis) against an index since we are only plotting one variable to plot. The index is just the order of the <code>weight</code> values in the data frame (1 first in the data frame and 97 last). The <code>weight</code> variable name has been automatically included as a y axis label and the axes scales have been automatically set.</p>
 <p>If we’d only included the variable <code>weight</code> rather than <code>flowers$weight</code>, the <code>plot()</code> function will display an error as the variable <code>weight</code> only exists in the <code>flowers</code> data frame object.</p>
 <div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="simple-base-r-plots.html#cb188-1" tabindex="-1"></a><span class="fu">plot</span>(weight)</span>
@@ -446,10 +447,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="simple-base-r-plots.html#cb189-1" tabindex="-1"></a><span class="fu">with</span>(flowers, <span class="fu">plot</span>(weight)) </span></code></pre></div>
 <p>To plot a scatterplot of one numeric variable against another numeric variable we just need to include both variables as arguments when using the <code>plot()</code> function. For example to plot <code>shootarea</code> on the y axis and <code>weight</code> of the x axis.</p>
 <div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="simple-base-r-plots.html#cb190-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x =</span> flowers<span class="sc">$</span>weight, <span class="at">y =</span> flowers<span class="sc">$</span>shootarea)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot4-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot4-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>There is an equivalent approach for these types of plots which often causes some confusion at first. You can also use the formula notation when using the <code>plot()</code> function. However, in contrast to the previous method the formula method requires you to specify the y axis variable first, then a <code>~</code> and then our x axis variable.</p>
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="simple-base-r-plots.html#cb191-1" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>shootarea <span class="sc">~</span> flowers<span class="sc">$</span>weight)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot5-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot5-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Both of these two approaches are equivalent so we suggest that you just choose the one you prefer and go with it.</p>
 <p>You can also specify the type of graph you wish to plot using the argument <code>type =</code>. You can plot just the points (<code>type = "p"</code>, this is the default), just lines (<code>type = "l"</code>), both points and lines connected (<code>type = "b"</code>), both points and lines with the lines running through the points (<code>type = "o"</code>) and empty points joined by lines (<code>type = "c"</code>). For example, let’s use our skills from <a href="#funcs">Chapter 2</a> to generate two vectors of numbers (<code>my_x</code> and <code>my_y</code>) and then plot one against the other using different <code>type =</code> values to see what type of plots are produced. Don’t worry about the <code>par(mfrow = c(2, 2))</code> line of code yet. We’re just using this to split the plotting device so we can fit all four plots on the same device to save some space. See <a href="mult_graphs.html#mult_graphs">later</a> in the Chapter for more details about this. The top left plot is <code>type = "l"</code>, the top right <code>type = "b"</code>, bottom left <code>type = "o"</code> and bottom right is <code>type = "c"</code>.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="simple-base-r-plots.html#cb192-1" tabindex="-1"></a>my_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
@@ -460,7 +461,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb192-6"><a href="simple-base-r-plots.html#cb192-6" tabindex="-1"></a><span class="fu">plot</span>(my_x, my_y, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>)</span>
 <span id="cb192-7"><a href="simple-base-r-plots.html#cb192-7" tabindex="-1"></a><span class="fu">plot</span>(my_x, my_y, <span class="at">type =</span> <span class="st">&quot;o&quot;</span>)</span>
 <span id="cb192-8"><a href="simple-base-r-plots.html#cb192-8" tabindex="-1"></a><span class="fu">plot</span>(my_x, my_y, <span class="at">type =</span> <span class="st">&quot;c&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot6-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot6-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><em>Play around:</em> Try to create four more plots by using <code>type = 'p'</code>, <code>type = 'h'</code>, <code>type = 's'</code>, and <code>type = 'n'</code> arguments in <code>plot()</code> function.</p>
 <p>Admittedly the plots we’ve produced so far don’t look anything particularly special. However, the <code>plot()</code> function is incredibly versatile and can generate a large range of plots which you can customise to your own taste. We’ll cover how to customise plots <a href="custom_plot.html#custom_plot">later</a> in the Chapter. As a quick aside, the <code>plot()</code> function is also what’s known as a generic function which means it can change its default behaviour depending on the type of object used as an argument. You will see an example of this in <a href="simple_lm.html#simple_lm">Chapter 6</a> where we use the <code>plot()</code> function to generate diagnostic plots of residuals from a linear model object (bet you can’t wait!).</p>
 </div>
@@ -468,74 +469,74 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">4.2.2</span> Histograms<a href="simple-base-r-plots.html#histograms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Frequency histograms are useful when you want to get an idea about the distribution of values in a numeric variable. The <code>hist()</code> function takes a numeric vector as its main argument. Let’s generate a histogram of the <code>height</code> values.</p>
 <div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="simple-base-r-plots.html#cb193-1" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot7-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot7-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>The <code>hist()</code> function automatically creates the breakpoints (or bins) in the histogram using the <a href="https://en.wikipedia.org/wiki/Histogram">Sturges</a> formula unless you specify otherwise by using the <code>break =</code> argument. For example, let’s say we want to plot our histogram with breakpoints every 1 cm flower height. We first generate a sequence from zero to the maximum value of <code>height</code> (18 rounded up) in steps of 1 using the <code>seq()</code> function. We can then use this sequence with the <code>breaks =</code> argument. While we’re at it, let’s also replace the ugly title for something a little better using the <code>main =</code> argument</p>
 <div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="simple-base-r-plots.html#cb194-1" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb194-2"><a href="simple-base-r-plots.html#cb194-2" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height, <span class="at">breaks =</span> brk, <span class="at">main =</span> <span class="st">&quot;petunia height&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot8-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot8-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>You can also display the histogram as a proportion rather than a frequency by using the <code>freq = FALSE</code> argument.</p>
 <div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="simple-base-r-plots.html#cb195-1" tabindex="-1"></a>brk <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">0</span>, <span class="at">to =</span> <span class="dv">18</span>, <span class="at">by =</span> <span class="dv">1</span>)</span>
 <span id="cb195-2"><a href="simple-base-r-plots.html#cb195-2" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height, <span class="at">breaks =</span> brk, <span class="at">main =</span> <span class="st">&quot;petunia height&quot;</span>,</span>
 <span id="cb195-3"><a href="simple-base-r-plots.html#cb195-3" tabindex="-1"></a>      <span class="at">freq =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot9-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot9-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>An alternative to plotting just a straight up histogram is to add a <a href="https://en.wikipedia.org/wiki/Kernel_density_estimation">kernel density</a> curve to the plot. You can superimpose a density curve onto the histogram by first using the <code>density()</code> function to compute the kernel density estimates and then use the low level function <code>lines()</code> to add these estimates onto the plot as a line.</p>
 <div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="simple-base-r-plots.html#cb196-1" tabindex="-1"></a>dens <span class="ot">&lt;-</span> <span class="fu">density</span>(flowers<span class="sc">$</span>height)</span>
 <span id="cb196-2"><a href="simple-base-r-plots.html#cb196-2" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>height, <span class="at">breaks =</span> brk, <span class="at">main =</span> <span class="st">&quot;petunia height&quot;</span>,</span>
 <span id="cb196-3"><a href="simple-base-r-plots.html#cb196-3" tabindex="-1"></a>      <span class="at">freq =</span> <span class="cn">FALSE</span>)</span>
 <span id="cb196-4"><a href="simple-base-r-plots.html#cb196-4" tabindex="-1"></a><span class="fu">lines</span>(dens)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot10-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot10-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="box-and-violin-plots" class="section level3 hasAnchor" number="4.2.3">
 <h3><span class="header-section-number">4.2.3</span> Box and violin plots<a href="simple-base-r-plots.html#box-and-violin-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>OK, we’ll just come and out and say it, we love boxplots and their close relation the violin plot. Boxplots (or box-and-whisker plots to give them their full name) are very useful when you want to graphically summarise the distribution of a variable, identify potential unusual values and compare distributions between different groups. The reason we love them is their ease of interpretation, transparency and relatively high data-to-ink ratio (i.e. they convey lots of information efficiently). We suggest that you try to use boxplots as much as possible when exploring your data and avoid the temptation to use the more ubiquitous bar plot (even with standard error or 95% confidence intervals bars). The problem with bar plots (aka dynamite plots) is that they hide important information from the reader such as the distribution of the data and assume that the error bars (or confidence intervals) are symmetric around the mean. Of course, it’s up to you what you do but if you’re tempted to use bar plots just Google ‘dynamite plots are evil’ or see <a href="http://users.stat.umn.edu/~rend0020/Teaching/STAT8801-2015Spring/handouts/24-dynamite.pdf">here</a> or <a href="https://thenode.biologists.com/leaving-bar-five-steps/research/">here</a> for a fuller discussion.</p>
 <p>To create a boxplot in R we use the <code>boxplot()</code> function. For example, let’s create a boxplot of the variable <code>weight</code> from our <code>flowers</code> data frame. We can also include a y axis label using the <code>ylab =</code> argument.</p>
 <div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="simple-base-r-plots.html#cb197-1" tabindex="-1"></a><span class="fu">boxplot</span>(flowers<span class="sc">$</span>weight, <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot11-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot11-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>The thick horizontal line in the middle of the box is the median value of <code>weight</code> (around 11 g). The upper line of the box is the upper quartile (75<sup>th</sup> percentile) and the lower line is the lower quartile (25<sup>th</sup> percentile). The distance between the upper and lower quartiles is known as the inter quartile range and represents the values of <code>weight</code> for 50% of the data. The dotted vertical lines are called the whiskers and their length is determined as 1.5 x the inter quartile range. Data points that are plotted outside the the whiskers represent potential unusual observations. This doesn’t mean they are unusual, just that they warrant a closer look. We recommend using boxplots in combination with Cleveland dotplots to identify potential unusual observations (see the <a href="simple-base-r-plots.html#dotcharts">next</a> section of this Chapter for more details). The neat thing about boxplots is that they not only provide a measure of central tendency (the median value) they also give you an idea about the distribution of the data. If the median line is more or less in the middle of the box (between the upper and lower quartiles) and the whiskers are more or less the same length then you can be reasonably sure the distribution of your data is symmetrical.</p>
 <p>If we want examine how the distribution of a variable changes between different levels of a factor we need to use the formula notation with the <code>boxplot()</code> function. For example, let’s plot our <code>weight</code> variable again, but this time see how this changes with each level of <code>nitrogen</code>. When we use the formula notation with <code>boxplot()</code> we can use the <code>data =</code> argument to save some typing. We’ll also introduce an x axis label using the <code>xlab =</code> argument.</p>
 <div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="simple-base-r-plots.html#cb198-1" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> nitrogen, <span class="at">data =</span> flowers, </span>
 <span id="cb198-2"><a href="simple-base-r-plots.html#cb198-2" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;nitrogen level&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot12-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot12-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>The factor levels are plotted in the same order defined by our factor variable <code>nitrogen</code> (often alphabetically). To change the order we need to change the order of our levels of the <code>nitrogen</code> factor in our data frame using the <code>factor()</code> function and then re-plot the graph. Let’s plot our boxplot with our factor levels going from <code>low</code> to <code>high</code>.</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="simple-base-r-plots.html#cb199-1" tabindex="-1"></a>flowers<span class="sc">$</span>nitrogen <span class="ot">&lt;-</span> <span class="fu">factor</span>(flowers<span class="sc">$</span>nitrogen, </span>
 <span id="cb199-2"><a href="simple-base-r-plots.html#cb199-2" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;low&quot;</span>, <span class="st">&quot;medium&quot;</span>, <span class="st">&quot;high&quot;</span>))</span>
 <span id="cb199-3"><a href="simple-base-r-plots.html#cb199-3" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> nitrogen, <span class="at">data =</span> flowers, </span>
 <span id="cb199-4"><a href="simple-base-r-plots.html#cb199-4" tabindex="-1"></a>          <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;nitrogen level&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot13-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot13-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can also group our variables by two factors in the same plot. Let’s plot our <code>weight</code> variable but this time plot a separate box for each <code>nitrogen</code> and treatment (<code>treat</code>) combination.</p>
 <div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="simple-base-r-plots.html#cb200-1" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> nitrogen <span class="sc">*</span> treat, <span class="at">data =</span> flowers, </span>
 <span id="cb200-2"><a href="simple-base-r-plots.html#cb200-2" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;nitrogen level&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot14-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot14-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>This plot looks OK, but some of the group labels are hidden as they’re too long to fit on the plot. There are a couple of ways to deal with this. Perhaps the easiest is to reduce the font size of the tick mark labels in the plot so they all fit using the <code>cex.axis =</code> argument. Let’s set the font size to be 30% smaller than the default with <code>cex.axis = 0.7</code>. We’ll show you how to further customise plots <a href="custom_plot.html#custom_plot">later</a> on in the Chapter.</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="simple-base-r-plots.html#cb201-1" tabindex="-1"></a><span class="fu">boxplot</span>(weight <span class="sc">~</span> nitrogen <span class="sc">*</span> treat, <span class="at">data =</span> flowers, </span>
 <span id="cb201-2"><a href="simple-base-r-plots.html#cb201-2" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;nitrogen level&quot;</span>, </span>
 <span id="cb201-3"><a href="simple-base-r-plots.html#cb201-3" tabindex="-1"></a>         <span class="at">cex.axis =</span> <span class="fl">0.7</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot15-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot15-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Violin plots are like a combination of a boxplot and a kernel density plot (you saw an example of a kernel density plot in the histogram section above) all rolled into one figure. We can create a violin plot in R using the <code>vioplot()</code> function from the <code>vioplot</code> package. You’ll need to first install this package using <code>install.packages('vioplot')</code> function as usual. The nice thing about the <code>vioplot()</code> function is that you use it in pretty much the same way you would use the <code>boxplot()</code> function. We’ll also use the argument <code>col = "lightblue"</code> to change the fill colour to light blue.</p>
 <div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="simple-base-r-plots.html#cb202-1" tabindex="-1"></a><span class="fu">library</span>(vioplot)</span>
 <span id="cb202-2"><a href="simple-base-r-plots.html#cb202-2" tabindex="-1"></a><span class="fu">vioplot</span>(weight <span class="sc">~</span> nitrogen, <span class="at">data =</span> flowers, </span>
 <span id="cb202-3"><a href="simple-base-r-plots.html#cb202-3" tabindex="-1"></a>         <span class="at">ylab =</span> <span class="st">&quot;weight (g)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;nitrogen level&quot;</span>,</span>
 <span id="cb202-4"><a href="simple-base-r-plots.html#cb202-4" tabindex="-1"></a>         <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot16-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot16-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>In the violin plot above we have our familiar boxplot for each <code>nitrogen</code> level but this time the median value is represented by a white circle. Plotted around each boxplot is the kernel density plot which represents the distribution of the data for each nitrogen level.</p>
 </div>
 <div id="dotcharts" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Dot charts<a href="simple-base-r-plots.html#dotcharts" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Identifying unusual observations (aka outliers) in numeric variables is extremely important as they may influence parameter estimates in your statistical model or indicate an error in your data. A really useful (if undervalued) plot to help identify outliers is the Cleveland dotplot. You can produce a dotplot in R very simply by using the <code>dotchart()</code> function.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="simple-base-r-plots.html#cb203-1" tabindex="-1"></a><span class="fu">dotchart</span>(flowers<span class="sc">$</span>height)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot17-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot17-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>In the dotplot above the data from the <code>height</code> variable is plotted along the x axis and the data is plotted in the order it occurs in the <code>flowers</code> data frame on the y axis (values near the top of the y axis occur later in the data frame with those lower down occurring at the beginning of the data frame). In this plot we have a single value extending to the right at about 17 cm but it doesn’t appear particularly large compared to the rest. An example of a dotplot with an unusual observation is given below.</p>
-<p><img src="Rbook_files/figure-html/plot18-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot18-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can also group the values in our <code>height</code> variable by a factor variable such as <code>nitrogen</code> using the <code>groups =</code> argument. This is useful for identifying unusual observations within a factor level that might be obscured when looking at all the data together.</p>
 <div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="simple-base-r-plots.html#cb204-1" tabindex="-1"></a><span class="fu">dotchart</span>(flowers<span class="sc">$</span>height, <span class="at">groups =</span> flowers<span class="sc">$</span>nitrogen)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot19-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot19-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pairs-plots" class="section level3 hasAnchor" number="4.2.5">
 <h3><span class="header-section-number">4.2.5</span> Pairs plots<a href="simple-base-r-plots.html#pairs-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Previously in this Chapter we used the <code>plot()</code> function to create a scatterplot to explore the relationship between two numeric variables. With datasets that contain many numeric variables, it’s often handy to create multiple scatterplots to visualise relationships between all these variables. We could use the <code>plot()</code> function to create each of these plot individually, but a much easier way is to use the <code>pairs()</code> function. The <code>pairs()</code> function creates a multi-panel scatterplot (sometimes called a scatterplot matrix) which plots all combinations of variables. Let’s create a multi-panel scatterplot of all of the numeric variables in our <code>flowers</code> data frame. Note, you may need to click on the ‘Zoom’ button in RStudio to display the plot clearly.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="simple-base-r-plots.html#cb205-1" tabindex="-1"></a><span class="fu">pairs</span>(flowers[, <span class="fu">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;leafarea&quot;</span>, </span>
 <span id="cb205-2"><a href="simple-base-r-plots.html#cb205-2" tabindex="-1"></a>                <span class="st">&quot;shootarea&quot;</span>, <span class="st">&quot;flowers&quot;</span>)])</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot20-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot20-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="simple-base-r-plots.html#cb206-1" tabindex="-1"></a><span class="co"># or we could use the equivalent</span></span>
 <span id="cb206-2"><a href="simple-base-r-plots.html#cb206-2" tabindex="-1"></a><span class="co"># pairs(flowers[, 4:8])</span></span></code></pre></div>
 <p>Interpretation of the pairs plot takes a bit of getting used to. The panels on the diagonal give the variable names. The first row of plots displays the <code>height</code> variable on the y axis and the variables <code>weight</code>, <code>leafarea</code>, <code>shootarea</code> and <code>flowers</code> on the x axis for each of the four plots respectively. The next row of plots have <code>weight</code> on the y axis and <code>height</code>, <code>leafarea</code>, <code>shootarea</code> and <code>flowers</code> on the x axis. We interpret the rest of the rows in the same way with the last row displaying the <code>flowers</code> variable on the y axis and the other variables on the x axis. Hopefully you’ll notice that the plots below the diagonal are the same plots as those above the diagonal just with the axis reversed.</p>
@@ -543,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="simple-base-r-plots.html#cb207-1" tabindex="-1"></a><span class="fu">pairs</span>(flowers[, <span class="fu">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;leafarea&quot;</span>, </span>
 <span id="cb207-2"><a href="simple-base-r-plots.html#cb207-2" tabindex="-1"></a>                <span class="st">&quot;shootarea&quot;</span>, <span class="st">&quot;flowers&quot;</span>)], </span>
 <span id="cb207-3"><a href="simple-base-r-plots.html#cb207-3" tabindex="-1"></a>                 <span class="at">panel =</span> panel.smooth)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot21-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot21-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>If you take a look at the help file for the <code>pairs()</code> function (<code>?pairs</code>) you’ll find a few more useful panel functions in the ‘Examples’ section. To use these functions you’ll first need to copy the code and paste it into the Console in RStudio (we go into more detail about defining functions in <a href="prog_r.html#prog_r">Chapter 7</a>). For example, the <code>panel.cor()</code> function calculates the absolute correlation coefficient between two variables and adjusts the size of the displayed coefficient depending on the value (higher coefficient values are bigger). Don’t worry if you don’t understand this code just yet, for the moment we just need to know how to use it (it might be fun to try and figure it out though!).</p>
 <div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="simple-base-r-plots.html#cb208-1" tabindex="-1"></a>panel.cor <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y, <span class="at">digits =</span> <span class="dv">2</span>, <span class="at">prefix =</span> <span class="st">&quot;&quot;</span>, cex.cor, ...)</span>
 <span id="cb208-2"><a href="simple-base-r-plots.html#cb208-2" tabindex="-1"></a>{</span>
@@ -559,7 +560,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="simple-base-r-plots.html#cb209-1" tabindex="-1"></a><span class="fu">pairs</span>(flowers[, <span class="fu">c</span>(<span class="st">&quot;height&quot;</span>, <span class="st">&quot;weight&quot;</span>, <span class="st">&quot;leafarea&quot;</span>, </span>
 <span id="cb209-2"><a href="simple-base-r-plots.html#cb209-2" tabindex="-1"></a>                <span class="st">&quot;shootarea&quot;</span>, <span class="st">&quot;flowers&quot;</span>)], </span>
 <span id="cb209-3"><a href="simple-base-r-plots.html#cb209-3" tabindex="-1"></a>                 <span class="at">lower.panel =</span> panel.cor)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot23-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot23-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Another useful function in the ‘Examples’ section is the <code>panel.hist()</code> function. This function generates a histogram of each of the variables in the plot. To use it, we must again copy the code and paste it into the Console in RStudio.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="simple-base-r-plots.html#cb210-1" tabindex="-1"></a>panel.hist <span class="ot">&lt;-</span> <span class="cf">function</span>(x, ...)</span>
 <span id="cb210-2"><a href="simple-base-r-plots.html#cb210-2" tabindex="-1"></a>{</span>
@@ -576,39 +577,39 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb211-3"><a href="simple-base-r-plots.html#cb211-3" tabindex="-1"></a>                 <span class="at">lower.panel =</span> panel.cor,</span>
 <span id="cb211-4"><a href="simple-base-r-plots.html#cb211-4" tabindex="-1"></a>                 <span class="at">diag.panel =</span> panel.hist,</span>
 <span id="cb211-5"><a href="simple-base-r-plots.html#cb211-5" tabindex="-1"></a>                 <span class="at">upper.panel =</span> panel.smooth)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot25-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot25-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="coplots" class="section level3 hasAnchor" number="4.2.6">
 <h3><span class="header-section-number">4.2.6</span> Coplots<a href="simple-base-r-plots.html#coplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When examining the relationship between two numeric variables, it is often useful to be able to determine whether a third variable is obscuring or changing any relationship. A really handy plot to use in these situations is a conditioning plot (also known as conditional scatterplot plot) which we can create in R by using the <code>coplot()</code> function. The <code>coplot()</code> function plots two variables but each plot is conditioned (<code>|</code>) by a third variable. This third variable can be either numeric or a factor. As an example, let’s look at how the relationship between the number of flowers (<code>flowers</code> variable) and the <code>weight</code> of petunia plants changes dependent on <code>leafarea</code>. Note the <code>coplot()</code> function has a <code>data =</code> argument so no need to use the <code>$</code> notation.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="simple-base-r-plots.html#cb212-1" tabindex="-1"></a><span class="fu">coplot</span>(flowers <span class="sc">~</span> weight<span class="sc">|</span>leafarea, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot26-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot26-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>It takes a little practice to interpret coplots. The number of flowers is plotted on the y axis and the weight of plants on the x axis. The six plots show the relationship between these two variables for different ranges of leaf area. The bar plot at the top indicates the range of leaf area values for each of the plots. The panels are read from bottom left to top right along each row. For example, the bottom left panel shows the relationship between number of flowers and weight for plants with the lowest range of leaf area values (approximately 5 - 11 cm<sup>2</sup>). The top right plot shows the relationship between flowers and weight for plants with a leaf area ranging from approximately 16 - 50 cm<sup>2</sup>. Notice that the range of values for leaf area differs between panels and that the ranges overlap from panel to panel. The <code>coplot()</code> function does it’s best to split the data up to ensure there are an adequate number of data points in each panel. If you don’t want to produce plots with overlapping data in the panel you can set the <code>overlap =</code> argument to <code>overlap = 0</code></p>
 <div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="simple-base-r-plots.html#cb213-1" tabindex="-1"></a><span class="fu">coplot</span>(flowers <span class="sc">~</span> weight<span class="sc">|</span>leafarea, <span class="at">data =</span> flowers, <span class="at">overlap =</span> <span class="dv">0</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot27-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot27-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>You can also use the <code>coplot()</code> function with factor conditioning variables. For example, we can examine the relationship between <code>flowers</code> and <code>weight</code> variables conditioned on the factor <code>nitrogen</code>. The bottom left plot is the relationship between <code>flowers</code> and <code>weight</code> for those plants in the <code>low</code> nitrogen treatment. The top left plot shows the same relationship but for plants in the <code>high</code> nitrogen treatment.</p>
 <div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="simple-base-r-plots.html#cb214-1" tabindex="-1"></a><span class="fu">coplot</span>(flowers <span class="sc">~</span> weight<span class="sc">|</span>nitrogen, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot28-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot28-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can even use two conditioning variables (either numeric or factors). Let’s look at the relationship between <code>flowers</code> and <code>height</code> but this time condition on both <code>nitrogen</code> and <code>treat</code>.</p>
 <div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="simple-base-r-plots.html#cb215-1" tabindex="-1"></a><span class="fu">coplot</span>(flowers <span class="sc">~</span> weight<span class="sc">|</span>nitrogen <span class="sc">*</span> treat, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot29-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot29-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>The bottom row of plots are for plants in the <code>notip</code> treatment and the top row for plants in the <code>tip</code> treatment. So the bottom left plot shows the relationship between <code>flowers</code> and <code>weight</code> for plants grown in <code>low</code> nitrogen with the <code>notip</code> treatment. The top right plot are those plants grown in <code>high</code> nitrogen with the <code>tip</code> treatment.</p>
 <p>Similar to the <code>pairs()</code> function we can also apply functions to each of the panels using the <code>panel =</code> argument. For example, let’s add a separate line of best fit from a linear model to each of the panels. Don’t worry about the complicated looking code for now, this example is just included to give you an idea about some of the useful things you can do with base R plotting functions. We will introduce linear models in <a href="simple_lm.html#simple_lm">Chapter 6</a> and cover how to write functions in <a href="prog_r.html#prog_r">Chapter 7</a>.</p>
 <div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="simple-base-r-plots.html#cb216-1" tabindex="-1"></a><span class="fu">coplot</span>(flowers <span class="sc">~</span> weight<span class="sc">|</span>nitrogen <span class="sc">*</span> treat, <span class="at">data =</span> flowers,</span>
 <span id="cb216-2"><a href="simple-base-r-plots.html#cb216-2" tabindex="-1"></a>        <span class="at">panel =</span> <span class="cf">function</span>(x, y, ...) {</span>
 <span id="cb216-3"><a href="simple-base-r-plots.html#cb216-3" tabindex="-1"></a>        <span class="fu">points</span>(x, y, ...)</span>
 <span id="cb216-4"><a href="simple-base-r-plots.html#cb216-4" tabindex="-1"></a>        <span class="fu">abline</span>(<span class="fu">lm</span>(y <span class="sc">~</span> x), <span class="at">col =</span> <span class="st">&quot;blue&quot;</span>)})</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot30-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot30-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="lattice-plots" class="section level3 hasAnchor" number="4.2.7">
 <h3><span class="header-section-number">4.2.7</span> Lattice plots<a href="simple-base-r-plots.html#lattice-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Many of the plots we’ve previously created using base R graphics can also be created using functions from the <code>lattice</code> package. For example, we can recreate the frequency histogram of the <code>height</code> variable in our <code>flowers</code> data frame using the <code>histogram()</code> function. All of the plotting functions in the lattice package take the formula notation which is why we need to include <code>~ height</code> as our first argument. We also need to specify that we want a frequency histogram by using the argument <code>type = "count"</code>. Don’t forget to first make the package available using <code>library(lattice)</code>.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="simple-base-r-plots.html#cb217-1" tabindex="-1"></a><span class="fu">library</span>(lattice)</span>
 <span id="cb217-2"><a href="simple-base-r-plots.html#cb217-2" tabindex="-1"></a><span class="fu">histogram</span>(<span class="sc">~</span> height, <span class="at">type =</span> <span class="st">&quot;count&quot;</span>, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot31-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot31-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Or perhaps we would like a boxplot of our <code>weight</code> variable for each level of <code>nitrogen</code> using the <code>bwplot()</code> function.</p>
 <div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="simple-base-r-plots.html#cb218-1" tabindex="-1"></a><span class="fu">bwplot</span>(weight <span class="sc">~</span> nitrogen, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot32-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot32-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>A (non-exhaustive) list of lattice functions and their base R equivalents is given in the table below. </p>
 <p> </p>
 <table>
@@ -660,24 +661,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>Where lattice plots really come into their own is when we want to plot graphs in multiple panels. For example, let’s plot a histogram of our <code>height</code> variable again but this time create a separate histogram for each <code>nitrogen</code> level. We do this by including the <code>|</code> (pipe) symbol which we read as <em>‘height conditional on nitrogen level’</em>. Also notice that the axis scales are the same for each of the panels to aid comparison which is the default for lattice plots.</p>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="simple-base-r-plots.html#cb219-1" tabindex="-1"></a><span class="fu">histogram</span>(<span class="sc">~</span> height <span class="sc">|</span> nitrogen, <span class="at">type =</span> <span class="st">&quot;count&quot;</span>, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot33-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot33-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>If we want to change the layout of our plots we can use the <code>layout =</code> argument. Perhaps we prefer all of the graphs to be stacked one on top of the other in which case we would use <code>layout = c(1, 3)</code> to specify 1 column and 3 rows of plots.</p>
 <div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="simple-base-r-plots.html#cb220-1" tabindex="-1"></a><span class="fu">histogram</span>(<span class="sc">~</span> height <span class="sc">|</span> nitrogen, <span class="at">type =</span> <span class="st">&quot;count&quot;</span>, </span>
 <span id="cb220-2"><a href="simple-base-r-plots.html#cb220-2" tabindex="-1"></a>           <span class="at">layout =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot34-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot34-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can also easily create conditional boxplots using the same logic.</p>
 <div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="simple-base-r-plots.html#cb221-1" tabindex="-1"></a><span class="fu">bwplot</span>(weight <span class="sc">~</span> nitrogen <span class="sc">|</span> block, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot35-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot35-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Notice in the plot above that the block names don’t seem to be displayed (actually they are, the’re just represented as orange vertical bars in the panel name). The reason for this is that our <code>block</code> variable is an integer variable (you can check this with <code>class(flowers$block)</code>) as the blocks were coded as either a 1 or a 2 in the original dataset that we imported into R. We can change this by creating a new variable in our data frame and use the <code>factor()</code> function to convert <code>block</code> to a factor (<code>flowers$Fblock &lt;- factor(flowers$block)</code>) and then use the <code>Fblock</code> variable as the conditioning variable. Or we can just change <code>block</code> to be a factor <em>‘on-the-fly’</em> when we use it in the <code>bwplot()</code> function. Note, this doesn’t change the <code>block</code> variable in the <code>flowers</code> data frame, just temporarily when we use the <code>bwplot()</code> function.</p>
 <div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="simple-base-r-plots.html#cb222-1" tabindex="-1"></a><span class="fu">bwplot</span>(weight <span class="sc">~</span> nitrogen <span class="sc">|</span> <span class="fu">factor</span>(block), <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot36-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot36-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>We can also include more than one conditioning variable. For example, let’s create a scatter plot of <code>height</code> against <code>weight</code> for each level of <code>nitrogen</code> and <code>treat</code>. To do this we’ll use the lattice <code>xyplot()</code> function.</p>
 <div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="simple-base-r-plots.html#cb223-1" tabindex="-1"></a><span class="fu">xyplot</span>(height <span class="sc">~</span> weight <span class="sc">|</span> nitrogen <span class="sc">*</span> treat, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot37-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot37-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>If we want to highlight which data points come from <code>block 1</code> and which from <code>block 2</code> by automatically changing the plotting symbols we can use the <code>groups =</code> argument. We’ll also include the argument <code>auto.key = TRUE</code> to automatically generate a legend.</p>
 <div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="simple-base-r-plots.html#cb224-1" tabindex="-1"></a><span class="fu">xyplot</span>(flowers <span class="sc">~</span> shootarea <span class="sc">|</span> nitrogen <span class="sc">*</span> treat, </span>
 <span id="cb224-2"><a href="simple-base-r-plots.html#cb224-2" tabindex="-1"></a>        <span class="at">groups =</span> block, <span class="at">auto.key =</span> <span class="cn">TRUE</span>, <span class="at">data =</span> flowers)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot38-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot38-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Hopefully, you’re getting the idea that we can create really informative exploratory plots quite easily using either base R or lattice graphics. Which one you use is entirely up to you (that’s the beauty of using R, you get to choose) and we happily mix and match to suit our needs. In the next section we cover how to customise your base R plots to get them to look exactly how you want.</p>
 </div>
 </div>
@@ -701,33 +702,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/04-base_r_graphics.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/04-base_r_graphics.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

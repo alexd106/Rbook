@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.3 Importing data | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.3 Importing data | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -438,21 +439,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.3.1</span> Saving files to import<a href="importing-data.html#saving-files-to-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The easiest method of creating a data file to import into R is to enter your data into a spreadsheet using either Microsoft Excel or LibreOffice Calc and save the spreadsheet as a tab delimited file. We prefer LibreOffice Calc as it’s open source, platform independent and free but MS Excel is OK too (but see <a href="https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-1044-7">here</a> for some gotchas). Here’s the data from the petunia experiment we dicussed previously displayed in LibreOffice. If you want to follow along you can download the data file (<em>‘flower.xls’</em>) from the companion website <a href="https://alexd106.github.io/intro2R/data.html">here</a>.</p>
 <p> </p>
-<p><img src="images/libre_off.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="images/libre_off.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>For those of you unfamiliar with the tab delimited file format it simply means that data in different columns are separated with a ‘tab’ character (yes, the same one as on your keyboard) and is usually saved as a file with a ‘.txt’ extension (you might also see <code>.tsv</code> which is short for tab separated values).</p>
 <p>To save a spreadsheet as a tab delimited file in LibreOffice Calc select <code>File</code> -&gt; <code>Save as ...</code> from the main menu. You will need to specify the location you want to save your file in the ‘Save in folder’ option and the name of the file in the ‘Name’ option. In the drop down menu located above the ‘Save’ button change the default ‘All formats’ to ‘Text CSV (.csv)’.</p>
 <p> </p>
-<p><img src="images/libre_off1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="images/libre_off1.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Click the Save button and then select the ‘Use Text CSV Format’ option. In the next pop-up window select <code>{Tab}</code> from the drop down menu in the ‘Field delimiter’ option. Click on OK to save the file.</p>
 <p> </p>
-<p><img src="images/libre_off2.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><img src="images/libre_off2.png" alt="" width="40%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>The resulting file will annoyingly have a ‘.csv’ extension even though we’ve saved it as a tab delimited file. Either live with it or rename the file with a ‘.txt’ extension instead.</p>
 <p>In MS Excel, select <code>File</code> -&gt; <code>Save as ...</code> from the main menu and navigate to the folder where you want to save the file. Enter the file name (keep it fairly short, <a href="file_names.html#file_names">no spaces</a>!) in the ‘Save as:’ dialogue box. In the ‘File format:’ dialogue box click on the down arrow to open the drop down menu and select ‘Text (Tab delimited)’ as your file type. Select OK to save the file.</p>
 <p> </p>
-<p><img src="images/ms_excel1.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="images/ms_excel1.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>There are a couple of things to bear in mind when saving files to import into R which will make your life easier in the long run. Keep your column headings (if you have them) short and informative. Also avoid spaces in your column headings by replacing them with an underscore or a dot (i.e. replace <code>shoot height</code> with <code>shoot_height</code> or <code>shoot.height</code>) and avoid using special characters (i.e. <code>leaf area (mm^2)</code>). Remember, if you have missing data in your data frame (empty cells) you should use an <code>NA</code> to represent these missing values. This will keep the data frame tidy.</p>
 </div>
@@ -493,8 +494,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Other useful arguments include <code>dec =</code> and <code>na.strings =</code>. The <code>dec =</code> argument allows you to change the default character (<code>.</code>) used for a decimal point. This is useful if you’re in a country where decimal places are usually represented by a comma (i.e. <code>dec = ","</code>). The <code>na.strings =</code> argument allows you to import data where missing values are represented with a symbol other than <code>NA</code>. This can be quite common if you are importing data from other statistical software such as Minitab which represents missing values as a <code>*</code> (<code>na.strings = "*"</code>).</p>
 <p>If we just wanted to see the names of our variables (columns) in the data frame we can use the <code>names()</code> function which will return a character vector of the variable names.</p>
 <div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="importing-data.html#cb105-1" tabindex="-1"></a><span class="fu">names</span>(flowers)</span>
-<span id="cb105-2"><a href="importing-data.html#cb105-2" tabindex="-1"></a><span class="do">## [1] &quot;treat&quot;     &quot;nitrogen&quot;  &quot;block&quot;     &quot;height&quot;    &quot;weight&quot;    &quot;leafarea&quot; </span></span>
-<span id="cb105-3"><a href="importing-data.html#cb105-3" tabindex="-1"></a><span class="do">## [7] &quot;shootarea&quot; &quot;flowers&quot;</span></span></code></pre></div>
+<span id="cb105-2"><a href="importing-data.html#cb105-2" tabindex="-1"></a><span class="do">## [1] &quot;treat&quot;     &quot;nitrogen&quot;  &quot;block&quot;     &quot;height&quot;    &quot;weight&quot;    &quot;leafarea&quot;  &quot;shootarea&quot; &quot;flowers&quot;</span></span></code></pre></div>
 <p>R has a number of variants of the <code>read.table()</code> function that you can use to import a variety of file formats. Actually, these variants just use the <code>read.table()</code> function but include different combinations of arguments by default to help import different file types. The most useful of these are the <code>read.csv()</code>, <code>read.csv2()</code> and <code>read.delim()</code> functions. The <code>read.csv()</code> function is used to import comma separated value (.csv) files and assumes that the data in columns are separated by a comma (it sets <code>sep = ","</code> by default). It also assumes that the first row of the data contains the variable names by default (it sets <code>header = TRUE</code> by default). The <code>read.csv2()</code> function assumes data are separated by semicolons and that a comma is used instead of a decimal point (as in many European countries). The <code>read.delim()</code> function is used to import tab delimited data and also assumes that the first row of the data contains the variable names by default.</p>
 <div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="importing-data.html#cb106-1" tabindex="-1"></a><span class="co"># import .csv file</span></span>
 <span id="cb106-2"><a href="importing-data.html#cb106-2" tabindex="-1"></a>flowers <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="at">file =</span> <span class="st">&#39;data/flower.csv&#39;</span>) </span>
@@ -571,33 +571,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

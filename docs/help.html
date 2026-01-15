@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.5 Getting help | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.5 Getting help | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -437,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="help.html#cb77-1" tabindex="-1"></a>?mean</span></code></pre></div>
 <p>After you run the code, the help page is displayed in the ‘Help’ tab in the Files pane (usually in the bottom right of RStudio).</p>
 <p> </p>
-<p><img src="images/rs_help.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_help.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Admittedly the help files can seem anything but helpful when you first start using R. This is probably because they’re written in a very concise manner and the language used is often quite technical and full of jargon. Having said that, you do get used to this and will over time even come to appreciate a certain beauty in their brevity (honest!). One of the great things about the help files is that they all have a very similar structure regardless of the function. This makes it easy to navigate through the file to find exactly what you need.</p>
 <p>The first line of the help document contains information such as the name of the function and the package where the function can be found. There are also other headings that provide more specific information such as</p>
@@ -456,14 +457,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="help.html#cb79-1" tabindex="-1"></a>??mean</span></code></pre></div>
 <p>The results of the search will be displayed in RStudio under the ‘Help’ tab as before. The <code>help.search()</code> function searches through the help documentation, code demonstrations and package vignettes and displays the results as clickable links for further exploration.</p>
 <p> </p>
-<p><img src="images/rs_help2.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_help2.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Another useful function is <code>apropos()</code>. This function can be used to list all functions containing a specified character string. For example, to find all functions with <code>mean</code> in their name</p>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="help.html#cb80-1" tabindex="-1"></a><span class="fu">apropos</span>(<span class="st">&quot;mean&quot;</span>)</span>
-<span id="cb80-2"><a href="help.html#cb80-2" tabindex="-1"></a><span class="do">##  [1] &quot;.colMeans&quot;     &quot;.rowMeans&quot;     &quot;colMeans&quot;      &quot;kmeans&quot;       </span></span>
-<span id="cb80-3"><a href="help.html#cb80-3" tabindex="-1"></a><span class="do">##  [5] &quot;mean&quot;          &quot;mean_temp&quot;     &quot;mean.Date&quot;     &quot;mean.default&quot; </span></span>
-<span id="cb80-4"><a href="help.html#cb80-4" tabindex="-1"></a><span class="do">##  [9] &quot;mean.difftime&quot; &quot;mean.POSIXct&quot;  &quot;mean.POSIXlt&quot;  &quot;rowMeans&quot;     </span></span>
-<span id="cb80-5"><a href="help.html#cb80-5" tabindex="-1"></a><span class="do">## [13] &quot;vec_mean&quot;      &quot;weighted.mean&quot;</span></span></code></pre></div>
+<span id="cb80-2"><a href="help.html#cb80-2" tabindex="-1"></a><span class="do">##  [1] &quot;.colMeans&quot;          &quot;.rowMeans&quot;          &quot;colMeans&quot;           &quot;kmeans&quot;             &quot;mean&quot;               &quot;mean_cl_boot&quot;      </span></span>
+<span id="cb80-3"><a href="help.html#cb80-3" tabindex="-1"></a><span class="do">##  [7] &quot;mean_cl_normal&quot;     &quot;mean_sdl&quot;           &quot;mean_se&quot;            &quot;mean_temp&quot;          &quot;mean.Date&quot;          &quot;mean.default&quot;      </span></span>
+<span id="cb80-4"><a href="help.html#cb80-4" tabindex="-1"></a><span class="do">## [13] &quot;mean.difftime&quot;      &quot;mean.POSIXct&quot;       &quot;mean.POSIXlt&quot;       &quot;mean0&quot;              &quot;rollmean&quot;           &quot;rollmean.default&quot;  </span></span>
+<span id="cb80-5"><a href="help.html#cb80-5" tabindex="-1"></a><span class="do">## [19] &quot;rollmeanr&quot;          &quot;rowMeans&quot;           &quot;stat_weighted_mean&quot; &quot;StatWeightedMean&quot;   &quot;vec_mean&quot;           &quot;weighted_mean_sd&quot;  </span></span>
+<span id="cb80-6"><a href="help.html#cb80-6" tabindex="-1"></a><span class="do">## [25] &quot;weighted.mean&quot;</span></span></code></pre></div>
 <p>You can then bring up the help file for the relevant function.</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="help.html#cb81-1" tabindex="-1"></a><span class="fu">help</span>(<span class="st">&quot;kmeans&quot;</span>)</span></code></pre></div>
 <p>An extremely useful function is <code>RSiteSearch()</code> which enables you to search for keywords and phrases in function help pages and vignettes for all CRAN packages, and in CRAN task views. This function allows you to access the <a href="https://www.r-project.org/search.html" class="uri">https://www.r-project.org/search.html</a> search engine directly from the Console with the results displayed in your web browser.</p>
@@ -529,33 +531,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

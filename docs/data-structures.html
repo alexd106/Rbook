@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.2 Data structures | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.2 Data structures | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -433,13 +434,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">3.2.1</span> Scalars and vectors<a href="data-structures.html#scal_vecs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Perhaps the simplest type of data structure is the vector. You’ve already been introduced to vectors in <a href="#funcs">Chapter 2</a> although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include <code>NA</code> (remember this is special type of logical) to denote missing data in vectors with other data types.</p>
 <p> </p>
-<p><img src="images/scal_vec.png" width="40%" style="display: block; margin: auto;" /></p>
+<p><img src="images/scal_vec.png" alt="" width="40%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mat_array" class="section level3 hasAnchor" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Matrices and arrays<a href="data-structures.html#mat_array" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Another useful data structure used in many disciplines such as population ecology, theoretical and applied statistics is the matrix. A matrix is simply a vector that has additional attributes called dimensions. Arrays are just multidimensional matrices. Again, matrices and arrays must contain elements all of the same data class.</p>
 <p> </p>
-<p><img src="images/mat_array.png" width="50%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mat_array.png" alt="" width="50%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>A convenient way to create a matrix or an array is to use the <code>matrix()</code> and <code>array()</code> functions respectively. Below, we will create a matrix from a sequence 1 to 16 in four rows (<code>nrow = 4</code>) and fill the matrix row-wise (<code>byrow = TRUE</code>) rather than the default column-wise. When using the <code>array()</code> function we define the dimensions using the <code>dim =</code> argument, in our case 2 rows, 4 columns in 2 different matrices.</p>
 <div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="data-structures.html#cb89-1" tabindex="-1"></a>my_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">16</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)</span>
@@ -766,33 +767,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

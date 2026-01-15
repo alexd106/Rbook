@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>2.2 Objects in R | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="2.2 Objects in R | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -444,11 +445,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb30-2"><a href="objects-in-r.html#cb30-2" tabindex="-1"></a><span class="do">## [1] 48</span></span></code></pre></div>
 <p>Now that we’ve created this object, R knows all about it and will keep track of it during this current R session. All of the objects you create will be stored in the current workspace and you can view all the objects in your workspace in RStudio by clicking on the ‘Environment’ tab in the top right hand pane.</p>
 <p> </p>
-<p><img src="images/rs_env.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_env.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>If you click on the down arrow on the ‘List’ icon in the same pane and change to ‘Grid’ view RStudio will show you a summary of the objects including the type (numeric - it’s a number), the length (only one value in this object), its ‘physical’ size and its value (48 in this case).</p>
 <p> </p>
-<p><img src="images/rs_env2.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_env2.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>There are many different types of values that you can assign to an object. For example</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="objects-in-r.html#cb31-1" tabindex="-1"></a>my_obj2 <span class="ot">&lt;-</span> <span class="st">&quot;R is cool&quot;</span></span></code></pre></div>
@@ -457,13 +458,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb32-2"><a href="objects-in-r.html#cb32-2" tabindex="-1"></a>Error<span class="sc">:</span> unexpected symbol <span class="cf">in</span> <span class="st">&quot;my_obj2 &lt;- R is&quot;</span></span></code></pre></div>
 <p>Our workspace now contains both objects we’ve created so far with <code>my_obj2</code> listed as type character.</p>
 <p> </p>
-<p><img src="images/rs_env3.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_env3.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To change the value of an existing object we simply reassign a new value to it. For example, to change the value of <code>my_obj2</code> from <code>"R is cool"</code> to the number <code>1024</code>.</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="objects-in-r.html#cb33-1" tabindex="-1"></a>my_obj2 <span class="ot">&lt;-</span> <span class="dv">1024</span></span></code></pre></div>
 <p>Notice that the Type has changed to numeric and the value has changed to 1024 in the environment.</p>
 <p> </p>
-<p><img src="images/rs_env4.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="images/rs_env4.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Once we have created a few objects, we can do stuff with our objects. For example, the following code creates a new object <code>my_obj3</code> and assigns it the value of <code>my_obj</code> added to <code>my_obj2</code> which is 1072 (48 + 1024 = 1072).</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="objects-in-r.html#cb34-1" tabindex="-1"></a>my_obj3 <span class="ot">&lt;-</span> my_obj <span class="sc">+</span> my_obj2</span>
@@ -513,33 +514,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/02-basics.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

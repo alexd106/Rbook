@@ -1,0 +1,156 @@
+BiocManager::install('AnnotationHub')
+if (!require("BiocManager", quietly = TRUE))#
+    install.packages("BiocManager")#
+BiocManager::install(version = "3.20")
+BiocManager::install('AnnotationHub')
+library(AnnotationHub)
+ah = AnnotationHub()
+ah
+unique(ah$species)
+d <- display(ah)
+??display
+dm <- query(ah, c("Rangifer tarandus"))
+dm
+dm <- query(ah, c("Arabidopsis"))
+dm
+dm <- query(ah, c("Triticum"))
+dm
+dm <- query(ah, c("Triticum aestivum"))
+dm
+df <- mcols(dm)
+df
+dm["AH117294"]
+dm[["AH117294"]]
+sub_ah = query(ah, c("OrgDb", "Triticum aestivum"))
+sub_ah
+sub_ah = query(ah, c("OrgDb", "AH117294"))
+sub_ah
+sub_ah = query(ah, c("OrgDb", "Triticum aestivum"))
+sub_ah[1]
+sub_org <- sub_ah[[1]]
+sub_org
+exit
+columns(sub_org)
+keytypes(sub_org)
+head(keys(sub_org, keytype="GENENAME"))
+head(keys(sub_org, keytype="ENTREZID"))
+head(keys(sub_org, keytype="UNIGENE"))
+head(keys(sub_org, keytype="SYMBOL"))
+head(keys(sub_org, keytype="ALIAS"))
+head(keys(sub_org, keytype="GID"))
+head(keys(sub_org, keytype="CHR"))
+head(genes(sub_org))
+genes(sub_org)
+head(keys(sub_org, keytype="ACCNUM"))
+head(keys(sub_org, keytype="ALIAS"))
+head(keys(sub_org, keytype="GENENAME"))
+head(keys(sub_org, keytype="GID"))
+head(keys(sub_org, keytype="REFSEQ"))
+sub_ah = query(ah, c("Triticum aestivum"))
+sub_ah
+sub_ah = query(ah, c("org.Triticum_aestivum.eg.sqlite"))
+sub_ah
+edb <- ah[[names(sub_ah)]]
+head(edb)
+edb
+test <- transcripts(edb, columns = c("tx_id_version", "gene_id", "tx_id"),#
+                       return.type = "data.frame")
+library("ensembldb")
+BiocManager::install('ensembldb')
+library("ensembldb")
+?transcripts
+library(tximport)
+BiocManager::install('tximport')
+library(tximport)
+?transcripts
+test <- transcripts(edb, columns = c("tx_id_version", "gene_id", "tx_id"),#
+                       return.type = "data.frame")
+q()
+?dir.create
+q()
+library(ggplot2)#
+# Define node coordinates — central node is ID 5#
+nodes <- data.frame(#
+  id = 1:5,#
+  x = c(0.6, 0.6, 0.8, 0.8, 0.7),#
+  y = c(2.3, 2.5, 2.4, 2.6, 2.45)#
+)#
+#
+# Define edges including central node (5)#
+# edges <- data.frame(#
+#   from = c(1, 2, 2, 1, 1, 5, 5, 5, 5),#
+#   to   = c(2, 3, 4, 3, 4, 1, 2, 3, 4)#
+# )#
+#
+edges <- data.frame(#
+  from = c(1, 2, 1, 5, 5, 5, 5),#
+  to   = c(2, 4, 3, 1, 2, 3, 4)#
+)#
+# Merge to get edge coordinates#
+edges_full <- merge(edges, nodes, by.x = "from", by.y = "id")#
+edges_full <- merge(edges_full, nodes, by.x = "to", by.y = "id", suffixes = c("_from", "_to"))#
+#
+# Compute half-edge from node 3 to midpoint between 3 and 4#
+node3 <- nodes[nodes$id == 3, ]#
+node4 <- nodes[nodes$id == 4, ]#
+#
+mid_x <- (node3$x + node4$x) / 2#
+mid_y <- (node3$y + node4$y) / 2#
+#
+half_edge <- data.frame(#
+  x_from = node3$x,#
+  y_from = node3$y,#
+  x_to = mid_x,#
+  y_to = mid_y#
+)#
+#
+# Styling#
+logo_colour <- "#16626A"#
+central_colour <- "#E66100"#
+bhds_size <- 22#
+#
+# Plot#
+p <- ggplot() +#
+  # Curved full edges (all in teal)#
+  geom_curve(data = edges_full, aes(x = x_from, y = y_from, xend = x_to, yend = y_to),#
+             curvature = 0.2, size = 2, color = logo_colour) +#
+  # Half-edge from node 3 to midpoint with 4#
+  geom_segment(data = half_edge, aes(x = x_from, y = y_from, xend = x_to, yend = y_to),#
+               color = logo_colour, size = 2) +#
+  # Teal nodes (excluding central node)#
+  geom_point(data = subset(nodes, id != 5), aes(x = x, y = y),#
+             color = logo_colour, size = 10) +#
+  # Orange central node#
+  geom_point(data = subset(nodes, id == 5), aes(x = x, y = y),#
+             color = central_colour, size = 10) +#
+  # BHDS letters#
+  annotate("text", x = 0.95, y = 2.55, label = "B", size = bhds_size, fontface = "bold", color = logo_colour) +#
+  annotate("text", x = 1.1, y = 2.55, label = "H", size = bhds_size, fontface = "bold", color = logo_colour) +#
+  annotate("text", x = 0.95, y = 2.35, label = "D", size = bhds_size, fontface = "bold", color = logo_colour) +#
+  annotate("text", x = 1.1, y = 2.35, label = "S", size = bhds_size, fontface = "bold", color = logo_colour) +#
+  coord_fixed() +#
+  theme_void() +#
+  xlim(0.4, 1.7) + ylim(1.3, 3.3)#
+#
+# Display#
+print(p)
+q()
+3.2*10^20
+getwd()
+setwd('/Users/nhy163/Documents/Work/Repositories/Rbook/')
+getwd()
+list.files()
+library(bookdown)
+render_book("index.Rmd", "bookdown::gitbook")
+install.packages("tinytex")
+library(tinytex)
+tinytex::install_tinytex()
+tinytex::tinytex_root()
+tinytex::tlmgr("--version")
+tinytex::is_tinytex()
+library(bookdown)
+bookdown::render_book("index.Rmd", "bookdown::pdf_book")
+library(rmarkdown)
+rmarkdown::pandoc_available()
+rmarkdown::pandoc_available()
+q()

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6.2 Correlation | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6.2 Correlation | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -429,53 +430,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="correlation" class="section level2 hasAnchor" number="6.2">
 <h2><span class="header-section-number">6.2</span> Correlation<a href="correlation.html#correlation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In R, the Pearson’s product-moment correlation coefficient between two continuous variables can be estimated using the <code>cor()</code> function. Using the <code>trees</code> data set again, we can determine the correlation coefficient of the association between tree <code>Height</code> and <code>Volume</code>.</p>
-<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="correlation.html#cb343-1" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
-<span id="cb343-2"><a href="correlation.html#cb343-2" tabindex="-1"></a><span class="fu">str</span>(trees)</span>
-<span id="cb343-3"><a href="correlation.html#cb343-3" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    31 obs. of  3 variables:</span></span>
-<span id="cb343-4"><a href="correlation.html#cb343-4" tabindex="-1"></a><span class="do">##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></span>
-<span id="cb343-5"><a href="correlation.html#cb343-5" tabindex="-1"></a><span class="do">##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></span>
-<span id="cb343-6"><a href="correlation.html#cb343-6" tabindex="-1"></a><span class="do">##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></span>
-<span id="cb343-7"><a href="correlation.html#cb343-7" tabindex="-1"></a><span class="fu">cor</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume)</span>
-<span id="cb343-8"><a href="correlation.html#cb343-8" tabindex="-1"></a><span class="do">## [1] 0.5982497</span></span></code></pre></div>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="correlation.html#cb342-1" tabindex="-1"></a><span class="fu">data</span>(trees)</span>
+<span id="cb342-2"><a href="correlation.html#cb342-2" tabindex="-1"></a><span class="fu">str</span>(trees)</span>
+<span id="cb342-3"><a href="correlation.html#cb342-3" tabindex="-1"></a><span class="do">## &#39;data.frame&#39;:    31 obs. of  3 variables:</span></span>
+<span id="cb342-4"><a href="correlation.html#cb342-4" tabindex="-1"></a><span class="do">##  $ Girth : num  8.3 8.6 8.8 10.5 10.7 10.8 11 11 11.1 11.2 ...</span></span>
+<span id="cb342-5"><a href="correlation.html#cb342-5" tabindex="-1"></a><span class="do">##  $ Height: num  70 65 63 72 81 83 66 75 80 75 ...</span></span>
+<span id="cb342-6"><a href="correlation.html#cb342-6" tabindex="-1"></a><span class="do">##  $ Volume: num  10.3 10.3 10.2 16.4 18.8 19.7 15.6 18.2 22.6 19.9 ...</span></span>
+<span id="cb342-7"><a href="correlation.html#cb342-7" tabindex="-1"></a><span class="fu">cor</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume)</span>
+<span id="cb342-8"><a href="correlation.html#cb342-8" tabindex="-1"></a><span class="do">## [1] 0.5982497</span></span></code></pre></div>
 <p>or we can produce a matrix of correlation coefficients for all variables in a data frame</p>
-<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="correlation.html#cb344-1" tabindex="-1"></a><span class="fu">cor</span>(trees)</span>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="correlation.html#cb343-1" tabindex="-1"></a><span class="fu">cor</span>(trees)</span>
+<span id="cb343-2"><a href="correlation.html#cb343-2" tabindex="-1"></a><span class="do">##            Girth    Height    Volume</span></span>
+<span id="cb343-3"><a href="correlation.html#cb343-3" tabindex="-1"></a><span class="do">## Girth  1.0000000 0.5192801 0.9671194</span></span>
+<span id="cb343-4"><a href="correlation.html#cb343-4" tabindex="-1"></a><span class="do">## Height 0.5192801 1.0000000 0.5982497</span></span>
+<span id="cb343-5"><a href="correlation.html#cb343-5" tabindex="-1"></a><span class="do">## Volume 0.9671194 0.5982497 1.0000000</span></span></code></pre></div>
+<p>Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using <code>cor()</code> on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an <em>a priori</em> reason for doing so and remember the correlation coefficient assumes that associations are linear.</p>
+<p>If you have missing values in the variables you are trying to correlate, <code>cor()</code> will return an error message (as will many functions in R). You will either have to remove these observations (be very careful if you do this) or tell R what to do when an observation is missing. A useful argument you can use with the <code>cor()</code> function is <code>use = "complete.obs"</code>.</p>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="correlation.html#cb344-1" tabindex="-1"></a><span class="fu">cor</span>(trees, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
 <span id="cb344-2"><a href="correlation.html#cb344-2" tabindex="-1"></a><span class="do">##            Girth    Height    Volume</span></span>
 <span id="cb344-3"><a href="correlation.html#cb344-3" tabindex="-1"></a><span class="do">## Girth  1.0000000 0.5192801 0.9671194</span></span>
 <span id="cb344-4"><a href="correlation.html#cb344-4" tabindex="-1"></a><span class="do">## Height 0.5192801 1.0000000 0.5982497</span></span>
 <span id="cb344-5"><a href="correlation.html#cb344-5" tabindex="-1"></a><span class="do">## Volume 0.9671194 0.5982497 1.0000000</span></span></code></pre></div>
-<p>Note that the correlation coefficients are identical in each half of the matrix. Also, be aware that, although a matrix of coefficients can be useful, a little commonsense should be used when using <code>cor()</code> on data frames with numerous variables. It is not good practice to trawl through these types of matrices in the hope of finding large coefficients without having an <em>a priori</em> reason for doing so and remember the correlation coefficient assumes that associations are linear.</p>
-<p>If you have missing values in the variables you are trying to correlate, <code>cor()</code> will return an error message (as will many functions in R). You will either have to remove these observations (be very careful if you do this) or tell R what to do when an observation is missing. A useful argument you can use with the <code>cor()</code> function is <code>use = "complete.obs"</code>.</p>
-<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="correlation.html#cb345-1" tabindex="-1"></a><span class="fu">cor</span>(trees, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
-<span id="cb345-2"><a href="correlation.html#cb345-2" tabindex="-1"></a><span class="do">##            Girth    Height    Volume</span></span>
-<span id="cb345-3"><a href="correlation.html#cb345-3" tabindex="-1"></a><span class="do">## Girth  1.0000000 0.5192801 0.9671194</span></span>
-<span id="cb345-4"><a href="correlation.html#cb345-4" tabindex="-1"></a><span class="do">## Height 0.5192801 1.0000000 0.5982497</span></span>
-<span id="cb345-5"><a href="correlation.html#cb345-5" tabindex="-1"></a><span class="do">## Volume 0.9671194 0.5982497 1.0000000</span></span></code></pre></div>
 <p>The function <code>cor()</code> will return the correlation coefficient of two variables, but gives no indication whether the coefficient is significantly different from zero. To do this you need to use the function <code>cor.test()</code>.</p>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="correlation.html#cb346-1" tabindex="-1"></a><span class="fu">cor.test</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume)</span>
-<span id="cb346-2"><a href="correlation.html#cb346-2" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb346-3"><a href="correlation.html#cb346-3" tabindex="-1"></a><span class="do">##  Pearson&#39;s product-moment correlation</span></span>
-<span id="cb346-4"><a href="correlation.html#cb346-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb346-5"><a href="correlation.html#cb346-5" tabindex="-1"></a><span class="do">## data:  trees$Height and trees$Volume</span></span>
-<span id="cb346-6"><a href="correlation.html#cb346-6" tabindex="-1"></a><span class="do">## t = 4.0205, df = 29, p-value = 0.0003784</span></span>
-<span id="cb346-7"><a href="correlation.html#cb346-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true correlation is not equal to 0</span></span>
-<span id="cb346-8"><a href="correlation.html#cb346-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
-<span id="cb346-9"><a href="correlation.html#cb346-9" tabindex="-1"></a><span class="do">##  0.3095235 0.7859756</span></span>
-<span id="cb346-10"><a href="correlation.html#cb346-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb346-11"><a href="correlation.html#cb346-11" tabindex="-1"></a><span class="do">##       cor </span></span>
-<span id="cb346-12"><a href="correlation.html#cb346-12" tabindex="-1"></a><span class="do">## 0.5982497</span></span></code></pre></div>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="correlation.html#cb345-1" tabindex="-1"></a><span class="fu">cor.test</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume)</span>
+<span id="cb345-2"><a href="correlation.html#cb345-2" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb345-3"><a href="correlation.html#cb345-3" tabindex="-1"></a><span class="do">##  Pearson&#39;s product-moment correlation</span></span>
+<span id="cb345-4"><a href="correlation.html#cb345-4" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb345-5"><a href="correlation.html#cb345-5" tabindex="-1"></a><span class="do">## data:  trees$Height and trees$Volume</span></span>
+<span id="cb345-6"><a href="correlation.html#cb345-6" tabindex="-1"></a><span class="do">## t = 4.0205, df = 29, p-value = 0.0003784</span></span>
+<span id="cb345-7"><a href="correlation.html#cb345-7" tabindex="-1"></a><span class="do">## alternative hypothesis: true correlation is not equal to 0</span></span>
+<span id="cb345-8"><a href="correlation.html#cb345-8" tabindex="-1"></a><span class="do">## 95 percent confidence interval:</span></span>
+<span id="cb345-9"><a href="correlation.html#cb345-9" tabindex="-1"></a><span class="do">##  0.3095235 0.7859756</span></span>
+<span id="cb345-10"><a href="correlation.html#cb345-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb345-11"><a href="correlation.html#cb345-11" tabindex="-1"></a><span class="do">##       cor </span></span>
+<span id="cb345-12"><a href="correlation.html#cb345-12" tabindex="-1"></a><span class="do">## 0.5982497</span></span></code></pre></div>
 <p>Two non-parametric equivalents to Pearson correlation are available within the <code>cor.test()</code> function; Spearman’s rank and Kendall’s tau coefficient. To use either of these simply include the argument <code>method = "spearman"</code> or <code>method = "kendall"</code> depending on the test you wish to use. For example</p>
-<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="correlation.html#cb347-1" tabindex="-1"></a><span class="fu">cor.test</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
-<span id="cb347-2"><a href="correlation.html#cb347-2" tabindex="-1"></a><span class="do">## Warning in cor.test.default(trees$Height, trees$Volume, method = &quot;spearman&quot;):</span></span>
-<span id="cb347-3"><a href="correlation.html#cb347-3" tabindex="-1"></a><span class="do">## Cannot compute exact p-value with ties</span></span>
-<span id="cb347-4"><a href="correlation.html#cb347-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb347-5"><a href="correlation.html#cb347-5" tabindex="-1"></a><span class="do">##  Spearman&#39;s rank correlation rho</span></span>
-<span id="cb347-6"><a href="correlation.html#cb347-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb347-7"><a href="correlation.html#cb347-7" tabindex="-1"></a><span class="do">## data:  trees$Height and trees$Volume</span></span>
-<span id="cb347-8"><a href="correlation.html#cb347-8" tabindex="-1"></a><span class="do">## S = 2089.6, p-value = 0.0006484</span></span>
-<span id="cb347-9"><a href="correlation.html#cb347-9" tabindex="-1"></a><span class="do">## alternative hypothesis: true rho is not equal to 0</span></span>
-<span id="cb347-10"><a href="correlation.html#cb347-10" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
-<span id="cb347-11"><a href="correlation.html#cb347-11" tabindex="-1"></a><span class="do">##       rho </span></span>
-<span id="cb347-12"><a href="correlation.html#cb347-12" tabindex="-1"></a><span class="do">## 0.5787101</span></span></code></pre></div>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="correlation.html#cb346-1" tabindex="-1"></a><span class="fu">cor.test</span>(trees<span class="sc">$</span>Height, trees<span class="sc">$</span>Volume, <span class="at">method =</span> <span class="st">&quot;spearman&quot;</span>)</span>
+<span id="cb346-2"><a href="correlation.html#cb346-2" tabindex="-1"></a><span class="do">## Warning in cor.test.default(trees$Height, trees$Volume, method = &quot;spearman&quot;): Cannot compute exact p-value with ties</span></span>
+<span id="cb346-3"><a href="correlation.html#cb346-3" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb346-4"><a href="correlation.html#cb346-4" tabindex="-1"></a><span class="do">##  Spearman&#39;s rank correlation rho</span></span>
+<span id="cb346-5"><a href="correlation.html#cb346-5" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb346-6"><a href="correlation.html#cb346-6" tabindex="-1"></a><span class="do">## data:  trees$Height and trees$Volume</span></span>
+<span id="cb346-7"><a href="correlation.html#cb346-7" tabindex="-1"></a><span class="do">## S = 2089.6, p-value = 0.0006484</span></span>
+<span id="cb346-8"><a href="correlation.html#cb346-8" tabindex="-1"></a><span class="do">## alternative hypothesis: true rho is not equal to 0</span></span>
+<span id="cb346-9"><a href="correlation.html#cb346-9" tabindex="-1"></a><span class="do">## sample estimates:</span></span>
+<span id="cb346-10"><a href="correlation.html#cb346-10" tabindex="-1"></a><span class="do">##       rho </span></span>
+<span id="cb346-11"><a href="correlation.html#cb346-11" tabindex="-1"></a><span class="do">## 0.5787101</span></span></code></pre></div>
 </div>
             </section>
 
@@ -497,33 +497,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/06-stats.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/06-stats.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

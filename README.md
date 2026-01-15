@@ -21,3 +21,7 @@ To render the book you can either hit the 'Build Book' button (in the build tab)
 `rmarkdown::render_site(output_format = 'bookdown::gitbook', encoding = 'UTF-8')`
 
 If you've just installed the bookdown package then you may need to restart RStudio for the 'Build' tab to appear.
+
+To cite this book, please use the following reference:
+
+Douglas, A., Roos, D., Mancini, F., Couto, A., & Lusseau, D. (2025). An Introduction to R. https://doi.org/10.5281/zenodo.17866369

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>1.7 Working directories | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="1.7 Working directories | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -430,11 +431,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">1.7</span> Working directories<a href="work-d.html#work-d" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The working directory is the default location where R will look for files you want to load and where it will put any files you save. One of the great things about using RStudio Projects is that when you open a project it will automatically set your working directory to the appropriate location. You can check the file path of your working directory by looking at bar at the top of the Console pane. Note: the <code>~</code> symbol above is shorthand for <code>/Users/nhy163/</code> on a Mac computer (the same on Linux computers).</p>
 <p> </p>
-<p><img src="images/dir_struct.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><img src="images/dir_struct.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>You can also use the <code>getwd()</code> function in the Console which returns the file path of the current working directory.</p>
 <p> </p>
-<p><img src="images/dir_struct2.png" width="60%" style="display: block; margin: auto;" /></p>
+<p><img src="images/dir_struct2.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In the example above, the working directory is a folder called ‘first_project’ which is a subfolder of “Teaching’ in the ‘Alex’ folder which in turn is in a ‘Documents’ folder located in the ‘nhy163’ folder which itself is in the ‘Users’ folder. On a Windows based computer our working directory would also include a drive letter (i.e. <code>C:/Users/nhy163/Documents/Alex/Teaching/first_project</code>).</p>
 <p>If you weren’t using an RStudio Project then you would have to set your working directory using the <code>setwd()</code> function at the start of every R script (something we did for many years).</p>
@@ -450,8 +451,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb21-4"><a href="work-d.html#cb21-4" tabindex="-1"></a></span>
 <span id="cb21-5"><a href="work-d.html#cb21-5" tabindex="-1"></a><span class="co"># or</span></span>
 <span id="cb21-6"><a href="work-d.html#cb21-6" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="work-d.html#cb21-7" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/raw_data/mydata.txt&quot;</span>,</span>
-<span id="cb21-8"><a href="work-d.html#cb21-8" tabindex="-1"></a>    <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
+<span id="cb21-7"><a href="work-d.html#cb21-7" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;/Users/nhy163/Documents/Alex/Teaching/first_project/raw_data/mydata.txt&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">sep =</span> <span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>)</span></code></pre></div>
 <p>For those of you who want to take the notion of relative file paths a step further, take a look at the <code>here()</code> function in the <code>here</code> <a href="https://github.com/r-lib/here">package</a>. The <code>here()</code> function allows you to automagically build file paths for any file relative to the project root directory that are also operating system agnostic (works on a Mac, Windows or Linux machine). For example, to import our <code>mydata.txt</code> file from the <code>raw_data</code> directory just use</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="work-d.html#cb22-1" tabindex="-1"></a><span class="fu">library</span>(here)  <span class="co"># you may need to install the here package first</span></span>
 <span id="cb22-2"><a href="work-d.html#cb22-2" tabindex="-1"></a>dataf <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="fu">here</span>(<span class="st">&quot;raw_data&quot;</span>, <span class="st">&quot;mydata.txt&quot;</span>), </span>
@@ -484,33 +484,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/01-intro.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

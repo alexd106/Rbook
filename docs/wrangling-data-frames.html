@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.4 Wrangling data frames | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.4 Wrangling data frames | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -449,13 +450,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb112-11"><a href="wrangling-data-frames.html#cb112-11" tabindex="-1"></a><span class="do">##  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></span></code></pre></div>
 <p>To access the data in any of the variables (columns) in our data frame we can use the <code>$</code> notation. For example, to access the <code>height</code> variable in our <code>flowers</code> data frame we can use <code>flowers$height</code>. This tells R that the <code>height</code> variable is contained within the data frame <code>flowers</code>.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="wrangling-data-frames.html#cb113-1" tabindex="-1"></a>flowers<span class="sc">$</span>height</span>
-<span id="cb113-2"><a href="wrangling-data-frames.html#cb113-2" tabindex="-1"></a><span class="do">##  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0</span></span>
-<span id="cb113-3"><a href="wrangling-data-frames.html#cb113-3" tabindex="-1"></a><span class="do">## [16]  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5  7.7  6.4  8.8  9.2  6.2</span></span>
-<span id="cb113-4"><a href="wrangling-data-frames.html#cb113-4" tabindex="-1"></a><span class="do">## [31]  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5</span></span>
-<span id="cb113-5"><a href="wrangling-data-frames.html#cb113-5" tabindex="-1"></a><span class="do">## [46]  5.6 11.5  5.8  5.6  5.3  7.5  4.1  3.5  8.5  4.9  2.5  5.4  3.9  5.8  4.5</span></span>
-<span id="cb113-6"><a href="wrangling-data-frames.html#cb113-6" tabindex="-1"></a><span class="do">## [61]  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></span>
-<span id="cb113-7"><a href="wrangling-data-frames.html#cb113-7" tabindex="-1"></a><span class="do">## [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7</span></span>
-<span id="cb113-8"><a href="wrangling-data-frames.html#cb113-8" tabindex="-1"></a><span class="do">## [91]  3.7  3.2  3.9  3.3  5.5  4.4</span></span></code></pre></div>
+<span id="cb113-2"><a href="wrangling-data-frames.html#cb113-2" tabindex="-1"></a><span class="do">##  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5</span></span>
+<span id="cb113-3"><a href="wrangling-data-frames.html#cb113-3" tabindex="-1"></a><span class="do">## [26]  7.7  6.4  8.8  9.2  6.2  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5  5.6 11.5  5.8  5.6  5.3</span></span>
+<span id="cb113-4"><a href="wrangling-data-frames.html#cb113-4" tabindex="-1"></a><span class="do">## [51]  7.5  4.1  3.5  8.5  4.9  2.5  5.4  3.9  5.8  4.5  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></span>
+<span id="cb113-5"><a href="wrangling-data-frames.html#cb113-5" tabindex="-1"></a><span class="do">## [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7  3.7  3.2  3.9  3.3  5.5  4.4</span></span></code></pre></div>
 <p>This will return a vector of the <code>height</code> data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="wrangling-data-frames.html#cb114-1" tabindex="-1"></a>f_height <span class="ot">&lt;-</span> flowers<span class="sc">$</span>height</span>
 <span id="cb114-2"><a href="wrangling-data-frames.html#cb114-2" tabindex="-1"></a><span class="fu">mean</span>(f_height)</span>
@@ -651,14 +649,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb125-3"><a href="wrangling-data-frames.html#cb125-3" tabindex="-1"></a>  object <span class="st">&#39;height&#39;</span> not found</span></code></pre></div>
 <p>So how does this work? The logical test is <code>flowers$height &gt; 12</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> if <code>height</code> is greater than 12 and <code>FALSE</code> if <code>height</code> is not greater than 12.</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="wrangling-data-frames.html#cb126-1" tabindex="-1"></a>flowers<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb126-2"><a href="wrangling-data-frames.html#cb126-2" tabindex="-1"></a><span class="do">##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</span></span>
-<span id="cb126-3"><a href="wrangling-data-frames.html#cb126-3" tabindex="-1"></a><span class="do">## [13] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
-<span id="cb126-4"><a href="wrangling-data-frames.html#cb126-4" tabindex="-1"></a><span class="do">## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-5"><a href="wrangling-data-frames.html#cb126-5" tabindex="-1"></a><span class="do">## [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-6"><a href="wrangling-data-frames.html#cb126-6" tabindex="-1"></a><span class="do">## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-7"><a href="wrangling-data-frames.html#cb126-7" tabindex="-1"></a><span class="do">## [61] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-8"><a href="wrangling-data-frames.html#cb126-8" tabindex="-1"></a><span class="do">## [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-9"><a href="wrangling-data-frames.html#cb126-9" tabindex="-1"></a><span class="do">## [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+<span id="cb126-2"><a href="wrangling-data-frames.html#cb126-2" tabindex="-1"></a><span class="do">##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></span>
+<span id="cb126-3"><a href="wrangling-data-frames.html#cb126-3" tabindex="-1"></a><span class="do">## [22] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb126-4"><a href="wrangling-data-frames.html#cb126-4" tabindex="-1"></a><span class="do">## [43] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb126-5"><a href="wrangling-data-frames.html#cb126-5" tabindex="-1"></a><span class="do">## [64] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb126-6"><a href="wrangling-data-frames.html#cb126-6" tabindex="-1"></a><span class="do">## [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>So our row index is a vector containing either <code>TRUE</code> or <code>FALSE</code> values and only those rows that are <code>TRUE</code> are selected.</p>
 <p>Other commonly used operators are shown below.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="wrangling-data-frames.html#cb127-1" tabindex="-1"></a>flowers[flowers<span class="sc">$</span>height <span class="sc">&gt;=</span> <span class="dv">6</span>, ]        <span class="co"># values greater or equal to 6</span></span>
@@ -1688,33 +1683,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

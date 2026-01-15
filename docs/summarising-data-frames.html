@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>3.5 Summarising data frames | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="3.5 Summarising data frames | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -431,20 +432,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Now that we’re able to manipulate and extract data from our data frames our next task is to start exploring and getting to know our data. In this section we’ll start producing tables of useful summary statistics of the variables in our data frame and in the next two Chapters we’ll cover visualising our data with base R graphics and using the <code>ggplot2</code> package.</p>
 <p>A really useful starting point is to produce some simple summary statistics of all of the variables in our <code>flowers</code> data frame using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="summarising-data-frames.html#cb162-1" tabindex="-1"></a><span class="fu">summary</span>(flowers)</span>
-<span id="cb162-2"><a href="summarising-data-frames.html#cb162-2" tabindex="-1"></a><span class="do">##     treat             nitrogen      block         height           weight      </span></span>
-<span id="cb162-3"><a href="summarising-data-frames.html#cb162-3" tabindex="-1"></a><span class="do">##  Length:96          low   :32   Min.   :1.0   Min.   : 1.200   Min.   : 5.790  </span></span>
-<span id="cb162-4"><a href="summarising-data-frames.html#cb162-4" tabindex="-1"></a><span class="do">##  Class :character   medium:32   1st Qu.:1.0   1st Qu.: 4.475   1st Qu.: 9.027  </span></span>
-<span id="cb162-5"><a href="summarising-data-frames.html#cb162-5" tabindex="-1"></a><span class="do">##  Mode  :character   high  :32   Median :1.5   Median : 6.450   Median :11.395  </span></span>
-<span id="cb162-6"><a href="summarising-data-frames.html#cb162-6" tabindex="-1"></a><span class="do">##                                 Mean   :1.5   Mean   : 6.840   Mean   :12.155  </span></span>
-<span id="cb162-7"><a href="summarising-data-frames.html#cb162-7" tabindex="-1"></a><span class="do">##                                 3rd Qu.:2.0   3rd Qu.: 9.025   3rd Qu.:14.537  </span></span>
-<span id="cb162-8"><a href="summarising-data-frames.html#cb162-8" tabindex="-1"></a><span class="do">##                                 Max.   :2.0   Max.   :17.200   Max.   :23.890  </span></span>
-<span id="cb162-9"><a href="summarising-data-frames.html#cb162-9" tabindex="-1"></a><span class="do">##     leafarea       shootarea         flowers      </span></span>
-<span id="cb162-10"><a href="summarising-data-frames.html#cb162-10" tabindex="-1"></a><span class="do">##  Min.   : 5.80   Min.   :  5.80   Min.   : 1.000  </span></span>
-<span id="cb162-11"><a href="summarising-data-frames.html#cb162-11" tabindex="-1"></a><span class="do">##  1st Qu.:11.07   1st Qu.: 39.05   1st Qu.: 4.000  </span></span>
-<span id="cb162-12"><a href="summarising-data-frames.html#cb162-12" tabindex="-1"></a><span class="do">##  Median :13.45   Median : 70.05   Median : 6.000  </span></span>
-<span id="cb162-13"><a href="summarising-data-frames.html#cb162-13" tabindex="-1"></a><span class="do">##  Mean   :14.05   Mean   : 79.78   Mean   : 7.062  </span></span>
-<span id="cb162-14"><a href="summarising-data-frames.html#cb162-14" tabindex="-1"></a><span class="do">##  3rd Qu.:16.45   3rd Qu.:113.28   3rd Qu.: 9.000  </span></span>
-<span id="cb162-15"><a href="summarising-data-frames.html#cb162-15" tabindex="-1"></a><span class="do">##  Max.   :49.20   Max.   :189.60   Max.   :17.000</span></span></code></pre></div>
+<span id="cb162-2"><a href="summarising-data-frames.html#cb162-2" tabindex="-1"></a><span class="do">##     treat             nitrogen      block         height           weight          leafarea       shootarea         flowers      </span></span>
+<span id="cb162-3"><a href="summarising-data-frames.html#cb162-3" tabindex="-1"></a><span class="do">##  Length:96          low   :32   Min.   :1.0   Min.   : 1.200   Min.   : 5.790   Min.   : 5.80   Min.   :  5.80   Min.   : 1.000  </span></span>
+<span id="cb162-4"><a href="summarising-data-frames.html#cb162-4" tabindex="-1"></a><span class="do">##  Class :character   medium:32   1st Qu.:1.0   1st Qu.: 4.475   1st Qu.: 9.027   1st Qu.:11.07   1st Qu.: 39.05   1st Qu.: 4.000  </span></span>
+<span id="cb162-5"><a href="summarising-data-frames.html#cb162-5" tabindex="-1"></a><span class="do">##  Mode  :character   high  :32   Median :1.5   Median : 6.450   Median :11.395   Median :13.45   Median : 70.05   Median : 6.000  </span></span>
+<span id="cb162-6"><a href="summarising-data-frames.html#cb162-6" tabindex="-1"></a><span class="do">##                                 Mean   :1.5   Mean   : 6.840   Mean   :12.155   Mean   :14.05   Mean   : 79.78   Mean   : 7.062  </span></span>
+<span id="cb162-7"><a href="summarising-data-frames.html#cb162-7" tabindex="-1"></a><span class="do">##                                 3rd Qu.:2.0   3rd Qu.: 9.025   3rd Qu.:14.537   3rd Qu.:16.45   3rd Qu.:113.28   3rd Qu.: 9.000  </span></span>
+<span id="cb162-8"><a href="summarising-data-frames.html#cb162-8" tabindex="-1"></a><span class="do">##                                 Max.   :2.0   Max.   :17.200   Max.   :23.890   Max.   :49.20   Max.   :189.60   Max.   :17.000</span></span></code></pre></div>
 <p>For numeric variables (i.e. <code>height</code>, <code>weight</code> etc) the mean, minimum, maximum, median, first (lower) quartile and third (upper) quartile are presented. For factor variables (i.e. <code>treat</code> and <code>nitrogen</code>) the number of observations in each of the factor levels is given. If a variable contains missing data then the number of <code>NA</code> values is also reported.</p>
 <p>If we wanted to summarise a smaller subset of variables in our data frame we can use our indexing skills in combination with the <code>summary()</code> function. For example, to summarise only the <code>height</code>, <code>weight</code>, <code>leafarea</code> and <code>shootarea</code> variables we can include the appropriate column indexes when using the <code>[ ]</code>. Notice we include all rows by not specifying a row index.</p>
 <div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="summarising-data-frames.html#cb163-1" tabindex="-1"></a><span class="fu">summary</span>(flowers[, <span class="dv">4</span><span class="sc">:</span><span class="dv">7</span>])</span>
@@ -614,33 +608,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/03-data.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

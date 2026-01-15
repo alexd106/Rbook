@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4.4 Multiple graphs | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4.4 Multiple graphs | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -433,7 +434,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb240-2"><a href="mult_graphs.html#cb240-2" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, <span class="at">xlab =</span> <span class="st">&quot;weight&quot;</span>,</span>
 <span id="cb240-3"><a href="mult_graphs.html#cb240-3" tabindex="-1"></a>      <span class="at">ylab =</span> <span class="st">&quot;shoot area&quot;</span>)</span>
 <span id="cb240-4"><a href="mult_graphs.html#cb240-4" tabindex="-1"></a><span class="fu">boxplot</span>(shootarea <span class="sc">~</span> nitrogen, <span class="at">data =</span> flowers, <span class="at">cex.axis =</span> <span class="fl">0.6</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot55-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot55-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Or if we wanted to plot four plots we can split our plotting device into 2 rows and 2 columns.</p>
 <div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="mult_graphs.html#cb241-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
 <span id="cb241-2"><a href="mult_graphs.html#cb241-2" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, <span class="at">xlab =</span> <span class="st">&quot;weight&quot;</span>,</span>
@@ -441,7 +442,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb241-4"><a href="mult_graphs.html#cb241-4" tabindex="-1"></a><span class="fu">boxplot</span>(shootarea <span class="sc">~</span> nitrogen, <span class="at">cex.axis =</span> <span class="fl">0.8</span>, <span class="at">data =</span> flowers)</span>
 <span id="cb241-5"><a href="mult_graphs.html#cb241-5" tabindex="-1"></a><span class="fu">hist</span>(flowers<span class="sc">$</span>weight, <span class="at">main =</span><span class="st">&quot;&quot;</span>)</span>
 <span id="cb241-6"><a href="mult_graphs.html#cb241-6" tabindex="-1"></a><span class="fu">dotchart</span>(flowers<span class="sc">$</span>weight)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot56-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot56-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Once you’ve finished making your plots don’t forget to reset your plotting device back to normal with <code>par(mfrow = c(1, 1))</code>.</p>
 <p>A more flexible approach is to use the <code>layout()</code> function. The <code>layout()</code> function allows you to split your plotting device up into different sized regions and can be used to build complex figures. Before using the <code>layout()</code> function we first need to specify how we’re going to split our plotting device by creating a matrix using the <code>matrix()</code> function (see <a href="data-structures.html#mat_array">Chapter 2</a> to remind yourself). Let’s create a 2 x 2 matrix.</p>
 <div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="mult_graphs.html#cb242-1" tabindex="-1"></a>layout_mat <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">3</span>), <span class="at">nrow =</span> <span class="dv">2</span>, <span class="at">ncol =</span> <span class="dv">2</span>,</span>
@@ -456,7 +457,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb244-2"><a href="mult_graphs.html#cb244-2" tabindex="-1"></a>                 <span class="at">heights =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
 <span id="cb244-3"><a href="mult_graphs.html#cb244-3" tabindex="-1"></a>                 <span class="at">widths =</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">1</span>), <span class="at">respect =</span><span class="cn">TRUE</span>)</span>
 <span id="cb244-4"><a href="mult_graphs.html#cb244-4" tabindex="-1"></a><span class="fu">layout.show</span>(my_lay)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot58-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot58-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>All we need to do now is create our three plots. However, before we do this we also need to change the figure margins for each of the figures using the <code>par(mar = )</code> command so all of the plots can fit together in the same plotting device. This will probably take a little bit of experimenting to get the plot looking exactly how you want. For our first figure (bottom left) we will reduce the size of the bottom and left margins a little and remove the margins completely from the top and right sides with <code>par(mar = c(4, 4, 0, 0))</code>. For our top plot we will remove the margins from the bottom, top and right sides and set the left side to have the same margin as our first figure (<code>par(mar = c(0, 4, 0, 0))</code>). For the third plot on the right we will set the bottom side to have the same margin as the first plot so they line up and remove the margins from the other sides with <code>par(mar = c(4, 0, 0, 0))</code>.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="mult_graphs.html#cb245-1" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb245-2"><a href="mult_graphs.html#cb245-2" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>weight, flowers<span class="sc">$</span>shootarea, </span>
@@ -466,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb245-6"><a href="mult_graphs.html#cb245-6" tabindex="-1"></a>        <span class="at">axes =</span><span class="cn">FALSE</span>)</span>
 <span id="cb245-7"><a href="mult_graphs.html#cb245-7" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb245-8"><a href="mult_graphs.html#cb245-8" tabindex="-1"></a><span class="fu">boxplot</span>(flowers<span class="sc">$</span>shootarea, <span class="at">frame =</span> <span class="cn">FALSE</span>, <span class="at">axes =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/plot59-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/plot59-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Notice we’ve specified that the boxplot at the top should be plotted horizontally with the <code>horizontal = TRUE</code> argument. The <code>frame = FALSE</code> argument prevents a border being plotted around each boxplot and the <code>axes = FALSE</code> argument suppresses the axes and axes labels from being plotted.</p>
 </div>
             </section>
@@ -489,33 +490,35 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/04-base_r_graphics.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/04-base_r_graphics.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>5.2 The start of the end | An Introduction to R</title>
   <meta name="description" content="A practical introduction to using R for data analysis" />
-  <meta name="generator" content="bookdown 0.38 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="5.2 The start of the end | An Introduction to R" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2024-04-09" />
+<meta name="date" content="2026-01-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -68,6 +68,7 @@
 
 
 <style type="text/css">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
@@ -436,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.2.1</span> The purest of ggplots<a href="the-start-of-the-end.html#the-purest-of-ggplots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>When we run our ‘in person’ R courses that accompany this book, we often ask our students to name all of the functions they have either learnt during the course, have heard of previously, or have used before (we call it R bingo!). At this point in the course, the students have not yet learnt about <code>ggplot2</code>, but never-the-less one year a student suggested the function <code>ggplot()</code>. When asked what the <code>ggplot()</code> function does, they joked that it obviously makes a <code>ggplot.</code> This makes intuitive sense, so let’s make a <code>ggplot</code> now:</p>
 <div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="the-start-of-the-end.html#cb249-1" tabindex="-1"></a><span class="fu">ggplot</span>()</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/pure-ggplot-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/pure-ggplot-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>And here we have it. A fully formed, perfect <code>ggplot</code>. We may have a small issue though. Some puritan data visualisers/plotists/figurines make the claim that figures should include some form of information beyond a light grey background. As loathe as we are to agree with purists, we’ll do so here. We really should include some information, but to do so, we need data.</p>
 <p>We’ll keep using the <code>flower</code> dataset that you’ve used in <a href="data_r.html#data_r">Chapter 3</a>. Let’s have a quick reminder of what the structure of the data looks like.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="the-start-of-the-end.html#cb250-1" tabindex="-1"></a>flower <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;data/flower.csv&quot;</span>, <span class="at">stringsAsFactors =</span> <span class="cn">TRUE</span>, </span>
@@ -455,19 +456,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>If we did not include the <code>aes()</code> function, then the <code>x =</code> and <code>y =</code> arguments would produce an error saying that the object was not found. A good rule to keep in mind when using <code>ggplot2</code> is that the variables which we want displayed on the figure must be included in <code>aes()</code> function via the <code>mapping =</code> argument (corresponding to the mapping layer from Figure. 4.1).</p>
 <p>All features in the figure which alter the displayed information, not based on a variable in our dataset (e.g. increasing the size of points to an arbitrary value), is included outside of the <code>aes()</code> function. Don’t worry if that doesn’t make sense for now, we’ll come back to this later.</p>
 <p>Let’s update our code to include the ‘data’ and ‘mapping’ layers (indicated by the grey Data and mustard Mapping <em>layer bubbles</em> which will precede relevant code chunks):</p>
-<p><img src="images/data_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/data_mapping.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="the-start-of-the-end.html#cb251-1" tabindex="-1"></a><span class="co"># Including aesthetics for x and y axes as well as specifying the dataset</span></span>
 <span id="cb251-2"><a href="the-start-of-the-end.html#cb251-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/ggplot-with-xy-axis-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/ggplot-with-xy-axis-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s already much better. At least it’s no longer a blank grey canvas. We’ve now told <code>ggplot2</code> what we want as our x and y axes as well as where to find that data. But what’s missing here is where we tell <code>ggplot2</code> <em>how</em> to display that data. This is now the time to introduce you to ‘geoms’ or geometry layers.</p>
 <p>Geometries are the way that <code>ggplot2</code> displays information. For instance <code>geom_point()</code> tells <code>ggplot2</code> that you want the information to be displayed as points (making scatterplots possible for example). Given that the “final figure” uses points, this is clearly the appropriate geom to use here.</p>
 <p>Before we can do that, we need to talk about the coding structure used by <code>ggplot2</code>. The analogy that we and many others use is to say that making a figure in <code>ggplot2</code> is much like painting. What we’ve did in the above code was to make our “canvas”. Now we are going to add sequential layers to that painting, increasing the complexity and detail over time. Each time we want to include a new layer we need to end a preceding layer with a <code>+</code> at the end to tell <code>ggplot2</code> that there are additional layers coming.</p>
 <p>Let’s add (<code>+</code>) a new geometry layer now:</p>
-<p><img src="images/geoms.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/geoms.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="the-start-of-the-end.html#cb252-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb252-2"><a href="the-start-of-the-end.html#cb252-2" tabindex="-1"></a>        <span class="fu">geom_point</span>()     <span class="co"># Adding a geom to display data as point data</span></span></code></pre></div>
-<p><img src="Rbook_files/figure-html/ggplot-with-geom_point-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/ggplot-with-geom_point-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>When you first start using <code>ggplot2</code> there are three crucial layers that require your input. You can safely ignore the other layers initially as they all receive sensible (if sometimes ugly) defaults. The three crucial layers are:</p>
 <p> </p>
@@ -493,54 +494,54 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>Given that ‘data’ only requires us to specify the dataset we want to use, it is trivially easy to complete. ‘Mapping’ only requires you to specify what variables in the data to use, often just the x- and y-axes (specified using <code>aes()</code>). Lastly, ‘geometry’ is where we choose how we want the data to be visualised.</p>
 <p>With just these three fundamentals, you will be able to produce a large variety of plots (see later in this Chapter for a <a href="bestiary.html#bestiary">bestiary</a> of plots).</p>
 <p>If what we wanted was a quick and dirty figure to get a grasp of the trend in the data we can stop here. From the scatterplot that we’ve produced, we can see that <code>shootarea</code> looks like it’s increasing with <code>weight</code> in a linear fashion. So long as this answers the question we were asking from these data, we have a figure that is fit for purpose. However, for showing to other people we might want something a bit more developed. If we glance back to our “final figure” we can see that we have lines representing the different nitrogen concentrations. We can include lines using a geom. If you have a quick look through the available geoms <a href="https://ggplot2.tidyverse.org/reference/">here</a>, you might think that <code>geom_line()</code> would be appropriate. Let’s try it.</p>
-<p><img src="images/geoms.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/geoms.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="the-start-of-the-end.html#cb253-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb253-2"><a href="the-start-of-the-end.html#cb253-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb253-3"><a href="the-start-of-the-end.html#cb253-3" tabindex="-1"></a>    <span class="fu">geom_line</span>()     <span class="co"># Adding geom_line</span></span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_line-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_line-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Not quite what we were going for. The problem that we have is that <code>geom_line()</code> is actually just playing join-the-dots in the order they appear in the data (an alternative to <code>geom_path()</code>). The geom we actually want to use is called <code>geom_smooth()</code>. We can fix that very easily just by changing “line” to “smooth”.</p>
-<p><img src="images/geoms_statistics.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/geoms_statistics.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="the-start-of-the-end.html#cb254-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb254-2"><a href="the-start-of-the-end.html#cb254-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb254-3"><a href="the-start-of-the-end.html#cb254-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>()    <span class="co"># Changing to geom_smooth</span></span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Better, but still not what we wanted. The challenge here is that drawing a line is actually somewhat complicated. The way our line above was drawn was by using a method called “LOESS” (locally estimated scatterplot smoothing) which gives something very close to a moving average; useful in some cases, less so in others. <code>ggplot2</code> will use LOESS as default when you have &lt; 1000 observations, so we’ll need to manually specify the method. Instead of a wiggly line, we want a nice simple ‘line of best fit’ to be drawn using a method called “lm” (short for linear model - see <a href="stats_r.html#stats_r">Chapter 6</a> for more details). Try looking at the help file, using <code>?geom_smooth</code>, to see what other options are available for the <code>method =</code> argument.</p>
 <p>While we’re at it, let’s get rid of the confidence interval ribbon around the line. We prefer to do this as we think it’s clearer to the audience that this isn’t a properly analysed line and to treat it as a visual aid only. We can do this at the same time as changing the method by setting the <code>se =</code> argument (short for standard error) to <code>FALSE</code>.</p>
 <p>Let’s update the code to use a linear model without confidence intervals.</p>
-<p><img src="images/statistics.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/statistics.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="the-start-of-the-end.html#cb255-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb255-2"><a href="the-start-of-the-end.html#cb255-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb255-3"><a href="the-start-of-the-end.html#cb255-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)    <span class="co"># method and se </span></span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth-lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth-lm-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We get the straight line that we wanted, though it’s still not matching the “final figure”. We need to alter <code>geom_smooth()</code> so that it draws lines for each level of nitrogen concentration. Getting <code>ggplot2</code> to do that is pretty straightforward. We can use the <code>colour =</code> argument within <code>aes()</code> (remember whatever we include in <code>aes()</code> will be something displayed in the figure) to tell <code>ggplot2</code> to draw a different coloured lines depending on the <code>nitrogen</code> variable. Keep in mind that we have no variable in our dataset called “nitrogen_colour”, so <code>ggplot2</code> is taking care of that for us here and assigning a colour to each unique nitrogen level.</p>
 <p>An aside: <code>ggplot2</code> was written with both UK English and American English in mind, so both <code>colour</code> and <code>color</code> spellings work in <code>ggplot2</code>.</p>
-<p><img src="images/mapping_scales.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/mapping_scales.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="the-start-of-the-end.html#cb256-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb256-2"><a href="the-start-of-the-end.html#cb256-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb256-3"><a href="the-start-of-the-end.html#cb256-3" tabindex="-1"></a>  <span class="co"># Including colour argument in aes()</span></span>
 <span id="cb256-4"><a href="the-start-of-the-end.html#cb256-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">colour =</span> nitrogen), <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth-colour-lm-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth-colour-lm-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We’re getting closer, especially since <code>ggplot2</code> has automatically created a legend for us. At this point it’s a good time to talk about where to include information - whether to include it within a geom or in the main call to <code>ggplot()</code>. When we include information such as <code>data =</code> and <code>aes()</code> in <code>ggplot()</code> we are setting those as the default, universal values which all subsequent geoms use. Whereas if we were to include that information within a geom, only that geom would use that specific information. In this case, we can easily move the information around and get exactly the same figure.</p>
-<p><img src="images/data_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/data_mapping.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="the-start-of-the-end.html#cb257-1" tabindex="-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
 <span id="cb257-2"><a href="the-start-of-the-end.html#cb257-2" tabindex="-1"></a>    <span class="co"># Moved aes() and data into geoms</span></span>
 <span id="cb257-3"><a href="the-start-of-the-end.html#cb257-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb257-4"><a href="the-start-of-the-end.html#cb257-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), </span>
 <span id="cb257-5"><a href="the-start-of-the-end.html#cb257-5" tabindex="-1"></a>                        <span class="at">data =</span> flower, <span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/universal-vrs-geom-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/universal-vrs-geom-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Doing so we get exactly the same figure. This ability to move information between the main <code>ggplot()</code> call or in specific geoms is surprisingly powerful (although sometime confusing!). It can allow different geoms to display different (albeit similar) information (see more on this later).</p>
 <p>For this worked example, we’ll move the same information back to the universal <code>ggplot()</code>, but we’ll also move <code>colour = nitrogen</code> into <code>ggplot()</code> so that we can have the points coloured according to nitrogen concentration as well.</p>
-<p><img src="images/data_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/data_mapping.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="the-start-of-the-end.html#cb258-1" tabindex="-1"></a><span class="co"># Moved colour = nitrogen into the universal ggplot()</span></span>
 <span id="cb258-2"><a href="the-start-of-the-end.html#cb258-2" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb258-3"><a href="the-start-of-the-end.html#cb258-3" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb258-4"><a href="the-start-of-the-end.html#cb258-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/universal-colours-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/universal-colours-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This figure is now what we would consider to be the typical <code>ggplot2</code> figure (once you know to look for it, you’ll see it everywhere). We have specified some information, with only a few lines of code, yet we have something that looks quite attractive. While it’s not yet the “final figure” it’s perfectly suited for displaying the information we need from these data. You have now created your first “pure” <code>ggplot</code> using only the ‘data’, ‘mapping’ and ‘geom’ layers (as well as others indirectly).</p>
 <p>Let’s keep going as we’re aiming for something a bit more “sophisticated”.</p>
@@ -550,44 +551,44 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>Having made our “pure” <code>ggplot</code>, the next big obstacle we’re going to tackle is the grid like layout of the “final figure” where our main figure has been split according to the <code>treat</code> and <code>block</code> variables, with new trends shown for each combination.</p>
 <p>Each of these panels (technically “multiples”) are a great way to help other people understand what’s going on in the data. This is especially true with large datasets which can obscure subtle trends simply because so much data is overlaid on top of each other. When we split a single figure into multiples, the same axes are used for all multiples which serve to highlight shifts in the data (data in some multiples may have inherently higher or lower values for instance).</p>
 <p><code>ggplot2</code> includes options for specifying the layout of plots using the ‘facets’ layer. We’ll start off by using <code>facet_wrap()</code> to show what this does. For <code>facet_wrap()</code> to work we need to specify a formula for how the facets will be defined (see <code>?facet_wrap</code> for more details and also how to define facets without using a formula). In our example we want to use the factor <code>treat</code> to determine the layout so our formula would look like <code>~ treat</code>. You can read <code>~ treat</code> as saying “according to treatment”. Let’s see how it works:</p>
-<p><img src="images/facets.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/facets.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="the-start-of-the-end.html#cb259-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb259-2"><a href="the-start-of-the-end.html#cb259-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb259-3"><a href="the-start-of-the-end.html#cb259-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb259-4"><a href="the-start-of-the-end.html#cb259-4" tabindex="-1"></a>    <span class="co"># Splitting the single figure into multiple depending on treatment</span></span>
 <span id="cb259-5"><a href="the-start-of-the-end.html#cb259-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> treat)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet_wrap-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet_wrap-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s pretty good. Notice how we can see the impact that the <code>tip</code> treatment has on shoot area now (generally lowering shoot area), where in the previous figure this was much more difficult to see?</p>
 <p>While this looks pretty good, we are still missing information showing any potential effect of the different blocks. Given that <code>facet_wrap()</code> can use a formula, maybe we could simply include <code>block</code> in the formula? Remember that the <code>block</code> variable refers to the region in the greenhouse where the plants were grown. Let’s try it and see what happens.</p>
-<p><img src="images/facets.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/facets.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="the-start-of-the-end.html#cb260-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb260-2"><a href="the-start-of-the-end.html#cb260-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb260-3"><a href="the-start-of-the-end.html#cb260-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb260-4"><a href="the-start-of-the-end.html#cb260-4" tabindex="-1"></a>    <span class="co"># Adding &quot;block&quot; to formula</span></span>
 <span id="cb260-5"><a href="the-start-of-the-end.html#cb260-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> treat <span class="sc">+</span> block)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet_wrap-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet_wrap-formula-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This facet layout is almost exactly what we want. Close but no cigar. In this case we actually want to be using <code>facet_grid()</code>, an alternative to <code>facet_wrap()</code>, which should put us back on track to make the “final figure”.</p>
 <p><em>Play around</em>: Try changing the formula to see what happens. Something like <code>~ treat + flowers</code> or even <code>~ treat + block + flowers</code>. The important thing to remember here is that <code>facet_wrap()</code> will create a new figure for each value in a variable. So when you wrap using a continuous variable like flowers, it makes a plot for every unique number of flowers counted. Be aware of what it is that you are doing, but never be scared to experiment. Mistakes are easily fixed in R - it’s not like a point and click programme where you’d have to go back through all those clicks to get the same figure produced. Made a mistake? Easy, change it back and rerun the code (see <a href="github_r.html#github_r">Chapter 9</a> for version control which takes this to the next level).</p>
 <p>Let’s try using <code>facet_grid</code> instead of <code>facet_wrap</code> to produce the following plot.</p>
 <p> </p>
-<p><img src="images/facets.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/facets.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="the-start-of-the-end.html#cb261-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb261-2"><a href="the-start-of-the-end.html#cb261-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb261-3"><a href="the-start-of-the-end.html#cb261-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb261-4"><a href="the-start-of-the-end.html#cb261-4" tabindex="-1"></a>    <span class="co"># Changing to facet_grid</span></span>
 <span id="cb261-5"><a href="the-start-of-the-end.html#cb261-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="sc">~</span> treat <span class="sc">+</span> block)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet_grid-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet_grid-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s disappointing. It’s pretty much the same as what we had before and is no closer to the “final figure”. To fix this we need to do to rearrange our formula so that we say that it is block in relation to treatment (not in combination with).</p>
-<p><img src="images/facets.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/facets.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="the-start-of-the-end.html#cb262-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb262-2"><a href="the-start-of-the-end.html#cb262-2" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb262-3"><a href="the-start-of-the-end.html#cb262-3" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb262-4"><a href="the-start-of-the-end.html#cb262-4" tabindex="-1"></a>    <span class="co"># Rearranging formula, block in relation to treatment</span></span>
 <span id="cb262-5"><a href="the-start-of-the-end.html#cb262-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(block <span class="sc">~</span> treat)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/facet-grid-formula-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/facet-grid-formula-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>And we’re there. Although the styling is not the same as the “final figure” this is showing the same core fundamental information.</p>
 </div>
 <div id="plotting-multiple-ggplots" class="section level3 hasAnchor" number="5.2.3">
@@ -602,7 +603,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="the-start-of-the-end.html#cb265-1" tabindex="-1"></a>p <span class="sc">+</span> <span class="fu">geom_point</span>()</span></code></pre></div>
 <p>We prefer not to use this approach here, as we like to always have the code visible to you while you’re reading this book. Anyway, let’s remind ourselves of the final figure.</p>
 <p> </p>
-<p><img src="Rbook_files/figure-html/calling-figure-name-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/calling-figure-name-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We’ll now assign the code we wrote when creating our previous plot to an object called <code>rbook_figure</code>:</p>
 <p> </p>
@@ -616,7 +617,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <p>An old headache when using <code>ggplot2</code> was that it could be difficult to create a nested figure (different plots, or “multiples”, all part of the same dataset). <code>patchwork</code> resolves this problem very elegantly and simply. We have two immediate and simple options with patchwork; arrange figures on top of each other (specified with a <code>/</code>) or arrange figures side-by-side (specified with either a <code>+</code> or a <code>|</code>). Let’s try to plot both figures, one on top of the other.</p>
 <p> </p>
 <div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="the-start-of-the-end.html#cb267-1" tabindex="-1"></a>rbook_figure <span class="sc">/</span> final_figure</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/side-by-side-patchwork-1.png" width="85%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/side-by-side-patchwork-1.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p><em>Play around</em>: Try to create a side-by-side version of the above figure (hint: try the other operators [<code>+</code>, <code>/</code>, <code>|</code>]).</p>
 <p>We can take this one step further and assign nested <code>patchwork</code> figures to an object and use this in turn to create labels for individual figures.</p>
@@ -625,7 +626,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb268-2"><a href="the-start-of-the-end.html#cb268-2" tabindex="-1"></a></span>
 <span id="cb268-3"><a href="the-start-of-the-end.html#cb268-3" tabindex="-1"></a>nested_compare <span class="sc">+</span></span>
 <span id="cb268-4"><a href="the-start-of-the-end.html#cb268-4" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">tag_levels =</span> <span class="st">&quot;A&quot;</span>, <span class="at">tag_suffix =</span> <span class="st">&quot;)&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/labelled-nested-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/labelled-nested-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>This is only the basics of what the <code>patchwork</code> package can do but there are many other uses. We won’t go into them in any great detail here, but later in the <a href="tips.html#tips">tips and tricks</a> section we’ll show you some more cool features.</p>
 </div>
@@ -640,17 +641,17 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb269-3"><a href="the-start-of-the-end.html#cb269-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb269-4"><a href="the-start-of-the-end.html#cb269-4" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb269-5"><a href="the-start-of-the-end.html#cb269-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(block <span class="sc">~</span> treat)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/change-size-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/change-size-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Pretty straight forward, we changed the size from the default of <code>size = 1</code> to a value that we decide for ourselves. What happens if you included size in <code>ggplot()</code> or within the <code>aes()</code> of <code>geom_point()</code>?</p>
 <p>If we wanted to change the shape of the plotting symbols to reflect the different nitrogen concentrations (low, high, medium), how do you think we’d do that? We’d use the <code>shape =</code> argument, but this time we need to include an <code>aes()</code> within <code>geom_point()</code> because we want to include specific information to be displayed on the figure.</p>
-<p><img src="images/scales_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/scales_mapping.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="the-start-of-the-end.html#cb270-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb270-2"><a href="the-start-of-the-end.html#cb270-2" tabindex="-1"></a>    <span class="co"># Including shape argument to change the shape of the points</span></span>
 <span id="cb270-3"><a href="the-start-of-the-end.html#cb270-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
 <span id="cb270-4"><a href="the-start-of-the-end.html#cb270-4" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb270-5"><a href="the-start-of-the-end.html#cb270-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(block <span class="sc">~</span> treat)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/change-shape-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/change-shape-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Try including <code>shape = nitrogen</code> without also including <code>aes()</code> and see what happens.</p>
 <p>We’re edging our way closer to our “final figure”. Another thing we may want to be able to do is change the transparency of the points. While it’s not actually that useful here, changing the transparency of points is really valuable when you have lots of data resulting in clusters of points obscuring information. Doing this is easily accomplished using the <code>alpha =</code> argument. Again, ask yourself where you think the <code>alpha =</code> argument should be included (hint: you should put it in the <code>geom_point</code> geom!).</p>
@@ -660,7 +661,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb271-3"><a href="the-start-of-the-end.html#cb271-3" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb271-4"><a href="the-start-of-the-end.html#cb271-4" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb271-5"><a href="the-start-of-the-end.html#cb271-5" tabindex="-1"></a>    <span class="fu">facet_grid</span>(block <span class="sc">~</span> treat)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/change-alpha-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/change-alpha-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can also include user defined labels for the x and y axis. There are a couple of ways to do this, but a more familiar way may be to use the same syntax as used in base R figures; using <code>xlab()</code> and <code>ylab()</code>. We’ll specify that these belong to the <code>ggplot</code> by using the <code>+</code> symbol.</p>
 <p> </p>
@@ -671,7 +672,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb272-5"><a href="the-start-of-the-end.html#cb272-5" tabindex="-1"></a>    <span class="co"># Adding layers for x and y labels</span></span>
 <span id="cb272-6"><a href="the-start-of-the-end.html#cb272-6" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb272-7"><a href="the-start-of-the-end.html#cb272-7" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Area of shoot (cm^2)&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/axis-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/axis-labels-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Great. Just as we wanted, though getting the “(cm^2)” to show the square as a superscript would be ideal. Here, we’re going to accomplish that using a function which is part of base R called <code>bquote()</code> which allows for special characters to be shown.</p>
 <p> </p>
@@ -682,7 +683,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb273-5"><a href="the-start-of-the-end.html#cb273-5" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Weight of flower (g)&quot;</span>) <span class="sc">+</span></span>
 <span id="cb273-6"><a href="the-start-of-the-end.html#cb273-6" tabindex="-1"></a>    <span class="co"># Using bquote to get mathematically correct formatting</span></span>
 <span id="cb273-7"><a href="the-start-of-the-end.html#cb273-7" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="fu">bquote</span>(<span class="st">&quot;Area of shoot&quot;</span><span class="sc">~</span>(cm<span class="sc">^</span><span class="dv">2</span>)))</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/bquote-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/bquote-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Let’s now work on the legend title while also including a caption to warn people looking at the figure to treat the trend lines with caution. We’ll use a new layer called <code>labs()</code>, short for labels, which we could have also used for specifying the x and y axes labels (we didn’t only for demonstration purposes, but give it a shot). <code>labs()</code> is a fairly straightforward function. Have a look at the help file (using <code>?labs</code>) to see which arguments are available. We’ll be using <code>caption =</code> argument for our caption, but notice that there isn’t a single simple argument for <code>legend =</code>? That’s because the legend actually contains multiple pieces of information; such as the colour and shape of the symbols. So instead of <code>legend =</code> we’ll use <code>colour =</code> and <code>shape =</code>. Here’s how we do it:</p>
 <p> </p>
@@ -695,7 +696,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb274-7"><a href="the-start-of-the-end.html#cb274-7" tabindex="-1"></a>    <span class="co"># Adding labels for shape, colour and a caption </span></span>
 <span id="cb274-8"><a href="the-start-of-the-end.html#cb274-8" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>, </span>
 <span id="cb274-9"><a href="the-start-of-the-end.html#cb274-9" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/extra-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/extra-labels-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p><em>Play around</em>: Try removing <code>colour =</code> or <code>shape =</code> from <code>labs()</code> to see what happens. The resulting legends are why we need to specify both colour and shape (and call it the same thing).</p>
 <p>Now’s a good time to introduce the <code>\n</code>. This is a base R feature that tells R that a string should be continued on a new line. We can use that with “Nitrogen Concentration” so that the legend title becomes more compact.</p>
 <p> </p>
@@ -708,14 +709,14 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb275-7"><a href="the-start-of-the-end.html#cb275-7" tabindex="-1"></a>    <span class="co"># Including \n to split legend title over two lines </span></span>
 <span id="cb275-8"><a href="the-start-of-the-end.html#cb275-8" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">shape =</span> <span class="st">&quot;Nitrogen</span><span class="sc">\n</span><span class="st">Concentration&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;Nitrogen</span><span class="sc">\n</span><span class="st">Concentration&quot;</span>, </span>
 <span id="cb275-9"><a href="the-start-of-the-end.html#cb275-9" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/compact-labels-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/compact-labels-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can now move onto some more wholesale-stylistic choices using the themes layer.</p>
 </div>
 <div id="setting-the-theme" class="section level3 hasAnchor" number="5.2.5">
 <h3><span class="header-section-number">5.2.5</span> Setting the theme<a href="the-start-of-the-end.html#setting-the-theme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Themes control the general style of a <code>ggplot</code> (things like the background colour, size of text etc.) and comes with a whole bunch of predefined themes. Let’s play around with themes using some skills we’ve already learnt; assigning plots to an object and plotting multiple <code>ggplots</code> in a single figure using <code>patchwork</code>. We assign themes by creating a new layer with the general notation - <code>theme_NameOfTheme()</code>. For example, to use the <code>theme_classic</code>, <code>theme_bw</code>, <code>theme_minimal</code> and <code>theme_light</code> themes</p>
-<p><img src="images/theme.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/theme.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="the-start-of-the-end.html#cb276-1" tabindex="-1"></a>classic <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb276-2"><a href="the-start-of-the-end.html#cb276-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb276-3"><a href="the-start-of-the-end.html#cb276-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
@@ -762,22 +763,25 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb276-44"><a href="the-start-of-the-end.html#cb276-44" tabindex="-1"></a></span>
 <span id="cb276-45"><a href="the-start-of-the-end.html#cb276-45" tabindex="-1"></a>(classic <span class="sc">|</span> bw) <span class="sc">/</span></span>
 <span id="cb276-46"><a href="the-start-of-the-end.html#cb276-46" tabindex="-1"></a>    (minimal <span class="sc">|</span> light)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/testing-themes-1.png" width="85%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/testing-themes-1.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In terms of finding a theme that most closely matches our “final figure”, it’s probably going to be <code>theme_classic()</code>. There are additional themes available to you, and even more available online. <code>ggthemes</code> is a package which contains many more themes for you to use. The BBC even have their own <code>ggplot2</code> theme called “BBplot” which they use when making their own figures (while good, we don’t like it too much for scientific figures). Indeed, you can even make your own theme which is what we’ll work on next. To begin with, we’ll have a look to see how <code>theme_classic()</code> was coded. We can do that easily enough by just writing the function name without the parentheses (see <a href="prog_r.html#prog_r">Chapter 7</a> for a bit more on this).</p>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="the-start-of-the-end.html#cb277-1" tabindex="-1"></a>theme_classic</span>
-<span id="cb277-2"><a href="the-start-of-the-end.html#cb277-2" tabindex="-1"></a><span class="cf">function</span> (<span class="at">base_size =</span> <span class="dv">11</span>, <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>, <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>, </span>
-<span id="cb277-3"><a href="the-start-of-the-end.html#cb277-3" tabindex="-1"></a>    <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>) </span>
-<span id="cb277-4"><a href="the-start-of-the-end.html#cb277-4" tabindex="-1"></a>{</span>
-<span id="cb277-5"><a href="the-start-of-the-end.html#cb277-5" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size =</span> base_size, <span class="at">base_family =</span> base_family, </span>
-<span id="cb277-6"><a href="the-start-of-the-end.html#cb277-6" tabindex="-1"></a>        <span class="at">base_line_size =</span> base_line_size, <span class="at">base_rect_size =</span> base_rect_size) <span class="sc">%+replace%</span> </span>
-<span id="cb277-7"><a href="the-start-of-the-end.html#cb277-7" tabindex="-1"></a>        <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), <span class="at">panel.grid.major =</span> <span class="fu">element_blank</span>(), </span>
-<span id="cb277-8"><a href="the-start-of-the-end.html#cb277-8" tabindex="-1"></a>            <span class="at">panel.grid.minor =</span> <span class="fu">element_blank</span>(), <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, </span>
-<span id="cb277-9"><a href="the-start-of-the-end.html#cb277-9" tabindex="-1"></a>                <span class="at">linewidth =</span> <span class="fu">rel</span>(<span class="dv">1</span>)), <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">&quot;white&quot;</span>, </span>
-<span id="cb277-10"><a href="the-start-of-the-end.html#cb277-10" tabindex="-1"></a>                <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linewidth =</span> <span class="fu">rel</span>(<span class="dv">2</span>)), <span class="at">complete =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb277-11"><a href="the-start-of-the-end.html#cb277-11" tabindex="-1"></a>}</span>
-<span id="cb277-12"><a href="the-start-of-the-end.html#cb277-12" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0x7fe770557e80</span><span class="sc">&gt;</span></span>
-<span id="cb277-13"><a href="the-start-of-the-end.html#cb277-13" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>ggplot2<span class="sc">&gt;</span></span></code></pre></div>
+<span id="cb277-2"><a href="the-start-of-the-end.html#cb277-2" tabindex="-1"></a><span class="cf">function</span> (<span class="at">base_size =</span> <span class="dv">11</span>, <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>, <span class="at">header_family =</span> <span class="cn">NULL</span>, </span>
+<span id="cb277-3"><a href="the-start-of-the-end.html#cb277-3" tabindex="-1"></a>    <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>, <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>, </span>
+<span id="cb277-4"><a href="the-start-of-the-end.html#cb277-4" tabindex="-1"></a>    <span class="at">ink =</span> <span class="st">&quot;black&quot;</span>, <span class="at">paper =</span> <span class="st">&quot;white&quot;</span>, <span class="at">accent =</span> <span class="st">&quot;#3366FF&quot;</span>) </span>
+<span id="cb277-5"><a href="the-start-of-the-end.html#cb277-5" tabindex="-1"></a>{</span>
+<span id="cb277-6"><a href="the-start-of-the-end.html#cb277-6" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size =</span> base_size, <span class="at">base_family =</span> base_family, </span>
+<span id="cb277-7"><a href="the-start-of-the-end.html#cb277-7" tabindex="-1"></a>        <span class="at">header_family =</span> header_family, <span class="at">base_line_size =</span> base_line_size, </span>
+<span id="cb277-8"><a href="the-start-of-the-end.html#cb277-8" tabindex="-1"></a>        <span class="at">base_rect_size =</span> base_rect_size, <span class="at">ink =</span> ink, <span class="at">paper =</span> paper, </span>
+<span id="cb277-9"><a href="the-start-of-the-end.html#cb277-9" tabindex="-1"></a>        <span class="at">accent =</span> accent) <span class="sc">%+replace%</span> <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), </span>
+<span id="cb277-10"><a href="the-start-of-the-end.html#cb277-10" tabindex="-1"></a>        <span class="at">panel.grid =</span> <span class="fu">element_blank</span>(), <span class="at">axis.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="fu">rel</span>(<span class="fl">0.8</span>)), </span>
+<span id="cb277-11"><a href="the-start-of-the-end.html#cb277-11" tabindex="-1"></a>        <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">lineend =</span> <span class="st">&quot;square&quot;</span>), <span class="at">axis.ticks =</span> <span class="fu">element_line</span>(), </span>
+<span id="cb277-12"><a href="the-start-of-the-end.html#cb277-12" tabindex="-1"></a>        <span class="at">strip.background =</span> <span class="fu">element_rect</span>(<span class="at">linewidth =</span> <span class="fu">rel</span>(<span class="dv">2</span>)), </span>
+<span id="cb277-13"><a href="the-start-of-the-end.html#cb277-13" tabindex="-1"></a>        <span class="at">complete =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb277-14"><a href="the-start-of-the-end.html#cb277-14" tabindex="-1"></a>}</span>
+<span id="cb277-15"><a href="the-start-of-the-end.html#cb277-15" tabindex="-1"></a><span class="sc">&lt;</span>bytecode<span class="sc">:</span> <span class="dv">0xa200f5188</span><span class="sc">&gt;</span></span>
+<span id="cb277-16"><a href="the-start-of-the-end.html#cb277-16" tabindex="-1"></a><span class="er">&lt;</span>environment<span class="sc">:</span> namespace<span class="sc">:</span>ggplot2<span class="sc">&gt;</span></span></code></pre></div>
 <p>Let’s use this code as the basis for our own theme and modify it according to our needs. We’ll call the theme, <code>theme_rbook</code>. Not all of the options will immediately make sense, but don’t worry about this too much for now. Just know that the settings we’re putting in place are:</p>
 <p> </p>
 <ul>
@@ -794,7 +798,7 @@ Figure 5.4: Geometry - how we want that data displayed
 </ul>
 <p> </p>
 <p>This is by no means an exhaustive list of features you can specify in your own theme, but this will get you started. Of course, there’s no need to use a personalised theme as the pre-built options are perfectly suitable.</p>
-<p><img src="images/theme.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/theme.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="the-start-of-the-end.html#cb278-1" tabindex="-1"></a>theme_rbook <span class="ot">&lt;-</span> <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">13</span>, <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>, <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>, </span>
 <span id="cb278-2"><a href="the-start-of-the-end.html#cb278-2" tabindex="-1"></a>                         <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">22</span>) {         </span>
 <span id="cb278-3"><a href="the-start-of-the-end.html#cb278-3" tabindex="-1"></a>  <span class="fu">theme</span>( </span>
@@ -812,7 +816,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb278-15"><a href="the-start-of-the-end.html#cb278-15" tabindex="-1"></a>}</span></code></pre></div>
 <p> </p>
 <p><code>theme_rbook()</code> is now available for us to use just like any other theme. Let’s try remaking our figure using our new theme.</p>
-<p><img src="images/theme.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/theme.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="the-start-of-the-end.html#cb279-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb279-2"><a href="the-start-of-the-end.html#cb279-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb279-3"><a href="the-start-of-the-end.html#cb279-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
@@ -823,7 +827,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb279-8"><a href="the-start-of-the-end.html#cb279-8" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="sc">+</span></span>
 <span id="cb279-9"><a href="the-start-of-the-end.html#cb279-9" tabindex="-1"></a>    <span class="co"># Updated theme to our theme_rbook</span></span>
 <span id="cb279-10"><a href="the-start-of-the-end.html#cb279-10" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()   <span class="co"># use our new theme</span></span></code></pre></div>
-<p><img src="Rbook_files/figure-html/rbook-figure-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/rbook-figure-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 </div>
 <div id="prettification" class="section level3 hasAnchor" number="5.2.6">
@@ -833,10 +837,10 @@ Figure 5.4: Geometry - how we want that data displayed
 <p> </p>
 <div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="the-start-of-the-end.html#cb280-1" tabindex="-1"></a>final_figure <span class="sc">+</span> </span>
 <span id="cb280-2"><a href="the-start-of-the-end.html#cb280-2" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Reminder of the final figure&quot;</span>)</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/final-figure-reminder-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/final-figure-reminder-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Let’s begin the final push by including that dashed horizontal line at the average shoot area, at about 80, on our y axis. This represents the overall mean area of a shoot, regardless of nitrogen concentration, treatment, or block. To draw a horizontal line we use a geom called <code>geom_hline()</code>, and the most important thing we need to specify is the y intercept value (in this case the mean area of a shoot). We can also change the type of line using the argument <code>linetype =</code> and also the colour (as we did before). Let’s see how it works.</p>
-<p><img src="images/geoms_mapping.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/geoms_mapping.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="the-start-of-the-end.html#cb281-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb281-2"><a href="the-start-of-the-end.html#cb281-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb281-3"><a href="the-start-of-the-end.html#cb281-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
@@ -849,7 +853,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb281-10"><a href="the-start-of-the-end.html#cb281-10" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">mean</span>(shootarea)), <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb281-11"><a href="the-start-of-the-end.html#cb281-11" tabindex="-1"></a>    </span>
 <span id="cb281-12"><a href="the-start-of-the-end.html#cb281-12" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_hline-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_hline-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Notice how we included the function <code>mean(shootarea)</code> within the <code>geom_hline()</code> function? We could also do that externally to the <code>ggplot2</code> code and get the same result.</p>
 <div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="the-start-of-the-end.html#cb282-1" tabindex="-1"></a><span class="fu">mean</span>(flower<span class="sc">$</span>shootarea)</span>
@@ -867,11 +871,11 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb283-10"><a href="the-start-of-the-end.html#cb283-10" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fl">79.8</span>), <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb283-11"><a href="the-start-of-the-end.html#cb283-11" tabindex="-1"></a>    </span>
 <span id="cb283-12"><a href="the-start-of-the-end.html#cb283-12" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_hline-alternative-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_hline-alternative-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>Exactly the same figure but produced in a slightly different way (the point being that there are always multiple ways to get what you want).</p>
 <p>Now let’s tackle that “overall” nitrogen effect. This overall line is effectively the figure we produced much earlier when we learnt how to include a line of best fit from a linear model. However, we are already using <code>geom_smooth()</code>, surely we can’t use it again? This may shock and/or surprise you so please ensure you are seated. You <em>can</em> use <code>geom_smooth()</code> again. In fact you can use it as many times as you want. You can use any layer as many times as you want! Isn’t the world full of wonderful miracles? … Anyway, here’s the code…</p>
-<p><img src="images/geoms_statistics.png" width="15%" style="display: block; margin: auto;" /></p>
+<p><img src="images/geoms_statistics.png" alt="" width="15%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="the-start-of-the-end.html#cb284-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb284-2"><a href="the-start-of-the-end.html#cb284-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb284-3"><a href="the-start-of-the-end.html#cb284-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
@@ -884,13 +888,13 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb284-10"><a href="the-start-of-the-end.html#cb284-10" tabindex="-1"></a>             <span class="at">caption =</span> <span class="st">&quot;Regression assumptions are unvalidated&quot;</span>) <span class="sc">+</span></span>
 <span id="cb284-11"><a href="the-start-of-the-end.html#cb284-11" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fl">79.8</span>), <span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">linetype =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
 <span id="cb284-12"><a href="the-start-of-the-end.html#cb284-12" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/geom_smooth2-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/geom_smooth2-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>That’s great! But you should be asking yourself why that worked. Why when we specified the first <code>geom_smooth()</code> did it draw 3 lines, whereas the second time we used <code>geom_smooth()</code> it just drew a single line? The secret lies in a “conflict” (it isn’t actually a conflict but that’s what we’ll call it) between the colour specified in the main call to <code>ggplot()</code> and the colour specified in the second <code>geom_smooth()</code>. Notice how in the second we’ve specifically told <code>ggplot2</code> that the colour will be black, while prior to this it drew lines based on the number of groups (or colours) in nitrogen? In “overriding” the universal <code>ggplot()</code> with a geom specific argument we’re able to get <code>ggplot2</code> to plot what we want.</p>
 <p>The only things left to do are to change the colour and the shape of the points to something of our choosing and include information on the “overall” trend line in the legend. We’ll begin with the former; changing colour and shape to something we specifically want. When we first started using <code>ggplot2</code> this was the thing which caused us the most difficulty. We think the reason is, that to manually change the colours actually requires an additional layer, where we assumed this would be done in either the main call to <code>ggplot()</code> or in a geom.</p>
 <p>Instead of doing this within the specific geom, we’ll use <code>scale_colour_manual()</code> as well as <code>scale_shape_manual()</code>. Doing it this way will allow us to do two things at once; change the shape and colour to our choosing, and assign labels to these (much like what we did with <code>xlab()</code> and <code>ylab()</code>). Doing so is not too complex but will require nesting a function (<code>c()</code>) within our <code>scale_colour_manual</code> and <code>scale_shape_manual</code> functions (see <a href="basics_r.html#basics_r">Chapter 2</a> for a reminder on the concatenate function (<code>c()</code>) if you’ve forgotten).</p>
 <p>Choosing colours can be fiddly. We’ve found using a colour wheel helps with this step. You can always use Google to find an interactive colour wheel, or use Google’s Colour picker. Any decent website should give you a HEX code, something like: #5C1AAE which is a “code” representation of a colour. Alternatively, there are colour names which R and <code>ggplot2</code> will also understand (e.g. “firebrick4”). Having chosen our colours using whichever means, let’s see how we can do it:</p>
-<p><img src="images/scales.png" width="7.5%" style="display: block; margin: auto;" /></p>
+<p><img src="images/scales.png" alt="" width="7.5%" style="display: block; margin: auto;" /></p>
 <div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="the-start-of-the-end.html#cb285-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea, <span class="at">colour =</span> nitrogen), <span class="at">data =</span> flower) <span class="sc">+</span></span>
 <span id="cb285-2"><a href="the-start-of-the-end.html#cb285-2" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">shape =</span> nitrogen), <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
 <span id="cb285-3"><a href="the-start-of-the-end.html#cb285-3" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
@@ -909,7 +913,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb285-16"><a href="the-start-of-the-end.html#cb285-16" tabindex="-1"></a>       <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>)) <span class="sc">+</span></span>
 <span id="cb285-17"><a href="the-start-of-the-end.html#cb285-17" tabindex="-1"></a>    </span>
 <span id="cb285-18"><a href="the-start-of-the-end.html#cb285-18" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/scale-manual-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/scale-manual-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>To make sense of that code (or any code for that matter) try running it piece by piece. For instance in the above code, if we run <code>c("#5C1AAE", "#AE5C1A", "#1AAE5C")</code> we’ll get a list of those strings. That list is then passed on to <code>scale_colour_manual()</code> as the colours we wish to use. Since we only have three nitrogen concentrations, it will use these three colours. Try including an additional colour in the list and see what happens (if you place the new colour at the end of the list, nothing will happen since it will use the first three colours of the list - try adding it to the start of the list). The same is true for <code>scale_shape_manual()</code>.</p>
 <p>But if you’re paying close attention you’ll notice that there’s a mistake with the figure now. What should be labelled “Low” is actually labelled “Medium” (the green points and line are our low nitrogen concentration, but <code>ggplot2</code> is saying that it’s purple). <code>ggplot2</code> hasn’t made a mistake here, we have. Remember that code is purely logical. It will do explicitly what it is told to do, and in this case we’ve told it to call the labels High, Medium and Low. We could have just as easily told <code>ggplot2</code> to call them Pretoria, Tokyo, and Copenhagen. The lesson here is to always be critical of what your outputs are. Double check everything you do.</p>
@@ -934,7 +938,7 @@ Figure 5.4: Geometry - how we want that data displayed
 <span id="cb287-15"><a href="the-start-of-the-end.html#cb287-15" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span>
 <span id="cb287-16"><a href="the-start-of-the-end.html#cb287-16" tabindex="-1"></a></span>
 <span id="cb287-17"><a href="the-start-of-the-end.html#cb287-17" tabindex="-1"></a>rbook_figure</span></code></pre></div>
-<p><img src="Rbook_files/figure-html/corrected-factor-level-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p><img src="Rbook_files/figure-html/corrected-factor-level-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>And we’ve done it! Our final figure matches the “final figure” exactly. We can then save the final figure to our computer so that we can include it in a poster etc. The code for this is straightforward, but does require an understanding of file paths. Be sure to check <a href="work-d.html#work-d">Chapter 1</a> for an explanation if you’re unsure. To save <code>ggplot</code> figures to an external file we use the function <code>ggsave</code>.</p>
 <p>This is the point when having assigned the code to the object named <code>rbook_figure</code> comes in handy. Doing so allows us to specify which figure to save within <code>ggsave()</code>. If we hadn’t specified which plot to save, <code>ggsave()</code> would instead save the last figure produced.</p>
@@ -968,33 +972,35 @@ Figure 5.4: Geometry - how we want that data displayed
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-"sharing": false,
-"fontsettings": {
-"theme": "white",
-"family": "sans",
-"size": 2
-},
-"edit": {
-"link": "https://github.com/alexd106/Rbook/edit/master/05-gg_graphics.Rmd",
-"text": "Suggest an edit"
-},
-"history": {
-"link": null,
-"text": null
-},
-"view": {
-"link": null,
-"text": null
-},
-"download": [["Rbook.pdf", "Download PDF version"]],
-"search": {
-"engine": "fuse",
-"options": null
-},
-"toc": {
-"collapse": "subsection"
-},
-"highlight": "tango"
+  "sharing": false,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/alexd106/Rbook/edit/master/05-gg_graphics.Rmd",
+    "text": "Suggest an edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": [
+    ["Rbook.pdf", "Download PDF version"]
+  ],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  },
+  "highlight": "tango"
 });
 });
 </script>
