@@ -440,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/new_repo.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Give your new repo a name (let’s call it <code>first_repo</code> for this Chapter) in the ‘General’ section at the top. Underneath, in the ‘Configuration’ section, leave ‘Choose visibility’ set to ‘Public’ and switch the ‘Add README’ toggle to ‘On’ (this last one is important). Ignore the ‘.gitignore’ and ‘license’ options for now and click on the green ‘Create repository’ button.</p>
+<p>Give your new repo a name (let’s call it <code>first_repo</code> for this Chapter) in the ‘General’ section at the top. Underneath, in the ‘Configuration’ section, leave ‘Choose visibility’ set to ‘Public’ and switch the ‘Add README’ toggle to ‘On’ (this is important). Ignore the ‘.gitignore’ and ‘license’ options for now and click on the green ‘Create repository’ button.</p>
 <p> </p>
 <p><img src="images/new_repo_opt.png" alt="" width="55%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -452,11 +452,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/proj_setup1.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Now paste the the URL you previously copied from GitHub into the <code>Repository URL:</code> box. This should then automatically fill out the <code>Project Directory Name:</code> section with the correct repository name (it’s important that the name of this directory has the same name as the repository you created in GitHub). You can then select where you want to create this directory by clicking on the <code>Browse</code> button opposite the <code>Create project as a subdirectory of:</code> option. Navigate to where you want the directory created and click OK. We also tick the <code>Open in new session</code> option.</p>
+<p>Now paste the URL you previously copied from GitHub into the <code>Repository URL:</code> box. This should then automatically fill out the <code>Project Directory Name:</code> section with the correct repository name (it’s important that the name of this directory has the same name as the repository you created in GitHub). You can then select where you want to create this directory by clicking on the <code>Browse</code> button opposite the <code>Create project as a subdirectory of:</code> option. Navigate to where you want the directory created on your computer and click OK. We also like to tick the <code>Open in new session</code> option.</p>
 <p> </p>
 <p><img src="images/proj_setup2.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>RStudio will now create a new directory with the same name as your repository on your local computer and will then <strong>clone</strong> your remote repository to this directory. The directory will contain three new files; <code>first_repo.Rproj</code> (or whatever you called your repository), <code>README.md</code> and <code>.gitignore</code>. You can check this out in the <code>Files</code> tab usually in the bottom right pane in RStudio. You will also have a <code>Git</code> tab in the top right pane with two files listed (we will come to this later on in the Chapter). That’s it for Option 1, you now have a remote GitHub repository set up and this is linked to your local repository managed by RStudio. Any changes you make to files in this directory will be version controlled by Git.</p>
+<p>RStudio will now create a new directory with the same name as your repository on your local computer and will then <strong>clone</strong> your remote repository to this directory. The directory will contain three new files; <code>first_repo.Rproj</code> (or whatever you called your repository), <code>README.md</code> and <code>.gitignore</code>. You can check this out in the <code>Files</code> tab usually in the bottom right pane in RStudio. You will also have a <code>Git</code> tab in the top right pane with two files listed (we will come to this later on in the Chapter). That’s it for Option 1, you now have a remote GitHub repository set up and this is linked to your local repository managed by RStudio. Any changes you make to files in this directory will be version controlled by Git and you can push these changes to GitHub.</p>
 <p> </p>
 <p><img src="images/proj_setup3.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 </div>
@@ -503,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p>Highlight and copy the first line of code (note: yours will be slightly different as it will include your GitHub username not mine)</p>
 <p><code>git remote add origin https://github.com/alexd106/second_repo.git</code></p>
-<p>Switch to RStudio, click on the ‘Terminal’ tab and paste the command into the Terminal. This simply tells your local repository where its remote counterpart lives. Now go back to GitHub and copy the second line</p>
+<p>Switch to RStudio, click on the ‘Terminal’ tab in the Console pane and paste the command into the Terminal. This simply tells your local repository where its remote counterpart lives. Now go back to GitHub and copy the second line</p>
 <p><code>git branch -M main</code></p>
 <p>which renames your local branch to <code>main</code> so that it matches the name GitHub is expecting. If you set <code>init.defaultBranch</code> back in <a href="setup_git.html#configure-git">Section 9.4.2</a> then your branch is probably called <code>main</code> already and this command will do nothing at all, which is exactly what we want. If you didn’t, or your version of Git was too old to take any notice, then this is the command that puts things right. Paste it into the Terminal and then copy the third and final line</p>
 <p><code>git push -u origin main</code></p>
@@ -524,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p> </p>
 <p><img src="images/new_proj_RS12.png" alt="" width="100%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>This doesn’t commit your file straight away. Instead a ‘Commit changes’ window pops up to let you describe what you’ve done, in exactly the same way you would in RStudio. GitHub helpfully suggests a commit message for you, which you’re very welcome to replace with one of your own (we’ll have more to say about writing useful commit messages <a href="use_git.html#use_git">later</a>). You can ignore the ‘Extended description’ box. Make sure ‘Commit directly to the <code>main</code> branch’ is selected and then click on the green ‘Commit changes’ button to finish.</p>
+<p>This doesn’t commit your file straight away. Instead a ‘Commit changes’ window pops up to let you describe what you’ve done, in exactly the same way you would in RStudio. GitHub helpfully suggests a commit message for you, which you’re can replace with one of your own (we’ll have more to say about writing useful commit messages <a href="use_git.html#use_git">later</a>). You can ignore the ‘Extended description’ box. Make sure ‘Commit directly to the <code>main</code> branch’ is selected and then click on the green ‘Commit changes’ button to finish.</p>
 <p> </p>
 <p><img src="images/new_proj_RS13.png" alt="" width="40%" style="display: block; margin: auto;" /></p>
 <p> </p>

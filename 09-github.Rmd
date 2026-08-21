@@ -2,11 +2,11 @@
 
 This Chapter will introduce you to the basics of using a version control system to keep track of all your important R code and facilitate collaboration with colleagues and the wider world. This Chapter will focus on using the software 'Git' in combination with the web-based hosting service 'GitHub'. By the end of the Chapter, you will be able to install Git, configure it and connect it to a GitHub account, and setup and work with a version controlled project in RStudio. We won't be covering more advanced topics such as branching, forking and pull requests in much detail but we do give an overview [later](#collab) on in the Chapter.
 
-Just a few notes of caution. In this Chapter we'll be using RStudio to interface with Git as it gives you a nice friendly graphical user interface which generally makes life a little bit easier (and who doesn't want that?). However, one downside to using RStudio with Git is that RStudio only provides pretty basic Git functionality through its menu system. That's fine for most of what we'll be doing during this Chapter (although we will introduce a few Git commands as we go along) but if you really want to benefit from using Git's power you will need to [learn](#resources) some Git commands and syntax. This leads us on to our next point. We're not going to lie, Git can become a little bewildering and frustrating when you first start using it. This is mostly due to the terminology and liberal use of jargon associated with Git, but there's no hiding the fact that it's quite easy to get yourself and your Git repository into a pickle. Therefore, we've tried hard to keep things as straight forward as we can during this Chapter and as a result we do occasionally show you a couple of very 'un-Git' ways of doing things (mostly about reverting to previous versions of documents). Don't get hung up about this, there's no shame to using these low tech solutions and if it works then it works. Lastly, GitHub was not designed to host very large files and will warn you if you try to add files greater than 50 MB and block you adding files greater than 100 MB. If your project involves using large file sizes there are a [few solutions][biggit] but we find the easiest solution is to host these files elsewhere (Googledrive, Dropbox etc) and create a link to them in a README file or R markdown document on Github.  
+Just a few notes of caution. In this Chapter we'll be using RStudio to interface with Git as it gives you a nice friendly graphical user interface which generally makes life a little bit easier (and who doesn't want that?). However, one downside to using RStudio with Git is that RStudio only provides pretty basic Git functionality through its menu system. That's fine for most of what we'll be doing during this Chapter (although we will introduce a few Git commands as we go along) but if you really want to benefit from using Git's power you will need to [learn](#resources) some Git commands and syntax. This leads us on to our next point. We're not going to lie, Git can become a little bewildering and frustrating when you first start using it. This is mostly due to the terminology and liberal use of jargon associated with Git, but there's no hiding the fact that it's quite easy to get yourself and your Git repository into a pickle. Therefore, we've tried hard to keep things as straight forward as we can during this Chapter and as a result we do occasionally show you a couple of very 'un-Git' ways of doing things (mostly about reverting to previous versions of documents). Don't get hung up about this, there's no shame to using these low tech solutions and if it works then it works. Lastly, GitHub was not designed to host very large files and will warn you if you try to add files greater than 50 MB and block you adding files greater than 100 MB. If your project involves using large file sizes there are a [few solutions][biggit] but we find the easiest solution is to host these files elsewhere (your institutions network share for example) and create a link to them in a README file or R markdown document on Github.  
 
 ## What is version control?
 
-A [Version Control System][version_con] (VCS)  keeps a record of all the changes you make to your files that make up a particular project and allows you to revert to previous versions of files if you need to. To put it another way, if you muck things up or accidentally lose important files you can easily roll back to a previous stage in your project to sort things out. Version control was originally designed for collaborative software development, but it's equally useful for scientific research and collaborations (although admittedly a lot of the terms, jargon and functionality are focused on the software development side). There are many different version control systems currently available, but we'll focus on using *Git*, because it's free and open source and it integrates nicely with RStudio. This means that its can easily become part of your usual workflow with minimal additional overhead.  
+A [Version Control System][version_con] (VCS)  keeps a record of all the changes you make to your files that make up a particular project and allows you to revert to previous versions of files if you need to. To put it another way, if you muck things up or accidentally lose important files you can easily roll back to a previous stage in your project to sort things out. It's a bit like track changes in MS Word, but much more powerful. Version control was originally designed for collaborative software development, but it's equally useful for scientific research and collaborations (although admittedly a lot of the terms, jargon and functionality are focused on the software development side). There are many different version control systems currently available, but we'll focus on using *Git*, because it's free and open source and it integrates nicely with RStudio. This means that its can easily become part of your usual workflow with minimal additional overhead.  
 
 ## Why use version control?
 
@@ -34,7 +34,7 @@ Version control automatically takes care of keeping a record of all the versions
 
 ## What is Git and GitHub?
 
-**Git** is a version control system originally developed by [Linus Torvalds][linus] that lets you track changes to a set of files. These files can be any type of file including the menagerie of files that typically make up a data orientated project (.pdf, .Rmd, .docx, .txt, .jpg etc) although plain text files work the best. All the files that make up a project is called a **repository** (or just **repo**).
+**Git** is a version control system originally developed by [Linus Torvalds][linus] that lets you track changes to a set of files. These files can be any type of file including the menagerie of files that typically make up a data orientated project (.pdf, .Rmd, .docx, .txt, .jpg etc) although plain text files work the best (thankfully your .Rmd files are just text files!). All the files that make up a project is called a **repository** (or just **repo**).
 
 **GitHub** is a web-based hosting service for Git repositories which allows you to create a remote copy of your local version-controlled project. This can be used as a backup or archive of your project or make it accessible to you and to your colleagues so you can work collaboratively. 
 
@@ -54,7 +54,7 @@ This Chapter assumes that you have already installed the latest versions of R an
 
 ### Install Git
 
-To get started, you first need to install Git. If you're lucky you may already have Git installed (especially if you have a Mac or Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing `git --version` (the space after the `git` command is important). If you see something that looks like `git version 2.25.0` (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like `git: command not found`) this means you don't have Git installed (yet!).
+To get started, you first need to install Git. If you're lucky you may already have Git installed (especially if you have a Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing `git --version` (the space after the `git` command is important). If you see something that looks like `git version 2.25.0` (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like `git: command not found`) this means you don't have Git installed (yet!).
 
 
 \  
@@ -84,7 +84,7 @@ Whatever version of Git you're installing, once the installation has finished ve
 
 ### Configure Git
 
-After installing Git, you need to configure it so you can use it. Git stamps every change you make with a name and an email address, so this is really just a matter of introducing yourself. Happily, you only need to do this once per computer.
+After installing Git, you need to configure it so you can use it. Git stamps every change you make with a name and an email address, so you need to give Git this information. Happily, you only need to do this once per computer.
 
 There are two ways of going about it. The traditional way is to use the Terminal and we'll show you that in a moment, but as the rest of this Chapter does its best to keep you inside RStudio we'll start with the `usethis`\index{usethis package} package instead. This lets you configure Git from the Console you already know rather than from a command line you may never have opened before. If you don't have `usethis` installed yet then now's the time
 
@@ -102,13 +102,13 @@ use_git_config(user.name = "Your Name", user.email = "you@youremail.com")
 
 substituting `"Your Name"` for your actual name and `"you@youremail.com"` with your email address. We recommend you use your University email address (if you have one) as you will also use this address when you register for your GitHub account (coming up in a bit).  
 
-Whilst you're here there's one more setting worth changing. Every Git repository has a main line of work, which Git calls a **branch**, and this branch needs a name. Git has historically called it `master` whereas GitHub has called it `main` since 2020. If you leave the two disagreeing then sooner or later you'll be rewarded with a thoroughly baffling error message when you try to push, so let's head that off now
+Whilst you're here there's one more setting worth changing. Every Git repository has a main line of work, which Git calls a **branch**, and this branch needs a name. Git has historically called it `master` whereas GitHub has called it `main` since 2020. If you leave the two disagreeing then sooner or later you'll be rewarded with a baffling error message when you try to push, so let's head that off now
 
 ```{r usethis-branch, eval=FALSE}
 use_git_config(init.defaultBranch = "main")
 ```
 
-Every new repository you create from here on will use `main`. This particular setting needs Git 2.28 or newer, which anything you install today will be, but if you're working with an older version of Git then it will quietly ignore you and carry on calling the branch `master`. That's not a disaster and we'll show you how to deal with it in [Option 2](#opt2) below. Don't be surprised to come across both names in the wild either, as an awful lot of repositories were created before the change (including the one this book lives in!).
+Every new repository you create from here on will use `main`. This particular setting needs Git 2.28 or newer, which anything you install today will be, but if you're working with an older version of Git then it will quietly ignore you and carry on calling the branch `master`. That's not a disaster and we'll show you how to deal with it in [Option 2](#opt2) below. Don't be surprised to come across both names in the wild either, a lot of repositories were created before the change (including the one this book lives in!).
 
 If you'd rather use the Terminal, or you're simply curious about what `usethis` is doing on your behalf, the equivalent commands are
 
@@ -142,33 +142,31 @@ knitr::include_graphics(path = "images/git_path.png")
 
 ### Register a GitHub account
 
-If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you will need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like [GitLab][gitlab], [Bitbucket][bitbucket] and [Savannah][savannah]). You can sign up for a free account on GitHub [here][git_join]. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free [educator or researcher account][git_edu] later on which gives you some useful [benefits][git-ben] (don't worry about this now though). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your future employer!  
+If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you'll need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like [GitLab][gitlab], [Bitbucket][bitbucket] and [Savannah][savannah]). You can sign up for a free account on GitHub [here][git_join]. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free [educator or researcher account][git_edu] later on which gives you some useful [benefits][git-ben] (don't worry about this now though, GitHub is still free without it). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your current/future employer!  
 
 You may be asked to solve a simple puzzle to prove you're human, after which GitHub will email you a verification code to type in. There's no plan to choose, as a personal account is free and comes with everything we need.  
 
-Whilst you're setting up your account it's worth thinking about turning on two-factor authentication (2FA). This is where GitHub asks for a short code from an app on your phone as well as your password whenever you log in, and it makes your account a great deal harder for somebody else to get into. It takes about five minutes to set up with an authenticator app. GitHub only *insists* on 2FA for accounts which meet certain contributor criteria (publishing an app or an action, creating a release, contributing to particularly widely used repositories and so on) so you almost certainly won't be required to use it for anything we do in this Chapter. We'd still recommend it. You can find GitHub's own instructions [here][git-2fa] and you can always come back and switch it on later if you'd rather press on for now.  
+Whilst you're setting up your account it's worth thinking about turning on two-factor authentication (2FA). This is where GitHub asks for a short code from an app on your phone as well as your password whenever you log in, and it makes your account a great deal harder for somebody else to get into. It takes about five minutes to set up with an authenticator app. GitHub only *insists* on 2FA for accounts which meet certain contributor criteria (publishing an app or an action, creating a release, contributing to particularly widely used repositories and so on) so you almost certainly won't be required to use it for anything we do in this Chapter. We'd still recommend it though. You can find GitHub's own instructions [here][git-2fa] and you can always come back and switch it on later if you'd rather press on for now.  
 
 Once you've completed all those steps you'll have both Git and GitHub set up. There's one last piece of the puzzle to slot into place before the two of them will actually talk to each other though, which is what the next section is all about.
 
 ### Authenticate with GitHub {#github-auth}
 
-At some point fairly soon you're going to ask Git to send your work up to GitHub, and when you do, GitHub is going to want to know that you are who you say you are. You might reasonably expect to type in the password you chose in the previous section. You can't. GitHub stopped accepting account passwords for this in August 2021 and if you try it you'll be met with an authentication error which does a spectacularly poor job of explaining what's actually wrong.  
+At some point fairly soon you're going to ask Git to send your work up to GitHub, and when you do, GitHub is going to want to know that you are who you say you are. You might expect to type in the password you chose in the previous section. You can't. GitHub stopped accepting account passwords for this in August 2021 and if you try it you'll be met with an authentication error which does a particularily poor job of explaining what's actually wrong.  
 
 What you use instead is a **personal access token**\index{personal access token} (PAT), which is a long string of random looking characters that acts as a password for a single computer. Tokens are rather better than passwords for this job. You can have a different one for each machine you work on, you can give each one a limited lifespan, and if one of them ever goes astray you can cancel it on its own without touching your password or any of your other computers.  
 
 You could create a token by digging through your GitHub account settings, but the `usethis` package will do the digging for you
 
 ```{r pat-create, eval=FALSE}
-library(usethis)
-
 create_github_token()
 ```
 
 This opens GitHub in your web browser on the token creation page with all of the permissions you need already ticked. The page is headed 'New personal access token (classic)'. You may notice that GitHub also offers a newer sort of token called a fine-grained token in the sidebar, but classic tokens are simpler to set up and are what `usethis` prepares for you, so stick with those for now. Before you click the green 'Generate token' button at the bottom there are two things you should change.  
 
-The first is the **Note**, which is just a label to help you remember which computer this token belongs to. `usethis` fills in something generic, so replace it with something that will still mean something to you in six months time (`work laptop` will do nicely).  
+The first is the **Note**, which is just a label to help you remember which computer this token belongs to. `usethis` fills in something generic, so replace it with something that will still mean something to you in six months time (`work laptop` for example).  
 
-The second is the **Expiration**. GitHub suggests 30 days, which is admirable security practice but does mean your token will stop working disappointingly soon. Click the dropdown and pick something that suits how you work. If you're using this book as part of a taught course then we'd suggest choosing 'Custom' and setting a date comfortably beyond the end of it, so your token doesn't expire in the middle of writing up. Whatever you choose, you're making a trade between security and convenience and it's worth doing that deliberately rather than by accident.  
+The second is the **Expiration**. GitHub suggests 30 days, which is a great security practice but does mean your token will stop working disappointingly soon. Click the dropdown and pick something that suits how you work. If you're using this book as part of a taught course then we'd suggest choosing 'Custom' and setting a date comfortably beyond the end of it, so your token doesn't expire in the middle of writing up. Whatever you choose, you're making a trade between security and convenience and it's worth doing that deliberately rather than by accident.  
 
 <!-- Screenshot slot: drop images/git_pat_form.png into images/ and this renders automatically. Token form with the Note field and the Expiration dropdown both visible, dropdown open on Custom. -->
 
@@ -180,7 +178,7 @@ knitr::include_graphics(path = "images/git_pat_form.png")
 
 \  
 
-Now click 'Generate token'. GitHub will show you the token on a green background, and this is the only time it will ever do so. Copy it now. If you navigate away from that page without copying it then there's no way of getting it back and you'll simply have to generate another one, which is irritating but completely harmless.  
+Now click 'Generate token'. GitHub will show you the token on a green background, and this is the only time it will ever do so. Copy it now. If you navigate away from that page without copying it then there's no way of getting it back and you'll simply have to generate another one, which is irritating but harmless.  
 
 <!-- Screenshot slot: drop images/git_pat_token.png into images/ and this renders automatically. The generated token on its green background with the copy icon. Token must be blurred or fake. -->
 
@@ -192,13 +190,14 @@ knitr::include_graphics(path = "images/git_pat_token.png")
 
 \  
 
-The last thing to do is hand the token over to your computer's credential store so that you never have to type it again
+The last thing to do is hand the token over to your computer's credential store so that you never have to type it again. In your Rstudio console
 
 ```{r pat-store, eval=FALSE}
+library(usethis)
 gitcreds::gitcreds_set()
 ```
 
-Paste the token in when you're prompted and press enter. That's it. Git will now find the token by itself every time it needs it and you can go back to forgetting that any of this exists. (You won't need to install `gitcreds`\index{gitcreds package} separately, by the way, as `usethis` brings it along with it.)  
+Paste the token that you have just copied in when you're prompted and press enter. That's it. Git will now find the token by itself every time it needs it and you can go back to forgetting that any of this exists. (You won't need to install `gitcreds`\index{gitcreds package} separately, by the way, as `usethis` brings it along with it.)  
 
 <!-- Screenshot slot: drop images/git_pat_store.png into images/ and this renders automatically. The Console after gitcreds::gitcreds_set(), showing the prompt asking for the token. -->
 
@@ -206,13 +205,13 @@ Paste the token in when you're prompted and press enter. That's it. Git will now
 knitr::include_graphics(path = "images/git_pat_store.png")
 ```
 
-Now's a good time to run the situation report we mentioned earlier, as this time there's a good deal more for it to tell you
+Now's a good time to run the situation report again, as this time there's more for it to tell you
 
 ```{r usethis-sitrep2, eval=FALSE}
 git_sitrep()
 ```
 
-Read the output even though nothing has gone wrong. Knowing what a healthy setup looks like is precisely what makes `git_sitrep()` useful on the day that something isn't. The lines to check are your name and email address, and a line further down confirming that a personal access token was found.  
+Read the output even though nothing has gone wrong. Knowing what a healthy setup looks like is what makes `git_sitrep()` useful. The lines to check are your name and email address, and a line further down confirming that a personal access token was found.  
 
 <!-- Screenshot slot: drop images/git_sitrep.png into images/ and this renders automatically. A healthy git_sitrep() output with the email address redacted. -->
 
@@ -224,7 +223,7 @@ knitr::include_graphics(path = "images/git_sitrep.png")
 
 \  
 
-Finally, a word about what happens when your token expires, because it will. The symptom is that pushing and pulling, which worked perfectly well last week, suddenly starts failing with a message about authentication. The fix is simply to do it all again
+Finally, a word about what happens when your token expires, because it will at some point. The symptom is that pushing and pulling, which worked perfectly well previously, suddenly starts failing with a message about authentication. The fix is simply to do it all again
 
 ```{r pat-renew, eval=FALSE}
 create_github_token()      # generate a shiny new one
@@ -250,7 +249,7 @@ knitr::include_graphics(path = "images/new_repo.png")
 
 \  
 
-Give your new repo a name (let's call it `first_repo` for this Chapter) in the 'General' section at the top. Underneath, in the 'Configuration' section, leave 'Choose visibility' set to 'Public' and switch the 'Add README' toggle to 'On' (this last one is important). Ignore the '.gitignore' and 'license' options for now and click on the green 'Create repository' button. 
+Give your new repo a name (let's call it `first_repo` for this Chapter) in the 'General' section at the top. Underneath, in the 'Configuration' section, leave 'Choose visibility' set to 'Public' and switch the 'Add README' toggle to 'On' (this is important). Ignore the '.gitignore' and 'license' options for now and click on the green 'Create repository' button. 
 
 \  
 
@@ -280,7 +279,7 @@ knitr::include_graphics(path = "images/proj_setup1.png")
 
 \  
 
-Now paste the the URL you previously copied from GitHub into the `Repository URL:` box. This should then automatically fill out the `Project Directory Name:` section with the correct repository name (it's important that the name of this directory has the same name as the repository you created in GitHub). You can then select where you want to create this directory by clicking on the `Browse` button opposite the `Create project as a subdirectory of:` option. Navigate to where you want the directory created and click OK. We also tick the `Open in new session` option. 
+Now paste the URL you previously copied from GitHub into the `Repository URL:` box. This should then automatically fill out the `Project Directory Name:` section with the correct repository name (it's important that the name of this directory has the same name as the repository you created in GitHub). You can then select where you want to create this directory by clicking on the `Browse` button opposite the `Create project as a subdirectory of:` option. Navigate to where you want the directory created on your computer and click OK. We also like to tick the `Open in new session` option. 
 
 \  
 
@@ -290,7 +289,7 @@ knitr::include_graphics(path = "images/proj_setup2.png")
 
 \  
 
-RStudio will now create a new directory with the same name as your repository on your local computer and will then **clone** your remote repository to this directory. The directory will contain three new files; `first_repo.Rproj` (or whatever you called your repository), `README.md` and `.gitignore`. You can check this out in the `Files` tab usually in the bottom right pane in RStudio. You will also have a `Git` tab in the top right pane with two files listed (we will come to this later on in the Chapter). That's it for Option 1, you now have a remote GitHub repository set up and this is linked to your local repository managed by RStudio. Any changes you make to files in this directory will be version controlled by Git.
+RStudio will now create a new directory with the same name as your repository on your local computer and will then **clone** your remote repository to this directory. The directory will contain three new files; `first_repo.Rproj` (or whatever you called your repository), `README.md` and `.gitignore`. You can check this out in the `Files` tab usually in the bottom right pane in RStudio. You will also have a `Git` tab in the top right pane with two files listed (we will come to this later on in the Chapter). That's it for Option 1, you now have a remote GitHub repository set up and this is linked to your local repository managed by RStudio. Any changes you make to files in this directory will be version controlled by Git and you can push these changes to GitHub.
 
 \  
 
@@ -401,7 +400,7 @@ Highlight and copy the first line of code (note: yours will be slightly differen
 
 `git remote add origin https://github.com/alexd106/second_repo.git`  
 
-Switch to RStudio, click on the 'Terminal' tab and paste the command into the Terminal. This simply tells your local repository where its remote counterpart lives. Now go back to GitHub and copy the second line  
+Switch to RStudio, click on the 'Terminal' tab in the Console pane and paste the command into the Terminal. This simply tells your local repository where its remote counterpart lives. Now go back to GitHub and copy the second line  
 
 `git branch -M main`  
 
@@ -451,7 +450,7 @@ knitr::include_graphics(path = "images/new_proj_RS12.png")
 
 \  
 
-This doesn't commit your file straight away. Instead a 'Commit changes' window pops up to let you describe what you've done, in exactly the same way you would in RStudio. GitHub helpfully suggests a commit message for you, which you're very welcome to replace with one of your own (we'll have more to say about writing useful commit messages [later](#use_git)). You can ignore the 'Extended description' box. Make sure 'Commit directly to the `main` branch' is selected and then click on the green 'Commit changes' button to finish.
+This doesn't commit your file straight away. Instead a 'Commit changes' window pops up to let you describe what you've done, in exactly the same way you would in RStudio. GitHub helpfully suggests a commit message for you, which you're can replace with one of your own (we'll have more to say about writing useful commit messages [later](#use_git)). You can ignore the 'Extended description' box. Make sure 'Commit directly to the `main` branch' is selected and then click on the green 'Commit changes' button to finish.
 
 \  
 
@@ -489,7 +488,7 @@ knitr::include_graphics(path = "images/workflow_3.png")
 
 \  
 
-OK, let's go through an example to help clarify this workflow. In RStudio open up the `first_repo.Rproj` you created previously during Option 1. Either use the `File` -> `Open Project` menu or click on the top right project icon and select the appropriate project. 
+OK, let's go through an example to help clarify this workflow. In RStudio open up the `first_repo.Rproj` project you created previously during Option 1. Either use the `File` -> `Open Project` menu or click on the top right project icon and select the appropriate project. 
 
 \  
 
@@ -499,7 +498,7 @@ knitr::include_graphics(path = "images/first_Rmd0.png")
 
 \  
 
-Create an R markdown document inside this project by clicking on the `File` -> `New File` -> `R markdown` menu (remember from the R markdown [Chapter](#rmarkdown_r)?).  
+Create an R markdown document inside this project by clicking on the `File` -> `New File` -> `R markdown` menu (remember from the R markdown [Chapter](#rmarkdown_r)?). If you haven't had a chance to look through the R markdown Chapter then just create an R script (.R) or even a text file (.txt) or just blindly follow the instructions below. 
 
 Once created, we can delete all the example R markdown code (except the YAML header) as usual and write some interesting R markdown text and include a plot. We'll use the inbuilt `cars` dataset to do this. Save this file (cmd + s for Mac or ctrl + s in Windows). Your R markdown document should look something like the following (it doesn't matter if it's not exactly the same).
 
@@ -511,7 +510,7 @@ knitr::include_graphics(path = "images/first_Rmd.png")
 
 \  
 
-Take a look at the 'Git' tab which should list your new R markdown document (`first_doc.Rmd` in this example) along with `first_repo.Rproj`, and `.gitignore` (you created these files previously when following Option 1).
+Take a look at the 'Git' tab (top right in RStudio) which should list your new R markdown document (`first_doc.Rmd` in this example) along with `first_repo.Rproj`, and `.gitignore` (you created these files previously when following Option 1).
 
 \  
 
@@ -854,7 +853,7 @@ Generally speaking you should commit often (including amended commits) but push 
 
 \  
 
-If you don't want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting 'Ignore...'
+If you don't want to track a file in your repository (maybe they are too large, private or transient) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting 'Ignore...'
 
 \  
 
