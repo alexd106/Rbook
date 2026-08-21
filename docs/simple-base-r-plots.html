@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -385,6 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +407,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -452,7 +455,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="simple-base-r-plots.html#cb191-1" tabindex="-1"></a><span class="fu">plot</span>(flowers<span class="sc">$</span>shootarea <span class="sc">~</span> flowers<span class="sc">$</span>weight)</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/plot5-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p>Both of these two approaches are equivalent so we suggest that you just choose the one you prefer and go with it.</p>
-<p>You can also specify the type of graph you wish to plot using the argument <code>type =</code>. You can plot just the points (<code>type = "p"</code>, this is the default), just lines (<code>type = "l"</code>), both points and lines connected (<code>type = "b"</code>), both points and lines with the lines running through the points (<code>type = "o"</code>) and empty points joined by lines (<code>type = "c"</code>). For example, let’s use our skills from <a href="#funcs">Chapter 2</a> to generate two vectors of numbers (<code>my_x</code> and <code>my_y</code>) and then plot one against the other using different <code>type =</code> values to see what type of plots are produced. Don’t worry about the <code>par(mfrow = c(2, 2))</code> line of code yet. We’re just using this to split the plotting device so we can fit all four plots on the same device to save some space. See <a href="mult_graphs.html#mult_graphs">later</a> in the Chapter for more details about this. The top left plot is <code>type = "l"</code>, the top right <code>type = "b"</code>, bottom left <code>type = "o"</code> and bottom right is <code>type = "c"</code>.</p>
+<p>You can also specify the type of graph you wish to plot using the argument <code>type =</code>. You can plot just the points (<code>type = "p"</code>, this is the default), just lines (<code>type = "l"</code>), both points and lines connected (<code>type = "b"</code>), both points and lines with the lines running through the points (<code>type = "o"</code>) and empty points joined by lines (<code>type = "c"</code>). For example, let’s use our skills from <a href="using-functions-in-r.html#using-functions-in-r">Chapter 2</a> to generate two vectors of numbers (<code>my_x</code> and <code>my_y</code>) and then plot one against the other using different <code>type =</code> values to see what type of plots are produced. Don’t worry about the <code>par(mfrow = c(2, 2))</code> line of code yet. We’re just using this to split the plotting device so we can fit all four plots on the same device to save some space. See <a href="mult_graphs.html#mult_graphs">later</a> in the Chapter for more details about this. The top left plot is <code>type = "l"</code>, the top right <code>type = "b"</code>, bottom left <code>type = "o"</code> and bottom right is <code>type = "c"</code>.</p>
 <div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="simple-base-r-plots.html#cb192-1" tabindex="-1"></a>my_x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
 <span id="cb192-2"><a href="simple-base-r-plots.html#cb192-2" tabindex="-1"></a>my_y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">20</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
 <span id="cb192-3"><a href="simple-base-r-plots.html#cb192-3" tabindex="-1"></a></span>

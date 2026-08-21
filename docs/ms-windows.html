@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -385,6 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +407,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -430,12 +433,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="ms-windows" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">A.1</span> MS Windows<a href="ms-windows.html#ms-windows" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>This guide assumes you have already installed <a href="https://www.r-project.org">R</a> and the <a href="https://rstudio.com/">RStudio IDE</a>. RStudio is not required but recommended, because it makes it easier to work with R Markdown. If you don’t have RStudio IDE installed, you will also have to install <a href="http://pandoc.org">Pandoc</a>. If you have RStudio installed there is no need to install Pandoc separately because it’s bundled with RStudio. Next you can install the <code>rmarkdown</code> package in RStudio using the following code:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="ms-windows.html#cb457-1" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
-<span id="cb457-2"><a href="ms-windows.html#cb457-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb466"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb466-1"><a href="ms-windows.html#cb466-1" tabindex="-1"></a><span class="co"># Install from CRAN</span></span>
+<span id="cb466-2"><a href="ms-windows.html#cb466-2" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;rmarkdown&#39;</span>, <span class="at">dep =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p>The <code>dep = TRUE</code> argument will also install a bunch of additional R packages on which rmarkdown depends.</p>
 <p>If you want to generate PDF output, you will need to install LaTeX. For R Markdown users who have not installed LaTeX before, we recommend that you install <a href="https://yihui.name/tinytex/">TinyTeX</a>. You can install TinyTex from within RStudio using the following code:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="ms-windows.html#cb458-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
-<span id="cb458-2"><a href="ms-windows.html#cb458-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="ms-windows.html#cb467-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb467-2"><a href="ms-windows.html#cb467-2" tabindex="-1"></a>tinytex<span class="sc">::</span><span class="fu">install_tinytex</span>()  <span class="co"># install TinyTeX</span></span></code></pre></div>
 <p>TinyTeX is a lightweight, portable, cross-platform, and easy-to-maintain LaTeX distribution. The R companion package tinytex can help you automatically install missing LaTeX packages when compiling LaTeX or R Markdown documents to PDF. An alternative option would be to install MiKTeX instead. You can download the latest distribution of <a href="https://miktex.org/download">MiKTeX</a>. Installing MiKTeX is pretty straight forward, but it can sometimes be a pain to get it to play nicely with RStudio. If at all possible we recommend that you use TinyTex.</p>
 <p>With the rmarkdown package, RStudio/Pandoc, and LaTeX, you should be able to compile most R Markdown documents.</p>
 </div>

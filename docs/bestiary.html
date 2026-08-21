@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -385,6 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +407,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -494,18 +497,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb315-8"><a href="bestiary.html#cb315-8" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Number of Flowers&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Nitrogen Concentration&quot;</span>) <span class="sc">+</span></span>
 <span id="cb315-9"><a href="bestiary.html#cb315-9" tabindex="-1"></a>    <span class="fu">scale_y_log10</span>() <span class="sc">+</span></span>
 <span id="cb315-10"><a href="bestiary.html#cb315-10" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<pre><code>## Warning: The `draw_quantiles` argument of `geom_violin()` is deprecated as of ggplot2
+## 4.0.0.
+## ℹ Please use the `quantiles.linetype` argument instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <p><img src="Rbook_files/figure-html/violin-plot-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="barchart" class="section level3 hasAnchor" number="5.4.6">
 <h3><span class="header-section-number">5.4.6</span> Barchart<a href="bestiary.html#barchart" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Below is an example of barcharts. It is included here for completeness, but be aware that they are viewed with contention (with good reason). Briefly, barcharts can hide information, or imply there is data where there is none; ultimately misleading the reader. There are almost always better alternatives to use that better demonstrate the data.</p>
 <p> </p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="bestiary.html#cb316-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span></span>
-<span id="cb316-2"><a href="bestiary.html#cb316-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(block), <span class="at">fill =</span> nitrogen)) <span class="sc">+</span></span>
-<span id="cb316-3"><a href="bestiary.html#cb316-3" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>),</span>
-<span id="cb316-4"><a href="bestiary.html#cb316-4" tabindex="-1"></a>         <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#2613EC&quot;</span>, <span class="st">&quot;#9313EC&quot;</span>, <span class="st">&quot;#EC13D9&quot;</span>)) <span class="sc">+</span></span>
-<span id="cb316-5"><a href="bestiary.html#cb316-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Block&quot;</span>) <span class="sc">+</span></span>
-<span id="cb316-6"><a href="bestiary.html#cb316-6" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="bestiary.html#cb317-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span></span>
+<span id="cb317-2"><a href="bestiary.html#cb317-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(block), <span class="at">fill =</span> nitrogen)) <span class="sc">+</span></span>
+<span id="cb317-3"><a href="bestiary.html#cb317-3" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>),</span>
+<span id="cb317-4"><a href="bestiary.html#cb317-4" tabindex="-1"></a>         <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#2613EC&quot;</span>, <span class="st">&quot;#9313EC&quot;</span>, <span class="st">&quot;#EC13D9&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb317-5"><a href="bestiary.html#cb317-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Count&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Block&quot;</span>) <span class="sc">+</span></span>
+<span id="cb317-6"><a href="bestiary.html#cb317-6" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/barchart-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>The barchart shows the numbers of observations in each block, with each bar split according to the number of observations in each nitrogen concentration. In this case they are equal because the dataset (and experimental design) was balanced.</p>
@@ -514,24 +523,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.4.7</span> Quantile lines<a href="bestiary.html#quantile-lines" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>While we can draw a straight line, perhaps we would also like to include the descriptive nature of a boxplot, except using continuous data. We can use quantile lines in such cases. Note that for quantiles to be calculated <code>ggplot2</code> requires the installation of the package <code>quantreg</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="bestiary.html#cb317-1" tabindex="-1"></a><span class="fu">library</span>(quantreg)</span>
-<span id="cb317-2"><a href="bestiary.html#cb317-2" tabindex="-1"></a></span>
-<span id="cb317-3"><a href="bestiary.html#cb317-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb317-4"><a href="bestiary.html#cb317-4" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
-<span id="cb317-5"><a href="bestiary.html#cb317-5" tabindex="-1"></a>    <span class="fu">geom_quantile</span>(<span class="at">colour =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb317-6"><a href="bestiary.html#cb317-6" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
-<span id="cb317-7"><a href="bestiary.html#cb317-7" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="bestiary.html#cb318-1" tabindex="-1"></a><span class="fu">library</span>(quantreg)</span>
+<span id="cb318-2"><a href="bestiary.html#cb318-2" tabindex="-1"></a></span>
+<span id="cb318-3"><a href="bestiary.html#cb318-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> weight, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
+<span id="cb318-4"><a href="bestiary.html#cb318-4" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="fl">0.5</span>, <span class="at">alpha =</span> <span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb318-5"><a href="bestiary.html#cb318-5" tabindex="-1"></a>    <span class="fu">geom_quantile</span>(<span class="at">colour =</span> <span class="st">&quot;darkgrey&quot;</span>, <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb318-6"><a href="bestiary.html#cb318-6" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Weight&quot;</span>) <span class="sc">+</span></span>
+<span id="cb318-7"><a href="bestiary.html#cb318-7" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/quantile-lines-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="heatmap" class="section level3 hasAnchor" number="5.4.8">
 <h3><span class="header-section-number">5.4.8</span> Heatmap<a href="bestiary.html#heatmap" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Heatmaps are a great tool to visualise spatial patterns. <code>ggplot2</code> can easily handle such data using <code>geom_bin2d()</code> to allow us to see if our data is more (or less) clustered.</p>
 <p> </p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="bestiary.html#cb318-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb318-2"><a href="bestiary.html#cb318-2" tabindex="-1"></a>    <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
-<span id="cb318-3"><a href="bestiary.html#cb318-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
-<span id="cb318-4"><a href="bestiary.html#cb318-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb318-5"><a href="bestiary.html#cb318-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="bestiary.html#cb319-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
+<span id="cb319-2"><a href="bestiary.html#cb319-2" tabindex="-1"></a>    <span class="fu">geom_bin2d</span>() <span class="sc">+</span></span>
+<span id="cb319-3"><a href="bestiary.html#cb319-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
+<span id="cb319-4"><a href="bestiary.html#cb319-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb319-5"><a href="bestiary.html#cb319-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/heat-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In this example, lighter blue squares show combinations of leaf area and shoot area where we have more data, and dark blue shows the converse.</p>
@@ -540,33 +549,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">5.4.9</span> Hex map<a href="bestiary.html#hex-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A similar version to <code>geom_density2d()</code> is <code>geom_hex()</code>. The only difference between the two is that the squares are replaced with hexagons. Note that <code>geom_hex()</code> requires you to first install an additional package called <code>hexbin</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="bestiary.html#cb319-1" tabindex="-1"></a><span class="fu">library</span>(hexbin)</span>
-<span id="cb319-2"><a href="bestiary.html#cb319-2" tabindex="-1"></a></span>
-<span id="cb319-3"><a href="bestiary.html#cb319-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb319-4"><a href="bestiary.html#cb319-4" tabindex="-1"></a>    <span class="fu">geom_hex</span>() <span class="sc">+</span></span>
-<span id="cb319-5"><a href="bestiary.html#cb319-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
-<span id="cb319-6"><a href="bestiary.html#cb319-6" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb319-7"><a href="bestiary.html#cb319-7" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="bestiary.html#cb320-1" tabindex="-1"></a><span class="fu">library</span>(hexbin)</span>
+<span id="cb320-2"><a href="bestiary.html#cb320-2" tabindex="-1"></a></span>
+<span id="cb320-3"><a href="bestiary.html#cb320-3" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
+<span id="cb320-4"><a href="bestiary.html#cb320-4" tabindex="-1"></a>    <span class="fu">geom_hex</span>() <span class="sc">+</span></span>
+<span id="cb320-5"><a href="bestiary.html#cb320-5" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
+<span id="cb320-6"><a href="bestiary.html#cb320-6" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb320-7"><a href="bestiary.html#cb320-7" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/hex-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="contour-map" class="section level3 hasAnchor" number="5.4.10">
 <h3><span class="header-section-number">5.4.10</span> Contour map<a href="bestiary.html#contour-map" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Similar to a heatmap we can make a contour map using <code>geom_density_2d()</code>. The way to read this figure is much the same way as you’d read a topographical map showing mountains or peaks. The central polygon represents the space (amongst shoot and leaf area) where there are most observations. As you “step” down this mountain to the next line, we step down in the number of counts. Think of this as showing where points are most clustered, as in <code>geom_bin2d()</code>.</p>
 <p> </p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="bestiary.html#cb320-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb320-2"><a href="bestiary.html#cb320-2" tabindex="-1"></a>    <span class="fu">geom_density2d</span>() <span class="sc">+</span></span>
-<span id="cb320-3"><a href="bestiary.html#cb320-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
-<span id="cb320-4"><a href="bestiary.html#cb320-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb320-5"><a href="bestiary.html#cb320-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="bestiary.html#cb321-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
+<span id="cb321-2"><a href="bestiary.html#cb321-2" tabindex="-1"></a>    <span class="fu">geom_density2d</span>() <span class="sc">+</span></span>
+<span id="cb321-3"><a href="bestiary.html#cb321-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
+<span id="cb321-4"><a href="bestiary.html#cb321-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb321-5"><a href="bestiary.html#cb321-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/contour-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>We can then expand on this using the statistics layer, via <code>stat_nameOfStatistic</code>. For instance, we can use the calculated “level” (representing the height of contour) to fill in our figure. To do so, we’ll swap out <code>geom_density_2d()</code> for <code>stat_density_2d()</code> which will allow us to colour in the contour map.</p>
 <p> </p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="bestiary.html#cb321-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb321-2"><a href="bestiary.html#cb321-2" tabindex="-1"></a>    <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(level)), <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>) <span class="sc">+</span></span>
-<span id="cb321-3"><a href="bestiary.html#cb321-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
-<span id="cb321-4"><a href="bestiary.html#cb321-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
-<span id="cb321-5"><a href="bestiary.html#cb321-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="bestiary.html#cb322-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
+<span id="cb322-2"><a href="bestiary.html#cb322-2" tabindex="-1"></a>    <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(level)), <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb322-3"><a href="bestiary.html#cb322-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
+<span id="cb322-4"><a href="bestiary.html#cb322-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
+<span id="cb322-5"><a href="bestiary.html#cb322-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<pre><code>## Warning: `stat(level)` was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(level)` instead.
+## This warning is displayed once per session.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
+## generated.</code></pre>
 <p><img src="Rbook_files/figure-html/stat-contour-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 <p> </p>
 <p>In this case it doesn’t look too pretty given that we don’t have a wide spread of data leading to partly formed polygons.</p>
@@ -576,12 +590,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The cleveland dotplot is a figure well suited to detect unusual observations (outliers?) in our data. The y axis is simply the order in which the data appears in the dataset. The x axis is our variable of interest. Points far to the left or far to the right are indicative of outliers. <code>ggplot2</code> does not have a geom specifically designed for a cleveland dotplot, though because of the grammar of graphics framework, we can build it ourselves.</p>
 <p>We do this by first using the function <code>rownames()</code>. This function returns the row name of each row. In most data frames, the row names are simply numbers. Once we have this information, we can convert this to numbers using <code>as.numeric()</code>. After doing this we have a vector of numbers from 1 to 96. Keep in mind that such techniques can be used for any sort of figure we want to make. We’ll use the same technique to add horizontal lines for each row of data to replicate the traditional look of a dotchart.</p>
 <p> </p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="bestiary.html#cb322-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span> </span>
-<span id="cb322-2"><a href="bestiary.html#cb322-2" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(flower))), <span class="at">linetype =</span> <span class="dv">2</span>,</span>
-<span id="cb322-3"><a href="bestiary.html#cb322-3" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="sc">+</span></span>
-<span id="cb322-4"><a href="bestiary.html#cb322-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(flower)))) <span class="sc">+</span></span>
-<span id="cb322-5"><a href="bestiary.html#cb322-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Order in Dataset&quot;</span>, <span class="at">x =</span> <span class="fu">bquote</span>(<span class="st">&quot;Area of leaf&quot;</span><span class="sc">~</span>(cm<span class="sc">^</span><span class="dv">2</span>))) <span class="sc">+</span></span>
-<span id="cb322-6"><a href="bestiary.html#cb322-6" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="bestiary.html#cb324-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span> </span>
+<span id="cb324-2"><a href="bestiary.html#cb324-2" tabindex="-1"></a>    <span class="fu">geom_hline</span>(<span class="fu">aes</span>(<span class="at">yintercept =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(flower))), <span class="at">linetype =</span> <span class="dv">2</span>,</span>
+<span id="cb324-3"><a href="bestiary.html#cb324-3" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">&quot;lightgrey&quot;</span>) <span class="sc">+</span></span>
+<span id="cb324-4"><a href="bestiary.html#cb324-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> <span class="fu">as.numeric</span>(<span class="fu">rownames</span>(flower)))) <span class="sc">+</span></span>
+<span id="cb324-5"><a href="bestiary.html#cb324-5" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Order in Dataset&quot;</span>, <span class="at">x =</span> <span class="fu">bquote</span>(<span class="st">&quot;Area of leaf&quot;</span><span class="sc">~</span>(cm<span class="sc">^</span><span class="dv">2</span>))) <span class="sc">+</span></span>
+<span id="cb324-6"><a href="bestiary.html#cb324-6" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/dotpot-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pairs-plot" class="section level3 hasAnchor" number="5.4.12">
@@ -590,11 +604,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Such figures are a fantastic way to quickly show relationships in the dataset. They can of course be used to plot only part of the dataset, for instance using <code>flowers[ ,1:5]</code> to plot the first five columns of the dataset.</p>
 <p>We’ve included two additional arguments in the code below. <code>cardinality_threshold =</code> forces <code>GGally</code> to plot all of the variables in our dataset (where it normally wants fewer variables) as well as <code>progress =</code> to avoid a progress bar appearing when we run the code.</p>
 <p> </p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="bestiary.html#cb323-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
-<span id="cb323-2"><a href="bestiary.html#cb323-2" tabindex="-1"></a>flower<span class="sc">$</span>block <span class="ot">&lt;-</span> <span class="fu">factor</span>(flower<span class="sc">$</span>block)</span>
-<span id="cb323-3"><a href="bestiary.html#cb323-3" tabindex="-1"></a></span>
-<span id="cb323-4"><a href="bestiary.html#cb323-4" tabindex="-1"></a><span class="fu">ggpairs</span>(flower, <span class="fu">aes</span>(<span class="at">colour =</span> nitrogen), <span class="at">cardinality_threshold =</span> <span class="cn">NULL</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb323-5"><a href="bestiary.html#cb323-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="bestiary.html#cb325-1" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb325-2"><a href="bestiary.html#cb325-2" tabindex="-1"></a>flower<span class="sc">$</span>block <span class="ot">&lt;-</span> <span class="fu">factor</span>(flower<span class="sc">$</span>block)</span>
+<span id="cb325-3"><a href="bestiary.html#cb325-3" tabindex="-1"></a></span>
+<span id="cb325-4"><a href="bestiary.html#cb325-4" tabindex="-1"></a><span class="fu">ggpairs</span>(flower, <span class="fu">aes</span>(<span class="at">colour =</span> nitrogen), <span class="at">cardinality_threshold =</span> <span class="cn">NULL</span>, <span class="at">progress =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb325-5"><a href="bestiary.html#cb325-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>
 <p><img src="Rbook_files/figure-html/pairs-plot-1.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
 </div>
 </div>
