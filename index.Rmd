@@ -24,6 +24,16 @@ cover-image: "images/cover_v3.png"
 ```{r create_chunk_options1, include=FALSE}
 source('utils.R')
 newest.vers <- checkRversion()
+
+# cli emits OSC 8 terminal hyperlinks when the console supports them (RStudio
+# does, a plain Rscript does not). The ESC and BEL control characters they
+# contain are invalid in LaTeX and abort the pdf build, so turn them off.
+options(
+	cli.hyperlink = FALSE,
+	cli.hyperlink_run = FALSE,
+	cli.hyperlink_help = FALSE,
+	cli.hyperlink_vignette = FALSE
+)
 ```
 
 

@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,7 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5.6" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#inline-r-code"><i class="fa fa-check"></i><b>8.5.6</b> Inline R code</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="tips_tricks.html"><a href="tips_tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
-<li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
+<li class="chapter" data-level="8.7" data-path="quarto.html"><a href="quarto.html"><i class="fa fa-check"></i><b>8.7</b> What about Quarto?</a></li>
+<li class="chapter" data-level="8.8" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.8</b> Further Information</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="github_r.html"><a href="github_r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
 <ul>
@@ -385,6 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +408,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -432,7 +436,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>This Chapter assumes that you have already installed the latest versions of R and RStudio. If you haven’t done this yet you can find instructions <a href="install_r.html#install_r">here</a>.</p>
 <div id="install-git" class="section level3 hasAnchor" number="9.4.1">
 <h3><span class="header-section-number">9.4.1</span> Install Git<a href="setup_git.html#install-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To get started, you first need to install Git. If you’re lucky you may already have Git installed (especially if you have a Mac or Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing <code>git --version</code> (the space after the <code>git</code> command is important). If you see something that looks like <code>git version 2.25.0</code> (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like <code>git: command not found</code>) this means you don’t have Git installed (yet!).</p>
+<p>To get started, you first need to install Git. If you’re lucky you may already have Git installed (especially if you have a Linux computer). You can check if you already have Git installed by clicking on the Terminal tab in the Console window in RStudio and typing <code>git --version</code> (the space after the <code>git</code> command is important). If you see something that looks like <code>git version 2.25.0</code> (the version number may be different on your computer) then you already have Git installed (happy days). If you get an error (something like <code>git: command not found</code>) this means you don’t have Git installed (yet!).</p>
 <p> </p>
 <p><img src="images/git_version.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -443,18 +447,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre class="markup"><code>sudo apt update
 sudo apt install git</code></pre>
 <p>You will need administrative privileges to do this. For other versions of Linux see <a href="https://git-scm.com/download/linux">here</a> for further installation instructions.</p>
-<p>Whatever version of Git you’re installing, once the installation has finished verify that the installation process has been successful by running the command <code>git --version</code> in the Terminal tab in RStudio (as described above). On some installations of Git (yes we’re looking at you MS Windows) this may still produce an error as you will also need to setup RStudio so it can find the Git executable (described <a href="setup_git.html#rs_config">below</a>).</p>
+<p>Whatever version of Git you’re installing, once the installation has finished verify that the installation process has been successful by running the command <code>git --version</code> in the Terminal tab in RStudio (as described above). On some installations of Git (yes we’re looking at you MS Windows) this may still produce an error as you will also need to setup RStudio so it can find the Git executable (described <a href="setup_git.html#rs_config">below</a>). If you’d like a longer set of installation instructions for your operating system you can find them in <a href="install_git.html#install_git">Appendix B</a>.</p>
 </div>
 <div id="configure-git" class="section level3 hasAnchor" number="9.4.2">
 <h3><span class="header-section-number">9.4.2</span> Configure Git<a href="setup_git.html#configure-git" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>After installing Git, you need to configure it so you can use it. Click on the Terminal tab in the Console window again and type the following:</p>
+<p>After installing Git, you need to configure it so you can use it. Git stamps every change you make with a name and an email address, so you need to give Git this information. Happily, you only need to do this once per computer.</p>
+<p>There are two ways of going about it. The traditional way is to use the Terminal and we’ll show you that in a moment, but as the rest of this Chapter does its best to keep you inside RStudio we’ll start with the <code>usethis</code> package instead. This lets you configure Git from the Console you already know rather than from a command line you may never have opened before. If you don’t have <code>usethis</code> installed yet then now’s the time</p>
+<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="setup_git.html#cb452-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;usethis&quot;</span>)</span></code></pre></div>
+<p>and then</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="setup_git.html#cb453-1" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb453-2"><a href="setup_git.html#cb453-2" tabindex="-1"></a></span>
+<span id="cb453-3"><a href="setup_git.html#cb453-3" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">user.name =</span> <span class="st">&quot;Your Name&quot;</span>, <span class="at">user.email =</span> <span class="st">&quot;you@youremail.com&quot;</span>)</span></code></pre></div>
+<p>substituting <code>"Your Name"</code> for your actual name and <code>"you@youremail.com"</code> with your email address. We recommend you use your University email address (if you have one) as you will also use this address when you register for your GitHub account (coming up in a bit).</p>
+<p>Whilst you’re here there’s one more setting worth changing. Every Git repository has a main line of work, which Git calls a <strong>branch</strong>, and this branch needs a name. Git has historically called it <code>master</code> whereas GitHub has called it <code>main</code> since 2020. If you leave the two disagreeing then sooner or later you’ll be rewarded with a baffling error message when you try to push, so let’s head that off now</p>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="setup_git.html#cb454-1" tabindex="-1"></a><span class="fu">use_git_config</span>(<span class="at">init.defaultBranch =</span> <span class="st">&quot;main&quot;</span>)</span></code></pre></div>
+<p>Every new repository you create from here on will use <code>main</code>. This particular setting needs Git 2.28 or newer, which anything you install today will be, but if you’re working with an older version of Git then it will quietly ignore you and carry on calling the branch <code>master</code>. That’s not a disaster and we’ll show you how to deal with it in <a href="setting-up-a-project-in-rstudio.html#opt2">Option 2</a> below. Don’t be surprised to come across both names in the wild either, a lot of repositories were created before the change (including the one this book lives in!).</p>
+<p>If you’d rather use the Terminal, or you’re simply curious about what <code>usethis</code> is doing on your behalf, the equivalent commands are</p>
 <pre><code>git config --global user.email &#39;you@youremail.com&#39;
 
-git config --global user.name &#39;Your Name&#39;</code></pre>
-<p>substituting <code>'Your Name'</code> for your actual name and <code>'you@youremail.com'</code> with your email address. We recommend you use your University email address (if you have one) as you will also use this address when you register for your GitHub account (coming up in a bit).</p>
-<p>If this was successful, you should see no error messages from these commands. To verify that you have successfully configured Git type the following into the Terminal</p>
-<pre><code>git config --global --list</code></pre>
-<p>You should see both your <code>user.name</code> and <code>user.email</code> configured.</p>
+git config --global user.name &#39;Your Name&#39;
+
+git config --global init.defaultBranch &#39;main&#39;</code></pre>
+<p>which you type into the Terminal tab in the Console window. If this was successful, you should see no error messages from these commands.</p>
+<p>Whichever route you took, you can check that it all stuck by asking <code>usethis</code> for a situation report</p>
+<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="setup_git.html#cb456-1" tabindex="-1"></a><span class="fu">git_sitrep</span>()</span></code></pre></div>
+<p><code>git_sitrep()</code> summarises your entire Git and GitHub setup in one go and we’ll return to it in a bit once you have a GitHub account for it to check as well. For now, all you’re looking for is your name and email address near the top of the output. The Terminal equivalent is <code>git config --global --list</code>.</p>
 </div>
 <div id="rs_config" class="section level3 hasAnchor" number="9.4.3">
 <h3><span class="header-section-number">9.4.3</span> Configure RStudio<a href="setup_git.html#rs_config" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -464,9 +481,46 @@ git config --global user.name &#39;Your Name&#39;</code></pre>
 </div>
 <div id="register-a-github-account" class="section level3 hasAnchor" number="9.4.4">
 <h3><span class="header-section-number">9.4.4</span> Register a GitHub account<a href="setup_git.html#register-a-github-account" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you will need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like <a href="https://about.gitlab.com/">GitLab</a>, <a href="https://bitbucket.org/product">Bitbucket</a> and <a href="https://savannah.gnu.org/">Savannah</a>). You can sign up for a free account on GitHub <a href="https://github.com/join?source=header-home">here</a>. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/applying-for-an-educator-or-researcher-discount">educator or researcher account</a> later on which gives you some useful <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/about-github-education-for-educators-and-researchers">benefits</a> (don’t worry about this now though). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your future employer!</p>
-<p>Next click on the ‘Select a plan’ (you may have to solve a simple puzzle first to verify you’re human) and choose the ‘Free Plan’ option. Github will send an email to the email address you supplied for you to verify.</p>
-<p>Once you’ve completed all those steps you should have both Git and GitHub setup up ready for you to use (Finally!).</p>
+<p>If all you want to do is to keep track of files and file versions on your local computer then Git is sufficient. If however, you would like to make an off-site copy of your project or make it available to your collaborators then you’ll need a web-based hosting service for your Git repositories. This is where GitHub comes into play (there are also other services like <a href="https://about.gitlab.com/">GitLab</a>, <a href="https://bitbucket.org/product">Bitbucket</a> and <a href="https://savannah.gnu.org/">Savannah</a>). You can sign up for a free account on GitHub <a href="https://github.com/join?source=header-home">here</a>. You will need to specify a username, an email address and a strong password. We suggest that you use your University email address (if you have one) as this will also allow you to apply for a free <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/applying-for-an-educator-or-researcher-discount">educator or researcher account</a> later on which gives you some useful <a href="https://help.github.com/en/github/teaching-and-learning-with-github-education/about-github-education-for-educators-and-researchers">benefits</a> (don’t worry about this now though, GitHub is still free without it). When it comes to choosing a username we suggest you give this some thought. Choose a short(ish) rather than a long username, use all lowercase and hyphenate if you want to include multiple words, find a way of incorporating your actual name and lastly, choose a username that you will feel comfortable revealing to your current/future employer!</p>
+<p>You may be asked to solve a simple puzzle to prove you’re human, after which GitHub will email you a verification code to type in. There’s no plan to choose, as a personal account is free and comes with everything we need.</p>
+<p>Whilst you’re setting up your account it’s worth thinking about turning on two-factor authentication (2FA). This is where GitHub asks for a short code from an app on your phone as well as your password whenever you log in, and it makes your account a great deal harder for somebody else to get into. It takes about five minutes to set up with an authenticator app. GitHub only <em>insists</em> on 2FA for accounts which meet certain contributor criteria (publishing an app or an action, creating a release, contributing to particularly widely used repositories and so on) so you almost certainly won’t be required to use it for anything we do in this Chapter. We’d still recommend it though. You can find GitHub’s own instructions <a href="https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-mandatory-two-factor-authentication">here</a> and you can always come back and switch it on later if you’d rather press on for now.</p>
+<p>Once you’ve completed all those steps you’ll have both Git and GitHub set up. There’s one last piece of the puzzle to slot into place before the two of them will actually talk to each other though, which is what the next section is all about.</p>
+</div>
+<div id="github-auth" class="section level3 hasAnchor" number="9.4.5">
+<h3><span class="header-section-number">9.4.5</span> Authenticate with GitHub<a href="setup_git.html#github-auth" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At some point fairly soon you’re going to ask Git to send your work up to GitHub, and when you do, GitHub is going to want to know that you are who you say you are. You might expect to type in the password you chose in the previous section. You can’t. GitHub stopped accepting account passwords for this in August 2021 and if you try it you’ll be met with an authentication error which does a particularily poor job of explaining what’s actually wrong.</p>
+<p>What you use instead is a <strong>personal access token</strong> (PAT), which is a long string of random looking characters that acts as a password for a single computer. Tokens are rather better than passwords for this job. You can have a different one for each machine you work on, you can give each one a limited lifespan, and if one of them ever goes astray you can cancel it on its own without touching your password or any of your other computers.</p>
+<p>You could create a token by digging through your GitHub account settings, but the <code>usethis</code> package will do the digging for you</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="setup_git.html#cb457-1" tabindex="-1"></a><span class="fu">create_github_token</span>()</span></code></pre></div>
+<p>This opens GitHub in your web browser on the token creation page with all of the permissions you need already ticked. The page is headed ‘New personal access token (classic)’. You may notice that GitHub also offers a newer sort of token called a fine-grained token in the sidebar, but classic tokens are simpler to set up and are what <code>usethis</code> prepares for you, so stick with those for now. Before you click the green ‘Generate token’ button at the bottom there are two things you should change.</p>
+<p>The first is the <strong>Note</strong>, which is just a label to help you remember which computer this token belongs to. <code>usethis</code> fills in something generic, so replace it with something that will still mean something to you in six months time (<code>work laptop</code> for example).</p>
+<p>The second is the <strong>Expiration</strong>. GitHub suggests 30 days, which is a great security practice but does mean your token will stop working disappointingly soon. Click the dropdown and pick something that suits how you work. If you’re using this book as part of a taught course then we’d suggest choosing ‘Custom’ and setting a date comfortably beyond the end of it, so your token doesn’t expire in the middle of writing up. Whatever you choose, you’re making a trade between security and convenience and it’s worth doing that deliberately rather than by accident.</p>
+<!-- Screenshot slot: drop images/git_pat_form.png into images/ and this renders automatically. Token form with the Note field and the Expiration dropdown both visible, dropdown open on Custom. -->
+<p> </p>
+<p><img src="images/git_pat_form.png" alt="" width="85%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>Now click ‘Generate token’. GitHub will show you the token on a green background, and this is the only time it will ever do so. Copy it now. If you navigate away from that page without copying it then there’s no way of getting it back and you’ll simply have to generate another one, which is irritating but harmless.</p>
+<!-- Screenshot slot: drop images/git_pat_token.png into images/ and this renders automatically. The generated token on its green background with the copy icon. Token must be blurred or fake. -->
+<p> </p>
+<p><img src="images/git_pat_token.png" alt="" width="80%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>The last thing to do is hand the token over to your computer’s credential store so that you never have to type it again. In your Rstudio console</p>
+<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="setup_git.html#cb458-1" tabindex="-1"></a><span class="fu">library</span>(usethis)</span>
+<span id="cb458-2"><a href="setup_git.html#cb458-2" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span></code></pre></div>
+<p>Paste the token that you have just copied in when you’re prompted and press enter. That’s it. Git will now find the token by itself every time it needs it and you can go back to forgetting that any of this exists. (You won’t need to install <code>gitcreds</code> separately, by the way, as <code>usethis</code> brings it along with it.)</p>
+<!-- Screenshot slot: drop images/git_pat_store.png into images/ and this renders automatically. The Console after gitcreds::gitcreds_set(), showing the prompt asking for the token. -->
+<p>Now’s a good time to run the situation report again, as this time there’s more for it to tell you</p>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="setup_git.html#cb459-1" tabindex="-1"></a><span class="fu">git_sitrep</span>()</span></code></pre></div>
+<p>Read the output even though nothing has gone wrong. Knowing what a healthy setup looks like is what makes <code>git_sitrep()</code> useful. The lines to check are your name and email address, and a line further down confirming that a personal access token was found.</p>
+<!-- Screenshot slot: drop images/git_sitrep.png into images/ and this renders automatically. A healthy git_sitrep() output with the email address redacted. -->
+<p> </p>
+<p><img src="images/git_sitrep.png" alt="" width="75%" style="display: block; margin: auto;" /></p>
+<p> </p>
+<p>Finally, a word about what happens when your token expires, because it will at some point. The symptom is that pushing and pulling, which worked perfectly well previously, suddenly starts failing with a message about authentication. The fix is simply to do it all again</p>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="setup_git.html#cb460-1" tabindex="-1"></a><span class="fu">create_github_token</span>()      <span class="co"># generate a shiny new one</span></span>
+<span id="cb460-2"><a href="setup_git.html#cb460-2" tabindex="-1"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()   <span class="co"># it&#39;ll offer to replace the old one, say yes</span></span>
+<span id="cb460-3"><a href="setup_git.html#cb460-3" tabindex="-1"></a><span class="fu">git_sitrep</span>()               <span class="co"># check it worked</span></span></code></pre></div>
+<p>Your work is safely on your computer and on GitHub throughout, so an expired token is a five minute annoyance rather than a disaster. If you’d like a good deal more detail on any of this then the <a href="https://happygitwithr.com/https-pat">personal access token</a> chapter of Jenny Bryan’s <a href="https://happygitwithr.com/">Happy Git and GitHub</a> is the place to go, and GitHub’s own documentation on <a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">managing your tokens</a> is worth a look too.</p>
 </div>
 </div>
             </section>

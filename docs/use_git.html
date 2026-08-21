@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,7 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5.6" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#inline-r-code"><i class="fa fa-check"></i><b>8.5.6</b> Inline R code</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="tips_tricks.html"><a href="tips_tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
-<li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
+<li class="chapter" data-level="8.7" data-path="quarto.html"><a href="quarto.html"><i class="fa fa-check"></i><b>8.7</b> What about Quarto?</a></li>
+<li class="chapter" data-level="8.8" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.8</b> Further Information</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="github_r.html"><a href="github_r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
 <ul>
@@ -385,6 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +408,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -440,16 +444,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ol>
 <p><img src="images/workflow_3.png" alt="" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>OK, let’s go through an example to help clarify this workflow. In RStudio open up the <code>first_repo.Rproj</code> you created previously during Option 1. Either use the <code>File</code> -&gt; <code>Open Project</code> menu or click on the top right project icon and select the appropriate project.</p>
+<p>OK, let’s go through an example to help clarify this workflow. In RStudio open up the <code>first_repo.Rproj</code> project you created previously during Option 1. Either use the <code>File</code> -&gt; <code>Open Project</code> menu or click on the top right project icon and select the appropriate project.</p>
 <p> </p>
 <p><img src="images/first_Rmd0.png" alt="" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Create an R markdown document inside this project by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>R markdown</code> menu (remember from the R markdown <a href="rmarkdown_r.html#rmarkdown_r">Chapter</a>?).</p>
+<p>Create an R markdown document inside this project by clicking on the <code>File</code> -&gt; <code>New File</code> -&gt; <code>R markdown</code> menu (remember from the R markdown <a href="rmarkdown_r.html#rmarkdown_r">Chapter</a>?). If you haven’t had a chance to look through the R markdown Chapter then just create an R script (.R) or even a text file (.txt) or just blindly follow the instructions below.</p>
 <p>Once created, we can delete all the example R markdown code (except the YAML header) as usual and write some interesting R markdown text and include a plot. We’ll use the inbuilt <code>cars</code> dataset to do this. Save this file (cmd + s for Mac or ctrl + s in Windows). Your R markdown document should look something like the following (it doesn’t matter if it’s not exactly the same).</p>
 <p> </p>
 <p><img src="images/first_Rmd.png" alt="" width="60%" style="display: block; margin: auto;" /></p>
 <p> </p>
-<p>Take a look at the ‘Git’ tab which should list your new R markdown document (<code>first_doc.Rmd</code> in this example) along with <code>first_repo.Rproj</code>, and <code>.gitignore</code> (you created these files previously when following Option 1).</p>
+<p>Take a look at the ‘Git’ tab (top right in RStudio) which should list your new R markdown document (<code>first_doc.Rmd</code> in this example) along with <code>first_repo.Rproj</code>, and <code>.gitignore</code> (you created these files previously when following Option 1).</p>
 <p> </p>
 <p><img src="images/first_Rmd2.png" alt="" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -534,7 +538,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="undo" class="section level3 hasAnchor" number="9.6.3">
 <h3><span class="header-section-number">9.6.3</span> Reverting changes<a href="use_git.html#undo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>One the great things about using Git is that you are able to revert to previous versions of files if you’ve made a mistake, broke something or just prefer and earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We’ll go through some common scenarios below mostly using RStudio but occasionally we will need to resort to using the Terminal (still in RStudio though).</p>
+<p>One of the great things about using Git is that you are able to revert to previous versions of files if you’ve made a mistake, broken something or just prefer an earlier approach. How you do this will depend on whether the changes you want to discard have been staged, committed or pushed to GitHub. We’ll go through some common scenarios below.</p>
+<p>This is also the point at which RStudio’s Git pane starts to run out of road. The first couple of scenarios below can be dealt with entirely by pointing and clicking, but the further back into your history you want to reach the more likely it is that we’ll have to drop into the Terminal, for the simple reason that RStudio doesn’t give you a button for it. We’re not being purists here and there’s nothing to be nervous about, it’s just that the graphical interface only ever covered the everyday cases. The Terminal tab sits right next to the Console in RStudio so you won’t have to go anywhere to use it.</p>
 <div id="changes-saved-but-not-staged-committed-or-pushed" class="section level4 unnumbered hasAnchor">
 <h4>Changes saved but not staged, committed or pushed<a href="use_git.html#changes-saved-but-not-staged-committed-or-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>If you have saved changes to your file(s) but not staged, committed or pushed these files to GitHub you can right click on the offending file in the Git pane and select ‘Revert …’. This will roll back all of the changes you have made to the same state as your last commit. Just be aware that you cannot undo this operation so use with caution.</p>
@@ -584,7 +589,7 @@ git checkout 2b4693d1 .
 </div>
 <div id="staged-committed-and-pushed" class="section level4 unnumbered hasAnchor">
 <h4>Staged, committed and pushed<a href="use_git.html#staged-committed-and-pushed" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as we can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
+<p>This is the scenario we warned you about above. Everything in this section happens in the Terminal because the Git pane simply has no equivalent, so if the change of interface feels abrupt that’s why. If you have already pushed your commits to GitHub you can use the <code>git checkout</code> strategy described above and then commit and push to update GitHub (although this is not really considered ‘best’ practice). Another approach would be to use <code>git revert</code> (Note: as far as we can tell <code>git revert</code> is not the same as the ‘Revert’ option in RStudio). The <code>revert</code> command in Git essentially creates a new commit based on a previous commit and therefore preserves all of your commit history. To rollback to a previous state (commit) you first need to identify the SHA for the commit you wish to go back to (as we did above) and then use the <code>revert</code> command in the Terminal. Let’s say we want to revert back to our ‘First commit’ which has a SHA identifier <code>d27e79f1</code>.</p>
 <p> </p>
 <p><img src="images/revert8.png" alt="" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>
@@ -607,7 +612,7 @@ git checkout 2b4693d1 .
 <h3><span class="header-section-number">9.6.5</span> Git tips<a href="use_git.html#git-tips" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Generally speaking you should commit often (including amended commits) but push much less often. This makes collaboration easier and also makes the process of reverting to previous versions of documents much more straight forward. We generally only push changes to GitHub when we’re happy for our collaborators (or the rest of the world) to see our work. However, this is entirely up to you and depends on the project (and who you are working with) and what your priorities are when using Git.</p>
 <p> </p>
-<p>If you don’t want to track a file in your repository (maybe they are too large or transient files) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
+<p>If you don’t want to track a file in your repository (maybe they are too large, private or transient) you can get Git to ignore the file by right clicking on the filename in the Git pane and selecting ‘Ignore…’</p>
 <p> </p>
 <p><img src="images/tip1.png" alt="" width="70%" style="display: block; margin: auto;" /></p>
 <p> </p>

@@ -1,6 +1,6 @@
 # Data in R {#data_r}
 
-Until now, you've created fairly simple data in R and stored it as a [vector](#funcs). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
+Until now, you've created fairly simple data in R and stored it as a [vector](#using-functions-in-r). However, most (if not all) of you will have much more complicated datasets from your various experiments and surveys that go well beyond what a vector can handle. Learning how R deals with different types of data and data structures, how to import your data into R and how to manipulate and summarise your data are some of the most important skills you will need to master. 
 
 In this Chapter we'll go over the main data types in R and focus on some of the most common data structures. We will also cover how to import data into R from an external file, how to manipulate (wrangle) and summarise data and finally how to export data from R to an external file.
 
@@ -77,7 +77,7 @@ Now that you've been introduced to some of the most important classes of data in
 
 ### Scalars and vectors {#scal_vecs}
 
-Perhaps the simplest type of data structure is the vector. You've already been introduced to vectors in [Chapter 2](#funcs) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
+Perhaps the simplest type of data structure is the vector. You've already been introduced to vectors in [Chapter 2](#using-functions-in-r) although some of the vectors you created only contained a single value. Vectors that have a single value (length 1) are called scalars. Vectors can contain numbers, characters, factors or logicals, but the key thing to remember is that all the elements inside a vector must be of the same class. In other words, vectors can contain either numbers, characters or logicals but not mixtures of these types of data. There is one important exception to this, you can include `NA` (remember this is special type of logical) to denote missing data in vectors with other data types. 
 
 \  
 
@@ -482,7 +482,7 @@ Or for non sequential rows and columns then we can supply vectors of positions u
 flowers[c(1, 5, 12, 30), c(1, 3, 6, 8)]
 ```
 
-All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in [Chapter 2](#funcs) when we generated vectors using the `c()` function or using the `:` notation.
+All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in [Chapter 2](#using-functions-in-r) when we generated vectors using the `c()` function or using the `:` notation.
 
 But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don't specify either a row or column index in the `[ ]` then R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the `flower` data frame
 
@@ -520,7 +520,7 @@ We often use this method in preference to the positional index for selecting col
 
 ### Logical indexes
 
-Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe [pop back](#Logical-index) and refresh your memory.  Let's extract all rows where `height` is greater than 12 and extract all columns by default (remember, if you don't include a column index after the comma it means all columns).
+Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe [pop back](#logical-index) and refresh your memory.  Let's extract all rows where `height` is greater than 12 and extract all columns by default (remember, if you don't include a column index after the comma it means all columns).
 
 ```{r dw11, echo=TRUE, collapse=TRUE}
 big_flowers <- flowers[flowers$height > 12, ]

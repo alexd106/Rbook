@@ -125,9 +125,18 @@
 [bitbucket]: https://bitbucket.org/product
 [savannah]: https://savannah.gnu.org/
 [revert-git]: https://ohi-science.org/news/github-going-back-in-time
+[git-win]: https://gitforwindows.org/
+[git-mac]: https://git-scm.com/download/mac
+[git-pat]: https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+[git-2fa]: https://docs.github.com/en/authentication/securing-your-account-with-two-factor-authentication-2fa/about-mandatory-two-factor-authentication
+[happy-pat]: https://happygitwithr.com/https-pat
+[usethis]: https://usethis.r-lib.org/
+[gitcreds]: https://gitcreds.r-lib.org/
 
 <!--R markdown Links-->
 [markup]: https://en.wikipedia.org/wiki/Markup_language
+[quarto]: https://quarto.org/
+[quarto-rmd]: https://quarto.org/docs/faq/rmarkdown.html
 [tinytex]: https://yihui.name/tinytex/
 [joke]: https://en.wikipedia.org/wiki/Recursive_acronym
 [bookdownr]: https://bookdown.org/yihui/rmarkdown/html-document.html

@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,7 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5.6" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#inline-r-code"><i class="fa fa-check"></i><b>8.5.6</b> Inline R code</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="tips_tricks.html"><a href="tips_tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
-<li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
+<li class="chapter" data-level="8.7" data-path="quarto.html"><a href="quarto.html"><i class="fa fa-check"></i><b>8.7</b> What about Quarto?</a></li>
+<li class="chapter" data-level="8.8" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.8</b> Further Information</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="github_r.html"><a href="github_r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
 <ul>
@@ -385,6 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +408,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -481,12 +485,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="violin-plots" class="section level3 hasAnchor" number="5.4.5">
 <h3><span class="header-section-number">5.4.5</span> Violin plots<a href="bestiary.html#violin-plots" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Violin plots are an increasingly popular alternative to boxplots. They display much of the same information, as well as showing a version of the density plot above (imagine each violin plot, cut in half vertically and place on it’s side, thus showing the overall distribution of the data). In the plot below the figure is slightly more complex than those above and so deserves some explanation.</p>
-<p>Within <code>geom_violin()</code> we’ve included <code>draw_quantiles =</code> where we’ve specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the <code>c()</code> function). In combination with <code>geom_violin()</code> we’ve also included <code>geom_jitter()</code>. <code>geom_jitter()</code> is similar to <code>geom_point()</code> but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within <code>geom_jitter()</code> we’ve also set <code>height = 0</code>, and <code>width = 0.1</code> which specifies how much to jitter the points in a given dimension (here essentially telling <code>ggplot2</code> not to jitter by height, and only to jitter width by a small amount).</p>
+<p>Within <code>geom_violin()</code> we’ve included <code>quantiles =</code> where we’ve specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the <code>c()</code> function). In combination with <code>geom_violin()</code> we’ve also included <code>geom_jitter()</code>. <code>geom_jitter()</code> is similar to <code>geom_point()</code> but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within <code>geom_jitter()</code> we’ve also set <code>height = 0</code>, and <code>width = 0.1</code> which specifies how much to jitter the points in a given dimension (here essentially telling <code>ggplot2</code> not to jitter by height, and only to jitter width by a small amount).</p>
 <p>Finally, we’re also using this plot to show <code>scale_y_log10</code>. Hopefully this is largely self-explanatory (it converts the y-axis to the <span class="math inline">\(\text{log}_{10}\)</span> scale). There are additional scaling options for axis (for instance <code>scale_y_sqrt()</code>). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we’d actually be much better off not doing so in this particular case.</p>
 <p> </p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="bestiary.html#cb315-1" tabindex="-1"></a><span class="fu">ggplot</span>(flower) <span class="sc">+</span></span>
 <span id="cb315-2"><a href="bestiary.html#cb315-2" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">y =</span> flowers, <span class="at">x =</span> nitrogen, <span class="at">fill =</span> nitrogen), </span>
-<span id="cb315-3"><a href="bestiary.html#cb315-3" tabindex="-1"></a>              <span class="at">draw_quantiles =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)) <span class="sc">+</span></span>
+<span id="cb315-3"><a href="bestiary.html#cb315-3" tabindex="-1"></a>              <span class="at">quantiles =</span> <span class="fu">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>)) <span class="sc">+</span></span>
 <span id="cb315-4"><a href="bestiary.html#cb315-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">y =</span> flowers, <span class="at">x =</span> nitrogen), <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">height =</span> <span class="dv">0</span>, </span>
 <span id="cb315-5"><a href="bestiary.html#cb315-5" tabindex="-1"></a>              <span class="at">width =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
 <span id="cb315-6"><a href="bestiary.html#cb315-6" tabindex="-1"></a>    <span class="fu">scale_fill_manual</span>(<span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;High&quot;</span>, <span class="st">&quot;Medium&quot;</span>, <span class="st">&quot;Low&quot;</span>),</span>
@@ -563,7 +567,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We can then expand on this using the statistics layer, via <code>stat_nameOfStatistic</code>. For instance, we can use the calculated “level” (representing the height of contour) to fill in our figure. To do so, we’ll swap out <code>geom_density_2d()</code> for <code>stat_density_2d()</code> which will allow us to colour in the contour map.</p>
 <p> </p>
 <div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="bestiary.html#cb321-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> leafarea, <span class="at">y =</span> shootarea), <span class="at">data =</span> flower) <span class="sc">+</span></span>
-<span id="cb321-2"><a href="bestiary.html#cb321-2" tabindex="-1"></a>    <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">stat</span>(level)), <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>) <span class="sc">+</span></span>
+<span id="cb321-2"><a href="bestiary.html#cb321-2" tabindex="-1"></a>    <span class="fu">stat_density_2d</span>(<span class="fu">aes</span>(<span class="at">fill =</span> <span class="fu">after_stat</span>(level)), <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>) <span class="sc">+</span></span>
 <span id="cb321-3"><a href="bestiary.html#cb321-3" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">&quot;Shoot Area&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Leaf Area&quot;</span>) <span class="sc">+</span></span>
 <span id="cb321-4"><a href="bestiary.html#cb321-4" tabindex="-1"></a>    <span class="fu">coord_cartesian</span>(<span class="at">xlim =</span> <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">25</span>)) <span class="sc">+</span></span>
 <span id="cb321-5"><a href="bestiary.html#cb321-5" tabindex="-1"></a>    <span class="fu">theme_rbook</span>()</span></code></pre></div>

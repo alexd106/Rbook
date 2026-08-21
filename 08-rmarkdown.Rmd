@@ -778,6 +778,16 @@ knitr::opts_chunk$set(message=FALSE, tidy.opts=list(width.cutoff=60), tidy=TRUE)
 ```
 ````
 
+## What about Quarto? {#quarto}
+
+If you spend any time at all reading about R markdown online you'll very quickly bump into something called [Quarto][quarto], and you'd be forgiven for wondering whether you've just spent a Chapter learning the wrong thing. You haven't, but it's worth knowing what Quarto is. Quarto is a publishing system from the same people who make RStudio and it does much the same job as R markdown: you write a plain text document mixing prose, code and results and it renders to HTML, pdf, Word and a good deal else besides. The main difference is that Quarto isn't tied to R. It will quite happily run Python, Julia and Observable code as well, which matters a lot if you work with people who don't use R and not at all if you don't. It's also a standalone program rather than an R package, although you probably already have it as recent versions of RStudio come with it bundled.
+
+The reason we're mentioning it here is that almost everything you've learned in this Chapter transfers across unchanged. Quarto documents use a `.qmd` file extension rather than `.Rmd`, but the markdown syntax is identical, code chunks are still code chunks, `knitr`\index{knitr package} is still doing the work behind the scenes for your R code and inline code behaves exactly as it does here. The main thing that differs is the YAML header, where `output:` becomes `format:` and the format names change a little (`html_document` becomes `html`, for example). If you can write an R markdown document then you can already write a Quarto one.
+
+So should you rush off and switch? Not on our account. R markdown isn't going anywhere, it's still maintained, and there's an enormous amount built on top of it including the `bookdown`\index{bookdown package} package that produced the very book you're reading. If your current workflow does what you need then there's a lot to be said for leaving it alone. On the other hand, if you're starting something from scratch, or you collaborate with people who work in other languages, or you find yourself fighting R markdown over cross-references and figure numbering (which Quarto handles rather more gracefully), then it's well worth a look. The [Quarto website][quarto] is the place to start and there's a [guide][quarto-rmd] written specifically for people coming from R markdown which will save you a good deal of time.
+
+\  
+
 ## Further Information
 
 Although we've covered more than enough to get you quite far using R markdown, as with most things R related, we've really only had time to scratch the surface. Happily, there's a wealth of information available to you should you need to expand your knowledge and experience. A good place to start is the excellent free book written by the creator of R markdown *Yihui Xie* which you can find [here][bookdownr].

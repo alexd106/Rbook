@@ -23,7 +23,7 @@
 <meta name="author" content="Alex Douglas, Deon Roos, Francesca Mancini, Ana Couto &amp; David Lusseau" />
 
 
-<meta name="date" content="2026-01-15" />
+<meta name="date" content="2026-08-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -372,7 +372,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5.6" data-path="r-markdown-anatomy.html"><a href="r-markdown-anatomy.html#inline-r-code"><i class="fa fa-check"></i><b>8.5.6</b> Inline R code</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="tips_tricks.html"><a href="tips_tricks.html"><i class="fa fa-check"></i><b>8.6</b> Some tips and tricks</a></li>
-<li class="chapter" data-level="8.7" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.7</b> Further Information</a></li>
+<li class="chapter" data-level="8.7" data-path="quarto.html"><a href="quarto.html"><i class="fa fa-check"></i><b>8.7</b> What about Quarto?</a></li>
+<li class="chapter" data-level="8.8" data-path="further-information.html"><a href="further-information.html"><i class="fa fa-check"></i><b>8.8</b> Further Information</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="github_r.html"><a href="github_r.html"><i class="fa fa-check"></i><b>9</b> Version control with Git and GitHub</a>
 <ul>
@@ -385,6 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4.2" data-path="setup_git.html"><a href="setup_git.html#configure-git"><i class="fa fa-check"></i><b>9.4.2</b> Configure Git</a></li>
 <li class="chapter" data-level="9.4.3" data-path="setup_git.html"><a href="setup_git.html#rs_config"><i class="fa fa-check"></i><b>9.4.3</b> Configure RStudio</a></li>
 <li class="chapter" data-level="9.4.4" data-path="setup_git.html"><a href="setup_git.html#register-a-github-account"><i class="fa fa-check"></i><b>9.4.4</b> Register a GitHub account</a></li>
+<li class="chapter" data-level="9.4.5" data-path="setup_git.html"><a href="setup_git.html#github-auth"><i class="fa fa-check"></i><b>9.4.5</b> Authenticate with GitHub</a></li>
 </ul></li>
 <li class="chapter" data-level="9.5" data-path="setting-up-a-project-in-rstudio.html"><a href="setting-up-a-project-in-rstudio.html"><i class="fa fa-check"></i><b>9.5</b> Setting up a project in RStudio</a>
 <ul>
@@ -406,7 +408,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="A.1" data-path="ms-windows.html"><a href="ms-windows.html"><i class="fa fa-check"></i><b>A.1</b> MS Windows</a></li>
 <li class="chapter" data-level="A.2" data-path="mac-osx.html"><a href="mac-osx.html"><i class="fa fa-check"></i><b>A.2</b> Mac OSX</a></li>
+<li class="chapter" data-level="A.3" data-path="install-rm-linux.html"><a href="install-rm-linux.html"><i class="fa fa-check"></i><b>A.3</b> Linux</a></li>
 </ul></li>
+<li class="chapter" data-level="B" data-path="install_git.html"><a href="install_git.html"><i class="fa fa-check"></i><b>B</b> Installing Git</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
 
@@ -450,10 +454,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb112-11"><a href="wrangling-data-frames.html#cb112-11" tabindex="-1"></a><span class="do">##  $ flowers  : int  1 10 10 1 4 9 7 6 5 8 ...</span></span></code></pre></div>
 <p>To access the data in any of the variables (columns) in our data frame we can use the <code>$</code> notation. For example, to access the <code>height</code> variable in our <code>flowers</code> data frame we can use <code>flowers$height</code>. This tells R that the <code>height</code> variable is contained within the data frame <code>flowers</code>.</p>
 <div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="wrangling-data-frames.html#cb113-1" tabindex="-1"></a>flowers<span class="sc">$</span>height</span>
-<span id="cb113-2"><a href="wrangling-data-frames.html#cb113-2" tabindex="-1"></a><span class="do">##  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5</span></span>
-<span id="cb113-3"><a href="wrangling-data-frames.html#cb113-3" tabindex="-1"></a><span class="do">## [26]  7.7  6.4  8.8  9.2  6.2  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5  5.6 11.5  5.8  5.6  5.3</span></span>
-<span id="cb113-4"><a href="wrangling-data-frames.html#cb113-4" tabindex="-1"></a><span class="do">## [51]  7.5  4.1  3.5  8.5  4.9  2.5  5.4  3.9  5.8  4.5  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5</span></span>
-<span id="cb113-5"><a href="wrangling-data-frames.html#cb113-5" tabindex="-1"></a><span class="do">## [76]  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2  4.5  1.8  3.0  3.7  2.4  5.7  3.7  3.2  3.9  3.3  5.5  4.4</span></span></code></pre></div>
+<span id="cb113-2"><a href="wrangling-data-frames.html#cb113-2" tabindex="-1"></a><span class="do">##  [1]  7.5 10.7 11.2 10.4 10.4  9.8  6.9  9.4 10.4 12.3 10.4 11.0  7.1  6.0  9.0  4.5 12.6 10.0 10.0  8.5 14.1 10.1  8.5  6.5 11.5  7.7  6.4  8.8</span></span>
+<span id="cb113-3"><a href="wrangling-data-frames.html#cb113-3" tabindex="-1"></a><span class="do">## [29]  9.2  6.2  6.3 17.2  8.0  8.0  6.4  7.6  9.7 12.3  9.1  8.9  7.4  3.1  7.9  8.8  8.5  5.6 11.5  5.8  5.6  5.3  7.5  4.1  3.5  8.5  4.9  2.5</span></span>
+<span id="cb113-4"><a href="wrangling-data-frames.html#cb113-4" tabindex="-1"></a><span class="do">## [57]  5.4  3.9  5.8  4.5  8.0  1.8  2.2  3.9  8.5  8.5  6.4  1.2  2.6 10.9  7.2  2.1  4.7  5.0  6.5  2.6  6.0  9.3  4.6  5.2  3.9  2.3  5.2  2.2</span></span>
+<span id="cb113-5"><a href="wrangling-data-frames.html#cb113-5" tabindex="-1"></a><span class="do">## [85]  4.5  1.8  3.0  3.7  2.4  5.7  3.7  3.2  3.9  3.3  5.5  4.4</span></span></code></pre></div>
 <p>This will return a vector of the <code>height</code> data. If we want we can assign this vector to another object and do stuff with it, like calculate a mean or get a summary of the variable using the <code>summary()</code> function.</p>
 <div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="wrangling-data-frames.html#cb114-1" tabindex="-1"></a>f_height <span class="ot">&lt;-</span> flowers<span class="sc">$</span>height</span>
 <span id="cb114-2"><a href="wrangling-data-frames.html#cb114-2" tabindex="-1"></a><span class="fu">mean</span>(f_height)</span>
@@ -497,7 +501,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb118-4"><a href="wrangling-data-frames.html#cb118-4" tabindex="-1"></a><span class="do">## 5    tip     1     14.5       4</span></span>
 <span id="cb118-5"><a href="wrangling-data-frames.html#cb118-5" tabindex="-1"></a><span class="do">## 12   tip     2     12.6       6</span></span>
 <span id="cb118-6"><a href="wrangling-data-frames.html#cb118-6" tabindex="-1"></a><span class="do">## 30   tip     2     11.6       5</span></span></code></pre></div>
-<p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in <a href="#funcs">Chapter 2</a> when we generated vectors using the <code>c()</code> function or using the <code>:</code> notation.</p>
+<p>All we are doing in the two examples above is creating vectors of positions for the rows and columns that we want to extract. We have done this by using the skills we developed in <a href="using-functions-in-r.html#using-functions-in-r">Chapter 2</a> when we generated vectors using the <code>c()</code> function or using the <code>:</code> notation.</p>
 <p>But what if we want to extract either all of the rows or all of the columns? It would be extremely tedious to have to generate vectors for all rows or for all columns. Thankfully R has a shortcut. If you don’t specify either a row or column index in the <code>[ ]</code> then R interprets it to mean you want all rows or all columns. For example, to extract the first 8 rows and all of the columns in the <code>flower</code> data frame</p>
 <div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="wrangling-data-frames.html#cb119-1" tabindex="-1"></a>flowers[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, ]</span>
 <span id="cb119-2"><a href="wrangling-data-frames.html#cb119-2" tabindex="-1"></a><span class="do">##   treat nitrogen block height weight leafarea shootarea flowers</span></span>
@@ -634,7 +638,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="logical-indexes" class="section level3 hasAnchor" number="3.4.2">
 <h3><span class="header-section-number">3.4.2</span> Logical indexes<a href="wrangling-data-frames.html#logical-indexes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe <a href="#Logical-index">pop back</a> and refresh your memory. Let’s extract all rows where <code>height</code> is greater than 12 and extract all columns by default (remember, if you don’t include a column index after the comma it means all columns).</p>
+<p>Just as we did with vectors, we can also extract data from our data frame based on a logical test. We can use all of the logical operators that we used for our vector examples so if these have slipped your mind maybe <a href="vectors.html#logical-index">pop back</a> and refresh your memory. Let’s extract all rows where <code>height</code> is greater than 12 and extract all columns by default (remember, if you don’t include a column index after the comma it means all columns).</p>
 <div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="wrangling-data-frames.html#cb124-1" tabindex="-1"></a>big_flowers <span class="ot">&lt;-</span> flowers[flowers<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">12</span>, ]</span>
 <span id="cb124-2"><a href="wrangling-data-frames.html#cb124-2" tabindex="-1"></a>big_flowers</span>
 <span id="cb124-3"><a href="wrangling-data-frames.html#cb124-3" tabindex="-1"></a><span class="do">##    treat nitrogen block height weight leafarea shootarea flowers</span></span>
@@ -649,11 +653,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb125-3"><a href="wrangling-data-frames.html#cb125-3" tabindex="-1"></a>  object <span class="st">&#39;height&#39;</span> not found</span></code></pre></div>
 <p>So how does this work? The logical test is <code>flowers$height &gt; 12</code> and R will only extract those rows that satisfy this logical condition. If we look at the output of just the logical condition you can see this returns a vector containing <code>TRUE</code> if <code>height</code> is greater than 12 and <code>FALSE</code> if <code>height</code> is not greater than 12.</p>
 <div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="wrangling-data-frames.html#cb126-1" tabindex="-1"></a>flowers<span class="sc">$</span>height <span class="sc">&gt;</span> <span class="dv">12</span></span>
-<span id="cb126-2"><a href="wrangling-data-frames.html#cb126-2" tabindex="-1"></a><span class="do">##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE</span></span>
-<span id="cb126-3"><a href="wrangling-data-frames.html#cb126-3" tabindex="-1"></a><span class="do">## [22] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-4"><a href="wrangling-data-frames.html#cb126-4" tabindex="-1"></a><span class="do">## [43] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-5"><a href="wrangling-data-frames.html#cb126-5" tabindex="-1"></a><span class="do">## [64] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
-<span id="cb126-6"><a href="wrangling-data-frames.html#cb126-6" tabindex="-1"></a><span class="do">## [85] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
+<span id="cb126-2"><a href="wrangling-data-frames.html#cb126-2" tabindex="-1"></a><span class="do">##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE</span></span>
+<span id="cb126-3"><a href="wrangling-data-frames.html#cb126-3" tabindex="-1"></a><span class="do">## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb126-4"><a href="wrangling-data-frames.html#cb126-4" tabindex="-1"></a><span class="do">## [49] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span>
+<span id="cb126-5"><a href="wrangling-data-frames.html#cb126-5" tabindex="-1"></a><span class="do">## [73] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</span></span></code></pre></div>
 <p>So our row index is a vector containing either <code>TRUE</code> or <code>FALSE</code> values and only those rows that are <code>TRUE</code> are selected.</p>
 <p>Other commonly used operators are shown below.</p>
 <div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="wrangling-data-frames.html#cb127-1" tabindex="-1"></a>flowers[flowers<span class="sc">$</span>height <span class="sc">&gt;=</span> <span class="dv">6</span>, ]        <span class="co"># values greater or equal to 6</span></span>

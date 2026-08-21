@@ -1293,7 +1293,7 @@ Doing so we get an "A" at the top left of the figure. If we weren't happy with t
 
 ### Axes tick marks and tick labels 
 
-What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; `scale_y_discrete()`\index{scale\_y\_discrete()} and `scale_x_discrete()`\index{scale\_x\_discrete()} for discrete data (e.g. factors); and `scale_y_continuous()`\index{scale\_y\_continuous()} and `scale_x_continuous()`\index{scale\_x\_continuous()} for continuous data. Within these layers, the argument we want to use is called `breaks =`, though we need to use this in combination with `seq()`\index{seq()} (see [Chapter 2](#funcs) for a reminder on how the `seq()` function works). We'll alter the x axis ticks in this example, with a tick label every 2.5 units.
+What are we to do if we want more or fewer ticks on an axis? We can do this using the appropriate layers; `scale_y_discrete()`\index{scale\_y\_discrete()} and `scale_x_discrete()`\index{scale\_x\_discrete()} for discrete data (e.g. factors); and `scale_y_continuous()`\index{scale\_y\_continuous()} and `scale_x_continuous()`\index{scale\_x\_continuous()} for continuous data. Within these layers, the argument we want to use is called `breaks =`, though we need to use this in combination with `seq()`\index{seq()} (see [Chapter 2](#using-functions-in-r) for a reminder on how the `seq()` function works). We'll alter the x axis ticks in this example, with a tick label every 2.5 units.
 
 ```{r, echo=FALSE, out.width="7.5%", fig.align='center'}
 knitr::include_graphics(path = "images/scales.png")
@@ -1498,7 +1498,7 @@ ggplot(flower) +
 
 Violin plots are an increasingly popular alternative to boxplots. They display much of the same information, as well as showing a version of the density plot above (imagine each violin plot, cut in half vertically and place on it's side, thus showing the overall distribution of the data). In the plot below the figure is slightly more complex than those above and so deserves some explanation.
 
-Within `geom_violin()`\index{geom\_violin()} we've included `draw_quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()`\index{c()} function). In combination with `geom_violin()` we've also included `geom_jitter()`\index{geom\_jitter()}. `geom_jitter()` is similar to `geom_point()` but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
+Within `geom_violin()`\index{geom\_violin()} we've included `quantiles =` where we've specified we want quantile lines drawn at the 25, 50 and 75 quantiles (using the `c()`\index{c()} function). In combination with `geom_violin()` we've also included `geom_jitter()`\index{geom\_jitter()}. `geom_jitter()` is similar to `geom_point()` but induces a slight random spread of the points, often helpful when those points would otherwise be clustered. Within `geom_jitter()` we've also set `height = 0`, and `width = 0.1` which specifies how much to jitter the points in a given dimension (here essentially telling `ggplot2` not to jitter by height, and only to jitter width by a small amount).
 
 Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is largely self-explanatory (it converts the y-axis to the $\text{log}_{10}$ scale). There are additional scaling options for axis (for instance `scale_y_sqrt()`\index{scale\_y\_sqrt()}). Please note that using a log scaled axis in this case is actually doing harm in terms of understanding the data, we'd actually be much better off not doing so in this particular case.
 
@@ -1507,7 +1507,7 @@ Finally, we're also using this plot to show `scale_y_log10`. Hopefully this is l
 ```{r violin-plot, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
   geom_violin(aes(y = flowers, x = nitrogen, fill = nitrogen), 
-              draw_quantiles = c(0.25, 0.5, 0.75)) +
+              quantiles = c(0.25, 0.5, 0.75)) +
   geom_jitter(aes(y = flowers, x = nitrogen), colour = "black", height = 0, 
               width = 0.1, alpha = 0.5) +
 	scale_fill_manual(labels = c("High", "Medium", "Low"),
@@ -1608,7 +1608,7 @@ We can then expand on this using the statistics layer, via `stat_nameOfStatistic
 
 ```{r stat-contour, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = leafarea, y = shootarea), data = flower) +
-	stat_density_2d(aes(fill = stat(level)), geom = "polygon") +
+	stat_density_2d(aes(fill = after_stat(level)), geom = "polygon") +
 	labs(y = "Shoot Area", x = "Leaf Area") +
 	coord_cartesian(xlim = c(5,25)) +
 	theme_rbook()
