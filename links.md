@@ -135,6 +135,8 @@
 
 <!--R markdown Links-->
 [markup]: https://en.wikipedia.org/wiki/Markup_language
+[quarto]: https://quarto.org/
+[quarto-rmd]: https://quarto.org/docs/faq/rmarkdown.html
 [tinytex]: https://yihui.name/tinytex/
 [joke]: https://en.wikipedia.org/wiki/Recursive_acronym
 [bookdownr]: https://bookdown.org/yihui/rmarkdown/html-document.html
