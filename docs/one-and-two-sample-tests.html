@@ -479,14 +479,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can also change the confidence level used for estimating the confidence intervals using the argument <code>conf.level = 0.99</code>. If specified in this way, 99% confidence intervals would be estimated.</p>
 <p>Although <em>t</em> tests are fairly robust against small departures from normality you may wish to use a rank based method such as the Wilcoxon’s signed rank test. In R, this is done in almost exactly the same way as the <em>t</em> test but using the <code>wilcox.test()</code> function.</p>
 <div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="one-and-two-sample-tests.html#cb327-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(trees<span class="sc">$</span>Height, <span class="at">mu =</span> <span class="dv">70</span>)</span>
-<span id="cb327-2"><a href="one-and-two-sample-tests.html#cb327-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-value with ties</span></span>
-<span id="cb327-3"><a href="one-and-two-sample-tests.html#cb327-3" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact p-value with zeroes</span></span>
-<span id="cb327-4"><a href="one-and-two-sample-tests.html#cb327-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb327-5"><a href="one-and-two-sample-tests.html#cb327-5" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb327-2"><a href="one-and-two-sample-tests.html#cb327-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
+<span id="cb327-3"><a href="one-and-two-sample-tests.html#cb327-3" tabindex="-1"></a><span class="do">## p-value with ties</span></span>
+<span id="cb327-4"><a href="one-and-two-sample-tests.html#cb327-4" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(trees$Height, mu = 70): cannot compute exact</span></span>
+<span id="cb327-5"><a href="one-and-two-sample-tests.html#cb327-5" tabindex="-1"></a><span class="do">## p-value with zeroes</span></span>
 <span id="cb327-6"><a href="one-and-two-sample-tests.html#cb327-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb327-7"><a href="one-and-two-sample-tests.html#cb327-7" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
-<span id="cb327-8"><a href="one-and-two-sample-tests.html#cb327-8" tabindex="-1"></a><span class="do">## V = 419.5, p-value = 0.0001229</span></span>
-<span id="cb327-9"><a href="one-and-two-sample-tests.html#cb327-9" tabindex="-1"></a><span class="do">## alternative hypothesis: true location is not equal to 70</span></span></code></pre></div>
+<span id="cb327-7"><a href="one-and-two-sample-tests.html#cb327-7" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb327-8"><a href="one-and-two-sample-tests.html#cb327-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb327-9"><a href="one-and-two-sample-tests.html#cb327-9" tabindex="-1"></a><span class="do">## data:  trees$Height</span></span>
+<span id="cb327-10"><a href="one-and-two-sample-tests.html#cb327-10" tabindex="-1"></a><span class="do">## V = 419.5, p-value = 0.0001229</span></span>
+<span id="cb327-11"><a href="one-and-two-sample-tests.html#cb327-11" tabindex="-1"></a><span class="do">## alternative hypothesis: true location is not equal to 70</span></span></code></pre></div>
 <p>Don’t worry too much about the warning message, R is just letting you know that your sample contained a number of values which were the same and therefore it was not possible to calculate an exact <em>p</em> value. This is only really a problem with small sample sizes. You can also use the arguments <code>alternative = "greater"</code> and <code>alternative = "less"</code>.</p>
 <p>In our one sample test it’s always a good idea to examine your data for departures from normality, rather than just assuming everything is OK. Perhaps the simplest way to assess normality is the ‘quantile-quantile plot’. This graph plots the ranked sample quantiles from your distribution against a similar number of ranked quantiles taken from a normal distribution. If your data are normally distributed then the plot of your data points will be in a straight line. Departures from normality will show up as a curve or s-shape in your data points. Judging just how much departure is acceptable comes with a little bit of practice.</p>
 <p>To construct a Q-Q plot you need to use both the <code>qqnorm()</code> and <code>qqline()</code> functions. The <code>lty = 2</code> argument changes the line to a dashed line.</p>
@@ -576,14 +578,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb336-12"><a href="one-and-two-sample-tests.html#cb336-12" tabindex="-1"></a><span class="do">##          -0.875</span></span></code></pre></div>
 <p>The output is almost identical to that of a one-sample <em>t</em> test. It is also possible to perform a non-parametric matched-pairs Wilcoxon test in the same way</p>
 <div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="one-and-two-sample-tests.html#cb337-1" tabindex="-1"></a><span class="fu">wilcox.test</span>(pollution<span class="sc">$</span>down, pollution<span class="sc">$</span>up, <span class="at">paired =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb337-2"><a href="one-and-two-sample-tests.html#cb337-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE): cannot compute exact p-value with ties</span></span>
-<span id="cb337-3"><a href="one-and-two-sample-tests.html#cb337-3" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE): cannot compute exact p-value with zeroes</span></span>
-<span id="cb337-4"><a href="one-and-two-sample-tests.html#cb337-4" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb337-5"><a href="one-and-two-sample-tests.html#cb337-5" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb337-2"><a href="one-and-two-sample-tests.html#cb337-2" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
+<span id="cb337-3"><a href="one-and-two-sample-tests.html#cb337-3" tabindex="-1"></a><span class="do">## cannot compute exact p-value with ties</span></span>
+<span id="cb337-4"><a href="one-and-two-sample-tests.html#cb337-4" tabindex="-1"></a><span class="do">## Warning in wilcox.test.default(pollution$down, pollution$up, paired = TRUE):</span></span>
+<span id="cb337-5"><a href="one-and-two-sample-tests.html#cb337-5" tabindex="-1"></a><span class="do">## cannot compute exact p-value with zeroes</span></span>
 <span id="cb337-6"><a href="one-and-two-sample-tests.html#cb337-6" tabindex="-1"></a><span class="do">## </span></span>
-<span id="cb337-7"><a href="one-and-two-sample-tests.html#cb337-7" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
-<span id="cb337-8"><a href="one-and-two-sample-tests.html#cb337-8" tabindex="-1"></a><span class="do">## V = 8, p-value = 0.01406</span></span>
-<span id="cb337-9"><a href="one-and-two-sample-tests.html#cb337-9" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
+<span id="cb337-7"><a href="one-and-two-sample-tests.html#cb337-7" tabindex="-1"></a><span class="do">##  Wilcoxon signed rank test with continuity correction</span></span>
+<span id="cb337-8"><a href="one-and-two-sample-tests.html#cb337-8" tabindex="-1"></a><span class="do">## </span></span>
+<span id="cb337-9"><a href="one-and-two-sample-tests.html#cb337-9" tabindex="-1"></a><span class="do">## data:  pollution$down and pollution$up</span></span>
+<span id="cb337-10"><a href="one-and-two-sample-tests.html#cb337-10" tabindex="-1"></a><span class="do">## V = 8, p-value = 0.01406</span></span>
+<span id="cb337-11"><a href="one-and-two-sample-tests.html#cb337-11" tabindex="-1"></a><span class="do">## alternative hypothesis: true location shift is not equal to 0</span></span></code></pre></div>
 <p>The function <code>prop.test()</code> can be used to compare two or more proportions. For example, a company wishes to test the effectiveness of an advertising campaign for a particular brand of cat food. The company commissions two polls, one before the advertising campaign and one after, with each poll asking cat owners whether they would buy this brand of cat food. The results are given in the table below</p>
 <table>
 <thead>

@@ -54,9 +54,9 @@ theme_deon <- function(base_size = 15, base_family = "", base_line_size = base_s
     axis.text.y = element_text(size = 10),
     plot.caption = element_text(size = 10, face = "italic"),
     panel.background = element_rect(fill = "white"),
-    axis.line = element_line(size = 1, colour = "black"),
+    axis.line = element_line(linewidth = 1, colour = "black"),
     strip.background = element_rect(fill = "#cddcdd"),
-    panel.border = element_rect(colour = "black", fill = NA, size = 0.5),
+    panel.border = element_rect(colour = "black", fill = NA, linewidth = 0.5),
     strip.text = element_text(colour = "black"),
     legend.key = element_blank()
   )
@@ -65,11 +65,11 @@ theme_deon <- function(base_size = 15, base_family = "", base_line_size = base_s
 final_figure <- ggplot(aes(x = weight, y = shootarea), data = df) +
   geom_point(aes(colour = nitrogen2, shape = nitrogen2), size = 2, alpha = 0.6) +
   geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
-  geom_smooth(aes(colour = nitrogen2), method = "lm", se = FALSE, size = 1.2) +
+  geom_smooth(aes(colour = nitrogen2), method = "lm", se = FALSE, linewidth = 1.2) +
   facet_grid(block ~ treat) +
   xlab("Weight of flower (g)") +
   ylab(bquote("Area of shoot" ~ (cm^2))) +
-  geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+  geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
   labs(shape = "Nitrogen\nConcentration", 
   		 colour = "Nitrogen\nConcentration", 
   		 caption = "Note: Regression assumptions are unvalidated") +
@@ -667,9 +667,9 @@ theme_rbook <- function(base_size = 13, base_family = "", base_line_size = base_
     axis.text.y = element_text(size = 10),                              
     plot.caption = element_text(size = 10, face = "italic"),            
     panel.background = element_rect(fill="white"),                      
-    axis.line = element_line(size = 1, colour = "black"),
+    axis.line = element_line(linewidth = 1, colour = "black"),
     strip.background =element_rect(fill = "#cddcdd"),
-    panel.border = element_rect(colour = "black", fill=NA, size=0.5),
+    panel.border = element_rect(colour = "black", fill=NA, linewidth=0.5),
 		strip.text = element_text(colour = "black"),
 		legend.key=element_blank()
   )
@@ -730,7 +730,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	# Added a horizontal line using geom_hline
-	geom_hline(aes(yintercept = mean(shootarea)), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = mean(shootarea)), linewidth = 0.5, colour = "black", linetype = 3) +
 	
 	theme_rbook()
 ```
@@ -755,7 +755,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	# Manually entering mean value
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	
 	theme_rbook()
 ```
@@ -781,7 +781,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	theme_rbook()
 ```
 
@@ -809,7 +809,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	# Setting colour and associated labels
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
@@ -846,7 +846,7 @@ rbook_figure <- ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data =
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -929,10 +929,10 @@ knitr::include_graphics(path = "images/coords.png")
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
-	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, size = 1.2) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, linewidth = 1.2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
@@ -959,10 +959,10 @@ knitr::include_graphics(path = "images/coords.png")
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
-	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, size = 1.2) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, linewidth = 1.2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
@@ -990,13 +990,13 @@ We'll move both the points and the overall black dashed line down in the code so
 
 ```{r layering-layers, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(aes(x = weight, y = shootarea), data = flower) +
-	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, size = 1.2) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, linewidth = 1.2) +
 	# Move one line down
 	geom_point(aes(colour = nitrogen, shape = nitrogen), size = 2, alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
@@ -1027,7 +1027,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	# Changed colour argument label
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
@@ -1049,7 +1049,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	# Updated legend name for colour
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
@@ -1073,7 +1073,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
@@ -1097,7 +1097,7 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(aes(colour = flowers, shape = nitrogen), size = 2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Number of\nFlowers", 
 			 caption = "Regression assumptions are unvalidated") +
 	scale_shape_manual(values = c(15,17,19,21),
@@ -1125,10 +1125,10 @@ ggplot(aes(x = weight, y = shootarea), data = flower) +
 	# Moving size into aes and changing to a continuous variable
 	geom_point(aes(colour = nitrogen, shape = nitrogen, size = height), alpha = 0.6) +
 	geom_smooth(colour = "black", method = "lm", se = FALSE, linetype = 2, alpha = 0.6) +
-	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, size = 1.2) +
+	geom_smooth(aes(colour = nitrogen), method = "lm", se = FALSE, linewidth = 1.2) +
 	xlab("Weight of flower (g)") +
 	ylab(bquote("Area of shoot"~(cm^2))) +
-	geom_hline(aes(yintercept = 79.7833), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.7833), linewidth = 0.5, colour = "black", linetype = 3) +
 	# Including size label
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated",
@@ -1161,7 +1161,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1192,7 +1192,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1222,7 +1222,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1251,7 +1251,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1279,7 +1279,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	# Including tag argument
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated", tag = "A") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1308,7 +1308,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1335,7 +1335,7 @@ ggplot(aes(x = weight, y = shootarea, colour = nitrogen), data = flower) +
 	ylab(bquote("Area of shoot"~(cm^2))) +
 	labs(shape = "Nitrogen\nConcentration", colour = "Nitrogen\nConcentration", 
 			 caption = "Regression assumptions are unvalidated") +
-	geom_hline(aes(yintercept = 79.8), size = 0.5, colour = "black", linetype = 3) +
+	geom_hline(aes(yintercept = 79.8), linewidth = 0.5, colour = "black", linetype = 3) +
 	scale_colour_manual(values = c("#5C1AAE", "#AE5C1A", "#1AAE5C"),
        labels = c("High", "Medium", "Low")) +
 	scale_shape_manual(values = c(15,17,19),
@@ -1474,7 +1474,7 @@ A frequency polygon is yet another visualisation of the above two. The only diff
 
 ```{r freqpoly, out.width = "75%", fig.align = "center", message=FALSE}
 ggplot(flower) +
-	geom_freqpoly(aes(x = flowers, colour = factor(block)), size = 1, bins = 20) +
+	geom_freqpoly(aes(x = flowers, colour = factor(block)), linewidth = 1, bins = 20) +
 	labs(y = "Count", x = "Number of Flowers", colour = "Greenhouse\nBlock") +
 	scale_colour_manual(labels = c("1", "2"),
          values = c("#8CD926", "#7326D9")) +
@@ -1547,7 +1547,7 @@ library(quantreg)
 
 ggplot(aes(x = weight, y = shootarea), data = flower) +
 	geom_point(size = 0.5, alpha = 0.6) +
-	geom_quantile(colour = "darkgrey", size = 1) +
+	geom_quantile(colour = "darkgrey", linewidth = 1) +
 	labs(y = "Shoot Area", x = "Weight") +
 	theme_rbook()
 ```

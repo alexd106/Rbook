@@ -500,8 +500,10 @@ The most basic example of a <code>for</code> loop is:</p>
 <span id="cb402-2"><a href="loops.html#cb402-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>(<span class="fu">ncol</span>(city) <span class="sc">-</span> <span class="dv">1</span>)) {</span>
 <span id="cb402-3"><a href="loops.html#cb402-3" tabindex="-1"></a>  temp[[i]] <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(<span class="at">x =</span> city[, i], <span class="at">y =</span> city[, i <span class="sc">+</span> <span class="dv">1</span>])</span>
 <span id="cb402-4"><a href="loops.html#cb402-4" tabindex="-1"></a>}</span>
-<span id="cb402-5"><a href="loops.html#cb402-5" tabindex="-1"></a><span class="do">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has produced NAs</span></span>
-<span id="cb402-6"><a href="loops.html#cb402-6" tabindex="-1"></a><span class="do">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has produced NAs</span></span></code></pre></div>
+<span id="cb402-5"><a href="loops.html#cb402-5" tabindex="-1"></a><span class="do">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></span>
+<span id="cb402-6"><a href="loops.html#cb402-6" tabindex="-1"></a><span class="do">## produced NAs</span></span>
+<span id="cb402-7"><a href="loops.html#cb402-7" tabindex="-1"></a><span class="do">## Warning in multiply_columns(x = city[, i], y = city[, i + 1]): The function has</span></span>
+<span id="cb402-8"><a href="loops.html#cb402-8" tabindex="-1"></a><span class="do">## produced NAs</span></span></code></pre></div>
 <p>When we specify our <code>for</code> loop notice how we subtracted 1 from <code>ncol(city)</code>. The <code>ncol()</code> function returns the number of columns in our <code>city</code> data frame which is <code>4</code> and so our loop runs from <code>i = 1</code> to <code>i = 4 - 1</code> which is <code>i = 3</code>. We’ll come back to why we need to subtract 1 from this in a minute.</p>
 <p>So in the first iteration of the loop <code>i</code> takes on the value <code>1</code>. The <code>multiply_columns()</code> function multiplies the <code>city[, 1]</code> (<code>porto</code>) and <code>city[, 1 + 1]</code> (<code>aberdeen</code>) columns and stores it in the <code>temp[[1]]</code> which is the first element of the <code>temp</code> list.</p>
 <p>The second iteration of the loop <code>i</code> takes on the value <code>2</code>. The <code>multiply_columns()</code> function multiplies the <code>city[, 2]</code> (<code>aberdeen</code>) and <code>city[, 2 + 1]</code> (<code>nairobi</code>) columns and stores it in the <code>temp[[2]]</code> which is the second element of the <code>temp</code> list.</p>
@@ -514,11 +516,13 @@ The most basic example of a <code>for</code> loop is:</p>
 <span id="cb403-4"><a href="loops.html#cb403-4" tabindex="-1"></a><span class="do">## [1] TRUE</span></span>
 <span id="cb403-5"><a href="loops.html#cb403-5" tabindex="-1"></a></span>
 <span id="cb403-6"><a href="loops.html#cb403-6" tabindex="-1"></a>aberdeen_nairobi_func <span class="ot">&lt;-</span> <span class="fu">multiply_columns</span>(city<span class="sc">$</span>aberdeen, city<span class="sc">$</span>nairobi)</span>
-<span id="cb403-7"><a href="loops.html#cb403-7" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has produced NAs</span></span>
-<span id="cb403-8"><a href="loops.html#cb403-8" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb403-9"><a href="loops.html#cb403-9" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">multiply_columns</span>(city[, i], city[, i <span class="sc">+</span> <span class="dv">1</span>]), aberdeen_nairobi_func)</span>
-<span id="cb403-10"><a href="loops.html#cb403-10" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city[, i], city[, i + 1]): The function has produced NAs</span></span>
-<span id="cb403-11"><a href="loops.html#cb403-11" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
+<span id="cb403-7"><a href="loops.html#cb403-7" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city$aberdeen, city$nairobi): The function has</span></span>
+<span id="cb403-8"><a href="loops.html#cb403-8" tabindex="-1"></a><span class="do">## produced NAs</span></span>
+<span id="cb403-9"><a href="loops.html#cb403-9" tabindex="-1"></a>i <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb403-10"><a href="loops.html#cb403-10" tabindex="-1"></a><span class="fu">identical</span>(<span class="fu">multiply_columns</span>(city[, i], city[, i <span class="sc">+</span> <span class="dv">1</span>]), aberdeen_nairobi_func)</span>
+<span id="cb403-11"><a href="loops.html#cb403-11" tabindex="-1"></a><span class="do">## Warning in multiply_columns(city[, i], city[, i + 1]): The function has</span></span>
+<span id="cb403-12"><a href="loops.html#cb403-12" tabindex="-1"></a><span class="do">## produced NAs</span></span>
+<span id="cb403-13"><a href="loops.html#cb403-13" tabindex="-1"></a><span class="do">## [1] TRUE</span></span></code></pre></div>
 <p>If you can follow the examples above, you’ll be in a good spot to begin writing some of your own for loops. That said there are other types of loops available to you.</p>
 </div>
 <div id="while-loop" class="section level3 hasAnchor" number="7.5.2">
